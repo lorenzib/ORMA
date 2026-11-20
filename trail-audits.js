@@ -325,8 +325,8 @@
       shadeDescription: 'The official description records pine, juniper, larch and spruce along the first climb, followed by a more open view beyond Lago d’Aosto.',
       terrainDescription: 'The marked loop climbs gently toward Lago d’Aosto on mostly natural ground. The official description rates the wider route collection E and names no equipped or alpine-grade section on route 5.',
       waterDescription: 'No drinking-water point is mapped on the loop. Carry a full supply; the marsh at Lago d’Aosto is not a drinking source.',
-      dogNotes: 'Dogs must be on a leash: Lozzo di Cadore requires one on all public places, trails included, and the western end of the loop lies in Domegge di Cadore, which requires a leash of at most 1.3 m or a muzzle. No pasture is described or mapped along the loop, but two farm buildings stand beside the path, so animals may be kept close by.',
-      tips: 'Start at Niante Aze outside Lozzo and follow route 5 toward Lago d’Aosto. The official route is about 3 km with 250 m ascent; carry all water you need. Keep your dog on a leash throughout: Lozzo di Cadore requires one on its trails, Domegge di Cadore (the western end of the loop) a leash of at most 1.3 m or a muzzle, and the path passes two farm buildings where animals may be kept.',
+      dogNotes: 'Dogs must be on a leash: Lozzo di Cadore requires one on all public places, trails included, and the western end of the loop lies in Domegge di Cadore, which requires a lead of at most 1.3 m or a muzzle. No pasture is described or mapped along the loop, but two farm buildings stand beside the path, so animals may be kept close by.',
+      tips: 'Start at Niante Aze outside Lozzo and follow route 5 toward Lago d’Aosto. The official route is about 3 km with 250 m ascent; carry all water you need. Keep your dog on a lead throughout: Lozzo di Cadore requires one on its trails, Domegge di Cadore (the western end of the loop) a lead of at most 1.3 m or a muzzle, and the path passes two farm buildings where animals may be kept.',
       sourceLinks: [
         {
           label: 'Lozzo di Cadore, Anello del Sole',
@@ -14934,7 +14934,7 @@
       "imageCreditText": "Tramin parish church and the Etsch valley by Plentn",
       "imageAlt": "The tall Gothic spire of Tramin parish church above red roofs, with the Etsch valley floor and the mountains across the valley behind",
       "imageSourceType": "licensed-source",
-      "routeNumberGuidance": {"mode": "numbered", "start": "Start at the bus stop Tramin, Altersheim, 14 m from the route, marked on the map. This is ORMA’s suggestion, not one published by the trail’s operator. Check current access before travelling.", "status": "The mapped route carries trail numbers VR, 6; look for them at junctions. ORMA has not confirmed how they appear on local signs. This is ORMA’s suggestion, not one published by the trail’s operator.", "sequence": "This walk carries no route number of its own. The mapped route runs along numbered trails VR and then 6, in that order from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.", "switches": "On the mapped route, trail VR gives way to trail 6 about 0.8 km from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.", "establishedBy": {"start": "orma-record", "status": "orma-record", "sequence": "route-relations", "switches": "route-relations"}, "sources": [{"label": "OpenStreetMap route 6", "url": "https://www.openstreetmap.org/relation/12363193", "authority": "OpenStreetMap", "accessedAt": "2026-10-27T09:37:03.092Z"}, {"label": "OpenStreetMap route VR", "url": "https://www.openstreetmap.org/relation/13347902", "authority": "OpenStreetMap", "accessedAt": "2026-10-27T09:37:03.092Z"}]},
+      "routeNumberGuidance": {"mode": "numbered", "start": "Start at the bus stop Tramin, Altersheim, 14 m from the route, marked on the map. This is ORMA’s suggestion, not one published by the trail’s operator. Check current access before travelling.", "status": "This route follows trails VR, 6. Look for those numbers at junctions; ORMA has not checked how they are shown on local signs. This is ORMA’s suggestion, not one published by the trail’s operator.", "sequence": "This walk carries no route number of its own. The mapped route runs along numbered trails VR and then 6, in that order from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.", "switches": "On the mapped route, trail VR gives way to trail 6 about 0.8 km from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.", "establishedBy": {"start": "orma-record", "status": "orma-record", "sequence": "route-relations", "switches": "route-relations"}, "sources": [{"label": "OpenStreetMap route 6", "url": "https://www.openstreetmap.org/relation/12363193", "authority": "OpenStreetMap", "accessedAt": "2026-10-27T09:37:03.092Z"}, {"label": "OpenStreetMap route VR", "url": "https://www.openstreetmap.org/relation/13347902", "authority": "OpenStreetMap", "accessedAt": "2026-10-27T09:37:03.092Z"}]},
       "terrainType": "Sparsely mapped: paved (100%), gravel (0%), from OSM surface data",
       "terrainRank": 2,
       "safetyLevel": "caution",
@@ -16117,7 +16117,7 @@
         photo: 'Schloss Welsperg in summer, 11 m from the line (Montepiana, CC0).',
         route: 'Stored line 1.86 km, closed; province register line 1.88 km, closed, within 30 m; the official 2.3 km includes the walk to and from the tourist office.',
         routeNumbers: 'No number: from the school centre follow the “Schlossrunde” waymarks up to Schloss Welsperg, down the castle hill to the bridge over the Gsieser Bach, and back along the old Gsiesertal road.',
-        mapPoints: 'Start at the Welsberg tourist office (official start), 180 m from the loop; drinking fountains OSM nodes 9006242959 (25 m off), 10916470437 (main square) and 5167581904 (tourist office).',
+        mapPoints: 'Start at the Welsberg tourist office (official start), about 250 m on foot from the loop; drinking fountains OSM nodes 9006242959 (25 m off), 10916470437 (main square) and 5167581904 (tourist office).',
         elevation: 'Official 2.3 km, 78 m up and down, 0:39 h, 1,085–1,163 m.'
       },
       graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
@@ -16148,7 +16148,7 @@
         { label: 'Welsberg-Taisten, Mayor’s ordinance 03/2023', url: 'https://www.gemeinde.welsberg-taisten.bz.it/de/Neuigkeiten/News/Anordnung_des_Buergermeisters_fuer_das_Verhalten_von_Hundebesitzern' },
         { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/12173965' }
       ],
-      startPoint: { lat: 46.75574, lng: 12.10566, label: 'Welsberg tourist office (official start), 180 m from the loop via the main square' },
+      startPoint: { lat: 46.75574, lng: 12.10566, label: 'Welsberg tourist office (official start), about 250 m on foot from the loop via the main square' },
       waterSources: [
         { km: 0, lat: 46.7560017, lng: 12.105435, osmId: 'node/5167581904', label: 'Fountain at the tourist office' },
         { km: 0.2, lat: 46.7579497, lng: 12.1053116, osmId: 'node/9006242959', label: 'Village fountain' },
@@ -16205,7 +16205,7 @@
         { label: 'Welsberg-Taisten, Mayor’s ordinance 03/2023', url: 'https://www.gemeinde.welsberg-taisten.bz.it/de/Neuigkeiten/News/Anordnung_des_Buergermeisters_fuer_das_Verhalten_von_Hundebesitzern' },
         { label: 'OpenStreetMap contributors', url: 'https://www.openstreetmap.org/relation/12173984' }
       ],
-      startPoint: { lat: 46.75574, lng: 12.10566, label: 'Welsberg tourist office (official start), 180 m from the loop via the main square' },
+      startPoint: { lat: 46.75574, lng: 12.10566, label: 'Welsberg tourist office (official start), about 250 m on foot from the loop via the main square' },
       waterSources: [
         { km: 0, lat: 46.7560017, lng: 12.105435, osmId: 'node/5167581904', label: 'Fountain at the tourist office' },
         { km: 3.9, lat: 46.765271, lng: 12.118358, osmId: 'way/507522282', label: 'Taistner Bach (stream crossing)' },
@@ -16605,12 +16605,12 @@
       "imageCreditText": "Alpenrose on the Cherz pasture by Mike Noren",
       "imageAlt": "Alpenrose in flower on the Cherz pasture at about 2080 m, the meadow rising to a Dolomite skyline behind",
       "imageSourceType": "licensed-source",
-      "routeNumberGuidance": {"mode": "numbered", "start": "Start at Passo Campolongo (1,875 m), parking and bus stop beside the Cherz I chairlift base on the SP244. A path climbs about 220 m from here to the Cherz plateau, where the loop begins; the Cherz I open chair covers the same climb when it runs, marked on the map. This is ORMA’s suggestion, not one published by the trail’s operator. Check current access before travelling.", "status": "The mapped route carries trail numbers 022, 045; look for them at junctions. ORMA has not confirmed how they appear on local signs. This is ORMA’s suggestion, not one published by the trail’s operator.", "sequence": "This walk carries no route number of its own. The mapped route runs along numbered trails 022, 045 and then 022, in that order from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.", "switches": "On the mapped route, trail 022 gives way to trail 045 about 0.1 km from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.", "establishedBy": {"start": "orma-record", "status": "orma-record", "sequence": "route-relations", "switches": "route-relations"}, "sources": [{"label": "OpenStreetMap route 022", "url": "https://www.openstreetmap.org/relation/19266004", "authority": "OpenStreetMap", "accessedAt": "2026-10-27T09:37:03.221Z"}, {"label": "OpenStreetMap route 045", "url": "https://www.openstreetmap.org/relation/19267819", "authority": "OpenStreetMap", "accessedAt": "2026-10-27T09:37:03.221Z"}]},
+      "routeNumberGuidance": {"mode": "numbered", "start": "Start at Passo Campolongo (1,875 m), parking and bus stop beside the Cherz I chairlift base on the SP244. A path climbs from here to the Cherz plateau, where the loop begins; the Cherz I open chair covers the same climb when it runs, marked on the map. This is ORMA’s suggestion, not one published by the trail’s operator. Check current access before travelling.", "status": "This route follows trails 022, 045. Look for those numbers at junctions; ORMA has not checked how they are shown on local signs. This is ORMA’s suggestion, not one published by the trail’s operator.", "sequence": "This walk carries no route number of its own. The mapped route runs along numbered trails 022, 045 and then 022, in that order from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.", "switches": "On the mapped route, trail 022 gives way to trail 045 about 0.1 km from the start. Read off the map (OpenStreetMap), not from directions the trail’s operator published.", "establishedBy": {"start": "orma-record", "status": "orma-record", "sequence": "route-relations", "switches": "route-relations"}, "sources": [{"label": "OpenStreetMap route 022", "url": "https://www.openstreetmap.org/relation/19266004", "authority": "OpenStreetMap", "accessedAt": "2026-10-27T09:37:03.221Z"}, {"label": "OpenStreetMap route 045", "url": "https://www.openstreetmap.org/relation/19267819", "authority": "OpenStreetMap", "accessedAt": "2026-10-27T09:37:03.221Z"}]},
       "terrainType": "Surface not yet field-verified",
       "terrainRank": 0,
       "safetyLevel": "low-risk",
       "waterSources": [],
-      "startPoint": {"lat": 46.52004, "lng": 11.87393, "label": "Passo Campolongo (1,875 m), parking and bus stop beside the Cherz I chairlift base on the SP244. A path climbs about 220 m from here to the Cherz plateau, where the loop begins; the Cherz I open chair covers the same climb when it runs"},
+      "startPoint": {"lat": 46.52004, "lng": 11.87393, "label": "Passo Campolongo (1,875 m), parking and bus stop beside the Cherz I chairlift base on the SP244. A path climbs from here to the Cherz plateau, where the loop begins; the Cherz I open chair covers the same climb when it runs"},
       "path": [[46.5155873, 11.8856421], [46.5155965, 11.885872], [46.5155877, 11.8860373], [46.5155631, 11.8861767], [46.5155432, 11.8862649], [46.5155199, 11.8863356], [46.5154754, 11.8864091], [46.5153453, 11.8864929], [46.515301, 11.8866022], [46.515241, 11.8866934], [46.5152174, 11.8867739], [46.5151911, 11.8868154], [46.5151607, 11.8869033], [46.5150845, 11.8869878], [46.5150545, 11.8870877], [46.5149433, 11.8872875], [46.514912, 11.8874317], [46.5148058, 11.8877193], [46.5147703, 11.8879131], [46.5145626, 11.888296], [46.5142405, 11.8888351], [46.513959, 11.8891751], [46.5138912, 11.889334], [46.5137459, 11.8894722], [46.5135054, 11.8896438], [46.5127702, 11.890039], [46.512601, 11.890254], [46.5124305, 11.8903824], [46.5121473, 11.8905397], [46.5120283, 11.8906999], [46.5119055, 11.8908294], [46.511846, 11.8909413], [46.5116762, 11.8911023], [46.5115986, 11.8912692], [46.5115211, 11.8914033], [46.5114085, 11.8915227], [46.5113863, 11.8915918], [46.5111671, 11.8918989], [46.5109687, 11.8922462], [46.5108021, 11.8924789], [46.5107477, 11.8925004], [46.5104675, 11.8928041], [46.5103725, 11.8929979], [46.5103674, 11.8931186], [46.5102608, 11.8933211], [46.5102488, 11.8934016], [46.5102026, 11.8934754], [46.5101283, 11.8937623], [46.5099333, 11.8941269], [46.5097518, 11.8943873], [46.5097005, 11.8945456], [46.5096452, 11.8945643], [46.5095496, 11.8946683], [46.5094989, 11.894795], [46.5094548, 11.8948307], [46.5093313, 11.89486], [46.5091949, 11.8949594], [46.5088984, 11.8952852], [46.5085097, 11.8955688], [46.5081743, 11.8957626], [46.5080484, 11.8957894], [46.5079256, 11.8957753], [46.5078047, 11.895721], [46.5077082, 11.8956151], [46.5074013, 11.8956064], [46.5073653, 11.8955205], [46.5069643, 11.895546], [46.5069329, 11.8956117], [46.5066784, 11.8956976], [46.506578, 11.8956633], [46.5065484, 11.8956203], [46.5068734, 11.8953457], [46.506976, 11.8952531], [46.5070132, 11.8950954], [46.5071101, 11.8950203], [46.5073261, 11.8948232], [46.5075661, 11.8946193], [46.5085029, 11.893525], [46.5089252, 11.8925922], [46.5089451, 11.8924943], [46.5089215, 11.8922167], [46.5089248, 11.8920974], [46.5089538, 11.8919606], [46.5091703, 11.8913296], [46.5093641, 11.8909031], [46.5094924, 11.890537], [46.5095325, 11.8902983], [46.5095972, 11.8901145], [46.5096978, 11.8899053], [46.5098985, 11.8896706], [46.5100614, 11.889503], [46.5101583, 11.8893595], [46.510306, 11.8892475], [46.5105884, 11.8891188], [46.5107135, 11.8890135], [46.5108109, 11.8888962], [46.5109207, 11.8887406], [46.5110084, 11.8885978], [46.5110601, 11.8884737], [46.5111538, 11.8881076], [46.5112565, 11.8878613], [46.5113687, 11.887681], [46.5116046, 11.8874377], [46.5117957, 11.8873096], [46.5119955, 11.8872929], [46.5125816, 11.88738], [46.5127445, 11.8874793], [46.5129111, 11.8875088], [46.5130693, 11.8874209], [46.5132138, 11.8873344], [46.5140859, 11.8870888], [46.5143979, 11.8868798], [46.5146821, 11.8868744], [46.5148833, 11.8867111], [46.5150047, 11.8866364], [46.5151141, 11.886517], [46.5152299, 11.8864265], [46.5152631, 11.8863601], [46.5152849, 11.8862476], [46.5154205, 11.8861402], [46.5155139, 11.8860158], [46.515561, 11.8859611], [46.5155965, 11.885872]],
       "curated": true,
       "tier": "route-audited",
@@ -51701,8 +51701,9 @@
       desc: 'A short loop above Mezzolombardo through its oldest quarter and over a long suspension bridge to the Toresela watchtower. The APT lists 1.4 km and 66 m of ascent.'
     },
     'paganella-sette-passi-sette-ville': {
-      // Seal withdrawn 28 October 2026 under the board-walk bar (scripts/board-walk-bar.js): the drawn line goes out and comes straight back mid-walk (km 0.35 (77 m), km 2.75 (61 m), km 3.72 (97 m)).
-      // The research below stands; the walk reads Reviewed until this is fixed.
+      // Seal restored 18 November 2026 by the owner's decision: at three places the APT's line loops round a short
+      // path OpenStreetMap does not have (about 100 m each), so ours goes there and back on the mapped path instead.
+      // Declared as sideTrips (km 0.35, 2.75, 3.72). Cutting them left only 88% of the APT's line within 25 m.
       // Hand audit: 28 October 2026, verified on arrival (west Trentino batch 3).
       // APT Dolomiti Paganella’s walk “Sette passi per sette Ville”, drawn on 50 OSM ways along the line it publishes
       // (data/board-line-routes.geojson). Commune: San Lorenzo Dorsino (San Lorenzo in Banale animal rules, Art. 10).
@@ -51713,18 +51714,23 @@
       hours: '1.2',
       routeShape: 'loop',
       routeShapeNote: 'A loop from the upper part of San Lorenzo in Banale through its old hamlets, Berghi, Pergnano, Senaso and Dolaso, past small churches, old fountains, kitchen gardens and woods.',
+      sideTrips: [
+        { km: 0.35, note: 'About 80 m there and back in the lanes: the APT’s line loops round a short path here that OpenStreetMap does not have (owner’s decision, 18 November 2026).' },
+        { km: 2.75, note: 'About 60 m there and back in the lanes: the APT’s line loops round a short path here that OpenStreetMap does not have (owner’s decision, 18 November 2026).' },
+        { km: 3.72, note: 'About 100 m there and back in the lanes: the APT’s line loops round a short path here that OpenStreetMap does not have (owner’s decision, 18 November 2026).' },
+      ],
       curated: true,
-      tier: 'under-review',
+      tier: 'route-audited',
       reviewedAt: '2026-10-28',
       reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'Stone houses round a courtyard in one of the hamlets, on the loop, in July (napo on Mapillary, CC BY-SA 4.0), 0 m from the line.',
-        route: 'Official loop 3.8 km from San Lorenzo in Banale, as Visit Paganella publishes it; the stored line is drawn on 50 OSM ways along the APT’s published line, 3.9 km, with 96% of the APT’s line within 25 m of it.',
+        route: 'Official loop 3.8 km from San Lorenzo in Banale, as Visit Paganella publishes it; the stored line is drawn on 50 OSM ways along the APT’s published line, 3.9 km, with 96% of the APT’s line within 25 m of it. At three places in the lanes, where the APT’s line loops round a short path OpenStreetMap does not have, ours goes 60 to 100 m there and back instead.',
         routeNumbers: 'Not a numbered route: from the upper part of San Lorenzo in Banale, where the old rural village is best kept, through the hamlets of Berghi, Pergnano, Senaso and Dolaso with their small churches and old fountains, between stone-and-wood houses, kitchen gardens and woods, and back. A short passage under a building and a few steps in the lanes.',
         mapPoints: 'Start at the APT’s start in San Lorenzo in Banale; drinking water at the start, at km 0.2, at km 0.3, at km 0.7, at km 0.9, at km 1, at km 1.4, at km 1.7, at km 2.6, at km 3.1 and at km 3.2 (OSM nodes 2987321200, 7083031141, 5401506452, 7083031144, 5401506481, 9945990649, 2378275793, 12094825180, 7082786812, 7090793282, 2378275764, 5401506447, 11032315704, 11032337905, 835951070).',
         elevation: 'Official 3.8 km, 107 m up and 108 m down, 1 h 10 min, highest point 797 m, lowest 709 m (Visit Paganella).'
       },
-      graduation: { status: 'in-progress', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: { route: 'The drawn line goes out and comes straight back mid-walk, at km 0.35 (77 m), km 2.75 (61 m), km 3.72 (97 m); it cannot be followed as drawn. Redraw it, or declare a real side trip.' } },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'] },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
@@ -70549,6 +70555,1766 @@
       ],
       startPoint: { lat: 46.566045, lng: 12.719855, label: "The car park by the Monte Siera chairlift at Cima Sappada, the board’s start" },
       desc: "A nature trail from Cima Sappada up through the Longrone spruce forest to the Rifugio Siera on the edge of the Pian dei Larici, with views over Sappada and the Peralba group, and back the same way. The sheet lists 2.1 km and 344 m up one way; there and back it is 4.2 km with 364 m up and down, 1 h 30 to 1 h 55."
+    },
+    'steinegg-pyramidenrundweg': {
+      // Hand audit: 18 November 2026, verified on arrival (new-trail Dolomites batch 15).
+      // Sealed on the owner's decision (16 Nov 2026): the province trail register gives only the length, so climb and time are
+      // measured by ORMA from the map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
+      // “Pyramidenrundweg” (routes-hikingtrails.11428309), drawn on 18 OSM ways along the register line (data/board-line-routes.geojson).
+      // Commune: Karneid (2015 dog regulation). Natural monument Erdpyramiden Steinegg on the edge of the line; no park or Natura 2000 site. Roads: 180 m of the Hauptstraße (LS/SP132) through Mariahilf, and about 1.4 km on quiet lanes (Pyramidenstraße 1,030 m, Rosengartenstraße 140 m, service roads 240 m), which the owner accepted on 18 Nov 2026 (lanes up to half the walk). About 300 m of narrower, steeper path by the pyramids (OSM sac_scale mountain_hiking).
+      area: "Steinegg / Collepietra, Karneid",
+      distance: 4.2,
+      elevation: 174,
+      hours: '1.5',
+      routeShape: 'loop',
+      routeShapeNote: "A loop below the village of Steinegg on the waymarked Pyramidenrundweg, as the province trail register maps it (4.2 km): along the paved Pyramidenweg footpath, briefly through Mariahilf on the Hauptstraße, down path 2 past the Glirg farm to the earth pyramids, then back up on the Pyramidenstraße lane and a path past the Heigler bench. Climb and time are measured by ORMA, not published by the register.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start on the lane by the Raffein farm below Steinegg, where the Pyramidenweg footpath begins; the loop is waymarked “Pyramidenrundweg” all the way.",
+        "sequence": "Follow the paved Pyramidenweg footpath (no cars) for about 1.3 km to the Weißenbilder farm. Take the Bühlweg up to the Hauptstraße and walk it for about 180 m through Mariahilf, past the Maria-Hilf chapel. Turn off onto path 2, a path and then a track, past the Glirg farm, cross the Rosengartenstraße and go on along path 2 to the earth pyramids. The path by the pyramids is narrow and steeper for about 300 m. Join path 2A, then walk up the Pyramidenstraße lane for about 260 m, take a short service road and the path past the Heigler bench, and follow the Pyramidenstraße lane past the Höller farm back to the start.",
+        "switches": "The Pyramidenweg footpath; the Bühlweg and 180 m of the Hauptstraße through Mariahilf; path 2 past the Glirg farm, across the Rosengartenstraße; the narrow path by the earth pyramids; path 2A and the Pyramidenstraße lane; the path past the Heigler bench; the Pyramidenstraße back to the start.",
+        "steps": [
+          {
+            "text": "The lane by the Raffein farm, where the Pyramidenweg footpath begins",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The paved Pyramidenweg footpath to the Weißenbilder farm",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Bühlweg and 180 m of the Hauptstraße through Mariahilf, past the Maria-Hilf chapel",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 2 past the Glirg farm and across the Rosengartenstraße to the earth pyramids",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 2A, the Pyramidenstraße lane and the path past the Heigler bench",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Pyramidenstraße past the Höller farm back to the start",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Pyramidenrundweg (waymarked loop, province trail register)",
+            "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11428309",
+            "authority": "Autonome Provinz Bozen, hiking-trail register",
+            "tag": "register",
+            "reviewedAt": "2026-11-18"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-18',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The Maria-Hilf chapel at Weißes Bild, Steinegg (Plentn on Wikimedia Commons, CC0), 26 June 2021, 18 m from the line.",
+        route: "Register loop 'Pyramidenrundweg' (routes-hikingtrails.11428309, 4.22 km) from On the lane by the Raffein farm below Steinegg, where the Pyramidenweg begins; the stored line is drawn on 18 OSM ways along the register line, 4.2 km, with 98% of the guide line within 25 m of it and 99% of it within 25 m of the guide line.",
+        routeNumbers: "Waymarked “Pyramidenrundweg”: the Pyramidenweg footpath, the Bühlweg and the Hauptstraße through Mariahilf, path 2 past the Glirg farm to the earth pyramids, path 2A, then the Pyramidenstraße lane and the path past the Heigler bench back to the start.",
+        mapPoints: "Start where the register loop leaves the lane; no drinking water mapped on the line.",
+        elevation: "No official figure. Measured by ORMA from the map: 4.20 km, about 174 m up and down between 833 and 997 m, 1 h 31 min by DIN 33466 (25 m EU-DEM heights)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'Pyramidenrundweg', line routes-hikingtrails.11428309, 4,216 m",
+          "Gemeinde Karneid, Verordnung über die Haltung und Führung von Hunden (in force 13 Sep 2015): Art. 4 (lead on all public ground, at most 1.5 m; muzzle carried), Art. 8 (no dogs on farmed meadows and fields; no bathing in fountains or troughs), Art. 12 (applies outside built-up areas)",
+          "Natural monument “Erdpyramiden Steinegg” (Karneid landscape plan, 031_G01): the path runs along its edge for about 300 m; stay on the path. No park, reserve or Natura 2000 site on the line (EEA)",
+          "OpenStreetMap ways along the register line (18 ways), road, surface, woodland and water data",
+          "Climb and time measured by ORMA: 25 m EU-DEM ground heights every 100 m (10 m threshold), time by DIN 33466"
+        ],
+        date: '2026-11-18'
+      },
+      shadeCoverage: 70,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["180 m on the Hauptstraße through Mariahilf, a village road with traffic: keep your dog on a short lead","About 1.4 km on quiet lanes (mostly the Pyramidenstraße), where a car may pass: keep your dog close","About 300 m of narrower, steeper path by the earth pyramids: keep your dog close and stay on the path","Farmed meadows line parts of the loop: Karneid keeps dogs off them"],
+      terrainType: "Paved footpath, forest paths and quiet lanes",
+      shadeDescription: "Mostly shaded: about two thirds runs through woods; the lanes and the Mariahilf stretch are open.",
+      terrainDescription: "A loop at 830–1,000 m below Steinegg, past farms, the Maria-Hilf chapel and the earth pyramids, on a paved footpath, forest paths, a short narrow path and quiet lanes.",
+      waterDescription: "No drinking water is mapped on the loop: bring water for you both.",
+      dogNotes: "Karneid requires a lead of at most 1.5 m on all public ground and a muzzle carried, and keeps dogs off farmed meadows and out of fountains and troughs.",
+      tips: "A 4.2 km loop with about 174 m of up and down, roughly an hour and a half. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as Karneid requires, and keep off the meadows. Take care on the short Hauptstraße stretch and on the narrow path by the earth pyramids. No mapped water, so bring some.",
+      sourceLinks: [
+        { label: "South Tyrol trail register, Pyramidenrundweg (Open Data Hub)", url: "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11428309" },
+        { label: "Gemeinde Karneid, dog regulation", url: "https://www.gemeinde.karneid.bz.it/de/Verwaltung/Dokumente/Verordnung_ueber_die_Haltung_von_Hunden" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.48387, lng: 11.471322, label: "On the lane by the Raffein farm below Steinegg, where the Pyramidenweg begins" },
+      desc: "A loop below Steinegg past farms, the Maria-Hilf chapel and the Steinegg earth pyramids, on the waymarked Pyramidenrundweg. It is about 4.2 km with some 174 m of up and down, as measured by ORMA (the province register gives only the length)."
+    },
+    'luesen-panoramaweg': {
+      // Hand audit: 18 November 2026, verified on arrival (new-trail Dolomites batch 15).
+      // Sealed on the owner's decision (16 Nov 2026): the province trail register gives only the length, so climb and time are
+      // measured by ORMA from the map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
+      // “Panoramaweg (Lüsen)” (routes-hikingtrails.11428248), drawn on 35 OSM ways along the register line (data/board-line-routes.geojson).
+      // Commune: Lüsen (no dog regulation of its own found online: national rule). No park, natural monument or Natura 2000 site. Roads: 160 m of the Lüsener Straße (LS/SP30) in the village and about 1.45 km on quiet lanes (Berger Straße 770 m, Unterrungger Straße 500 m, short service lanes), which the owner accepted on 18 Nov 2026. About 2.5 km is mountain path (OSM sac_scale mountain_hiking, T2), allowed with a caution by the owner on 18 Nov 2026.
+      area: "Lüsen / Luson, Eisacktal",
+      distance: 5.6,
+      elevation: 214,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: "A loop on the slopes above Lüsen on the waymarked Panoramaweg, as the province trail register maps it (5.6 km): from the hamlet of Rader up a mountain path to the Rungg farms, along the panoramic path to path 3, down the Berger Straße lane past the bathing pond into Lüsen, and back on the Joseph-Gargitter-Weg (path 1). Climb and time are measured by ORMA, not published by the register.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start on the Unterrungger Straße at the hamlet of Rader, below Lüsen; the loop is waymarked “Panoramaweg” all the way.",
+        "sequence": "Walk up the Unterrungger Straße lane for about 450 m and cross the Petschieder Straße. Take the mountain path up for about 900 m to the Alter Rungger Weg, then a short lane and track (path 11). Join the Lüsner Panoramaweg, a mountain path, for about 1.2 km across the slope, then a gravel track (path 3) down to the Berger Straße. Follow the Berger Straße lane (path 3) for about 800 m past the bathing pond into Lüsen, by the fire station. Walk about 160 m along the Lüsener Straße through the village, then take the Joseph-Gargitter-Weg (path 1), a track, back down to the start.",
+        "switches": "The Unterrungger Straße lane; across the Petschieder Straße onto the mountain path; the Alter Rungger Weg and path 11; the Lüsner Panoramaweg across the slope; path 3 down to the Berger Straße; the Berger Straße past the bathing pond into Lüsen; 160 m of the Lüsener Straße; the Joseph-Gargitter-Weg (path 1) back to the start.",
+        "steps": [
+          {
+            "text": "The Unterrungger Straße at the hamlet of Rader",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Across the Petschieder Straße and up the mountain path to the Alter Rungger Weg",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 11, then the Lüsner Panoramaweg across the slope",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 3 down to the Berger Straße and past the bathing pond into Lüsen",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "160 m of the Lüsener Straße, then the Joseph-Gargitter-Weg (path 1) back to the start",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Panoramaweg (Lüsen) (waymarked loop, province trail register)",
+            "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11428248",
+            "authority": "Autonome Provinz Bozen, hiking-trail register",
+            "tag": "register",
+            "reviewedAt": "2026-11-18"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-18',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The bathing pond by the Berger Straße, Lüsen (0idee on Mapillary, CC BY-SA 4.0), 2 July 2022, 56 m from the line.",
+        route: "Register loop 'Panoramaweg (Lüsen)' (routes-hikingtrails.11428248, 5.65 km) from On the Unterrungger Straße at the hamlet of Rader, below Lüsen; the stored line is drawn on 35 OSM ways along the register line, 5.6 km, with 100% of the guide line within 25 m of it and 100% of it within 25 m of the guide line.",
+        routeNumbers: "Waymarked “Panoramaweg”: the Unterrungger Straße, a mountain path up to the Alter Rungger Weg, path 11, the Lüsner Panoramaweg, path 3 and the Berger Straße down into Lüsen, then the Joseph-Gargitter-Weg (path 1) back to the start.",
+        mapPoints: "Start at the start of the register line; drinking water at km 4.1 (OSM nodes 7318188899).",
+        elevation: "No official figure. Measured by ORMA from the map: 5.57 km, about 214 m up and 224 m down between 973 and 1,206 m, 1 h 58 min by DIN 33466 (25 m EU-DEM heights)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): 'Panoramaweg (Lüsen)', line routes-hikingtrails.11428248, 5,647 m",
+          "Gemeinde Lüsen / Comune di Luson: no dog regulation of its own found online (searched again 18 Nov 2026), so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park, reserve, natural monument or Natura 2000 site on the line (EEA; South Tyrol landscape plan)",
+          "OpenStreetMap ways along the register line (35 ways), road, surface, woodland and water data",
+          "Climb and time measured by ORMA: 25 m EU-DEM ground heights every 100 m (10 m threshold), time by DIN 33466"
+        ],
+        date: '2026-11-18'
+      },
+      shadeCoverage: 49,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About 2.5 km of mountain path (T2) across the slope: narrow and uneven in places, so keep your dog close and watch its footing","About 1.45 km on quiet asphalt lanes (the Unterrungger Straße and the Berger Straße), where a car may pass: keep your dog on a short lead","160 m on the Lüsener Straße through the village and a crossing of the Petschieder Straße: keep your dog close","Keep your dog out of the bathing pond by the Berger Straße"],
+      terrainType: "Mountain paths, tracks and quiet lanes",
+      shadeDescription: "About half shaded, in the woods on the mountain paths; the lanes and the stretch through the village are open.",
+      terrainDescription: "A loop at 970–1,210 m on the slopes above Lüsen, on mountain paths, gravel tracks and quiet lanes, with a short stretch through the village.",
+      waterDescription: "Drinking water is mapped in Lüsen, around km 4.1, by the fire station.",
+      dogNotes: "Lüsen has no dog regulation of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried. Keep your dog off the farmed meadows and out of the bathing pond.",
+      tips: "A 5.6 km loop with about 214 m up and 224 m down, roughly two hours. About 2.5 km is mountain path, narrow and uneven in places: keep your dog close there. Keep it on a short lead on the lanes and in the village. Water in Lüsen, by the fire station, about three quarters of the way round.",
+      sourceLinks: [
+        { label: "South Tyrol trail register, Panoramaweg (Lüsen) (Open Data Hub)", url: "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11428248" },
+        { label: "Gemeinde Lüsen (commune website; no dog regulation listed)", url: "https://www.gemeinde.luesen.bz.it/de/suche.aspx?search=Hunde" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.736365, lng: 11.769549, label: "On the Unterrungger Straße at the hamlet of Rader, below Lüsen" },
+      desc: "A loop on the slopes above Lüsen, on the waymarked Panoramaweg: up a mountain path to the Rungg farms, across the slope on the panoramic path and down past the bathing pond into the village. It is about 5.6 km with some 214 m of climb, as measured by ORMA (the province register gives only the length)."
+    },
+    'valgardena-troi-da-la-tambres': {
+      // Hand audit: 18 November 2026, verified on arrival (new-trail Dolomites batch 15).
+      // Sealed on the owner's decision (16 Nov 2026): the province trail register gives only the length, so climb and time are
+      // measured by ORMA from the map (25 m EU-DEM ground heights every 100 m, 10 m threshold; time by DIN 33466).
+      // “10A Troi da la Tambres” (routes-hikingtrails.11426545), drawn on 7 OSM ways along the register line (data/board-line-routes.geojson).
+      // Commune: Ortisei (2019 dog regulation). No park, natural monument or Natura 2000 site (part is in a landscape no-build zone, which sets no dog rule). Roads: about 590 m each way on residential lanes (Streda Cuca 260 m, which the Ortisei–Costamula bus uses, and Streda Costes 330 m), which the owner accepted on 18 Nov 2026. About 300 m each way of mountain path (OSM sac_scale mountain_hiking, T2), allowed with a caution by the owner on 18 Nov 2026.
+      area: "Costes – La Tambres, Ortisei / St. Ulrich",
+      distance: 3.3,
+      elevation: 108,
+      hours: '1.1',
+      routeShape: 'out-and-back',
+      routeShapeNote: "Path 10A, the Troi da la Tambres, as the province trail register maps it one way (1.6 km), from the Streda Cuca above Ortisei past the Costes farms and the La Tambres farm to where it meets path 10. The register gives no way back, so ORMA walks it there and back on the same path (owner rule of 12 November 2026): 3.3 km in all. Climb and time are measured by ORMA.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Martin farm on the Streda Cuca above Ortisei, by the bus stop on the Ortisei–Costamula line; path 10A is waymarked from here.",
+        "sequence": "Follow the Streda Cuca lane (paths 5 and 10A) for about 250 m, then turn onto the Streda Costes lane for about 330 m, past the Ronch, Raineles and Còsta farms to La Mauta. There path 10A, the Troi da la Tambres, leaves the lane: follow it for about 700 m through meadows and forest to the La Tambres farmhouse. The last 300 m beyond the farm is a narrower mountain path. Turn around where it meets the cobbled path 10, and come back the same way.",
+        "switches": "The Streda Cuca lane; the Streda Costes lane past the Costes farms to La Mauta; path 10A through meadows and forest to the La Tambres farm; the narrower mountain path to path 10; back the same way.",
+        "steps": [
+          {
+            "text": "The Martin farm on the Streda Cuca, by the bus stop",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Streda Costes lane past the Ronch, Raineles and Còsta farms to La Mauta",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 10A, the Troi da la Tambres, through meadows and forest to the La Tambres farm",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The narrower mountain path to the junction with path 10, then back the same way",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "10A Troi da la Tambres (waymarked loop, province trail register)",
+            "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426545",
+            "authority": "Autonome Provinz Bozen, hiking-trail register",
+            "tag": "register",
+            "reviewedAt": "2026-11-18"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-18',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The La Tambres farmhouse below the Langkofel, Ortisei (Wolfgang Moroder on Wikimedia Commons, CC BY-SA 4.0), 15 April 2020, 11 m from the line.",
+        route: "Register walk there and back '10A Troi da la Tambres' (routes-hikingtrails.11426545, 1.65 km) from At the Martin farm on the Streda Cuca above Ortisei; the stored line is drawn on 7 OSM ways along the register line, 3.3 km, with 100% of the guide line within 25 m of it and 100% of it within 25 m of the guide line.",
+        routeNumbers: "From the Martin farm on the Streda Cuca, path 10A, the waymarked Troi da la Tambres: the Streda Cuca and Streda Costes lanes to La Mauta, then the path past the La Tambres farm to path 10, and back the same way.",
+        mapPoints: "Start at the start of the register line; drinking water at the start (OSM nodes 7831877685).",
+        elevation: "No official figure. Measured by ORMA from the map: 3.28 km, about 110 m up and down between 1,411 and 1,484 m, 1 h 07 min by DIN 33466 (25 m EU-DEM heights)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Autonome Provinz Bozen, hiking-trail register (Open Data Hub): '10A Troi da la Tambres', line routes-hikingtrails.11426545, 1,646 m",
+          "Gemeinde St. Ulrich / Comune di Ortisei, Verordnung über die Haltung und das Führen von Hunden (Gemeinderat Nr. 28, 06.08.2019), Art. 4 and 6: a lead of at most 1.5 m on all public ground, a muzzle carried (worn in public premises and on public transport), no dogs on farmed land",
+          "No park, reserve, natural monument or Natura 2000 site on the line (EEA; South Tyrol landscape plan)",
+          "OpenStreetMap ways along the register line (7 ways), road, surface, woodland and water data",
+          "Climb and time measured by ORMA: 25 m EU-DEM ground heights every 100 m (10 m threshold), time by DIN 33466"
+        ],
+        date: '2026-11-18'
+      },
+      shadeCoverage: 53,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About 300 m each way of narrower mountain path (T2) beyond the La Tambres farm: keep your dog close and watch its footing","About 590 m each way on asphalt lanes; the Streda Cuca carries the Ortisei–Costamula bus: keep your dog on a short lead there","Farmed meadows line the path: Ortisei keeps dogs off them"],
+      terrainType: "Lanes, a meadow and forest path and a short mountain path",
+      shadeDescription: "About half shaded, in the forest on path 10A; the lanes and meadows are open.",
+      terrainDescription: "An easy walk there and back at 1,410–1,490 m above Ortisei, on two farm lanes and path 10A through meadows and forest past the La Tambres farm, ending on a short, narrower mountain path.",
+      waterDescription: "No drinking water is mapped on the walk: bring water for you both.",
+      dogNotes: "Ortisei requires a lead of at most 1.5 m on all public ground and a muzzle carried (worn on the bus), and keeps dogs off farmed land.",
+      tips: "An easy 3.3 km there and back with about 110 m of up and down, roughly an hour. Keep your dog on a lead of at most 1.5 m and carry a muzzle, as Ortisei requires, and stay off the meadows. The last 300 m before the turn is a narrower mountain path: keep your dog close. No mapped water, so bring some.",
+      sourceLinks: [
+        { label: "South Tyrol trail register, 10A Troi da la Tambres (Open Data Hub)", url: "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426545" },
+        { label: "St. Ulrich / Ortisei, dog regulation (2019)", url: "https://www.comune.ortisei.bz.it/system/web/GetDocument.ashx?fileId=1093922&cts=1565705929" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.583083, lng: 11.687574, label: "At the Martin farm on the Streda Cuca above Ortisei" },
+      desc: "An easy walk above Ortisei on path 10A, the Troi da la Tambres: along two farm lanes past the Costes farms, then through meadows and forest to the old La Tambres farmhouse below the Langkofel, and back the same way. It is about 3.3 km with some 110 m of up and down, as measured by ORMA (the province register gives only the length)."
+    },
+    'lombardia-reggetto-piani-di-artavaggio': {
+      // Hand audit: 19 November 2026, verified on arrival (Lombardy mountains batch 1, owner decision of 18 November 2026 to add Northern Italy mountain walks).
+      // in-Lombardia, the official tourism portal of Regione Lombardia: “Da Reggetto ai Piani di Artavaggio” by Ecomuseo Val Taleggio, drawn there and back on 43 OSM ways along its published GPX (data/board-line-routes.geojson).
+      // One way on the page with no return given: distance and climb are the published one-way figures doubled; the time is measured by ORMA (DIN 33466).
+      // Communes: Vedeseta (start) and Moggio (Piani di Artavaggio): no dog rule found online, so the national rule applies. Parco delle Orobie Bergamasche: no dog regulation found online. ZPS IT2060401 (EEA). No road on the line; no lift used (the Moggio cable car on the far side is not part of the walk).
+      // The stored line follows the published GPX, 100% each way.
+      area: "Reggetto (Vedeseta) – Cantoldo – Traversino – Piani di Artavaggio",
+      distance: 10.7,
+      elevation: 700,
+      hours: '5',
+      routeShape: 'out-and-back',
+      routeShapeNote: "in-Lombardia publishes the walk one way, from Reggetto to the Piani di Artavaggio (5.35 km, 700 m up, 2 h 45), and gives no return. ORMA walks it there and back on the same path: 10.7 km with 700 m up and down. The time, about 5 h, is measured by ORMA (DIN 33466), not the portal’s.",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the small stone hamlet of Reggetto (962 m), above Vedeseta in the upper Val Taleggio, beside the oratory of Sant’Antonio di Padova, the published start.",
+        "sequence": "Follow path CAI 150 up towards Rocca, then across the summer pastures of Cantoldo (1,246 m) and Traversino (1,426 m) and through beech woods, to the grassy plateau of the Piani di Artavaggio above 1,600 m, in the commune of Moggio, with its huts. Come back the same way.",
+        "switches": "Path CAI 150 all the way from Reggetto past Rocca and the Cantoldo and Traversino pastures to the Piani di Artavaggio; back the same way.",
+        "sources": [
+          {
+            "label": "in-Lombardia, Da Reggetto ai Piani di Artavaggio (itinerary by Ecomuseo Val Taleggio)",
+            "url": "https://www.in-lombardia.it/itinerari/da-reggetto-ai-piani-di-artavaggio",
+            "authority": "Regione Lombardia (in-Lombardia)",
+            "tag": "tourist board",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The gravel track up to the Albergo Sciatori on the Piani di Artavaggio, at the top of the walk (kaitu on Mapillary, CC BY-SA 4.0), 15 June 2019, 18 m from the line.",
+        route: "Official one-way walk of 5.35 km from The oratory of Sant’Antonio di Padova at Reggetto, Vedeseta, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it, with no return given; ORMA walks it there and back on the same path (owner rule of 12 November 2026). The stored line is drawn on 43 OSM ways along the published GPX out and back, 10.6 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "Path CAI 150 all the way, from Reggetto past Rocca and the Cantoldo and Traversino pastures to the Piani di Artavaggio; back the same way.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official one way: 5.35 km, 700 m up, 2 h 45 (in-Lombardia, the official tourism portal of Regione Lombardia, itinerary by Ecomuseo Val Taleggio), from 962 m at Reggetto to over 1,600 m on the Piani di Artavaggio. There and back on the same path: 10.7 km, 700 m up and 700 m down; about 5 h measured by ORMA (DIN 33466), since the portal times the walk one way only."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "in-Lombardia, the official tourism portal of Regione Lombardia, “Da Reggetto ai Piani di Artavaggio” (itinerary by Ecomuseo Val Taleggio, with its GPX)",
+          "Comune di Vedeseta and Comune di Moggio publish no dog regulation online (searched their sites and Amministrazione Trasparente), so the Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in places open to the public and a muzzle carried",
+          "Parco delle Orobie Bergamasche: no visitor regulation with a dog clause published online, so no park rule beyond the national one",
+          "Regione Lombardia geoportal (AreeProtette: regional, natural and national parks, regional and national reserves, PLIS, natural monuments): Parco delle Orobie Bergamasche on the line; European Environment Agency Natura 2000 service: ZPS IT2060401 Parco Regionale Orobie Bergamasche",
+          "OpenStreetMap ways along the board’s line (43 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 17,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["A long steady climb of 700 m: take it slowly with an older or unfit dog","Summer pastures at Cantoldo and Traversino with cows: keep your dog on a lead and give the herds room","The upper pastures and the Piani di Artavaggio are open and sunny: on a hot day go early and bring plenty of water","In winter the path needs snowshoes and safe snow, as the portal says"],
+      terrainType: "Mountain path and pasture tracks",
+      shadeDescription: "About a sixth shaded: beech woods on the way up; the Cantoldo and Traversino pastures and the Piani di Artavaggio are open.",
+      terrainDescription: "A steady climb on path CAI 150 from the stone hamlet of Reggetto through beech woods and the Cantoldo and Traversino summer pastures to the Piani di Artavaggio, a grassy plateau above 1,600 m among limestone peaks, with huts, and back the same way.",
+      waterDescription: "No drinking water is mapped on the line (OSM). The huts on the Piani di Artavaggio serve food and drink when open. Bring water and a bowl for your dog.",
+      dogNotes: "Vedeseta and Moggio publish no dog rule online, so the national rule applies: a lead of at most 1.5 m in places open to the public and a muzzle carried. The route crosses the Orobie Bergamasche regional park, a Natura 2000 bird area, and summer cow pastures: keep your dog on a lead and on the path.",
+      tips: "Start at the oratory in Reggetto, above Vedeseta: 5.4 km and 700 m up on path CAI 150 to the Piani di Artavaggio, about 2 h 45 as the portal gives, and the same way back down, about 5 h in all by ORMA’s DIN 33466 estimate. Go early on a hot day, keep your dog on a lead through the pastures, and carry a muzzle.",
+      sourceLinks: [
+        { label: "in-Lombardia, Da Reggetto ai Piani di Artavaggio", url: "https://www.in-lombardia.it/itinerari/da-reggetto-ai-piani-di-artavaggio" },
+        { label: "in-Lombardia, Da Reggetto ai Piani di Artavaggio: GPX", url: "https://www.in-lombardia.it/sites/default/files/itinerari/gpx/425972/Vedeseta_Reggetto-Piani-di-Artavaggio_ProLocoPizzino.gpx" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Parco delle Orobie Bergamasche", url: "https://www.parcorobie.it/" },
+        { label: "Regione Lombardia geoportal, protected-area services (parks, reserves, PLIS, natural monuments)", url: "https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.897707, lng: 9.552545, label: "The oratory of Sant’Antonio di Padova at Reggetto, Vedeseta, the published start" },
+      desc: "A steady climb from the stone hamlet of Reggetto in the upper Val Taleggio, on path CAI 150 through beech woods and the Cantoldo and Traversino summer pastures, to the grassy Piani di Artavaggio above 1,600 m, and back the same way. The portal lists 5.35 km and 700 m up one way; there and back it is 10.7 km with 700 m up and down, about 5 h."
+    },
+    'lario-asso-funghi-di-terra': {
+      // Hand audit: 19 November 2026, verified on arrival (Lombardy mountains batch 1, owner decision of 18 November 2026 to add Northern Italy mountain walks).
+      // in-Lombardia, the official tourism portal of Regione Lombardia: “Alla ricerca dei funghi di terra” by Lago di Como GAL, drawn on 33 OSM ways along its published GPX (data/board-line-routes.geojson).
+      // Communes: Asso (Polizia Urbana 1963, Art. 74: dogs without a muzzle on a lead) and Rezzago (Polizia Urbana 1966, Art. 74: the same). Lanes: 1.96 km of residential lanes (23%), no tertiary road (hamlet-lanes rule of 18 November 2026). No Natura 2000 site (EEA), park, reserve or PLIS (Regione Lombardia geoportal).
+      // The stored line follows the published GPX, 100% each way.
+      area: "Scarenna (Asso) – Enco – Rezzago – Ponte Oscuro",
+      distance: 8.77,
+      elevation: 687,
+      hours: '3.5',
+      routeShape: 'lollipop',
+      routeShapeNote: "A lollipop loop, as the portal describes it: from Scarenna to Ponte Oscuro, a ring through Fiorana, Enco, the chestnut wood of Rezzago and the earth pyramids, and back the same way from Ponte Oscuro.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the via Pietro Valsecchi car park in Scarenna, across the Lambro from Asso, the published start; it has a drinking fountain. From Asso station, cross the bridge over the Lambro and take via Gramsci to the car park.",
+        "sequence": "Go up via Valsecchi, which becomes a paved cycle-footpath, to the oratory of Santi Giovanni e Paolo and on to Ponte Oscuro. Turn left up the paved forest road of via Roncaglia into the woods and keep left at the Cassina Enco fork towards Fiorana. Past Casa Fiorana, take the path left up to the clearing of Piazza Dorella with its two radio masts, then the path right, down to Enco. Follow the road right into the old chestnut wood of Rezzago, then turn right past a last huge chestnut and up the steps to the first earth pyramid; go down the path to the second pyramid and the little church of the Madonna dei Morti beside a great boulder. Without crossing the footbridge, climb gently through the woods, keep left at the fork and drop back to the forest road, then return the same way to Ponte Oscuro and Scarenna.",
+        "switches": "From the via Pietro Valsecchi car park at Scarenna up the paved cycle-footpath to the oratory of Santi Giovanni e Paolo and Ponte Oscuro; Left up the paved forest road of via Roncaglia into the woods; at the Cassina Enco fork keep left towards Fiorana; Past Casa Fiorana, left on the path up to the clearing of Piazza Dorella with its two radio masts, then right on the path down to Enco; Right along the road into the old chestnut wood of Rezzago; Right past a last huge chestnut and up the steps to the first earth pyramid; down to the second pyramid and the little church of the Madonna dei Morti; Without crossing the footbridge, up gently through the woods, left at the fork and down to the forest road; back the same way to Ponte Oscuro and Scarenna.",
+        "steps": [
+          {
+            "text": "From the via Pietro Valsecchi car park at Scarenna up the paved cycle-footpath to the oratory of Santi Giovanni e Paolo and Ponte Oscuro",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Left up the paved forest road of via Roncaglia into the woods; at the Cassina Enco fork keep left towards Fiorana",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Past Casa Fiorana, left on the path up to the clearing of Piazza Dorella with its two radio masts, then right on the path down to Enco",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Right along the road into the old chestnut wood of Rezzago",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Right past a last huge chestnut and up the steps to the first earth pyramid; down to the second pyramid and the little church of the Madonna dei Morti",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Without crossing the footbridge, up gently through the woods, left at the fork and down to the forest road; back the same way to Ponte Oscuro and Scarenna",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "in-Lombardia, Alla ricerca dei funghi di terra (itinerary by Lago di Como GAL)",
+            "url": "https://www.in-lombardia.it/itinerari/alla-ricerca-dei-funghi-di-terra",
+            "authority": "Regione Lombardia (in-Lombardia)",
+            "tag": "tourist board",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "An old chestnut in the wood of Rezzago, on the loop (Marco binda on Wikimedia Commons, CC BY-SA 4.0), 14 October 2020, 2 m from the line.",
+        route: "Official loop of 8.77 km from The via Pietro Valsecchi car park at Scarenna, Asso, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it; the stored line is drawn on 33 OSM ways along the published GPX, 8.5 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "No path numbers on the page: from Scarenna by the cycle-footpath to the oratory of Santi Giovanni e Paolo and Ponte Oscuro, up via Roncaglia to Fiorana, Piazza Dorella and Enco, through the chestnut wood of Rezzago to the earth pyramids and the Madonna dei Morti church, and back through the woods to Ponte Oscuro and the same way to Scarenna.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 8.77 km, 687 m up, 3 h 30 (in-Lombardia, the official tourism portal of Regione Lombardia, itinerary by Lago di Como GAL), 23% on asphalt, 26% on mule tracks and 51% on paths. The stored line follows the published GPX."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "in-Lombardia, the official tourism portal of Regione Lombardia, “Alla ricerca dei funghi di terra” (itinerary by Lago di Como GAL, with its GPX)",
+          "Comune di Asso, Regolamento di Polizia Urbana (1963), Art. 74: dogs without a muzzle must always be on a lead in public places",
+          "Comune di Rezzago, Regolamento di Polizia Urbana (1966), Art. 74: dogs on a lead unless muzzled",
+          "Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in places open to the public and a muzzle carried",
+          "Regione Lombardia geoportal (AreeProtette: regional, natural and national parks, regional and national reserves, PLIS, natural monuments): no park, reserve, PLIS or natural monument on the line; European Environment Agency Natura 2000 service: no site on the line",
+          "OpenStreetMap ways along the board’s line (33 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 47,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About a quarter on village lanes and paved forest roads with some cars: keep your dog close there","Steps and steep earth paths near the earth pyramids, slippery after rain","The earth pyramids are fragile: keep your dog off them and on the path","Almost 700 m of climbing in all: take it slowly with an older dog"],
+      terrainType: "Paths, mule tracks and paved lanes",
+      shadeDescription: "About half shaded: the chestnut wood of Rezzago and the woods above Asso; the lanes and clearings are open.",
+      terrainDescription: "A loop from Scarenna, below Asso in the Triangolo Lariano, up through woods to the Piazza Dorella clearing and Enco, through the old chestnut wood of Rezzago, where trees still carry family marks, to the earth pyramids (“funghi di terra”) and the little church of the Madonna dei Morti beside a great boulder.",
+      waterDescription: "No drinking water is mapped on the line (OSM). The portal mentions a drinking fountain at the Scarenna car park and another at Ponte Oscuro, and places to eat on the way at Enco. Bring water and a bowl for your dog.",
+      dogNotes: "Asso’s and Rezzago’s urban police rules (Art. 74) require a dog without a muzzle to be on a lead in public places; the national rule adds a lead of at most 1.5 m and a muzzle carried. Keep your dog off the fragile earth pyramids.",
+      tips: "Start at the via Pietro Valsecchi car park in Scarenna (Asso station is close): 8.8 km and 690 m of climbing, about 3 h 30 as the portal gives. Fill up at the fountain by the car park; there is food at Enco. Lovely in autumn among the chestnuts. Keep your dog on a lead and carry a muzzle.",
+      sourceLinks: [
+        { label: "in-Lombardia, Alla ricerca dei funghi di terra", url: "https://www.in-lombardia.it/itinerari/alla-ricerca-dei-funghi-di-terra" },
+        { label: "in-Lombardia, Alla ricerca dei funghi di terra: GPX", url: "https://www.in-lombardia.it/sites/default/files/itinerari/gpx/238705/anello_asso_rezzago.gpx" },
+        { label: "Comune di Asso, Regolamento di Polizia Urbana", url: "https://www.comune.asso.co.it/amministrazione/documenti_e_dati/atti_normativi/documento_122.html" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Lombardia geoportal, protected-area services (parks, reserves, PLIS, natural monuments)", url: "https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.856904, lng: 9.264758, label: "The via Pietro Valsecchi car park at Scarenna, Asso, the published start" },
+      desc: "A loop from Scarenna below Asso up through the woods to Enco and the old chestnut wood of Rezzago, to the curious earth pyramids (“funghi di terra”) and the little church of the Madonna dei Morti, and back. The portal lists 8.77 km and 687 m of ascent, about 3 h 30."
+    },
+    'lombardia-bergamo-colle-maresana': {
+      // Hand audit: 19 November 2026, verified on arrival (Lombardy mountains batch 1, owner decision of 18 November 2026 to add Northern Italy mountain walks).
+      // in-Lombardia, the official tourism portal of Regione Lombardia: “Al Colle della Maresana” by VisitBergamo.net, drawn there and back on 7 OSM ways along its published GPX (data/board-line-routes.geojson).
+      // One way on the page with no return given: distance and climb are the published one-way figures doubled; the time is measured by ORMA (DIN 33466).
+      // Communes: Bergamo (Regolamento per il benessere e la tutela degli animali, n. 78, DCC 24 July 2017, Art. 14 c.5: lead ≤1.5 m, muzzle carried); Ponteranica at the top: no rule found online, national rule. Parco dei Colli di Bergamo: its cycle-pedestrian network regulation asks for dogs on a lead and at heel; no ban. No Natura 2000 site (EEA). 48 m of unclassified lane at the start; no main road.
+      // The stored line follows the published GPX, 100% each way.
+      area: "Via Quintino Alto (Bergamo) – Colle della Maresana, Ponteranica",
+      distance: 2.8,
+      elevation: 210,
+      hours: '1.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: "in-Lombardia publishes the walk one way, from via Quintino Alto to the Colle della Maresana (1.4 km, 210 m up, 45 min), and gives no return. ORMA walks it there and back on the same path: 2.8 km with 210 m up and down. The time, about 1 h 30, is measured by ORMA (DIN 33466), not the portal’s.",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start on via Quintino Alto in Bergamo, at the foot of the first flight of steps between the parks of two private villas, where the white-and-red CAI 533 sign marks the path, the published start.",
+        "sequence": "Follow path CAI 533 up through chestnut woods, with some rocky stretches and a slope of about 15%, to the Colle della Maresana (546 m) and the church of San Marco, with the Ca’ Matta park and a view over Bergamo and the plain. Come back the same way.",
+        "switches": "Path CAI 533 from via Quintino Alto up to the Colle della Maresana and the church of San Marco; back the same way.",
+        "sources": [
+          {
+            "label": "in-Lombardia, Al Colle della Maresana (itinerary by VisitBergamo.net)",
+            "url": "https://www.in-lombardia.it/itinerari/al-colle-della-maresana",
+            "authority": "Regione Lombardia (in-Lombardia)",
+            "tag": "tourist board",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The CAI 533 signpost for the Colle della Maresana at the start, on via Quintino Alto (Amadvance on Wikimedia Commons, CC BY-SA 4.0), 7 November 2020, with no snow, 3 m from the line.",
+        route: "Official one-way walk of 1.4 km from The foot of the steps on via Quintino Alto, Bergamo, as in-Lombardia, the official tourism portal of Regione Lombardia publishes it, with no return given; ORMA walks it there and back on the same path (owner rule of 12 November 2026). The stored line is drawn on 7 OSM ways along the published GPX out and back, 2.7 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "Path CAI 533 from via Quintino Alto up to the Colle della Maresana and the church of San Marco; back the same way.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official one way: 1.4 km, 210 m up, 45 min (in-Lombardia, the official tourism portal of Regione Lombardia, itinerary by VisitBergamo.net), up to the Colle della Maresana at 546 m. There and back on the same path: 2.8 km, 210 m up and 210 m down; about 1 h 30 measured by ORMA (DIN 33466), since the portal times the walk one way only."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "in-Lombardia, the official tourism portal of Regione Lombardia, “Al Colle della Maresana” (itinerary by VisitBergamo.net, with its GPX)",
+          "Comune di Bergamo, Regolamento per il benessere e la tutela degli animali (n. 78, DCC 24 July 2017), Art. 14 c.5: a lead of at most 1.5 m and a muzzle carried",
+          "Comune di Ponteranica publishes no dog regulation online, so the Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in places open to the public and a muzzle carried",
+          "Parco dei Colli di Bergamo, Regolamento per l’uso della rete ciclo-pedonale (PTC, DGR XI/7067 of 10 October 2022, Art. 34), Art. 3: dogs on a lead and at heel; no ban",
+          "Regione Lombardia geoportal (AreeProtette: regional, natural and national parks, regional and national reserves, PLIS, natural monuments): Parco dei Colli di Bergamo on the line; European Environment Agency Natura 2000 service: no site on the line",
+          "OpenStreetMap ways along the board’s line (7 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 90,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["Rocky stretches on a slope of about 15%: take care on the way down, especially after rain","A popular path close to the city, with runners and families: keep your dog close","The start is on a residential street: keep your dog on a short lead there"],
+      terrainType: "Woodland path with rocky stretches",
+      shadeDescription: "Almost all in chestnut woods; the top of the hill by the church is open.",
+      terrainDescription: "A short, steady climb on path CAI 533 from the northern edge of Bergamo through chestnut woods to the Colle della Maresana (546 m), a green balcony over the city and the plain, with the church of San Marco and the Ca’ Matta park, and back the same way.",
+      waterDescription: "No drinking water is mapped on the line (OSM); there is a restaurant at the top by the church. Bring water and a bowl for your dog.",
+      dogNotes: "Bergamo’s animal welfare rules (Regolamento 78/2017, Art. 14) require a lead of at most 1.5 m and a muzzle carried in public places, and the Colli di Bergamo park asks for dogs on a lead and at heel on its paths. Ponteranica, at the top, publishes no rule of its own.",
+      tips: "Start at the steps on via Quintino Alto in Bergamo: 1.4 km and 210 m up on path CAI 533 to the Colle della Maresana, about 45 minutes as the portal gives, and the same way back, about 1 h 30 in all by ORMA’s DIN 33466 estimate. Good shoes help on the rocky bits. Keep your dog on a lead of at most 1.5 m and carry a muzzle.",
+      sourceLinks: [
+        { label: "in-Lombardia, Al Colle della Maresana", url: "https://www.in-lombardia.it/itinerari/al-colle-della-maresana" },
+        { label: "in-Lombardia, Al Colle della Maresana: GPX", url: "https://www.in-lombardia.it/sites/default/files/itinerari/gpx/246098/10_monterosso_maresana.gpx" },
+        { label: "Comune di Bergamo, Regolamento n. 78 (benessere e tutela degli animali)", url: "https://www.comune.bergamo.it/sites/default/files/Atti/comune-bergamo-regolamento-078.pdf" },
+        { label: "Parco dei Colli di Bergamo, regolamento della rete ciclo-pedonale", url: "https://www.parcocollibergamo.it/File/Documenti/199/regolamento_ciclopedonale.pdf" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Lombardia geoportal, protected-area services (parks, reserves, PLIS, natural monuments)", url: "https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.721252, lng: 9.679477, label: "The foot of the steps on via Quintino Alto, Bergamo, the published start" },
+      desc: "A short climb from the northern edge of Bergamo on path CAI 533 through chestnut woods to the Colle della Maresana, a green balcony over the city and the plain with the old church of San Marco, and back the same way. The portal lists 1.4 km and 210 m up one way; there and back it is 2.8 km with 210 m up and down, about 1 h 30."
+    },
+    'lanzo-anello-mulino-turcin': {
+      // Hand audit: 19 November 2026, verified on arrival (new-trail Piedmont batch 2, Turin valleys).
+      // “Anello del Mulino Turcin”, published by Turismo Torino e Provincia, drawn on 60 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Communes: Lanzo Torinese and Coassolo Torinese (no dog rule found online for either: national rule). No park or Natura 2000 site. Roads: about 2.8 km of hamlet lanes (27%, under half); the SP26 and SP729 are only crossed (about 60 m).
+      // The stored line follows the board’s own line, 99% each way. A 46 m stub up a farm track and back at km 6.08 of the board’s line, which leads nowhere, was cut from the stored line.
+      area: "Lanzo Torinese – Mulino Turcin – San Pietro di Coassolo (Valli di Lanzo)",
+      distance: 10.3,
+      elevation: 260,
+      hours: '3.25',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from Cates in Lanzo up the Tessuolo stream through broadleaf woods, over the Casassa stone bridge to the Mulino Turcin and its stone bridge, across the meadows and fields of San Pietro di Coassolo, and back down through the hamlets to Lanzo, as the board publishes it (10.3 km, 260 m up, 3:15 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the little square in Cates, Lanzo Torinese, by the information board, the board’s start; path 420.",
+        "sequence": "Follow path 420 across the meadows and into the wood along the stream; at the bridge turn right, signed Mulino Turcin, and climb to Case Magnetti. Turn left, cross the road and follow the lane beside the irrigation channel, then the path to the Casassa stone bridge. Cross it, go a few metres down the road and take the path up on the left; at the fork turn right to the Mulino Turcin. Cross its bridge, go up the lane to the road, then right and left at the fork to the football pitch and back into the wood. Turn right on the road into San Pietro, go left at the junction above the school and take path 426 down on the right by the shrine. Follow the lanes and paths down through the hamlets and the meadows back to Lanzo and along the flat last stretch to Cates.",
+        "switches": "Path 420 from Cates; right at the bridge for the Mulino Turcin; Case Magnetti; lane beside the irrigation channel; Casassa stone bridge; right at the fork to the Mulino Turcin; up to the road and the football pitch; right on the road into San Pietro; path 426 down by the shrine; lanes and meadows back to Lanzo and Cates.",
+        "steps": [
+          {
+            "text": "Cates, Lanzo Torinese, on path 420",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Up the Tessuolo stream to Case Magnetti and the Casassa stone bridge",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Mulino Turcin and its stone bridge",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "San Pietro di Coassolo, then path 426 down by the shrine",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Down through the hamlets and meadows back to Cates",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Turismo Torino e Provincia, Anello del Mulino Turcin (route description)",
+            "url": "https://www.outdooractive.com/it/r/804987381",
+            "authority": "Turismo Torino e Provincia",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Wayside shrine on the path near Coassolo (Jrachi on Wikimedia Commons, CC BY-SA 4.0), 7 May 2017, 4 m from the line.",
+        route: "Official loop of 10.3 km from Cates, Lanzo Torinese, as Turismo Torino e Provincia publishes it; the stored line is drawn on 60 OSM ways along the board’s published line, 10.2 km, with 99% of the board’s line within 25 m of it and 99% of it within 25 m of the board’s line.",
+        routeNumbers: "Paths 420 and 426. From the square in Cates, Lanzo Torinese, follow path 420 up the Tessuolo stream past Case Magnetti and over the Casassa stone bridge to the Mulino Turcin, then up to San Pietro di Coassolo; take path 426 down from the shrine above the school and follow the lanes back through the hamlets to Cates.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 10.3 km, 260 m up and 261 m down, 3:15 h (Turismo Torino e Provincia, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Turismo Torino e Provincia, Anello del Mulino Turcin (its Outdooractive tour)",
+          "No dog rule found online for the Comune di Lanzo Torinese or the Comune di Coassolo Torinese, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park, reserve or Natura 2000 site on the line (CSI Piemonte layers)",
+          "OpenStreetMap ways along the board’s line (60 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 52,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["The path can be very wet and slippery after heavy rain, as the board warns","Short stretches on hamlet lanes and two crossings of the provincial roads: keep your dog on a short lead there","A short cobbled stretch and steps near the Mulino Turcin"],
+      terrainType: "Woodland paths and hamlet lanes",
+      shadeDescription: "About half in broadleaf woods along the stream; the meadows and fields around San Pietro are open.",
+      terrainDescription: "A low-level loop above Lanzo along the Tessuolo stream, over two old stone bridges to the Mulino Turcin, an old mill that is now a restaurant, and back across the meadows of San Pietro di Coassolo.",
+      waterDescription: "No drinking water is mapped on the route: carry enough for you and your dog. The stream runs beside the path for the first part, and the Mulino Turcin restaurant is halfway.",
+      dogNotes: "Lanzo Torinese and Coassolo Torinese publish no dog rule of their own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at the square in Cates, Lanzo Torinese: 10.3 km and 260 m up, about 3 hours 15 minutes, as the board lists. The Mulino Turcin restaurant is halfway. Avoid it after heavy rain, when the path gets slippery.",
+      sourceLinks: [
+        { label: "Turismo Torino e Provincia, Anello del Mulino Turcin", url: "https://www.outdooractive.com/it/r/804987381" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.286125, lng: 7.473396, label: "Cates, Lanzo Torinese, the board’s start" },
+      desc: "A woodland loop from Lanzo up the Tessuolo stream, over two old stone bridges to the Mulino Turcin mill, and back across the meadows of San Pietro di Coassolo. The board lists 10.3 km and 260 m up."
+    },
+    'talucco-ecomuseo-carbonaie': {
+      // Hand audit: 19 November 2026, verified on arrival (new-trail Piedmont batch 2, Turin valleys).
+      // “Sentiero "Ecomuseo delle Carbonaie"”, published by Turismo Torino e Provincia, drawn on 34 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Communes: Pinerolo and Frossasco (no dog rule found online for either: national rule). No park or Natura 2000 site. Roads: about 100 m of the SP167 at the start in Talucco and 330 m of lane past Case Borgogna; the rest is path and track. About 1.2 km of path 060A is T2 (OSM mountain_hiking): caution line. Lollipop with the board’s own 140 m turn-back at the hut, declared in sideTrips (#1507 rule).
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Talucco – Colle Ciardonet – Rifugio Melano-Casa Canada (Val Lemina, Pinerolo)",
+      distance: 7.4,
+      elevation: 448,
+      hours: '3',
+      routeShape: 'lollipop',
+      routeShapeNote: "A loop on a stem from the hamlet of Talucco: up path 049 through the Bosco dell’Impero to the Colle Eremita, on to the Colle Ciardonet and down track 060 to the Rifugio Melano-Casa Canada, then back by the “sentiero del vallone” (060A) under the Rocca Laubert cliffs to the Colle Eremita and down the same path to Talucco. The stem from Talucco to the Colle Eremita is walked both ways, as the board publishes it (7.4 km, 448 m up, 2:55 h).",
+      sideTrips: [{"km":4.1,"note":"About 140 m back from the Rifugio Melano-Casa Canada on path 060 to the start of path 060A: the board’s directions say to go back 150 m on path 060, and its own line does."}],
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in the hamlet of Talucco (Pinerolo), the board’s start, with free public parking.",
+        "sequence": "From Talucco go a few metres towards the Crò and take the first narrow lane on the right past Case Borgogna, where path 049, the Sentiero Ecomuseo delle Carbonaie, begins. Follow it through the Bosco dell’Impero to the Colle Eremita, then right, always on the Carbonaie signs, up to the Colle Ciardonet. Go down right on track 060 to the Rifugio Melano-Casa Canada. Go back 150 m on path 060 and take path 060A on the left, steeper at first, across the Noce valley under the Rocca Laubert cliffs, back to the outward path near the Colle Eremita, and down the same way to Talucco.",
+        "switches": "Narrow lane past Case Borgogna to path 049; Bosco dell’Impero; Colle Eremita, then right on the Carbonaie signs; Colle Ciardonet; track 060 down to the Rifugio Melano-Casa Canada; 150 m back, then path 060A on the left under the Rocca Laubert; back to the Colle Eremita and down path 049 to Talucco.",
+        "steps": [
+          {
+            "text": "Talucco, then path 049 past Case Borgogna",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Through the Bosco dell’Impero to the Colle Eremita",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Up to the Colle Ciardonet, then track 060 to the Rifugio Melano-Casa Canada",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 060A across the Noce valley under the Rocca Laubert cliffs",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Back to the Colle Eremita and down the same path to Talucco",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Turismo Torino e Provincia, Sentiero \"Ecomuseo delle Carbonaie\" (route description)",
+            "url": "https://www.outdooractive.com/it/r/804474829",
+            "authority": "Turismo Torino e Provincia",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The Rifugio Melano-Casa Canada under the Rocca Sbarua (Francofranco56 on Wikimedia Commons, CC BY-SA 4.0), 21 April 2017, 14 m from the line.",
+        route: "Official loop of 7.4 km from Talucco (Pinerolo), as Turismo Torino e Provincia publishes it; the stored line is drawn on 34 OSM ways along the board’s published line, 7.4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Paths 049, 060 and 060A. From Talucco take path 049 past Case Borgogna and through the Bosco dell’Impero to the Colle Eremita and the Colle Ciardonet, then track 060 down to the Rifugio Melano-Casa Canada; back 150 m, then path 060A under the Rocca Laubert cliffs to the Colle Eremita and down path 049 the same way to Talucco.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 7.4 km, 448 m up and 449 m down, 2:55 h (Turismo Torino e Provincia, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Turismo Torino e Provincia, Sentiero \"Ecomuseo delle Carbonaie\" (its Outdooractive tour)",
+          "No dog rule found online for the Comune di Pinerolo or the Comune di Frossasco, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park, reserve or Natura 2000 site on the line (CSI Piemonte layers)",
+          "OpenStreetMap ways along the board’s line (34 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 100,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["Path 060A under the Rocca Laubert is steeper and rougher at first, a mountain path (T2): take it slowly and keep your dog close","Climbing crags above path 060A: watch for falling stones and climbers’ gear","The first 100 m are on the provincial road through Talucco: keep your dog on a short lead there"],
+      terrainType: "Forest paths and tracks",
+      shadeDescription: "Almost all in woods: the path climbs through the Bosco dell’Impero.",
+      terrainDescription: "A forest loop above Talucco in the Val Lemina, past the sites where charcoal was once burned, each with a board showing how a kiln was built, up to the Colle Ciardonet and the CAI hut at Casa Canada under the Rocca Sbarua cliffs.",
+      waterDescription: "No drinking water is mapped on the route: carry enough for you and your dog. The Rifugio Melano-Casa Canada is about halfway.",
+      dogNotes: "Pinerolo and Frossasco publish no dog rule of their own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start in Talucco, with free parking: 7.4 km and 448 m up, about 3 hours, as the board lists. The Rifugio Melano-Casa Canada is about halfway. In snow the board advises snowshoes and extra care on the steep slopes of path 060A.",
+      sourceLinks: [
+        { label: "Turismo Torino e Provincia, Sentiero \"Ecomuseo delle Carbonaie\"", url: "https://www.outdooractive.com/it/r/804474829" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 44.948567, lng: 7.290615, label: "Talucco (Pinerolo), the board’s start" },
+      desc: "A forest loop from Talucco past the old charcoal-burning sites of the Val Lemina to the Rifugio Melano-Casa Canada under the Rocca Sbarua, back by a wilder path under the Rocca Laubert cliffs. The board lists 7.4 km and 448 m up."
+    },
+    'traversella-sentiero-delle-anime': {
+      // Hand audit: 19 November 2026, verified on arrival (new-trail Piedmont batch 2, Turin valleys).
+      // “Sentiero delle Anime e della Transumanza”, published by Turismo Torino e Provincia, drawn on 37 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Traversella (no dog rule found online: national rule). No park or Natura 2000 site (outside the Gran Paradiso). Roads: about 600 m of village lanes and squares in Traversella; the rest is path. About 6.8 km is T2 (OSM mountain_hiking), and the board’s directions name a short stretch with handholds at the Rio di Chiara: caution lines. Lollipop, about a quarter walked both ways.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Traversella – Cappia – Piani di Cappia – Rifugio Bruno Piazza (Valchiusella)",
+      distance: 10,
+      elevation: 549,
+      hours: '4.5',
+      routeShape: 'lollipop',
+      routeShapeNote: "A loop on a stem from the mines car park in Traversella: through the village and up Via Monte Marzo into the wood, on the Sentiero della Transumanza (730) to the hamlet of Cappia, up the GTA to the Piani di Cappia, then down the Sentiero delle Anime (729) past the rock carvings to the Rifugio Bruno Piazza, and back down the outward path to Traversella. The stem from Traversella into the wood is walked both ways, as the board publishes it (10 km, 549 m up, 4:25 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the mines car park by the bridge in Traversella, the board’s start.",
+        "sequence": "From the car park cross the bridge and take the level lane into the village, down to the main road and Piazza Cavour with its fountain. Climb Via Monte Marzo from the square, signed, steeply into the wood to the first carvings, then turn left at the fork onto path 730. Pass the turn for the Rifugio Piazza and carry on, ignoring the paths down to the left, to the hamlet of Cappia. Climb the GTA path to the Piani di Cappia; above the huts take the Sentiero delle Anime (729) on the right, cross the Rio di Chiara on a short stretch with handholds, and go down past the climbing crags to the Rifugio Piazza. From the hut go down to the outward path and back to Traversella.",
+        "switches": "Bridge and lane into Traversella; Piazza Cavour; Via Monte Marzo up into the wood; left on path 730; past the Rifugio Piazza turn to Cappia; GTA up to the Piani di Cappia; right on path 729, the Sentiero delle Anime; across the Rio di Chiara; down to the Rifugio Piazza; back down the outward path.",
+        "steps": [
+          {
+            "text": "Mines car park and Piazza Cavour, Traversella",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Via Monte Marzo into the wood, then left on path 730",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The hamlet of Cappia, then the GTA up to the Piani di Cappia",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Sentiero delle Anime (729) past the rock carvings and across the Rio di Chiara",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Rifugio Bruno Piazza, then down the outward path to Traversella",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Turismo Torino e Provincia, Sentiero delle Anime e della Transumanza (route description)",
+            "url": "https://www.outdooractive.com/it/r/804493440",
+            "authority": "Turismo Torino e Provincia",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The troll at the Rifugio Bruno Piazza, Traversella (Pier B. on Wikimedia Commons, CC BY-SA 3.0), 20 June 2013, 6 m from the line.",
+        route: "Official loop of 10 km from The mines car park, Traversella, as Turismo Torino e Provincia publishes it; the stored line is drawn on 37 OSM ways along the board’s published line, 9.9 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Paths 723, 719, 730, 707 (GTA) and 729. From the mines car park in Traversella go through Piazza Cavour and up Via Monte Marzo onto path 730 to Cappia, the GTA (707) up to the Piani di Cappia, then path 729, the Sentiero delle Anime, down past the carvings to the Rifugio Bruno Piazza and back along path 719 to Traversella.",
+        mapPoints: "Start at the board’s start; drinking water at km 0.5, km 0.6, km 0.7, km 1.5 (OSM nodes 2528688263, 2392459451, 2392459450, 2528688306).",
+        elevation: "Official 10 km, 549 m up and 549 m down, 4:25 h (Turismo Torino e Provincia, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Turismo Torino e Provincia, Sentiero delle Anime e della Transumanza (its Outdooractive tour)",
+          "No dog rule found online for the Comune di Traversella, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park, reserve or Natura 2000 site on the line (CSI Piemonte layers)",
+          "OpenStreetMap ways along the board’s line (37 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 66,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["Most of the walk is on mountain paths (T2), with steady climbs and uneven ground: for fit dogs used to mountain paths","A short stretch with handholds where the path crosses the Rio di Chiara: keep your dog on a short lead and help it across","Climbing crags around the Rifugio Piazza: watch for falling stones and climbers’ gear"],
+      terrainType: "Mountain paths and village lanes",
+      shadeDescription: "About two thirds in chestnut and birch woods; the Piani di Cappia pastures are open.",
+      terrainDescription: "A mountain loop above Traversella in the Valchiusella, on the old transhumance path through chestnut and birch woods to the stone hamlet of Cappia and the Piani di Cappia pastures, then down the Sentiero delle Anime past rock carvings, each with an explanation board, to the Rifugio Bruno Piazza.",
+      waterDescription: "Drinking water at the fountains in Traversella, at the start of the walk; none higher up. Carry enough for you and your dog.",
+      dogNotes: "Traversella publishes no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at the mines car park in Traversella: 10 km and 549 m up, about 4 hours 25 minutes, as the board lists. Fill up at the village fountains: there is no water higher up. The Rifugio Bruno Piazza is near the end.",
+      sourceLinks: [
+        { label: "Turismo Torino e Provincia, Sentiero delle Anime e della Transumanza", url: "https://www.outdooractive.com/it/r/804493440" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.510375, lng: 7.755985, label: "The mines car park, Traversella, the board’s start" },
+      desc: "A mountain loop from Traversella through chestnut woods to the stone hamlet of Cappia and the Piani di Cappia, then down the Sentiero delle Anime past old rock carvings to the Rifugio Bruno Piazza. The board lists 10 km and 549 m up."
+    },
+    'valchiusella-fondo-tissone-tallorno': {
+      // Hand audit: 19 November 2026, verified on arrival (new-trail Piedmont batch 2, Turin valleys).
+      // “Anello Fondo - Tissone - Tallorno”, published by Turismo Torino e Provincia, drawn on 26 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Traversella (no dog rule found online: national rule). No park or Natura 2000 site. Roads: about 50 m of lane in Fondo; the rest is path and gravel track. No T2 on the line.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Fondo – Tissone – Tallorno (Traversella, Valchiusella)",
+      distance: 5,
+      elevation: 319,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from the stone bridge at Fondo: up the zigzags to the sunny hamlet of Tissone, down to the valley path and along the Chiusella to Tallorno, then back on the track on the other bank past the old bridge and the waterfall to Fondo, as the board publishes it (5 km, 319 m up, 2:05 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the stone bridge in Fondo, Traversella, by the Trattoria del Ponte, the board’s start.",
+        "sequence": "Cross the humpbacked stone bridge and turn left. After a few hundred metres take the path up on the right, which zigzags up to Tissone. Leave the mouflon path, pass a few huts on the left and take the path that crosses a stream and goes down to the valley path between Fondo and Tallorno. Turn right to Tallorno, go on through the houses and over the bridge on the left, past the Madonna della Neve chapel and out of the hamlet. Take the track on the left back to Fondo, past the old bridge and the waterfall.",
+        "switches": "Stone bridge at Fondo, then left; path up on the right to Tissone; past the huts and across a stream down to the valley path; right to Tallorno; bridge on the left and the Madonna della Neve chapel; track on the left back to Fondo past the old bridge and the waterfall.",
+        "steps": [
+          {
+            "text": "The stone bridge at Fondo",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Zigzag path up to Tissone and its church of San Rocco",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Down to the valley path and right to Tallorno",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Over the bridge past the Madonna della Neve chapel",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The track back past the old bridge and the waterfall to Fondo",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Turismo Torino e Provincia, Anello Fondo - Tissone - Tallorno (route description)",
+            "url": "https://www.outdooractive.com/it/r/804976410",
+            "authority": "Turismo Torino e Provincia",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The stone bridge at Fondo, Valchiusella (Nicola Suozzo on Wikimedia Commons, CC BY 3.0), 20 May 2009, 9 m from the line.",
+        route: "Official loop of 5 km from The stone bridge at Fondo, Traversella, as Turismo Torino e Provincia publishes it; the stored line is drawn on 26 OSM ways along the board’s published line, 5.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Paths 708 (GTA), 713, 750 and 718. From the stone bridge at Fondo take path 708 and then 713 up to Tissone, down to the valley path 708 to Tallorno, then track 750 and path 718 back down the other bank past the old bridge to Fondo.",
+        mapPoints: "Start at the board’s start; drinking water at the start, km 0.2, km 0.8, km 0.9 (OSM nodes 3202716282, 13876533599, 3202716283, 3202716284).",
+        elevation: "Official 5 km, 319 m up and 319 m down, 2:05 h (Turismo Torino e Provincia, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Turismo Torino e Provincia, Anello Fondo - Tissone - Tallorno (its Outdooractive tour)",
+          "No dog rule found online for the Comune di Traversella, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park, reserve or Natura 2000 site on the line (CSI Piemonte layers)",
+          "OpenStreetMap ways along the board’s line (26 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 42,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["The zigzag climb to Tissone is steady: take it slowly with an older dog","The stream and the waterfall pool near Tallorno are fast and cold: keep your dog out of the current"],
+      terrainType: "Mountain paths and gravel track",
+      shadeDescription: "Partly in woods on the climb to Tissone; the hamlets and the valley track are mostly open.",
+      terrainDescription: "A short loop at the head of the Valchiusella linking three old hamlets of stone and wood, Fondo, Tissone and Tallorno, with a humpbacked stone bridge from 1727, the church of San Rocco and an old bridge below a waterfall.",
+      waterDescription: "Drinking water at the fountains in Fondo at the start and at several fountains along the way, by the hamlets and on the track back.",
+      dogNotes: "Traversella publishes no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at the stone bridge in Fondo, by the Trattoria del Ponte: 5 km and 319 m up, about 2 hours, as the board lists. For an easier walk the board suggests staying on the valley path from Fondo to Tallorno and skipping the climb to Tissone.",
+      sourceLinks: [
+        { label: "Turismo Torino e Provincia, Anello Fondo - Tissone - Tallorno", url: "https://www.outdooractive.com/it/r/804976410" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.531333, lng: 7.686096, label: "The stone bridge at Fondo, Traversella, the board’s start" },
+      desc: "A short loop at the head of the Valchiusella between three stone hamlets, from the humpbacked bridge at Fondo up to sunny Tissone, along the river to Tallorno and back past an old bridge and a waterfall. The board lists 5 km and 319 m up."
+    },
+    'valsusa-giaglione-vigne-mandorli': {
+      // Hand audit: 19 November 2026, verified on arrival (new-trail Piedmont batch 3, Val Susa).
+      // “GIAGLIONE – Le alture delle viti e dei mandorli”, published by Val Susa Outdoor (Turismo Torino e Provincia), drawn on 41 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Giaglione (no dog rule found online: national rule). No park or Natura 2000 site. Roads: about 1.7 km of hamlet lanes (30%, under half) and about 160 m on the SP211 branch through the hamlets; the rest is vineyard track and path. About 540 m of T2 (OSM mountain_hiking): caution line.
+      // The stored line follows the board’s own line, 99% and 100%; it runs the board’s two lobes in the order of the board’s line, which joins them at San Lorenzo.
+      area: "San Giuseppe – San Rocco – San Martino – San Lorenzo – San Gregorio, Giaglione (Val di Susa)",
+      distance: 5.8,
+      elevation: 241,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from the fountain at San Giuseppe in Giaglione through the vineyard hamlets of Creusa, San Rocco, San Martino, San Giovanni and San Lorenzo, then past the Casaforte di Menate and the Piëra Tsarva viewpoint over the Dora gorges to San Gregorio and back to San Giuseppe, as the board’s line runs (5.8 km, 241 m up, 1:55 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the fountain in the hamlet of San Giuseppe, Giaglione, the board’s start.",
+        "sequence": "From the fountain climb the lane to Creusa and on past the wayside shrine to San Rocco, with a wide view of the valley. Follow the vineyard track along the slope and down through chestnuts and vines to the chapel of San Martino, then on through the hamlets of San Giovanni and San Lorenzo. From San Lorenzo go past the school to the Casaforte di Menate, the old castle house, and along the panoramic track over the Dora gorges past the Piëra Tsarva viewpoint. At the fork go down left to the track to San Gregorio, then climb the other side on the path back to San Giuseppe.",
+        "switches": "Lane up to Creusa and San Rocco; vineyard track along the slope; chapel of San Martino; San Giovanni and San Lorenzo; past the school to the Casaforte di Menate; panoramic track past the Piëra Tsarva; down left at the fork to San Gregorio; path back up to San Giuseppe.",
+        "steps": [
+          {
+            "text": "The fountain at San Giuseppe, Giaglione",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Up through Creusa to San Rocco",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The vineyard track to the chapel of San Martino, San Giovanni and San Lorenzo",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Casaforte di Menate and the Piëra Tsarva viewpoint over the Dora gorges",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Down to San Gregorio and back up to San Giuseppe",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Val Susa Outdoor (Turismo Torino e Provincia), GIAGLIONE – Le alture delle viti e dei mandorli (route description)",
+            "url": "https://www.outdooractive.com/it/r/809858459",
+            "authority": "Val Susa Outdoor (Turismo Torino e Provincia)",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The chapel of San Martino, Giaglione (Martj9 on Wikimedia Commons, CC BY-SA 4.0), 1 May 2022, 1 m from the line.",
+        route: "Official loop of 5.8 km from The fountain at San Giuseppe, Giaglione, as Val Susa Outdoor (Turismo Torino e Provincia) publishes it; the stored line is drawn on 41 OSM ways along the board’s published line, 5.6 km, with 99% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Signed as the AVM vineyard route, partly on the Sentiero Italia. From the fountain at San Giuseppe in Giaglione go up through Creusa to San Rocco, along the vineyard track past San Martino, San Giovanni and San Lorenzo, then past the Casaforte di Menate and the Piëra Tsarva to San Gregorio and back up to San Giuseppe.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 5.8 km, 241 m up and 241 m down, 1:55 h (Val Susa Outdoor, Turismo Torino e Provincia, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Val Susa Outdoor (Turismo Torino e Provincia), GIAGLIONE – Le alture delle viti e dei mandorli (its Outdooractive tour)",
+          "No dog rule found online for the Comune di Giaglione, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park, reserve or Natura 2000 site on the line (CSI Piemonte layers)",
+          "OpenStreetMap ways along the board’s line (41 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 31,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ["A sunny, open slope with little shade: avoid hot afternoons and carry water for your dog","Stretches on hamlet lanes and a short one on the provincial road through the hamlets: keep your dog on a short lead there","The path back up to San Giuseppe is steep and stony for a short way"],
+      terrainType: "Hamlet lanes, vineyard tracks and paths",
+      shadeDescription: "Mostly open: about a third under chestnuts, the rest among vineyards and hamlets.",
+      terrainDescription: "A loop on the sunny slope of Giaglione, whose mild climate lets local vines and almond trees grow, through old stone hamlets and chapels and out to a viewpoint over the gorges of the Dora Riparia.",
+      waterDescription: "Fountains in the hamlets, at the start in San Giuseppe and by the school in San Lorenzo; carry water for your dog on the open slope.",
+      dogNotes: "Giaglione publishes no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at the fountain in San Giuseppe, Giaglione: 5.8 km and 241 m up, about 2 hours, as the board lists. Go in spring or autumn: the slope is open and hot in summer.",
+      sourceLinks: [
+        { label: "Val Susa Outdoor (Turismo Torino e Provincia), GIAGLIONE – Le alture delle viti e dei mandorli", url: "https://www.outdooractive.com/it/r/809858459" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.140928, lng: 7.012507, label: "The fountain at San Giuseppe, Giaglione, the board’s start" },
+      desc: "A sunny loop above Giaglione through vineyards, almond trees and old stone hamlets with their chapels, out to a viewpoint over the gorges of the Dora Riparia. The board lists 5.8 km and 241 m up."
+    },
+    'valsusa-venaus-sentiero-gufi-basso': {
+      // Hand audit: 19 November 2026, verified on arrival (new-trail Piedmont batch 3, Val Susa).
+      // “VENAUS – Il Sentiero dei Gufi basso”, published by Val Susa Outdoor (Turismo Torino e Provincia), drawn on 33 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Venaus (no dog rule found online: national rule). No park or Natura 2000 site. Roads: about 510 m of lanes; the rest is gravel track and path. About 640 m of T2 (OSM mountain_hiking): caution line. Out-and-back, as the board publishes it (6.1 km is the whole walk).
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Venaus – Chirabò chapel (Val Cenischia)",
+      distance: 6.1,
+      elevation: 294,
+      hours: '2',
+      routeShape: 'out-and-back',
+      routeShapeNote: "There and back the same way from the first houses of Venaus on the Sentiero dei Gufi (586), along the edge of the wood past the cemetery and up a steady, easy track to the viewpoint by the Chirabò chapel, as the board publishes it (6.1 km in all, 294 m up, 2:05 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the first houses of Venaus: turn left into Via Roma and, a little further on the left, find the Sentiero dei Gufi information board (path 586), the board’s start.",
+        "sequence": "Follow the gravel track along the edge of the wood above the village, cross a road by the cemetery and carry on up the easy track at a steady, moderate gradient, past the owl boards and the Roccia dei Partigiani, to the viewpoint with benches by the Chirabò chapel. Come back the same way.",
+        "switches": "Via Roma to the Sentiero dei Gufi board; gravel track along the edge of the wood; across the road by the cemetery; steady climb past the Roccia dei Partigiani; viewpoint by the Chirabò chapel; back the same way.",
+        "steps": [
+          {
+            "text": "The Sentiero dei Gufi board in Via Roma, Venaus",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Along the edge of the wood and across the road by the cemetery",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Steady climb past the Roccia dei Partigiani",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The viewpoint by the Chirabò chapel",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Back the same way to Venaus",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Val Susa Outdoor (Turismo Torino e Provincia), VENAUS – Il Sentiero dei Gufi basso (route description)",
+            "url": "https://www.outdooractive.com/it/r/809943711",
+            "authority": "Val Susa Outdoor (Turismo Torino e Provincia)",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The chapel of the Martirio di San Giovanni above Venaus (Martj9 on Wikimedia Commons, CC BY-SA 4.0), 5 May 2024, 14 m from the line.",
+        route: "Official 6.1 km there and back from The Sentiero dei Gufi board, Via Roma, Venaus, as Val Susa Outdoor (Turismo Torino e Provincia) publishes it; the stored line is drawn on 33 OSM ways along the board’s published line, 6 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Path 586, the Sentiero dei Gufi. From the information board in Via Roma, Venaus, follow path 586 along the edge of the wood past the cemetery and up the gravel track to the viewpoint by the Chirabò chapel, then back the same way.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 6.1 km there and back, 294 m up and 294 m down, 2:05 h (Val Susa Outdoor, Turismo Torino e Provincia, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Val Susa Outdoor (Turismo Torino e Provincia), VENAUS – Il Sentiero dei Gufi basso (its Outdooractive tour)",
+          "No dog rule found online for the Comune di Venaus, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park, reserve or Natura 2000 site on the line (CSI Piemonte layers)",
+          "OpenStreetMap ways along the board’s line (33 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 75,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["A short road crossing by the cemetery: keep your dog on a short lead there","The upper part is a mountain path (T2) for a short way: watch your dog’s footing on loose stones"],
+      terrainType: "Gravel track and woodland path",
+      shadeDescription: "Mostly in woods; the viewpoint at the top is open.",
+      terrainDescription: "An easy climb from Venaus along the edge of the woods where tawny owls, eagle owls and little owls live, with boards about the local wildlife, up to a viewpoint with benches by the Chirabò chapel.",
+      waterDescription: "No drinking water is mapped on the route: carry enough for you and your dog. Venaus has fountains in the village.",
+      dogNotes: "Venaus publishes no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at the Sentiero dei Gufi board in Via Roma, Venaus: 6.1 km there and back and 294 m up, about 2 hours, as the board lists. An easy walk for families and dogs of most ages.",
+      sourceLinks: [
+        { label: "Val Susa Outdoor (Turismo Torino e Provincia), VENAUS – Il Sentiero dei Gufi basso", url: "https://www.outdooractive.com/it/r/809943711" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.151336, lng: 7.015962, label: "The Sentiero dei Gufi board, Via Roma, Venaus, the board’s start" },
+      desc: "An easy walk from Venaus on a gravel track through owl woods, with boards about the wildlife, up to a viewpoint by the Chirabò chapel and back the same way. The board lists 6.1 km and 294 m up."
+    },
+    'valsusa-foresto-sentiero-ginepri': {
+      // Hand audit: 19 November 2026, verified on arrival (new-trail Piedmont batch 3, Val Susa).
+      // “FORESTO – Il Sentiero dei Ginepri”, published by Val Susa Outdoor (Turismo Torino e Provincia), drawn on 13 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Bussoleno (Foresto); no commune dog rule found online. Inside the Orrido di Foresto natural reserve and ZSC IT1110030 for most of the line: Alpi Cozie regulation art. 23, dogs on a lead. Roads: about 870 m of village lanes (20%). About 1 km of T2 (OSM mountain_hiking), and the board names a steep slope and rock steps: caution lines.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Foresto – Orrido di Foresto reserve – la Cota (Bussoleno, Val di Susa)",
+      distance: 4.4,
+      elevation: 337,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from the church of Foresto up the path cut into the limestone cliffs (536) past an old lime kiln and terraces, down the steep juniper slope (536B), on along the edge of the reserve to the mule track to the hamlet of la Cota, and back on the lanes to Foresto, as the board publishes it (4.4 km, 337 m up, 1:55 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the church square in Foresto, Bussoleno, the board’s start.",
+        "sequence": "From the church follow the signs for the Orrido; at the end of the lane take the path cut into the limestone cliff (path 536), past an old lime kiln and old terraced fields among the junipers. Follow the signs for the Sentiero dei Ginepri: leave the path to Ambruna and go down left on path 536B, a steep slope, to a knoll with a lone juniper. Carry on among limestone cliffs, grassy slopes and rock steps to the edge of the reserve, then take the wide mule track to the hamlet of la Cota and the lanes back to the school square in Foresto.",
+        "switches": "Signs for the Orrido from the church; path 536 cut into the cliff; past the lime kiln; left on path 536B down the juniper slope; the knoll with the lone juniper; along the edge of the reserve; mule track to la Cota; lanes back to Foresto.",
+        "steps": [
+          {
+            "text": "The church square in Foresto",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 536 cut into the limestone cliff, past the old lime kiln",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Down path 536B to the knoll with the lone juniper",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Along the edge of the reserve to the mule track and la Cota",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The lanes back to Foresto",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Val Susa Outdoor (Turismo Torino e Provincia), FORESTO – Il Sentiero dei Ginepri (route description)",
+            "url": "https://www.outdooractive.com/it/r/809935419",
+            "authority": "Val Susa Outdoor (Turismo Torino e Provincia)",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The juniper path in the Orrido di Foresto reserve (Sbaluf on Wikimedia Commons, CC BY-SA 4.0), 7 May 2006, 46 m from the line.",
+        route: "Official loop of 4.4 km from The church square, Foresto, as Val Susa Outdoor (Turismo Torino e Provincia) publishes it; the stored line is drawn on 13 OSM ways along the board’s published line, 4.4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Paths 536 and 536B, signed Sentiero dei Ginepri. From the church in Foresto follow the signs for the Orrido onto path 536 along the cliff, then down path 536B over the juniper slope, along the edge of the reserve to the mule track to la Cota and back on the lanes to Foresto.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 4.4 km, 337 m up and 337 m down, 1:55 h (Val Susa Outdoor, Turismo Torino e Provincia, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Val Susa Outdoor (Turismo Torino e Provincia), FORESTO – Il Sentiero dei Ginepri (its Outdooractive tour)",
+          "The Orrido di Foresto natural reserve is run by the Alpi Cozie protected-areas authority, whose regulation (art. 23) allows dogs of any breed only on a lead",
+          "No dog rule found online for the Comune di Bussoleno, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "Riserva naturale dell’Orrido di Foresto and ZSC IT1110030 Oasi xerotermiche della Val di Susa on most of the line (CSI Piemonte layers)",
+          "OpenStreetMap ways along the board’s line (13 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 22,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ["Path 536B goes down a steep, stony slope with rock steps (T2): keep your dog on a short lead and take it slowly","A dry, open slope with little shade: the board suggests the cooler months; avoid summer heat","Inside the reserve dogs must stay on a lead"],
+      terrainType: "Rocky paths and village lanes",
+      shadeDescription: "Mostly open: a dry, sunny slope with scattered junipers.",
+      terrainDescription: "A short, rocky loop on the dry, sunny mountain above Foresto, known for its tall, slender prickly junipers, past an old lime kiln and terraced fields, with views over meadows where wild orchids flower in May and June.",
+      waterDescription: "No drinking water is mapped on the route: carry enough for you and your dog, as the slope is dry and hot.",
+      dogNotes: "Dogs must stay on a lead in the Orrido di Foresto reserve, by the Alpi Cozie parks regulation. Outside it Bussoleno has no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at the church square in Foresto: 4.4 km and 337 m up, about 2 hours, as the board lists. The board recommends it for the cooler seasons; wild orchids flower in May and June.",
+      sourceLinks: [
+        { label: "Val Susa Outdoor (Turismo Torino e Provincia), FORESTO – Il Sentiero dei Ginepri", url: "https://www.outdooractive.com/it/r/809935419" },
+        { label: "Ente di gestione delle aree protette delle Alpi Cozie, Regolamento delle aree protette (art. 23, dogs on a lead)", url: "https://www.servizipubblicaamministrazione.it/venere_storico_2/prcrsr597/Data/Allegati/PRAS-2021-00024-A1.PDF" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.14108, lng: 7.116229, label: "The church square, Foresto, the board’s start" },
+      desc: "A short, rocky loop above Foresto in the Orrido di Foresto reserve, past an old lime kiln and tall junipers on a dry, sunny slope with wide views over the valley. The board lists 4.4 km and 337 m up."
+    },
+    'valsusa-chianocco-orrido-chouque': {
+      // Hand audit: 19 November 2026, verified on arrival (new-trail Piedmont batch 3, Val Susa).
+      // “CHIANOCCO – L'Orrido e il Chouqué di Margrit”, published by Val Susa Outdoor (Turismo Torino e Provincia), drawn on 44 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Chianocco (no commune dog rule found online). Part of the line is in the Orrido di Chianocco natural reserve and ZSC IT1110030: Alpi Cozie regulation art. 23, dogs on a lead. Roads: about 2.2 km of hamlet lanes (26%). About 3.9 km of T2 (OSM mountain_hiking): caution line. The board advises against the hottest months.
+      // The stored line follows the board’s own line, 100% each way. A 60 m stub up a track and back at km 2.64 of the board’s line, which the directions do not mention, was cut from the stored line.
+      area: "Chianocco – Pavaglione – Margrit – Goitroce – Molè (Val di Susa)",
+      distance: 8.5,
+      elevation: 559,
+      hours: '3.5',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from the square in Chianocco up path 541 to Pavaglione, along the gravel road to the hamlet of Margrit with a short climb to see the Chouqué di Margrit rock tower, then on the lane to the hamlets of Goitroce and Molè and down path 565 through the reserve back to Chianocco, as the board publishes it (8.5 km, 559 m up, 3:35 h).",
+      sideTrips: [{"km":4.4,"note":"Up the steep meadow above the hamlet of Margrit to see the Chouqué di Margrit and back down to Margrit, as the board’s directions say (“risalendo il ripido pendio prativo… si ridiscende a borgata Margrit”) and its own line does."}],
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the square by the town hall in Chianocco, the board’s start.",
+        "sequence": "Walk a short way up the road to Combette, then take path 541 on the left, steep at first and then gentler, up to Pavaglione. Go left on the path that soon joins the easy gravel road to the hamlet of Margrit. Climb a few tens of metres up the steep meadow to see the Chouqué di Margrit, a tall tower of layered glacial debris, and come back down to Margrit. Climb to the lane to the hamlets of Goitroce and Molè, with the eroded gullies of the Calanchi del Molè, then go down path 565 back to Chianocco.",
+        "switches": "Road towards Combette, then path 541 on the left; Pavaglione; left onto the gravel road to Margrit; up the meadow to see the Chouqué and back; lane to Goitroce and Molè; path 565 down to Chianocco.",
+        "steps": [
+          {
+            "text": "The square by the town hall, Chianocco",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 541 up to Pavaglione",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The gravel road to Margrit and the Chouqué di Margrit",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The lane to Goitroce and Molè, past the Calanchi del Molè",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 565 down through the reserve to Chianocco",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Val Susa Outdoor (Turismo Torino e Provincia), CHIANOCCO – L'Orrido e il Chouqué di Margrit (route description)",
+            "url": "https://www.outdooractive.com/it/r/806650088",
+            "authority": "Val Susa Outdoor (Turismo Torino e Provincia)",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The Chouqué di Margrit above Chianocco (Sbaluf on Wikimedia Commons, CC BY-SA 4.0), 12 June 2006, 43 m from the line.",
+        route: "Official loop of 8.5 km from The square by the town hall, Chianocco, as Val Susa Outdoor (Turismo Torino e Provincia) publishes it; the stored line is drawn on 44 OSM ways along the board’s published line, 8.3 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Paths 541, 542 and 565. From the square in Chianocco take path 541 up to Pavaglione and the gravel road to Margrit and the Chouqué di Margrit, then the lane to Goitroce and Molè and path 565 back down through the reserve to Chianocco.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 8.5 km, 559 m up and 559 m down, 3:35 h (Val Susa Outdoor, Turismo Torino e Provincia, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Val Susa Outdoor (Turismo Torino e Provincia), CHIANOCCO – L'Orrido e il Chouqué di Margrit (its Outdooractive tour)",
+          "The Orrido di Chianocco natural reserve is run by the Alpi Cozie protected-areas authority, whose regulation (art. 23) allows dogs of any breed only on a lead",
+          "No dog rule found online for the Comune di Chianocco, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "Riserva naturale dell’Orrido di Chianocco and ZSC IT1110030 Oasi xerotermiche della Val di Susa on part of the line (CSI Piemonte layers)",
+          "OpenStreetMap ways along the board’s line (44 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 57,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ["The board advises against the hottest months: the slope is sunny; go in autumn, winter or spring","Path 541 is steep at the start and parts are mountain paths (T2): take it slowly with an older dog","Stretches on hamlet lanes between Margrit and Molè: keep your dog on a short lead there","Inside the reserve dogs must stay on a lead"],
+      terrainType: "Mountain paths, gravel road and hamlet lanes",
+      shadeDescription: "About half in woods; the meadows and hamlets are open and sunny.",
+      terrainDescription: "A loop on the sunny slopes above Chianocco, in and around the Orrido di Chianocco reserve, to the Chouqué di Margrit, a tower of layered glacial debris shaped by erosion, and the steep eroded gullies of the Calanchi del Molè.",
+      waterDescription: "No drinking water is mapped on the route: carry enough for you and your dog.",
+      dogNotes: "Dogs must stay on a lead in the Orrido di Chianocco reserve, by the Alpi Cozie parks regulation. Outside it Chianocco has no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at the square by the town hall in Chianocco: 8.5 km and 559 m up, about 3 hours 35 minutes, as the board lists. Best in autumn, winter and spring: the board warns it is too hot in high summer.",
+      sourceLinks: [
+        { label: "Val Susa Outdoor (Turismo Torino e Provincia), CHIANOCCO – L'Orrido e il Chouqué di Margrit", url: "https://www.outdooractive.com/it/r/806650088" },
+        { label: "Ente di gestione delle aree protette delle Alpi Cozie, Regolamento delle aree protette (art. 23, dogs on a lead)", url: "https://www.servizipubblicaamministrazione.it/venere_storico_2/prcrsr597/Data/Allegati/PRAS-2021-00024-A1.PDF" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.148216, lng: 7.16907, label: "The square by the town hall, Chianocco, the board’s start" },
+      desc: "A loop on the sunny slopes above Chianocco, partly in the Orrido di Chianocco reserve, to the Chouqué di Margrit, a tall tower of eroded glacial debris, and the gullies of the Calanchi del Molè. The board lists 8.5 km and 559 m up."
+    },
+    'valsusa-san-giorio-geat-montebenedetto': {
+      // Hand audit: 19 November 2026, verified on arrival (new-trail Piedmont batch 3, Val Susa).
+      // “SAN GIORIO DI SUSA – Anello del Rifugio GEAT e della Certosa di Montebenedetto”, published by Val Susa Outdoor (Turismo Torino e Provincia), drawn on 22 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Communes: San Giorio di Susa and Villar Focchiardo (no commune dog rule found online). Part of the line is in the Orsiera-Rocciavrè natural park and its ZSC/ZPS: Alpi Cozie regulation art. 23, dogs on a lead. Roads: about 310 m of lane; the rest is path and track. About 3.2 km of T2 (OSM mountain_hiking): caution line. Loop with the board’s own turn at the Certosa, declared in sideTrips.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Borgata Adret – Rifugio GEAT Val Gravio – Certosa di Montebenedetto (San Giorio di Susa)",
+      distance: 7.2,
+      elevation: 361,
+      hours: '2.75',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from Borgata Adret up path 512 through chestnut and beech woods to the Rifugio GEAT Val Gravio, across the stream to path 506, past the Prà du Sap altar and down to the Certosa di Montebenedetto, then by the Grange di Montebenedetto down path 524 to Adret, as the board publishes it (7.2 km, 361 m up, 2:45 h).",
+      sideTrips: [{"km":5.05,"note":"Down to the Certosa di Montebenedetto and back to the track to the Grange: the board’s directions go down to the Certosa and on from there, and its own line turns at the Certosa."}],
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Borgata Adret, San Giorio di Susa, the board’s start.",
+        "sequence": "From Borgata Adret take path 512 up to the Rifugio GEAT Val Gravio: steeper at first through chestnut woods, then gentler through chestnuts and beeches, with larches near the refuge. At the refuge take the path across the stream, steep for a few tens of metres, up to path 506. Follow the signs for the Certosa di Montebenedetto on the well-marked path past Prà du Sap and down to the Certosa. From there go on to the Grange di Montebenedetto and take path 524 back down to Borgata Adret.",
+        "switches": "Path 512 from Adret to the Rifugio GEAT Val Gravio; across the stream and up to path 506; signs for the Certosa past Prà du Sap; down to the Certosa di Montebenedetto; on to the Grange; path 524 down to Adret.",
+        "steps": [
+          {
+            "text": "Borgata Adret, San Giorio di Susa",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 512 up through chestnut and beech woods to the Rifugio GEAT Val Gravio",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Across the stream to path 506 and past Prà du Sap",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Certosa di Montebenedetto and its stone bridge",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Grange di Montebenedetto and path 524 down to Adret",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Val Susa Outdoor (Turismo Torino e Provincia), SAN GIORIO DI SUSA – Anello del Rifugio GEAT e della Certosa di Montebenedetto (route description)",
+            "url": "https://www.outdooractive.com/it/r/809188687",
+            "authority": "Val Susa Outdoor (Turismo Torino e Provincia)",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The stone bridge by the Certosa di Montebenedetto (Martj9 on Wikimedia Commons, CC BY-SA 4.0), 17 September 2023, 14 m from the line.",
+        route: "Official loop of 7.2 km from Borgata Adret, San Giorio di Susa, as Val Susa Outdoor (Turismo Torino e Provincia) publishes it; the stored line is drawn on 22 OSM ways along the board’s published line, 7 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Paths 512, 506 and 524. From Borgata Adret take path 512 up to the Rifugio GEAT Val Gravio, cross the stream to path 506 and follow the signs past Prà du Sap down to the Certosa di Montebenedetto, then by the Grange di Montebenedetto down path 524 to Adret.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 7.2 km, 361 m up and 361 m down, 2:45 h (Val Susa Outdoor, Turismo Torino e Provincia, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Val Susa Outdoor (Turismo Torino e Provincia), SAN GIORIO DI SUSA – Anello del Rifugio GEAT e della Certosa di Montebenedetto (its Outdooractive tour)",
+          "The Orsiera-Rocciavrè natural park is run by the Alpi Cozie protected-areas authority, whose regulation (art. 23) allows dogs of any breed only on a lead",
+          "No dog rule found online for the Comune di San Giorio di Susa or the Comune di Villar Focchiardo, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "Parco naturale Orsiera-Rocciavrè and its ZSC/ZPS on part of the line (CSI Piemonte layers)",
+          "OpenStreetMap ways along the board’s line (22 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 91,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["A steep stretch at the start and a short steep climb after the refuge, on mountain paths (T2): take it slowly with an older dog","In winter the board says snowshoes, microspikes and avalanche gear may be needed: walk it only when it is clear of snow and ice","Inside the park dogs must stay on a lead"],
+      terrainType: "Forest paths and tracks",
+      shadeDescription: "Almost all in chestnut, beech and larch woods.",
+      terrainDescription: "A forest loop on the edge of the Orsiera-Rocciavrè park, from the hamlet of Adret through chestnut and beech woods to the Rifugio GEAT Val Gravio and the Certosa di Montebenedetto, an old Carthusian charterhouse with a mossy stone bridge.",
+      waterDescription: "No drinking water is mapped on the route: carry enough for you and your dog. The Rifugio GEAT Val Gravio is about halfway up.",
+      dogNotes: "Dogs must stay on a lead in the Orsiera-Rocciavrè park, by the Alpi Cozie parks regulation. Outside it San Giorio di Susa has no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at Borgata Adret above San Giorio di Susa: 7.2 km and 361 m up, about 2 hours 45 minutes, as the board lists. Shady all the way, so good in summer; in winter it needs snow gear.",
+      sourceLinks: [
+        { label: "Val Susa Outdoor (Turismo Torino e Provincia), SAN GIORIO DI SUSA – Anello del Rifugio GEAT e della Certosa di Montebenedetto", url: "https://www.outdooractive.com/it/r/809188687" },
+        { label: "Ente di gestione delle aree protette delle Alpi Cozie, Regolamento delle aree protette (art. 23, dogs on a lead)", url: "https://www.servizipubblicaamministrazione.it/venere_storico_2/prcrsr597/Data/Allegati/PRAS-2021-00024-A1.PDF" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.105342, lng: 7.187053, label: "Borgata Adret, San Giorio di Susa, the board’s start" },
+      desc: "A shady forest loop from Borgata Adret through chestnut and beech woods to the Rifugio GEAT Val Gravio and the old Certosa di Montebenedetto, on the edge of the Orsiera-Rocciavrè park. The board lists 7.2 km and 361 m up."
+    },
+    'iseo-colmi': {
+      // Hand audit: 19 November 2026, verified on arrival (Lake Iseo + Alto Garda batch 1, owner decision of 18 November 2026 to add Northern Italy mountain walks).
+      // Visit Lake Iseo: “Passeggiata tra I Colmi” on Outdooractive, drawn there and back on 99 OSM ways along its published line (data/board-line-routes.geojson).
+      // One way on the page with no return given: distance and climb are the published one-way figures doubled; the time is measured by ORMA (DIN 33466).
+      // Communes: Sulzano (start; no dog rule found online, so the national rule applies), Polaveno (Ordinanza n. 73/2024 of 5 December 2024: lead in places open to the public) and Iseo (Regolamento di Polizia Urbana, CC n. 3 of 24 February 2025, art. 8: lead in public places). No park, reserve or Natura 2000 site on the line. About 1.4 km each way graded T2 in OSM: flagged as a caution (owner rule of 18 November 2026). No road on the line beyond a crossing near the closed Trattoria I Colmi.
+      // The stored line follows the published line, 100% each way.
+      area: "Santa Maria del Giogo – I Colmi – Punta dell’Orto (Sulzano, Polaveno, Iseo)",
+      distance: 7.2,
+      elevation: 252,
+      hours: '2.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: "Visit Lake Iseo publishes the walk one way, from Santa Maria del Giogo to Punta dell’Orto (3.6 km, 150 m up, 102 m down, 1 h 10), and gives no return. ORMA walks it there and back on the same path: 7.2 km with 252 m up and down. The time, about 2 h 30, is measured by ORMA (DIN 33466), not the board’s.",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at Località Santa Maria del Giogo (about 900 m), a terrace above Lake Iseo reached by road from Sulzano, by the bar-trattoria car park, the published start.",
+        "sequence": "Follow the white and blue 3V signs for a few minutes to the sanctuary of Santa Maria del Giogo. Past the church the path drops a little and runs straight on above the Val Trompia, easy and well marked, to I Colmi (about 30 minutes), one of the finest viewpoints on the lake, over Monte Isola and the Val Camonica. Carry on to the road by the closed Trattoria I Colmi, cross it and follow the signs for Punta dell’Orto into the woods, past a clearing with a small pond, then left up to the summit with the CAI Iseo cross. Come back the same way.",
+        "switches": "White and blue 3V signs (CAI 393) from Santa Maria del Giogo past the sanctuary to I Colmi; across the road by the closed Trattoria I Colmi; signs for Punta dell’Orto past the pond to the cross; back the same way.",
+        "sources": [
+          {
+            "label": "Visit Lake Iseo, Passeggiata tra I Colmi (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/800088421",
+            "authority": "Visit Lake Iseo",
+            "tag": "tourist board",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Monte Isola and Lake Iseo from the meadows at I Colmi, on the walk (xlyz on Mapillary, CC BY-SA 4.0), 19 May 2024, 3 m from the line.",
+        route: "Official one-way walk of 3.6 km from Località Santa Maria del Giogo above Sulzano, by the bar-trattoria, as Visit Lake Iseo, the tourism association of the Lake Iseo communes and the provinces of Brescia and Bergamo publishes it, with no return given; ORMA walks it there and back on the same path (owner rule of 12 November 2026). The stored line is drawn on 99 OSM ways along the published line out and back, 7.2 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "White and blue 3V signs (Sentiero 3V, CAI 393) from Santa Maria del Giogo past the sanctuary to I Colmi; across the road by the closed Trattoria I Colmi; signs for Punta dell’Orto past a small pond to the CAI Iseo cross; back the same way.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official one way: 3.6 km, 150 m up, 102 m down, 1 h 10, between 871 m and 974 m (Visit Lake Iseo, Outdooractive). There and back on the same path: 7.2 km, 252 m up and 252 m down; about 2 h 30 measured by ORMA (DIN 33466), since the board times the walk one way only."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Visit Lake Iseo, “Passeggiata tra I Colmi” (Outdooractive tour with its line and figures)",
+          "Comune di Sulzano publishes no dog regulation online (searched its regulations in Amministrazione Trasparente and the site), so the Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in places open to the public and a muzzle carried",
+          "Comune di Polaveno, Ordinanza sindacale n. 73/2024 of 5 December 2024: dogs may not roam free in places public or open to the public; lead required",
+          "Comune di Iseo, Regolamento di Polizia Urbana (CC n. 3, 24 February 2025), art. 8 c. 1: dogs on a lead in places public or open to the public",
+          "Regione Lombardia geoportal (AreeProtette: regional, natural and national parks, regional and national reserves, PLIS, natural monuments): no protected area on the line; European Environment Agency Natura 2000 service: no site on the line",
+          "OpenStreetMap ways along the board’s line (99 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 10,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About 1.4 km of the path each way is mountain path (T2): rough grass and stony ground, steeper near Punta dell’Orto; sure footing needed","Open grassy ridge with little shade: on a hot day go early and bring plenty of water","You cross a road by the closed Trattoria I Colmi: keep your dog on a short lead there","A few short flights of concrete steps on the path"],
+      terrainType: "Grassy ridge paths and farm tracks",
+      shadeDescription: "Mostly open meadows along the ridge; a short wooded stretch on the way to Punta dell’Orto. OSM maps no woodland on the line.",
+      terrainDescription: "A short, mostly level balcony path at about 900 m above Lake Iseo, from the sanctuary of Santa Maria del Giogo along grassy ridges and farm tracks to the I Colmi viewpoint over Monte Isola, then through a little wood to the cross on Punta dell’Orto, and back the same way.",
+      waterDescription: "No drinking water is mapped on the line (OSM). The bar-trattoria at Santa Maria del Giogo is at the start; the Trattoria I Colmi on the way is closed. Bring water and a bowl for your dog.",
+      dogNotes: "Iseo (Regolamento di Polizia Urbana, 2025, art. 8) and Polaveno (mayor’s ordinance 73/2024) ask for dogs on a lead in places open to the public; Sulzano, at the start, publishes no rule of its own, so the national rule applies: a lead of at most 1.5 m and a muzzle carried.",
+      tips: "Drive up from Sulzano to Santa Maria del Giogo and park by the bar-trattoria: 3.6 km on the 3V path to Punta dell’Orto, about 1 h 10 as the board gives, and the same way back, about 2 h 30 in all by ORMA’s DIN 33466 estimate. Go early on a sunny day, keep your dog on a lead and carry a muzzle.",
+      sourceLinks: [
+        { label: "Visit Lake Iseo, Passeggiata tra I Colmi (Outdooractive)", url: "https://www.outdooractive.com/it/r/800088421" },
+        { label: "Visit Lake Iseo, who we are (association of 23 Lake Iseo communes and the provinces of Brescia and Bergamo)", url: "https://www.visitlakeiseo.info/chi-siamo/" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Comune di Iseo, Regolamento di Polizia Urbana (2025)", url: "https://www.comune.iseo.bs.it/ocmultibinary/download/7603/212084/1/83945ee85d6843c664ef3854ed51af2a.PDF/file/Regolamento_Polizia_Urbana_24-02-2025.PDF" },
+        { label: "Comune di Polaveno, Ordinanza n. 73/2024", url: "https://www.comune.polaveno.bs.it/ocmultibinary/download/516/9730/3/8a6404b4a18afb5d7c794414d5c226f3.pdf/file/o000073.pdf" },
+        { label: "Regione Lombardia geoportal, protected-area services (parks, reserves, PLIS, natural monuments)", url: "https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.678319, lng: 10.135857, label: "Località Santa Maria del Giogo above Sulzano, by the bar-trattoria, the published start" },
+      desc: "An easy balcony walk at about 900 m above Lake Iseo, from the sanctuary of Santa Maria del Giogo along the 3V path over grassy ridges to the I Colmi viewpoint, with Monte Isola below, and on through a little wood to the cross on Punta dell’Orto, and back the same way. Visit Lake Iseo lists 3.6 km one way; there and back it is 7.2 km with 252 m up and down, about 2 h 30."
+    },
+    'altogarda-santuario-montecastello': {
+      // Hand audit: 19 November 2026, verified on arrival (Lake Iseo + Alto Garda batch 1, owner decision of 18 November 2026 to add Northern Italy mountain walks).
+      // Comunità Montana Parco Alto Garda Bresciano: “Il Santuario di Montecastello” on Outdooractive, drawn on 28 OSM ways along its published line (data/board-line-routes.geojson).
+      // Commune: Tignale (no dog rule of its own found online; the 2019 decoro regulation only asks for waste bags), so the national rule applies. Alto Garda Bresciano regional park and ZPS IT2070402 on the line: no dog clause found for either outside the four SICs. About 0.5 km of mountain path (T2) flagged as a caution; the board grades the walk T2. About 10 m along the SP38 in Gardola (a crossing).
+      // The stored line follows the published line, 100% each way.
+      area: "Gardola – Santuario di Montecastello, Tignale",
+      distance: 4.9,
+      elevation: 283,
+      hours: '1.9',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from Gardola up to the sanctuary of Montecastello and back, as the Comunità Montana Parco Alto Garda Bresciano publishes it: 4.9 km, 283 m up and down, 1 h 55.",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start in the centre of Gardola, the main village of Tignale, where there are car parks, the published start.",
+        "sequence": "From Gardola climb on the waymarked paths (204 and the Bassa Via del Garda) through woods and past viewpoints to the sanctuary of Montecastello, perched on a rocky spur at about 700 m above Lake Garda, with fourteenth-century frescoes, a small guest house and terraces looking over to Monte Baldo. Come back down by the other side of the loop and through the lanes of Gardola to the start.",
+        "switches": "Paths 204 and BVG (Bassa Via del Garda) from Gardola up to the sanctuary; back down on the other side of the loop through the lanes of Gardola.",
+        "sources": [
+          {
+            "label": "Comunità Montana Parco Alto Garda Bresciano, Il Santuario di Montecastello (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/806982564",
+            "authority": "Comunità Montana Parco Alto Garda Bresciano",
+            "tag": "park authority",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The forecourt of the Montecastello sanctuary, at the top of the walk (Jürgen Schneider on Wikimedia Commons, CC BY-SA 3.0), 11 July 2006, 26 m from the line.",
+        route: "Official loop of 4.9 km from The centre of Gardola, Tignale, as the Comunità Montana Parco Alto Garda Bresciano, the public body that runs the Alto Garda Bresciano regional park publishes it; the stored line is drawn on 28 OSM ways along the published line, 4.8 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "Paths 204 (Comune di Tignale) and BVG (Bassa Via del Garda, Comunità Montana Parco Alto Garda Bresciano) from Gardola up to the sanctuary of Montecastello; back down on the other side of the loop through the lanes of Gardola.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official loop: 4.9 km, 283 m up and down, 1 h 55, between 503 m and 773 m (Comunità Montana Parco Alto Garda Bresciano, Outdooractive). The stored line follows the park’s own Outdooractive tour."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Comunità Montana Parco Alto Garda Bresciano, “Il Santuario di Montecastello” (Outdooractive tour with its line and figures)",
+          "Comune di Tignale publishes no dog regulation online (searched its regulations, general acts and ordinances; the Regolamento del decoro urbano, CC n. 14 of 3 April 2019, art. 14, only asks for waste bags), so the Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in places open to the public and a muzzle carried",
+          "Parco Alto Garda Bresciano: no visitor regulation with a dog clause published online for the park outside its Natura 2000 sites, so no park rule beyond the national one there",
+          "Regione Lombardia geoportal (AreeProtette: regional, natural and national parks, regional and national reserves, PLIS, natural monuments): Parco Alto Garda Bresciano on the line; European Environment Agency Natura 2000 service: ZPS IT2070402 Alto Garda Bresciano",
+          "OpenStreetMap ways along the board’s line (28 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 53,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About 0.5 km of mountain path (T2) on the climb to the sanctuary: stony and steeper in places; sure footing needed","About a third on village lanes and cobbled streets in Gardola, with a crossing of the SP38: keep your dog on a short lead there","The sanctuary sits on a rocky spur with drops beside the terraces: keep your dog close at the top","Sunny lower slopes above Lake Garda: on a hot day go early and bring water"],
+      terrainType: "Woodland paths and village lanes",
+      shadeDescription: "About half shaded: woods on the climb to the sanctuary; the lanes of Gardola and the viewpoints are open.",
+      terrainDescription: "A short loop from Gardola, the main village of Tignale on its terrace high above Lake Garda, up woodland paths past viewpoints to the sanctuary of Montecastello on its rocky spur, one of the landmarks of the Alto Garda Bresciano park, and back down through the lanes of Gardola.",
+      waterDescription: "No drinking water is mapped on the line (OSM). Gardola has bars and shops at the start; the sanctuary has a small guest house. Bring water and a bowl for your dog.",
+      dogNotes: "Tignale publishes no dog rule of its own, so the national rule applies: a lead of at most 1.5 m in places open to the public and a muzzle carried. The walk is in the Alto Garda Bresciano regional park, also a Natura 2000 bird area: keep your dog on the path.",
+      tips: "Park in Gardola, the centre of Tignale: 4.9 km and 283 m up and down, about 1 h 55 as the park gives. Stop on the sanctuary terrace for one of the best views over Lake Garda. Keep your dog on a lead in the village and carry a muzzle.",
+      sourceLinks: [
+        { label: "Comunità Montana Parco Alto Garda Bresciano, Il Santuario di Montecastello (Outdooractive)", url: "https://www.outdooractive.com/it/r/806982564" },
+        { label: "Comunità Montana Parco Alto Garda Bresciano", url: "https://www.cm-altogarda.bs.it/" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Comunità Montana Parco Alto Garda Bresciano", url: "https://www.cm-altogarda.bs.it/" },
+        { label: "Regione Lombardia geoportal, protected-area services (parks, reserves, PLIS, natural monuments)", url: "https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.741714, lng: 10.733015, label: "The centre of Gardola, Tignale, the published start" },
+      desc: "A short loop from Gardola, Tignale’s main village high above Lake Garda, up woodland paths to the sanctuary of Montecastello, perched on a rocky spur at about 700 m with frescoes and a terrace over the lake and Monte Baldo, and back down through the village lanes. The park lists 4.9 km, 283 m up and down, 1 h 55."
+    },
+    'altogarda-valle-cartiere': {
+      // Hand audit: 19 November 2026, verified on arrival (Lake Iseo + Alto Garda batch 1, owner decision of 18 November 2026 to add Northern Italy mountain walks).
+      // Comunità Montana Parco Alto Garda Bresciano: “Nella Valle delle Cartiere” on Outdooractive, drawn there and back on 37 OSM ways along its published line (data/board-line-routes.geojson).
+      // One way on the page with no return given: distance and climb are the published one-way figures doubled; the time is measured by ORMA (DIN 33466).
+      // Commune: Toscolano Maderno, Regolamento di Polizia Urbana (CC n. 32/2010), art. 51: dogs always on a lead except in places set aside for them. Alto Garda Bresciano regional park on the line, no Natura 2000 site: no park dog clause found. About 1.9 km of the 4.1 km is the asphalt Via Valle delle Cartiere to the museum (a quiet lane, under half the walk); no main road.
+      // The stored line follows the published line, 100% each way.
+      area: "Toscolano – Museo della Carta – Maina Inferiore – Maina Superiore, Toscolano Maderno",
+      distance: 4.2,
+      elevation: 67,
+      hours: '1.25',
+      routeShape: 'out-and-back',
+      routeShapeNote: "The Comunità Montana Parco Alto Garda Bresciano publishes the walk one way, from Toscolano to Maina Superiore (2.1 km, 62 m up, 40 min), and gives no return. ORMA walks it there and back on the same way: 4.2 km with 67 m up and down. The time, about 1 h 15, is measured by ORMA (DIN 33466), not the park’s.",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start by the old bridge over the Toscolano stream in Toscolano, Toscolano Maderno, where the Via Valle delle Cartiere begins, the published start.",
+        "sequence": "Follow the Via Valle delle Cartiere up the narrow valley of the Toscolano stream to the Museo della Carta, in an old paper mill. Carry on along the stream between steep rock walls and the ruins of the mills to the former mill of Maina Inferiore and the hamlet of Vago, then to Maina Superiore, once the largest mill in the valley and now an archaeological site. Come back the same way.",
+        "switches": "Via Valle delle Cartiere (path 217E, Bassa Via del Garda) from the old bridge past the Museo della Carta to Maina Inferiore, Vago and Maina Superiore; back the same way.",
+        "sources": [
+          {
+            "label": "Comunità Montana Parco Alto Garda Bresciano, Nella Valle delle Cartiere (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/806981779",
+            "authority": "Comunità Montana Parco Alto Garda Bresciano",
+            "tag": "park authority",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The path past the ruined paper mills of Maina in the Valle delle Cartiere (maists115 on Mapillary, CC BY-SA 4.0), 2 September 2024, 18 m from the line.",
+        route: "Official one-way walk of 2.1 km from The old bridge in Toscolano, Toscolano Maderno, as the Comunità Montana Parco Alto Garda Bresciano, the public body that runs the Alto Garda Bresciano regional park publishes it, with no return given; ORMA walks it there and back on the same path (owner rule of 12 November 2026). The stored line is drawn on 37 OSM ways along the published line out and back, 4.1 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "Via Valle delle Cartiere (path 217E “Valle delle Cartiere” and the Bassa Via del Garda) from the old bridge in Toscolano past the Museo della Carta to Maina Inferiore, Vago and Maina Superiore; back the same way.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official one way: 2.1 km, 62 m up, 5 m down, 40 min, between 85 m and 146 m (Comunità Montana Parco Alto Garda Bresciano, Outdooractive). There and back on the same way: 4.2 km, 67 m up and 67 m down; about 1 h 15 measured by ORMA (DIN 33466), since the park times the walk one way only."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Comunità Montana Parco Alto Garda Bresciano, “Nella Valle delle Cartiere” (Outdooractive tour with its line and figures)",
+          "Comune di Toscolano Maderno, Regolamento di Polizia Urbana (CC n. 32/2010), art. 51: dogs always on a lead except in places set aside for them; dogs barred from children’s play areas",
+          "Parco Alto Garda Bresciano: no visitor regulation with a dog clause published online for the park outside its Natura 2000 sites, so no park rule beyond the national one there",
+          "Regione Lombardia geoportal (AreeProtette: regional, natural and national parks, regional and national reserves, PLIS, natural monuments): Parco Alto Garda Bresciano on the line; European Environment Agency Natura 2000 service: no site on the line",
+          "OpenStreetMap ways along the board’s line (37 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 87,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["The first half is the asphalt Via Valle delle Cartiere, open to cars going to the museum: keep your dog on a short lead there","The ruins of the mills are fragile and the stream runs beside the path: keep your dog out of the ruins and away from the water after rain","A low valley by Lake Garda: in high summer go early, though the gorge is mostly shaded"],
+      terrainType: "Valley lane and gravel track",
+      shadeDescription: "Mostly shaded: the narrow gorge and its woods keep the sun off most of the way.",
+      terrainDescription: "An easy, nearly level walk up the narrow gorge of the Toscolano stream, between steep rock walls and woods, along the lane to the Museo della Carta and on a gravel track past the ruins of the paper mills that made Toscolano famous across Europe, to Maina Superiore, and back the same way.",
+      waterDescription: "No drinking water is mapped on the line (OSM). The Museo della Carta has facilities when open; Toscolano has bars at the start. Bring water and a bowl for your dog.",
+      dogNotes: "Toscolano Maderno’s Regolamento di Polizia Urbana (art. 51) asks for dogs always on a lead except in areas set aside for them; the national rule adds a lead of at most 1.5 m and a muzzle carried. The valley is in the Alto Garda Bresciano regional park.",
+      tips: "Park near the old bridge in Toscolano: 2.1 km up the valley to Maina Superiore, about 40 min as the park gives, and the same way back, about 1 h 15 in all by ORMA’s DIN 33466 estimate. Leave time for the Museo della Carta. Keep your dog on a lead all the way and carry a muzzle.",
+      sourceLinks: [
+        { label: "Comunità Montana Parco Alto Garda Bresciano, Nella Valle delle Cartiere (Outdooractive)", url: "https://www.outdooractive.com/it/r/806981779" },
+        { label: "Comunità Montana Parco Alto Garda Bresciano", url: "https://www.cm-altogarda.bs.it/" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Comune di Toscolano Maderno, Regolamento di Polizia Urbana", url: "https://toscolano.maggiolicloud.it/atti/AmministrazioneTrasparenteDett.aspx?ID_INCA=13759" },
+        { label: "Comunità Montana Parco Alto Garda Bresciano", url: "https://www.cm-altogarda.bs.it/" },
+        { label: "Regione Lombardia geoportal, protected-area services (parks, reserves, PLIS, natural monuments)", url: "https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.64258, lng: 10.609018, label: "The old bridge in Toscolano, Toscolano Maderno, the published start" },
+      desc: "An easy walk up the shaded gorge of the Toscolano stream, in the Alto Garda Bresciano park, past the Paper Museum and the ruined mills that made Toscolano’s paper famous across Europe, to the archaeological site of Maina Superiore, and back the same way. The park lists 2.1 km one way; there and back it is 4.2 km with 67 m up and down, about 1 h 15."
+    },
+    'altogarda-nasce-formaggio-tombea': {
+      // Hand audit: 19 November 2026, verified on arrival (Lake Iseo + Alto Garda batch 1, owner decision of 18 November 2026 to add Northern Italy mountain walks).
+      // Comunità Montana Parco Alto Garda Bresciano: “Dove nasce il formaggio di Tombea” on Outdooractive, drawn there and back on 9 OSM ways along its published line (data/board-line-routes.geojson).
+      // One way on the page with no return given: distance and climb are the published one-way figures doubled; the time is measured by ORMA (DIN 33466).
+      // Commune: Magasa, Regolamento di convivenza con gli animali, art. 4 c. 1: lead or muzzle in areas open to the public. SIC IT2070021 Valvestino and ZPS IT2070402 on the line: the park’s SIC rules (art. 22) ask for dogs on a lead and closely watched. Summer pastures with cows (malghe). About 0.5 km of asphalt at Cima Rest; the rest is forest track. The start is reached by car.
+      // The stored line follows the published line, 100% each way.
+      area: "Cima Rest – Malga Alvezza, Magasa (Valvestino)",
+      distance: 3.6,
+      elevation: 139,
+      hours: '1.25',
+      routeShape: 'out-and-back',
+      routeShapeNote: "The Comunità Montana Parco Alto Garda Bresciano publishes the walk one way, from Cima Rest towards Malga Alvezza (1.8 km, 139 m up, 45 min), and gives no return. ORMA walks it there and back on the same track: 3.6 km with 139 m up and down. The time, about 1 h 15, is measured by ORMA (DIN 33466), not the park’s.",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the free car park of the Museo Etnografico della Valvestino at Cima Rest (about 1,200 m), above Magasa in the Valvestino, the published start; Cima Rest is reached by a signed turn off the road just before Magasa.",
+        "sequence": "Walk past the old thatched barns of Cima Rest and the ethnographic museum, then follow the track (path 299) that climbs gently through pastures and beech woods towards Malga Alvezza, among the summer farms where Tombea cheese is made, to the top of the walk at about 1,330 m. Come back the same way.",
+        "switches": "Past the barns of Cima Rest and the museum; path 299 up the track through pastures and beech woods towards Malga Alvezza; back the same way.",
+        "sources": [
+          {
+            "label": "Comunità Montana Parco Alto Garda Bresciano, Dove nasce il formaggio di Tombea (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/806982416",
+            "authority": "Comunità Montana Parco Alto Garda Bresciano",
+            "tag": "park authority",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The track past the thatched barns of Cima Rest at the start (zonta72 on Mapillary, CC BY-SA 4.0), 15 September 2019, 9 m from the line.",
+        route: "Official one-way walk of 1.8 km from The car park of the Museo Etnografico della Valvestino at Cima Rest, Magasa, as the Comunità Montana Parco Alto Garda Bresciano, the public body that runs the Alto Garda Bresciano regional park publishes it, with no return given; ORMA walks it there and back on the same path (owner rule of 12 November 2026). The stored line is drawn on 9 OSM ways along the published line out and back, 3.5 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "Path 299 (Comune di Magasa, also the CamminaForeste route) from Cima Rest past the thatched barns and the museum up the track through pastures and beech woods towards Malga Alvezza; back the same way.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official one way: 1.8 km, 139 m up, 45 min, between 1,187 m and 1,326 m (Comunità Montana Parco Alto Garda Bresciano, Outdooractive). There and back on the same track: 3.6 km, 139 m up and 139 m down; about 1 h 15 measured by ORMA (DIN 33466), since the park times the walk one way only."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Comunità Montana Parco Alto Garda Bresciano, “Dove nasce il formaggio di Tombea” (Outdooractive tour with its line and figures)",
+          "Comune di Magasa, Regolamento di convivenza con gli animali, art. 4 c. 1: lead or muzzle in areas open to the public",
+          "Parco Alto Garda Bresciano, Norme tecniche dei SIC (Monte Cas – Punta Corlor, Cima Comer, Valvestino, Corno della Marogna), art. 22: dogs on a lead and closely watched",
+          "Regione Lombardia geoportal (AreeProtette: regional, natural and national parks, regional and national reserves, PLIS, natural monuments): Parco Alto Garda Bresciano on the line; European Environment Agency Natura 2000 service: SIC IT2070021 Valvestino and ZPS IT2070402 Alto Garda Bresciano",
+          "OpenStreetMap ways along the board’s line (9 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 3,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["Summer pastures with cows around the malghe: keep your dog on a lead and give the herds room","Open pastures with almost no shade: on a hot day go early and bring water","The first stretch at Cima Rest is on a small asphalt road with some cars: keep your dog close there"],
+      terrainType: "Pasture and forest tracks",
+      shadeDescription: "Almost all open: pastures around Cima Rest and along the track; a little shade at the edge of the beech woods.",
+      terrainDescription: "A short, gentle walk at about 1,200–1,300 m in the Valvestino, from the thatched barns and ethnographic museum of Cima Rest along a track through summer pastures and beech woods towards Malga Alvezza, where the Tombea mountain cheese is made, and back the same way.",
+      waterDescription: "No drinking water is mapped on the line (OSM). In summer the malghe on the way sell their cheese; there is no other refreshment. Bring water and a bowl for your dog.",
+      dogNotes: "Magasa’s rule on living with animals (art. 4) asks for a lead or a muzzle in areas open to the public, and the Valvestino Natura 2000 site’s rules ask for dogs on a lead and closely watched; the national rule adds a lead of at most 1.5 m and a muzzle carried. Cows graze the pastures in summer: keep your dog on a lead.",
+      tips: "Drive to Cima Rest above Magasa and park at the ethnographic museum: 1.8 km up the track towards Malga Alvezza, about 45 min as the park gives, and the same way back, about 1 h 15 in all by ORMA’s DIN 33466 estimate. In summer buy Tombea cheese at the malghe. Keep your dog on a lead among the cows and carry a muzzle.",
+      sourceLinks: [
+        { label: "Comunità Montana Parco Alto Garda Bresciano, Dove nasce il formaggio di Tombea (Outdooractive)", url: "https://www.outdooractive.com/it/r/806982416" },
+        { label: "Comunità Montana Parco Alto Garda Bresciano", url: "https://www.cm-altogarda.bs.it/" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Comune di Magasa, Amministrazione trasparente (Regolamento di convivenza con gli animali)", url: "https://servizionline.hspromilaprod.hypersicapp.net/cmsmagasa/portale/trasparenza/trasparenzaamministrativadettaglio.aspx?CP=5&CDOC=30" },
+        { label: "Parco Alto Garda Bresciano, Norme tecniche dei SIC Monte Cas – Punta Corlor, Cima Comer, Valvestino e Corno della Marogna, art. 22", url: "https://ww2.gazzettaamministrativa.it/opencms/export/sites/default/_gazzetta_amministrativa/amministrazione_trasparente/_lombardia/_comunita___montana_parco_alto_garda_bresciano/190_pia_gov_ter/2015/Documenti_1441802376633/1441802386280_130520309.pdf" },
+        { label: "Comunità Montana Parco Alto Garda Bresciano", url: "https://www.cm-altogarda.bs.it/" },
+        { label: "Regione Lombardia geoportal, protected-area services (parks, reserves, PLIS, natural monuments)", url: "https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.781019, lng: 10.629199, label: "The car park of the Museo Etnografico della Valvestino at Cima Rest, Magasa, the published start" },
+      desc: "A short, gentle walk high in the Valvestino, from the old thatched barns and ethnographic museum of Cima Rest along a track through summer pastures and beech woods towards Malga Alvezza, where the Tombea mountain cheese is made, and back the same way. The park lists 1.8 km one way; there and back it is 3.6 km with 139 m up and down, about 1 h 15."
     }
   };
 

@@ -35,30 +35,28 @@ describe('the card season line', () => {
   test('the card renders it, and the Italian is there', () => {
     const script = read('script.js');
     expect(script).toContain('function liSeasonFitHtml(trail)');
-    expect(script).toContain('${fresh}${verdict}${season}${know}${noDogRule}${gap}');
+    expect(script).toContain('${fresh}${verdict}${season}${know}${gap}');
     const it = read('i18n-phrases-it.js');
-    ['In season now', 'best {range}', 'good all year', 'back in {month}', 'This month: {risks}',
-      'No dog rule on record here. Check local signs.'].forEach(phrase => expect(it).toContain(`"${phrase}":`));
+    ['In season now', 'best {range}', 'good all year', 'back in {month}', 'This month: {risks}'].forEach(phrase => expect(it).toContain(`"${phrase}":`));
   });
 });
 
-describe('the card dog-rule note', () => {
+describe('the card watch lines', () => {
   const recommendation = {
     category: 'strong-option', score: 90,
     hardStops: [], cautions: [{ code: 'trail.season.outside', message: 'Outside season.' }],
     unknowns: [{ code: 'trail.dog-access.unknown', message: 'Dog access is unknown.' }],
     positiveReasons: [], factors: [],
   };
-  test('present() keeps each card line with its code', () => {
+  test('present() keeps each card caution with its code', () => {
     const view = decision.present(recommendation, { dogName: 'Teo' });
-    expect(view.cardTrailUnknownItems.map(item => item.code)).toEqual(['trail.dog-access.unknown']);
     expect(view.cardCautionItems.map(item => item.code)).toEqual(['trail.season.outside']);
   });
 
-  test('an unknown dog rule is a quiet note, not an amber warning', () => {
+  test('the card says nothing about an unknown dog rule, and no season Watch line', () => {
     const script = read('script.js');
-    expect(script).toContain("new Set(['trail.season.outside', 'trail.dog-access.unknown'])");
-    expect(script).toContain('<p class="li-answer-note">');
+    expect(script).toContain("const ownLine = entry => entry.code !== 'trail.season.outside';");
+    expect(script).not.toContain('No dog rule on record here');
   });
 });
 

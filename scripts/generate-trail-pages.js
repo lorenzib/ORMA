@@ -21,6 +21,7 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 const { ITALIAN_COPY_BANNER } = require('./italian-copy-banner');
+const { accessDistanceWords } = require('./start-access-paths');
 const { writeItalianMainPages } = require('./italian-main-pages');
 const evidenceContract = require('../trust/evidence-v1.js');
 const recommendationContract = require('../scoring/recommendation-v1.js');
@@ -125,6 +126,15 @@ function trailTextIt(id) {
 function fillVars(text, vars) {
   if (!vars) return text;
   return String(text).replace(/\{(\w+)\}/g, (match, key) => (hasOwn(vars, key) ? String(vars[key]) : match));
+}
+
+/** The walk-in from the start to the walk, when the owner asked for it to be
+ *  named under Where to start (data/start-access-paths.json, overCap). */
+function accessStartLine(t) {
+  const access = t.accessPath;
+  if (!access || !access.startLine || !Number.isFinite(access.lengthM) || !Number.isFinite(access.climbM)) return '';
+  const d = accessDistanceWords(access.lengthM);
+  return `\n    <p>${L('From the start it’s about {distance} on foot and {climb} m up to the walk. This is not included in the walk’s figures.', { distance: `${num(d.value)} ${d.unit}`, climb: Math.round(access.climbM / 10) * 10 })}</p>`;
 }
 
 /** Fixed wording in the page's language. The English sentence is the key. */
@@ -275,9 +285,9 @@ function safetyClass(level) {
 }
 
 function safetyLabel(level) {
-  if (level === 'low-risk') return L('Low-risk terrain');
-  if (level === 'moderate') return L('Moderate terrain');
-  return L('Caution terrain');
+  if (level === 'low-risk') return L('Low risk');
+  if (level === 'moderate') return L('Moderate risk');
+  return L('Higher risk');
 }
 
 function displaySafetyLabel(t) {
@@ -342,7 +352,7 @@ function displayStartLabel(t, label) {
     return L('Suggested start, {label}. Check current access before travelling.', { label: tr(plainStartLabel(tr(label))) });
   }
   if (!trailImported(t)) return tr(withoutOsmTag(tr(label)));
-  return L('Mapped start suggestion, {label}. Check current access before travelling.', { label: tr(plainStartLabel(tr(label))) });
+  return L('Suggested start from map data, {label}. Check current access before travelling.', { label: tr(plainStartLabel(tr(label))) });
 }
 
 const REGION_LABEL = { dolomites: 'Dolomites, Italy', savoy: 'Savoy, France', frenchalps: 'French Alps, France', lombardy: 'Lombardy, Italy', friuli: 'Friuli Venezia Giulia, Italy', aosta: 'Valle d\'Aosta, Italy', piedmont: 'Piedmont, Italy', tyrol: 'Tyrol & Carinthia, Austria', switzerland: 'Switzerland' };
@@ -380,7 +390,7 @@ function regionLabelText(region) {
 const TIER_BADGE = Object.freeze({
   verified: { label: 'Verified by ORMA', style: 'verified', icon: 'verified' },
   reviewed: { label: 'Reviewed by ORMA', style: 'neutral', icon: null },
-  imported: { label: 'Imported trail', style: 'imported', icon: 'imported' },
+  imported: { label: 'Not yet verified', style: 'imported', icon: 'imported' },
 });
 
 /**
@@ -401,7 +411,7 @@ function badgeForTrail(t) {
 function tierLabelText(tier) {
   if (tier === TIER_BADGE.verified) return L('Verified by ORMA');
   if (tier === TIER_BADGE.reviewed) return L('Reviewed by ORMA');
-  return L('Imported trail');
+  return L('Not yet verified');
 }
 
 const REVIEW_CATEGORIES = ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'];
@@ -527,8 +537,8 @@ function directionsSection(t) {
 // Italian while the sentence is the one translated.
 function auditDirectionsNote() {
   const english = routeRefs.AUDIT_DIRECTIONS_NOTE;
-  return english === 'From ORMA\'s route audit of the official route description. Follow the mapped ORMA line and local signs.'
-    ? L('From ORMA\'s route audit of the official route description. Follow the mapped ORMA line and local signs.')
+  return english === 'We wrote these directions from the official route information and checked them against the map. On the walk, follow the line on the map and the local signs.'
+    ? L('We wrote these directions from the official route information and checked them against the map. On the walk, follow the line on the map and the local signs.')
     : english;
 }
 
@@ -764,6 +774,29 @@ function isLoop(t) {
   return Math.sqrt(dLat * dLat + dLng * dLng) < 120;
 }
 
+// The one way / there and back switch on a static page: two radio buttons,
+// then one facts grid for each version; CSS shows the grid whose button is
+// checked, so it works without scripts. Checked first is the version the
+// source describes.
+function routeViewFactsHtml(t, factsFor) {
+  const VIEWS = routeReturn.VIEWS;
+  const source = routeReturn.sourceView(t);
+  const oneWay = source === VIEWS.ONE_WAY ? t : routeReturn.oneWayLeg(t);
+  const back = source === VIEWS.OUT_AND_BACK ? t : routeReturn.outAndBack(t);
+  const radio = (id, view, label) => `<input type="radio" class="sp-vh sp-view-input" name="sp-route-view" id="${id}" value="${view}"${view === source ? ' checked' : ''}><label class="sp-view-btn" for="${id}">${label}</label>`;
+  return `<div class="sp-route-view" role="radiogroup" aria-label="${escapeHtml(L('Show the figures for'))}">
+    ${radio('spViewOneWay', VIEWS.ONE_WAY, L('One way'))}${radio('spViewBack', VIEWS.OUT_AND_BACK, L('There and back'))}
+    <div class="sp-facts sp-facts--one-way">
+      ${factsFor(oneWay)}
+    </div>
+    <div class="sp-facts sp-facts--back">
+      ${factsFor(back)}
+    </div>
+    <p class="sp-src sp-view-note sp-view-note--one-way">${L('Ends away from the start: plan a lift, bus or second car back.')}</p>
+    <p class="sp-src sp-view-note sp-view-note--back">${L('Back the same way on the same path.')}</p>
+  </div>`;
+}
+
 // A short, factual "at a glance" paragraph for imported trails, so the 147
 // OSM pages read differently from one another. Every clause is computed
 // from the trail's own data; sentence choice is keyed to the data, not random.
@@ -932,21 +965,34 @@ function renderTrailPage(t, slug, all) {
     : tr(t.terrainType);
 
   const highest = highestPoint(t);
-  const facts = [
-    [L('Distance'), L('{km} km', { km: num(t.distance) })],
-    [L('Elevation gain'), t.elevation != null ? L('{m} m', { m: num(t.elevation) }) : null],
-    [L('Highest point'), highest !== null ? L('{m} m', { m: num(highest) }) : null],
-    [L('Duration'), routeReturn.formatDuration(t.hours) || null],
-    [L('Terrain'), terrain],
-    [L('Trail rating'), displaySafetyLabel(t)],
-    [L('Area'), `${t.area} · ${regionLabel}`],
-  ]
-    .filter(([, v]) => v != null && v !== '')
-    .map(
-      ([k, v]) =>
-        `<div class="sp-fact"><div class="sp-fact-k">${escapeHtml(k)}</div><div class="sp-fact-v">${escapeHtml(v)}</div></div>`
-    )
-    .join('\n      ');
+  // A walk that is not a loop can be read one way or there and back
+  // (route-return.js). The page carries both sets of figures and two radio
+  // buttons pick one with CSS alone; it opens on the version the source
+  // describes. Worked-out figures carry "≈", and an out-and-back walk's one-way
+  // time is never published, so it says so rather than halving the time.
+  const factsFor = (shown) => {
+    const back = !!(shown !== t && shown.returnLeg);
+    const leg = !!(shown !== t && shown.oneWayOf);
+    const hours = routeReturn.formatDuration(shown.hours);
+    return [
+      [L('Distance'), L('{km} km', { km: num(shown.distance) })],
+      [back ? L('Up, same down') : L('Elevation gain'), shown.elevation != null ? `${leg ? '≈ ' : ''}${L('{m} m', { m: num(shown.elevation) })}` : null],
+      [L('Highest point'), highest !== null ? L('{m} m', { m: num(highest) }) : null],
+      [L('Duration'), leg ? L('Not given') : hours ? `${back ? '≈ ' : ''}${hours}` : null],
+      [L('Terrain'), terrain],
+      [L('Trail rating'), displaySafetyLabel(t)],
+      [L('Area'), `${t.area} · ${regionLabel}`],
+    ]
+      .filter(([, v]) => v != null && v !== '')
+      .map(
+        ([k, v]) =>
+          `<div class="sp-fact"><div class="sp-fact-k">${escapeHtml(k)}</div><div class="sp-fact-v">${escapeHtml(v)}</div></div>`
+      )
+      .join('\n      ');
+  };
+  const facts = routeReturn.hasChoice(t) ? routeViewFactsHtml(t, factsFor) : `<div class="sp-facts">
+      ${factsFor(t)}
+  </div>`;
 
   const waterHtml = !categoryVerified(t, 'water')
     ? `<h2>${L('Bring your own water')}</h2><p>${L('Do not rely on potential water locations being available or drinkable. Carry enough for the full walk.')}</p>`
@@ -974,7 +1020,7 @@ function renderTrailPage(t, slug, all) {
   const startHtml =
     t.startPoint && t.startPoint.label
       ? `<h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M7 21V4" stroke="#2E4034" stroke-width="2" stroke-linecap="round"></path><path d="M7 5h10l-2.4 3.5L17 12H7z" fill="#E24B4A"></path></svg> ${L('Where to start')}</h2>
-    <p>${escapeHtml(displayStartLabel(t, t.startPoint.label))}</p>`
+    <p>${escapeHtml(displayStartLabel(t, t.startPoint.label))}</p>${accessStartLine(t)}`
       : '';
 
   const insightsHtml =
@@ -1054,7 +1100,7 @@ ${it ? '' : ITALIAN_COPY_BANNER + '\n'}<title>${escapeHtml(title)}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${up}styles.css?v=20260916-5">
+<link rel="stylesheet" href="${up}styles.css?v=20261123-1">
 <style>
   .sp-hero{padding-top:28px;}
   .sp-breadcrumb{font-size:.85rem;color:var(--ink-soft,#666);margin-bottom:14px;}
@@ -1066,6 +1112,15 @@ ${it ? '' : ITALIAN_COPY_BANNER + '\n'}<title>${escapeHtml(title)}</title>
   .sp-lift-warning{margin:0 0 16px;padding:12px 14px;border:1px solid #E7C2B8;border-left:4px solid #9C3A25;border-radius:10px;background:#FBF1EE;color:#4A2A22;font-size:14px;line-height:1.55;}
   .sp-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0 26px;}
   .sp-fact{background:rgba(0,0,0,.035);border-radius:10px;padding:10px 14px;}
+  .sp-route-view{margin:18px 0 26px;}
+  .sp-route-view .sp-facts{margin:12px 0 8px;}
+  .sp-view-btn{display:inline-block;font-size:13px;font-weight:700;padding:7px 14px;border:1px solid #9AA79C;color:#2E4034;cursor:pointer;}
+  .sp-view-btn:first-of-type{border-radius:999px 0 0 999px;}
+  .sp-view-btn + .sp-view-input + .sp-view-btn{border-left:none;border-radius:0 999px 999px 0;}
+  .sp-view-input:checked + .sp-view-btn{background:#2E4034;border-color:#2E4034;color:#fff;}
+  .sp-view-input:focus-visible + .sp-view-btn{outline:2px solid #2C5C34;outline-offset:2px;}
+  #spViewOneWay:not(:checked) ~ .sp-facts--one-way,#spViewOneWay:not(:checked) ~ .sp-view-note--one-way,
+  #spViewBack:not(:checked) ~ .sp-facts--back,#spViewBack:not(:checked) ~ .sp-view-note--back{display:none;}
   .sp-fact-k{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft,#666);}
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
@@ -1157,14 +1212,12 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
     ${t.paid ? `<span class="dp-badge dp-badge--neutral"><span>${L('Paid access')}</span></span>` : ''}
     ${openChairlift ? `<span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>${L('Chairlift-assisted · not for most dogs')}</span></span>` : ''}
   </div>
-  ${openChairlift ? `<p class="sp-lift-warning">${L('<strong>This route depends on an open chairlift{lift}.</strong> A dog that is not used to one can panic and fall, which can be fatal. ORMA recommends it only for a dog of 8 kg or under that rides calmly held on a lap, harnessed and leashed; for every other dog it is graded as not recommended.', { lift: t.liftAccess.name ? ` (${escapeHtml(t.liftAccess.name)})` : '' })}</p>` : ''}
+  ${openChairlift ? `<p class="sp-lift-warning">${L('<strong>This route depends on an open chairlift{lift}.</strong> A dog that is not used to one can panic and fall, which can be fatal. ORMA recommends it only for a dog of 8 kg or under that rides calmly held on a lap, harnessed and on a lead; for every other dog it is graded as not recommended.', { lift: t.liftAccess.name ? ` (${escapeHtml(t.liftAccess.name)})` : '' })}</p>` : ''}
   ${t.imageIcon ? `<figure class="sp-photo">${photoHtml(t)}${photoCreditHtml(t)}</figure>` : routeHtml}
   ${!t.imageIcon && t.imagePlaceholder ? `<p class="sp-src" style="display:flex;align-items:center;gap:8px;margin:-6px 0 14px;"><img src="${up}logo.svg" alt="" width="22" height="22" style="flex:none;"> ${L('We\'re working on adding photos of this trail.')}</p>` : ''}
   ${paragraphs(pageDesc)}
 
-  <div class="sp-facts">
-      ${facts}
-  </div>
+  ${facts}
 
   <a class="sp-cta" href="${up}trail.html?id=${encodeURIComponent(slug)}">${L('Open the full trail guide →')}</a>
 
@@ -1224,7 +1277,7 @@ ${reviewRecord}
   <div class="hp-footer-grid">
     <div>
       <div class="hp-footer-brand"><img src="${up}logo.svg?v=5" alt=""><span>ORMA</span></div>
-      <p class="hp-footer-blurb">${L('The personalised trail guide for dogs and their humans, so every footprint left on the mountain is a safe one.')}</p>
+      <p class="hp-footer-blurb">${L('The personalised trail guide for dogs and their humans: what each walk asks of your dog, so you can choose well.')}</p>
       <div class="hp-footer-get">
         <div class="hp-footer-h">${L('Get the app')}</div>
         <div class="hp-footer-apps">

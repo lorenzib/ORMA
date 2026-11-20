@@ -2030,6 +2030,101 @@
       "name": "Cima Sappada to Rifugio Siera through the Longrone forest",
       "slug": "rifugio-siera-longrone-sappada",
       "gloss": "a nature trail up through the Longrone spruce forest to the Rifugio Siera and back"
+    },
+    "steinegg-pyramidenrundweg": {
+      "name": "Pyramidenrundweg, Steinegg",
+      "slug": "pyramidenrundweg-steinegg",
+      "gloss": "a loop past the earth pyramids below Steinegg"
+    },
+    "luesen-panoramaweg": {
+      "name": "Panoramaweg, Lüsen",
+      "slug": "panoramaweg-luesen",
+      "gloss": "a panoramic loop on the slopes above Lüsen"
+    },
+    "valgardena-troi-da-la-tambres": {
+      "name": "Troi da la Tambres, Ortisei",
+      "slug": "troi-da-la-tambres-ortisei",
+      "gloss": "a meadow and forest path to the La Tambres farm above Ortisei and back"
+    },
+    "lombardia-reggetto-piani-di-artavaggio": {
+      "name": "Reggetto to the Piani di Artavaggio",
+      "slug": "piani-di-artavaggio-reggetto",
+      "gloss": "path CAI 150 up through summer pastures to the Piani di Artavaggio and back"
+    },
+    "lario-asso-funghi-di-terra": {
+      "name": "Asso to the earth pyramids of Rezzago",
+      "slug": "funghi-di-terra-asso-rezzago",
+      "gloss": "a loop through the old chestnut wood of Rezzago to the earth pyramids"
+    },
+    "lombardia-bergamo-colle-maresana": {
+      "name": "Bergamo to the Colle della Maresana",
+      "slug": "colle-della-maresana-bergamo",
+      "gloss": "path CAI 533 up through chestnut woods to the Maresana viewpoint above Bergamo and back"
+    },
+    "lanzo-anello-mulino-turcin": {
+      "name": "Mulino Turcin Loop, Lanzo Torinese",
+      "slug": "mulino-turcin-loop-lanzo",
+      "gloss": "a woodland loop over two stone bridges to an old mill"
+    },
+    "talucco-ecomuseo-carbonaie": {
+      "name": "Charcoal Kilns Path, Talucco",
+      "slug": "carbonaie-path-talucco",
+      "gloss": "a forest loop past old charcoal-burning sites to the Casa Canada hut"
+    },
+    "traversella-sentiero-delle-anime": {
+      "name": "Sentiero delle Anime, Traversella",
+      "slug": "sentiero-delle-anime-traversella",
+      "gloss": "a mountain loop past rock carvings to the Piani di Cappia"
+    },
+    "valchiusella-fondo-tissone-tallorno": {
+      "name": "Fondo, Tissone and Tallorno Loop, Valchiusella",
+      "slug": "fondo-tissone-tallorno-loop",
+      "gloss": "a loop between three stone hamlets and two old bridges"
+    },
+    "valsusa-giaglione-vigne-mandorli": {
+      "name": "Vineyards and Almond Trees Loop, Giaglione",
+      "slug": "vineyards-almond-trees-loop-giaglione",
+      "gloss": "a sunny loop through vineyards and hamlets above the Dora gorges"
+    },
+    "valsusa-venaus-sentiero-gufi-basso": {
+      "name": "Lower Owl Trail, Venaus",
+      "slug": "lower-owl-trail-venaus",
+      "gloss": "an easy track through owl woods to a viewpoint chapel, there and back"
+    },
+    "valsusa-foresto-sentiero-ginepri": {
+      "name": "Juniper Trail, Foresto",
+      "slug": "juniper-trail-foresto",
+      "gloss": "a rocky loop among junipers in the Orrido di Foresto reserve"
+    },
+    "valsusa-chianocco-orrido-chouque": {
+      "name": "Orrido and Chouqué di Margrit, Chianocco",
+      "slug": "orrido-chouque-margrit-chianocco",
+      "gloss": "a loop past a gorge and an eroded rock tower in the Chianocco reserve"
+    },
+    "valsusa-san-giorio-geat-montebenedetto": {
+      "name": "Rifugio GEAT and Certosa di Montebenedetto Loop, San Giorio",
+      "slug": "geat-montebenedetto-loop-san-giorio",
+      "gloss": "a forest loop to a refuge and an old charterhouse in the Orsiera-Rocciavrè park"
+    },
+    "iseo-colmi": {
+      "name": "Santa Maria del Giogo to I Colmi",
+      "slug": "i-colmi-santa-maria-del-giogo",
+      "gloss": "a grassy balcony path above Lake Iseo from Santa Maria del Giogo to the I Colmi viewpoint and Punta dell’Orto, and back"
+    },
+    "altogarda-santuario-montecastello": {
+      "name": "Tignale to the Montecastello sanctuary",
+      "slug": "santuario-di-montecastello-tignale",
+      "gloss": "a loop from Gardola up to the Montecastello sanctuary on its rock above Lake Garda"
+    },
+    "altogarda-valle-cartiere": {
+      "name": "Valle delle Cartiere, the paper-mill valley",
+      "slug": "valle-delle-cartiere-toscolano-maderno",
+      "gloss": "up the Toscolano gorge past the Paper Museum to the ruined mills of Maina, and back"
+    },
+    "altogarda-nasce-formaggio-tombea": {
+      "name": "Cima Rest, where Tombea cheese is made",
+      "slug": "cima-rest-formaggio-tombea-magasa",
+      "gloss": "from the thatched barns of Cima Rest through pastures and beech woods towards Malga Alvezza, and back"
     }
   }
 }

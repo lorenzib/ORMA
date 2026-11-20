@@ -135,7 +135,7 @@ describe('UX-04 canonical recommendation journey', () => {
 
     const block = document.getElementById('recommendationDecision');
     expect(block.hidden).toBe(false);
-    expect(block.textContent).toContain('Unpersonalized planning view');
+    expect(block.textContent).toContain('General view: no dog added');
     expect(block.textContent).toContain('Good with care');
     expect(block.textContent).toContain('Distance is within range.');
     expect(block.textContent).toContain('Shade is limited.');
@@ -156,13 +156,13 @@ describe('UX-04 canonical recommendation journey', () => {
     // Internal unknown-count and scoring language stay out of customer copy.
     expect(document.body.textContent).not.toContain('trail fact not yet verified');
     expect(document.body.textContent).not.toContain('Canonical scoring');
-    // An unknown an owner acts on (dog rules) is one of the reasons; there is
-    // no separate "not checked yet" list any more.
-    expect(block.querySelector('.recommendation-reasons').textContent)
-      .toContain('We haven’t found this area’s dog rules yet. Ask the local tourist office before you go.');
+    // Unknown dog rules are not said at all, and there is no separate
+    // "not checked yet" list any more.
+    expect(block.textContent).not.toContain('dog rules');
+    expect(block.textContent).not.toContain('Access is not reviewed.');
     expect(block.querySelector('.recommendation-unchecked')).toBeNull();
     expect(document.getElementById('heroVerdict').textContent)
-      .toBe('Good with care in an unpersonalized planning view.');
+      .toBe('Good with care for a typical dog. Add your dog for a personal match.');
     expect(window.recommendTrail).toHaveBeenCalledTimes(1);
   });
 });
@@ -205,12 +205,15 @@ describe('the trail page breakdown: short reasons, fit chips, points one tap awa
     expect(fits).toMatch(/^<div class="recommendation-fits"><strong>Fits Teo<\/strong><ul><li>6 km<\/li><li>330 m climb<\/li><li>No drops<\/li><\/ul>/);
   });
 
-  test('a closed "How the score adds up" list still holds every factor', () => {
+  test('a closed "How the score adds up" list still holds every factor, without a column of zeros', () => {
     const html = breakdown(view, tr);
     const points = html.slice(html.indexOf('<details class="recommendation-points">'));
     expect(points).toMatch(/^<details class="recommendation-points"><summary>How the score adds up<\/summary>/);
-    expect(points.match(/<li>/g)).toHaveLength(4);
+    // One row for what costs points, one line naming everything else.
+    expect(points.match(/<li[ >]/g)).toHaveLength(2);
     expect(points).toContain('−10');
+    expect(points).toContain('Everything else<small>Distance · Climb · Drops</small>');
+    expect(points.match(/>0</g)).toHaveLength(1);
     expect(points).toContain('How ORMA scores a walk');
   });
 });

@@ -2,21 +2,21 @@
   "schemaVersion": 1,
   "trailId": "osm-11855879",
   "name": "Roda de Cherz",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.207Z",
+  "version": "2026.11.19-beta.5",
+  "generatedAt": "2026-11-19T23:40:31.410Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 237628,
+  "packageBytes": 348201,
   "packageBudgetBytes": 5242880,
   "bounds": {
-    "south": 46.50295,
-    "west": 11.88042,
-    "north": 46.51919,
-    "east": 11.90101
+    "south": 46.50296,
+    "west": 11.8687,
+    "north": 46.52615,
+    "east": 11.90102
   },
   "image": {
     "width": 1200,
-    "height": 1375
+    "height": 1252
   },
   "mapCorridor": {
     "strategy": "fixed-bounds-svg-v1",
@@ -24,12 +24,12 @@
       1
     ],
     "width": 1200,
-    "height": 1375
+    "height": 1252
   },
   "routingGraph": {
     "strategy": "osm-walking-graph-v1",
-    "nodeCount": 314,
-    "edgeCount": 315,
+    "nodeCount": 1151,
+    "edgeCount": 1148,
     "trailNodeCount": 125,
     "maxRejoinRouteM": 1500
   },
@@ -200,24 +200,24 @@
       "required": true,
       "label": "Roda de Cherz OSM offline map",
       "url": "map.svg",
-      "bytes": 88864,
-      "sha256": "412f7055655b93e801b92f03a15d265766029fee18e0f136a411b9084cf54116"
+      "bytes": 151085,
+      "sha256": "9cce793a0aa0c3ab3d7b77418a6ca28b27059708ac1d24c4d52c2f691813fe20"
     },
     {
       "role": "route",
       "required": true,
       "label": "Roda de Cherz route",
       "url": "route.geojson",
-      "bytes": 9282,
-      "sha256": "83e3c2e11a7dfaadf3746f2271c94a9a4294c1a9f35acdf8beebaae69aae8736"
+      "bytes": 19144,
+      "sha256": "8533393c1a0e2e99af5afa5aa9d9f8befaab3cbc29444448a2b662c5c9adbaef"
     },
     {
       "role": "footpath-network",
       "required": true,
       "label": "Roda de Cherz routable footpath corridor",
       "url": "footpath-network.json",
-      "bytes": 15084,
-      "sha256": "32913fc8967f03e18974c38933cbbcaf3f8114fd78077462e4ffaa88bae5708f"
+      "bytes": 53613,
+      "sha256": "94f1b2b92b0ba40ab3ee90f197eea2af2e81ad442e989d494a0111e8564e547d"
     },
     {
       "role": "elevation-profile",
@@ -232,8 +232,8 @@
       "required": true,
       "label": "Roda de Cherz safety information",
       "url": "safety.json",
-      "bytes": 2268,
-      "sha256": "ca4a0d5ba0b5294dd80496c7132e8c767410d07f97258754f7545601521a02dd"
+      "bytes": 2229,
+      "sha256": "5b373157f4f031c28d139e59c3cecbabb8166a46d942b1a5060dd566df10f100"
     }
   ]
 }

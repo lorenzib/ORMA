@@ -88,18 +88,24 @@
     }finally{
       if(timeout) clearTimeout(timeout);
     }
-    if(!response || !response.ok) throw routeError('No mapped walking route connects those points.', 'no-route');
+    if(!response || !response.ok) throw routeError('No footpath connects those points.', 'no-route');
 
     const geojson = await response.json();
     const feature = geojson && Array.isArray(geojson.features) ? geojson.features[0] : null;
     const coordinates = feature && feature.geometry && feature.geometry.type === 'LineString'
       ? feature.geometry.coordinates : null;
     if(!Array.isArray(coordinates) || coordinates.length < 2){
-      throw routeError('No mapped walking route connects those points.', 'no-route');
+      throw routeError('No footpath connects those points.', 'no-route');
     }
-    const path = coordinates.map(coordinate => ({ lng:Number(coordinate[0]), lat:Number(coordinate[1]) }))
-      .filter(validPoint);
+    // BRouter adds each point's height as a third coordinate. They are kept
+    // beside the line, so an adjusted walk can be scored on its own profile.
+    const located = coordinates.map(coordinate => ({
+      point:{ lng:Number(coordinate[0]), lat:Number(coordinate[1]) },
+      height:Number(coordinate[2]),
+    })).filter(item => validPoint(item.point));
+    const path = located.map(item => item.point);
     if(path.length < 2) throw routeError('The walking route response was incomplete.', 'invalid-route');
+    const heights = located.every(item => Number.isFinite(item.height)) ? located.map(item => item.height) : null;
 
     const reportedDistance = Number(feature.properties && feature.properties['track-length']);
     const distanceM = Number.isFinite(reportedDistance) ? reportedDistance : pathDistance(path);
@@ -116,6 +122,7 @@
       path,
       distanceM,
       ascentM:Number.isFinite(ascentValue) ? ascentValue : null,
+      heights,
       closed:Boolean(settings.closeLoop) || Boolean(settings.outAndBack),
       shape:settings.closeLoop ? 'loop' : (settings.outAndBack ? 'out-and-back' : 'point-to-point'),
       source:'openstreetmap-brouter',

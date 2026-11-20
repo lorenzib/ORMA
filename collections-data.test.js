@@ -75,7 +75,7 @@ describe('editorial trail collections', () => {
     expect(controller).toContain('expandedCollectionId');
     expect(controller).toContain('class="collection-inline-trail"');
     expect(controller).toContain('data-difficulty="${difficulty}"');
-    expect(controller).toContain("'low-risk':tx('Low-risk terrain')");
+    expect(controller).toContain("'low-risk':tx('Low risk')");
     expect(page).toContain('map-runtime.js');
     expect(controller).toContain('collection-inline-map');
     expect(controller).toContain('collection-map-trail-card');
@@ -152,5 +152,60 @@ describe('every collection cover can be credited', () => {
         trail.imageIcon === item.coverImage || trail.heroImage === item.coverImage))
       .map(item => `${item.id} -> ${item.coverImage}`);
     expect(orphans).toEqual([]);
+  });
+  test('no subtitle or chip promises a number of walks', () => {
+    // The card counts the walks it shows; walks out of season this month sit
+    // out with a "6 more back in June" note. A spelled-out count went stale in
+    // November, when "Seven high-level options" showed one walk.
+    const NUMBER = /\b(one|two|three|four|five|six|seven|eight|nine|ten|\d+)\b(?![\s-]*(?:day|days|km|m)\b)/i;
+    const counted = collections.all()
+      .flatMap(item => [item.subtitle, ...item.chips].map(text => `${item.id}: ${text}`))
+      .filter(text => NUMBER.test(text.split(': ')[1]) && !/^\w[\w-]*: Up to \d+ m climb$|Under \d+ km/.test(text));
+    expect(counted).toEqual([]);
+  });
+});
+
+describe('collection cover captions in Italian', () => {
+  // The collections page shows each cover's caption through tx(), so a caption
+  // that has Italian on its walk's own page (data/trail-text-it) needs the same
+  // Italian in i18n-phrases-it.js, or Italian readers see it in English.
+  function runtimeTrails(){
+    const context = {};
+    context.globalThis = context;
+    context.window = context;
+    vm.createContext(context);
+    const dir = path.join(__dirname, 'data', 'regions');
+    fs.readdirSync(dir).filter(file => file.endsWith('-trails.js')).forEach(file => {
+      vm.runInContext(fs.readFileSync(path.join(dir, file), 'utf8'), context, { filename:file });
+    });
+    return context.trails;
+  }
+  function loadGlobal(file, name){
+    const context = { window:{} };
+    vm.createContext(context);
+    vm.runInContext(fs.readFileSync(file, 'utf8'), context, { filename:file });
+    return context.window[name] || {};
+  }
+  // Mirrors coverCredit() in collections-page.js.
+  function captionOf(owner){
+    const credit = owner.imageCredit;
+    if(owner.imageSourcePage && owner.imageCreator && owner.imageLicence) return typeof credit === 'string' ? credit : owner.name;
+    return typeof credit === 'string' ? credit : (credit && credit.text) || '';
+  }
+
+  test('every translated cover caption has the same Italian phrase', () => {
+    const trails = runtimeTrails();
+    const phrases = loadGlobal(path.join(__dirname, 'i18n-phrases-it.js'), 'ORMA_PHRASES_IT');
+    const missing = [];
+    collections.all().forEach(collection => {
+      const owner = trails.find(trail => trail.imageIcon === collection.coverImage || trail.heroImage === collection.coverImage);
+      if(!owner) return;
+      const caption = captionOf(owner);
+      const file = path.join(__dirname, 'data', 'trail-text-it', `${owner.id}.js`);
+      if(!caption || !fs.existsSync(file)) return;
+      const italian = loadGlobal(file, 'ORMA_TRAIL_TEXT_IT')[caption];
+      if(italian && italian !== caption && phrases[caption] !== italian) missing.push(`${collection.id}: "${caption}" -> "${italian}"`);
+    });
+    expect(missing).toEqual([]);
   });
 });

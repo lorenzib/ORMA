@@ -91,7 +91,8 @@ function dogWeightKg(profile){
 }
 
 function dogConditions(profile){
-  if(Array.isArray(profile.conditions)) return profile.conditions;
+  // 'injury' is the account page's pre-Nov 2026 code for "Recovering from injury".
+  if(Array.isArray(profile.conditions)) return profile.conditions.map(code => code === 'injury' ? 'recovering' : code);
   // Legacy profiles: two booleans instead of the conditions list.
   return [profile.jointIssues && 'joints', profile.heatIssues && 'heat'].filter(Boolean);
 }
@@ -170,6 +171,8 @@ function effectiveOverrides(profile, adjustOverride){
   if(adjustOverride){
     const base = effectiveOverrides(profile, null);
     const adjusted = { ...base, ...adjustOverride, _profile: profile };
+    // Only a hand-changed steepness overrides the engine's own rule.
+    adjusted._steepnessAdjusted = String(adjusted.terrain) !== String(base.terrain);
     if(adjusted.energy === 'low') adjusted.distance = String(Math.min(5, Number(adjusted.distance) || 5));
     if(adjusted.energy === 'high') adjusted.distance = '18';
     return adjusted;

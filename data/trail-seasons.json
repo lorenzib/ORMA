@@ -3030,6 +3030,30 @@
         "highPoint": 1935
       }
     },
+    "lanzo-anello-mulino-turcin": {
+      "highPoint": 749,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/804987381",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
     "lario-alla-ricerca-di-un-panorama-unico": {
       "highPoint": 1049,
       "snow": {
@@ -3175,6 +3199,18 @@
         ],
         "likelihood": "possible",
         "highPoint": 1409
+      }
+    },
+    "luesen-panoramaweg": {
+      "highPoint": 1258,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1258
       }
     },
     "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof": {
@@ -7191,6 +7227,62 @@
         "highPoint": 1954
       }
     },
+    "steinegg-pyramidenrundweg": {
+      "highPoint": 983,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 983
+      }
+    },
+    "talucco-ecomuseo-carbonaie": {
+      "highPoint": 1095,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/804474829",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "traversella-sentiero-delle-anime": {
+      "highPoint": 1379,
+      "recommended": {
+        "months": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/804493440",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
     "tre-cime": {
       "highPoint": 2454,
       "snow": {
@@ -7942,6 +8034,27 @@
         }
       }
     },
+    "valchiusella-fondo-tissone-tallorno": {
+      "highPoint": 1340,
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/804976410",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
     "valdisole-bivacco-malga-baselga": {
       "highPoint": 1932,
       "recommended": {
@@ -8574,6 +8687,18 @@
         }
       ]
     },
+    "valgardena-troi-da-la-tambres": {
+      "highPoint": 1506,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1506
+      }
+    },
     "valgardena-troi-unika": {
       "highPoint": 1689,
       "recommended": {
@@ -8791,6 +8916,124 @@
         ],
         "likelihood": "likely",
         "highPoint": 1919
+      }
+    },
+    "valsusa-giaglione-vigne-mandorli": {
+      "highPoint": 821,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/809858459",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "valsusa-venaus-sentiero-gufi-basso": {
+      "highPoint": 877,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/809943711",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "valsusa-foresto-sentiero-ginepri": {
+      "highPoint": 743,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/809935419",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "valsusa-chianocco-orrido-chouque": {
+      "highPoint": 1098,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/806650088",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "valsusa-san-giorio-geat-montebenedetto": {
+      "highPoint": 1371,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/809188687",
+          "accessedAt": "2026-11-19"
+        }
       }
     },
     "valtellina-passo-di-campagneda": {
@@ -9723,6 +9966,126 @@
           "label": "Outdooractive",
           "url": "https://www.outdooractive.com/it/r/13977360",
           "accessedAt": "2026-11-18"
+        }
+      }
+    },
+    "lombardia-reggetto-piani-di-artavaggio": {
+      "highPoint": 1585,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1585
+      }
+    },
+    "lario-asso-funghi-di-terra": {
+      "highPoint": 844,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 844
+      }
+    },
+    "lombardia-bergamo-colle-maresana": {
+      "highPoint": 544,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 544
+      }
+    },
+    "iseo-colmi": {
+      "highPoint": 967,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 967
+      }
+    },
+    "altogarda-santuario-montecastello": {
+      "highPoint": 731,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/806982564",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "altogarda-valle-cartiere": {
+      "highPoint": 182,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/806981779",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "altogarda-nasce-formaggio-tombea": {
+      "highPoint": 1339,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/806982416",
+          "accessedAt": "2026-11-19"
         }
       }
     }

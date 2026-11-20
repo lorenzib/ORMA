@@ -46,9 +46,20 @@
     const note = view.breakdownNote
       ? `<p class="recommendation-breakdown-note">${esc(view.breakdownNote)}</p>`
       : '';
-    const pointRows = (view.factorRows || []).map(row =>
+    // Only what costs points (or stops the walk) gets a row of its own; every
+    // other factor still shows, named on one "Everything else · 0" line, so
+    // the list stays complete without a column of zeros.
+    const factorRows = view.factorRows || [];
+    const counted = factorRows.filter(row => row.tone === 'cost' || row.tone === 'stop');
+    const rest = factorRows.filter(row => row.tone !== 'cost' && row.tone !== 'stop');
+    const pointRows = counted.map(row =>
       `<li><span class="recommendation-points-topic">${esc(row.topic)}</span>` +
-        `<span class="recommendation-points-value is-${esc(row.tone)}">${esc(row.points)}</span></li>`).join('');
+        `<span class="recommendation-points-value is-${esc(row.tone)}">${esc(row.points)}</span></li>`).join('') +
+      (rest.length
+        ? `<li class="recommendation-points-rest"><span class="recommendation-points-topic">${esc(tr('recommendation.breakdown.rest', 'Everything else'))}` +
+          `<small>${esc(rest.map(row => row.topic).filter((topic, index, all) => all.indexOf(topic) === index).join(' · '))}</small></span>` +
+          `<span class="recommendation-points-value is-ok">0</span></li>`
+        : '');
     const howLink = `<a class="recommendation-how" href="${esc(tr('recommendation.breakdown.howHref', 'how-scoring-works.html#steepness'))}">${esc(tr('recommendation.breakdown.how', 'How ORMA scores a walk'))}</a>`;
     const points = pointRows
       ? `<details class="recommendation-points"><summary>${esc(tr('recommendation.breakdown.points', 'How the score adds up'))}</summary>` +
@@ -126,16 +137,21 @@
     const conditions = window.DoloPawsCurrentConditions || warnings.length
       ? { status:'not-provided', ...(window.DoloPawsCurrentConditions || {}), warnings }
       : undefined;
-    // A one-way walk is scored as the reader chose to see it: one way, or
-    // there and back on the same paths (route-return.js).
+    // A walk that is not a loop is scored as the reader chose to see it: one
+    // way, or there and back on the same paths (route-return.js).
     const routeReturn = window.ORMARouteReturn;
-    const oneWay = !!(routeReturn && routeReturn.isOneWay(trail));
+    const oneWay = !!(routeReturn && routeReturn.hasChoice && routeReturn.hasChoice(trail));
     const scored = oneWay ? routeReturn.forView(trail) : trail;
     const recommendation = recommendTrail(scored, subjectFor(profile), conditions);
-    const routeNote = !oneWay ? ''
-      : `<p class="recommendation-route-view">${esc(scored !== trail
-        ? tr('recommendation.routeView.back', 'Scored for walking there and back: {km} km, about {climb} m up and the same down. The time is an estimate.', { km:scored.distance, climb:scored.elevation })
-        : tr('recommendation.routeView.oneWay', 'Scored for one way. This walk ends away from its start, so plan how you will get back.'))}</p>`;
+    const routeNoteText = !oneWay ? ''
+      : scored.returnLeg
+        ? tr('recommendation.routeView.back', 'Scored there and back: {km} km, about {climb} m up and the same down.', { km:scored.distance, climb:scored.elevation })
+      : scored.oneWayOf
+        ? tr('recommendation.routeView.leg', 'Scored one way: {km} km, about {climb} m up. Plan your way back.', { km:scored.distance, climb:scored.elevation })
+      : routeReturn.isThereAndBack(trail)
+        ? tr('recommendation.routeView.roundTrip', 'Scored there and back on the same path.')
+        : tr('recommendation.routeView.oneWay', 'Scored one way. Plan your way back.');
+    const routeNote = routeNoteText ? `<p class="recommendation-route-view">${esc(routeNoteText)}</p>` : '';
     const view = api.present(recommendation, {
       dogName:profile && profile.name,
       translate:window.t,

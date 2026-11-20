@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260916-5">
+<link rel="stylesheet" href="styles.css?v=20261123-1">
 <style>
   .jn-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:20px;}
   .jn-stat{background:var(--card);border:1px solid var(--paper-line);border-radius:16px;padding:14px 16px;}
@@ -274,7 +274,7 @@
     <h1 id="jnTitle" data-i18n="journal.title">My walk journal</h1>
     <p id="jnSub" class="section-page-subtitle" data-i18n="journal.subtitle">Keep the route, the conditions and the moments worth remembering, all in one place.</p>
   </div>
-  <button type="button" id="jnLogBtn" class="auth-submit" style="width:auto;padding:11px 20px;" data-i18n="journal.log">+ Log a walk</button>
+  <button type="button" id="jnLogBtn" class="auth-submit" style="width:auto;padding:11px 20px;" data-i18n="journal.log">+ Add a past walk</button>
 </header>
 
 <div class="wrap section-page-wrap browse-canvas-wrap">
@@ -296,10 +296,10 @@
   <div id="jnEmpty" class="empty-state" hidden>
     <div class="empty-state__icon" aria-hidden="true"><span data-dp-icon="dog" data-dp-icon-size="20"></span></div>
     <p class="empty-state__title" data-i18n="journal.empty.title">No walks logged yet</p>
-    <p class="empty-state__copy" id="jnEmptyCopy" data-i18n="journal.empty.copy">Once your dog has been out, log the walk here or track it live from Hike Mode, it'll show up in this list.</p>
+    <p class="empty-state__copy" id="jnEmptyCopy" data-i18n="journal.empty.copy">Once your dog has been out, add the walk here or record it live with Record a walk, and it'll show up in this list.</p>
     <div class="empty-state__actions">
-      <button type="button" id="jnEmptyLogBtn" class="empty-state__action" data-i18n="journal.log">+ Log a walk</button>
-      <button type="button" id="jnEmptyLiveBtn" class="fav-btn" data-i18n="journal.trackLive">Track live instead</button>
+      <button type="button" id="jnEmptyLogBtn" class="empty-state__action" data-i18n="journal.log">+ Add a past walk</button>
+      <button type="button" id="jnEmptyLiveBtn" class="fav-btn" data-i18n="journal.trackLive">Record it live instead</button>
     </div>
   </div>
   <div id="jnLoggedOut" class="empty-state" hidden>
@@ -315,7 +315,7 @@
 <div class="jn-overlay" id="jnOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="jnModalTitle">
   <div class="jn-modal">
     <div style="display:flex;justify-content:space-between;align-items:center;">
-      <h2 id="jnModalTitle" style="margin:0;font-size:20px;" data-i18n="journal.modal.title">Log a walk</h2>
+      <h2 id="jnModalTitle" style="margin:0;font-size:20px;" data-i18n="journal.modal.title">Add a past walk</h2>
       <button type="button" id="jnClose" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--ink-soft);" aria-label="Close" data-i18n-aria-label="journal.close">&times;</button>
     </div>
     <p class="jn-hint" data-i18n="journal.modal.hint">Add a walk you've already done. It joins the journal straight away.</p>
@@ -449,7 +449,7 @@
       <button type="button" class="jn-x" id="jnShareClose" aria-label="Close" data-i18n-aria-label="journal.close">&times;</button>
     </div>
     <div class="jn-share-layout">
-      <div class="jn-share-preview-wrap"><img id="jnSharePreview" class="jn-share-preview" alt="Trail Tale share preview"></div>
+      <div class="jn-share-preview-wrap"><img id="jnSharePreview" class="jn-share-preview" data-i18n-alt="a11y.journal.taleSharePreview" alt="Trail Tale share preview"></div>
       <div class="jn-share-options">
         <div class="jn-choice-group"><span class="jn-choice-label" data-i18n="journal.shareCard.format">Format</span><div class="jn-choice-row" id="jnShareFormats">
           <button type="button" class="jn-choice on" data-format="post" data-i18n="page.journal.post45">Post 4:5</button><button type="button" class="jn-choice" data-format="story" data-i18n="page.journal.story916">Story 9:16</button><button type="button" class="jn-choice" data-format="square" data-i18n="page.journal.square11">Square 1:1</button>
@@ -496,7 +496,7 @@
       <button type="button" class="jn-x" id="jnPassShareClose" aria-label="Close" data-i18n-aria-label="journal.close">&times;</button>
     </div>
     <div class="jn-share-layout">
-      <div class="jn-share-preview-wrap"><img id="jnPassSharePreview" class="jn-share-preview" alt="The pawprints picture"></div>
+      <div class="jn-share-preview-wrap"><img id="jnPassSharePreview" class="jn-share-preview" data-i18n-alt="a11y.journal.pawprintsPicture" alt="The pawprints picture"></div>
       <div class="jn-share-options">
         <div class="jn-choice-group"><span class="jn-choice-label" data-i18n="journal.shareCard.format">Format</span><div class="jn-choice-row" id="jnPassShareFormats">
           <button type="button" class="jn-choice on" data-format="story" data-i18n="page.journal.story916">Story 9:16</button><button type="button" class="jn-choice" data-format="post" data-i18n="page.journal.post45">Post 4:5</button>
@@ -515,7 +515,7 @@
   <div class="hp-footer-grid">
     <div>
       <div class="hp-footer-brand"><img src="logo.svg?v=5" alt=""><span>ORMA</span></div>
-      <p class="hp-footer-blurb">The personalised trail guide for dogs and their humans, so every footprint left on the mountain is a safe one.</p>
+      <p class="hp-footer-blurb">The personalised trail guide for dogs and their humans: what each walk asks of your dog, so you can choose well.</p>
       <div class="hp-footer-get">
         <div class="hp-footer-h">Get the app</div>
         <div class="hp-footer-apps">
@@ -575,11 +575,12 @@
 </footer>
 
 <script src="mobile-nav.js?v=20261030-1"></script>
-<script src="i18n.js?v=20261118-1"></script>
+<script src="i18n.js?v=20261120-7"></script>
+<script src="auth-watchdog.js?v=20261119-1"></script>
 <script type="module" src="firebase-init.js?v=20261107-1"></script>
 <script src="icon-system.js?v=20260815-4" defer></script>
 <script src="auth-ui.js?v=20261030-1" defer></script>
-<script src="regions-runtime-manifest.js?v=20261007-1"></script>
+<script src="regions-runtime-manifest.js?v=20261121-7"></script>
 <script src="regional-trails-loader.js?v=20261104-1" data-default-region="all"></script>
 <script src="regions-config.js" defer></script>
 <script src="journal-store.js?v=20261110-2"></script>
@@ -2120,7 +2121,7 @@ document.addEventListener('DOMContentLoaded', function(){
         dogBreed = p.breed || '';
         renderPassport();
         document.getElementById('jnTitle').textContent = translate('journal.titleFor', '{name}’s walk journal', { name:p.name });
-        document.getElementById('jnEmptyCopy').textContent = translate('journal.empty.copyFor', 'Once {name} has been out, log the walk here or track it live from Hike Mode, it’ll show up in this list.', { name:p.name });
+        document.getElementById('jnEmptyCopy').textContent = translate('journal.empty.copyFor', 'Once {name} has been out, add the walk here or record it live with Record a walk, and it’ll show up in this list.', { name:p.name });
       }
     }).catch(function(){});
     window.DoloPawsAuth.getPublicProfile(uid).then(function(profile){

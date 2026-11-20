@@ -39,8 +39,8 @@ describe('trail data trust states', () => {
 
   test('public rating labels stay simple while evidence remains internal', () => {
     const trust = loadTrust();
-    expect(trust.riskLabel(imported, 'Low-risk terrain')).toBe('Low-risk terrain');
-    expect(trust.provenanceLabel(imported)).toBe('Imported trail');
+    expect(trust.riskLabel(imported, 'Low risk')).toBe('Low risk');
+    expect(trust.provenanceLabel(imported)).toBe('Not yet verified');
     // A source-reviewed but not-yet-graduated listing is reviewed, not verified:
     // the seal is earned by graduation, never by curation or a source record.
     expect(trust.provenanceLabel(reviewed)).toBe('Reviewed by ORMA');
@@ -63,7 +63,7 @@ describe('trail data trust states', () => {
     // caveat added, matching how the start point has always read.
     expect(trust.waterPointLabel(imported, 'Drinking water (OSM-verified location)'))
       .toBe('Water point mapped in OpenStreetMap, availability can change');
-    expect(trust.startPointLabel(imported, 'Start here — Bus stop (OSM-verified access point)')).toMatch(/Mapped start suggestion.*check current access/i);
+    expect(trust.startPointLabel(imported, 'Start here — Bus stop (OSM-verified access point)')).toMatch(/Suggested start from map data.*check current access/i);
   });
 
   test('reviewed observations retain qualified positive states', () => {
@@ -81,13 +81,13 @@ describe('trail data trust states', () => {
       reviewedAt:'2026-07-17', verified:{ categories:['exposure','surfaceHazards'], date:'2026-07-17' },
       waterSources:[{ km:2, label:'Stream' }], shadeCoverage:40, heatRisk:'moderate',
     };
-    expect(trust.provenanceLabel(partial)).toBe('Imported trail');
+    expect(trust.provenanceLabel(partial)).toBe('Not yet verified');
     expect(trust.riskLabel(partial, 'Caution')).toBe('Caution');
     expect(trust.reviewProgress(partial).checked).toBe(2);
     expect(trust.waterAssessment(partial).title).toBe('Bring your own water');
     expect(trust.heatAssessment(partial).title).toBe('Plan for limited shade');
     expect(trust.exposureAssessment(partial).title).toBe('Exposed sections');
-    expect(trust.surfaceAssessment(partial).title).toBe('Surface & footing');
+    expect(trust.surfaceAssessment(partial).title).toBe('Ground');
     expect(trust.livestockAssessment(partial, '')).toBeNull();
   });
 
@@ -105,7 +105,7 @@ describe('trail data trust states', () => {
   test('route audits show a date without pretending safety checks are complete', () => {
     const trust = loadTrust();
     const audited = { curated:false, reviewedAt:'2026-07-17', routeAudit:{ route:'checked' } };
-    expect(trust.provenanceLabel(audited)).toBe('Imported trail');
+    expect(trust.provenanceLabel(audited)).toBe('Not yet verified');
     expect(trust.reviewProgress(audited)).toBeNull();
   });
 
@@ -121,9 +121,9 @@ describe('trail data trust states', () => {
         blockers:{water:'unknown',exposure:'unknown',livestock:'unknown',surfaceHazards:'unknown'},
       },
     };
-    expect(trust.provenanceLabel(graduating)).toBe('Imported trail');
+    expect(trust.provenanceLabel(graduating)).toBe('Not yet verified');
     expect(trust.graduationProgress(graduating).verified).toBe(false);
-    expect(trust.riskLabel(graduating, 'Moderate terrain')).toBe('Moderate terrain');
+    expect(trust.riskLabel(graduating, 'Moderate risk')).toBe('Moderate risk');
   });
 
   test('a record that names no required list needs all eleven checks, directions included', () => {
@@ -230,7 +230,7 @@ describe('trail data trust states', () => {
     const catalogRecords = buildCanonicalCatalog(productionTrails).records;
     const importedTrail = catalogRecords.find(record => {
       const source = productionTrails.find(trail => trail.id === record.id);
-      return source && trustApi.provenanceLabel(source) === 'Imported trail' &&
+      return source && trustApi.provenanceLabel(source) === 'Not yet verified' &&
         fs.existsSync(path.join(__dirname, 'trails', `${record.slug}.html`));
     });
     expect(importedTrail).toBeDefined();
@@ -239,7 +239,7 @@ describe('trail data trust states', () => {
     const reviewedTrail = buildCanonicalCatalog(productionTrails).records.find(trail => trail.id === 'lago-braies');
     expect(reviewedTrail).toBeDefined();
     const reviewedPage = fs.readFileSync(path.join(__dirname, 'trails', `${reviewedTrail.slug}.html`), 'utf8');
-    expect(importedPage).toContain('Imported trail');
+    expect(importedPage).toContain('Not yet verified');
     expect(importedPage).not.toContain('Estimated:');
     expect(importedPage).not.toMatch(/Partly verified|Verification in progress|\d+\/\d+ checks/i);
     expect(importedPage).not.toContain('verified map data');

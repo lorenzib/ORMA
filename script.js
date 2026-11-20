@@ -1955,6 +1955,9 @@ function initTrailMap(){
     const centre = trailMapInstance.getCenter();
     const view = `lat=${centre.lat.toFixed(5)}&lng=${centre.lng.toFixed(5)}&z=${trailMapInstance.getZoom().toFixed(2)}`;
     drawLink.href = `route-planner.html?${view}`;
+    // The toolbar's Draw a route opens on the same place.
+    const toolbarDraw = document.getElementById('liDrawRouteBtn');
+    if(toolbarDraw) toolbarDraw.href = drawLink.href;
     // The app plans from the Record tab, which opens the planner here too.
     try{ sessionStorage.setItem('orma-explore-map-view', view); }catch(error){}
   };
@@ -2098,7 +2101,7 @@ function initTrailMap(){
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': '#F8F6F0',
-        'line-width': rankWidth([3.5, 8, 10, 10], [1.6, 3, 5, 7]),
+        'line-width': rankWidth([3, 4.5, 5.5, 7], [1.2, 2, 3, 4]),
         'line-opacity': 0.9,
       },
     }, railsBeforeId);
@@ -2110,7 +2113,7 @@ function initTrailMap(){
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': '#858D88',
-        'line-width': rankWidth([2, 5, 6, 6], [0.8, 1.6, 2.8, 3.6]),
+        'line-width': rankWidth([1.5, 2, 2.5, 3.5], [0.6, 1, 1.6, 2]),
       },
     }, railsBeforeId);
     // Catalogue rails, same treatment as the detail map: a white casing and a
@@ -2131,7 +2134,7 @@ function initTrailMap(){
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': '#FFFFFF',
-        'line-width': rankWidth([8, 14, 20, 26], [2.5, 4, 5.5, 6.5]),
+        'line-width': rankWidth([3, 4.5, 5.5, 7], [1.5, 2.5, 3.5, 4.5]),
         'line-opacity': ['case', TOP_MATCH_TEST, 0.9, 0.5],
       },
     }, railsBeforeId);
@@ -2143,10 +2146,11 @@ function initTrailMap(){
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': ['case', TOP_MATCH_TEST, catalogueMatchColour, '#9AA19C'],
-        'line-width': rankWidth([5, 10, 15, 20], [1.2, 1.8, 2.4, 3]),
-        // A hairline can afford to be seen; it was 0.12 because a 10px band of
-        // it could not.
-        'line-opacity': 0.5,
+        'line-width': rankWidth([1.5, 2, 2.5, 3.5], [0.8, 1.2, 1.6, 2]),
+        // Owner, 19 Nov: the 15-20 px translucent bands read as blobs. Top
+        // matches are now a thin solid line on a white edge, the same as the
+        // chosen walk and the trail page; other trails stay faint hairlines.
+        'line-opacity': ['case', TOP_MATCH_TEST, 1, 0.5],
       },
     }, railsBeforeId);
     // Once a visitor chooses a trail, give it the same clear, route-first
@@ -2177,6 +2181,15 @@ function initTrailMap(){
         'line-width':['interpolate',['linear'],['zoom'],8,2,12,2.75,14,3.75,17,5], 'line-opacity':1,
       },
     }, corridorBeforeId);
+    // The chosen walk's walk-in from its start flag (trail.accessPath): thin
+    // and dashed under the walk, as on the trail page (map-style.js).
+    trailMapInstance.addSource('trail-selected-access', {
+      type:'geojson', data:{ type:'FeatureCollection', features:[] },
+    });
+    window.ORMAMapStyle.addAccessLine(trailMapInstance, {
+      id:'trail-selected-access-line', source:'trail-selected-access',
+      color:['coalesce',['get','routeColor'],'#4A7856'], beforeId:'trail-selected-route-casing',
+    });
     trailMapInstance.addLayer({
       id:'trail-selected-route-arrows', type:'symbol', source:'trail-selected-route',
       layout:{
@@ -2596,6 +2609,18 @@ function setSelectedTrailRoute(trail, options){
   ['trail-selected-route-casing','trail-selected-route-line'].forEach(layerId => {
     if(trailMapInstance.getLayer(layerId)) trailMapInstance.setLayoutProperty(layerId, 'visibility', visible ? 'visible' : 'none');
   });
+  const access = visible && trail.accessPath && Array.isArray(trail.accessPath.path) && trail.accessPath.path.length > 1
+    ? trail.accessPath.path : null;
+  if(trailMapInstance.getSource('trail-selected-access')){
+    trailMapInstance.getSource('trail-selected-access').setData({
+      type:'FeatureCollection',
+      features:access ? [{
+        type:'Feature',
+        properties:{ id:trail.id, routeColor },
+        geometry:{ type:'LineString', coordinates:access.map(([lat, lng]) => [lng, lat]) },
+      }] : [],
+    });
+  }
   window.ORMAMapStyle.setHikingWalk(trailMapInstance, visible ? route.map(([lat, lng]) => [lng, lat]) : null);
   const isLoop = visible && liRouteDistanceMeters(route[0], route[route.length - 1]) <= 75;
   if(trailMapInstance.getLayer('trail-selected-route-arrows')){
@@ -2603,7 +2628,7 @@ function setSelectedTrailRoute(trail, options){
   }
   if(visible && config.fit !== false){
     const bounds = new maplibregl.LngLatBounds();
-    route.forEach(([lat, lng]) => bounds.extend([lng, lat]));
+    route.concat(access || []).forEach(([lat, lng]) => bounds.extend([lng, lat]));
     trailMapInstance.fitBounds(bounds, { padding:window.innerWidth < 720 ? 44 : 64, maxZoom:17, duration:420 });
   }
 }
@@ -3050,35 +3075,6 @@ function liToggleHeadMenu(button){
   button.setAttribute('aria-expanded', 'true');
 }
 
-// "New: Draw your own route", said once under Record a walk. Seen means any
-// of: closed it, tried it, opened the menu it points at, or used the map's
-// own "Draw a route here". localStorage, so it stays gone next visit.
-const LI_NEW_CALLOUT_KEY = 'orma-new-draw-route-callout-v1';
-
-function liWireNewFeatureCallout(){
-  const callout = document.getElementById('liNewCallout');
-  if(!callout) return;
-  let seen = false;
-  try{ seen = localStorage.getItem(LI_NEW_CALLOUT_KEY) === '1'; }catch(error){}
-  callout.hidden = seen;
-  const markSeen = () => {
-    callout.hidden = true;
-    try{ localStorage.setItem(LI_NEW_CALLOUT_KEY, '1'); }catch(error){}
-  };
-  const close = document.getElementById('liNewCalloutClose');
-  if(close) close.addEventListener('click', (e) => { e.stopPropagation(); markSeen(); });
-  // "Try it" opens the planner where the map is, like the map's own button.
-  const tryIt = document.getElementById('liNewCalloutTry');
-  if(tryIt) tryIt.addEventListener('click', () => {
-    const fromMap = document.getElementById('homeMapDrawBtn');
-    if(fromMap) tryIt.href = fromMap.href;
-    markSeen();
-  });
-  ['liNewBtn', 'homeMapDrawBtn'].forEach(id => {
-    const el = document.getElementById(id);
-    if(el) el.addEventListener('click', markSeen);
-  });
-}
 
 function liCloseMenus(){
   ['liFiltersMenu', 'liNewMenu', 'liAccountMenu', 'liGreetSwitchMenu', 'liBellMenu', 'liAreaMenu', 'liDayMenu', 'liSortMenu'].forEach(id => {
@@ -3349,7 +3345,7 @@ function renderLiControls(){
       { label: tx('Any'), v: 'any' }, { label: tx('Low risk'), v: 'low-risk' }, { label: tx('Moderate'), v: 'moderate' }, { label: tx('Caution'), v: 'caution' },
     ], liFilters.risk, v => { liFilters.risk = v; });
     seg('liTerrainSeg', [
-      { label: tx('Any'), v: 'any' }, { label: tx('Gentle only'), v: 'soft' }, { label: tx('Up to mixed'), v: 'mixed' }, { label: tx('Rocky is okay'), v: 'rocky' },
+      { label: tx('Any'), v: 'any' }, { label: tx('Gentle only'), v: 'soft' }, { label: tx('Up to moderate'), v: 'mixed' }, { label: tx('Steep is okay'), v: 'rocky' },
     ], liFilters.terrain, v => { liFilters.terrain = v; });
     seg('liMatchSeg', [
       { label: tx('Any'), v: 0 }, { label: '60%+', v: 60 }, { label: '75%+', v: 75 }, { label: '85%+', v: 85 },
@@ -3388,7 +3384,7 @@ function renderLiChips(){
   if(!wrap || typeof trails === 'undefined') return;
 
   const DIST_OPTS = [['any',tx('Any')], ['u5',tx('Under 5 km')], ['5to10','5–10 km'], ['10p','10 km+']];
-  const TERRAIN_OPTS = [['any',tx('Any')], ['soft',tx('Gentle only')], ['mixed',tx('Up to mixed')], ['rocky',tx('Rocky is okay')]];
+  const TERRAIN_OPTS = [['any',tx('Any')], ['soft',tx('Gentle only')], ['mixed',tx('Up to moderate')], ['rocky',tx('Steep is okay')]];
   const SHADE_OPTS = [['any',tx('Any')], ['40',tx('Over 40%')], ['60',tx('Over 60%')]];
   const RISK_OPTS = [['any',tx('Any')], ['low-risk',tx('Low risk')], ['moderate',tx('Moderate')], ['caution',tx('Caution')]];
   const MATCH_OPTS = [[0,tx('Any')], [60,'60%+'], [75,'75%+'], [85,'85%+']];
@@ -3718,7 +3714,6 @@ function initLoggedInShell(){
   const newBtn = document.getElementById('liNewBtn');
   const newMenu = document.getElementById('liNewMenu');
   if(newBtn && newMenu) wireMenu(newBtn, newMenu);
-  liWireNewFeatureCallout();
   // Recently viewed moved under the dog pill, so it is filled when that opens.
   const accountBtn = document.getElementById('liAccountBtn');
   wireMenu(accountBtn, document.getElementById('liAccountMenu'));
@@ -4027,12 +4022,15 @@ function liExposureLabel(exposure){
 // Row meta per the design TrailRow: "7.5 km · 150 m climb · 2–2.5 h · little shade"
 // Cautions follow the measured facts, gravest first.
 function liRowMeta(t){
-  // A one-way walk is shown, and scored, there and back (route-return.js).
+  // A one-way walk is shown, and scored, the way its source gives it: one way,
+  // and says so, unless the reader picked there and back (route-return.js).
   const routeReturn = window.ORMARouteReturn;
-  const shown = routeReturn && routeReturn.isOneWay(t) ? routeReturn.forView(t) : t;
+  const oneWayWalk = !!(routeReturn && routeReturn.isOneWay(t));
+  const shown = oneWayWalk ? routeReturn.forView(t) : t;
   const back = shown !== t;
-  const tr = (key, fallback) => { const v = window.t ? window.t(key, { km:shown.distance }) : ''; return v && v !== key ? v : fallback; };
-  const parts = [back ? tr('card.thereAndBack', `${localNum(shown.distance)} km there and back`) : `${localNum(t.distance)} km`];
+  const tr = (key, fallback) => { const v = window.t ? window.t(key, { km:localNum(shown.distance) }) : ''; return v && v !== key ? v : fallback; };
+  const parts = [back ? tr('card.thereAndBack', `${localNum(shown.distance)} km there and back`)
+    : oneWayWalk ? tr('card.oneWay', `${localNum(t.distance)} km one way`) : `${localNum(t.distance)} km`];
   if(Number.isFinite(shown.elevation)) parts.push(tx('{m} m climb', { m:shown.elevation }));
   if(shown.hours) parts.push(`${back ? '≈ ' : ''}${routeReturn ? localNum(routeReturn.formatDuration(shown.hours)) : `${localNum(shown.hours)} h`}`);
   const exposure = liExposureLabel(t.exposure);
@@ -4275,22 +4273,17 @@ function liRecommendationExplanationHtml(trail, profile, open, isNew = false, sh
   // trail unknowns: a missing profile field becomes the prompt below, and
   // saying the same thing twice on one card reads as two problems. A strong
   // option says one; any other verdict says why it is not one, so two.
-  // One thing to watch; a low match, which has no "Fits" line, says two. Only
-  // the unknowns an owner acts on (dog rules) count: "route details are based
-  // on map data" is true of every walk and is not worth a line.
-  // The season has its own line, so the engine's "not the season" caution
-  // would say it twice. A dog rule ORMA has not found is not a warning about
-  // the walk: it is a quiet note under the rest (owner, 19 Nov).
+  // One thing to watch; a low match, which has no "Fits" line, says two.
+  // Unknowns are not watch lines: "we haven't found the dog rules" on a site
+  // where every walk takes dogs only adds doubt (owner, 19 Nov). The season
+  // has its own line, so the engine's "not the season" caution would say it
+  // twice.
   const limit = recommendation && recommendation.category === 'not-recommended' ? 2 : 1;
-  const SAID_ELSEWHERE = new Set(['trail.season.outside', 'trail.dog-access.unknown']);
-  const ownLine = entry => !SAID_ELSEWHERE.has(entry.code);
+  const ownLine = entry => entry.code !== 'trail.season.outside';
   const concerns = (view.cardCautionItems || []).filter(ownLine).map(entry => entry.text).slice(0, limit);
   const know = concerns
     .map(entry => `<p class="li-answer-check"><span class="li-answer-tag is-watch">${tx('Watch')}</span><span>${liPersonalisationText(entry)}</span></p>`).join('');
   const season = liSeasonFitHtml(trail);
-  const noDogRule = (view.cardTrailUnknownItems || []).some(entry => entry.code === 'trail.dog-access.unknown')
-    ? `<p class="li-answer-note">${tx('No dog rule on record here. Check local signs.')}</p>`
-    : '';
   const fresh = isNew
     ? `<p class="li-answer-new"><b>${tx('New for {name}.', { name:liPersonalisationText(dogName) })}</b> ${liNewForMeaning(profile)}</p>`
     : '';
@@ -4309,7 +4302,7 @@ function liRecommendationExplanationHtml(trail, profile, open, isNew = false, sh
   // every card also has: two of the same button on one card is one too many.
   const panelId = `li-why-${encodeURIComponent(trail.id)}`;
   return `<div class="li-answer-explanation" id="${panelId}"${open ? '' : ' hidden'}>
-    ${fresh}${verdict}${season}${know}${noDogRule}${gap}
+    ${fresh}${verdict}${season}${know}${gap}
     <div class="li-answer-actions">
       <a class="li-answer-open" href="${liTrailHref(trail.id)}">${tx('View trail details')}</a>
     </div>
@@ -4379,7 +4372,7 @@ function liPickFacts(trail, profile){
     inSeason: !outOfSeason,
     // "We don't know the local rules for dogs" on the card.
     knownDogRules: !flags(recommendation.unknowns, 'trail.dog-access.unknown'),
-    // The card's trail rating: anything not low-risk or moderate reads "Caution terrain".
+    // The card's trail rating: anything not low-risk or moderate reads "Higher risk".
     notCaution: safetyClass(trail && trail.safetyLevel) !== 'safety-caution',
     strongOption: liRecommendationPresentation(trail, profile).category === 'strong-option',
   };
@@ -4418,7 +4411,7 @@ function liEmptyStateHtml(buttonId){
     : (liQuery.trim() || liActiveFilterCount() > 0)
       ? tx('Try widening your search or filters.')
       : liLocationContext && liLocationContext.kind === 'current'
-        ? tx('No ORMA trails are mapped within {km} km yet.', { km:liLocationContext.radiusKm })
+        ? tx('No ORMA trails within {km} km yet.', { km:liLocationContext.radiusKm })
         : t('home.noTrailsValley', {label});
   return {
     html: `
@@ -5762,7 +5755,7 @@ async function updateRegionalMapData(map, regionSelection) {
 function placeDogPolicyLabel(policy) {
   return {
     welcome: tx('Dogs welcome'),
-    leashed: tx('Dogs welcome on leash'),
+    leashed: tx('Dogs welcome on a lead'),
     'not-allowed': tx('Dogs not allowed'),
   }[policy] || tx('Dog policy recorded');
 }
@@ -5784,7 +5777,7 @@ function ensurePlaceDogVerificationDialog() {
         <fieldset>
           <legend>${tx('Dog policy')}</legend>
           <label><input type="radio" name="policy" value="welcome" required> ${tx('Dogs welcome')}</label>
-          <label><input type="radio" name="policy" value="leashed"> ${tx('Dogs welcome on leash')}</label>
+          <label><input type="radio" name="policy" value="leashed"> ${tx('Dogs welcome on a lead')}</label>
           <label><input type="radio" name="policy" value="not-allowed"> ${tx('Dogs not allowed')}</label>
         </fieldset>
         <label class="place-dog-field">${tx('How do you know?')}
@@ -5878,7 +5871,7 @@ async function hydratePlaceDogVerification(host, place) {
   }
   if(!host.isConnected) return;
   host.innerHTML = verified
-    ? `<span class="orma-verified-badge">${productIcon('dog')} ${tx('ORMA verified')}</span><span class="orma-verified-policy">${placeDogPolicyLabel(verified.policy)}</span><button type="button" class="orma-place-verify-btn">${tx('Report a change')}</button>`
+    ? `<span class="orma-verified-badge">${productIcon('dog')} ${tx('Verified by ORMA')}</span><span class="orma-verified-policy">${placeDogPolicyLabel(verified.policy)}</span><button type="button" class="orma-place-verify-btn">${tx('Report a change')}</button>`
     : `<span class="orma-place-prompt">${tx('Know if dogs are welcome here?')}</span><button type="button" class="orma-place-verify-btn">${tx('Help ORMA verify')}</button>`;
   host.querySelector('.orma-place-verify-btn').addEventListener('click', () => {
     openPlaceDogVerification(place, () => {
@@ -5995,7 +5988,7 @@ function addPoiLayerSet(map, sourceId, prefix, circleColor, clusterColor, iconGr
       content += `<br>🔗 <a href="${url}" target="_blank" rel="noopener">${tx('Website')}</a>`;
     }
     if (props.dog === 'yes') content += `<br><span class="dp-inline-status">${productIcon('dog')}<span>${tx('Dogs welcome')}</span></span>`;
-    else if (props.dog === 'leashed') content += `<br>🦮 ${tx('Dogs on leash')}`;
+    else if (props.dog === 'leashed') content += `<br>🦮 ${tx('Dogs on a lead')}`;
     else if (props.dog === 'no') content += `<br>🚫 ${tx('No dogs')}`;
     if (props.outdoor_seating && props.outdoor_seating !== 'no') content += `<br>🪑 ${tx('Outdoor seating')}`;
     const coordinates = feature.geometry.coordinates.slice(0, 2);

@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260916-5">
+<link rel="stylesheet" href="styles.css?v=20261123-1">
 <style>
   .sc-inline-score{width:100%;max-width:none;margin:16px 0 20px;padding:13px 15px;border:1px solid #DED8CA;border-radius:15px;background:#F8F5EC;display:grid;grid-template-columns:auto minmax(220px,1fr);column-gap:20px;align-items:center;}
   .sc-inline-score>span{grid-column:1;display:block;font:700 10px/1.2 'Inter',sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#5F665E;}
@@ -171,9 +171,9 @@
           <h4>Trail rating · the mountain</h4>
           <p>Terrain, exposure, hazards. The same for every dog.</p>
           <div class="sc-pills">
-            <span class="sc-pill" style="color:#2C5C34;background:#2C5C341f;">Low-risk</span>
-            <span class="sc-pill" style="color:#8A5A16;background:#8A5A161f;">Moderate</span>
-            <span class="sc-pill" style="color:#9C3A25;background:#9C3A251f;">Caution</span>
+            <span class="sc-pill" style="color:#2C5C34;background:#2C5C341f;">Low risk</span>
+            <span class="sc-pill" style="color:#8A5A16;background:#8A5A161f;">Moderate risk</span>
+            <span class="sc-pill" style="color:#9C3A25;background:#9C3A251f;">Higher risk</span>
           </div>
         </div>
         <div class="sc-card">
@@ -193,9 +193,9 @@
       <div class="sc-inline-score" data-score-card>
         <span>Trail rating</span>
         <div class="sc-score-options" aria-label="Possible trail ratings">
-          <button type="button" class="sc-score-option sc-score-option--low" data-score-option data-explanation="Lower objective trail risk, with fewer demanding terrain, exposure or hazard factors." aria-pressed="false">Low-risk</button>
-          <button type="button" class="sc-score-option sc-score-option--moderate" data-score-option data-explanation="Some terrain, exposure or hazard factors deserve extra preparation and attention." aria-pressed="false">Moderate</button>
-          <button type="button" class="sc-score-option sc-score-option--caution" data-score-option data-explanation="Important trail risks are present. Review the trail facts carefully before deciding." aria-pressed="false">Caution</button>
+          <button type="button" class="sc-score-option sc-score-option--low" data-score-option data-explanation="Lower objective trail risk, with fewer demanding terrain, exposure or hazard factors." aria-pressed="false">Low risk</button>
+          <button type="button" class="sc-score-option sc-score-option--moderate" data-score-option data-explanation="Some terrain, exposure or hazard factors deserve extra preparation and attention." aria-pressed="false">Moderate risk</button>
+          <button type="button" class="sc-score-option sc-score-option--caution" data-score-option data-explanation="Important trail risks are present. Review the trail facts carefully before deciding." aria-pressed="false">Higher risk</button>
         </div>
         <p class="scoring-card-copy" data-score-explanation aria-live="polite">Choose a rating to see what it means.</p>
       </div>
@@ -251,7 +251,7 @@
         <div class="sc-stat"><span>Moderately steep</span><b>10–18%</b></div>
         <div class="sc-stat"><span>Steep, like most mountain paths</span><b>18% or more</b></div>
       </div>
-      <p>A 10% slope rises 10 m for every 100 m you walk. Each dog gets a limit on the same three steps. When a walk is a step steeper than your dog’s limit, the trail page says so with the figure, for example “the steepest stretch is about 15%, and Teo is best on gentle slopes”, and the match drops by 10 points for each step.</p>
+      <p>A 10% slope rises 10 m for every 100 m you walk. Each dog gets a limit on the same three steps, set by its fitness, age and health. If you answered “How steep can they go?” when you set up your dog, that answer can lower the limit, never raise it. When a walk is a step steeper than your dog’s limit, the trail page says so with the figure, for example “the steepest stretch is about 15%, and Teo is best on gentle slopes”, and the match drops by 10 points for each step.</p>
 
       <h3>Step 3 · We explain the match</h3>
       <p>Same trail, two dogs, two scores.</p>
@@ -332,8 +332,8 @@
           <p>Terreno, esposizione, pericoli. Uguale per tutti i cani.</p>
           <div class="sc-pills">
             <span class="sc-pill" style="color:#2C5C34;background:#2C5C341f;">Basso rischio</span>
-            <span class="sc-pill" style="color:#8A5A16;background:#8A5A161f;">Moderato</span>
-            <span class="sc-pill" style="color:#9C3A25;background:#9C3A251f;">Attenzione</span>
+            <span class="sc-pill" style="color:#8A5A16;background:#8A5A161f;">Rischio moderato</span>
+            <span class="sc-pill" style="color:#9C3A25;background:#9C3A251f;">Rischio più alto</span>
           </div>
         </div>
         <div class="sc-card">
@@ -354,8 +354,8 @@
         <span>Classificazione del sentiero</span>
         <div class="sc-score-options" aria-label="Possibili classificazioni del sentiero">
           <button type="button" class="sc-score-option sc-score-option--low" data-score-option data-explanation="Rischio oggettivo più basso, con meno fattori impegnativi legati a terreno, esposizione o pericoli." aria-pressed="false">Basso rischio</button>
-          <button type="button" class="sc-score-option sc-score-option--moderate" data-score-option data-explanation="Alcuni fattori di terreno, esposizione o pericolo richiedono più preparazione e attenzione." aria-pressed="false">Moderato</button>
-          <button type="button" class="sc-score-option sc-score-option--caution" data-score-option data-explanation="Sono presenti rischi importanti. Controlla con attenzione i dati del sentiero prima di decidere." aria-pressed="false">Attenzione</button>
+          <button type="button" class="sc-score-option sc-score-option--moderate" data-score-option data-explanation="Alcuni fattori di terreno, esposizione o pericolo richiedono più preparazione e attenzione." aria-pressed="false">Rischio moderato</button>
+          <button type="button" class="sc-score-option sc-score-option--caution" data-score-option data-explanation="Sono presenti rischi importanti. Controlla con attenzione i dati del sentiero prima di decidere." aria-pressed="false">Rischio più alto</button>
         </div>
         <p class="scoring-card-copy" data-score-explanation aria-live="polite">Scegli una classificazione per scoprirne il significato.</p>
       </div>
@@ -411,7 +411,7 @@
         <div class="sc-stat"><span>Abbastanza ripida</span><b>10–18%</b></div>
         <div class="sc-stat"><span>Ripida, come la maggior parte dei sentieri di montagna</span><b>18% o più</b></div>
       </div>
-      <p>Una pendenza del 10% sale di 10 m ogni 100 m di cammino. Ogni cane ha un limite sugli stessi tre gradini. Quando una passeggiata è un gradino più ripida del limite del tuo cane, la pagina del sentiero lo dice con la cifra, per esempio “il tratto più ripido è di circa il 15%, e Teo sta meglio su pendenze dolci”, e la compatibilità scende di 10 punti per gradino.</p>
+      <p>Una pendenza del 10% sale di 10 m ogni 100 m di cammino. Ogni cane ha un limite sugli stessi tre gradini, dato da forma fisica, età e salute. Se hai risposto a “Quanto ripido può andare?” quando hai impostato il cane, quella risposta può abbassare il limite, mai alzarlo. Quando una passeggiata è un gradino più ripida del limite del tuo cane, la pagina del sentiero lo dice con la cifra, per esempio “il tratto più ripido è di circa il 15%, e Teo sta meglio su pendenze dolci”, e la compatibilità scende di 10 punti per gradino.</p>
 
       <h3>Passo 3 · Spieghiamo la compatibilità</h3>
       <p>Stesso sentiero, due cani, due punteggi.</p>
@@ -486,7 +486,7 @@
   <div class="hp-footer-grid">
     <div>
       <div class="hp-footer-brand"><img src="logo.svg?v=5" alt=""><span>ORMA</span></div>
-      <p class="hp-footer-blurb">The personalised trail guide for dogs and their humans, so every footprint left on the mountain is a safe one.</p>
+      <p class="hp-footer-blurb">The personalised trail guide for dogs and their humans: what each walk asks of your dog, so you can choose well.</p>
       <div class="hp-footer-get">
         <div class="hp-footer-h">Get the app</div>
         <div class="hp-footer-apps">

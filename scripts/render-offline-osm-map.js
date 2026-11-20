@@ -331,6 +331,16 @@ function renderOfflineMap({ trailId, xml, route, height, scaleMeters = 100, simp
   const routePoints = routeCoordinates.map(([lng, lat]) => project(bounds, lat, lng, HEIGHT));
   const routeSvgPath = pathData(routePoints, false);
   const [startX, startY] = routePoints[0];
+  // The walk-in from the start flag to the walk (trail.accessPath), when the
+  // flag sits off the line: thinner and dashed, under the walk.
+  const accessFeature = route.features.find(feature => feature.properties && feature.properties.kind === 'access');
+  const accessSvgPath = accessFeature
+    ? pathData(accessFeature.geometry.coordinates.map(([lng, lat]) => project(bounds, lat, lng, HEIGHT)), false)
+    : '';
+  const accessLengthM = accessFeature ? Number(accessFeature.properties.lengthM) : 0;
+  const accessMetres = accessLengthM >= 1000
+    ? `${(Math.round(accessLengthM / 100) / 10).toFixed(1)} km`
+    : `${Math.max(10, Math.round(accessLengthM / 10) * 10)} m`;
   const carezzaLabel = trailId === 'lago-carezza'
     ? (() => {
       const [x, y] = project(bounds, 46.40925, 11.57515, HEIGHT);
@@ -354,7 +364,7 @@ function renderOfflineMap({ trailId, xml, route, height, scaleMeters = 100, simp
     .water{fill:#acd4df;stroke:#70a9ba;stroke-width:4}.parking{fill:#deddd8;stroke:#aaa9a4;stroke-width:2}.building{fill:#c8b9aa;stroke:#9c8878;stroke-width:2}
     .stream{fill:none;stroke:#72b3c5;stroke-width:4;stroke-linecap:round}.road-casing{fill:none;stroke:#fff;stroke-width:22;stroke-linecap:round;stroke-linejoin:round}.road{fill:none;stroke:#d9b982;stroke-width:15;stroke-linecap:round;stroke-linejoin:round}
     .service-casing{stroke-width:13}.service{stroke:#e6d8ba;stroke-width:8}.track{fill:none;stroke:#b39363;stroke-width:5;stroke-dasharray:12 7;stroke-linecap:round}.footpath{fill:none;stroke:#8c7458;stroke-width:4;stroke-dasharray:7 6;stroke-linecap:round}.steps{stroke:#78624d;stroke-dasharray:3 4}.barrier{fill:none;stroke:#777;stroke-width:2;stroke-dasharray:3 4}
-    .route-casing{fill:none;stroke:#fff;stroke-width:18;stroke-linecap:round;stroke-linejoin:round;filter:url(#route-shadow)}.route{fill:none;stroke:#b84931;stroke-width:10;stroke-linecap:round;stroke-linejoin:round}
+    .route-casing{fill:none;stroke:#fff;stroke-width:18;stroke-linecap:round;stroke-linejoin:round;filter:url(#route-shadow)}.route{fill:none;stroke:#b84931;stroke-width:10;stroke-linecap:round;stroke-linejoin:round}.access-casing{fill:none;stroke:#fff;stroke-width:10;stroke-linecap:round;stroke-linejoin:round}.access{fill:none;stroke:#b84931;stroke-width:5;stroke-dasharray:14 10;stroke-linejoin:round}
     .feature-label{font:700 23px Arial,sans-serif;fill:#294239;text-anchor:middle;paint-order:stroke;stroke:#f5f2e9;stroke-width:6;stroke-linejoin:round}.parking-label{font-size:16px}
     .poi circle,.poi rect{fill:#fff;stroke:#294239;stroke-width:4}.poi text{font:800 16px Arial,sans-serif;fill:#294239;text-anchor:middle}.water-point circle{fill:#3e7a91}.water-point path{fill:#fff}.utility text{font-size:10px}.viewpoint circle:first-child{fill:#fff}.viewpoint circle:last-child{fill:#294239;stroke:none}
     .map-text{font-family:Arial,sans-serif;fill:#294239}.small{font-size:16px}.attribution{font-size:15px;fill:#fff}.north{font-size:20px;font-weight:800}.scale{font-size:14px;font-weight:700}
@@ -367,10 +377,12 @@ function renderOfflineMap({ trailId, xml, route, height, scaleMeters = 100, simp
   <g id="barriers">${barriers.join('')}</g>
   <g id="labels">${labels.join('')}</g>
   ${carezzaLabel}
+  ${accessSvgPath ? `<path class="access-casing" d="${accessSvgPath}"/><path class="access" d="${accessSvgPath}"><title>Walk-in from the start flag to the walk, about ${accessMetres}</title></path>` : ''}
   <path class="route-casing" d="${routeSvgPath}"/><path class="route" d="${routeSvgPath}"/>
   <g transform="translate(${startX.toFixed(1)} ${startY.toFixed(1)})"><circle r="22" fill="#294239" stroke="#fff" stroke-width="6"/><path d="M0-11 7 7 0 3-7 7Z" fill="#fff"/></g>
   <g class="map-text" transform="translate(1125 82)" text-anchor="middle"><path d="M0-45 16 8 0-2-16 8Z" fill="#294239"/><text class="north" y="34">N</text></g>
   <g class="map-text" transform="translate(55 ${HEIGHT - 80})"><path d="M0 0H${scaleWidth.toFixed(1)}M0-8V8M${scaleWidth.toFixed(1)}-8V8" fill="none" stroke="#294239" stroke-width="5"/><text class="scale" x="${(scaleWidth / 2).toFixed(1)}" y="27" text-anchor="middle">${scaleText(scaleMetres)}</text></g>
+  ${accessSvgPath ? `<g class="map-text" transform="translate(55 ${HEIGHT - 135})"><rect x="-14" y="-26" width="470" height="40" rx="8" fill="#fff" opacity=".9"/><path class="access" d="M0 0H52"/><text class="small" x="66" y="6">Walk-in to the start · Avvicinamento, ~${accessMetres}</text></g>` : ''}
   <rect x="670" y="${HEIGHT - 56}" width="510" height="42" rx="10" fill="#294239" opacity=".94"/>
   <text class="map-text attribution" x="1160" y="${HEIGHT - 29}" text-anchor="end">© OpenStreetMap contributors · ODbL</text>
 </svg>

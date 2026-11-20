@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valchiusella-fondo-tissone-tallorno",
+  "distanceKm": 5.1,
+  "ascentM": 319,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1068
+    },
+    {
+      "km": 0.4,
+      "elev": 1158
+    },
+    {
+      "km": 0.8,
+      "elev": 1256
+    },
+    {
+      "km": 1.2,
+      "elev": 1340
+    },
+    {
+      "km": 1.6,
+      "elev": 1246
+    },
+    {
+      "km": 1.9,
+      "elev": 1185
+    },
+    {
+      "km": 2.3,
+      "elev": 1209
+    },
+    {
+      "km": 2.7,
+      "elev": 1226
+    },
+    {
+      "km": 3.1,
+      "elev": 1207
+    },
+    {
+      "km": 3.5,
+      "elev": 1192
+    },
+    {
+      "km": 3.9,
+      "elev": 1180
+    },
+    {
+      "km": 4.3,
+      "elev": 1166
+    },
+    {
+      "km": 4.6,
+      "elev": 1091
+    },
+    {
+      "km": 5.1,
+      "elev": 1070
+    }
+  ]
+}

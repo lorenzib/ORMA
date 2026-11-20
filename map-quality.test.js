@@ -30,7 +30,7 @@ describe('shared map quality profile', () => {
     pages.forEach(([page, mapScript]) => {
       const html = read(page);
       if(page === 'trail.html'){
-        expect(html).toContain('trail-app.bundle.js?v=20261119-1');
+        expect(html).toContain('trail-app.bundle.js?v=20261120-7');
         expect(html).not.toContain('<script src="map-runtime.js');
         return;
       }
@@ -115,10 +115,11 @@ describe('shared map quality profile', () => {
     expect(style).toContain('widthRamp(4, 5.5, 7, 9, scale)');
     expect(style).toContain('widthRamp(2, 2.75, 3.75, 5, scale)');
     expect(style).not.toContain("'line-gap-width': widthRamp(7, 12, 18, 26, scale)");
-    // Default insertion point: under the contours and the marked network
-    // (our dashed routes, or Waymarked's raster), so both draw over it.
+    // Default insertion point: under the contours and the walk's own dashed
+    // route (or Waymarked's raster), so both draw over it, but over the other
+    // marked routes, which pass under the walk.
     expect(style).toContain('const fallbackBefore = walkCorridorBeforeId(map);');
-    expect(style).toMatch(/function walkCorridorBeforeId\(map\) \{\s*if \(map && map.getLayer\(CONTOUR_LINE_LAYER\)\) return CONTOUR_LINE_LAYER;\s*return networkLayerId\(map\);/);
+    expect(style).toMatch(/function walkCorridorBeforeId\(map\) \{\s*if \(map && map.getLayer\(CONTOUR_LINE_LAYER\)\) return CONTOUR_LINE_LAYER;\s*if \(map && map.getLayer\(HIKING_WALK_LINE_LAYER\)\) return HIKING_WALK_LINE_LAYER;\s*return networkLayerId\(map\);/);
     expect(style).toMatch(/function walkLineBeforeId\(map\) \{\s*if \(map && map.getLayer\(HIKING_REF_LAYER\)\) return HIKING_REF_LAYER;\s*if \(map && map.getLayer\(WAYMARKED_LAYER\)\) return WAYMARKED_LAYER;/);
     // The opaque-on-top treatment stays available for maps with no raster.
     expect(style).toContain("config.mode === 'overlay'");
@@ -303,8 +304,8 @@ describe('shared map quality profile', () => {
     // white smear with nothing inside it.
     const homepage = read('script.js');
     expect(homepage).toContain('function rankWidth(top, other)');
-    expect(homepage).toContain('rankWidth([8, 14, 20, 26], [2.5, 4, 5.5, 6.5])');
-    expect(homepage).toContain('rankWidth([5, 10, 15, 20], [1.2, 1.8, 2.4, 3])');
+    expect(homepage).toContain('rankWidth([3, 4.5, 5.5, 7], [1.5, 2.5, 3.5, 4.5])');
+    expect(homepage).toContain('rankWidth([1.5, 2, 2.5, 3.5], [0.8, 1.2, 1.6, 2])');
     // The zoom ramp has to stay at the top of the paint property. An
     // `interpolate` on ["zoom"] nested inside a `case` is not evaluated per
     // zoom: it silently cost the matched trails their corridor at trail zoom

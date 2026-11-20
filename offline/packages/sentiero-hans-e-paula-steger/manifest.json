@@ -2,21 +2,21 @@
   "schemaVersion": 1,
   "trailId": "sentiero-hans-e-paula-steger",
   "name": "Sentiero Hans e Paula Steger",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.604Z",
+  "version": "2026.11.19-beta.5",
+  "generatedAt": "2026-11-19T15:37:01.322Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 953374,
+  "packageBytes": 957233,
   "packageBudgetBytes": 5242880,
   "bounds": {
-    "south": 46.51589,
-    "west": 11.61209,
-    "north": 46.5464,
-    "east": 11.67375
+    "south": 46.5159,
+    "west": 11.61177,
+    "north": 46.54639,
+    "east": 11.67376
   },
   "image": {
     "width": 1200,
-    "height": 863
+    "height": 858
   },
   "mapCorridor": {
     "strategy": "fixed-bounds-svg-v1",
@@ -24,12 +24,12 @@
       1
     ],
     "width": 1200,
-    "height": 863
+    "height": 858
   },
   "routingGraph": {
     "strategy": "osm-walking-graph-v1",
-    "nodeCount": 5624,
-    "edgeCount": 5640,
+    "nodeCount": 5657,
+    "edgeCount": 5673,
     "trailNodeCount": 929,
     "maxRejoinRouteM": 1500
   },
@@ -200,24 +200,24 @@
       "required": true,
       "label": "Sentiero Hans e Paula Steger OSM offline map",
       "url": "map.svg",
-      "bytes": 544754,
-      "sha256": "e0fbfbda62766ea6ec5754bd98176b3b8abb6fa1480183dbfa05eeb875bc3056"
+      "bytes": 546406,
+      "sha256": "d2bdd240ebcf2bf91f5513bb6d16dd7f8ec1de09e0d845962ec4ee87104bb0e2"
     },
     {
       "role": "route",
       "required": true,
       "label": "Sentiero Hans e Paula Steger route",
       "url": "route.geojson",
-      "bytes": 9101,
-      "sha256": "72a27ff24a017c9a786610fe517fe99cc669bef22f42e06b0e487e5564a0e83d"
+      "bytes": 9691,
+      "sha256": "760fa3cd8430b170b9db964eb89f9385bd7e22b54b77b016bd9c83f3957f44aa"
     },
     {
       "role": "footpath-network",
       "required": true,
       "label": "Sentiero Hans e Paula Steger routable footpath corridor",
       "url": "footpath-network.json",
-      "bytes": 274879,
-      "sha256": "d97cc34ea0cf3bd9742c44285aa64cb19491812e118f0c777cb553c6553426c4"
+      "bytes": 276496,
+      "sha256": "466c947f552a3e4cfa5dced15eac3002cc6aaf67398388702904f1bc13357a6e"
     },
     {
       "role": "elevation-profile",
@@ -233,7 +233,7 @@
       "label": "Sentiero Hans e Paula Steger safety information",
       "url": "safety.json",
       "bytes": 2309,
-      "sha256": "21222e374896cb21b1e4f143e1d4bfce420a3bb7d85f918770367a6a94e1880a"
+      "sha256": "5183364a8241646ca2ae0e57159eb4dd14b9bb3f630d663a48e914c148e648f5"
     }
   ]
 }

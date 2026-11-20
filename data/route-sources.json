@@ -3969,6 +3969,158 @@
       "quote": "Distanza 2,1 km · Durata 1:15 h · Salita 344 m · Discesa 20 m · “Ore: salita 1,00-1,15 discesa 0,30-0,40 totale 1,30-1,55 SEGNAVIA: 319, poi bollini rossi e gialli N1”",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-18T12:00:00.000Z"
+    },
+    "steinegg-pyramidenrundweg": {
+      "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11428309",
+      "publisher": "Autonome Provinz Bozen, hiking-trail register (via Open Data Hub)",
+      "name": "Pyramidenrundweg",
+      "quote": "CODE_NAME 'Pyramidenrundweg' (provincial hiking-trail register, routes-hikingtrails.11428309, 4,216 m; Steinegg, Karneid)",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-18T23:00:00.000Z"
+    },
+    "luesen-panoramaweg": {
+      "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11428248",
+      "publisher": "Autonome Provinz Bozen, hiking-trail register (via Open Data Hub)",
+      "name": "Panoramaweg (Lüsen)",
+      "quote": "CODE_NAME 'Panoramaweg' (provincial hiking-trail register, routes-hikingtrails.11428248, 5,647 m; Lüsen)",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-18T23:00:00.000Z"
+    },
+    "valgardena-troi-da-la-tambres": {
+      "url": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/routes-hikingtrails.11426545",
+      "publisher": "Autonome Provinz Bozen, hiking-trail register (via Open Data Hub)",
+      "name": "10A Troi da la Tambres",
+      "quote": "CODE_NAME '10A Troi da la Tambres' (provincial hiking-trail register, routes-hikingtrails.11426545, 1,646 m one way; St. Ulrich in Gröden)",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-18T23:00:00.000Z"
+    },
+    "lombardia-reggetto-piani-di-artavaggio": {
+      "url": "https://www.in-lombardia.it/itinerari/da-reggetto-ai-piani-di-artavaggio",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by Ecomuseo Val Taleggio)",
+      "name": "Da Reggetto ai Piani di Artavaggio",
+      "quote": "Durata/Lunghezza 2h e 45min 5.35km · Dislivello Salita: 700m · “Segnavia: CAI 150 … Numeri: 5,4 km solo andata, circa 700 m di dislivello, 2 ore e 45 minuti”",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T12:00:00.000Z"
+    },
+    "lario-asso-funghi-di-terra": {
+      "url": "https://www.in-lombardia.it/itinerari/alla-ricerca-dei-funghi-di-terra",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by Lago di Como GAL)",
+      "name": "Alla ricerca dei funghi di terra",
+      "quote": "Durata/Lunghezza 3h e 30min 8.77km - 5 Stages · Dislivello Salita: 687m · “23% asfaltato, 26% costituito da mulattiera e 51% sentiero”",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T12:00:00.000Z"
+    },
+    "lombardia-bergamo-colle-maresana": {
+      "url": "https://www.in-lombardia.it/itinerari/al-colle-della-maresana",
+      "publisher": "Regione Lombardia, in-Lombardia (itinerary by VisitBergamo.net)",
+      "name": "Al Colle della Maresana",
+      "quote": "Durata/Lunghezza 45 min 1.40km · Dislivello Salita: 210m · “la bandiera bianca e rossa con il numero 533 a segnalare il sentiero CAI”",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T12:00:00.000Z"
+    },
+    "lanzo-anello-mulino-turcin": {
+      "url": "https://www.outdooractive.com/it/r/804987381",
+      "publisher": "Turismo Torino e Provincia (Outdooractive)",
+      "name": "Anello del Mulino Turcin",
+      "quote": "Distanza 10,3 km · Durata 3:15 h · Salita 260 m · Discesa 261 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T21:00:00.000Z"
+    },
+    "talucco-ecomuseo-carbonaie": {
+      "url": "https://www.outdooractive.com/it/r/804474829",
+      "publisher": "Turismo Torino e Provincia (Outdooractive)",
+      "name": "Sentiero \"Ecomuseo delle Carbonaie\"",
+      "quote": "Distanza 7,4 km · Durata 2:55 h · Salita 448 m · Discesa 449 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T21:00:00.000Z"
+    },
+    "traversella-sentiero-delle-anime": {
+      "url": "https://www.outdooractive.com/it/r/804493440",
+      "publisher": "Turismo Torino e Provincia (Outdooractive)",
+      "name": "Sentiero delle Anime e della Transumanza",
+      "quote": "Distanza 10 km · Durata 4:25 h · Salita 549 m · Discesa 549 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T21:00:00.000Z"
+    },
+    "valchiusella-fondo-tissone-tallorno": {
+      "url": "https://www.outdooractive.com/it/r/804976410",
+      "publisher": "Turismo Torino e Provincia (Outdooractive)",
+      "name": "Anello Fondo - Tissone - Tallorno",
+      "quote": "Distanza 5 km · Durata 2:05 h · Salita 319 m · Discesa 319 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T21:00:00.000Z"
+    },
+    "valsusa-giaglione-vigne-mandorli": {
+      "url": "https://www.outdooractive.com/it/r/809858459",
+      "publisher": "Val Susa Outdoor (Turismo Torino e Provincia) (Outdooractive)",
+      "name": "GIAGLIONE – Le alture delle viti e dei mandorli",
+      "quote": "Distanza 5,8 km · Durata 1:55 h · Salita 241 m · Discesa 241 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T22:00:00.000Z"
+    },
+    "valsusa-venaus-sentiero-gufi-basso": {
+      "url": "https://www.outdooractive.com/it/r/809943711",
+      "publisher": "Val Susa Outdoor (Turismo Torino e Provincia) (Outdooractive)",
+      "name": "VENAUS – Il Sentiero dei Gufi basso",
+      "quote": "Distanza 6,1 km · Durata 2:05 h · Salita 294 m · Discesa 294 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T22:00:00.000Z"
+    },
+    "valsusa-foresto-sentiero-ginepri": {
+      "url": "https://www.outdooractive.com/it/r/809935419",
+      "publisher": "Val Susa Outdoor (Turismo Torino e Provincia) (Outdooractive)",
+      "name": "FORESTO – Il Sentiero dei Ginepri",
+      "quote": "Distanza 4,4 km · Durata 1:55 h · Salita 337 m · Discesa 337 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T22:00:00.000Z"
+    },
+    "valsusa-chianocco-orrido-chouque": {
+      "url": "https://www.outdooractive.com/it/r/806650088",
+      "publisher": "Val Susa Outdoor (Turismo Torino e Provincia) (Outdooractive)",
+      "name": "CHIANOCCO – L'Orrido e il Chouqué di Margrit",
+      "quote": "Distanza 8,5 km · Durata 3:35 h · Salita 559 m · Discesa 559 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T22:00:00.000Z"
+    },
+    "valsusa-san-giorio-geat-montebenedetto": {
+      "url": "https://www.outdooractive.com/it/r/809188687",
+      "publisher": "Val Susa Outdoor (Turismo Torino e Provincia) (Outdooractive)",
+      "name": "SAN GIORIO DI SUSA – Anello del Rifugio GEAT e della Certosa di Montebenedetto",
+      "quote": "Distanza 7,2 km · Durata 2:45 h · Salita 361 m · Discesa 361 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T22:00:00.000Z"
+    },
+    "iseo-colmi": {
+      "url": "https://www.outdooractive.com/it/r/800088421",
+      "publisher": "Visit Lake Iseo (Outdooractive)",
+      "name": "Passeggiata tra I Colmi",
+      "quote": "Distanza 3,6 km · Durata 1:10 h · Salita 150 m · Discesa 102 m · Punto più alto 974 m · Punto più basso 871 m · “seguire le indicazioni bianco/azzurre 3V”",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T12:00:00.000Z"
+    },
+    "altogarda-santuario-montecastello": {
+      "url": "https://www.outdooractive.com/it/r/806982564",
+      "publisher": "Comunità Montana Parco Alto Garda Bresciano (Outdooractive)",
+      "name": "Il Santuario di Montecastello",
+      "quote": "Distanza 4,9 km · Durata 1:55 h · Salita 283 m · Discesa 283 m · Punto più alto 773 m · Punto più basso 503 m · Difficoltà T2",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T12:00:00.000Z"
+    },
+    "altogarda-valle-cartiere": {
+      "url": "https://www.outdooractive.com/it/r/806981779",
+      "publisher": "Comunità Montana Parco Alto Garda Bresciano (Outdooractive)",
+      "name": "Nella Valle delle Cartiere",
+      "quote": "Distanza 2,1 km · Durata 0:40 h · Salita 62 m · Discesa 5 m · Punto più alto 146 m · Punto più basso 85 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T12:00:00.000Z"
+    },
+    "altogarda-nasce-formaggio-tombea": {
+      "url": "https://www.outdooractive.com/it/r/806982416",
+      "publisher": "Comunità Montana Parco Alto Garda Bresciano (Outdooractive)",
+      "name": "Dove nasce il formaggio di Tombea",
+      "quote": "Distanza 1,8 km · Durata 0:45 h · Salita 139 m · Discesa 0 m · Punto più alto 1.326 m · Punto più basso 1.187 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T12:00:00.000Z"
     }
   }
 }

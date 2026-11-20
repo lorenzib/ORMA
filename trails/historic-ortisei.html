@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../styles.css?v=20260916-5">
+<link rel="stylesheet" href="../styles.css?v=20261123-1">
 <style>
   .sp-hero{padding-top:28px;}
   .sp-breadcrumb{font-size:.85rem;color:var(--ink-soft,#666);margin-bottom:14px;}
@@ -35,6 +35,15 @@
   .sp-lift-warning{margin:0 0 16px;padding:12px 14px;border:1px solid #E7C2B8;border-left:4px solid #9C3A25;border-radius:10px;background:#FBF1EE;color:#4A2A22;font-size:14px;line-height:1.55;}
   .sp-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0 26px;}
   .sp-fact{background:rgba(0,0,0,.035);border-radius:10px;padding:10px 14px;}
+  .sp-route-view{margin:18px 0 26px;}
+  .sp-route-view .sp-facts{margin:12px 0 8px;}
+  .sp-view-btn{display:inline-block;font-size:13px;font-weight:700;padding:7px 14px;border:1px solid #9AA79C;color:#2E4034;cursor:pointer;}
+  .sp-view-btn:first-of-type{border-radius:999px 0 0 999px;}
+  .sp-view-btn + .sp-view-input + .sp-view-btn{border-left:none;border-radius:0 999px 999px 0;}
+  .sp-view-input:checked + .sp-view-btn{background:#2E4034;border-color:#2E4034;color:#fff;}
+  .sp-view-input:focus-visible + .sp-view-btn{outline:2px solid #2C5C34;outline-offset:2px;}
+  #spViewOneWay:not(:checked) ~ .sp-facts--one-way,#spViewOneWay:not(:checked) ~ .sp-view-note--one-way,
+  #spViewBack:not(:checked) ~ .sp-facts--back,#spViewBack:not(:checked) ~ .sp-view-note--back{display:none;}
   .sp-fact-k{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft,#666);}
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
@@ -163,7 +172,7 @@
     <span class="dp-badge sp-tag sp-tag--best"><span>Best time: March to November</span></span>
     <span class="dp-badge sp-tag sp-tag--dog" data-season-out="110000000001" hidden><span>Salted roads</span></span>
     <script>(function(){var m=new Date().getMonth();document.querySelectorAll('.sp-tag[data-season-out]').forEach(function(tag){if(tag.getAttribute('data-season-out').charAt(m)==='1')tag.hidden=false;});})();</script>
-    <span class="dp-badge dp-badge--moderate"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Moderate terrain</span></span>
+    <span class="dp-badge dp-badge--moderate"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Moderate risk</span></span>
     <span class="dp-badge dp-badge--neutral"><span>Reviewed by ORMA</span></span>
     
     
@@ -182,7 +191,7 @@
       <div class="sp-fact"><div class="sp-fact-k">Highest point</div><div class="sp-fact-v">1329 m</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Duration</div><div class="sp-fact-v">1 h 25 min</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Terrain</div><div class="sp-fact-v">Town streets and lanes</div></div>
-      <div class="sp-fact"><div class="sp-fact-k">Trail rating</div><div class="sp-fact-v">Moderate terrain</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Trail rating</div><div class="sp-fact-v">Moderate risk</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Area</div><div class="sp-fact-v">Ortisei historic centre – Via Rezia – Via Rascesa – Plan de Mureda, Ortisei · Dolomites, Italy</div></div>
   </div>
 
@@ -233,7 +242,7 @@
     <p>Museum Gherdëina, Ortisei, the board’s start</p>
     <h2>How to follow this route</h2>
     <p><b>Directions:</b> No path number, follow the historic-walk boards: from the Museum Gherdëina to Piazza S. Antonio and along Via Rezia past Villa Venezia, Villa Argentina and the art school to Villa Azzurra; left on Via Stufan past the villas towards the parish church; down an alley to the promenade, under La Curta to the Seceda gondola, along Via Roma to the Rascesa funicular and the Doss and Costa houses; up Via Rascesa, left and along Via Scurcià to Villa Sonnenburg; down to the Mureda crossroads and Plan de Mureda, the oldest villa in Ortisei, to Ponte Pana and over the bridge to the parish church.</p>
-    <p class="sp-route-source">From ORMA's route audit of the official route description. Follow the mapped ORMA line and local signs.</p>
+    <p class="sp-route-source">We wrote these directions from the official route information and checked them against the map. On the walk, follow the line on the map and the local signs.</p>
     <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M12 3c3 3.6 4.8 6.3 4.8 8.8a4.8 4.8 0 11-9.6 0C7.2 9.3 9 6.6 12 3z" fill="#378ADD"></path></svg> Water on trail</h2>
     <ul><li>km 0 · Drinking fountain at the start (5 points)</li><li>km 0.2 · Drinking fountain</li><li>km 0.5 · Drinking fountain (2 points)</li><li>km 2.4 · Drinking fountain (2 points)</li></ul>
     <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M4 11l8-7 8 7" fill="none" stroke="#8A5A16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M6 10v9h12v-9" fill="#D6A038" stroke="#8A5A16" stroke-width="1.6" stroke-linejoin="round"></path><path d="M10 19v-5h4v5" fill="#8A5A16"></path></svg> Rifugi &amp; refreshment</h2>
@@ -278,19 +287,19 @@
     <div class="sp-near-grid">
       <a class="sp-near" href="../trail.html?id=seceda-ridge-trail">
         <span class="sp-near-name">Seceda Ridge Trail</span>
-        <span class="sp-near-meta"><span class="dp-badge dp-badge--moderate"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Moderate terrain</span></span> 10.8 km</span>
+        <span class="sp-near-meta"><span class="dp-badge dp-badge--moderate"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Moderate risk</span></span> 10.8 km</span>
       </a>
       <a class="sp-near" href="../trail.html?id=sentiero-del-trenino">
         <span class="sp-near-name">Sentiero del Trenino</span>
-        <span class="sp-near-meta"><span class="dp-badge dp-badge--low-risk"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>Low-risk terrain</span></span> 12.2 km</span>
+        <span class="sp-near-meta"><span class="dp-badge dp-badge--low-risk"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>Low risk</span></span> 12.2 km</span>
       </a>
       <a class="sp-near" href="../trail.html?id=geotrail-bula-pufels-bulla-osm-11814834">
         <span class="sp-near-name">Geotrail Bula - Pufels - Bulla</span>
-        <span class="sp-near-meta"><span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Caution terrain</span></span> 7 km</span>
+        <span class="sp-near-meta"><span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Higher risk</span></span> 7 km</span>
       </a>
       <a class="sp-near" href="../trail.html?id=pana-raida">
         <span class="sp-near-name">Pana Raida</span>
-        <span class="sp-near-meta"><span class="dp-badge dp-badge--moderate"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Moderate terrain</span></span> 2.7 km</span>
+        <span class="sp-near-meta"><span class="dp-badge dp-badge--moderate"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Moderate risk</span></span> 2.7 km</span>
       </a>
     </div>
     <p>Planning a few days here? Read our area guide: <a href="../guides/dog-friendly-hikes-val-gardena.html">Dog-friendly hikes in Val Gardena</a>.</p>
@@ -301,7 +310,7 @@
   <div class="hp-footer-grid">
     <div>
       <div class="hp-footer-brand"><img src="../logo.svg?v=5" alt=""><span>ORMA</span></div>
-      <p class="hp-footer-blurb">The personalised trail guide for dogs and their humans, so every footprint left on the mountain is a safe one.</p>
+      <p class="hp-footer-blurb">The personalised trail guide for dogs and their humans: what each walk asks of your dog, so you can choose well.</p>
       <div class="hp-footer-get">
         <div class="hp-footer-h">Get the app</div>
         <div class="hp-footer-apps">

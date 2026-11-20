@@ -497,6 +497,36 @@
           ]
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "id": "sentiero-hans-e-paula-steger-access",
+      "properties": {
+        "kind": "access",
+        "lengthM": 31,
+        "source": "OpenStreetMap walking network"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.617004,
+            46.542363
+          ],
+          [
+            11.61716,
+            46.542366
+          ],
+          [
+            11.617256,
+            46.542369
+          ],
+          [
+            11.617405,
+            46.542394
+          ]
+        ]
+      }
     }
   ]
 }

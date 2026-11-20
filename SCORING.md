@@ -87,6 +87,14 @@ Version `1.1.0` added bounded, session-only effective limits for the existing
 “Adjust for today” control. Terrain is bounded from 0 through 2, distance from
 2 through 18 km, and ascent from 100 through 1,200 m.
 
+For a real dog (a subject built by `effectiveOverrides()`, which carries
+`_profile`), the steepness limit comes from the engine's own rule, including
+the owner's `steepnessLimit` answer from the dog setup. The older fitness-only
+`terrain` value in that subject is passed as a limit only when someone changed
+steepness by hand (`_steepnessAdjusted`), or for a subject with no profile
+behind it. Until 19 Nov 2026 it was always passed, so the 1.9.0 and 1.10.0
+steepness rules never reached signed-in or set-up dogs.
+
 High fitness is finite: it means at most terrain rank 2, 18 km, and 1,200 m
 ascent before life-stage, size, and health adjustments.
 

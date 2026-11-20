@@ -93,6 +93,8 @@ describe('completing a dog from the homepage', () => {
     const block = script.slice(script.indexOf('function liRecommendationExplanationHtml('),
       script.indexOf('function liScheduleNewMatchSync('));
     expect(block).toContain("(view.cardCautionItems || []).filter(ownLine)");
+    expect(block).not.toContain('actionableUnknowns');
+    expect(block).not.toContain('cardTrailUnknowns');
     expect(block).not.toContain('view.unknowns');
   });
 

@@ -68,7 +68,7 @@
       point:{ lat:point.lat, lng:point.lng },
       label:declared && declared.label
         ? declared.label
-        : (trail.curated === false ? tx('Mapped route start') : tx('Recommended starting point')),
+        : (trail.curated === false ? tx('Route start') : tx('Recommended starting point')),
       kind:trail.curated === false ? 'mapped-start' : 'recommended-start',
     };
   }
@@ -104,7 +104,7 @@
     if(!segments.length) return [];
 
     const steps = [];
-    let action = tx('Follow the mapped path');
+    let action = tx('Follow the path');
     let heading = segments[0].bearing;
     let distanceM = 0;
     segments.forEach((segment, index) => {

@@ -308,8 +308,21 @@ function routeFor(trail){
         type:'LineString',
         coordinates:trail.path.map(([lat, lng]) => [lng, lat]),
       },
-    }],
+    }].concat(accessFeatureFor(trail)),
   };
+}
+
+// The walk-in from the start flag to the walk (data/start-access-paths.json),
+// a second feature after the walk, which stays features[0].
+function accessFeatureFor(trail){
+  const access = trail.accessPath;
+  if(!access || !Array.isArray(access.path) || access.path.length < 2) return [];
+  return [{
+    type:'Feature',
+    id:`${trail.id}-access`,
+    properties:{ kind:'access', lengthM:access.lengthM, source:'OpenStreetMap walking network' },
+    geometry:{ type:'LineString', coordinates:access.path.map(([lat, lng]) => [lng, lat]) },
+  }];
 }
 
 // "3.9 hours" read as 3 h 9 min; the page says 3 h 55 min, as the site does.
@@ -482,7 +495,7 @@ function stalePackages(trails, packagesDir = PACKAGES_DIR){
 }
 
 async function buildPackage(trail, options){
-  const { bounds, height } = corridorFor(trail.path);
+  const { bounds, height } = corridorFor(trail.path.concat(trail.accessPath ? trail.accessPath.path : []));
   const extract = await extractFor(trail.id, bounds, options.refresh);
   const dir = path.join(PACKAGES_DIR, trail.id);
   fs.mkdirSync(dir, { recursive:true });

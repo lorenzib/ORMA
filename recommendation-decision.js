@@ -75,7 +75,7 @@
     'trail.surface-hazards.none-known': 'no recorded surface hazards',
     'trail.water.reviewed': 'water on the route',
     'trail.dog-access.allowed': 'dog access',
-    'trail.dog-access.leash': 'dog access on a leash',
+    'trail.dog-access.leash': 'dog access on a lead',
     'trail.livestock.none': 'no livestock recorded',
     'trail.wildlife.low': 'low wildlife activity',
     'trail.road.none': 'no road sections',
@@ -103,7 +103,7 @@
     'trail.surface-hazards.none-known': () => tx('No surface hazards are recorded.'),
     'trail.water.reviewed': () => tx('There is water on the route.'),
     'trail.dog-access.allowed': () => tx('Dogs are allowed.'),
-    'trail.dog-access.leash': () => tx('Dogs are allowed on a leash.'),
+    'trail.dog-access.leash': () => tx('Dogs are allowed on a lead.'),
     'trail.livestock.none': () => tx('No livestock is recorded.'),
     'trail.wildlife.low': () => tx('Wildlife activity is low.'),
     'trail.road.none': () => tx('There are no road sections.'),
@@ -299,7 +299,6 @@
     'trail.shade.good': () => tx('Plenty of shade'),
     'conditions.heat.low': () => tx('Cool today'),
     'trail.season.inside': () => tx('In season'),
-    'trail.dog-access.allowed': () => tx('Dogs allowed'),
     'trail.dog-access.leash': () => tx('Dogs on a lead'),
     'trail.livestock.none': () => tx('No livestock'),
     'trail.wildlife.low': () => tx('Little wildlife'),
@@ -310,17 +309,23 @@
   function fitChip(entry, source, tr, extra){
     const vars = { ...extra, ...(source.vars || {}) };
     if(entry.code === 'trail.terrain.within-tolerance'){
-      const level = steepnessLevel(source.vars && source.vars.terrain);
+      // A steep walk that fits says why it is listed as a fit: "Steep" alone
+      // under "Fits Teo" reads like a mistake.
+      const rank = source.vars && source.vars.terrain;
+      const level = steepnessLevel(rank);
+      if(level && rank > 0 && vars.name) return tr('recommendation.chip.steepFits', tx('{level}, fine for {name}'), { ...vars, level });
       if(level) return level;
     }
     const key = Object.keys(FIT_CHIPS).find(code => entry.code === code || entry.code.startsWith(`${code}.`));
     if(!key) return rowTopic(entry.code);
     return tr(`recommendation.chip.${key}`, FIT_CHIPS[key](), vars);
   }
-  // Of everything the score could not look at, only these change what an
-  // owner does before setting out. The rest ("route details are based on map
-  // data") is what the safety notes further down the page already say.
-  const ACTIONABLE_UNKNOWNS = Object.freeze(['trail.dog-access.unknown']);
+  // Dog rules are said only when they restrict the walk: a ban (a hard stop),
+  // seasonal limits (a caution) or a lead (a chip). "Dogs allowed" says
+  // nothing on a site where every walk takes dogs, and an unknown rule is not
+  // said at all (owner, 19 Nov).
+  const SILENT_FITS = Object.freeze(['trail.dog-access.allowed']);
+  const SILENT_UNKNOWNS = Object.freeze(['trail.dog-access.unknown']);
 
   function steepnessFact(vars){
     const level = steepnessLevel(vars && vars.terrain);
@@ -466,8 +471,10 @@
     // Hard stops always lead: nothing below them changes the decision.
     const cautions = messages(recommendation.hardStops, translate, extra)
       .concat(messages(rankedCautions, translate, extra));
+    // Every ORMA walk should take dogs (owner, 19 Nov 2026): a dog rule is
+    // said only when it restricts the walk, never "we haven't found it".
     const rawUnknowns = (Array.isArray(recommendation.unknowns) ? recommendation.unknowns : [])
-      .filter(Boolean);
+      .filter(item => item && !SILENT_UNKNOWNS.includes(item.code));
     const unknowns = messages(rawUnknowns, translate, extra);
     // The unknown codes encode their owner: dog.* gaps are fixable by the
     // user right now (profile fields); everything else is trail data.
@@ -485,13 +492,12 @@
       .map(item => cardMessage(item, translate, tr, extra)).filter(Boolean);
     const cardCautions = cardMessages(recommendation.hardStops).concat(cardMessages(rankedCautions));
     const cardTrailUnknowns = cardMessages(rawUnknowns.filter(item => !isDogGap(item)));
-    // The same two lists with each line's code, for a card that says some of
-    // them its own way (the homepage card's season line and dog-rule note).
+    // The cautions with each line's code, so the homepage card can leave out
+    // the one its season line already says.
     const withCodes = items => (Array.isArray(items) ? items : []).filter(Boolean)
       .map(item => ({ code:item.code || '', text:cardMessage(item, translate, tr, extra) }))
       .filter(entry => entry.text);
     const cardCautionItems = withCodes(recommendation.hardStops).concat(withCodes(rankedCautions));
-    const cardTrailUnknownItems = withCodes(rawUnknowns.filter(item => !isDogGap(item)));
 
     // The trail page's rows (see ROW_TOPICS): what stops the walk, then what
     // cost points, most first, then notes, then everything that fits.
@@ -528,14 +534,11 @@
     // costs nothing, so a row for it would sit beside a 100% as if it agreed.
     const notChecked = cardTrailUnknowns.slice(0, 5);
     // The short version the trail page and card now show: the reasons that
-    // lower the score (or stop it), in the order above, then the one or two
-    // unknowns an owner acts on; and what fits, as chips.
-    const actionableUnknowns = cardMessages(rawUnknowns.filter(item =>
-      ACTIONABLE_UNKNOWNS.includes(item.messageKey || item.code)));
-    const shortReasons = factorRows.filter(row => row.tone !== 'ok').map(row => ({ text:row.detail, tone:row.tone }))
-      .concat(actionableUnknowns.map(text => ({ text, tone:'note' })));
+    // lower the score (or stop it), in the order above, and what fits, as
+    // chips. Unknowns are not listed: none of them is worth a line.
+    const shortReasons = factorRows.filter(row => row.tone !== 'ok').map(row => ({ text:row.detail, tone:row.tone }));
     const fitChips = breakdownFactors
-      .filter(entry => entry.kind === 'positive')
+      .filter(entry => entry.kind === 'positive' && !SILENT_FITS.includes(entry.code))
       .map(entry => fitChip(entry, allFactors.find(factor => factor.code === entry.code) || entry, tr, extra))
       .filter((chip, index, all) => chip && all.indexOf(chip) === index);
 
@@ -560,7 +563,6 @@
       notChecked,
       shortReasons,
       fitChips,
-      actionableUnknowns,
       cardVerdict,
       confidenceLabel:confidenceWords(recommendation.confidence, translate) || null,
       dogGapFields,
@@ -573,7 +575,7 @@
       evidenceTier:recommendation.evidenceTier || 'unknown',
       contextLabel:dogName
         ? tr('recommendation.context.dog', 'Recommendation for {name}', { name:dogName })
-        : tr('recommendation.context.guest', 'Unpersonalized planning view'),
+        : tr('recommendation.context.guest', 'General view: no dog added'),
       dogName:dogName || null,
       reasons:reasons.slice(0, 4),
       cautions:cautions.slice(0, 4),
@@ -593,14 +595,13 @@
       cardCautions:cardCautions.slice(0, 4),
       cardTrailUnknowns:cardTrailUnknowns.slice(0, 5),
       cardCautionItems:cardCautionItems.slice(0, 4),
-      cardTrailUnknownItems:cardTrailUnknownItems.slice(0, 5),
       additionalUnknowns:Math.max(0, unknowns.length - 5),
       heroSummary:dogName
         ? tr('recommendation.hero.dog', '{conclusion} for {name}.', {
           conclusion:tr(`recommendation.category.${recommendation.category || 'unavailable'}`, category.label),
           name:dogName,
         })
-        : tr('recommendation.hero.guest', '{conclusion} in an unpersonalized planning view.', {
+        : tr('recommendation.hero.guest', '{conclusion} for a typical dog. Add your dog for a personal match.', {
           conclusion:tr(`recommendation.category.${recommendation.category || 'unavailable'}`, category.label),
         }),
     };

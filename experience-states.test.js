@@ -19,8 +19,8 @@ describe('empty states and long-form navigation', () => {
     document.body.innerHTML = read('journal.html');
     expect(document.querySelector('#jnEmpty.empty-state')).not.toBeNull();
     // 2026-07 design pass: "+ Log a walk" plus a live-tracking alternative.
-    expect(document.getElementById('jnEmptyLogBtn').textContent).toMatch(/log a walk/i);
-    expect(document.getElementById('jnEmptyLiveBtn').textContent).toMatch(/track live/i);
+    expect(document.getElementById('jnEmptyLogBtn').textContent).toMatch(/add a past walk/i);
+    expect(document.getElementById('jnEmptyLiveBtn').textContent).toMatch(/record it live/i);
   });
 
   test('journal lifecycle and editing controls are translation-backed', () => {

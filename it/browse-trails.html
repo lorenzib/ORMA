@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css?v=20260916-5">
+<link rel="stylesheet" href="/styles.css?v=20261123-1">
 <style>
   /* Guest bar, the homepage component reused verbatim; CTA is a link here */
   a.hp-guestbar-cta{display:inline-flex;align-items:center;text-decoration:none;white-space:nowrap;}
@@ -199,7 +199,8 @@
   .browse-map-key__title{color:#66766B;font-size:10px;font-weight:700;letter-spacing:.03em;}
   .browse-map-key__row{display:flex;align-items:center;gap:7px;}
   @media(max-width:760px){.browse-map-key{bottom:58px;}}
-  .browse-map-key__dot{width:10px;height:10px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(46,64,52,.18);}
+  /* A short line, since the map draws walks as lines (dots only zoomed far out). */
+  .browse-map-key__dot{width:16px;height:4px;border-radius:2px;border:1px solid #fff;box-shadow:0 0 0 1px rgba(46,64,52,.18);}
   .browse-map-popup a{color:#32697E;font-size:11.5px;font-weight:800;text-decoration:none;}
   .browse-map-pane .maplibregl-popup-content{border:1px solid rgba(46,64,52,.12);border-radius:13px;padding:11px 12px;box-shadow:0 10px 30px rgba(35,53,40,.18);}
   .browse-map-pane .maplibregl-ctrl-top-right{top:8px;right:8px;}
@@ -374,7 +375,7 @@
             <div class="li-seg" id="brMatchSeg"></div>
           </div>
           <div class="browse-filter-group">
-            <div class="li-fsec" data-i18n="browse.filters.terrain">Terreno</div>
+            <div class="li-fsec" data-i18n="browse.filters.terrain">Pendenza</div>
             <div class="li-seg" id="brTerrainSeg"></div>
           </div>
           <button type="button" class="li-apply" id="browseFiltersApply" data-i18n="browse.filters.show">Mostra sentieri</button>
@@ -405,12 +406,12 @@
           <option value="caution">Attenzione</option>
         </select>
       </label>
-      <label class="browse-field browse-field--advanced"><span data-i18n="account.profile.terrainTolerance">Tolleranza del terreno</span>
-        <select id="browseTerrain" aria-label="Filtra per tolleranza al terreno" data-i18n-aria-label="browse.filters.filterTerrain">
-          <option value="">Qualsiasi terreno</option>
-          <option value="soft">Solo superfici dolci</option>
-          <option value="mixed">Fino a terreno misto</option>
-          <option value="rocky">Anche terreno roccioso</option>
+      <label class="browse-field browse-field--advanced"><span data-i18n="browse.filters.terrain">Pendenza</span>
+        <select id="browseTerrain" aria-label="Filtra per pendenza" data-i18n-aria-label="browse.filters.filterTerrain">
+          <option value="" data-i18n="browse.filters.anySteepness">Qualsiasi pendenza</option>
+          <option value="soft" data-i18n="filters.chip.terrainSoft">Solo pendenze dolci</option>
+          <option value="mixed" data-i18n="filters.chip.terrainMixed">Fino a pendenze moderate</option>
+          <option value="rocky" data-i18n="filters.chip.terrainRocky">Anche pendenze ripide</option>
         </select>
       </label>
       <label class="browse-field browse-field--advanced"><span data-i18n="page.browseTrails.shadeHeat">Ombra e caldo</span>
@@ -468,7 +469,7 @@
       <aside class="browse-compare-note" data-i18n="page.browseTrails.decidingBetweenTrailsPickCompare"><b>Indeciso tra più sentieri?</b> Scegli <em>Confronta</em> su due o tre e mettiamo a confronto distanza, terreno, ombra, acqua e adattabilità al cane.</aside>
       <div class="browse-results-meta">
         <span id="browseResultCount" aria-live="polite"></span>
-        <span class="browse-result-accessible" data-i18n="browse.trustNote">Le informazioni sui sentieri combinano i dati del percorso mappato e le fonti ORMA disponibili.</span>
+        <span class="browse-result-accessible" data-i18n="browse.trustNote">Le informazioni sui sentieri vengono dai dati della mappa e dalle fonti di ORMA.</span>
         <button type="button" id="browseClear" class="browse-clear" hidden data-i18n="browse.clearFilters">Azzera i filtri</button>
       </div>
       <div class="simple-grid" id="simpleTrailsList"></div>
@@ -688,6 +689,7 @@
 <a href="/it/trails/panoramarundweg-concordia-360.html" style="display:block;color:inherit;">Panoramarundweg Concordia 360°</a>
 <a href="/it/trails/panoramaweg-in-feldthurns.html" style="display:block;color:inherit;">Panoramaweg in Feldthurns</a>
 <a href="/it/trails/panoramaweg-burgraviato-merano.html" style="display:block;color:inherit;">Panoramaweg, Burgraviato – Merano</a>
+<a href="/it/trails/panoramaweg-luesen.html" style="display:block;color:inherit;">Sentiero panoramico di Luson</a>
 <a href="/it/trails/panoramaweg-oltradige-bassa-atesina.html" style="display:block;color:inherit;">Panoramaweg, Oltradige – Bassa Atesina</a>
 <a href="/it/trails/olang-bruneck-panoramic-path.html" style="display:block;color:inherit;">Sentiero panoramico da Olang a Bruneck</a>
 <a href="/it/trails/monte-vederna.html" style="display:block;color:inherit;">Passeggiata a Monte Vederna – Croce degli Alpini</a>
@@ -726,6 +728,7 @@
 <a href="/it/trails/prato-piazza-platzwiese.html" style="display:block;color:inherit;">Prato Piazza (Plätzwiese)</a>
 <a href="/it/trails/proazei-auronzo.html" style="display:block;color:inherit;">Anello di Proazei sopra il lago di Auronzo</a>
 <a href="/it/trails/promenadenweg-tiers.html" style="display:block;color:inherit;">Promenadenweg, Tires</a>
+<a href="/it/trails/pyramidenrundweg-steinegg.html" style="display:block;color:inherit;">Giro delle piramidi di terra a Collepietra</a>
 <a href="/it/trails/rafeil-rundweg.html" style="display:block;color:inherit;">Rafeil-Rundweg</a>
 <a href="/it/trails/raida-dl-luech.html" style="display:block;color:inherit;">Raida dl luech</a>
 <a href="/it/trails/ranui-to-zannes.html" style="display:block;color:inherit;">Da Ranui a Zannes</a>
@@ -830,6 +833,7 @@
 <a href="/it/trails/torggeleweg.html" style="display:block;color:inherit;">Törggeleweg</a>
 <a href="/it/trails/transacqua.html" style="display:block;color:inherit;">Transacqua</a>
 <a href="/it/trails/tre-cime-di-lavaredo-classic-circuit.html" style="display:block;color:inherit;">Il giro classico delle Tre Cime di Lavaredo</a>
+<a href="/it/trails/troi-da-la-tambres-ortisei.html" style="display:block;color:inherit;">Troi da la Tambres sopra Ortisei, andata e ritorno</a>
 <a href="/it/trails/monte-pana-troi-unika.html" style="display:block;color:inherit;">Troi Unika, sentiero d’arte sul Monte Pana</a>
 <a href="/it/trails/tru-di-artisc.html" style="display:block;color:inherit;">Tru di artisć</a>
 <a href="/it/trails/tru-di-lec.html" style="display:block;color:inherit;">Tru di Lëc</a>
@@ -928,19 +932,26 @@
 <a href="/it/trails/tour-de-chichilianne-loop.html" style="display:block;color:inherit;">Tour de Chichilianne</a>
 <p style="font-weight:700;color:var(--ink);break-inside:avoid;">Lombardia, Italia</p>
 <a href="/it/trails/arnoga-rifugio-federico-val-viola.html" style="display:block;color:inherit;">Arnoga – Rifugio Federico, Val Viola</a>
+<a href="/it/trails/funghi-di-terra-asso-rezzago.html" style="display:block;color:inherit;">Da Asso ai funghi di terra di Rezzago</a>
+<a href="/it/trails/colle-della-maresana-bergamo.html" style="display:block;color:inherit;">Da Bergamo al Colle della Maresana, andata e ritorno</a>
 <a href="/it/trails/brogno-nuvolone-viewpoint.html" style="display:block;color:inherit;">Da Brogno al belvedere del Nuvolone</a>
 <a href="/it/trails/brunate-churches-loop.html" style="display:block;color:inherit;">Anello delle chiese di Brunate</a>
 <a href="/it/trails/campo-moro-passo-di-campagneda.html" style="display:block;color:inherit;">Da Campo Moro al Passo di Campagneda</a>
 <a href="/it/trails/caglio-campoe-cassina-enco.html" style="display:block;color:inherit;">Da Campoè a Cassina Enco</a>
 <a href="/it/trails/caslino-derba-and-the-lambro.html" style="display:block;color:inherit;">Caslino d’Erba e il Lambro</a>
 <a href="/it/trails/chiareggio-rifugi-porro-ventina.html" style="display:block;color:inherit;">Da Chiareggio ai rifugi Porro e Ventina</a>
+<a href="/it/trails/cima-rest-formaggio-tombea-magasa.html" style="display:block;color:inherit;">Cima Rest, dove nasce il formaggio Tombea, andata e ritorno</a>
 <a href="/it/trails/eupilio-madonna-della-neve.html" style="display:block;color:inherit;">Eupilio e la Madonna della Neve</a>
 <a href="/it/trails/isola-laghi-del-baldiscio.html" style="display:block;color:inherit;">Da Isola ai laghi del Baldiscio</a>
 <a href="/it/trails/lasnigo-barni-crezzo-lake.html" style="display:block;color:inherit;">Lasnigo, Barni e il lago di Crezzo</a>
 <a href="/it/trails/monte-scioscia-viewpoint-loop.html" style="display:block;color:inherit;">Anello del belvedere del Monte Scioscia</a>
 <a href="/it/trails/passo-del-giovo-rifugio-sommafiume.html" style="display:block;color:inherit;">Dal Passo del Giovo al Rifugio Sommafiume</a>
 <a href="/it/trails/pognana-lario-sculpture-walk.html" style="display:block;color:inherit;">Passeggiata delle sculture di Pognana Lario</a>
+<a href="/it/trails/piani-di-artavaggio-reggetto.html" style="display:block;color:inherit;">Da Reggetto ai Piani di Artavaggio, andata e ritorno</a>
+<a href="/it/trails/i-colmi-santa-maria-del-giogo.html" style="display:block;color:inherit;">Da Santa Maria del Giogo ai Colmi, andata e ritorno</a>
 <a href="/it/trails/sentiero-del-viandante-varenna-bellano.html" style="display:block;color:inherit;">Sentiero del Viandante: Varenna – Bellano</a>
+<a href="/it/trails/santuario-di-montecastello-tignale.html" style="display:block;color:inherit;">Anello del santuario di Montecastello, Tignale</a>
+<a href="/it/trails/valle-delle-cartiere-toscolano-maderno.html" style="display:block;color:inherit;">Nella Valle delle Cartiere, Toscolano Maderno, andata e ritorno</a>
 <p style="font-weight:700;color:var(--ink);break-inside:avoid;">Friuli Venezia Giulia, Italia</p>
 <a href="/it/trails/anello-casera-vas-monte-buoi.html" style="display:block;color:inherit;">Anello Casera Vas - Casera Monte Buoi</a>
 <a href="/it/trails/anello-lago-di-verzegnis.html" style="display:block;color:inherit;">Anello del Lago di Verzegnis</a>
@@ -973,7 +984,16 @@
 <a href="/it/trails/campello-monti-colle-usciolo.html" style="display:block;color:inherit;">Da Campello Monti al Colle dell’Usciolo</a>
 <a href="/it/trails/campello-monti-lago-capezzone.html" style="display:block;color:inherit;">Da Campello Monti al Lago del Capezzone</a>
 <a href="/it/trails/cervatto-madonna-del-balmone.html" style="display:block;color:inherit;">Da Cervatto alla Madonna del Balmone</a>
+<a href="/it/trails/carbonaie-path-talucco.html" style="display:block;color:inherit;">Sentiero delle Carbonaie al Talucco</a>
+<a href="/it/trails/fondo-tissone-tallorno-loop.html" style="display:block;color:inherit;">Anello Fondo, Tissone e Tallorno in Valchiusella</a>
 <a href="/it/trails/giro-del-ginepro-carcoforo.html" style="display:block;color:inherit;">Giro del Ginepro da Carcoforo</a>
+<a href="/it/trails/juniper-trail-foresto.html" style="display:block;color:inherit;">Sentiero dei Ginepri a Foresto</a>
+<a href="/it/trails/lower-owl-trail-venaus.html" style="display:block;color:inherit;">Sentiero dei Gufi basso a Venaus, andata e ritorno</a>
+<a href="/it/trails/mulino-turcin-loop-lanzo.html" style="display:block;color:inherit;">Anello del Mulino Turcin a Lanzo Torinese</a>
+<a href="/it/trails/orrido-chouque-margrit-chianocco.html" style="display:block;color:inherit;">L’Orrido e il Chouqué di Margrit a Chianocco</a>
+<a href="/it/trails/geat-montebenedetto-loop-san-giorio.html" style="display:block;color:inherit;">Anello del Rifugio GEAT e della Certosa di Montebenedetto</a>
+<a href="/it/trails/sentiero-delle-anime-traversella.html" style="display:block;color:inherit;">Sentiero delle Anime a Traversella</a>
+<a href="/it/trails/vineyards-almond-trees-loop-giaglione.html" style="display:block;color:inherit;">Le alture delle viti e dei mandorli a Giaglione</a>
 <p style="font-weight:700;color:var(--ink);break-inside:avoid;">Tirolo e Carinzia, Austria</p>
 <a href="/it/trails/alpine-cheese-walk-sonnenalpe-nassfeld.html" style="display:block;color:inherit;">Passeggiata dei formaggi d’alpeggio, Sonnenalpe Nassfeld</a>
 <a href="/it/trails/auernig-ridge-walk-nassfeld.html" style="display:block;color:inherit;">Passeggiata in cresta sull’Auernig, Nassfeld</a>
@@ -1029,7 +1049,7 @@
   <div class="hp-footer-grid">
     <div>
       <div class="hp-footer-brand"><img src="/logo.svg?v=5" alt=""><span>ORMA</span></div>
-      <p class="hp-footer-blurb">La guida ai sentieri personalizzata per i cani e i loro umani, perché ogni impronta lasciata in montagna sia sicura.</p>
+      <p class="hp-footer-blurb">La guida ai sentieri personalizzata per i cani e i loro umani: cosa chiede ogni percorso al tuo cane, per scegliere bene.</p>
       <div class="hp-footer-get">
         <div class="hp-footer-h">Scarica l’app</div>
         <div class="hp-footer-apps">
@@ -1089,31 +1109,31 @@
 </footer>
 
 <script src="/mobile-nav.js?v=20261030-1"></script>
-<script src="/i18n.js?v=20261118-1"></script>
+<script src="/i18n.js?v=20261120-7"></script>
 <script src="/trust/evidence-v1.js?v=20261006-2"></script>
-<script src="/trail-trust.js?v=20261005-1"></script>
+<script src="/trail-trust.js?v=20261118-1"></script>
 <script src="/scoring/recommendation-v1.js?v=20260917-1"></script>
-<script src="/scoring/recommendation-adapters-v1.js?v=20260917-1"></script>
+<script src="/scoring/recommendation-adapters-v1.js?v=20261119-7"></script>
 <script src="/scoring-conditions.js?v=1"></script>
 <script src="/route-return.js?v=20261106-2"></script>
 <script src="/scoring.js?v=20260815-4"></script>
 <script type="module" src="/firebase-init.js?v=20261107-1"></script>
 <script src="/icon-system.js?v=20260815-4" defer></script>
 <script src="/trail-card-visual.js?v=20260902-1" defer></script>
-<script src="/regions-runtime-manifest.js?v=20261007-1"></script>
+<script src="/regions-runtime-manifest.js?v=20261121-7"></script>
 <script src="/regional-trails-loader.js?v=20261104-1" data-default-region="all"></script>
 <script src="/regions-config.js"></script>
 <script src="/guest-context.js?v=20261030-1" defer></script>
 <script src="/auth-ui.js?v=20261030-1" defer></script>
 <script src="/discovery-state.js?v=20261007-1" defer></script>
-<script src="/trail-season-words.js?v=20261119-1" defer></script>
+<script src="/trail-season-words.js?v=20261120-7" defer></script>
 <script src="/discovery-filters.js?v=20261108-1" defer></script>
 <script src="/comparison-state.js?v=20260815-4" defer></script>
 <script src="/area-dropdown.js?v=20260823-2"></script>
 <script src="/map-runtime.js?v=20260908-2"></script>
 <script src="/match-verdict.js?v=20261002-1"></script>
-<script src="/map-style.js?v=20261029-2"></script>
-<script src="/browse-map.js?v=20261111-1"></script>
+<script src="/map-style.js?v=20261120-2"></script>
+<script src="/browse-map.js?v=20261119-1"></script>
 <script>
   // A walk's name as the reader sees it (i18n.js); search also keeps the English one.
   function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
@@ -1283,7 +1303,7 @@
     // the trail page itself, at the moment it's actually wanted.
     const PER_PAGE = 15;
     const allowedCountries = ['all', 'italy', 'france', 'austria', 'switzerland'];
-    const allowedRegions = ['all', 'dolomites', 'savoy', 'frenchalps', 'lombardy', 'friuli', 'aosta', 'tyrol', 'switzerland'];
+    const allowedRegions = ['all', 'dolomites', 'savoy', 'frenchalps', 'lombardy', 'friuli', 'aosta', 'piedmont', 'tyrol', 'switzerland'];
     // A trail's country comes from its region's row in regions-config.js.
     const COUNTRY_VALUE = { IT:'italy', FR:'france', AT:'austria', CH:'switzerland' };
     function trailCountry(trail){
@@ -1462,10 +1482,37 @@
     // personalisation that did not happen, on the one line the reader is meant
     // to trust. A real dog keeps its name; the default says what it is, in the
     // same words recommendation-decision.js and the trail page already use.
-    function scoredSubjectLabel(){
+    function scoredSubjectName(){
       const dog = dogValue === 'custom' ? deviceDogProfile() : null;
-      if(dog && dog.name) return bt('browse.card.forDog', 'For {name}', { name: dog.name });
-      return bt('browse.card.forDog', 'For {name}', { name: window.t ? window.t('recommendation.subject.guest') : 'a medium dog' });
+      if(dog && dog.name) return dog.name;
+      return window.t ? window.t('recommendation.subject.guest') : 'a medium dog';
+    }
+
+    function scoredSubjectLabel(){
+      return bt('browse.card.forDog', 'For {name}', { name: scoredSubjectName() });
+    }
+
+    // The steepness caution, when it is part of what lowered the match. A
+    // gentle-only dog moves a third of the walks down a band, and a card that
+    // then only says "Water access listed at 2 points" gives no reason for it.
+    function steepnessCaution(recommendation){
+      const cautions = recommendation && Array.isArray(recommendation.cautions) ? recommendation.cautions : [];
+      const entry = cautions.find(item => item && item.code === 'trail.terrain.above-tolerance');
+      if(!entry) return null;
+      const steepest = Number(entry.vars && entry.vars.steepest);
+      return { steepest: Number.isFinite(steepest) && steepest > 0 ? Math.round(steepest) : null };
+    }
+
+    // Said in the trail page's words (recommendation-decision.js), which the
+    // Italian phrase file already carries.
+    function steepnessReason(steepness){
+      const phrase = window.DoloPawsI18n && typeof window.DoloPawsI18n.phrase === 'function'
+        ? window.DoloPawsI18n.phrase
+        : (text, vars) => String(text).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m));
+      const name = scoredSubjectName();
+      return steepness.steepest
+        ? phrase('Steeper than {name} likes, up to {steepest}% in places.', { name, steepest: steepness.steepest })
+        : phrase('Steeper than {name} likes.', { name });
     }
 
     function matchScore(trail){
@@ -1481,8 +1528,9 @@
         const recommendation=window.DoloPawsScoring.recommendTrail(
           trail, effectiveOverrides(activeDogProfile(), null),
           window.ORMAScoringConditions && window.ORMAScoringConditions.forTrail(trail));
-        return verdict ? verdict.verdictFor(recommendation)
+        const result = verdict ? verdict.verdictFor(recommendation)
           : { score:recommendation.score, label:'', color:'', tone:'check' };
+        return { ...result, steepness:steepnessCaution(recommendation) };
       } catch(e){
         return verdict ? verdict.verdictFor(0) : { score:0, label:'', color:'', tone:'check' };
       }
@@ -1576,6 +1624,7 @@
       { value: 'lombardy', label: bt('browse.geo.lombardy', 'Lombardy'), country:'italy', match: t => t.region === 'lombardy' },
       { value: 'friuli', label: bt('browse.geo.friuli', 'Friuli Venezia Giulia'), country:'italy', match: t => t.region === 'friuli' },
       { value: 'aosta', label: bt('browse.geo.aosta', 'Valle d’Aosta'), country:'italy', match: t => t.region === 'aosta' },
+      { value: 'piedmont', label: bt('browse.geo.piedmont', 'Piedmont'), country:'italy', match: t => t.region === 'piedmont' },
       { value: 'tyrol', label: bt('browse.geo.tyrol', 'Tyrol & Carinthia'), country:'austria', match: t => t.region === 'tyrol' },
       { value: 'switzerland', label: bt('browse.geo.swissRegion', 'Switzerland'), country:'switzerland', match: t => t.region === 'switzerland' },
     ];
@@ -1700,7 +1749,7 @@
         { label:bt('hp.filters.any', 'Any'), v:'all' }, { label:bt('hp.filters.lowRisk', 'Low risk'), v:'low-risk' }, { label:bt('hp.filters.moderate', 'Moderate'), v:'moderate' }, { label:bt('hp.filters.caution', 'Caution'), v:'caution' },
       ], risk.value, v => { risk.value = v; });
       brSeg('brTerrainSeg', [
-        { label:bt('hp.filters.any', 'Any'), v:'' }, { label:bt('hp.filters.gentle', 'Gentle only'), v:'soft' }, { label:bt('hp.filters.mixed', 'Up to mixed'), v:'mixed' }, { label:bt('hp.filters.rocky', 'Rocky is okay'), v:'rocky' },
+        { label:bt('hp.filters.any', 'Any'), v:'' }, { label:bt('hp.filters.gentle', 'Gentle only'), v:'soft' }, { label:bt('hp.filters.mixed', 'Up to moderate'), v:'mixed' }, { label:bt('hp.filters.rocky', 'Steep is okay'), v:'rocky' },
       ], terrain.value, v => { terrain.value = v; });
       brSeg('brMatchSeg', [
         { label:bt('hp.filters.any', 'Any'), v:'' }, { label:'60%+', v:'60' }, { label:'75%+', v:'75' }, { label:'85%+', v:'85' },
@@ -1902,18 +1951,21 @@
         const provenance = icons
           ? icons.badgeHtml(provStyle, provenanceLabel)
           : `<span class="badge-pill badge-${provStyle}">${provenanceLabel}</span>`;
-        // A one-way walk is shown, and scored, there and back, so nobody
-        // plans 3.5 km for a 7 km day (route-return.js).
+        // A one-way walk is shown, and scored, one way as its source gives it,
+        // and says so, so nobody plans 3.5 km for a 7 km day (route-return.js).
         const routeReturn = window.ORMARouteReturn;
-        const shown = routeReturn && routeReturn.isOneWay(t) ? routeReturn.forView(t) : t;
+        const oneWayWalk = !!(routeReturn && routeReturn.isOneWay(t));
+        const shown = oneWayWalk ? routeReturn.forView(t) : t;
         const back = shown !== t;
-        const meta = [shown.distance ? (back ? bt('card.thereAndBack', '{km} km there and back', { km: shown.distance }) : `${num(shown.distance)} km`) : null, shown.elevation != null ? bt('card.climb', '{m} m climb', { m: shown.elevation }) : null, shown.hours ? `${back ? '≈ ' : ''}${num(shown.hours)} h` : null, t.area]
+        const meta = [shown.distance ? (back ? bt('card.thereAndBack', '{km} km there and back', { km: shown.distance }) : oneWayWalk ? bt('card.oneWay', '{km} km one way', { km: num(shown.distance) }) : `${num(shown.distance)} km`) : null, shown.elevation != null ? bt('card.climb', '{m} m climb', { m: shown.elevation }) : null, shown.hours ? `${back ? '≈ ' : ''}${num(shown.hours)} h` : null, t.area]
           .filter(Boolean).join(' · ');
         const verdict = matchVerdict(t);
         const tier = verdict.label;
         const tierClass = verdict.tone;
         const reasonIsWater = !!(t.waterSources && t.waterSources.length);
-        const reason = reasonIsWater
+        // A strong option keeps its water or shade line: "Steeper than Teo likes"
+        // under "Strong option" reads as a contradiction.
+        const reason = verdict.steepness && verdict.category !== 'strong-option' ? steepnessReason(verdict.steepness) : reasonIsWater
           ? (t.waterSources.length === 1 ? bt('browse.card.waterOne', 'Water access listed at one point') : bt('browse.card.waterMany', 'Water access listed at {n} points', { n: t.waterSources.length }))
           : (t.shadeCoverage >= 50 ? bt('browse.card.shade', '{pct}% shade along the route', { pct: t.shadeCoverage }) : '');
         const openHref = `trail.html?id=${encodeURIComponent(t.id)}&from=${encodeURIComponent(browseStateTarget())}`;

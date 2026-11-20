@@ -205,6 +205,12 @@
     ['Capo di Ponte', 46.0310, 10.3450, 'Val Camonica', 'lombardy', 'brescia'],
     ['Edolo', 46.1780, 10.3330, 'Val Camonica', 'lombardy', 'brescia'],
     ['Ponte di Legno', 46.2590, 10.5100, 'Val Camonica', 'lombardy', 'brescia'],
+    ['Vedeseta / Val Taleggio', 45.8920, 9.5390, 'Val Taleggio', 'lombardy', 'bergamo'],
+    ['Bergamo', 45.6983, 9.6773, 'Bergamo hills', 'lombardy', 'bergamo'],
+    ['Sulzano / Lake Iseo', 45.6890, 10.1000, 'Lake Iseo', 'lombardy', 'brescia'],
+    ['Tignale', 45.7390, 10.7180, 'Alto Garda Bresciano', 'lombardy', 'brescia'],
+    ['Toscolano Maderno', 45.6400, 10.6070, 'Alto Garda Bresciano', 'lombardy', 'brescia'],
+    ['Magasa / Valvestino', 45.7800, 10.6170, 'Alto Garda Bresciano', 'lombardy', 'brescia'],
     // ---- Friuli Venezia Giulia ----
     // Carnia, Sappada, the Tarvisio and Julian Alps valleys, the Friulian
     // Dolomites and Piancavallo.

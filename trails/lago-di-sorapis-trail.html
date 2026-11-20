@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../styles.css?v=20260916-5">
+<link rel="stylesheet" href="../styles.css?v=20261123-1">
 <style>
   .sp-hero{padding-top:28px;}
   .sp-breadcrumb{font-size:.85rem;color:var(--ink-soft,#666);margin-bottom:14px;}
@@ -35,6 +35,15 @@
   .sp-lift-warning{margin:0 0 16px;padding:12px 14px;border:1px solid #E7C2B8;border-left:4px solid #9C3A25;border-radius:10px;background:#FBF1EE;color:#4A2A22;font-size:14px;line-height:1.55;}
   .sp-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0 26px;}
   .sp-fact{background:rgba(0,0,0,.035);border-radius:10px;padding:10px 14px;}
+  .sp-route-view{margin:18px 0 26px;}
+  .sp-route-view .sp-facts{margin:12px 0 8px;}
+  .sp-view-btn{display:inline-block;font-size:13px;font-weight:700;padding:7px 14px;border:1px solid #9AA79C;color:#2E4034;cursor:pointer;}
+  .sp-view-btn:first-of-type{border-radius:999px 0 0 999px;}
+  .sp-view-btn + .sp-view-input + .sp-view-btn{border-left:none;border-radius:0 999px 999px 0;}
+  .sp-view-input:checked + .sp-view-btn{background:#2E4034;border-color:#2E4034;color:#fff;}
+  .sp-view-input:focus-visible + .sp-view-btn{outline:2px solid #2C5C34;outline-offset:2px;}
+  #spViewOneWay:not(:checked) ~ .sp-facts--one-way,#spViewOneWay:not(:checked) ~ .sp-view-note--one-way,
+  #spViewBack:not(:checked) ~ .sp-facts--back,#spViewBack:not(:checked) ~ .sp-view-note--back{display:none;}
   .sp-fact-k{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft,#666);}
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
@@ -163,8 +172,8 @@
     <span class="dp-badge sp-tag sp-tag--best"><span>Best time: May to October</span></span>
     
     <script>(function(){var m=new Date().getMonth();document.querySelectorAll('.sp-tag[data-season-out]').forEach(function(tag){if(tag.getAttribute('data-season-out').charAt(m)==='1')tag.hidden=false;});})();</script>
-    <span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Caution terrain</span></span>
-    <span class="dp-badge dp-badge--imported"><span data-dp-icon="imported" data-dp-icon-size="13" aria-hidden="true"></span><span>Imported trail</span></span>
+    <span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Higher risk</span></span>
+    <span class="dp-badge dp-badge--imported"><span data-dp-icon="imported" data-dp-icon-size="13" aria-hidden="true"></span><span>Not yet verified</span></span>
     
     
   </div>
@@ -177,14 +186,28 @@
   <p>The quieter way to the turquoise Lago di Sorapis: CAI path 217 climbs from Federa Vecia in the Ansiei valley to Rifugio Vandelli and the lake, and back the same way, about 8.9 km with some 660 m of climb. Unlike path 215 from Passo Tre Croci, there are no metal ladders or wire ropes. It is a steep walk all the same: after the forest, the path climbs rocky steps beside the cliff below the lake, with a short, fairly exposed ledge where you may need your hands.</p>
   <p>There is no dog rule from Auronzo online, so the national rule applies, and most of the walk lies in the Natura 2000 site of the Antelao, Marmarole and Sorapiss: a lead of at most 1.5 m and a muzzle carried. Cortina's police regulation keeps dogs on a lead at the lake end too.</p>
 
-  <div class="sp-facts">
+  <div class="sp-route-view" role="radiogroup" aria-label="Show the figures for">
+    <input type="radio" class="sp-vh sp-view-input" name="sp-route-view" id="spViewOneWay" value="one-way"><label class="sp-view-btn" for="spViewOneWay">One way</label><input type="radio" class="sp-vh sp-view-input" name="sp-route-view" id="spViewBack" value="out-and-back" checked><label class="sp-view-btn" for="spViewBack">There and back</label>
+    <div class="sp-facts sp-facts--one-way">
+      <div class="sp-fact"><div class="sp-fact-k">Distance</div><div class="sp-fact-v">4.5 km</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Elevation gain</div><div class="sp-fact-v">≈ 610 m</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Highest point</div><div class="sp-fact-v">1935 m</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Duration</div><div class="sp-fact-v">Not given</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Terrain</div><div class="sp-fact-v">Forest path, then steep rocky steps</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Trail rating</div><div class="sp-fact-v">Higher risk</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Area</div><div class="sp-fact-v">Val d'Ansiei – Lago di Sorapis · Dolomites, Italy</div></div>
+    </div>
+    <div class="sp-facts sp-facts--back">
       <div class="sp-fact"><div class="sp-fact-k">Distance</div><div class="sp-fact-v">8.9 km</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Elevation gain</div><div class="sp-fact-v">662 m</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Highest point</div><div class="sp-fact-v">1935 m</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Duration</div><div class="sp-fact-v">5 h</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Terrain</div><div class="sp-fact-v">Forest path, then steep rocky steps</div></div>
-      <div class="sp-fact"><div class="sp-fact-k">Trail rating</div><div class="sp-fact-v">Caution terrain</div></div>
+      <div class="sp-fact"><div class="sp-fact-k">Trail rating</div><div class="sp-fact-v">Higher risk</div></div>
       <div class="sp-fact"><div class="sp-fact-k">Area</div><div class="sp-fact-v">Val d'Ansiei – Lago di Sorapis · Dolomites, Italy</div></div>
+    </div>
+    <p class="sp-src sp-view-note sp-view-note--one-way">Ends away from the start: plan a lift, bus or second car back.</p>
+    <p class="sp-src sp-view-note sp-view-note--back">Back the same way on the same path.</p>
   </div>
 
   <a class="sp-cta" href="../trail.html?id=lago-di-sorapis-trail">Open the full trail guide →</a>
@@ -230,7 +253,7 @@
   })();
   </script>
     <h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M7 21V4" stroke="#2E4034" stroke-width="2" stroke-linecap="round"></path><path d="M7 5h10l-2.4 3.5L17 12H7z" fill="#E24B4A"></path></svg> Where to start</h2>
-    <p>Mapped start suggestion, by the former Albergo Cristallo on the Auronzo–Misurina road (Dolomitibus stop Auronzo - Albergo Cristallo). Check current access before travelling.</p>
+    <p>Suggested start from map data, by the former Albergo Cristallo on the Auronzo–Misurina road (Dolomitibus stop Auronzo - Albergo Cristallo). Check current access before travelling.</p>
     <h2>How to follow this route</h2>
     <div class="sp-route-refs" aria-label="Trail numbers in order"><span class="sp-route-ref">217</span></div>
     <p><b>Start</b> by the former Albergo Cristallo on the Auronzo–Misurina road, where the Dolomitibus stops; park along the road.</p>
@@ -279,19 +302,19 @@
     <div class="sp-near-grid">
       <a class="sp-near" href="../trail.html?id=passo-giau-to-rifugio-nuvolau">
         <span class="sp-near-name">Passo Giau to Rifugio Nuvolau</span>
-        <span class="sp-near-meta"><span class="dp-badge dp-badge--moderate"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Moderate terrain</span></span> 9.8 km</span>
+        <span class="sp-near-meta"><span class="dp-badge dp-badge--moderate"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Moderate risk</span></span> 9.8 km</span>
       </a>
       <a class="sp-near" href="../trail.html?id=castello-di-botestagno">
         <span class="sp-near-name">Castello di Botestagno</span>
-        <span class="sp-near-meta"><span class="dp-badge dp-badge--moderate"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Moderate terrain</span></span> 2.6 km</span>
+        <span class="sp-near-meta"><span class="dp-badge dp-badge--moderate"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Moderate risk</span></span> 2.6 km</span>
       </a>
       <a class="sp-near" href="../trail.html?id=malga-ra-stua">
         <span class="sp-near-name">Malga Ra Stua</span>
-        <span class="sp-near-meta"><span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Caution terrain</span></span> 6.3 km</span>
+        <span class="sp-near-meta"><span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Higher risk</span></span> 6.3 km</span>
       </a>
       <a class="sp-near" href="../trail.html?id=passeggiata-gourmet-cortina">
         <span class="sp-near-name">Passeggiata gourmet</span>
-        <span class="sp-near-meta"><span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Caution terrain</span></span> 4.3 km</span>
+        <span class="sp-near-meta"><span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Higher risk</span></span> 4.3 km</span>
       </a>
     </div>
   </div>
@@ -301,7 +324,7 @@
   <div class="hp-footer-grid">
     <div>
       <div class="hp-footer-brand"><img src="../logo.svg?v=5" alt=""><span>ORMA</span></div>
-      <p class="hp-footer-blurb">The personalised trail guide for dogs and their humans, so every footprint left on the mountain is a safe one.</p>
+      <p class="hp-footer-blurb">The personalised trail guide for dogs and their humans: what each walk asks of your dog, so you can choose well.</p>
       <div class="hp-footer-get">
         <div class="hp-footer-h">Get the app</div>
         <div class="hp-footer-apps">
