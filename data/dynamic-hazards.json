@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-20T08:20:48.852Z",
+  "generatedAt": "2026-11-20T11:15:19.407Z",
   "hazards": [
     {
       "id": "meteoalarm-france:avalanches:haute-savoie",
@@ -51,7 +51,9 @@
         "Ombres sur l'Alpage",
         "Sentier pédestre des Graniteurs"
       ],
-      "sourceStatus": "available"
+      "sourceStatus": "unavailable",
+      "sourceError": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-france: HTTP 500",
+      "lastCheckedAt": "2026-11-20T11:15:19.407Z"
     },
     {
       "id": "meteoalarm-france:avalanches:is-re",
@@ -88,7 +90,9 @@
         "Molière plateau loop above Autrans",
         "Fort du Murier loop above Gières"
       ],
-      "sourceStatus": "available"
+      "sourceStatus": "unavailable",
+      "sourceError": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-france: HTTP 500",
+      "lastCheckedAt": "2026-11-20T11:15:19.407Z"
     },
     {
       "id": "meteoalarm-france:avalanches:savoie",
@@ -201,7 +205,9 @@
         "Val Pelouse crest path and Perrière refuge",
         "Saint-Pierre-d’Entremont to Corbel loop"
       ],
-      "sourceStatus": "available"
+      "sourceStatus": "unavailable",
+      "sourceError": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-france: HTTP 500",
+      "lastCheckedAt": "2026-11-20T11:15:19.407Z"
     },
     {
       "id": "meteoalarm-france:rain-flood:haute-savoie",
@@ -252,7 +258,9 @@
         "Ombres sur l'Alpage",
         "Sentier pédestre des Graniteurs"
       ],
-      "sourceStatus": "available"
+      "sourceStatus": "unavailable",
+      "sourceError": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-france: HTTP 500",
+      "lastCheckedAt": "2026-11-20T11:15:19.407Z"
     },
     {
       "id": "meteoalarm-france:rain-flood:is-re",
@@ -289,7 +297,9 @@
         "Molière plateau loop above Autrans",
         "Fort du Murier loop above Gières"
       ],
-      "sourceStatus": "available"
+      "sourceStatus": "unavailable",
+      "sourceError": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-france: HTTP 500",
+      "lastCheckedAt": "2026-11-20T11:15:19.407Z"
     },
     {
       "id": "meteoalarm-france:rain-flood:savoie",
@@ -402,7 +412,9 @@
         "Val Pelouse crest path and Perrière refuge",
         "Saint-Pierre-d’Entremont to Corbel loop"
       ],
-      "sourceStatus": "available"
+      "sourceStatus": "unavailable",
+      "sourceError": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-france: HTTP 500",
+      "lastCheckedAt": "2026-11-20T11:15:19.407Z"
     }
   ]
 }
