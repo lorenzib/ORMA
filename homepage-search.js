@@ -221,20 +221,7 @@
     return { value: level, label: map[level].label, dot: map[level].dot };
   }
 
-  var TONE = { low: 'background:#DCEBDD;color:#2C5C34', mod: 'background:#F5E4C6;color:#8A5A16', caution: 'background:#F3D9D2;color:#9C3A25' };
-  function badgesFor(t) {
-    var out = [];
-    var rank = typeof t.terrainRank === 'number' ? t.terrainRank : 1;
-    if (rank <= 0) out.push({ label: tx('Graded ground'), tone: 'low' });
-    else if (rank >= 2) out.push({ label: tx('Rocky'), tone: 'caution' });
-    else out.push({ label: tx('Mixed terrain'), tone: 'mod' });
-    var sc = typeof t.shadeCoverage === 'number' ? t.shadeCoverage : 0;
-    if (sc >= 60) out.push({ label: tx('Fully shaded'), tone: 'low' });
-    else if (sc >= 30) out.push({ label: tx('Part shade'), tone: 'mod' });
-    else out.push({ label: tx('Little shade'), tone: 'mod' });
-    if (hasWater(t)) out.push({ label: tx('Water access'), tone: 'low' });
-    return out;
-  }
+
 
   function hasWater(t) { return Array.isArray(t.waterSources) && t.waterSources.length > 0; }
 
@@ -511,13 +498,14 @@
         '<span class="hp-sug-chip" style="background:' + m.chipBg + ';color:' + m.chipColor + '">' + esc(m.badge) + '</span>' +
         tr('hp.sug.topFor', 'Top matches for {name}', { name: esc(m.name) }) + '</span><span class="hp-sug-count">' + countTxt + '</span></div>' +
       list.slice(0, 5).map(function (entry, index) {
-        var t = entry.t, s = entry.score, ti = tier(s), df = difficulty(t);
+        // The engine's verdict, as on the card the suggestion opens.
+        var t = entry.t, df = difficulty(t), v = verdictOf(t) || {};
         return '<button type="button" class="hp-sug-item" id="hpSuggestion' + index + '" role="option" aria-selected="' + (state.activeSuggest === index ? 'true' : 'false') + '" data-href="' + esc(trailHref(t)) + '">' +
           '<span class="hp-sug-thumb">' + thumb(t) + '</span>' +
           '<span class="hp-sug-main"><span class="hp-sug-name">' + esc(trailDisplayName(t)) + '</span>' +
           '<span class="hp-sug-meta"><span class="hp-badge-dot" style="background:' + df.dot + '"></span>' + df.label +
-          '<span class="hp-sug-sep">·</span>' + esc(num(t.distance)) + ' km · ' + esc(valleyOf(t)) + '</span></span>' +
-          '<span class="hp-sug-match"><span class="verdict" style="color:' + ti.color + '">' + esc(ti.label) + '</span><span class="lab">' + forDog + '</span></span>' +
+          '<span class="hp-sug-sep">·</span>' + esc(window.ORMATrailCard ? window.ORMATrailCard.km(t.distance) : num(t.distance)) + ' km · ' + esc(valleyOf(t)) + '</span></span>' +
+          (v.label ? '<span class="hp-sug-match"><span class="verdict" style="color:' + v.color + '">' + esc(v.label) + '</span><span class="lab">' + forDog + '</span></span>' : '') +
         '</button>';
       }).join('') +
       '<button type="button" class="hp-sug-more" data-action="search">' +
@@ -531,76 +519,6 @@
   }
 
   // ---- main content: results OR browse sections ----
-  function rowHtml(entry) {
-    var t = entry.t, s = entry.score, ti = tier(s), df = difficulty(t);
-    var badges = '<span class="hp-badge hp-badge-diff"><span class="hp-badge-dot" style="background:' + df.dot + '"></span>' + df.label + '</span>' +
-      badgesFor(t).map(function (b) { return '<span class="hp-badge" style="' + TONE[b.tone] + '">' + esc(b.label) + '</span>'; }).join('');
-    return '<button type="button" class="hp-trailrow" data-href="' + esc(trailHref(t)) + '">' +
-      '<span class="hp-trailrow-thumb">' + thumb(t) + '</span>' +
-      '<span class="hp-trailrow-main">' +
-        '<span class="hp-trailrow-name">' + esc(trailDisplayName(t)) + '</span>' +
-        '<span class="hp-trailrow-meta">' + esc(num(t.distance)) + ' km · +' + esc(t.elevation || 0) + ' m · ' + esc(valleyOf(t)) + '</span>' +
-        '<span class="hp-badges">' + badges + '</span>' +
-      '</span>' +
-      '<span class="hp-trailrow-match">' +
-        '<span class="hp-match-pct" style="color:' + ti.color + '">' + s + '<span>%</span></span>' +
-        '<span class="hp-tier" style="background:' + ti.bg + ';color:' + ti.color + '">' + ti.label + '</span>' +
-      '</span>' +
-    '</button>';
-  }
-
-  // The homepage card is the one trail card (styles.css .tcard): the
-  // verdict for the dog being browsed with on the photo, then the walk's
-  // figures, its rating and season. Same words as the Trails page card.
-  function cardMetaLine(trail) {
-    var routeReturn = window.ORMARouteReturn;
-    var oneWayWalk = !!(routeReturn && routeReturn.isOneWay(trail));
-    var shown = oneWayWalk ? routeReturn.forView(trail) : trail;
-    var back = shown !== trail;
-    return [
-      shown.distance ? (back ? tr('card.thereAndBack', '{km} km there and back', { km: shown.distance })
-        : oneWayWalk ? tr('card.oneWay', '{km} km one way', { km: num(shown.distance) })
-        : num(shown.distance) + ' km') : null,
-      shown.elevation != null ? tr('card.climb', '{m} m climb', { m: shown.elevation }) : null,
-      shown.hours ? (back ? '≈ ' : '') + num(shown.hours) + ' h' : null,
-      trail.area || valleyOf(trail),
-    ].filter(Boolean).join(' · ');
-  }
-
-  var RISK_KEYS = { 'low-risk':'legend.low', 'moderate':'legend.moderate', 'caution':'legend.caution' };
-  function cardFacts(trail) {
-    var icons = window.DoloPawsIcons, trust = window.DoloPawsTrailTrust;
-    var df = difficulty(trail);
-    var riskWords = tr(RISK_KEYS[df.value], df.label);
-    var risk = icons ? icons.badgeHtml(df.value, riskWords)
-      : '<span class="dp-badge dp-badge--' + df.value + '"><span>' + esc(riskWords) + '</span></span>';
-    // An earned verification is the tick after the name (verifiedTick);
-    // a reviewed or imported walk still says so in a chip.
-    var provenance = '';
-    if (trust && trust.tierBadgeStyle(trail) !== 'verified') {
-      provenance = icons ? icons.badgeHtml(trust.tierBadgeStyle(trail), trust.tierLabel(trail))
-        : '<span class="badge-pill">' + esc(trust.tierLabel(trail)) + '</span>';
-    }
-    var season = '';
-    var words = window.DoloPawsTrailSeasonWords;
-    var best = words ? words.bestTime(trail.season, true) : '';
-    if (best) {
-      var month = new Date().getMonth() + 1;
-      var outLabel = words.outOfSeasonTag(trail.season, month, true);
-      season = (outLabel ? '<span class="browse-season browse-season--out">' + esc(outLabel) + '</span>' : '') +
-        '<span class="browse-season browse-season--best">' + esc(best) + '</span>' +
-        (words.dogSeasonsNow ? words.dogSeasonsNow(trail.season, month) : []).map(function (r) {
-          return '<span class="browse-season browse-season--dog">' + esc(r.label) + '</span>';
-        }).join('') +
-        // "Sunny in winter" or "Little winter sun", November to February.
-        (function () {
-          var sunTag = words.winterSunTag ? words.winterSunTag(trail.season, month) : null;
-          return sunTag ? '<span class="browse-season browse-season--sun-' + sunTag.kind + '">' + esc(sunTag.label) + '</span>' : '';
-        })();
-    }
-    return risk + provenance + season;
-  }
-
   // The engine's own verdict, as the Trails page asks for it: a strong option
   // with an unreviewed category that matters is downgraded, which a bare score
   // cannot carry.
@@ -618,35 +536,20 @@
     return tr('browse.card.forDog', 'For {name}', { name: name || tr('recommendation.subject.guest', 'a medium dog') });
   }
 
-  function verifiedTick(trail) {
-    var trust = window.DoloPawsTrailTrust;
-    if (!trust || trust.tierBadgeStyle(trail) !== 'verified') return '';
-    var label = esc(trust.tierLabel(trail));
-    return '<svg class="tcard__tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" ' +
-      'stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="' + label + '"><title>' + label + '</title>' +
-      '<circle cx="12" cy="12" r="9.5"/><path d="m8 12 3 3 5-6"/></svg>';
-  }
-
-  // "Strong option for a medium dog" on the photo: the verdict first, whose
-  // verdict it is after it, in small type.
-  function verdictPill(verdict) {
-    if (!verdict || !verdict.label) return '';
-    var who = subjectLabel();
-    who = who.charAt(0).toLowerCase() + who.slice(1);
-    return '<span class="tcard__verdict tcard__verdict--' + verdict.tone + '">' +
-      esc(verdict.label) + ' <small>' + esc(who) + '</small></span>';
-  }
-
+  // The one trail card (trail-card.js, styles.css .tcard): the verdict for
+  // the dog being browsed with on the photo, then the walk's figures, its
+  // rating and season. Collections and search results both draw it.
   function ccardHtml(entry) {
-    var trail = entry.t;
-    return '<button type="button" class="hp-ccard tcard" data-href="' + esc(trailHref(trail)) + '">' +
-      '<span class="tcard__photo">' + thumb(trail) + verdictPill(verdictOf(trail)) + '</span>' +
-      '<span class="tcard__body">' +
-        '<span class="tcard__name">' + esc(trailDisplayName(trail)) + verifiedTick(trail) + '</span>' +
-        '<span class="tcard__meta">' + esc(cardMetaLine(trail)) + '</span>' +
-        '<span class="tcard__chips">' + cardFacts(trail) + '</span>' +
-      '</span>' +
-    '</button>';
+    var trail = entry.t, card = window.ORMATrailCard;
+    if (!card) return '';
+    return card.html(trail, {
+      className: 'hp-ccard',
+      href: trailHref(trail),
+      photo: thumb(trail),
+      verdict: verdictOf(trail),
+      who: subjectLabel(),
+      name: trailDisplayName(trail),
+    });
   }
 
   var HOW_CARDS = [
@@ -678,7 +581,7 @@
       var sub = tr('hp.results.rankedFor', '{count} · ranked for {name}', { count: countText(list.length), name: esc(dogMeta().name) });
       var body;
       if (list.length) {
-        body = '<div class="hp-list">' + list.map(rowHtml).join('') + '</div>';
+        body = '<div class="hp-coll-grid hp-results-grid">' + list.map(ccardHtml).join('') + '</div>';
       } else {
         body = '<div class="hp-empty"><h3>' + esc(tr('hp.results.empty', 'No trails match those filters')) + '</h3>' +
           '<p>' + esc(tr('hp.results.emptyHint', 'Try widening your distance or clearing a filter.')) + '</p>' +
@@ -877,8 +780,8 @@
         '<div class="hp-wiz-matches">' + matches.slice(0, 3).map(function (entry) {
           var t = entry.t, ti = tier(entry.score);
           return '<a class="hp-wiz-match" href="' + esc(trailHref(t)) + '">' +
-            '<span><b>' + esc(trailDisplayName(t)) + '</b><small>' + esc(num(t.distance)) + ' km · ' + esc(valleyOf(t)) + '</small></span>' +
-            '<strong style="color:' + ti.color + '">' + entry.score + '%</strong></a>';
+            '<span><b>' + esc(trailDisplayName(t)) + '</b><small>' + esc(window.ORMATrailCard ? window.ORMATrailCard.km(t.distance) : num(t.distance)) + ' km · ' + esc(valleyOf(t)) + '</small></span>' +
+            '<strong style="color:' + ti.color + '">' + esc(ti.label) + '</strong></a>';
         }).join('') + '</div>' +
         '<div class="hp-wiz-payoff-actions">' +
           '<button type="button" id="hpSaveAndBrowseBtn" class="hp-search-btn">' + esc(backToTrail ? t('hp.wizard.done.saveTrail', 'Save profile and go back to the trail') : t('hp.wizard.done.save', 'Save profile and see all matches')) + '</button>' +

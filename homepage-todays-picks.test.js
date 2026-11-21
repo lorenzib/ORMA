@@ -105,7 +105,7 @@ function loadHomepage(testTrails, session = new Map()){
   vm.createContext(context);
   vm.runInContext(fs.readFileSync(path.join(__dirname, 'regions-config.js'), 'utf8'), context);
   evaluateInto(source => vm.runInContext(source, context), 'index.html', [
-    'trust/evidence-v1.js', 'match-verdict.js', 'recommendation-decision.js', 'trail-season-words.js',
+    'trust/evidence-v1.js', 'match-verdict.js', 'recommendation-decision.js', 'trail-season-words.js', 'trail-card.js',
   ]);
   vm.runInContext(fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8'), context);
   vm.runInContext('liLocationContext = { kind:"catalogue" }; activeCountry = "all"; activeRegion = "all"; activeValley = "all"; initLoggedInShell();', context);
@@ -141,13 +141,17 @@ describe('Today\'s picks', () => {
     const first = cards[0];
     expect(first.getAttribute('href')).toMatch(/^trail\.html\?id=a/);
     expect(first.querySelector('.li-pick-name').textContent).toBe('a walk');
-    // km · climb · time · shade, from the list's own row meta.
+    // The one trail card (trail-card.js): km · climb · time · place, the
+    // verdict in words on the photo, never a percentage.
+    expect(first.classList.contains('tcard')).toBe(true);
     const meta = first.querySelector('.li-pick-meta').textContent;
-    expect(meta).toContain('6 km');
-    expect(meta).toContain('300 m climb');
-    expect(meta).toContain('45% shade');
-    expect(first.querySelector('.li-pick-match').textContent).toBe('Strong option');
-    expect(first.querySelector('.trail-visual, .li-pick-photo')).not.toBeNull();
+    expect(meta).toBe('6 km · 300 m climb · 2.5 h · Ortisei');
+    const pill = first.querySelector('.tcard__photo .li-pick-match');
+    expect(pill.classList.contains('tcard__verdict--great')).toBe(true);
+    expect(pill.firstChild.textContent.trim()).toBe('Strong option');
+    expect(pill.querySelector('small').textContent).toMatch(/^for /);
+    expect(first.textContent).not.toMatch(/\d%/);
+    expect(first.querySelector('.tcard__photo .trail-visual, .tcard__photo .li-pick-photo')).not.toBeNull();
   });
 
   test('an in-season walk with known dog rules on easier terrain beats higher-ranked caution and unknown-rules walks', async () => {

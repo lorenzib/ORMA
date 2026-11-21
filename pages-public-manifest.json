@@ -182,6 +182,7 @@
     "trail-route-refs.js",
     "trail-routing-coverage.js",
     "trail-season-words.js",
+    "trail-card.js",
     "trail-trust.js",
     "trail-weather-window.js",
     "trail.html",

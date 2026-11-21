@@ -4417,19 +4417,33 @@ function liEmptyStateHtml(buttonId){
   };
 }
 
+// Today's picks are the one trail card (trail-card.js, styles.css .tcard),
+// the same card the guest homepage and the Trails page show.
 function liPickCardHtml(trail, profile){
   const presentation = liRecommendationPresentation(trail, profile);
   const name = trailDisplayName(trail);
   const photo = trailCardVisual(trail, { className:'li-pick-photo' });
-  const pill = presentation.label
-    ? `<span class="li-pick-match" style="--li-pick-tone:${presentation.color};">${liPersonalisationText(presentation.label)}</span>`
-    : '';
+  const card = window.ORMATrailCard;
+  if(card){
+    return card.html(trail, {
+      tag:'a',
+      href:liTrailHref(trail.id),
+      className:'li-pick',
+      attrs:` data-id="${liEscapeHtml(trail.id)}"`,
+      photo,
+      verdict:presentation.label ? presentation : null,
+      who:card.forDog(presentation.dogName),
+      name,
+      parts:{ name:'li-pick-name', meta:'li-pick-meta', verdict:'li-pick-match' },
+    });
+  }
+  // A page without trail-card.js still gets a usable link.
   return `<a class="li-pick" href="${liTrailHref(trail.id)}" data-id="${liEscapeHtml(trail.id)}">
       ${photo}
       <span class="li-pick-body">
         <span class="li-row-name li-pick-name">${liEscapeHtml(name)}</span>
         <span class="li-row-meta li-pick-meta">${liRowMeta(trail)}</span>
-        ${pill}
+        ${presentation.label ? `<span class="li-pick-match">${liPersonalisationText(presentation.label)}</span>` : ''}
       </span>
     </a>`;
 }
