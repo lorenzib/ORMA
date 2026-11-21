@@ -311,6 +311,11 @@
       "noSunShare": 0,
       "points": 6
     },
+    "corio-sentiero-del-redio": {
+      "hours": 7.1,
+      "noSunShare": 0,
+      "points": 20
+    },
     "cortina-anello-dei-tre-rifugi": {
       "hours": 6,
       "noSunShare": 0,
@@ -2166,6 +2171,11 @@
       "noSunShare": 0,
       "points": 20
     },
+    "settimo-vittone-pergole-castagneti": {
+      "hours": 5.3,
+      "noSunShare": 0,
+      "points": 20
+    },
     "steinegg-pyramidenrundweg": {
       "hours": 3.1,
       "noSunShare": 0.11,
@@ -2354,6 +2364,11 @@
     "valchiavenna-ai-laghi-del-baldiscio": {
       "hours": 2.7,
       "noSunShare": 0.35,
+      "points": 20
+    },
+    "valchiusella-cima-bossola": {
+      "hours": 7.1,
+      "noSunShare": 0,
       "points": 20
     },
     "valchiusella-fondo-tissone-tallorno": {
