@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valsusa-mattie-alpe-toglie",
+  "generatedAt": "2026-11-19T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 8.8,
+    "ascentM": 773,
+    "highestPointM": 1508,
+    "expectedDuration": "4 h",
+    "difficulty": "Hard",
+    "shadePercent": 92
+  },
+  "trailhead": {
+    "lat": 45.114565,
+    "lng": 7.113478,
+    "label": "The La Versina picnic area, Mattie, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "The mule track is very steep in places (T2): take it slowly with your dog and watch its footing on wet cobbles.",
+    "The upper part is inside the Orsiera-Rocciavrè park, where dogs must stay on a lead.",
+    "Cows may graze at Alpe Toglie in summer: keep your dog on a short lead near the herd.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-19"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-19",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Alpe Toglie, Mattie": "Alpe Toglie da Mattie, andata e ritorno",
+    "The La Versina picnic area, Mattie, the board’s start": "L’area attrezzata La Versina, Mattie, la partenza ufficiale",
+    "The mule track is very steep in places (T2): take it slowly with your dog and watch its footing on wet cobbles.": "La mulattiera è molto ripida in alcuni tratti (T2): sali con calma e attenzione all’appoggio del cane sui ciottoli bagnati.",
+    "The upper part is inside the Orsiera-Rocciavrè park, where dogs must stay on a lead.": "La parte alta è nel Parco Orsiera-Rocciavrè, dove i cani vanno tenuti al guinzaglio.",
+    "Cows may graze at Alpe Toglie in summer: keep your dog on a short lead near the herd.": "D’estate all’Alpe Toglie possono pascolare le mucche: vicino alla mandria tieni il cane al guinzaglio corto."
+  }
+}

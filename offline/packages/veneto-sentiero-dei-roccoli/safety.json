@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "trailId": "veneto-sentiero-dei-roccoli",
+  "generatedAt": "2026-11-21T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 2.8,
+    "ascentM": 72,
+    "highestPointM": 705,
+    "expectedDuration": "50 min",
+    "difficulty": "Easy",
+    "shadePercent": 56
+  },
+  "trailhead": {
+    "lat": 45.67046,
+    "lng": 11.326209,
+    "label": "The Chiesetta del Mucciòn above Monte Magrè, the published start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.6699414,
+      "lng": 11.3254061,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.659847,
+      "lng": 11.3314199,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.6592818,
+      "lng": 11.3314166,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "The ridge has meadows and pastures: keep your dog close where animals graze.",
+    "Cars park on the lane by the church and the trattoria: keep your dog on a short lead at the start.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-21"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-21",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Roccoli Path from the Mucciòn": "Sentiero dei Roccoli dal Mucciòn",
+    "The Chiesetta del Mucciòn above Monte Magrè, the published start": "La chiesetta del Mucciòn sopra Monte Magrè, la partenza ufficiale",
+    "The ridge has meadows and pastures: keep your dog close where animals graze.": "Sul crinale ci sono prati e pascoli: tieni il cane vicino dove pascolano gli animali.",
+    "Cars park on the lane by the church and the trattoria: keep your dog on a short lead at the start.": "Le auto parcheggiano sulla stradina accanto alla chiesetta e alla trattoria: alla partenza tieni il cane al guinzaglio corto."
+  }
+}

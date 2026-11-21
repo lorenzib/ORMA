@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valsusa-mompantero-sentier8",
+  "distanceKm": 3.9,
+  "ascentM": 439,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 548
+    },
+    {
+      "km": 0.3,
+      "elev": 583
+    },
+    {
+      "km": 0.6,
+      "elev": 625
+    },
+    {
+      "km": 0.9,
+      "elev": 700
+    },
+    {
+      "km": 1.2,
+      "elev": 723
+    },
+    {
+      "km": 1.5,
+      "elev": 788
+    },
+    {
+      "km": 1.8,
+      "elev": 889
+    },
+    {
+      "km": 2.1,
+      "elev": 944
+    },
+    {
+      "km": 2.4,
+      "elev": 991
+    },
+    {
+      "km": 2.7,
+      "elev": 892
+    },
+    {
+      "km": 3,
+      "elev": 804
+    },
+    {
+      "km": 3.3,
+      "elev": 723
+    },
+    {
+      "km": 3.5,
+      "elev": 596
+    },
+    {
+      "km": 3.9,
+      "elev": 548
+    }
+  ]
+}
