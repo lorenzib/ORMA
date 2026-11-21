@@ -80,7 +80,7 @@
   .sp-route-source{margin-top:4px;color:#657369;font-size:13px;line-height:1.5;}
   .sp-route-credit{margin-top:6px;color:#8A968C;font-size:11.5px;line-height:1.45;}
   .sp-route-credit a{color:inherit;text-decoration:underline;text-decoration-color:rgba(138,150,140,.5);}
-  /* The photo is lazy-loaded and the credit toggle is pinned to the figure's
+  /* The photo can arrive after the page draws and the credit toggle is pinned to the figure's
      corner, so the figure reserves its height up front; otherwise the toggle
      floats over whatever sits above until the image arrives. */
   .sp-photo{position:relative;width:480px;max-width:100%;aspect-ratio:8/5;margin:6px 0 14px;overflow:hidden;border-radius:12px;}
@@ -183,7 +183,7 @@
     
   </div>
   
-  <figure class="sp-photo"><img class="sp-img" src="../../images/trails/osm-9933643-lac-vert.jpg" alt="Il verde Lac Vert tra i larici sopra Plagne Centre, con il pannello informativo che chiede ai visitatori di non fare il bagno" loading="lazy" decoding="async"><details class="sp-photo-credit">
+  <figure class="sp-photo"><img class="sp-img" src="../../images/trails/osm-9933643-lac-vert.jpg" alt="Il verde Lac Vert tra i larici sopra Plagne Centre, con il pannello informativo che chiede ai visitatori di non fare il bagno" fetchpriority="high" decoding="async"><details class="sp-photo-credit">
       <summary aria-label="Mostra i crediti della foto" title="Crediti foto">C</summary>
       <div class="sp-photo-credit__body"><a href="https://api.panoramax.xyz/api/collections/b4860662-3bfa-4540-9f0d-37d39f6ff7eb/items/2d48f1da-5c2a-48bf-99eb-13a792751774" rel="noopener nofollow">Il Lac Vert e il suo pannello informativo</a> di ultimap <span aria-hidden="true">·</span> <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license noopener">CC BY-SA 4.0</a> <span aria-hidden="true">·</span> Ritagliata per la visualizzazione.</div>
     </details></figure>

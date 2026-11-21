@@ -1081,7 +1081,9 @@ html[lang="it"] .topnav .brand::after{content:'| Sentieri e terreni per cani';}
     align-items:stretch;
     gap:4px;
     padding:10px 20px 18px;
-    background:rgba(38,53,42,.98);
+    /* Solid, not .98: the open menu sits over the "Add your dog" banner,
+       and the header's backdrop blur let that text show through. */
+    background:#26352A;
     border-bottom:1px solid rgba(242,238,226,.14);
     box-shadow:0 12px 24px rgba(27,31,25,.18);
     font-size:15px;

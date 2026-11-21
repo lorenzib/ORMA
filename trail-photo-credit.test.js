@@ -138,12 +138,24 @@ describe('every override reaches the data the site actually serves',()=>{
   });
 
   test('the photo figure reserves its height so the credit never floats over the content above', () => {
-    // The image is lazy-loaded and the credit toggle is pinned to the figure's
+    // The image can arrive after the page draws and the credit toggle is pinned to the figure's
     // corner. Without a reserved aspect ratio the figure is 0px tall until the
     // image arrives, and the toggle sits on whatever precedes it (the area
     // warnings, on a page that has them).
     const generator = fs.readFileSync(path.join(__dirname, 'scripts/generate-trail-pages.js'), 'utf8');
     expect(generator).toMatch(/\.sp-photo\{[^}]*aspect-ratio:8\/5[^}]*overflow:hidden[^}]*\}/);
     expect(generator).toMatch(/\.sp-photo \.sp-img\{[^}]*height:100%[^}]*max-height:none[^}]*\}/);
+  });
+
+  test('the photo under the title loads at once, and at a phone-sized width', () => {
+    // A lazy photo under the title stayed a blank box until the reader
+    // scrolled, and the Wikimedia original for Lago di Braies is 5,400px.
+    const page = fs.readFileSync(path.join(__dirname, 'trails/lago-di-braies-seeweg-circuit.html'), 'utf8');
+    const img = page.match(/<img class="sp-img"[^>]*>/)[0];
+    expect(img).not.toContain('loading="lazy"');
+    expect(img).toContain('Special:Redirect/file/Lago_di_Braies_South_Tyrol_5.jpg?width=1200');
+    const files = fs.readdirSync(path.join(__dirname, 'trails')).filter(file => file.endsWith('.html'));
+    const lazy = files.filter(file => /<img class="sp-img"[^>]*loading="lazy"/.test(fs.readFileSync(path.join(__dirname, 'trails', file), 'utf8')));
+    expect(lazy).toEqual([]);
   });
 });

@@ -48,6 +48,10 @@
   .wr-gate-card h1{font-size:24px;margin:0 0 10px;color:#fff;}
   .wr-gate-card p{font-size:14px;line-height:1.6;color:#B9C4B6;margin:0 0 18px;}
   .wr-gate-card a,.wr-gate-card button{display:inline-block;background:#4A7856;color:#fff;border:none;border-radius:12px;padding:13px 24px;font:800 14px 'Inter',sans-serif;text-decoration:none;cursor:pointer;}
+  /* Two ways out of the gate: log in, or go back. In the app the tab bar is
+     hidden here and there is no swipe-back, so "Not now" is the only exit. */
+  .wr-gate-actions{display:flex;flex-direction:column;align-items:center;gap:10px;}
+  .wr-gate-card .wr-gate-later{background:none;color:#DDE5D8;min-height:44px;box-sizing:border-box;padding:13px 18px;font-weight:700;}
   @media(max-width:430px){
     .wr-gps{max-width:calc(100% - 76px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
     .wr-gps--note{white-space:normal;overflow:visible;}
@@ -85,11 +89,14 @@
   <div class="wr-gate-card">
     <h1 data-i18n="page.walk.recordAWalk">Record a walk</h1>
     <p data-i18n="page.walk.walksAreSavedToYour">Walks are saved to your journal, so recording needs your account. Log in and press start, any walk, anywhere, not just catalogued trails.</p>
-    <a href="/" data-i18n="page.walk.signInOnTheHomepage">Log in on the homepage &rarr;</a>
+    <div class="wr-gate-actions">
+      <a href="/?login=1&amp;next=walk.html" id="wrGateLogin" data-i18n="page.walk.signInOnTheHomepage">Log in</a>
+      <a href="/" class="wr-gate-later" id="wrGateLater" data-i18n="page.walk.notNow">Not now</a>
+    </div>
   </div>
 </div>
 
-<script src="i18n.js?v=20261126-3"></script>
+<script src="i18n.js?v=20261126-4"></script>
 <script src="device-handoff.js?v=20260904-1"></script>
 <script type="module" src="firebase-init.js?v=20261107-1"></script>
 <script src="journal-store.js?v=20261110-2"></script>

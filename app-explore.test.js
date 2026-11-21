@@ -137,3 +137,23 @@ describe('Record is also where a route is planned', () => {
     expect(read('app-shell.css')).toContain('.app-tab--record[aria-current="page"] .app-tab-icon{background:#3E7A91;}');
   });
 });
+
+describe('the app Explore toolbar grid', () => {
+  // A toolbar item placed in a grid area the app's template does not name makes
+  // the grid invent extra columns, and the headline, search and location note
+  // squeeze into a strip about 47px wide (21 Nov 2026, the "areas" row).
+  test('names every area the homepage places a toolbar item in', () => {
+    const editorial = read('homepage-editorial.css');
+    const shell = read('app-shell.css');
+    const used = new Set([...editorial.matchAll(/#liToolbar[^{]*\{[^}]*grid-area:([a-z]+)/g)]
+      .map(match => match[1]).filter(name => name !== 'auto'));
+    // The app hides Record a walk (#liNewWrap): the tab bar's Record replaces it.
+    expect(shell).toContain('html.orma-app #liNewWrap{display:none !important;}');
+    used.delete('new');
+    const rule = shell.match(/html\.orma-app body\.mhome-active #returningCustomerHomepage #liToolbar\{[^}]*grid-template-areas:([^;]+);/);
+    expect(rule).not.toBeNull();
+    const named = new Set(rule[1].match(/[a-z]+/g));
+    expect(used.size).toBeGreaterThan(3);
+    for (const name of used) expect([name, named.has(name)]).toEqual([name, true]);
+  });
+});

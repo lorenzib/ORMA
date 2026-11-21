@@ -60,9 +60,12 @@ html.orma-app #returningCustomerHomepage[hidden]{display:flex !important;}
 /* The tab bar's Record replaces the homepage's own Record button. Drawing a
    route stays one tap away on the map ("Draw a route here"). */
 html.orma-app #liNewWrap{display:none !important;}
+/* Every area the homepage places a toolbar item in needs a row here, or the
+   grid invents extra columns and squeezes the headline into a narrow strip.
+   "areas" holds the Country / Region / Valley pickers (homepage-editorial.css). */
 html.orma-app body.mhome-active #returningCustomerHomepage #liToolbar{
   grid-template-columns:minmax(0,1fr) auto;
-  grid-template-areas:"greet greet" "today today" "search filters" "nudge nudge";
+  grid-template-areas:"greet greet" "today today" "search filters" "areas areas" "nudge nudge";
 }
 /* "Show all trails" already heads the list; its footer link repeated it and
    took a row of the sheet away from the trails. */
