@@ -2158,6 +2158,26 @@
       "name": "Roccoli Path from the Mucciòn",
       "slug": "roccoli-path-muccion",
       "gloss": "a short ridge loop from the little Mucciòn church past old bird-catching sites"
+    },
+    "valsusa-bruzolo-anello-chiotetti": {
+      "name": "Chiotetti Loop, Bruzolo",
+      "slug": "chiotetti-loop-bruzolo",
+      "gloss": "old mule tracks up to the last mountain hamlets above Bruzolo"
+    },
+    "valsusa-mattie-alpe-toglie": {
+      "name": "Alpe Toglie, Mattie",
+      "slug": "alpe-toglie-mattie",
+      "gloss": "an old mule track through chestnut and beech woods to a mountain pasture, there and back"
+    },
+    "valsusa-mompantero-sentier8": {
+      "name": "Sentier8, Mompantero",
+      "slug": "sentier8-loop-mompantero",
+      "gloss": "a sunny loop through old hamlets to a frescoed chapel"
+    },
+    "valsusa-giaglione-forte-santa-chiara": {
+      "name": "Forte di Santa Chiara, Giaglione",
+      "slug": "forte-santa-chiara-giaglione",
+      "gloss": "an old mule track past votive shrines to a 19th-century fort, there and back"
     }
   }
 }
