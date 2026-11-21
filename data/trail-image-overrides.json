@@ -4436,21 +4436,6 @@
       }
     },
     {
-      "id": "osm-12189165",
-      "approvedReviewId": "orma-illustration-osm-12189165",
-      "approvedAt": "2026-10-24T12:17:30.000Z",
-      "fields": {
-        "imageIcon": "images/trails/osm-12189165-orma-illustration.jpg",
-        "heroImage": "images/trails/osm-12189165-orma-illustration.jpg",
-        "imageAlt": "ORMA illustration of Rundweg Schwarzegg - Sentiero circolare Dosso Nero: its climb drawn as contour bands and its route shape, not a photograph",
-        "imageCredit": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
-        "imageCreditText": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
-        "imageCreator": "ORMA",
-        "imageLicence": "ORMA-owned",
-        "imageSourceType": "orma-illustration"
-      }
-    },
-    {
       "id": "osm-12190538",
       "approvedReviewId": "commons-osm-12190538",
       "approvedAt": "2026-09-07T20:33:09.392Z",
@@ -5842,23 +5827,6 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Guidepost_(86979).jpg",
-        "imageSourceType": "licensed-source"
-      }
-    },
-    {
-      "id": "osm-7277805",
-      "approvedReviewId": "commons-osm-7277805",
-      "approvedAt": "2026-09-07T16:56:37.540Z",
-      "fields": {
-        "imageIcon": "images/trails/osm-7277805-stuls.jpg",
-        "heroImage": "images/trails/osm-7277805-stuls.jpg",
-        "imageAlt": "A lane climbing past farmhouses through a dandelion meadow at Stuls, with the snow-capped Texel range across the valley.",
-        "imageCredit": "Stuls above Moos in Passeier",
-        "imageCreditText": "Stuls above Moos in Passeier by Uwelino",
-        "imageCreator": "Uwelino",
-        "imageLicence": "CC BY-SA 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Blick_nach_Stuls_Moos_in_Passeier.jpg",
         "imageSourceType": "licensed-source"
       }
     },

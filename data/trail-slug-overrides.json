@@ -189,7 +189,10 @@
       "gloss": "the hills ring"
     },
     "osm-7446701": {
-      "gloss": "the Walten circular walk 18"
+      "gloss": "the Walten circular walk 18",
+      "retired": [
+        "waltner-rundweg-12-sentiero-circolare-di-valtina-12"
+      ]
     },
     "osm-7546708": {
       "gloss": "the Soracrode ring"

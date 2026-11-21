@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-21T00:07:08.878Z",
+  "generatedAt": "2026-11-20T23:58:42.560Z",
   "regions": {
     "dolomites": {
-      "trailCount": 383,
-      "trails": "data/regions/dolomites-trails.js?v=f712df7bba5d",
+      "trailCount": 381,
+      "trails": "data/regions/dolomites-trails.js?v=5d66f08995b3",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=6b1cc3a2fbef",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
@@ -90,7 +90,6 @@
         "osm-12182516": "data/trail-details/osm-12182516.js?v=08b406b1448b",
         "osm-12182895": "data/trail-details/osm-12182895.js?v=8ea7d5399741",
         "osm-12182936": "data/trail-details/osm-12182936.js?v=fa201674cdce",
-        "osm-12189165": "data/trail-details/osm-12189165.js?v=89d4690ec67d",
         "osm-12190538": "data/trail-details/osm-12190538.js?v=a6486eb647ad",
         "osm-12190657": "data/trail-details/osm-12190657.js?v=1d42dd44960a",
         "osm-12302191": "data/trail-details/osm-12302191.js?v=db514e3e9a91",
@@ -110,7 +109,6 @@
         "osm-19703479": "data/trail-details/osm-19703479.js?v=d854dd716139",
         "osm-19974724": "data/trail-details/osm-19974724.js?v=4d79ffbe2860",
         "osm-19974725": "data/trail-details/osm-19974725.js?v=8dc4dda99535",
-        "osm-7277805": "data/trail-details/osm-7277805.js?v=f649ca07f6bf",
         "osm-1506470": "data/trail-details/osm-1506470.js?v=08041465559f",
         "osm-7655311": "data/trail-details/osm-7655311.js?v=e68ffd6b0f4f",
         "osm-7426648": "data/trail-details/osm-7426648.js?v=349d293bc255",
@@ -175,7 +173,7 @@
         "fiemme-pradi-da-le-fior": "data/trail-details/fiemme-pradi-da-le-fior.js?v=151ac37790c4",
         "fiemme-passo-oclini": "data/trail-details/fiemme-passo-oclini.js?v=73a15ea89241",
         "fiemme-masi-comunicanti": "data/trail-details/fiemme-masi-comunicanti.js?v=5011f8455524",
-        "primiero-monte-vederna": "data/trail-details/primiero-monte-vederna.js?v=11bbf1a8348b",
+        "primiero-monte-vederna": "data/trail-details/primiero-monte-vederna.js?v=725b956631d5",
         "primiero-malga-crel": "data/trail-details/primiero-malga-crel.js?v=312d699b66f9",
         "fiemme-sentiero-botanico": "data/trail-details/fiemme-sentiero-botanico.js?v=f1d054dc3267",
         "primiero-ponte-su-funi": "data/trail-details/primiero-ponte-su-funi.js?v=ec4193c35eef",
@@ -482,8 +480,8 @@
       "optional": []
     },
     "lombardy": {
-      "trailCount": 23,
-      "trails": "data/regions/lombardy-trails.js?v=ff58aff82634",
+      "trailCount": 21,
+      "trails": "data/regions/lombardy-trails.js?v=bc35ecbefa8c",
       "details": {
         "lario-brunate-e-le-sue-chiese": "data/trail-details/lario-brunate-e-le-sue-chiese.js?v=ba72cffa8ee5",
         "lario-pognana-lario-e-le-sculture-simposio": "data/trail-details/lario-pognana-lario-e-le-sculture-simposio.js?v=1549bacc0a6c",
@@ -505,9 +503,7 @@
         "iseo-colmi": "data/trail-details/iseo-colmi.js?v=d32af3c00477",
         "altogarda-santuario-montecastello": "data/trail-details/altogarda-santuario-montecastello.js?v=9aac3de26fc6",
         "altogarda-valle-cartiere": "data/trail-details/altogarda-valle-cartiere.js?v=0859c9a6bff5",
-        "altogarda-nasce-formaggio-tombea": "data/trail-details/altogarda-nasce-formaggio-tombea.js?v=ebcd7810299f",
-        "iseo-riva-di-solto": "data/trail-details/iseo-riva-di-solto.js?v=2f77c7339864",
-        "iseo-piramidi-zone": "data/trail-details/iseo-piramidi-zone.js?v=4b837f1f7dec"
+        "altogarda-nasce-formaggio-tombea": "data/trail-details/altogarda-nasce-formaggio-tombea.js?v=ebcd7810299f"
       },
       "water": "data/regions/lombardy-water.geojson",
       "hutsBars": "data/regions/lombardy-huts-bars.geojson",
@@ -618,7 +614,7 @@
     },
     "switzerland": {
       "trailCount": 21,
-      "trails": "data/regions/switzerland-trails.js?v=3ec6703df9c0",
+      "trails": "data/regions/switzerland-trails.js?v=cf5df005703b",
       "details": {
         "engadin-around-lake-st-moritz": "data/trail-details/engadin-around-lake-st-moritz.js?v=fd2ed5887e82",
         "engadin-sils-chaste-peninsula-sils": "data/trail-details/engadin-sils-chaste-peninsula-sils.js?v=b6df69008cd3",
@@ -733,7 +729,6 @@
     "osm-12182516": "dolomites",
     "osm-12182895": "dolomites",
     "osm-12182936": "dolomites",
-    "osm-12189165": "dolomites",
     "osm-12190538": "dolomites",
     "osm-12190657": "dolomites",
     "osm-12302191": "dolomites",
@@ -753,7 +748,6 @@
     "osm-19703479": "dolomites",
     "osm-19974724": "dolomites",
     "osm-19974725": "dolomites",
-    "osm-7277805": "dolomites",
     "osm-1506470": "dolomites",
     "osm-7655311": "dolomites",
     "osm-7426648": "dolomites",
@@ -1119,8 +1113,6 @@
     "altogarda-santuario-montecastello": "lombardy",
     "altogarda-valle-cartiere": "lombardy",
     "altogarda-nasce-formaggio-tombea": "lombardy",
-    "iseo-riva-di-solto": "lombardy",
-    "iseo-piramidi-zone": "lombardy",
     "fvg-laghi-di-fusine": "friuli",
     "fvg-ta-lipa-pot-corto": "friuli",
     "fvg-borgo-stavoli-moggio": "friuli",
@@ -1307,7 +1299,6 @@
     "osm-12182516": "timpfler-rundweg",
     "osm-12182895": "talrundweg",
     "osm-12182936": "schorgaurunde",
-    "osm-12189165": "rundweg-schwarzegg-sentiero-circolare-dosso-nero",
     "osm-12190538": "flaaser-rundweg",
     "osm-12190657": "rundweg-langfenn",
     "osm-12302191": "dorfrundweg-rasen",
@@ -1327,7 +1318,6 @@
     "osm-19703479": "rundweg-beimsteinkogel",
     "osm-19974724": "mittlerer-rundweg-am-karer-see",
     "osm-19974725": "langer-rundweg-am-karer-see",
-    "osm-7277805": "waltner-rundweg-12-sentiero-circolare-di-valtina-12",
     "osm-1506470": "sissiweg-sentiero-sissi",
     "osm-7655311": "sonnenberger-panoramaweg-sentiero",
     "osm-7426648": "algunder-waalweg",
@@ -1758,8 +1748,6 @@
     "altogarda-santuario-montecastello": "santuario-di-montecastello-tignale",
     "altogarda-valle-cartiere": "valle-delle-cartiere-toscolano-maderno",
     "altogarda-nasce-formaggio-tombea": "cima-rest-formaggio-tombea-magasa",
-    "iseo-riva-di-solto": "giro-panoramico-riva-di-solto",
-    "iseo-piramidi-zone": "piramidi-di-zone-riserva-naturale",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -1864,7 +1852,6 @@
     "timpfler-rundweg": "osm-12182516",
     "talrundweg": "osm-12182895",
     "schorgaurunde": "osm-12182936",
-    "rundweg-schwarzegg-sentiero-circolare-dosso-nero": "osm-12189165",
     "flaaser-rundweg": "osm-12190538",
     "rundweg-langfenn": "osm-12190657",
     "dorfrundweg-rasen": "osm-12302191",
@@ -1884,7 +1871,6 @@
     "rundweg-beimsteinkogel": "osm-19703479",
     "mittlerer-rundweg-am-karer-see": "osm-19974724",
     "langer-rundweg-am-karer-see": "osm-19974725",
-    "waltner-rundweg-12-sentiero-circolare-di-valtina-12": "osm-7277805",
     "sissiweg-sentiero-sissi": "osm-1506470",
     "sonnenberger-panoramaweg-sentiero": "osm-7655311",
     "algunder-waalweg": "osm-7426648",
@@ -2315,8 +2301,6 @@
     "santuario-di-montecastello-tignale": "altogarda-santuario-montecastello",
     "valle-delle-cartiere-toscolano-maderno": "altogarda-valle-cartiere",
     "cima-rest-formaggio-tombea-magasa": "altogarda-nasce-formaggio-tombea",
-    "giro-panoramico-riva-di-solto": "iseo-riva-di-solto",
-    "piramidi-di-zone-riserva-naturale": "iseo-piramidi-zone",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
@@ -2332,6 +2316,7 @@
     "gro-e-schlossrunde": "osm-12173984",
     "sassolungo-sassopiatto-loop": "giro-del-sasso-lungo",
     "sassolungo": "giro-del-sasso-lungo",
+    "waltner-rundweg-12-sentiero-circolare-di-valtina-12": "osm-7446701",
     "archeo": "osm-12953352"
   }
 }

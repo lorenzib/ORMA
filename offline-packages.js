@@ -334,6 +334,7 @@
     'primiero-laghi-di-colbricon': "Laghi di Colbricon from Malga Rolle",
     'primiero-malga-ces': "San Martino di Castrozza - Malga Ces",
     'primiero-malga-valcigolera': "San Martino di Castrozza - Malga Valcigolera",
+    'primiero-monte-vederna': "Passeggiata a Monte Vederna – Croce degli Alpini",
     'primiero-percorso-verde': "Percorso Verde (I percorsi del benessere)",
     'primiero-ponte-su-funi': "Ponte su Funi Rio San Piero da Mezzano",
     'primiero-san-martino-di-castrozza-val-di-roda-prati-col': "San Martino di Castrozza - Val di Roda - Prati Col",

@@ -291,10 +291,13 @@ describe('the existing-site verification boundary',()=>{
     // decision of 18 November 2026): I Colmi above Sulzano, the Montecastello
     // sanctuary loop at Tignale, the Valle delle Cartiere and Cima Rest (the
     // one-way walks there and back).
-    // Then 555 and 553 with the second Lake Iseo batch: the Riva di Solto
+    // Then 551 and 549: Rundweg Schwarzegg removed on 20 November (OSM lacks
+    // part of its path) and the 15.3 km Waltner Rundweg variant retired as a
+    // duplicate of the Walten loop, whose page its address now opens.
+    // Then 553 and 551 with the second Lake Iseo batch: the Riva di Solto
     // panoramic loop and the earth pyramids of Zone.
-    expect(catalogue).toHaveLength(555);
-    expect(currentSiteTrails(catalogue)).toHaveLength(553);
+    expect(catalogue).toHaveLength(553);
+    expect(currentSiteTrails(catalogue)).toHaveLength(551);
   });
 
   test('requires the artwork the public trail page needs',()=>{
