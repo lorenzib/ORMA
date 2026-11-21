@@ -436,6 +436,8 @@ window.ORMA_TRAIL_NAMES_IT = {
   "sentiero-hans-e-paula-steger": "Sentiero Hans e Paula Steger",
   "steinegg-pyramidenrundweg": "Giro delle piramidi di terra a Collepietra",
   "talucco-ecomuseo-carbonaie": "Sentiero delle Carbonaie al Talucco",
+  "veneto-anello-del-muccion": "Anello del Mucciòn sopra Valdagno",
+  "veneto-archeovia-campetto-cima-marana": "Archeovia dal Campetto a Cima Marana, andata e ritorno",
   "traversella-sentiero-delle-anime": "Sentiero delle Anime a Traversella",
   "tre-cime": "Il giro classico delle Tre Cime di Lavaredo",
   "trecime-bagni-di-san-candido": "Wildbad Innichen",

@@ -8817,6 +8817,40 @@
       }
     },
     {
+      "id": "veneto-anello-del-muccion",
+      "approvedReviewId": "mapillary-veneto-anello-del-muccion-on-route",
+      "approvedAt": "2026-11-19T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/veneto-muccion-path-above-valdagno.jpg",
+        "heroImage": "images/trails/veneto-muccion-path-above-valdagno.jpg",
+        "imageAlt": "A gravel path edged with grass beside a concrete pole and green bushes, with wooded hills and a blue mountain ridge under a cloudy evening sky",
+        "imageCredit": "The gravel path past Contrada Bernardi, looking towards the Piccole Dolomiti",
+        "imageCreditText": "The gravel path past Contrada Bernardi, looking towards the Piccole Dolomiti by mircozorzo",
+        "imageCreator": "mircozorzo",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1091868574634808",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "veneto-archeovia-campetto-cima-marana",
+      "approvedReviewId": "commons-veneto-archeovia-campetto-cima-marana-on-route",
+      "approvedAt": "2026-11-19T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/veneto-campetto-sella-crucifix.jpg",
+        "heroImage": "images/trails/veneto-campetto-sella-crucifix.jpg",
+        "imageAlt": "A tall carved wooden crucifix under a little roof stands on a green grassy ridge with white limestone rocks, a few walkers resting on the grass behind it, under a grey summer sky",
+        "imageCredit": "The wooden crucifix at the Sella del Campetto, on the walk",
+        "imageCreditText": "The wooden crucifix at the Sella del Campetto, on the walk by Gianfranco Graizzaro",
+        "imageCreator": "Gianfranco Graizzaro",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Croce_Sella_del_Campetto-001.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "villnoess-da-russis-fino-al-passo-delle-erbe",
       "approvedReviewId": "commons-villnoess-da-russis-fino-al-passo-delle-erbe-on-route",
       "approvedAt": "2026-10-29T20:00:00.000Z",

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-20T23:58:42.560Z",
+  "generatedAt": "2026-11-21T00:13:53.155Z",
   "regions": {
     "dolomites": {
       "trailCount": 381,
-      "trails": "data/regions/dolomites-trails.js?v=5d66f08995b3",
+      "trails": "data/regions/dolomites-trails.js?v=8acbd4b5140f",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=6b1cc3a2fbef",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
@@ -481,7 +481,7 @@
     },
     "lombardy": {
       "trailCount": 21,
-      "trails": "data/regions/lombardy-trails.js?v=bc35ecbefa8c",
+      "trails": "data/regions/lombardy-trails.js?v=0f4cd2fff931",
       "details": {
         "lario-brunate-e-le-sue-chiese": "data/trail-details/lario-brunate-e-le-sue-chiese.js?v=ba72cffa8ee5",
         "lario-pognana-lario-e-le-sculture-simposio": "data/trail-details/lario-pognana-lario-e-le-sculture-simposio.js?v=1549bacc0a6c",
@@ -576,6 +576,18 @@
       },
       "water": "data/regions/piedmont-water.geojson",
       "hutsBars": "data/regions/piedmont-huts-bars.geojson",
+      "dogRoutes": "dog-friendly-routes.geojson",
+      "optional": []
+    },
+    "veneto": {
+      "trailCount": 2,
+      "trails": "data/regions/veneto-trails.js?v=8f369a008f7b",
+      "details": {
+        "veneto-archeovia-campetto-cima-marana": "data/trail-details/veneto-archeovia-campetto-cima-marana.js?v=e2bd1bee34db",
+        "veneto-anello-del-muccion": "data/trail-details/veneto-anello-del-muccion.js?v=2ea10667fa72"
+      },
+      "water": "data/regions/veneto-water.geojson",
+      "hutsBars": "data/regions/veneto-huts-bars.geojson",
       "dogRoutes": "dog-friendly-routes.geojson",
       "optional": []
     },
@@ -1152,6 +1164,8 @@
     "valsusa-foresto-sentiero-ginepri": "piedmont",
     "valsusa-chianocco-orrido-chouque": "piedmont",
     "valsusa-san-giorio-geat-montebenedetto": "piedmont",
+    "veneto-archeovia-campetto-cima-marana": "veneto",
+    "veneto-anello-del-muccion": "veneto",
     "osttirol-rundwanderung-schloss-weissenstein": "tyrol",
     "osttirol-naturkraftweg-umbalfaelle": "tyrol",
     "osttirol-kulturweg-koednitz": "tyrol",
@@ -1748,6 +1762,8 @@
     "altogarda-santuario-montecastello": "santuario-di-montecastello-tignale",
     "altogarda-valle-cartiere": "valle-delle-cartiere-toscolano-maderno",
     "altogarda-nasce-formaggio-tombea": "cima-rest-formaggio-tombea-magasa",
+    "veneto-archeovia-campetto-cima-marana": "archeovia-campetto-cima-marana",
+    "veneto-anello-del-muccion": "muccion-loop-valdagno",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2301,6 +2317,8 @@
     "santuario-di-montecastello-tignale": "altogarda-santuario-montecastello",
     "valle-delle-cartiere-toscolano-maderno": "altogarda-valle-cartiere",
     "cima-rest-formaggio-tombea-magasa": "altogarda-nasce-formaggio-tombea",
+    "archeovia-campetto-cima-marana": "veneto-archeovia-campetto-cima-marana",
+    "muccion-loop-valdagno": "veneto-anello-del-muccion",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

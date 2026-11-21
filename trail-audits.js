@@ -72316,6 +72316,143 @@
       ],
       startPoint: { lat: 45.781019, lng: 10.629199, label: "The car park of the Museo Etnografico della Valvestino at Cima Rest, Magasa, the published start" },
       desc: "A short, gentle walk high in the Valvestino, from the old thatched barns and ethnographic museum of Cima Rest along a track through summer pastures and beech woods towards Malga Alvezza, where the Tombea mountain cheese is made, and back the same way. The park lists 1.8 km one way; there and back it is 3.6 km with 139 m up and down, about 1 h 15."
+    },
+    'veneto-archeovia-campetto-cima-marana': {
+      // Hand audit: 19 November 2026, verified on arrival (Veneto batch 1, Vicenza prealps; owner decision of 19 November 2026 to add Veneto mountain walks).
+      // UM.PASUBIO (Unione Montana Pasubio Alto Vicentino), on Outdooractive: “Archeovia Campetto - Cima Marana”, drawn there and back on 11 OSM ways along its published line (data/board-line-routes.geojson).
+      // One way on the page with no return given: distance and climb are the published one-way figures doubled; the time is measured by ORMA (DIN 33466).
+      // Commune: Recoaro Terme (its regulations have no lead or ban rule beyond the national one). No regional park; no Natura 2000 site (EEA). No road on the line: path 202 on open pasture. OSM marks the ridge path T2 (mountain_hiking): caution line. Summer cows on the pasture.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Monte Falcone – Sella del Campetto – Cima Marana (Recoaro Terme, Piccole Dolomiti)",
+      distance: 3.8,
+      elevation: 143,
+      hours: '1.25',
+      routeShape: 'out-and-back',
+      routeShapeNote: "UM.PASUBIO publishes the Archeovia one way, from Monte Falcone to Cima Marana (1.9 km, 32 m up and 111 m down, 0:40 h), and gives no return. ORMA walks it there and back on the same path: 3.8 km with 143 m up and 143 m down. The time, about 1 h 15, is measured by ORMA (DIN 33466), not the board’s.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start by the Chalet Montefalcone below Monte Falcone, above Recoaro Terme, the published start.",
+        "sequence": "Take the path past the Montefalcone wayside shrine and the track along the ridge, with the Chiampo valley below on the left, to the Sella del Campetto, the grassy saddle with the big wooden crucifix and the first Archeovia panel. Follow path 202 along the open ridge past the Madonna Rupestre and the Pozzetto di Marana cave to the Bivacco Cima Marana and the summit cross of Cima Marana. Come back the same way.",
+        "switches": "Path past the Montefalcone shrine; track along the ridge to the Sella del Campetto and its crucifix; path 202 along the ridge past the Madonna Rupestre and the Pozzetto di Marana to the Bivacco and the cross of Cima Marana; back the same way.",
+        "sources": [
+          {
+            "label": "UM.PASUBIO, Archeovia Campetto - Cima Marana (route description)",
+            "url": "https://www.outdooractive.com/it/r/809255432",
+            "authority": "UM.PASUBIO (Unione Montana Pasubio Alto Vicentino)",
+            "tag": "tourist board",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The wooden crucifix at the Sella del Campetto, on the walk (Gianfranco Graizzaro on Wikimedia Commons, CC BY-SA 4.0), 30 July 2017, 2 m from the line.",
+        route: "Official one-way walk of 1.9 km from The Chalet Montefalcone below Monte Falcone, Recoaro Terme, as UM.PASUBIO (Unione Montana Pasubio Alto Vicentino), on Outdooractive publishes it, with no return given; ORMA walks it there and back on the same path (owner rule of 12 November 2026). The stored line is drawn on 11 OSM ways along the published line out and back, 3.7 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "Path 202 along the ridge from the Sella del Campetto to Cima Marana, reached on a short path and track from the Chalet Montefalcone; back the same way. The fourteen Archeovia panels line the ridge.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official one way: 1.9 km, 32 m up and 111 m down, 0:40 h (UM.PASUBIO, Outdooractive), between 1,526 m and 1,627 m on the ridge. There and back on the same path: 3.8 km, 143 m up and 143 m down; about 1 h 15 measured by ORMA (DIN 33466), since the board times the walk one way only."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "UM.PASUBIO (Unione Montana Pasubio Alto Vicentino), on Outdooractive, “Archeovia Campetto - Cima Marana” (its Outdooractive tour, with its line)",
+          "Comune di Recoaro Terme: its police and animal regulations have no lead or ban rule beyond the Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026: a lead of at most 1.5 m in places open to the public and a muzzle carried)",
+          "Veneto Natura 2000 conservation measures (DGR 786/2016, Art. 99) and Veneto regional law (LR 60/1993, Art. 18 bis): no dog rule for walkers beyond the national one",
+          "No regional park on the line (the Pasubio and Piccole Dolomiti lie outside Veneto’s five regional parks); European Environment Agency Natura 2000 service: no Natura 2000 site on the line",
+          "OpenStreetMap ways along the board’s line (11 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 41,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["The ridge path is a mountain path (T2) with uneven ground and loose stones: keep a steady pace and watch your dog’s paws","Cows graze the ridge pastures in summer: keep your dog on a lead and give the herds room","The ridge is open: avoid it in thunderstorms, wind or mist"],
+      terrainType: "Mountain path on open pasture",
+      shadeDescription: "Mostly open grassy ridge; short stretches of beech wood near the start.",
+      terrainDescription: "A short high walk along the grassy ridge between the Chiampo and Agno valleys in the Piccole Dolomiti, over 1,500 m, on the Archeovia: fourteen panels tell how people used this ridge from Stone Age hunters to shepherds and the soldiers of the First World War. It ends at the Cima Marana cross and bivouac hut, with wide views.",
+      waterDescription: "No drinking water is mapped on the line (OSM). The Chalet Montefalcone at the start serves food and drink when open. Bring water and a bowl for your dog.",
+      dogNotes: "The ridge is summer pasture: keep your dog on a lead near cows and on the path near the archaeology sites.",
+      tips: "Start at the Chalet Montefalcone above Recoaro Terme: 1.9 km one way to the Cima Marana cross, 0:40 h as the board lists, and the same way back, about 1 h 15 in all by ORMA’s estimate. Go on a clear day for the views, and visit the finds in the Dal Lago museum in Valdagno afterwards, as the board suggests.",
+      sourceLinks: [
+        { label: "UM.PASUBIO, Archeovia Campetto - Cima Marana (Outdooractive)", url: "https://www.outdooractive.com/it/r/809255432" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.668414, lng: 11.205009, label: "The Chalet Montefalcone below Monte Falcone, Recoaro Terme, the published start" },
+      desc: "A short high walk along the grassy ridge between the Chiampo and Agno valleys, past the Archeovia panels and a big wooden crucifix to the summit cross of Cima Marana, and back the same way. The board lists 1.9 km one way; there and back it is 3.8 km, about 1 h 15."
+    },
+    'veneto-anello-del-muccion': {
+      // Hand audit: 19 November 2026, verified on arrival (Veneto batch 1, Vicenza prealps; owner decision of 19 November 2026 to add Veneto mountain walks).
+      // UM.PASUBIO (Unione Montana Pasubio Alto Vicentino), on Outdooractive: “Anello del Mucciòn”, drawn on 30 OSM ways along its published line (data/board-line-routes.geojson).
+      // Communes: Valdagno (start) and Schio (a short stretch near the Mucciòn): neither has a lead or ban rule beyond the national one (Schio’s regulation text checked). No regional park; no Natura 2000 site (EEA). Roads: hamlet lanes about 48% of the line (Via Cornetto at the start), within the owner’s half-the-walk limit; tertiary roads about 190 m in short stretches at Località Mucchione and Contrada Preti/Cestonare, under 300 m. No T2 on the line.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Bergamini di Sopra – Contrada Bernardi – Chiesetta del Mucciòn (Valdagno, Valle dell’Agno)",
+      distance: 5.7,
+      elevation: 265,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from Contrà Bergamini di Sopra up the lane and through the woods to Contrada Bernardi, along the eco-trail to the little Mucciòn church on the pass, and back down past the Ex Voto dell’Emigrante shrine through the woods, as the board publishes it (5.7 km, 265 m up, 1:55 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Contrà Bergamini di Sopra, on the hill above Valdagno, the published start.",
+        "sequence": "Walk up the quiet lane of Via Cornetto for about 1.4 km, then take the path into the wood and on to Contrada Bernardi. Follow the concrete lane past the hamlet and then the dirt path signed for the Piccole Dolomiti eco-trail to the Chiesetta del Mucciòn, the little church on the pass, with the trattoria beside it. Take the Strada dei Rocoli for a few metres, then the track past the Ex Voto dell’Emigrante wayside shrine, cross the road at Contrada Preti and follow the paths and tracks down through the wood and back to Bergamini di Sopra.",
+        "switches": "Via Cornetto up from Bergamini di Sopra; path into the wood to Contrada Bernardi; eco-trail path to the Chiesetta del Mucciòn and the trattoria; Strada dei Rocoli and the track past the Ex Voto dell’Emigrante shrine; across the road at Contrada Preti; paths and tracks down through the wood to Bergamini di Sopra.",
+        "sources": [
+          {
+            "label": "UM.PASUBIO, Anello del Mucciòn (route description)",
+            "url": "https://www.outdooractive.com/it/r/810121175",
+            "authority": "UM.PASUBIO (Unione Montana Pasubio Alto Vicentino)",
+            "tag": "tourist board",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The gravel path past Contrada Bernardi, looking towards the Piccole Dolomiti (mircozorzo on Mapillary, CC BY-SA 4.0), 31 May 2020, 9 m from the line.",
+        route: "Official loop of 5.7 km from Contrà Bergamini di Sopra above Valdagno, as UM.PASUBIO (Unione Montana Pasubio Alto Vicentino), on Outdooractive publishes it; the stored line is drawn on 30 OSM ways along the published line, 5.6 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "No path numbers on most of the loop. From Contrada Bernardi to the Mucciòn it follows the Ortogonale 1 eco-trail (ORT1, “Anello ecoturistico Piccole Dolomiti” signs), then the Strada dei Rocoli; the rest is on local lanes, paths and tracks, as the board’s line shows.",
+        mapPoints: "Start at the board’s start; drinking water at km 2.4, km 2.4, km 3.4 (OSM nodes 7570253539, 7133989292, 690912102).",
+        elevation: "Official 5.7 km, 265 m up and 265 m down, 1:55 h, between 425 m and 690 m (UM.PASUBIO, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "UM.PASUBIO (Unione Montana Pasubio Alto Vicentino), on Outdooractive, “Anello del Mucciòn” (its Outdooractive tour, with its line)",
+          "Comune di Valdagno and Comune di Schio: their police and animal regulations have no lead or ban rule beyond the Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026: a lead of at most 1.5 m in places open to the public and a muzzle carried)",
+          "Veneto Natura 2000 conservation measures (DGR 786/2016, Art. 99) and Veneto regional law (LR 60/1993, Art. 18 bis): no dog rule for walkers beyond the national one",
+          "No regional park on the line (the Pasubio and Piccole Dolomiti lie outside Veneto’s five regional parks); European Environment Agency Natura 2000 service: no Natura 2000 site on the line",
+          "OpenStreetMap ways along the board’s line (30 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 62,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About half the loop is on quiet hamlet lanes with the odd car: keep your dog close there","Two short stretches of road at the Mucciòn pass and at Contrada Preti: keep your dog on a short lead","A low hill walk that gets hot in summer: go in spring or autumn, as the board suggests, or early in the day"],
+      terrainType: "Hamlet lanes, woodland paths and tracks",
+      shadeDescription: "About two thirds in mixed woods; the lanes and the hamlets are open.",
+      terrainDescription: "An easy hill loop above Valdagno in the Agno valley, between old hamlets, mixed woods and open ridges, to the Chiesetta del Mucciòn, a little church built by the local people in the 1950s, with views over the Val Leogra and the Piccole Dolomiti.",
+      waterDescription: "Drinking water mapped at km 2.4 and km 3.4 (OSM). The trattoria by the Mucciòn church serves food and drink when open.",
+      dogNotes: "Keep your dog close on the hamlet lanes and on a short lead on the two road stretches.",
+      tips: "Start at Contrà Bergamini di Sopra above Valdagno: 5.7 km and 265 m up, about 2 hours, as the board lists. The board suggests spring or autumn; the trattoria by the Mucciòn church makes a good stop halfway.",
+      sourceLinks: [
+        { label: "UM.PASUBIO, Anello del Mucciòn (Outdooractive)", url: "https://www.outdooractive.com/it/r/810121175" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.661984, lng: 11.316453, label: "Contrà Bergamini di Sopra above Valdagno, the published start" },
+      desc: "An easy hill loop above Valdagno between old hamlets and mixed woods to the little Mucciòn church on its pass, with views to the Piccole Dolomiti. The board lists 5.7 km and 265 m up."
     }
   };
 
