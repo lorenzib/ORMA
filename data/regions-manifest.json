@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-21T01:10:10.324Z",
+  "generatedAt": "2026-11-21T19:44:45.039Z",
   "regions": {
     "dolomites": {
       "trailCount": 381,
@@ -557,8 +557,8 @@
       "optional": []
     },
     "piedmont": {
-      "trailCount": 15,
-      "trails": "data/regions/piedmont-trails.js?v=199da42b7fb0",
+      "trailCount": 19,
+      "trails": "data/regions/piedmont-trails.js?v=40feb85bdc49",
       "details": {
         "valsesia-gta-tappa-21-campello-monti-rimella": "data/trail-details/valsesia-gta-tappa-21-campello-monti-rimella.js?v=7ad0c44a1326",
         "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo": "data/trail-details/valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo.js?v=0bab2b4505b2",
@@ -574,7 +574,11 @@
         "valsusa-venaus-sentiero-gufi-basso": "data/trail-details/valsusa-venaus-sentiero-gufi-basso.js?v=d9f9442ec1b6",
         "valsusa-foresto-sentiero-ginepri": "data/trail-details/valsusa-foresto-sentiero-ginepri.js?v=2104839e6520",
         "valsusa-chianocco-orrido-chouque": "data/trail-details/valsusa-chianocco-orrido-chouque.js?v=73e903227c14",
-        "valsusa-san-giorio-geat-montebenedetto": "data/trail-details/valsusa-san-giorio-geat-montebenedetto.js?v=6f38e7254444"
+        "valsusa-san-giorio-geat-montebenedetto": "data/trail-details/valsusa-san-giorio-geat-montebenedetto.js?v=6f38e7254444",
+        "valsusa-bruzolo-anello-chiotetti": "data/trail-details/valsusa-bruzolo-anello-chiotetti.js?v=05a70b9609a5",
+        "valsusa-mattie-alpe-toglie": "data/trail-details/valsusa-mattie-alpe-toglie.js?v=427b0269173f",
+        "valsusa-mompantero-sentier8": "data/trail-details/valsusa-mompantero-sentier8.js?v=c0c33ffc4160",
+        "valsusa-giaglione-forte-santa-chiara": "data/trail-details/valsusa-giaglione-forte-santa-chiara.js?v=b91998ff7d21"
       },
       "water": "data/regions/piedmont-water.geojson",
       "hutsBars": "data/regions/piedmont-huts-bars.geojson",
@@ -1170,6 +1174,10 @@
     "valsusa-foresto-sentiero-ginepri": "piedmont",
     "valsusa-chianocco-orrido-chouque": "piedmont",
     "valsusa-san-giorio-geat-montebenedetto": "piedmont",
+    "valsusa-bruzolo-anello-chiotetti": "piedmont",
+    "valsusa-mattie-alpe-toglie": "piedmont",
+    "valsusa-mompantero-sentier8": "piedmont",
+    "valsusa-giaglione-forte-santa-chiara": "piedmont",
     "veneto-archeovia-campetto-cima-marana": "veneto",
     "veneto-anello-del-muccion": "veneto",
     "veneto-sentiero-forte-enna": "veneto",
@@ -1776,6 +1784,10 @@
     "iseo-piramidi-zone": "piramidi-di-zone-riserva-naturale",
     "veneto-sentiero-forte-enna": "forte-enna-loop-torrebelvicino",
     "veneto-sentiero-dei-roccoli": "roccoli-path-muccion",
+    "valsusa-bruzolo-anello-chiotetti": "chiotetti-loop-bruzolo",
+    "valsusa-mattie-alpe-toglie": "alpe-toglie-mattie",
+    "valsusa-mompantero-sentier8": "sentier8-loop-mompantero",
+    "valsusa-giaglione-forte-santa-chiara": "forte-santa-chiara-giaglione",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2335,6 +2347,10 @@
     "piramidi-di-zone-riserva-naturale": "iseo-piramidi-zone",
     "forte-enna-loop-torrebelvicino": "veneto-sentiero-forte-enna",
     "roccoli-path-muccion": "veneto-sentiero-dei-roccoli",
+    "chiotetti-loop-bruzolo": "valsusa-bruzolo-anello-chiotetti",
+    "alpe-toglie-mattie": "valsusa-mattie-alpe-toglie",
+    "sentier8-loop-mompantero": "valsusa-mompantero-sentier8",
+    "forte-santa-chiara-giaglione": "valsusa-giaglione-forte-santa-chiara",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
