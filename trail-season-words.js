@@ -156,6 +156,16 @@
         after: tx(', read on {date}.', { date: readOn(season.recommended.source.accessedAt) }),
       };
       out.legend = [['good', tx('Recommended')], ['off', tx('Outside the season')]];
+    } else if (season.snow && season.snow.likelihood === 'occasional') {
+      // Below 800 m: a walk all year, and the line says when a cold spell
+      // might still bring snow for a few days.
+      out.kind = 'snow';
+      out.strip = MONTH_NAMES.map((name, i) => ({ month: i + 1, initial: monthInitial(i + 1), name: monthName(i + 1), state: 'good' }));
+      out.line = tx('Usually snow-free all year. After a cold spell, snow can lie for a few days {range}.', { range: monthRange(season.snow.months) });
+      out.source = {
+        before: tx('Estimated from the walk’s high point ({alt} m). No tourist board publishes this walk’s season, and every winter is different.', { alt: fmt(season.snow.highPoint) }),
+      };
+      out.legend = [['good', tx('Usually snow-free')]];
     } else if (season.snow) {
       const snowy = new Set(season.snow.months);
       out.kind = 'snow';
@@ -266,7 +276,9 @@
     } else if (season.snow && season.snow.months.includes(month)) {
       notes.push(season.snow.likelihood === 'likely'
         ? tx('In {month} snow is likely on this walk.', { month: name })
-        : tx('In {month} snow is possible on this walk.', { month: name }));
+        : season.snow.likelihood === 'occasional'
+          ? tx('In {month} this walk is usually snow-free; after a cold spell, snow can lie for a few days.', { month: name })
+          : tx('In {month} snow is possible on this walk.', { month: name }));
     }
     for (const lift of (season.lifts || [])) {
       if (!liftShut(lift, month)) continue;
@@ -307,7 +319,7 @@
     if (!season.recommended && !season.snow && !(season.winterUse || []).length) return null;
     let months = season.recommended
       ? season.recommended.months.slice()
-      : MONTH_NAMES.map((_, i) => i + 1).filter(m => !(season.snow && season.snow.months.includes(m)));
+      : MONTH_NAMES.map((_, i) => i + 1).filter(m => !(season.snow && season.snow.likelihood !== 'occasional' && season.snow.months.includes(m)));
     if ((season.winterUse || []).length) {
       const summer = months.filter(m => !WINTER_SPORT_MONTHS.includes(m));
       if (summer.length) months = summer;
