@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "veneto-sentiero-forte-enna",
+  "distanceKm": 9.4,
+  "ascentM": 368,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 618
+    },
+    {
+      "km": 0.7,
+      "elev": 651
+    },
+    {
+      "km": 1.5,
+      "elev": 705
+    },
+    {
+      "km": 2.2,
+      "elev": 753
+    },
+    {
+      "km": 2.9,
+      "elev": 834
+    },
+    {
+      "km": 3.6,
+      "elev": 906
+    },
+    {
+      "km": 4.3,
+      "elev": 955
+    },
+    {
+      "km": 5,
+      "elev": 955
+    },
+    {
+      "km": 5.7,
+      "elev": 937
+    },
+    {
+      "km": 6.4,
+      "elev": 829
+    },
+    {
+      "km": 7.2,
+      "elev": 743
+    },
+    {
+      "km": 7.9,
+      "elev": 677
+    },
+    {
+      "km": 8.6,
+      "elev": 642
+    },
+    {
+      "km": 9.3,
+      "elev": 600
+    },
+    {
+      "km": 9.4,
+      "elev": 600
+    }
+  ]
+}
