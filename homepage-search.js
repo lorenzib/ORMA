@@ -582,7 +582,12 @@
         '<span class="browse-season browse-season--best">' + esc(best) + '</span>' +
         (words.dogSeasonsNow ? words.dogSeasonsNow(trail.season, month) : []).map(function (r) {
           return '<span class="browse-season browse-season--dog">' + esc(r.label) + '</span>';
-        }).join('');
+        }).join('') +
+        // "Sunny in winter" or "Little winter sun", November to February.
+        (function () {
+          var sunTag = words.winterSunTag ? words.winterSunTag(trail.season, month) : null;
+          return sunTag ? '<span class="browse-season browse-season--sun-' + sunTag.kind + '">' + esc(sunTag.label) + '</span>' : '';
+        })();
     }
     return risk + provenance + season;
   }

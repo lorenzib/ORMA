@@ -2477,6 +2477,8 @@ body.map-fs-open{overflow:hidden;}
 .browse-season--best{background:#EEF0EA;color:#3C4A3A;}
 .browse-season--out{background:#F6E3DE;color:#7A2E1E;}
 .browse-season--dog{background:#F7EBD2;color:#6D4916;}
+.browse-season--sun-sunny{background:#FBEFC4;color:#6B5100;}
+.browse-season--sun-shady{background:#DDE7F3;color:#24476B;}
 .hp-ccard-match{display:flex;flex-direction:column;align-items:flex-start;gap:4px;flex:none;padding:13px 15px 14px;border-top:1px solid rgba(46,64,52,.08);background:var(--success-dim);}
 .hp-ccard-match small{font:700 9.5px/1 'Inter',sans-serif;letter-spacing:.09em;color:var(--ink-soft);}
 .hp-ccard-match strong{font:800 14px/1.25 'Inter',sans-serif;color:var(--success);}

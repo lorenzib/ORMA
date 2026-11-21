@@ -1,0 +1,2775 @@
+{
+  "contractVersion": "1.0.0",
+  "note": "Hours of direct sun the terrain allows on 21 December, averaged over up to 20 points along the walk. Trees, buildings and weather are not counted. Built by npm run build:winter-sun.",
+  "source": {
+    "label": "AWS Terrain Tiles (EU-DEM, produced using Copernicus data)",
+    "url": "https://registry.opendata.aws/terrain-tiles/"
+  },
+  "trails": {
+    "ahrntal-escursione-rifugio-ponte-di-ghiaccio": {
+      "hours": 2.1,
+      "noSunShare": 0.35,
+      "points": 20
+    },
+    "ahrntal-sentiero-del-conte-cadipietra": {
+      "hours": 0,
+      "noSunShare": 1,
+      "points": 10
+    },
+    "ahrntal-sentiero-panoramico-cadipietra": {
+      "hours": 2.3,
+      "noSunShare": 0.13,
+      "points": 15
+    },
+    "alleghe-dolomiti-in-miniatura": {
+      "hours": 1.1,
+      "noSunShare": 0.7,
+      "points": 20
+    },
+    "alpe-siusi": {
+      "hours": 6.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "altabadia-colfosco-rifugio-puez": {
+      "hours": 6.1,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "altabadia-da-furnacia-a-la-crusc": {
+      "hours": 5.4,
+      "noSunShare": 0,
+      "points": 18
+    },
+    "altabadia-da-la-val-ai-prati-di-rit": {
+      "hours": 4.3,
+      "noSunShare": 0.1,
+      "points": 20
+    },
+    "altabadia-da-pederoa-ai-masi-picedac-aiarei-e-costa-fino-a-pederoa": {
+      "hours": 4.2,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "altabadia-da-san-cassiano-al-pralongia-fino-a-corvara": {
+      "hours": 6.5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "altabadia-escursione-corvara-colfosco": {
+      "hours": 3,
+      "noSunShare": 0.3,
+      "points": 20
+    },
+    "altabadia-escursione-corvara-la-villa": {
+      "hours": 3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt": {
+      "hours": 5.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "altabadia-passeggiata-borest-cascate-del-pisciadu": {
+      "hours": 0.5,
+      "noSunShare": 0.81,
+      "points": 16
+    },
+    "altabadia-sentiero-degli-artisti-tru-di-artisc": {
+      "hours": 4.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "altogarda-nasce-formaggio-tombea": {
+      "hours": 7.7,
+      "noSunShare": 0,
+      "points": 16
+    },
+    "altogarda-santuario-montecastello": {
+      "hours": 5,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "altogarda-valle-cartiere": {
+      "hours": 5.5,
+      "noSunShare": 0,
+      "points": 18
+    },
+    "aosta-champoluc-cascata-mascognaz": {
+      "hours": 0.9,
+      "noSunShare": 0.25,
+      "points": 8
+    },
+    "aosta-periasc-antagnod": {
+      "hours": 5,
+      "noSunShare": 0,
+      "points": 6
+    },
+    "aosta-ru-courtaud": {
+      "hours": 6.1,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "aosta-sentiero-della-regina": {
+      "hours": 4.1,
+      "noSunShare": 0,
+      "points": 15
+    },
+    "aosta-strada-lombarda": {
+      "hours": 4.2,
+      "noSunShare": 0,
+      "points": 19
+    },
+    "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande": {
+      "hours": 4.3,
+      "noSunShare": 0,
+      "points": 15
+    },
+    "arabba-castello-di-andraz-passeggiata-per-famiglie": {
+      "hours": 5.9,
+      "noSunShare": 0,
+      "points": 10
+    },
+    "auronzo-namos": {
+      "hours": 3.3,
+      "noSunShare": 0.12,
+      "points": 17
+    },
+    "auronzo-pian-di-barco": {
+      "hours": 4.5,
+      "noSunShare": 0,
+      "points": 16
+    },
+    "auronzo-proazei": {
+      "hours": 0,
+      "noSunShare": 1,
+      "points": 9
+    },
+    "auronzo-zamberlan": {
+      "hours": 5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "bormio-da-arnoga-al-rifugio-federico": {
+      "hours": 2.8,
+      "noSunShare": 0.1,
+      "points": 20
+    },
+    "brixen-alto-sentiero-di-lazfons": {
+      "hours": 7.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl": {
+      "hours": 6.3,
+      "noSunShare": 0,
+      "points": 15
+    },
+    "brixen-escursione-al-rifugio-bressanone": {
+      "hours": 4.7,
+      "noSunShare": 0,
+      "points": 19
+    },
+    "brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia": {
+      "hours": 5.3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "cadini": {
+      "hours": 7,
+      "noSunShare": 0,
+      "points": 8
+    },
+    "campiglio-carisolo-centro-storico": {
+      "hours": 4.6,
+      "noSunShare": 0,
+      "points": 16
+    },
+    "campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio": {
+      "hours": 6.5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "campiglio-laghi-di-san-giuliano-garzone-e-vacarsa": {
+      "hours": 4.2,
+      "noSunShare": 0.15,
+      "points": 20
+    },
+    "campiglio-lago-ritorto-nel-blu-dipinto-di-blu": {
+      "hours": 6.5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "campiglio-madonna-di-campiglio-monte-spinale": {
+      "hours": 5.5,
+      "noSunShare": 0.11,
+      "points": 18
+    },
+    "campiglio-monte-spinale-rifugio-graffer": {
+      "hours": 6.7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "campiglio-trekking-al-lago-di-nambino": {
+      "hours": 4,
+      "noSunShare": 0,
+      "points": 13
+    },
+    "campiglio-trekking-al-rifugio-segantini": {
+      "hours": 3.1,
+      "noSunShare": 0.3,
+      "points": 20
+    },
+    "campiglio-valina-d-amola-rifugio-segantini-cornisello": {
+      "hours": 5.4,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "cembra-castello-segonzano": {
+      "hours": 5.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "cembra-dos-paion": {
+      "hours": 7.1,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "cembra-erbe-della-salute": {
+      "hours": 6.5,
+      "noSunShare": 0,
+      "points": 10
+    },
+    "cembra-giro-masi-grumes": {
+      "hours": 6.9,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "cembra-giro-monte-corona": {
+      "hours": 7.3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "cembra-lago-lases-buse-giaz": {
+      "hours": 4.2,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "cembra-lago-santo": {
+      "hours": 7.1,
+      "noSunShare": 0,
+      "points": 6
+    },
+    "cembra-monte-pat-malga-vernera": {
+      "hours": 5.9,
+      "noSunShare": 0,
+      "points": 10
+    },
+    "cembra-paese-beghei": {
+      "hours": 4.4,
+      "noSunShare": 0,
+      "points": 17
+    },
+    "cembra-pascoli-malga-vernera": {
+      "hours": 4.8,
+      "noSunShare": 0.06,
+      "points": 16
+    },
+    "cembra-pietra-del-futuro": {
+      "hours": 4.1,
+      "noSunShare": 0,
+      "points": 12
+    },
+    "cembra-piz-de-le-agole": {
+      "hours": 7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "cembra-rifugio-potzmauer": {
+      "hours": 6.5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "cembra-san-leonardo-lisignago": {
+      "hours": 6.2,
+      "noSunShare": 0,
+      "points": 19
+    },
+    "cembra-vecchi-mestieri-grumes": {
+      "hours": 5.3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "cinque-torri-assisted": {
+      "hours": 3.8,
+      "noSunShare": 0.1,
+      "points": 20
+    },
+    "colle-passeggiata-intorno-al-colle": {
+      "hours": 5.5,
+      "noSunShare": 0,
+      "points": 6
+    },
+    "cortina-anello-dei-tre-rifugi": {
+      "hours": 6,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "cortina-castello-di-botestagno": {
+      "hours": 4,
+      "noSunShare": 0,
+      "points": 12
+    },
+    "cortina-forcella-lerosa": {
+      "hours": 2.7,
+      "noSunShare": 0.15,
+      "points": 20
+    },
+    "cortina-malga-ra-stua": {
+      "hours": 4.7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "cortina-mortisa-e-le-grotte-di-volpera": {
+      "hours": 5.9,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "cortina-passeggiata-gourmet": {
+      "hours": 6.9,
+      "noSunShare": 0,
+      "points": 19
+    },
+    "cortina-sotecordes": {
+      "hours": 7.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "cortina-zumeles-val-padeon": {
+      "hours": 4,
+      "noSunShare": 0.15,
+      "points": 20
+    },
+    "dolomitiunesco-lavaze-malga-costa": {
+      "hours": 6.1,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "dolomitiunesco-pecol-malga-pioda": {
+      "hours": 6.2,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "dolomitiunesco-val-san-nicolo": {
+      "hours": 0.4,
+      "noSunShare": 0.5,
+      "points": 20
+    },
+    "eggental-dal-passo-costalunga-al-lago-di-carezza": {
+      "hours": 1.3,
+      "noSunShare": 0.32,
+      "points": 19
+    },
+    "eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl": {
+      "hours": 2,
+      "noSunShare": 0.39,
+      "points": 18
+    },
+    "eggental-frommer-ochsenhuette": {
+      "hours": 6.7,
+      "noSunShare": 0,
+      "points": 10
+    },
+    "eggental-jolanda-baita-messnerjoch": {
+      "hours": 6.6,
+      "noSunShare": 0,
+      "points": 17
+    },
+    "eggental-kaiserstein-baita-masare": {
+      "hours": 5.3,
+      "noSunShare": 0,
+      "points": 7
+    },
+    "eggental-passo-nigra-baita-messnerjoch": {
+      "hours": 5.9,
+      "noSunShare": 0,
+      "points": 17
+    },
+    "eggental-passo-nigra-malga-hagner": {
+      "hours": 7.2,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "eggental-pietralba-petersberger-leger": {
+      "hours": 5.1,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "engadin-around-lake-st-moritz": {
+      "hours": 4,
+      "noSunShare": 0,
+      "points": 19
+    },
+    "engadin-chapella-val-susauna": {
+      "hours": 2.1,
+      "noSunShare": 0.1,
+      "points": 20
+    },
+    "engadin-corvatsch-hahnensee-st-moritz": {
+      "hours": 5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "engadin-corvatsch-murtel-fuorcla-surlej": {
+      "hours": 2.6,
+      "noSunShare": 0.21,
+      "points": 19
+    },
+    "engadin-diavolezza-sass-queder": {
+      "hours": 6.9,
+      "noSunShare": 0,
+      "points": 7
+    },
+    "engadin-eulalia-and-gian-plaiv": {
+      "hours": 6.3,
+      "noSunShare": 0,
+      "points": 13
+    },
+    "engadin-mid-station-murtel-alpetta-valley-station-corvatsch-surlej": {
+      "hours": 4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "engadin-morteratsch-glacier-route": {
+      "hours": 3,
+      "noSunShare": 0,
+      "points": 13
+    },
+    "engadin-nature-trail-la-senda-samedan-smartrail": {
+      "hours": 5.9,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "engadin-sils-chaste-peninsula-sils": {
+      "hours": 6.5,
+      "noSunShare": 0,
+      "points": 19
+    },
+    "engadin-surlej-waterfall-lake-silvaplana-surlej": {
+      "hours": 5.6,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fassa-alpe-di-fuciade": {
+      "hours": 5.9,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fassa-antichi-bagnes": {
+      "hours": 4.4,
+      "noSunShare": 0,
+      "points": 13
+    },
+    "fassa-borgo-dei-patins": {
+      "hours": 5.4,
+      "noSunShare": 0,
+      "points": 14
+    },
+    "fassa-borgo-di-tamion": {
+      "hours": 5.5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fassa-cammino-dei-pitores": {
+      "hours": 3.7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fassa-ciajeole-malga-roncac": {
+      "hours": 4.3,
+      "noSunShare": 0,
+      "points": 13
+    },
+    "fassa-da-alba-a-penia": {
+      "hours": 1.1,
+      "noSunShare": 0.25,
+      "points": 20
+    },
+    "fassa-da-canazei-a-penia": {
+      "hours": 2.6,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fassa-dipinti-del-giotto": {
+      "hours": 5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fassa-malga-aloch": {
+      "hours": 4.2,
+      "noSunShare": 0,
+      "points": 10
+    },
+    "fassa-moena-soraga-acqua": {
+      "hours": 5.3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fassa-moena-soraga-someda": {
+      "hours": 4.7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fassa-molin-de-pezol": {
+      "hours": 5.1,
+      "noSunShare": 0,
+      "points": 16
+    },
+    "fassa-passato-ritrovato": {
+      "hours": 2.2,
+      "noSunShare": 0.15,
+      "points": 20
+    },
+    "fassa-pastori-erranti": {
+      "hours": 5.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fassa-prato-di-sorte": {
+      "hours": 3.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fassa-santuario-dei-pellegrini": {
+      "hours": 5.5,
+      "noSunShare": 0,
+      "points": 12
+    },
+    "fassa-segreti-di-una-volta": {
+      "hours": 5.3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fassa-sentiero-della-foresta": {
+      "hours": 3.8,
+      "noSunShare": 0.08,
+      "points": 13
+    },
+    "fassa-val-freida": {
+      "hours": 6.5,
+      "noSunShare": 0,
+      "points": 12
+    },
+    "fiemme-cascatelle-di-ziano": {
+      "hours": 1.7,
+      "noSunShare": 0.1,
+      "points": 10
+    },
+    "fiemme-cavalese-passeggiata-panoramica": {
+      "hours": 6.4,
+      "noSunShare": 0,
+      "points": 13
+    },
+    "fiemme-cristo-pensante": {
+      "hours": 5.9,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fiemme-giro-cavalese-castello": {
+      "hours": 6.5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fiemme-lago-juribrutto": {
+      "hours": 5.6,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fiemme-larici-verso-anterivo": {
+      "hours": 6.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fiemme-masi-comunicanti": {
+      "hours": 5.7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fiemme-passeggiata-insolita": {
+      "hours": 6.6,
+      "noSunShare": 0,
+      "points": 13
+    },
+    "fiemme-passo-oclini": {
+      "hours": 6.7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fiemme-pradi-da-le-fior": {
+      "hours": 4.3,
+      "noSunShare": 0,
+      "points": 14
+    },
+    "fiemme-scalata-alle-malghette": {
+      "hours": 7.2,
+      "noSunShare": 0,
+      "points": 17
+    },
+    "fiemme-sentiero-botanico": {
+      "hours": 5.9,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fiemme-varena-spianez": {
+      "hours": 7.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fvg-anello-casera-vas-monte-buoi": {
+      "hours": 6.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fvg-anello-lago-di-verzegnis": {
+      "hours": 2.3,
+      "noSunShare": 0.17,
+      "points": 12
+    },
+    "fvg-anello-malga-confin-ungarina": {
+      "hours": 8.2,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fvg-borgo-stavoli-moggio": {
+      "hours": 3.7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fvg-col-dei-piais": {
+      "hours": 4.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fvg-faggi-secolari-pustot-dordolla": {
+      "hours": 4.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fvg-fontanon-di-goriuda": {
+      "hours": 0,
+      "noSunShare": 1,
+      "points": 4
+    },
+    "fvg-laghi-di-fusine": {
+      "hours": 3.1,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fvg-lago-di-sella-sompdogna": {
+      "hours": 3,
+      "noSunShare": 0,
+      "points": 10
+    },
+    "fvg-mirabila-sentiero-botanico-bila-pec": {
+      "hours": 0.6,
+      "noSunShare": 0.67,
+      "points": 9
+    },
+    "fvg-monte-rest-da-passo-rest": {
+      "hours": 5.9,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fvg-monte-talm-da-piani-di-vas": {
+      "hours": 5.1,
+      "noSunShare": 0.1,
+      "points": 20
+    },
+    "fvg-raunis-cascate-belepeit": {
+      "hours": 5.3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fvg-salita-casera-canin": {
+      "hours": 3.6,
+      "noSunShare": 0.35,
+      "points": 20
+    },
+    "fvg-sappada-rifugio-calvi": {
+      "hours": 7.5,
+      "noSunShare": 0,
+      "points": 17
+    },
+    "fvg-sappada-rifugio-siera-longrone": {
+      "hours": 0,
+      "noSunShare": 1,
+      "points": 20
+    },
+    "fvg-ta-lipa-pot-corto": {
+      "hours": 4.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "fvg-venzone-anello-delle-chiesette": {
+      "hours": 4.8,
+      "noSunShare": 0,
+      "points": 12
+    },
+    "gailtal-almkaese-sonnenalpe": {
+      "hours": 5.2,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "gailtal-auernig-hoehenweg": {
+      "hours": 5.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "geotrail-bulla": {
+      "hours": 1.4,
+      "noSunShare": 0.5,
+      "points": 20
+    },
+    "giro-del-bulacia": {
+      "hours": 7.2,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "giro-del-sasso-lungo": {
+      "hours": 4.4,
+      "noSunShare": 0.2,
+      "points": 20
+    },
+    "giudicarie-san-martino-bosco-scolpito": {
+      "hours": 3.8,
+      "noSunShare": 0,
+      "points": 19
+    },
+    "giudicarie-san-vigilio-senter-dei-cavai": {
+      "hours": 4.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "giudicarie-senter-dei-popi-madonna-del-lares": {
+      "hours": 3.6,
+      "noSunShare": 0.06,
+      "points": 18
+    },
+    "giudicarie-tione-bolbeno-madonna-del-lares": {
+      "hours": 2.7,
+      "noSunShare": 0.07,
+      "points": 14
+    },
+    "iseo-colmi": {
+      "hours": 8.3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "isere-boucle-du-couzon": {
+      "hours": 5.9,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "isere-circuit-pedestre-alpage-des-cloutons": {
+      "hours": 4.8,
+      "noSunShare": 0.2,
+      "points": 20
+    },
+    "isere-de-st-pierre-dentremont-a-corbel": {
+      "hours": 5.2,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "isere-la-vallee-de-la-gresse": {
+      "hours": 6.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "isere-le-canal-de-clelles": {
+      "hours": 3,
+      "noSunShare": 0.2,
+      "points": 20
+    },
+    "isere-le-fort-du-murier": {
+      "hours": 5.4,
+      "noSunShare": 0,
+      "points": 19
+    },
+    "isere-le-plateau-de-la-moliere": {
+      "hours": 7.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "isere-tour-de-chichilianne": {
+      "hours": 5.7,
+      "noSunShare": 0,
+      "points": 17
+    },
+    "kronplatz-attraverso-il-sentiero-panoramico-a-brunico": {
+      "hours": 4.1,
+      "noSunShare": 0.1,
+      "points": 20
+    },
+    "kronplatz-escursione-da-antermoia-attraverso-colac-val-a-rina": {
+      "hours": 5.9,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "kronplatz-passeggiata-leggendaria-sul-kienberg": {
+      "hours": 3.1,
+      "noSunShare": 0.25,
+      "points": 20
+    },
+    "kronplatz-passeggiata-san-vigilio-le-dla-creda": {
+      "hours": 1.6,
+      "noSunShare": 0.13,
+      "points": 15
+    },
+    "kronplatz-passeggiata-senza-barriere-brach-pieve-di-marebbe": {
+      "hours": 6.6,
+      "noSunShare": 0,
+      "points": 5
+    },
+    "kronplatz-passeggiata-valdaora-monguelfo": {
+      "hours": 3.7,
+      "noSunShare": 0.15,
+      "points": 20
+    },
+    "kronplatz-san-lorenzo-maria-sares": {
+      "hours": 3.5,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi": {
+      "hours": 5.2,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "kronplatz-sentiero-tematico-tru-dles-liondes": {
+      "hours": 1.7,
+      "noSunShare": 0.15,
+      "points": 13
+    },
+    "kronplatz-sorafurcia-plan-de-corones": {
+      "hours": 5.7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "kronplatz-steinmeile": {
+      "hours": 5.6,
+      "noSunShare": 0,
+      "points": 14
+    },
+    "kronplatz-sulle-tracce-della-lacerta-prima": {
+      "hours": 4.1,
+      "noSunShare": 0,
+      "points": 19
+    },
+    "kronplatz-valdaora-di-sopra-goste": {
+      "hours": 4.4,
+      "noSunShare": 0,
+      "points": 12
+    },
+    "kronplatz-valdaora-di-sotto-casola-bagni-di-pervalle": {
+      "hours": 3.6,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "lago-braies": {
+      "hours": 1,
+      "noSunShare": 0.27,
+      "points": 15
+    },
+    "lago-carezza": {
+      "hours": 2,
+      "noSunShare": 0,
+      "points": 8
+    },
+    "lago-sorapis": {
+      "hours": 0.7,
+      "noSunShare": 0.7,
+      "points": 20
+    },
+    "lanzo-anello-mulino-turcin": {
+      "hours": 7.5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "lario-alla-ricerca-di-un-panorama-unico": {
+      "hours": 6.3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "lario-anello-ai-piedi-del-monte-oriolo": {
+      "hours": 4.5,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "lario-asso-funghi-di-terra": {
+      "hours": 4.2,
+      "noSunShare": 0.15,
+      "points": 20
+    },
+    "lario-brunate-e-le-sue-chiese": {
+      "hours": 7.6,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "lario-caslino-sullacqua": {
+      "hours": 5.7,
+      "noSunShare": 0.15,
+      "points": 20
+    },
+    "lario-dal-passo-del-giovo-al-rifugio-sommafiume": {
+      "hours": 6.9,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "lario-eupilio-tra-segrino-e-cornizzolo": {
+      "hours": 8.2,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "lario-il-sentiero-del-viandante": {
+      "hours": 4.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "lario-nel-cuore-del-triangolo-lariano": {
+      "hours": 5.4,
+      "noSunShare": 0,
+      "points": 14
+    },
+    "lario-pognana-lario-e-le-sculture-simposio": {
+      "hours": 5.7,
+      "noSunShare": 0,
+      "points": 17
+    },
+    "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza": {
+      "hours": 6.2,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "lesachtal-spazierweg-maria-luggau-gailweg": {
+      "hours": 4.9,
+      "noSunShare": 0,
+      "points": 8
+    },
+    "lesachtal-tuffbad": {
+      "hours": 5.2,
+      "noSunShare": 0,
+      "points": 14
+    },
+    "lombardia-bergamo-colle-maresana": {
+      "hours": 8.2,
+      "noSunShare": 0,
+      "points": 12
+    },
+    "lombardia-reggetto-piani-di-artavaggio": {
+      "hours": 6.9,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "luesen-panoramaweg": {
+      "hours": 3.2,
+      "noSunShare": 0.1,
+      "points": 20
+    },
+    "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof": {
+      "hours": 3.1,
+      "noSunShare": 0.4,
+      "points": 20
+    },
+    "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto": {
+      "hours": 4.9,
+      "noSunShare": 0.15,
+      "points": 20
+    },
+    "meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg": {
+      "hours": 5.7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "meran-escursione-alla-forst": {
+      "hours": 0.7,
+      "noSunShare": 0.7,
+      "points": 20
+    },
+    "meran-escursione-alle-malghe-maiser-alm-moschwaldalm": {
+      "hours": 6.7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "meran-escursione-sentiero-del-sole-a-stulles": {
+      "hours": 6.3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "meran-facile-escursione-da-verano-ad-avelengo": {
+      "hours": 6.1,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "meran-giro-dei-masi-sul-monte-sole": {
+      "hours": 7.4,
+      "noSunShare": 0,
+      "points": 17
+    },
+    "meran-giro-delle-malghe-monte-tramontana": {
+      "hours": 0.2,
+      "noSunShare": 0.9,
+      "points": 20
+    },
+    "meran-itinerario-raststeinweg": {
+      "hours": 5.7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer": {
+      "hours": 2.9,
+      "noSunShare": 0.4,
+      "points": 20
+    },
+    "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo": {
+      "hours": 5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "meran-sentiero-della-roggia-brandis-a-lana": {
+      "hours": 3.3,
+      "noSunShare": 0.08,
+      "points": 13
+    },
+    "meran-sull-alta-via-di-merano-da-giggelberg-a-unterstell": {
+      "hours": 7.2,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "meran-sull-alta-via-di-merano-ovest-ai-masi-storici-del-monte-sole": {
+      "hours": 6.7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "nuvolau": {
+      "hours": 6.6,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-10116283": {
+      "hours": 6.5,
+      "noSunShare": 0,
+      "points": 12
+    },
+    "osm-10116380": {
+      "hours": 6.2,
+      "noSunShare": 0,
+      "points": 17
+    },
+    "osm-10220399": {
+      "hours": 3.5,
+      "noSunShare": 0.1,
+      "points": 20
+    },
+    "osm-10539302": {
+      "hours": 4.3,
+      "noSunShare": 0.06,
+      "points": 17
+    },
+    "osm-1116675": {
+      "hours": 1.5,
+      "noSunShare": 0.45,
+      "points": 11
+    },
+    "osm-1116680": {
+      "hours": 4.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-11270309": {
+      "hours": 0,
+      "noSunShare": 1,
+      "points": 6
+    },
+    "osm-11517208": {
+      "hours": 6.7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-11764094": {
+      "hours": 5.5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-11768853": {
+      "hours": 6.7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-11774783": {
+      "hours": 5.2,
+      "noSunShare": 0,
+      "points": 7
+    },
+    "osm-11775760": {
+      "hours": 3.9,
+      "noSunShare": 0,
+      "points": 13
+    },
+    "osm-11775923": {
+      "hours": 5.3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-11780502": {
+      "hours": 2.1,
+      "noSunShare": 0.15,
+      "points": 13
+    },
+    "osm-11790553": {
+      "hours": 4.9,
+      "noSunShare": 0.1,
+      "points": 10
+    },
+    "osm-11791915": {
+      "hours": 5.5,
+      "noSunShare": 0,
+      "points": 11
+    },
+    "osm-11792795": {
+      "hours": 5.8,
+      "noSunShare": 0,
+      "points": 4
+    },
+    "osm-11795103": {
+      "hours": 5.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-11795251": {
+      "hours": 0.8,
+      "noSunShare": 0.5,
+      "points": 20
+    },
+    "osm-11814834": {
+      "hours": 1.5,
+      "noSunShare": 0.5,
+      "points": 20
+    },
+    "osm-11814895": {
+      "hours": 6.6,
+      "noSunShare": 0,
+      "points": 4
+    },
+    "osm-11815025": {
+      "hours": 6.9,
+      "noSunShare": 0,
+      "points": 12
+    },
+    "osm-11816373": {
+      "hours": 3.1,
+      "noSunShare": 0,
+      "points": 14
+    },
+    "osm-11828233": {
+      "hours": 4.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-11832013": {
+      "hours": 2.8,
+      "noSunShare": 0.18,
+      "points": 11
+    },
+    "osm-11833313": {
+      "hours": 3.6,
+      "noSunShare": 0.14,
+      "points": 14
+    },
+    "osm-11839597": {
+      "hours": 6.7,
+      "noSunShare": 0,
+      "points": 11
+    },
+    "osm-11855879": {
+      "hours": 7.7,
+      "noSunShare": 0,
+      "points": 12
+    },
+    "osm-11860429": {
+      "hours": 5.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-11891581": {
+      "hours": 5.9,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "osm-12018939": {
+      "hours": 5.8,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "osm-12025052": {
+      "hours": 6.9,
+      "noSunShare": 0,
+      "points": 8
+    },
+    "osm-12044077": {
+      "hours": 0.5,
+      "noSunShare": 0.57,
+      "points": 7
+    },
+    "osm-12047303": {
+      "hours": 2.8,
+      "noSunShare": 0.15,
+      "points": 13
+    },
+    "osm-12118490": {
+      "hours": 5.7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-12121346": {
+      "hours": 6.2,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-12121548": {
+      "hours": 5.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-12121798": {
+      "hours": 4.9,
+      "noSunShare": 0,
+      "points": 10
+    },
+    "osm-12127424": {
+      "hours": 2.4,
+      "noSunShare": 0,
+      "points": 13
+    },
+    "osm-12132169": {
+      "hours": 5.6,
+      "noSunShare": 0.15,
+      "points": 20
+    },
+    "osm-12142337": {
+      "hours": 3.4,
+      "noSunShare": 0.2,
+      "points": 20
+    },
+    "osm-12150790": {
+      "hours": 0.9,
+      "noSunShare": 0.62,
+      "points": 13
+    },
+    "osm-12164395": {
+      "hours": 4.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-12165590": {
+      "hours": 4.5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-12172440": {
+      "hours": 7.6,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-12173549": {
+      "hours": 7.6,
+      "noSunShare": 0,
+      "points": 18
+    },
+    "osm-12173965": {
+      "hours": 5.5,
+      "noSunShare": 0,
+      "points": 9
+    },
+    "osm-12173984": {
+      "hours": 3.3,
+      "noSunShare": 0.3,
+      "points": 20
+    },
+    "osm-12174210": {
+      "hours": 3.1,
+      "noSunShare": 0.15,
+      "points": 20
+    },
+    "osm-12182516": {
+      "hours": 4.5,
+      "noSunShare": 0,
+      "points": 6
+    },
+    "osm-12182895": {
+      "hours": 4.2,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "osm-12182936": {
+      "hours": 4.2,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-12189165": {
+      "hours": 6.3,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "osm-12190538": {
+      "hours": 7.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-12190657": {
+      "hours": 7.3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-12302137": {
+      "hours": 4.5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-12302182": {
+      "hours": 4.5,
+      "noSunShare": 0,
+      "points": 14
+    },
+    "osm-12302191": {
+      "hours": 5.9,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-123162": {
+      "hours": 7.1,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-12363235": {
+      "hours": 5.9,
+      "noSunShare": 0,
+      "points": 9
+    },
+    "osm-12371666": {
+      "hours": 5.2,
+      "noSunShare": 0,
+      "points": 7
+    },
+    "osm-12371689": {
+      "hours": 5.4,
+      "noSunShare": 0,
+      "points": 6
+    },
+    "osm-12731853": {
+      "hours": 6.1,
+      "noSunShare": 0,
+      "points": 18
+    },
+    "osm-12736753": {
+      "hours": 5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-12737724": {
+      "hours": 4,
+      "noSunShare": 0.15,
+      "points": 20
+    },
+    "osm-12745924": {
+      "hours": 0,
+      "noSunShare": 1,
+      "points": 13
+    },
+    "osm-12953352": {
+      "hours": 5.9,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-13337921": {
+      "hours": 3.8,
+      "noSunShare": 0.3,
+      "points": 20
+    },
+    "osm-13338113": {
+      "hours": 4.8,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "osm-13491868": {
+      "hours": 6.4,
+      "noSunShare": 0,
+      "points": 15
+    },
+    "osm-13528390": {
+      "hours": 5.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-14058492": {
+      "hours": 5,
+      "noSunShare": 0,
+      "points": 11
+    },
+    "osm-14058632": {
+      "hours": 4.8,
+      "noSunShare": 0,
+      "points": 8
+    },
+    "osm-14095296": {
+      "hours": 7.3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-14375158": {
+      "hours": 5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-14376573": {
+      "hours": 6.7,
+      "noSunShare": 0,
+      "points": 18
+    },
+    "osm-14377007": {
+      "hours": 4,
+      "noSunShare": 0.06,
+      "points": 17
+    },
+    "osm-14378946": {
+      "hours": 4.1,
+      "noSunShare": 0.15,
+      "points": 20
+    },
+    "osm-14379010": {
+      "hours": 4.9,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-14379937": {
+      "hours": 3.1,
+      "noSunShare": 0.25,
+      "points": 20
+    },
+    "osm-14381570": {
+      "hours": 4.6,
+      "noSunShare": 0.1,
+      "points": 20
+    },
+    "osm-14381584": {
+      "hours": 4.3,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "osm-14381788": {
+      "hours": 6.4,
+      "noSunShare": 0,
+      "points": 11
+    },
+    "osm-14381930": {
+      "hours": 4.5,
+      "noSunShare": 0.1,
+      "points": 20
+    },
+    "osm-14864704": {
+      "hours": 4.4,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "osm-14987412": {
+      "hours": 7.6,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-1506470": {
+      "hours": 5.5,
+      "noSunShare": 0,
+      "points": 13
+    },
+    "osm-15321049": {
+      "hours": 0.5,
+      "noSunShare": 0.9,
+      "points": 20
+    },
+    "osm-15321786": {
+      "hours": 7.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-15535697": {
+      "hours": 5.9,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-15591346": {
+      "hours": 7.1,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-15791408": {
+      "hours": 6.3,
+      "noSunShare": 0.07,
+      "points": 15
+    },
+    "osm-16180587": {
+      "hours": 6.6,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-16218739": {
+      "hours": 4.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-16322228": {
+      "hours": 6.9,
+      "noSunShare": 0,
+      "points": 15
+    },
+    "osm-16363583": {
+      "hours": 7.2,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-16365005": {
+      "hours": 5.7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-16395076": {
+      "hours": 6.4,
+      "noSunShare": 0,
+      "points": 9
+    },
+    "osm-16490407": {
+      "hours": 2.9,
+      "noSunShare": 0.4,
+      "points": 20
+    },
+    "osm-1671736": {
+      "hours": 5.3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-1780768": {
+      "hours": 4,
+      "noSunShare": 0.2,
+      "points": 20
+    },
+    "osm-18055492": {
+      "hours": 6.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-19064561": {
+      "hours": 6.7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-19153189": {
+      "hours": 7.6,
+      "noSunShare": 0,
+      "points": 18
+    },
+    "osm-19330972": {
+      "hours": 7.5,
+      "noSunShare": 0,
+      "points": 10
+    },
+    "osm-19531872": {
+      "hours": 4.6,
+      "noSunShare": 0,
+      "points": 17
+    },
+    "osm-19541366": {
+      "hours": 5.1,
+      "noSunShare": 0.1,
+      "points": 20
+    },
+    "osm-19661726": {
+      "hours": 5.8,
+      "noSunShare": 0,
+      "points": 5
+    },
+    "osm-19697977": {
+      "hours": 6.2,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "osm-19703479": {
+      "hours": 7.5,
+      "noSunShare": 0,
+      "points": 18
+    },
+    "osm-19760372": {
+      "hours": 3,
+      "noSunShare": 0.15,
+      "points": 20
+    },
+    "osm-19855818": {
+      "hours": 2.7,
+      "noSunShare": 0.15,
+      "points": 20
+    },
+    "osm-19974724": {
+      "hours": 2.3,
+      "noSunShare": 0,
+      "points": 14
+    },
+    "osm-19974725": {
+      "hours": 1.7,
+      "noSunShare": 0.29,
+      "points": 17
+    },
+    "osm-20347406": {
+      "hours": 5.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-20380913": {
+      "hours": 0.7,
+      "noSunShare": 0.45,
+      "points": 20
+    },
+    "osm-21021130": {
+      "hours": 6,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-2179746": {
+      "hours": 6,
+      "noSunShare": 0,
+      "points": 8
+    },
+    "osm-2376630": {
+      "hours": 4.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-3202880": {
+      "hours": 5.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-3707731": {
+      "hours": 3.9,
+      "noSunShare": 0.2,
+      "points": 20
+    },
+    "osm-3885162": {
+      "hours": 1.8,
+      "noSunShare": 0.45,
+      "points": 20
+    },
+    "osm-3982382": {
+      "hours": 7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-5479112": {
+      "hours": 2.9,
+      "noSunShare": 0,
+      "points": 18
+    },
+    "osm-5512443": {
+      "hours": 4.5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-5597577": {
+      "hours": 0.8,
+      "noSunShare": 0.47,
+      "points": 19
+    },
+    "osm-6244965": {
+      "hours": 6.7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-6250300": {
+      "hours": 6.8,
+      "noSunShare": 0,
+      "points": 16
+    },
+    "osm-6401355": {
+      "hours": 7.3,
+      "noSunShare": 0,
+      "points": 10
+    },
+    "osm-6404258": {
+      "hours": 2.2,
+      "noSunShare": 0.25,
+      "points": 20
+    },
+    "osm-6404633": {
+      "hours": 4.4,
+      "noSunShare": 0,
+      "points": 16
+    },
+    "osm-6404634": {
+      "hours": 4.2,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-6410700": {
+      "hours": 5.9,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-6453504": {
+      "hours": 1.8,
+      "noSunShare": 0.33,
+      "points": 15
+    },
+    "osm-6529356": {
+      "hours": 5.3,
+      "noSunShare": 0.1,
+      "points": 20
+    },
+    "osm-6601608": {
+      "hours": 3.9,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-6823031": {
+      "hours": 4.4,
+      "noSunShare": 0,
+      "points": 16
+    },
+    "osm-7045225": {
+      "hours": 6.3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-7277805": {
+      "hours": 2.6,
+      "noSunShare": 0.4,
+      "points": 20
+    },
+    "osm-7388748": {
+      "hours": 6.1,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-7424683": {
+      "hours": 3.4,
+      "noSunShare": 0.3,
+      "points": 20
+    },
+    "osm-7426648": {
+      "hours": 5.6,
+      "noSunShare": 0,
+      "points": 19
+    },
+    "osm-7426666": {
+      "hours": 4.6,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-7446701": {
+      "hours": 2,
+      "noSunShare": 0.25,
+      "points": 20
+    },
+    "osm-7546708": {
+      "hours": 6.2,
+      "noSunShare": 0,
+      "points": 15
+    },
+    "osm-7547653": {
+      "hours": 7.3,
+      "noSunShare": 0,
+      "points": 14
+    },
+    "osm-7547983": {
+      "hours": 2.8,
+      "noSunShare": 0.47,
+      "points": 19
+    },
+    "osm-7548201": {
+      "hours": 5.5,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "osm-7548344": {
+      "hours": 5.8,
+      "noSunShare": 0,
+      "points": 14
+    },
+    "osm-7548489": {
+      "hours": 6.6,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-7549783": {
+      "hours": 5,
+      "noSunShare": 0,
+      "points": 16
+    },
+    "osm-7567918": {
+      "hours": 2.3,
+      "noSunShare": 0.4,
+      "points": 15
+    },
+    "osm-7655311": {
+      "hours": 5.2,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-8396539": {
+      "hours": 4.1,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-8510456": {
+      "hours": 4,
+      "noSunShare": 0,
+      "points": 17
+    },
+    "osm-9450411": {
+      "hours": 5.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-9487078": {
+      "hours": 0.2,
+      "noSunShare": 0.86,
+      "points": 14
+    },
+    "osm-9492594": {
+      "hours": 5.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-9493733": {
+      "hours": 4.4,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "osm-9511973": {
+      "hours": 4.9,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "osm-9511999": {
+      "hours": 5.7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-9648632": {
+      "hours": 4.4,
+      "noSunShare": 0,
+      "points": 12
+    },
+    "osm-9651462": {
+      "hours": 4.2,
+      "noSunShare": 0,
+      "points": 18
+    },
+    "osm-9675994": {
+      "hours": 7.2,
+      "noSunShare": 0,
+      "points": 8
+    },
+    "osm-9933643": {
+      "hours": 4.6,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osm-9937537": {
+      "hours": 4.9,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "osttirol-kinder-naturerlebnispfad-kals-ag": {
+      "hours": 4.3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osttirol-kulturweg-koednitz": {
+      "hours": 3.7,
+      "noSunShare": 0,
+      "points": 9
+    },
+    "osttirol-naturkraftweg-umbalfaelle": {
+      "hours": 0,
+      "noSunShare": 1,
+      "points": 20
+    },
+    "osttirol-rundwanderung-am-staller-sattel": {
+      "hours": 2.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osttirol-rundwanderung-schloss-weissenstein": {
+      "hours": 4.7,
+      "noSunShare": 0,
+      "points": 14
+    },
+    "osttirol-spazierweg-kreuzweg": {
+      "hours": 3.3,
+      "noSunShare": 0.07,
+      "points": 14
+    },
+    "osttirol-spazierweg-nikolauskirche": {
+      "hours": 3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "osttirol-themenweg-kreuzweg-virgen": {
+      "hours": 5.2,
+      "noSunShare": 0,
+      "points": 13
+    },
+    "osttirol-wassererlebnisweg-st-jakob-i-d": {
+      "hours": 0.1,
+      "noSunShare": 0.95,
+      "points": 20
+    },
+    "osttirol-weg-der-sinne-virgen": {
+      "hours": 1.8,
+      "noSunShare": 0.5,
+      "points": 16
+    },
+    "paganella-andalo-tana-ermellino": {
+      "hours": 5.7,
+      "noSunShare": 0,
+      "points": 16
+    },
+    "paganella-giro-del-lago-di-molveno": {
+      "hours": 3.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "paganella-giro-della-toresela": {
+      "hours": 2.6,
+      "noSunShare": 0,
+      "points": 7
+    },
+    "paganella-passeggiata-del-ciclamino": {
+      "hours": 3.5,
+      "noSunShare": 0,
+      "points": 13
+    },
+    "paganella-sette-passi-sette-ville": {
+      "hours": 7.2,
+      "noSunShare": 0,
+      "points": 17
+    },
+    "piancavallo": {
+      "hours": 7.5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "prato-piazza": {
+      "hours": 6.9,
+      "noSunShare": 0,
+      "points": 18
+    },
+    "primiero-anello-di-valpiana": {
+      "hours": 0.9,
+      "noSunShare": 0.4,
+      "points": 20
+    },
+    "primiero-anello-molaren-via-nova-marine": {
+      "hours": 5.3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "primiero-anello-poit-cordogne-san-giovanni": {
+      "hours": 5.4,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "primiero-fiera-pieve": {
+      "hours": 6.3,
+      "noSunShare": 0,
+      "points": 12
+    },
+    "primiero-la-guana-di-primiero": {
+      "hours": 6.1,
+      "noSunShare": 0,
+      "points": 14
+    },
+    "primiero-laghi-di-colbricon": {
+      "hours": 4.5,
+      "noSunShare": 0,
+      "points": 18
+    },
+    "primiero-malga-ces": {
+      "hours": 5.3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "primiero-malga-crel": {
+      "hours": 5,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "primiero-malga-valcigolera": {
+      "hours": 5.3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "primiero-monte-vederna": {
+      "hours": 6,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "primiero-percorso-verde": {
+      "hours": 6.2,
+      "noSunShare": 0,
+      "points": 8
+    },
+    "primiero-ponte-su-funi": {
+      "hours": 5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "primiero-san-martino-di-castrozza-val-di-roda-prati-col": {
+      "hours": 5.5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "primiero-siror": {
+      "hours": 5.3,
+      "noSunShare": 0,
+      "points": 17
+    },
+    "primiero-tonadico": {
+      "hours": 6,
+      "noSunShare": 0,
+      "points": 17
+    },
+    "primiero-transacqua": {
+      "hours": 6.3,
+      "noSunShare": 0,
+      "points": 10
+    },
+    "primiero-via-della-frutta-antica": {
+      "hours": 5.7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "rendena-ciclabile-javre-dare-vigo-pelugo": {
+      "hours": 4.1,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "rendena-giro-del-belvedere-giustino": {
+      "hours": 4.9,
+      "noSunShare": 0,
+      "points": 9
+    },
+    "santa-maddalena": {
+      "hours": 4.5,
+      "noSunShare": 0,
+      "points": 14
+    },
+    "savoie-areches-beaufort-croix-du-berger-et-lac-des-fees": {
+      "hours": 5.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "savoie-areches-beaufort-la-grande-berge": {
+      "hours": 3.9,
+      "noSunShare": 0.1,
+      "points": 20
+    },
+    "savoie-boucle-du-fornet-par-la-cascade-du-fornet": {
+      "hours": 0.2,
+      "noSunShare": 0.81,
+      "points": 16
+    },
+    "savoie-itineraire-poussette-de-belavoine": {
+      "hours": 6.3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "savoie-itineraire-poussette-des-chalets-brules": {
+      "hours": 6,
+      "noSunShare": 0,
+      "points": 8
+    },
+    "savoie-promenade-confort-lac-et-barrage-de-saint-guerin": {
+      "hours": 3,
+      "noSunShare": 0.21,
+      "points": 19
+    },
+    "savoie-sentier-des-cretes-de-val-pelouse-refuge-de-la-perriere": {
+      "hours": 7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "seceda": {
+      "hours": 7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "seiseralm-alla-volta-della-trappola-d-orso-a-s-michele": {
+      "hours": 4.5,
+      "noSunShare": 0.1,
+      "points": 20
+    },
+    "seiseralm-compatsch-wiedner-eck": {
+      "hours": 6.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del": {
+      "hours": 4.3,
+      "noSunShare": 0.15,
+      "points": 20
+    },
+    "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff": {
+      "hours": 5.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "seiseralm-escursione-senza-barriere-all-alpe-di-siusi": {
+      "hours": 6.9,
+      "noSunShare": 0,
+      "points": 7
+    },
+    "seiseralm-fie-laghetto-di-fie-siusi": {
+      "hours": 4.2,
+      "noSunShare": 0.1,
+      "points": 20
+    },
+    "seiseralm-miglio-geologico-siusi": {
+      "hours": 3.2,
+      "noSunShare": 0,
+      "points": 6
+    },
+    "seiseralm-promenadenweg-tiers": {
+      "hours": 6.8,
+      "noSunShare": 0,
+      "points": 16
+    },
+    "seiseralm-umser-rundweg": {
+      "hours": 5.4,
+      "noSunShare": 0,
+      "points": 17
+    },
+    "sentiero-del-trenino": {
+      "hours": 2.1,
+      "noSunShare": 0.2,
+      "points": 20
+    },
+    "sentiero-hans-e-paula-steger": {
+      "hours": 6.2,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "steinegg-pyramidenrundweg": {
+      "hours": 3.1,
+      "noSunShare": 0.11,
+      "points": 18
+    },
+    "talucco-ecomuseo-carbonaie": {
+      "hours": 7.1,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "traversella-sentiero-delle-anime": {
+      "hours": 6.6,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "tre-cime": {
+      "hours": 6,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "trecime-bagni-di-san-candido": {
+      "hours": 2.9,
+      "noSunShare": 0.07,
+      "points": 15
+    },
+    "trecime-bellavista-montecosta": {
+      "hours": 6.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "trecime-carbonin-rifugio-vallandro": {
+      "hours": 5.9,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "trecime-cimabanche-prato-piazza": {
+      "hours": 4.6,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "trecime-circolare-maistatt": {
+      "hours": 3,
+      "noSunShare": 0.15,
+      "points": 20
+    },
+    "trecime-dobbiaco-lago-di-dobbiaco": {
+      "hours": 3.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "trecime-gasthof-panorama-rifugio-pendio-monte-elmo": {
+      "hours": 5.6,
+      "noSunShare": 0,
+      "points": 9
+    },
+    "trecime-giro-delle-baite-lago-di-braies": {
+      "hours": 2.4,
+      "noSunShare": 0.2,
+      "points": 20
+    },
+    "trecime-haus-der-berge-rifugio-larice": {
+      "hours": 5.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "trecime-helmjet-waldruhe-sexten": {
+      "hours": 6.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "trecime-innichen-waldkapelle-sexten": {
+      "hours": 5.2,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "trecime-lago-di-braies-malga-foresta": {
+      "hours": 0.6,
+      "noSunShare": 0.6,
+      "points": 10
+    },
+    "trecime-lago-di-braies-malga-rossalm": {
+      "hours": 2.3,
+      "noSunShare": 0.35,
+      "points": 20
+    },
+    "trecime-monte-casella-di-fuori": {
+      "hours": 3.5,
+      "noSunShare": 0.1,
+      "points": 20
+    },
+    "trecime-monte-elmo-da-moso": {
+      "hours": 6.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "trecime-monte-elmo-versciaco": {
+      "hours": 6,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "trecime-moso-monte-arnese": {
+      "hours": 6.7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "trecime-rotwandwiesen-moos": {
+      "hours": 4,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "trecime-san-candido-costa-dei-nosellari-dobbiaco": {
+      "hours": 5.1,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "trecime-sasso-di-sesto": {
+      "hours": 2.7,
+      "noSunShare": 0.3,
+      "points": 20
+    },
+    "trecime-sentiero-gustav-mahler": {
+      "hours": 3.2,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "trecime-sesto-alte-saege-val-campo-di-dentro": {
+      "hours": 3.1,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "trecime-sesto-cappella-del-bosco": {
+      "hours": 5.4,
+      "noSunShare": 0,
+      "points": 17
+    },
+    "trecime-sesto-chiesa-gasthof-panorama": {
+      "hours": 5.5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "trecime-sesto-san-candido": {
+      "hours": 5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "trecime-villabassa-lanaweg": {
+      "hours": 5.9,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "trecime-villabassa-mooskirche": {
+      "hours": 5,
+      "noSunShare": 0,
+      "points": 11
+    },
+    "unterengadin-guarda-ardez-hike-between-two-engadin-villages": {
+      "hours": 4.5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "unterengadin-s-charl-alp-sesvenna-return": {
+      "hours": 3.3,
+      "noSunShare": 0.1,
+      "points": 20
+    },
+    "unterengadin-scuol-ftan": {
+      "hours": 5.9,
+      "noSunShare": 0,
+      "points": 19
+    },
+    "unterengadin-vna-ramosch-via-veglia": {
+      "hours": 5.5,
+      "noSunShare": 0,
+      "points": 10
+    },
+    "unterengadin-vna-sinestra": {
+      "hours": 4.6,
+      "noSunShare": 0,
+      "points": 16
+    },
+    "unterengadin-zernez-brail": {
+      "hours": 4.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "valchiavenna-ai-laghi-del-baldiscio": {
+      "hours": 2.7,
+      "noSunShare": 0.35,
+      "points": 20
+    },
+    "valchiusella-fondo-tissone-tallorno": {
+      "hours": 2.2,
+      "noSunShare": 0.45,
+      "points": 20
+    },
+    "valdisole-bivacco-malga-baselga": {
+      "hours": 0.1,
+      "noSunShare": 0.8,
+      "points": 20
+    },
+    "valdisole-cogolo-chiesa-di-santa-lucia": {
+      "hours": 3.7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "valdisole-fazzon-lago-dei-caprioli": {
+      "hours": 0.8,
+      "noSunShare": 0,
+      "points": 8
+    },
+    "valdisole-lago-dei-caprioli-malga-alta-di-fazzon": {
+      "hours": 2.8,
+      "noSunShare": 0,
+      "points": 13
+    },
+    "valdisole-malga-strino": {
+      "hours": 3.1,
+      "noSunShare": 0.2,
+      "points": 20
+    },
+    "valdisole-marilleva-1400-malga-alta-di-fazzon": {
+      "hours": 2.3,
+      "noSunShare": 0.05,
+      "points": 19
+    },
+    "valdisole-masi-verniana-bait-de-mezol-malga-saviana": {
+      "hours": 4.9,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "valdisole-monclassico-presson-meridiane": {
+      "hours": 4.4,
+      "noSunShare": 0,
+      "points": 8
+    },
+    "valdisole-ortise-malga-stabli": {
+      "hours": 7.2,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "valdisole-passo-tonale-forte-mero": {
+      "hours": 6.1,
+      "noSunShare": 0,
+      "points": 16
+    },
+    "valdisole-passo-tonale-forte-mero-forte-zaccarana": {
+      "hours": 6.1,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "valdisole-peio-paese-lago-covel": {
+      "hours": 7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "valdisole-percorso-della-fauna-in-val-di-peio": {
+      "hours": 3.9,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "valdisole-percorso-geologico-in-val-di-rabbi": {
+      "hours": 3.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "valdisole-rifugio-stavel-denza": {
+      "hours": 0.5,
+      "noSunShare": 0.5,
+      "points": 20
+    },
+    "valgardena-arte-e-storia": {
+      "hours": 4.2,
+      "noSunShare": 0.11,
+      "points": 9
+    },
+    "valgardena-cudan-dumat": {
+      "hours": 4.8,
+      "noSunShare": 0,
+      "points": 16
+    },
+    "valgardena-escursione-al-brogles": {
+      "hours": 7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "valgardena-escursione-al-resciesa": {
+      "hours": 7.9,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "valgardena-escursione-al-seeurasas": {
+      "hours": 5.5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "valgardena-escursione-al-terrazzo-panoramico-seeurasas": {
+      "hours": 7.2,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "valgardena-escursione-da-s-cristina-al-passo-sella": {
+      "hours": 2.9,
+      "noSunShare": 0.25,
+      "points": 20
+    },
+    "valgardena-escursione-dalla-cappella-santa-croce-al-brogles": {
+      "hours": 7.3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "valgardena-escursione-nella-vallunga": {
+      "hours": 1.2,
+      "noSunShare": 0.3,
+      "points": 20
+    },
+    "valgardena-escursione-ortisei-passo-sella": {
+      "hours": 2.4,
+      "noSunShare": 0.25,
+      "points": 20
+    },
+    "valgardena-giro-della-via-crucis": {
+      "hours": 4.9,
+      "noSunShare": 0,
+      "points": 15
+    },
+    "valgardena-giro-storico-del-paese-di-ortisei": {
+      "hours": 2.9,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "valgardena-passeggiata-alla-chiesetta-di-san-giacomo": {
+      "hours": 4.1,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "valgardena-passeggiata-da-ortisei-a-s-cristina": {
+      "hours": 1,
+      "noSunShare": 0.45,
+      "points": 20
+    },
+    "valgardena-percorso-dei-masi-tradizionali": {
+      "hours": 5.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "valgardena-raida-dl-luech-giro-del-paese": {
+      "hours": 2,
+      "noSunShare": 0.41,
+      "points": 17
+    },
+    "valgardena-seceda-da-col-raiser": {
+      "hours": 7.4,
+      "noSunShare": 0,
+      "points": 15
+    },
+    "valgardena-seceda-da-cristauta-pic": {
+      "hours": 6.8,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "valgardena-seceda-dal-rifugio-firenze": {
+      "hours": 6.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "valgardena-tour-alla-volta-del-lech-sant": {
+      "hours": 6.5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "valgardena-troi-da-la-tambres": {
+      "hours": 6.6,
+      "noSunShare": 0,
+      "points": 15
+    },
+    "valgardena-troi-unika": {
+      "hours": 5.1,
+      "noSunShare": 0,
+      "points": 8
+    },
+    "valgardena-uciei-de-freeines": {
+      "hours": 6.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "valgardena-val-danna-percorso-kneipp": {
+      "hours": 3.6,
+      "noSunShare": 0,
+      "points": 6
+    },
+    "valley-view": {
+      "hours": 5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "valposchiavo-alp-grum-cavaglia-via-palu": {
+      "hours": 4.1,
+      "noSunShare": 0,
+      "points": 14
+    },
+    "valposchiavo-alp-grum-cavaglia-via-stablini": {
+      "hours": 5.1,
+      "noSunShare": 0,
+      "points": 13
+    },
+    "valposchiavo-lago-bianco": {
+      "hours": 4.7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "valposchiavo-lake-tour": {
+      "hours": 2.3,
+      "noSunShare": 0.1,
+      "points": 20
+    },
+    "valsesia-campello-monti-alpe-fornale-di-sopra": {
+      "hours": 4.8,
+      "noSunShare": 0,
+      "points": 10
+    },
+    "valsesia-campello-monti-colle-dell-usciolo": {
+      "hours": 5.2,
+      "noSunShare": 0,
+      "points": 15
+    },
+    "valsesia-campello-monti-lago-del-capezzone": {
+      "hours": 4.4,
+      "noSunShare": 0,
+      "points": 18
+    },
+    "valsesia-carcoforo-alpe-giovanchera-alpe-pianelli-carcoforo": {
+      "hours": 4.2,
+      "noSunShare": 0.2,
+      "points": 20
+    },
+    "valsesia-cervatto-madonna-del-balmone": {
+      "hours": 5.1,
+      "noSunShare": 0,
+      "points": 15
+    },
+    "valsesia-gta-tappa-21-campello-monti-rimella": {
+      "hours": 4.6,
+      "noSunShare": 0.1,
+      "points": 20
+    },
+    "valsusa-chianocco-orrido-chouque": {
+      "hours": 7.1,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "valsusa-foresto-sentiero-ginepri": {
+      "hours": 6.1,
+      "noSunShare": 0,
+      "points": 19
+    },
+    "valsusa-giaglione-vigne-mandorli": {
+      "hours": 6.1,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "valsusa-san-giorio-geat-montebenedetto": {
+      "hours": 3.3,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "valsusa-venaus-sentiero-gufi-basso": {
+      "hours": 4.2,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "valtellina-passo-di-campagneda": {
+      "hours": 5.9,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "valtellina-rifugi-porro-e-ventina": {
+      "hours": 1,
+      "noSunShare": 0.5,
+      "points": 14
+    },
+    "villnoess-da-russis-fino-al-passo-delle-erbe": {
+      "hours": 0.9,
+      "noSunShare": 0.65,
+      "points": 20
+    },
+    "villnoess-dolorama-3a-tappa": {
+      "hours": 3.6,
+      "noSunShare": 0.3,
+      "points": 20
+    },
+    "villnoess-ranui-zannes": {
+      "hours": 1.7,
+      "noSunShare": 0.27,
+      "points": 15
+    },
+    "vinschgau-escursione-a-lunga-distanza-4a-tappa-rifugio-sesvenna-malles": {
+      "hours": 5.4,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "vinschgau-escursione-al-lago-bergsee-da-burgusio": {
+      "hours": 6.4,
+      "noSunShare": 0,
+      "points": 11
+    },
+    "vinschgau-piani-di-annenberg": {
+      "hours": 5.2,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "vinschgau-sentiero-della-roggia-kastanienwaal": {
+      "hours": 4.4,
+      "noSunShare": 0,
+      "points": 10
+    },
+    "vinschgau-sentiero-della-roggia-latschanderwaal-4954": {
+      "hours": 4.3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "vinschgau-sentiero-della-roggia-leitenwaal-e-berkwaal": {
+      "hours": 4.7,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "vinschgau-sentiero-della-roggia-schnalswaal": {
+      "hours": 4.9,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "vinschgau-sentiero-della-roggia-stabnerwaal": {
+      "hours": 4.5,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "weissensee-nordic-2-urschitz": {
+      "hours": 6.6,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "weissensee-nordic-5-genoesns-bruendl": {
+      "hours": 3.2,
+      "noSunShare": 0.06,
+      "points": 16
+    },
+    "weissensee-nordic-6-rothns-bichl": {
+      "hours": 3.4,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "weissensee-nordic-7-franz-josephs-hoehe": {
+      "hours": 3.8,
+      "noSunShare": 0.05,
+      "points": 20
+    },
+    "weissensee-nordic-8-naggler-alm": {
+      "hours": 4.2,
+      "noSunShare": 0,
+      "points": 14
+    },
+    "weissensee-ortsee-ronacherfels": {
+      "hours": 2.5,
+      "noSunShare": 0.5,
+      "points": 20
+    },
+    "weissensee-slow-trail": {
+      "hours": 1.6,
+      "noSunShare": 0.6,
+      "points": 20
+    },
+    "weissensee-techendorf-tschabitscher-kreuzwirt": {
+      "hours": 6.3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "weissensee-wasserleben": {
+      "hours": 0.5,
+      "noSunShare": 0.64,
+      "points": 11
+    },
+    "winter-pozza-canto-acqua": {
+      "hours": 5.1,
+      "noSunShare": 0,
+      "points": 16
+    },
+    "winter-steinegg-osservatorio": {
+      "hours": 6.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "winter-voels-voelser-weiher": {
+      "hours": 5.8,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "zoldo-bosco-secolare": {
+      "hours": 4.7,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "zoldo-rifugio-bosconero": {
+      "hours": 3.7,
+      "noSunShare": 0.1,
+      "points": 20
+    }
+  }
+}
