@@ -615,11 +615,22 @@ function publicAssetUrl(value) {
   return remoteAsset(asset) ? asset : `${BASE_URL}/${asset.replace(/^\/+/, '')}`;
 }
 
+// Wikimedia Commons serves the full original (5,400px for Lago di Braies)
+// unless asked for a width; 1200 returns its 1,280px thumbnail.
+function sizedRemotePhoto(url) {
+  if(!/^https:\/\/commons\.wikimedia\.org\/wiki\/Special:(?:Redirect\/file|FilePath)\//i.test(url)) return url;
+  if(/[?&]width=/.test(url)) return url;
+  return `${url}${url.includes('?') ? '&' : '?'}width=1200`;
+}
+
+// The photo is the first thing under the title, on screen as the page opens,
+// so it is not lazy-loaded: a lazy photo there stayed a blank box until the
+// reader scrolled.
 function photoHtml(t) {
   if(!t.imageIcon) return '';
   const responsive = RESPONSIVE_PHOTOS[t.imageIcon];
   const alt = tr(t.imageAlt) || nm(t);
-  if(!responsive) return `<img class="sp-img" src="${escapeHtml(trailPageAssetUrl(t.imageIcon))}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async">`;
+  if(!responsive) return `<img class="sp-img" src="${escapeHtml(sizedRemotePhoto(trailPageAssetUrl(t.imageIcon)))}" alt="${escapeHtml(alt)}" fetchpriority="high" decoding="async">`;
   const stem = t.imageIcon.replace(/\.webp$/, '');
   const srcset = responsive.widths.map((width, index) => {
     const source = width === 900 ? t.imageIcon : `${stem}-${width}.webp`;
@@ -627,7 +638,7 @@ function photoHtml(t) {
   }).join(', ');
   return `<picture>
     <source type="image/webp" srcset="${srcset}" sizes="(max-width: 760px) 100vw, 1100px">
-    <img class="sp-img" src="${rootPrefix()}${responsive.fallback}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async">
+    <img class="sp-img" src="${rootPrefix()}${responsive.fallback}" alt="${escapeHtml(alt)}" fetchpriority="high" decoding="async">
   </picture>`;
 }
 
@@ -1157,7 +1168,7 @@ ${it ? '' : ITALIAN_COPY_BANNER + '\n'}<title>${escapeHtml(title)}</title>
   .sp-route-source{margin-top:4px;color:#657369;font-size:13px;line-height:1.5;}
   .sp-route-credit{margin-top:6px;color:#8A968C;font-size:11.5px;line-height:1.45;}
   .sp-route-credit a{color:inherit;text-decoration:underline;text-decoration-color:rgba(138,150,140,.5);}
-  /* The photo is lazy-loaded and the credit toggle is pinned to the figure's
+  /* The photo can arrive after the page draws and the credit toggle is pinned to the figure's
      corner, so the figure reserves its height up front; otherwise the toggle
      floats over whatever sits above until the image arrives. */
   .sp-photo{position:relative;width:480px;max-width:100%;aspect-ratio:8/5;margin:6px 0 14px;overflow:hidden;border-radius:12px;}
