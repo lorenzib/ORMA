@@ -289,7 +289,7 @@ describe('trailhead access directions', () => {
       { lat:46, lng:11.001 },
       { lat:45.999, lng:11.001 },
     ]);
-    expect(steps[0].action).toBe('Follow the mapped path');
+    expect(steps[0].action).toBe('Follow the path');
     expect(steps.some(step => /left|right/.test(step.action))).toBe(true);
     expect(steps.at(-1)).toEqual({ action:'Join the trail', distanceM:0 });
   });

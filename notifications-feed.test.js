@@ -27,7 +27,7 @@ describe('derived notifications feed', () => {
     expect(audit.group).toBe('earlier');
     expect(audit.timeLabel).toBe('17 Jul');
     expect(audit.title).toBe('Ridge Trail');
-    expect(audit.body).toBe('Now ORMA Verified: checked against 1 official source.');
+    expect(audit.body).toBe('Now verified by ORMA: checked against 1 official source.');
     // reviewedAt-only trails still qualify.
     expect(items.some(i => i.id === 'audit-meadow-2026-07-10')).toBe(true);
   });
@@ -39,7 +39,7 @@ describe('derived notifications feed', () => {
         'OpenStreetMap: road classes, surfaces, cliffs, steps and water along the line'] } }] });
     const item = items.find(i => i.id === 'audit-w-2026-01-30');
     expect(item.title).toBe('Wallburgweg');
-    expect(item.body).toBe('Now ORMA Verified: checked against 3 official sources.');
+    expect(item.body).toBe('Now verified by ORMA: checked against 3 official sources.');
     expect(item.body).not.toContain('Dauer');
   });
 

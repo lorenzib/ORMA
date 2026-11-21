@@ -234,7 +234,7 @@ describe('the score says whose it is', () => {
   test('the canonical view names the default rather than the reader', () => {
     const guest=decision.present({category:'strong-option',score:90},{});
     expect(guest.breakdownFor).toBe('a medium dog');
-    expect(guest.contextLabel).toBe('Unpersonalized planning view');
+    expect(guest.contextLabel).toBe('General view: no dog added');
     expect(guest.dogName).toBeNull();
 
     const named=decision.present({category:'strong-option',score:90},{dogName:'Eddie'});
@@ -274,8 +274,8 @@ describe('how well a verdict is known, in one line', () => {
   });
 
   test('a caveat earns its place and is kept', () => {
-    expect(evidenceLine({provenance:'Imported map data',confidence:'low'}))
-      .toBe('Imported map data · Based on partial data');
+    expect(evidenceLine({provenance:'Map data, not verified',confidence:'low'}))
+      .toBe('Map data, not verified · Based on partial data');
     expect(evidenceLine({provenance:'Verified by ORMA',confidence:'medium'}))
       .toBe('Verified by ORMA · Based on available trail data');
   });

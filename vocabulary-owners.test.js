@@ -24,7 +24,7 @@ const VOCABULARIES = [
     // "Verified by ORMA" is shared with the trail page's badge on purpose: a
     // card and the trail it opens now say the same thing. The walked tier
     // keeps its own words, so a comparison still shows the difference.
-    words: ['Verified and walked by ORMA', 'Mapped route', 'Imported map data'],
+    words: ['Verified and walked by ORMA', 'Mapped route', 'Map data, not verified'],
     retired: ['ORMA route-audited', 'ORMA field-verified'],
   },
 ];
@@ -117,7 +117,7 @@ describe('one owner per vocabulary', () => {
     expect(cell('route-audited')).toBe('Verified by ORMA');
     expect(cell('field-verified')).toBe('Verified and walked by ORMA');
     expect(cell('route-audited')).not.toBe(cell('field-verified'));
-    expect(cell('imported')).toBe('Imported map data');
+    expect(cell('imported')).toBe('Map data, not verified');
   });
 
   test('the trail rating is read from the dictionary, never spelled out', () => {

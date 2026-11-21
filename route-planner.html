@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Draw a route | ORMA</title>
-<meta name="description" content="Draw a private draft route on mapped walking paths, loop, point to point or out and back, then review local access and conditions before walking.">
+<meta name="description" content="Draw a private draft route on footpaths, loop, point to point or out and back, then review local access and conditions before walking.">
 <meta name="theme-color" content="#2E4034">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.css">
@@ -40,7 +40,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-ser
     <a class="planner-back" href="/" data-i18n="page.routePlanner.backToExplore">← Back to Explore</a>
     <div class="planner-kicker" data-i18n="page.routePlanner.experimentalRouteTool">Experimental route tool</div>
     <h1 id="plannerTitle" data-i18n="page.routePlanner.drawARoute">Draw a route</h1>
-    <p class="planner-intro" data-i18n="page.routePlanner.clickTheMapToDrop">Click the map to drop must-pass points, ORMA connects them along mapped walking paths. <strong>Drag any point to move it, or click the drawn line to insert one.</strong></p>
+    <p class="planner-intro" data-i18n="page.routePlanner.clickTheMapToDrop">Click the map to drop must-pass points, ORMA joins them along footpaths. <strong>Drag any point to move it, or click the drawn line to insert one.</strong></p>
     <div class="planner-shapes" role="group" aria-label="Route shape" data-i18n-aria-label="page.routePlanner.routeShape">
       <button type="button" class="planner-shape on" data-planner-shape="loop" aria-pressed="true" data-i18n="page.routePlanner.loop">Loop</button>
       <button type="button" class="planner-shape" data-planner-shape="point-to-point" aria-pressed="false" data-i18n="page.routePlanner.pointToPoint">Point to point</button>
