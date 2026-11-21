@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valchiusella-cima-bossola",
+  "generatedAt": "2026-11-21T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 5.1,
+    "ascentM": 415,
+    "highestPointM": 1477,
+    "expectedDuration": "2 h 15 min",
+    "difficulty": "Hard",
+    "shadePercent": 5
+  },
+  "trailhead": {
+    "lat": 45.488196,
+    "lng": 7.734958,
+    "label": "The Rifugio Cima Bossola, Località Marciana, the board’s start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.482559,
+      "lng": 7.7245608,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "A grassy ridge path (T2), steep in places: watch your dog’s footing and keep it close near the summit.",
+    "Open pastures with no shade: carry water for your dog on warm days.",
+    "Cows may graze on the pastures in summer: keep your dog on a short lead near the herd.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-21"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-21",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Cima Bossola, Valchiusella": "Cima Bossola in Valchiusella",
+    "The Rifugio Cima Bossola, Località Marciana, the board’s start": "Il Rifugio Cima Bossola, località Marciana, la partenza ufficiale",
+    "A grassy ridge path (T2), steep in places: watch your dog’s footing and keep it close near the summit.": "Un sentiero di cresta erboso (T2), ripido in alcuni tratti: attenzione all’appoggio del cane e tienilo vicino in cima.",
+    "Open pastures with no shade: carry water for your dog on warm days.": "Pascoli aperti senza ombra: nelle giornate calde porta acqua per il cane.",
+    "Cows may graze on the pastures in summer: keep your dog on a short lead near the herd.": "D’estate sui pascoli possono esserci mucche: vicino alla mandria tieni il cane al guinzaglio corto."
+  }
+}
