@@ -52,6 +52,7 @@
     "comparison-model.js",
     "comparison-state.js",
     "contact.html",
+    "daylight.js",
     "detail-pois.js",
     "device-handoff.js",
     "discovery-filters.css",

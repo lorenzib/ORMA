@@ -5131,12 +5131,26 @@ const BACK_RISK_BREEDS = [
   'Beagle', 'Drever', 'Westphalian Dachsbracke', 'Alpine Dachsbracke',
 ];
 
+// Thin coats over little body fat: the sighthounds, the hairless breeds and a
+// few smooth, single-coated builds. They lose heat fast standing still in
+// the cold, and vets advise a dog coat for them in winter. Small dogs are
+// covered by weight in the engine, whatever their breed.
+const THIN_COAT_BREEDS = [
+  'Greyhound', 'Whippet', 'Italian Sighthound', 'Spanish Greyhound (Galgo Español)',
+  'Hungarian Greyhound (Magyar Agár)', 'Polish Greyhound (Chart Polski)',
+  'Sloughi', 'Azawakh', 'Saluki', 'Pharaoh Hound', "Cirneco dell'Etna",
+  'Ibizan Podenco (Podenco Ibicenco)', 'Basenji', 'Chinese Crested Dog',
+  'Xoloitzcuintle (Mexican Hairless)', 'Peruvian Hairless Dog',
+  'Miniature Pinscher', 'Dobermann', 'Hungarian Short-haired Pointer (Vizsla)',
+  'Weimaraner', 'Dalmatian', 'Boxer',
+];
+
 // Kept for backwards compatibility with older scripts that import this name.
 const HEAT_SENSITIVE_BREEDS = BRACHY_BREEDS.concat(THICK_COAT_BREEDS);
 
 /**
- * breedTraits(name) → { brachy, thickCoat, giant, shortLegged, backRisk,
- * heatSensitive } for a breed string (saved profile value). Unknown or
+ * breedTraits(name) → { brachy, thickCoat, thinCoat, giant, shortLegged,
+ * backRisk, heatSensitive } for a breed string (saved profile value). Unknown or
  * free-text breeds return all-false: the health-conditions dropdown is the
  * catch-all for dogs we can't classify by name.
  */
@@ -5148,6 +5162,7 @@ function breedTraits(name){
   return {
     brachy,
     thickCoat,
+    thinCoat: has(THIN_COAT_BREEDS),
     giant: has(GIANT_BREEDS),
     shortLegged: has(SHORT_LEGGED_BREEDS),
     backRisk: has(BACK_RISK_BREEDS),
@@ -5347,6 +5362,11 @@ function breedInsights(name){
   } else if(tr.thickCoat){
     out.push({ icon:'heat', title:'Heat is the real limit',
       sub:'A heavy double coat makes hot, exposed routes costly even on days you find mild. Start early.' });
+  }
+
+  if(tr.thinCoat){
+    out.push({ icon:'shade', title:'Feels the cold',
+      sub:'A thin coat over little body fat loses heat fast at rests in winter. Bring a dog coat and keep stops short in the shade.' });
   }
 
   if(tr.giant){
@@ -6078,6 +6098,7 @@ function breedInsights(name){
       chairliftSafe,
       impairedVision: conditions.has('vision'),
       small: toy,
+      thinCoat: traits.thinCoat === true,
       behaviour,
       // Confidence measures evidence quality, not behavioural detail, so
       // behaviour deliberately does not enter completeness. Adding it would
@@ -6636,7 +6657,13 @@ function breedInsights(name){
       }else{
         unknowns.push(item('conditions.heat.unknown', 'Current heat conditions are unavailable.'));
       }
-      if(isColdDay(conditions) && dog.small){
+      // A note, never a penalty: a coat solves it. Small dogs by weight,
+      // thin-coated ones (sighthounds, hairless breeds) by breed.
+      if(isColdDay(conditions) && dog.thinCoat){
+        cautions.push(item('conditions.cold.thin-coat',
+          `The forecast stays cold (up to ${conditions.dayMaxC} °C). A thin-coated dog chills fast at rests, so bring a coat.`,
+          { max:conditions.dayMaxC }));
+      }else if(isColdDay(conditions) && dog.small){
         cautions.push(item('conditions.cold.small',
           `The forecast stays cold (up to ${conditions.dayMaxC} °C). A small dog chills fast at rests, so bring a coat.`,
           { max:conditions.dayMaxC }));
@@ -6821,6 +6848,7 @@ function breedInsights(name){
       shortLegged: !!derived.shortLegged,
       giant: !!derived.giant,
       backRisk: !!derived.backRisk,
+      thinCoat: !!derived.thinCoat,
     };
   }
 
@@ -16069,6 +16097,56 @@ function initTrailReports(map, trail){
 
   // Seasonal risks to dogs (trail.season.dogSeasons, from data/dog-seasons.json):
   // a tag in the months they apply and a line under "When to go" with the source.
+  // Winter sun (scripts/winter-sun.js, data/winter-sun.json): the hours of
+  // direct sun the terrain allows on the shortest day, averaged along the walk.
+  // A tag in the months it matters: a sunny walk is the one to pick, and a
+  // shady one is where the path stays icy.
+  const WINTER_SUN_MONTHS = [11, 12, 1, 2];
+  // Six hours is the top quarter of ORMA's walks (median 5 of a possible 8.3 at
+  // 46.5° N); under two is the shadiest tenth (20 November 2026).
+  const SUNNY_WINTER_HOURS = 6;
+  const SHADY_WINTER_HOURS = 2;
+  const WINTER_SUN_SOURCE = { label: 'AWS Terrain Tiles', url: 'https://registry.opendata.aws/terrain-tiles/' };
+  function winterSunKind(season) {
+    const sun = season && season.winterSun;
+    if (!sun || !Number.isFinite(sun.hours)) return null;
+    if (sun.hours >= SUNNY_WINTER_HOURS) return 'sunny';
+    if (sun.hours < SHADY_WINTER_HOURS) return 'shady';
+    return null;
+  }
+  // { kind, label } in November to February, else null.
+  function winterSunTag(season, month) {
+    if (!WINTER_SUN_MONTHS.includes(month)) return null;
+    const kind = winterSunKind(season);
+    if (!kind) return null;
+    return { kind, label: kind === 'sunny' ? tx('Sunny in winter') : tx('Little winter sun') };
+  }
+  // The "When to go" line: the hours, and ice where much of the line sees none.
+  function winterSunLine(season, formatNumber) {
+    const sun = season && season.winterSun;
+    if (!sun || !Number.isFinite(sun.hours)) return null;
+    const fmt = typeof formatNumber === 'function' ? formatNumber : value => value;
+    const half = Math.round(sun.hours * 2) / 2;
+    const parts = [half < 1
+      ? tx('On the shortest day the mountains keep direct sun off this walk for all but a few minutes.')
+      : half === 1
+        ? tx('On the shortest day the sun reaches this walk for about an hour.')
+        : tx('On the shortest day the sun reaches this walk for about {hours} hours.', { hours: fmt(half) })];
+    if (sun.noSunShare >= 0.3) {
+      parts.push(tx('About {share}% of the line gets no direct sun at all in midwinter: expect ice there.', { share: fmt(Math.round(sun.noSunShare * 10) * 10) }));
+    }
+    return {
+      kind: winterSunKind(season),
+      line: parts.join(' '),
+      source: {
+        before: tx('Worked out from the terrain alone ('),
+        label: WINTER_SUN_SOURCE.label,
+        url: WINTER_SUN_SOURCE.url,
+        after: tx('): trees, buildings and weather are not counted.'),
+      },
+    };
+  }
+
   const DOG_SEASON_TAGS = { caterpillars: 'Caterpillar season', ticks: 'Tick season', cows: 'Cows on the pastures', heat: 'Hot months', salt: 'Salted roads' };
   const DOG_SEASON_SENTENCES = {
     caterpillars: '{range}: pine processionary caterpillars come down from the pines below about {alt} m, and they are a danger to dogs. Keep your dog away from pines and from the caterpillars.',
@@ -16218,6 +16296,7 @@ function initTrailReports(map, trail){
         after: tx(', read on {date}.', { date: readOn(source.accessedAt) }),
       })),
     }));
+    out.winterSun = winterSunLine(season, fmt);
     return out;
   }
 
@@ -16350,6 +16429,14 @@ function initTrailReports(map, trail){
     return null;
   }
 
+  // Back this month: in season now, out of season last month. The month a
+  // saved walk is worth a reminder.
+  function cameBackThisMonth(season, month) {
+    if (!month) return false;
+    const last = month === 1 ? 12 : month - 1;
+    return !outOfSeason(season, month) && outOfSeason(season, last);
+  }
+
   // The "Out of season" tag with the month it comes back: "Out of season ·
   // back in June" ("back in Jun" on a card). '' when the walk is in season.
   function outOfSeasonTag(season, month, short) {
@@ -16368,9 +16455,109 @@ function initTrailReports(map, trail){
     return now.concat(later);
   }
 
-  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, WINTER_WALK_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, dayMonth, liftLine, roadLine, hutLine, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime, backInSeason, outOfSeasonTag, inSeasonFirst, DOG_SEASON_TAGS, dogSeasonsNow };
+  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, WINTER_WALK_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, dayMonth, liftLine, roadLine, hutLine, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime, backInSeason, cameBackThisMonth, outOfSeasonTag, inSeasonFirst, DOG_SEASON_TAGS, dogSeasonsNow, WINTER_SUN_MONTHS, SUNNY_WINTER_HOURS, SHADY_WINTER_HOURS, winterSunTag, winterSunLine };
   global.DoloPawsTrailSeasonWords = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
+})(typeof window !== 'undefined' ? window : globalThis);
+;
+
+// ---- daylight.js ----
+// Daylight on a walk: sunset at the walk on a given day, and the latest time
+// to set off and still finish before it. In midwinter the sun sets before five
+// in the Alps, and a walk started after lunch can end in the dark; this is the
+// line that says so, worked out in the reader's browser for the day they read
+// it.
+//
+// Sunset is the astronomical one, over a flat horizon (NOAA's general solar
+// position equations, good to a minute or two in the Alps). In a deep valley
+// the sun leaves the path earlier, so the page says so too.
+//
+// Browser and Node: window.DoloPawsDaylight, or require('./daylight').
+(function (global) {
+  'use strict';
+
+  const DEG = Math.PI / 180;
+  // The months the line is shown: when the days are short.
+  const DAYLIGHT_MONTHS = [10, 11, 12, 1, 2, 3];
+  // Every ORMA region today keeps Central European time.
+  const TIME_ZONE = 'Europe/Rome';
+  // The start-by time is rounded down to this many minutes.
+  const ROUND_MINUTES = 15;
+
+  // Minutes after midnight UTC of sunrise and sunset on `date`'s calendar day
+  // (its UTC year, month and day) at a latitude and longitude in degrees.
+  // null in polar day or night, which no walk here meets.
+  function sunTimesUtcMinutes(date, lat, lng) {
+    const start = Date.UTC(date.getUTCFullYear(), 0, 1);
+    const day = Math.floor((Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()) - start) / 86400000) + 1;
+    const gamma = 2 * Math.PI / 365 * (day - 1);
+    const eqTime = 229.18 * (0.000075 + 0.001868 * Math.cos(gamma) - 0.032077 * Math.sin(gamma)
+      - 0.014615 * Math.cos(2 * gamma) - 0.040849 * Math.sin(2 * gamma));
+    const decl = 0.006918 - 0.399912 * Math.cos(gamma) + 0.070257 * Math.sin(gamma)
+      - 0.006758 * Math.cos(2 * gamma) + 0.000907 * Math.sin(2 * gamma)
+      - 0.002697 * Math.cos(3 * gamma) + 0.00148 * Math.sin(3 * gamma);
+    const cosHa = Math.cos(90.833 * DEG) / (Math.cos(lat * DEG) * Math.cos(decl)) - Math.tan(lat * DEG) * Math.tan(decl);
+    if (cosHa < -1 || cosHa > 1) return null;
+    const ha = Math.acos(cosHa) / DEG;
+    return {
+      sunrise: 720 - 4 * (lng + ha) - eqTime,
+      sunset: 720 - 4 * (lng - ha) - eqTime,
+    };
+  }
+
+  // The walk's time in hours from its record: "2.5", "2.5–3" (the longer end)
+  // or a number. null when it cannot be read.
+  function walkHours(hours) {
+    if (Number.isFinite(hours)) return hours;
+    const parts = String(hours == null ? '' : hours).split(/[–-]/).map(part => Number(part.trim().replace(',', '.'))).filter(n => Number.isFinite(n) && n > 0);
+    return parts.length ? Math.max(...parts) : null;
+  }
+
+  function formatTime(date, locale) {
+    return new Intl.DateTimeFormat(locale || 'en-GB', { timeZone: TIME_ZONE, hour: '2-digit', minute: '2-digit', hour12: false }).format(date);
+  }
+
+  // { sunset, startBy } as Dates for the walk on `now`'s day, or null outside
+  // the short-day months or without a time or position.
+  function daylightFor(trail, now) {
+    const today = now || new Date();
+    if (!trail || !DAYLIGHT_MONTHS.includes(today.getMonth() + 1)) return null;
+    const lat = Number(trail.lat);
+    const lng = Number(trail.lng);
+    const hours = walkHours(trail.hours);
+    if (!Number.isFinite(lat) || !Number.isFinite(lng) || !hours) return null;
+    const times = sunTimesUtcMinutes(today, lat, lng);
+    if (!times) return null;
+    const midnight = Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
+    const sunset = new Date(midnight + times.sunset * 60000);
+    const latest = sunset.getTime() - hours * 3600000;
+    const step = ROUND_MINUTES * 60000;
+    const startBy = new Date(Math.floor(latest / step) * step);
+    return { sunset, startBy, hours };
+  }
+
+  // The line on a trail page: <p class="sp-daylight" hidden data-lat data-lng
+  // data-hours data-template>, the template already in the page's language with
+  // {sunset} and {start} to fill. Shown only in the short-day months.
+  function fillPage(doc, now) {
+    if (!doc || !doc.querySelectorAll) return;
+    const locale = (doc.documentElement && doc.documentElement.lang) || 'en-GB';
+    doc.querySelectorAll('.sp-daylight[data-template]').forEach(el => {
+      const day = daylightFor({ lat: el.getAttribute('data-lat'), lng: el.getAttribute('data-lng'), hours: el.getAttribute('data-hours') }, now);
+      if (!day) return;
+      el.textContent = el.getAttribute('data-template')
+        .replace('{sunset}', formatTime(day.sunset, locale))
+        .replace('{start}', formatTime(day.startBy, locale));
+      el.hidden = false;
+    });
+  }
+  if (typeof document !== 'undefined') {
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => fillPage(document));
+    else fillPage(document);
+  }
+
+  global.DoloPawsDaylight = { fillPage, DAYLIGHT_MONTHS, TIME_ZONE, sunTimesUtcMinutes, walkHours, daylightFor, formatTime };
+  if (typeof module !== 'undefined' && module.exports) module.exports = global.DoloPawsDaylight;
 })(typeof window !== 'undefined' ? window : globalThis);
 ;
 
@@ -19819,7 +20006,10 @@ if(document.querySelector('.td2')){
       // Seasonal risks to dogs, only in the months they apply.
       const dog = seasonWords.dogSeasonsNow(t.season, new Date().getMonth() + 1)
         .map(risk => `<span class="dp-badge trail-season-tag trail-season-tag--dog"><span>${esc(risk.label)}</span></span>`).join('');
-      tags.insertAdjacentHTML('beforeend', `${out}<span class="dp-badge trail-season-tag trail-season-tag--best"><span>${esc(best)}</span></span>${dog}`);
+      // "Sunny in winter" or "Little winter sun", November to February.
+      const sunTag = seasonWords.winterSunTag ? seasonWords.winterSunTag(t.season, new Date().getMonth() + 1) : null;
+      const sun = sunTag ? `<span class="dp-badge trail-season-tag trail-season-tag--sun-${sunTag.kind}"><span>${esc(sunTag.label)}</span></span>` : '';
+      tags.insertAdjacentHTML('beforeend', `${out}<span class="dp-badge trail-season-tag trail-season-tag--best"><span>${esc(best)}</span></span>${dog}${sun}`);
     }
 
     // Elevation figures under the real chart; hide the block honestly
@@ -20189,6 +20379,16 @@ if(document.querySelector('.td2')){
     } else if (maxAlt >= 1800) {
       caution(tx('High ground'), tx('Up to {alt} m. Snow can last into early summer and the weather changes fast.', { alt: isItalian() ? num(maxAlt) : Number(maxAlt).toLocaleString('en-GB') }), 'altitude');
     }
+    // Short days (daylight.js): sunset today and the latest start that still
+    // finishes in daylight, October to March.
+    const daylight = window.DoloPawsDaylight ? window.DoloPawsDaylight.daylightFor(t) : null;
+    if (daylight) {
+      const locale = isItalian() ? 'it-IT' : 'en-GB';
+      caution(tx('Short days'), tx('Sunset today is at {sunset}. To finish in daylight, set off by {start} at the latest; in a deep valley it gets dark sooner.', {
+        sunset: window.DoloPawsDaylight.formatTime(daylight.sunset, locale),
+        start: window.DoloPawsDaylight.formatTime(daylight.startBy, locale),
+      }), null);
+    }
     // Seasonal risks to dogs that apply this month (data/dog-seasons.json),
     // each with the months and where they come from.
     if (seasonWords && t.season && (t.season.dogSeasons || []).length) {
@@ -20198,6 +20398,13 @@ if(document.querySelector('.td2')){
         const from = risk.sources.map(source => source.label).join(', ');
         caution(tx(seasonWords.DOG_SEASON_TAGS[risk.kind]), `${risk.line} ${tx('Source: {source}.', { source: from })}`, ({ cows: 'livestock', heat: 'heat', salt: 'paws' })[risk.kind] || null);
       }
+    }
+    // A shady walk in midwinter: where the sun never reaches, the path stays
+    // icy and a short-coated dog gets cold.
+    const sunTag = seasonWords && seasonWords.winterSunTag ? seasonWords.winterSunTag(t.season, month) : null;
+    if (sunTag && sunTag.kind === 'shady') {
+      const sun = seasonWords.winterSunLine(t.season, n => (isItalian() ? Number(n) : Number(n).toLocaleString()));
+      caution(sunTag.label, `${sun.line} ${tx('Paths in the shade stay icy all day, and a short-coated dog gets cold faster.')}`, 'altitude');
     }
 
     if (!rows.length) {

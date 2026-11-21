@@ -326,6 +326,7 @@
       chairliftSafe,
       impairedVision: conditions.has('vision'),
       small: toy,
+      thinCoat: traits.thinCoat === true,
       behaviour,
       // Confidence measures evidence quality, not behavioural detail, so
       // behaviour deliberately does not enter completeness. Adding it would
@@ -884,7 +885,13 @@
       }else{
         unknowns.push(item('conditions.heat.unknown', 'Current heat conditions are unavailable.'));
       }
-      if(isColdDay(conditions) && dog.small){
+      // A note, never a penalty: a coat solves it. Small dogs by weight,
+      // thin-coated ones (sighthounds, hairless breeds) by breed.
+      if(isColdDay(conditions) && dog.thinCoat){
+        cautions.push(item('conditions.cold.thin-coat',
+          `The forecast stays cold (up to ${conditions.dayMaxC} °C). A thin-coated dog chills fast at rests, so bring a coat.`,
+          { max:conditions.dayMaxC }));
+      }else if(isColdDay(conditions) && dog.small){
         cautions.push(item('conditions.cold.small',
           `The forecast stays cold (up to ${conditions.dayMaxC} °C). A small dog chills fast at rests, so bring a coat.`,
           { max:conditions.dayMaxC }));
