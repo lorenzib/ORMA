@@ -334,16 +334,6 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
     <div class="li-chiprow" id="liChips"></div>
   </div>
 
-  <!-- ================= TODAY'S PICKS ================= -->
-  <!-- The answer first: three walks from the ranked list, for the same dog,
-       place and day. The map and the full list wait behind the link below
-       (liSetMapRevealed), kept open or closed for the session. -->
-  <section class="li-picks" id="liTodaysPicks" aria-labelledby="liPicksTitle">
-    <h2 class="li-picks-title" id="liPicksTitle" data-i18n="page.index.todaysPicks">Le scelte di oggi</h2>
-    <div class="li-picks-list" id="liPicksList"></div>
-    <button type="button" class="li-picks-more" id="liSeeAllWalks" aria-expanded="false" aria-controls="liMapList" hidden></button>
-  </section>
-
   <!-- ================= BODY: MAP + LIST ================= -->
   <div class="li-body" id="liMapList" hidden>
 
@@ -411,7 +401,6 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
            view. "New for <dog>" lives on the card it is about, with what it
            means; Browse all trails sits at the foot of the list. -->
       <div class="li-list-head">
-        <button type="button" class="li-picks-back" id="liBackToPicks" data-i18n="page.index.backToTodaysPicks">← Torna alle scelte di oggi</button>
         <div class="li-list-title-row">
           <h2 class="li-list-title" id="companionListTitle" data-i18n="account.nav.browse">Sentieri</h2>
           <span class="li-list-count" id="companionListCount"></span>
@@ -577,13 +566,14 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="/map-style.js?v=20261120-2" defer></script>
 <script src="/basemap-poi-click.js" defer></script>
 <script src="/dog-routes-layer.js?v=20260826-1" defer></script>
+<script src="/explore-map.js?v=20261120-3" defer></script>
 <script src="/trail-access-directions.js?v=20260815-4" defer></script>
 <script src="/trail-route-refs.js?v=20261119-5" defer></script>
 <script src="/area-dropdown.js" defer></script>
-<script src="/script.js?v=20261119-9" defer></script>
+<script src="/script.js?v=20261120-om1" defer></script>
 <script src="/dog-wizard.js?v=20260917-1" defer></script>
 <script src="/collections-data.js?v=20260909-1" defer></script>
 <script src="/trail-weather-window.js?v=20261106-2"></script><script src="/homepage-conditions.js?v=20260908-2"></script><script src="/homepage-search.js?v=20261123-1" defer></script>
-<script src="/homepage-mobile.js?v=20260909-1" defer></script>
+<script src="/homepage-mobile.js?v=20261120-om1" defer></script>
 </body>
 </html>

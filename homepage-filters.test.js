@@ -163,7 +163,7 @@ describe('returning homepage region + valley filters', () => {
   ];
 
   test('does not expose source review status as a user filter', () => {
-    const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
+    const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8') + '\n' + fs.readFileSync(path.join(__dirname, 'explore-map.js'), 'utf8');
     const html = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
 
     expect(script).not.toContain('activeProvenance');
@@ -744,7 +744,7 @@ describe('returning homepage region + valley filters', () => {
     vm.runInContext('liLocationContext = liDefaultLocationContext();', context);
     await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
     expect(document.querySelector('#liToolbarGreeting [data-li-head="area"]').textContent).toBe('in the Dolomites');
-    expect(fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8')).not.toContain('liToolbarDogContext');
+    expect(fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8') + '\n' + fs.readFileSync(path.join(__dirname, 'explore-map.js'), 'utf8')).not.toContain('liToolbarDogContext');
   });
 
   // The v1 key in localStorage dates from weeks ago and is not this choice.
@@ -1301,7 +1301,7 @@ describe('map-first returning homepage layout contract', () => {
   });
 
   test('opens returning-home search results through the dynamic trail detail route', () => {
-    const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
+    const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8') + '\n' + fs.readFileSync(path.join(__dirname, 'explore-map.js'), 'utf8');
     expect(script).toContain('renderLiSearchSuggestions(currentProfileForAdjust)');
     // Every door to a trail is built by one function now, so the return target
     // and the planned day cannot be attached to some of them and not others.
@@ -1313,20 +1313,21 @@ describe('map-first returning homepage layout contract', () => {
   });
 
   test('keeps the public network neutral and uses match score for ORMA routes and markers', () => {
-    const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
+    const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8') + '\n' + fs.readFileSync(path.join(__dirname, 'explore-map.js'), 'utf8');
     const routeLayerStart = script.indexOf("id: 'trail-paths-line'");
     const routeLayerEnd = script.indexOf("id: 'trail-paths-hit'", routeLayerStart);
     const routeLayer = script.slice(routeLayerStart, routeLayerEnd);
     const markerLayerStart = script.indexOf("id: 'trail-unclustered'");
     const markerLayer = script.slice(markerLayerStart);
     expect(routeLayer).toContain("'line-color': '#858D88'");
-    expect(routeLayer).toContain("matchColourExpression('score')");
+    expect(routeLayer).toContain("'line-color': ['case', lineEmphasis, catalogueMatchColour, otherColour]");
+    expect(script).toContain("colour:window.ORMAMapStyle.matchColourExpression('score'),");
     expect(routeLayer).not.toContain("['get', 'safetyLevel']");
-    expect(markerLayer).toContain("matchColourExpression('score')");
+    expect(markerLayer).toContain("'circle-color': ['case', pinEmphasis, catalogueMatchColour,");
     expect(markerLayer).toContain("id: 'trail-rank-labels'");
     expect(markerLayer).toContain("'text-field': ['to-string', ['get', 'rank']]");
-    expect(markerLayer).toContain("'text-font': window.ORMAMapStyle.FONT_BOLD");
-    expect(markerLayer).toContain("'#9AA19C'");
+    expect(markerLayer).toContain("'text-font': global.ORMAMapStyle.FONT_BOLD");
+    expect(script).toContain("const otherColour = settings.otherColour || '#9AA19C';");
     expect(script).toContain("tx('Where are we going today, {name}?', { name:profile.name })");
     // The line under the headline is gone; the headline names the scope.
     expect(script).not.toContain('Trails ranked for ${profile.name}\\u2019s needs');
@@ -1386,11 +1387,11 @@ describe('map-first returning homepage layout contract', () => {
     expect(mobileCss).toContain('.li-map.map-layers-open{z-index:47;}');
     expect(mobileCss).toContain('#trailMap .map-btn{height:32px;padding:0 11px;font-size:11.5px;');
     expect(mobileCss).toContain('#trailMap .td-layer-switch{top:auto;right:auto;left:12px;bottom:calc(var(--mhome-sheet,35dvh) + env(safe-area-inset-bottom) + 12px);}');
-    const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
+    const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8') + '\n' + fs.readFileSync(path.join(__dirname, 'explore-map.js'), 'utf8');
     expect(script).toContain("mapShell.classList.toggle('map-layers-open', open)");
     expect(script).toContain("layersBtn.setAttribute('aria-expanded', String(open))");
     expect(script).toContain("window.matchMedia('(max-width:700px)').matches");
-    expect(script).toContain("'<button type=\"button\" data-map3d aria-pressed=\"false\">' + tx('Terrain') + '</button>'");
+    expect(script).toContain("'<button type=\"button\" data-map3d aria-pressed=\"false\">' + emTx('Terrain') + '</button>'");
   });
 
   test('groups card actions on the left and gives the dog match a larger right panel', () => {
@@ -1415,7 +1416,7 @@ describe('map-first returning homepage layout contract', () => {
 
   test('labels the main-map fountain layer as Water', () => {
     const translations = fs.readFileSync(path.join(__dirname, 'i18n.js'), 'utf8');
-    const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
+    const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8') + '\n' + fs.readFileSync(path.join(__dirname, 'explore-map.js'), 'utf8');
     expect(translations).toContain("'chips.fountains': 'Water'");
     expect(translations).toContain("'chips.fountains': 'Acqua'");
     expect(script).toContain("mkChip(t('chips.fountains'), 'fountains')");
@@ -1426,7 +1427,7 @@ describe('map-first returning homepage layout contract', () => {
     // in a wide radius, and on this catalogue that is sparse enough to be
     // misleading: an empty map reads as "no vet nearby" rather than "nobody
     // has mapped one", which is the wrong thing to tell a dog owner.
-    const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
+    const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8') + '\n' + fs.readFileSync(path.join(__dirname, 'explore-map.js'), 'utf8');
     expect(script).not.toContain("icons.chipHtml('veterinary', label)");
     expect(script).not.toContain('care.loadMapLayer(map, veterinaryOrigin)');
     // The module went with it on 2026-10-15, once the trail page's own chip
@@ -1438,7 +1439,7 @@ describe('map-first returning homepage layout contract', () => {
   });
 
   test('keeps route shields above a stronger ORMA highlight and only clusters five or more trails', () => {
-    const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
+    const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8') + '\n' + fs.readFileSync(path.join(__dirname, 'explore-map.js'), 'utf8');
     const trailScript = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
     expect(script).toMatch(/id: 'trail-paths-line'[\s\S]*?\}, railsBeforeId\);/);
     expect(script).toMatch(/id: 'trail-paths-casing'[\s\S]*?minzoom: 7[\s\S]*?'line-width': rankWidth\(\[3, 4\.5, 5\.5, 7\][\s\S]*?\}, railsBeforeId\);/);
@@ -1462,8 +1463,8 @@ describe('map-first returning homepage layout contract', () => {
     expect(trailScript).toContain("map.getLayer('single-trail-path-line-casing')");
     // Both maps share one hiking-network treatment from map-style.js instead
     // of hand-tuned raster blocks per map.
-    expect(script).toContain('ORMAMapStyle.addHikingRoutes(trailMapInstance');
-    expect(script).toContain('const railsBeforeId = window.ORMAMapStyle.walkLineBeforeId(trailMapInstance);');
+    expect(script).toContain('style.addHikingRoutes(map, {');
+    expect(script).toContain('railsBeforeId:style.walkLineBeforeId(map),');
     expect(script).not.toContain("'raster-saturation': -1");
     expect(script).not.toContain("'raster-contrast': 0.20");
     expect(script).not.toContain("id: 'trail-paths-mapped-line'");

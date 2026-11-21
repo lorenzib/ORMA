@@ -5,7 +5,9 @@ const path = require('path');
 const { collectAppFiles, APP_EXPLORE_TAG } = require('./scripts/build-app');
 
 const root = __dirname;
-const read = file => fs.readFileSync(path.join(root, file), 'utf8');
+const read = file => fs.readFileSync(path.join(root, file), 'utf8')
+  // The homepage map's base and layers live in explore-map.js, shared with the Trails page.
+  + (file === 'script.js' ? '\n' + fs.readFileSync(path.join(root, 'explore-map.js'), 'utf8') : '');
 
 describe('the app Explore map', () => {
   const source = read('app-explore.js');

@@ -1,7 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const read = file => fs.readFileSync(path.join(__dirname, file), 'utf8');
+const read = file => fs.readFileSync(path.join(__dirname, file), 'utf8')
+  // The homepage map's base and layers live in explore-map.js, shared with the Trails page.
+  + (file === 'script.js' ? '\n' + fs.readFileSync(path.join(__dirname, 'explore-map.js'), 'utf8') : '');
 const trailBundle = require('./scripts/build-trail-page-bundle.js');
 
 describe('PERF-02 asset and regional loading contract', () => {
@@ -37,7 +39,7 @@ describe('PERF-02 asset and regional loading contract', () => {
     expect(homepage).toContain('onIdle(loadSecondaryMapData, 5000)');
     const secondaryMapData = homepage.slice(
       homepage.indexOf('const loadSecondaryMapData = () =>'),
-      homepage.indexOf("if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.onIdle(loadSecondaryMapData, 5000)")
+      homepage.indexOf("if(global.DoloPawsMapRuntime) global.DoloPawsMapRuntime.onIdle(loadSecondaryMapData, 5000)")
     );
     expect(secondaryMapData).not.toContain('initializeWaterSources');
     expect(secondaryMapData).not.toContain('initializeHutsBars');
@@ -45,7 +47,7 @@ describe('PERF-02 asset and regional loading contract', () => {
     expect(homepage).toContain("if(key === 'huts' || key === 'barsCafes') return initializeHutsBars(map)");
     expect(homepage).toContain('if(waterSourcesLoads.has(map)) return waterSourcesLoads.get(map)');
     expect(homepage).toContain('if(hutsBarsLoads.has(map)) return hutsBarsLoads.get(map)');
-    expect(homepage.indexOf("renderGondolas(trailMapInstance, 'trailmap-gondolas')"))
+    expect(homepage.indexOf("renderGondolas(map, 'trailmap-gondolas')"))
       .toBeGreaterThan(homepage.indexOf('const loadSecondaryMapData = () =>'));
     expect(homepage).toContain("overlayControls.sync('lifts')");
     expect(homepage).toContain("lifts:    ['trailmap-gondolas-line', 'trailmap-gondolas-labels']");
@@ -149,11 +151,12 @@ describe('PERF-02 asset and regional loading contract', () => {
     // The chosen route sits under the route numbers, and the routes it follows
     // are numbered beside it, so we no longer reprint shields.
     expect(homepage).not.toContain("id:'trail-selected-route-number'");
-    expect(homepage).toContain('const corridorBeforeId = window.ORMAMapStyle.walkCorridorBeforeId(trailMapInstance);');
+    expect(homepage).toContain('corridorBeforeId:style.walkCorridorBeforeId(map),');
+    expect(homepage).toContain('const corridorBeforeId = beforeIds.corridorBeforeId;');
     expect(homepage).toMatch(/id:'trail-selected-route-casing'[\s\S]*?\}, corridorBeforeId\);/);
     expect(homepage).toMatch(/id:'trail-selected-route-line'[\s\S]*?'line-opacity':1,[\s\S]*?\}, corridorBeforeId\);/);
     expect(homepage).toContain("function setSelectedTrailRoute(trail, options)");
-    expect(homepage).toContain('window.ORMAMapStyle.setHikingWalk(trailMapInstance, visible ? route.map(([lat, lng]) => [lng, lat]) : null);');
+    expect(homepage).toContain('global.ORMAMapStyle.setHikingWalk(map, visible ? toLngLat(route) : null);');
     expect(homepage).toContain('setSelectedTrailRoute(t);');
     expect(homepage).toContain('setSelectedTrailRoute(null, { fit:false });');
     // The catalogue is now one cased corridor beneath the raster, so the two
@@ -161,7 +164,7 @@ describe('PERF-02 asset and regional loading contract', () => {
     expect(homepage).toContain("'trail-paths-orma-line'].forEach(layerId =>");
     expect(homepage).not.toContain("'trail-paths-mapped-casing'");
     expect(homepage).not.toContain("id:'trail-paths-route-number'");
-    expect(homepage).toContain("['!=', ['get','id'], trail.id]");
+    expect(homepage).toContain("['!=', ['get','id'], id]");
   });
 
   test('oversized trail photos have mobile WebP variants and JPEG fallbacks', () => {
