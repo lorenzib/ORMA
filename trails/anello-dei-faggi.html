@@ -77,7 +77,7 @@
   .sp-route-source{margin-top:4px;color:#657369;font-size:13px;line-height:1.5;}
   .sp-route-credit{margin-top:6px;color:#8A968C;font-size:11.5px;line-height:1.45;}
   .sp-route-credit a{color:inherit;text-decoration:underline;text-decoration-color:rgba(138,150,140,.5);}
-  /* The photo is lazy-loaded and the credit toggle is pinned to the figure's
+  /* The photo can arrive after the page draws and the credit toggle is pinned to the figure's
      corner, so the figure reserves its height up front; otherwise the toggle
      floats over whatever sits above until the image arrives. */
   .sp-photo{position:relative;width:480px;max-width:100%;aspect-ratio:8/5;margin:6px 0 14px;overflow:hidden;border-radius:12px;}
@@ -180,7 +180,7 @@
     
   </div>
   
-  <figure class="sp-photo"><img class="sp-img" src="../images/trails/osm-7548489-orma-illustration.jpg" alt="ORMA illustration of Anello dei Faggi: its climb drawn as contour bands and its route shape, not a photograph" loading="lazy" decoding="async"><details class="sp-photo-credit">
+  <figure class="sp-photo"><img class="sp-img" src="../images/trails/osm-7548489-orma-illustration.jpg" alt="ORMA illustration of Anello dei Faggi: its climb drawn as contour bands and its route shape, not a photograph" fetchpriority="high" decoding="async"><details class="sp-photo-credit">
       <summary aria-label="About this illustration" title="About this illustration">i</summary>
       <div class="sp-photo-credit__body">ORMA illustration of this walk, drawn from its route and climb, not a photograph</div>
     </details></figure>
