@@ -8851,6 +8851,40 @@
       }
     },
     {
+      "id": "veneto-sentiero-dei-roccoli",
+      "approvedReviewId": "mapillary-veneto-sentiero-dei-roccoli-on-route",
+      "approvedAt": "2026-11-21T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/veneto-roccoli-path-ridge-wood.jpg",
+        "heroImage": "images/trails/veneto-roccoli-path-ridge-wood.jpg",
+        "imageAlt": "A broad gravel track covered in fallen brown and yellow leaves runs through a wood of slim trees, with a big mossy boulder on the left",
+        "imageCredit": "The Strada dei Rocoli in the wood on the ridge, on the walk",
+        "imageCreditText": "The Strada dei Rocoli in the wood on the ridge, on the walk by andreadfc",
+        "imageCreator": "andreadfc",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1429897548532056",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "veneto-sentiero-forte-enna",
+      "approvedReviewId": "mapillary-veneto-sentiero-forte-enna-on-route",
+      "approvedAt": "2026-11-21T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/veneto-forte-enna-track-val-leogra.jpg",
+        "heroImage": "images/trails/veneto-forte-enna-track-val-leogra.jpg",
+        "imageAlt": "A stony mule track runs between ivy-covered stone walls and slim trees, with a sunny green meadow on the left and autumn leaves on the ground",
+        "imageCredit": "The stony track between a meadow and the wood near Enna, on the walk",
+        "imageCreditText": "The stony track between a meadow and the wood near Enna, on the walk by andreadfc",
+        "imageCreator": "andreadfc",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=609192865616638",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "villnoess-da-russis-fino-al-passo-delle-erbe",
       "approvedReviewId": "commons-villnoess-da-russis-fino-al-passo-delle-erbe-on-route",
       "approvedAt": "2026-10-29T20:00:00.000Z",

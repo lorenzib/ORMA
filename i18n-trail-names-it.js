@@ -438,6 +438,8 @@ window.ORMA_TRAIL_NAMES_IT = {
   "talucco-ecomuseo-carbonaie": "Sentiero delle Carbonaie al Talucco",
   "veneto-anello-del-muccion": "Anello del Mucciòn sopra Valdagno",
   "veneto-archeovia-campetto-cima-marana": "Archeovia dal Campetto a Cima Marana, andata e ritorno",
+  "veneto-sentiero-dei-roccoli": "Sentiero dei Roccoli dal Mucciòn",
+  "veneto-sentiero-forte-enna": "Anello del Forte Enna sopra Torrebelvicino",
   "traversella-sentiero-delle-anime": "Sentiero delle Anime a Traversella",
   "tre-cime": "Il giro classico delle Tre Cime di Lavaredo",
   "trecime-bagni-di-san-candido": "Wildbad Innichen",

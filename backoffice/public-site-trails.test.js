@@ -297,8 +297,11 @@ describe('the existing-site verification boundary',()=>{
     // Then 553 and 551 with the first Veneto walks from UM.PASUBIO (owner
     // decision of 19 November 2026): the Archeovia from the Campetto to Cima
     // Marana (there and back) and the Mucciòn loop above Valdagno.
-    expect(catalogue).toHaveLength(553);
-    expect(currentSiteTrails(catalogue)).toHaveLength(551);
+    // Then 555 and 553 with the second Veneto batch from UM.PASUBIO: the
+    // Forte Enna loop above Torrebelvicino and the Roccoli path from the
+    // Mucciòn church (each walking a stretch twice, as the board's line does).
+    expect(catalogue).toHaveLength(555);
+    expect(currentSiteTrails(catalogue)).toHaveLength(553);
   });
 
   test('requires the artwork the public trail page needs',()=>{
