@@ -72316,6 +72316,287 @@
       ],
       startPoint: { lat: 45.781019, lng: 10.629199, label: "The car park of the Museo Etnografico della Valvestino at Cima Rest, Magasa, the published start" },
       desc: "A short, gentle walk high in the Valvestino, from the old thatched barns and ethnographic museum of Cima Rest along a track through summer pastures and beech woods towards Malga Alvezza, where the Tombea mountain cheese is made, and back the same way. The park lists 1.8 km one way; there and back it is 3.6 km with 139 m up and down, about 1 h 15."
+    },
+    'veneto-archeovia-campetto-cima-marana': {
+      // Hand audit: 19 November 2026, verified on arrival (Veneto batch 1, Vicenza prealps; owner decision of 19 November 2026 to add Veneto mountain walks).
+      // UM.PASUBIO (Unione Montana Pasubio Alto Vicentino), on Outdooractive: “Archeovia Campetto - Cima Marana”, drawn there and back on 11 OSM ways along its published line (data/board-line-routes.geojson).
+      // One way on the page with no return given: distance and climb are the published one-way figures doubled; the time is measured by ORMA (DIN 33466).
+      // Commune: Recoaro Terme (its regulations have no lead or ban rule beyond the national one). No regional park; no Natura 2000 site (EEA). No road on the line: path 202 on open pasture. OSM marks the ridge path T2 (mountain_hiking): caution line. Summer cows on the pasture.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Monte Falcone – Sella del Campetto – Cima Marana (Recoaro Terme, Piccole Dolomiti)",
+      distance: 3.8,
+      elevation: 143,
+      hours: '1.25',
+      routeShape: 'out-and-back',
+      routeShapeNote: "UM.PASUBIO publishes the Archeovia one way, from Monte Falcone to Cima Marana (1.9 km, 32 m up and 111 m down, 0:40 h), and gives no return. ORMA walks it there and back on the same path: 3.8 km with 143 m up and 143 m down. The time, about 1 h 15, is measured by ORMA (DIN 33466), not the board’s.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start by the Chalet Montefalcone below Monte Falcone, above Recoaro Terme, the published start.",
+        "sequence": "Take the path past the Montefalcone wayside shrine and the track along the ridge, with the Chiampo valley below on the left, to the Sella del Campetto, the grassy saddle with the big wooden crucifix and the first Archeovia panel. Follow path 202 along the open ridge past the Madonna Rupestre and the Pozzetto di Marana cave to the Bivacco Cima Marana and the summit cross of Cima Marana. Come back the same way.",
+        "switches": "Path past the Montefalcone shrine; track along the ridge to the Sella del Campetto and its crucifix; path 202 along the ridge past the Madonna Rupestre and the Pozzetto di Marana to the Bivacco and the cross of Cima Marana; back the same way.",
+        "sources": [
+          {
+            "label": "UM.PASUBIO, Archeovia Campetto - Cima Marana (route description)",
+            "url": "https://www.outdooractive.com/it/r/809255432",
+            "authority": "UM.PASUBIO (Unione Montana Pasubio Alto Vicentino)",
+            "tag": "tourist board",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The wooden crucifix at the Sella del Campetto, on the walk (Gianfranco Graizzaro on Wikimedia Commons, CC BY-SA 4.0), 30 July 2017, 2 m from the line.",
+        route: "Official one-way walk of 1.9 km from The Chalet Montefalcone below Monte Falcone, Recoaro Terme, as UM.PASUBIO (Unione Montana Pasubio Alto Vicentino), on Outdooractive publishes it, with no return given; ORMA walks it there and back on the same path (owner rule of 12 November 2026). The stored line is drawn on 11 OSM ways along the published line out and back, 3.7 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "Path 202 along the ridge from the Sella del Campetto to Cima Marana, reached on a short path and track from the Chalet Montefalcone; back the same way. The fourteen Archeovia panels line the ridge.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official one way: 1.9 km, 32 m up and 111 m down, 0:40 h (UM.PASUBIO, Outdooractive), between 1,526 m and 1,627 m on the ridge. There and back on the same path: 3.8 km, 143 m up and 143 m down; about 1 h 15 measured by ORMA (DIN 33466), since the board times the walk one way only."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "UM.PASUBIO (Unione Montana Pasubio Alto Vicentino), on Outdooractive, “Archeovia Campetto - Cima Marana” (its Outdooractive tour, with its line)",
+          "Comune di Recoaro Terme: its police and animal regulations have no lead or ban rule beyond the Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026: a lead of at most 1.5 m in places open to the public and a muzzle carried)",
+          "Veneto Natura 2000 conservation measures (DGR 786/2016, Art. 99) and Veneto regional law (LR 60/1993, Art. 18 bis): no dog rule for walkers beyond the national one",
+          "No regional park on the line (the Pasubio and Piccole Dolomiti lie outside Veneto’s five regional parks); European Environment Agency Natura 2000 service: no Natura 2000 site on the line",
+          "OpenStreetMap ways along the board’s line (11 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 41,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["The ridge path is a mountain path (T2) with uneven ground and loose stones: keep a steady pace and watch your dog’s paws","Cows graze the ridge pastures in summer: keep your dog on a lead and give the herds room","The ridge is open: avoid it in thunderstorms, wind or mist"],
+      terrainType: "Mountain path on open pasture",
+      shadeDescription: "Mostly open grassy ridge; short stretches of beech wood near the start.",
+      terrainDescription: "A short high walk along the grassy ridge between the Chiampo and Agno valleys in the Piccole Dolomiti, over 1,500 m, on the Archeovia: fourteen panels tell how people used this ridge from Stone Age hunters to shepherds and the soldiers of the First World War. It ends at the Cima Marana cross and bivouac hut, with wide views.",
+      waterDescription: "No drinking water is mapped on the line (OSM). The Chalet Montefalcone at the start serves food and drink when open. Bring water and a bowl for your dog.",
+      dogNotes: "The ridge is summer pasture: keep your dog on a lead near cows and on the path near the archaeology sites.",
+      tips: "Start at the Chalet Montefalcone above Recoaro Terme: 1.9 km one way to the Cima Marana cross, 0:40 h as the board lists, and the same way back, about 1 h 15 in all by ORMA’s estimate. Go on a clear day for the views, and visit the finds in the Dal Lago museum in Valdagno afterwards, as the board suggests.",
+      sourceLinks: [
+        { label: "UM.PASUBIO, Archeovia Campetto - Cima Marana (Outdooractive)", url: "https://www.outdooractive.com/it/r/809255432" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.668414, lng: 11.205009, label: "The Chalet Montefalcone below Monte Falcone, Recoaro Terme, the published start" },
+      desc: "A short high walk along the grassy ridge between the Chiampo and Agno valleys, past the Archeovia panels and a big wooden crucifix to the summit cross of Cima Marana, and back the same way. The board lists 1.9 km one way; there and back it is 3.8 km, about 1 h 15."
+    },
+    'veneto-anello-del-muccion': {
+      // Hand audit: 19 November 2026, verified on arrival (Veneto batch 1, Vicenza prealps; owner decision of 19 November 2026 to add Veneto mountain walks).
+      // UM.PASUBIO (Unione Montana Pasubio Alto Vicentino), on Outdooractive: “Anello del Mucciòn”, drawn on 30 OSM ways along its published line (data/board-line-routes.geojson).
+      // Communes: Valdagno (start) and Schio (a short stretch near the Mucciòn): neither has a lead or ban rule beyond the national one (Schio’s regulation text checked). No regional park; no Natura 2000 site (EEA). Roads: hamlet lanes about 48% of the line (Via Cornetto at the start), within the owner’s half-the-walk limit; tertiary roads about 190 m in short stretches at Località Mucchione and Contrada Preti/Cestonare, under 300 m. No T2 on the line.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Bergamini di Sopra – Contrada Bernardi – Chiesetta del Mucciòn (Valdagno, Valle dell’Agno)",
+      distance: 5.7,
+      elevation: 265,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from Contrà Bergamini di Sopra up the lane and through the woods to Contrada Bernardi, along the eco-trail to the little Mucciòn church on the pass, and back down past the Ex Voto dell’Emigrante shrine through the woods, as the board publishes it (5.7 km, 265 m up, 1:55 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Contrà Bergamini di Sopra, on the hill above Valdagno, the published start.",
+        "sequence": "Walk up the quiet lane of Via Cornetto for about 1.4 km, then take the path into the wood and on to Contrada Bernardi. Follow the concrete lane past the hamlet and then the dirt path signed for the Piccole Dolomiti eco-trail to the Chiesetta del Mucciòn, the little church on the pass, with the trattoria beside it. Take the Strada dei Rocoli for a few metres, then the track past the Ex Voto dell’Emigrante wayside shrine, cross the road at Contrada Preti and follow the paths and tracks down through the wood and back to Bergamini di Sopra.",
+        "switches": "Via Cornetto up from Bergamini di Sopra; path into the wood to Contrada Bernardi; eco-trail path to the Chiesetta del Mucciòn and the trattoria; Strada dei Rocoli and the track past the Ex Voto dell’Emigrante shrine; across the road at Contrada Preti; paths and tracks down through the wood to Bergamini di Sopra.",
+        "sources": [
+          {
+            "label": "UM.PASUBIO, Anello del Mucciòn (route description)",
+            "url": "https://www.outdooractive.com/it/r/810121175",
+            "authority": "UM.PASUBIO (Unione Montana Pasubio Alto Vicentino)",
+            "tag": "tourist board",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The gravel path past Contrada Bernardi, looking towards the Piccole Dolomiti (mircozorzo on Mapillary, CC BY-SA 4.0), 31 May 2020, 9 m from the line.",
+        route: "Official loop of 5.7 km from Contrà Bergamini di Sopra above Valdagno, as UM.PASUBIO (Unione Montana Pasubio Alto Vicentino), on Outdooractive publishes it; the stored line is drawn on 30 OSM ways along the published line, 5.6 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "No path numbers on most of the loop. From Contrada Bernardi to the Mucciòn it follows the Ortogonale 1 eco-trail (ORT1, “Anello ecoturistico Piccole Dolomiti” signs), then the Strada dei Rocoli; the rest is on local lanes, paths and tracks, as the board’s line shows.",
+        mapPoints: "Start at the board’s start; drinking water at km 2.4, km 2.4, km 3.4 (OSM nodes 7570253539, 7133989292, 690912102).",
+        elevation: "Official 5.7 km, 265 m up and 265 m down, 1:55 h, between 425 m and 690 m (UM.PASUBIO, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "UM.PASUBIO (Unione Montana Pasubio Alto Vicentino), on Outdooractive, “Anello del Mucciòn” (its Outdooractive tour, with its line)",
+          "Comune di Valdagno and Comune di Schio: their police and animal regulations have no lead or ban rule beyond the Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026: a lead of at most 1.5 m in places open to the public and a muzzle carried)",
+          "Veneto Natura 2000 conservation measures (DGR 786/2016, Art. 99) and Veneto regional law (LR 60/1993, Art. 18 bis): no dog rule for walkers beyond the national one",
+          "No regional park on the line (the Pasubio and Piccole Dolomiti lie outside Veneto’s five regional parks); European Environment Agency Natura 2000 service: no Natura 2000 site on the line",
+          "OpenStreetMap ways along the board’s line (30 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 62,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About half the loop is on quiet hamlet lanes with the odd car: keep your dog close there","Two short stretches of road at the Mucciòn pass and at Contrada Preti: keep your dog on a short lead","A low hill walk that gets hot in summer: go in spring or autumn, as the board suggests, or early in the day"],
+      terrainType: "Hamlet lanes, woodland paths and tracks",
+      shadeDescription: "About two thirds in mixed woods; the lanes and the hamlets are open.",
+      terrainDescription: "An easy hill loop above Valdagno in the Agno valley, between old hamlets, mixed woods and open ridges, to the Chiesetta del Mucciòn, a little church built by the local people in the 1950s, with views over the Val Leogra and the Piccole Dolomiti.",
+      waterDescription: "Drinking water mapped at km 2.4 and km 3.4 (OSM). The trattoria by the Mucciòn church serves food and drink when open.",
+      dogNotes: "Keep your dog close on the hamlet lanes and on a short lead on the two road stretches.",
+      tips: "Start at Contrà Bergamini di Sopra above Valdagno: 5.7 km and 265 m up, about 2 hours, as the board lists. The board suggests spring or autumn; the trattoria by the Mucciòn church makes a good stop halfway.",
+      sourceLinks: [
+        { label: "UM.PASUBIO, Anello del Mucciòn (Outdooractive)", url: "https://www.outdooractive.com/it/r/810121175" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.661984, lng: 11.316453, label: "Contrà Bergamini di Sopra above Valdagno, the published start" },
+      desc: "An easy hill loop above Valdagno between old hamlets and mixed woods to the little Mucciòn church on its pass, with views to the Piccole Dolomiti. The board lists 5.7 km and 265 m up."
+    },
+    'iseo-riva-di-solto': {
+      // Hand audit: 20 November 2026, verified on arrival (Lake Iseo + Alto Garda batch 2, owner decision of 18 November 2026 to add Northern Italy mountain walks).
+      // Visit Lake Iseo: “Giro panoramico di Riva di Solto” on Outdooractive, drawn on 48 OSM ways along its published line (data/board-line-routes.geojson).
+      // Communes: Riva di Solto (no dog rule found online, so the national rule applies) and Solto Collina (Regolamento di Polizia Urbana, CC n. 65 of 19 December 2022, art. 44: dogs on a lead in public places and barred from municipal parks and gardens; the line passes beside, not through, the Giardino Don Tarcisio Zenti). No park, reserve or Natura 2000 site on the line. About 0.5 km of mountain path (T2) on the stepped path beside the Bogn gorge, flagged as a caution (owner rule of 18 November 2026). About 2.3 km of the 6.8 km on village lanes (under half); about 190 m on main roads (Via Papa Giovanni XXIII and a crossing of the SS469), and the lakeside promenade runs beside the SS469 on its own pavement.
+      // The stored line follows the published line, 100% each way.
+      area: "Riva di Solto – Zangolo – Solto Collina – Bogn di Zorzino (Riva di Solto, Solto Collina)",
+      distance: 6.7,
+      elevation: 290,
+      hours: '2.5',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from the lakeside at Riva di Solto up to Solto Collina and back down beside the Bogn gorge, as Visit Lake Iseo publishes it: 6.7 km, 290 m up and down, 2 h 30.",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the car park on Via Papa Giovanni XXIII in Riva di Solto, by the lake, the published start.",
+        "sequence": "Walk about 150 m along Via Papa Giovanni XXIII (the SP 77), then turn left onto the old mule track (CAI path 567) that climbs towards Solto Collina. After about 15 minutes, at Zangolo, turn right, ignoring the signs for the giant bench. At the top of the climb turn right into Via Dosso (wooden sign “Sentiero Natura del Sebino”, CAI path 565) to the church of Santi Rocco e Antonio Abate, then right into Via Sconico; after 100 m turn left and cross the SP 77 at the pedestrian crossing. Follow the signs of the Sentiero Naturalistico del Sebino towards Lovere, on lanes and on cobbled and grassy paths out of Solto Collina, with Monte Isola and the Corna Trentapassi on your right. After about 1.5 km, at the asphalt Via Apostoli, turn right downhill round two hairpins to the start, on the left, of the “Sentiero alla scoperta del Bogn”. Follow it down beside the gorge on a stepped path to the road by the Riva di Solto tunnel, cross with great care, and turn right along the lakeside promenade of Riva di Solto back to the start.",
+        "switches": "Via Papa Giovanni XXIII (SP 77) for about 150 m; left on the old mule track, CAI 567, towards Solto Collina; right at Zangolo; right into Via Dosso, CAI 565 (Sentiero Natura del Sebino), past the church of Santi Rocco e Antonio Abate and right into Via Sconico; left and across the SP 77; the Sentiero Naturalistico del Sebino towards Lovere; right down Via Apostoli; left onto the Sentiero alla scoperta del Bogn down to the road by the tunnel; across it, then right along the lakeside promenade to the start.",
+        "sources": [
+          {
+            "label": "Visit Lake Iseo, Giro panoramico di Riva di Solto (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/804529444",
+            "authority": "Visit Lake Iseo",
+            "tag": "tourist board",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Lake Iseo from above the Bögn di Zorzino, on the walk (Fabio Pani on Wikimedia Commons, CC BY-SA 4.0), 24 May 2026, 4 m from the line.",
+        route: "Official loop of 6.7 km from The car park on Via Papa Giovanni XXIII by the lake in Riva di Solto, as Visit Lake Iseo, the tourism association of the Lake Iseo communes and the provinces of Brescia and Bergamo publishes it; the stored line is drawn on 48 OSM ways along the published line, 6.8 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "CAI 567 (old mule track) from Riva di Solto up towards Solto Collina; CAI 565 and the Sentiero Naturalistico del Sebino through Solto Collina towards Lovere; Via Apostoli down to the Sentiero alla scoperta del Bogn; the lakeside promenade of Riva di Solto back to the start.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official loop: 6.7 km, 290 m up and down, 2 h 30, between 187 m and 476 m (Visit Lake Iseo, Outdooractive). The stored line follows the board’s own Outdooractive tour."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Visit Lake Iseo, “Giro panoramico di Riva di Solto” (Outdooractive tour with its line and figures)",
+          "Comune di Riva di Solto publishes no dog regulation online (searched its online regulations and general acts), so the Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in places open to the public and a muzzle carried",
+          "Comune di Solto Collina, Regolamento comunale di Polizia Urbana (CC n. 65, 19 December 2022), art. 44 c. 2: dogs on a lead in public places; c. 7: no animals in municipal parks, gardens and green areas except those set aside for them",
+          "Regione Lombardia geoportal (AreeProtette: regional, natural and national parks, regional and national reserves, PLIS, natural monuments): no protected area on the line; European Environment Agency Natura 2000 service: no site on the line",
+          "OpenStreetMap ways along the board’s line (48 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 30,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About 0.5 km of mountain path (T2) on the stepped path down beside the Bogn gorge: rocky steps, steep in places and slippery when wet; sure footing needed","You cross the lakeside main road by the Riva di Solto tunnel, where the board asks for particular care, and the SP 77 at a pedestrian crossing in Solto Collina: keep your dog on a short lead","Almost half the walk is on asphalt lanes and village streets, with about 150 m along Via Papa Giovanni XXIII (the SP 77) at the start and the lakeside promenade beside the SS469 at the end: keep your dog close there","Sunny slopes above the lake: on a hot day go early and bring water"],
+      terrainType: "Mule tracks, village lanes and lakeside paths",
+      shadeDescription: "About a third shaded: woods on the mule track and the Bogn path; the lanes of Solto Collina and the lakeside are open.",
+      terrainDescription: "A loop from the lakeside village of Riva di Solto up the old cobbled mule track to Solto Collina, along the Sentiero Naturalistico del Sebino through meadows and woods with views over Monte Isola and the Corna Trentapassi, and back down a stepped path beside the Bogn gorge to the lakeside promenade.",
+      waterDescription: "OSM maps drinking fountains in Solto Collina, about 2 km into the walk, and on the lakeside at Riva di Solto near the end, where there are also a café, a trattoria and toilets. Bring a bowl for your dog.",
+      dogNotes: "Solto Collina’s Regolamento di Polizia Urbana (2022, art. 44) asks for dogs on a lead in public places and bars them from the commune’s parks and gardens; Riva di Solto publishes no rule of its own, so the national rule applies there. The national rule adds a lead of at most 1.5 m and a muzzle carried.",
+      tips: "Park on Via Papa Giovanni XXIII in Riva di Solto: 6.7 km and 290 m up and down, about 2 h 30 as the board gives. Cross the road by the tunnel with care and keep your dog on a lead in the villages. Carry a muzzle.",
+      sourceLinks: [
+        { label: "Visit Lake Iseo, Giro panoramico di Riva di Solto (Outdooractive)", url: "https://www.outdooractive.com/it/r/804529444" },
+        { label: "Visit Lake Iseo, who we are (association of 23 Lake Iseo communes and the provinces of Brescia and Bergamo)", url: "https://www.visitlakeiseo.info/chi-siamo/" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Comune di Solto Collina, Regolamento comunale di Polizia Urbana (2022)", url: "https://www.comune.solto-collina.bg.it/amministrazione/trasparenza/pubblicazioni/allegati/allegato_441.html" },
+        { label: "Comune di Riva di Solto, regolamenti online", url: "https://www.comune.rivadisolto.bg.it/Regolamentionline" },
+        { label: "Regione Lombardia geoportal, protected-area services (parks, reserves, PLIS, natural monuments)", url: "https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.77164, lng: 10.035984, label: "The car park on Via Papa Giovanni XXIII by the lake in Riva di Solto, the published start" },
+      desc: "A varied loop from the lakeside village of Riva di Solto up an old mule track to Solto Collina, along the Sebino nature path with wide views over Lake Iseo, Monte Isola and the Corna Trentapassi, and back down a stepped path beside the Bogn gorge to the lakeside promenade. Visit Lake Iseo lists 6.7 km, 290 m up and down, 2 h 30."
+    },
+    'iseo-piramidi-zone': {
+      // Hand audit: 20 November 2026, verified on arrival (Lake Iseo + Alto Garda batch 2, owner decision of 18 November 2026 to add Northern Italy mountain walks).
+      // Visit Lake Iseo: “Trekking nella Riserva Naturale delle Piramidi di Zone” on Outdooractive, drawn on 13 OSM ways along its published line (data/board-line-routes.geojson).
+      // Commune: Zone (no dog rule found online, so the national rule applies). Riserva naturale regionale Piramidi di Zone (DCR III/1844 of 19 December 1984) on the line: its management plan (DGR 45378 of 1 October 1999) is not published online, and the commune’s access regulation (CC n. 21 of 30 July 2022) sets a €2 ticket and has no dog clause, so no reserve rule beyond the national one is known. No Natura 2000 site. About 1.2 km of mountain path (T2) through the reserve, flagged as a caution (owner rule of 18 November 2026). About 120 m on the provincial road to Zone (Via Sebino) near the end; no other main road.
+      // The stored line follows the published line, 100% each way.
+      area: "Cislano – Riserva naturale Piramidi di Zone, Zone",
+      distance: 2.6,
+      elevation: 162,
+      hours: '0.9',
+      routeShape: 'loop',
+      routeShapeNote: "A loop through the reserve from the church of San Giorgio in Cislano, as Visit Lake Iseo publishes it: 2.6 km, 162 m up and 161 m down, 55 min.",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the church of San Giorgio in Cislano, a hamlet of Zone, where there are a large car park, an information point and a bar, the published start.",
+        "sequence": "Walk past the small playground towards the church and take the path on the right, with a green panel for the pedestrian entrance to the reserve. In a few minutes you reach the reserve entrance proper, where a sign sends you down the path on the right, past the first erratic boulder with its panel and the first of several viewpoints over the pyramids, all downhill for now. At the fork with Monte Marone to the right and the Sentiero delle Piramidi to the left, turn left: from here the path climbs to the end, past three more viewpoints, the last beside the provincial road to Zone, by a drinking fountain. Carry on along the path on the left, which soon joins the old Strada Valeriana; turn left onto it and follow it to the hamlet of Cislano and back to the start.",
+        "switches": "Path on the right before the church (pedestrian entrance to the reserve); right and down from the reserve entrance; left at the fork onto the Sentiero delle Piramidi (Monte Marone to the right); left onto the old Strada Valeriana back to Cislano.",
+        "sources": [
+          {
+            "label": "Visit Lake Iseo, Trekking nella Riserva Naturale delle Piramidi di Zone (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/197805889",
+            "authority": "Visit Lake Iseo",
+            "tag": "tourist board",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Two of the Zone earth pyramids, each capped by its boulder, seen through the trees of the reserve (Simone Milini on Wikimedia Commons, CC BY-SA 4.0), 25 July 2012, 29 m from the line.",
+        route: "Official loop of 2.6 km from The church of San Giorgio in Cislano, Zone, as Visit Lake Iseo, the tourism association of the Lake Iseo communes and the provinces of Brescia and Bergamo publishes it; the stored line is drawn on 13 OSM ways along the published line, 2.7 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "Reserve paths from the church of San Giorgio in Cislano: down from the entrance past the viewpoints, left at the Monte Marone fork onto the Sentiero delle Piramidi, then left on the old Strada Valeriana back to Cislano.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official loop: 2.6 km, 162 m up, 161 m down, 55 min, between 455 m and 617 m (Visit Lake Iseo, Outdooractive). The stored line follows the board’s own Outdooractive tour."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Visit Lake Iseo, “Trekking nella Riserva Naturale delle Piramidi di Zone” (Outdooractive tour with its line and figures)",
+          "Comune di Zone publishes no dog regulation online (searched its regulations in Amministrazione Trasparente and the site), so the Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in places open to the public and a muzzle carried",
+          "Comune di Zone, Regolamento per l’accesso all’area della Riserva Regionale delle Piramidi di Erosione di Zone (CC n. 21, 30 July 2022): entry ticket (€2 from age 7), no dog clause; the reserve’s management plan (DGR 45378 of 1 October 1999) is not published online",
+          "Regione Lombardia geoportal (AreeProtette: regional, natural and national parks, regional and national reserves, PLIS, natural monuments): Riserva naturale regionale Piramidi di Zone (DCR III/1844 of 19 December 1984) on the line; European Environment Agency Natura 2000 service: no site on the line",
+          "OpenStreetMap ways along the board’s line (13 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 15,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About 1.2 km of mountain path (T2) through the reserve: an earth path with steeper ups and downs, slippery after rain and dangerous in snow, as the board warns; sure footing needed","The pyramids stand on steep, crumbling slopes: keep your dog on the path and close at the viewpoints","Near the end the walk follows the provincial road to Zone for about 120 m, then lanes into Cislano: keep your dog on a short lead there","The board advises avoiding the hottest hours in summer: go early and bring water"],
+      terrainType: "Woodland earth paths and an old mule road",
+      shadeDescription: "Partly shaded: photos show the path among trees in places, though OSM maps no woodland on the line; the viewpoints are open.",
+      terrainDescription: "A short loop at 450–620 m through the regional nature reserve of the Zone earth pyramids, columns of glacial clay up to 30 m tall, each protected by a boulder on top: down past erratic boulders and viewpoints over the pyramids, then back up and along the old Strada Valeriana to Cislano.",
+      waterDescription: "OSM maps drinking fountains at the start in Cislano and at the last viewpoint by the road to Zone, which the board also mentions; Cislano has a bar and toilets. Bring a bowl for your dog.",
+      dogNotes: "Zone publishes no dog rule of its own and the reserve’s access regulation has no dog clause, so the national rule applies: a lead of at most 1.5 m and a muzzle carried. Keep your dog on a lead and on the path throughout the reserve: the pyramids are fragile.",
+      tips: "Park at the church of San Giorgio in Cislano: 2.6 km, 162 m up and 161 m down, about 55 min as the board gives. Entry to the reserve costs €2 from age 7 (commune regulation of 2022). Avoid it after rain or in snow. Keep your dog on a lead and carry a muzzle.",
+      sourceLinks: [
+        { label: "Visit Lake Iseo, Trekking nella Riserva Naturale delle Piramidi di Zone (Outdooractive)", url: "https://www.outdooractive.com/it/r/197805889" },
+        { label: "Visit Lake Iseo, who we are (association of 23 Lake Iseo communes and the provinces of Brescia and Bergamo)", url: "https://www.visitlakeiseo.info/chi-siamo/" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Comune di Zone, Regolamento di accesso alla Riserva delle Piramidi (2022)", url: "https://voli.dati.ckube.it/repository/get.aspx?file=IH%2fBoEaAWnqjnPnDhq2rHVeB%2bHiDis9hGj0Zx%2bBi62mXWDn%2ffMWhtId6GDMXmg4bjxfM1gQiDmZMooQigZHQoQ%3d%3d" },
+        { label: "Comune di Zone, Riserva Regionale delle Piramidi di Erosione di Zone", url: "https://www.comune.zone.bs.it/luogo/riserva-regionale-delle-piramidi-di-erosione-di-zone" },
+        { label: "Regione Lombardia geoportal, protected-area services (parks, reserves, PLIS, natural monuments)", url: "https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.752856, lng: 10.114382, label: "The church of San Giorgio in Cislano, Zone, the published start" },
+      desc: "A short loop through the regional nature reserve of the Zone earth pyramids, above Lake Iseo: tall columns of glacial clay, each capped by a boulder, seen from a string of viewpoints along a woodland path, with the return on the old Strada Valeriana to the hamlet of Cislano. Visit Lake Iseo lists 2.6 km, 162 m up, 55 min."
     }
   };
 

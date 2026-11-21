@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "iseo-piramidi-zone",
+  "generatedAt": "2026-11-21T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 2.6,
+    "ascentM": 162,
+    "highestPointM": 611,
+    "expectedDuration": "55 min",
+    "difficulty": "Moderate",
+    "shadePercent": 15
+  },
+  "trailhead": {
+    "lat": 45.752856,
+    "lng": 10.114382,
+    "label": "The church of San Giorgio in Cislano, Zone, the published start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "About 1.2 km of mountain path (T2) through the reserve: an earth path with steeper ups and downs, slippery after rain and dangerous in snow, as the board warns; sure footing needed.",
+    "The pyramids stand on steep, crumbling slopes: keep your dog on the path and close at the viewpoints.",
+    "Near the end the walk follows the provincial road to Zone for about 120 m, then lanes into Cislano: keep your dog on a short lead there.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-19"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-21",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "The earth pyramids of Zone": "Le Piramidi di Zone",
+    "The church of San Giorgio in Cislano, Zone, the published start": "La chiesa di San Giorgio a Cislano, Zone, la partenza indicata",
+    "About 1.2 km of mountain path (T2) through the reserve: an earth path with steeper ups and downs, slippery after rain and dangerous in snow, as the board warns; sure footing needed.": "Circa 1,2 km di sentiero di montagna (T2) nella riserva: sentiero di terra con saliscendi più ripidi, scivoloso dopo la pioggia e pericoloso con la neve, come avverte l’ente; serve passo sicuro.",
+    "The pyramids stand on steep, crumbling slopes: keep your dog on the path and close at the viewpoints.": "Le piramidi sorgono su pendii ripidi e franosi: tenete il cane sul sentiero e vicino ai belvedere.",
+    "Near the end the walk follows the provincial road to Zone for about 120 m, then lanes into Cislano: keep your dog on a short lead there.": "Verso la fine il percorso segue la strada provinciale per Zone per circa 120 m, poi stradine fino a Cislano: lì tenete il cane al guinzaglio corto."
+  }
+}

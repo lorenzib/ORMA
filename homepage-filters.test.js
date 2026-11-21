@@ -60,6 +60,7 @@ function loadHomepageContext(testTrails){
     <button id="liAccountBtn"></button><div id="liAccountMenu" hidden><div id="liRecentList"></div></div>
     <button id="liSortBtn" aria-expanded="false"><span id="liSortValue">Best fit</span></button>
     <div id="liSortMenu" hidden><button data-li-sort="match" aria-checked="true">Best fit</button><button data-li-sort="distance" aria-checked="false">Shortest</button></div>
+    <button id="liInSeason" aria-pressed="false"><span>In season</span></button>
     <button id="liReasonsToggle" aria-pressed="false"><span class="li-reasons-word">Hide reasons</span></button>
     <button id="liViewSaved" aria-pressed="false"><span id="liSavedOnlyCount"></span></button>
     <span id="liDogCtxName"></span>
@@ -205,6 +206,32 @@ describe('returning homepage region + valley filters', () => {
     vm.runInContext('liQuery = "italy";', context);
     await vm.runInContext('renderReturningHomepage(null);', context);
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(2);
+  });
+
+  test('In season keeps only the walks in season this month, in the same order', async () => {
+    const month = new Date().getMonth() + 1;
+    const notNow = { recommended: { months: [1,2,3,4,5,6,7,8,9,10,11,12].filter(m => m !== month) } };
+    const seasonal = sampleTrails.map(trail => trail.id === 'tar' || trail.id === 'pri' ? { ...trail, season: notNow } : trail);
+    const context = loadHomepageContext(seasonal);
+    vm.runInContext(fs.readFileSync(path.join(__dirname, 'trail-season-words.js'), 'utf8'), context);
+    vm.runInContext('activeCountry = "all"; activeRegion = "all"; activeValley = "all";', context);
+    await vm.runInContext('renderReturningHomepage(null);', context);
+    const ids = () => [...document.querySelectorAll('#returningTrailList .li-row')].map(row => row.dataset.id);
+    const all = ids();
+    expect(all).toHaveLength(5);
+
+    const toggle = document.getElementById('liInSeason');
+    toggle.click();
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(toggle.getAttribute('aria-pressed')).toBe('true');
+    expect(ids()).toEqual(all.filter(id => id !== 'tar' && id !== 'pri'));
+    expect(document.getElementById('companionListTitle').textContent).toBe('3 trails');
+
+    // Reset filters takes it off with the rest.
+    vm.runInContext('liResetAllFilters();', context);
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(toggle.getAttribute('aria-pressed')).toBe('false');
+    expect(ids()).toHaveLength(5);
   });
 
   test('the Saved toggle reflects and filters saved trails', async () => {

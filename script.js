@@ -222,6 +222,10 @@ const LI_SORT_ORDER_WORDS = Object.freeze({
   get effort(){ return tx('least climb first'); }, get today(){ return tx('best for today first'); },
 });
 let selectedTrailId = null;        // map pin / card selection (Companion layout)
+// "In season" in the list header: only the walks in season this month, by
+// the same rule as the "Out of season" tag (trail-season-words.js
+// outOfSeason). The order stays the ranked one.
+let liInSeasonOnly = false;
 
 // Logged-in shell (map + list app layout), header search + filter panel state.
 // These sit on top of the region/valley filters above.
@@ -266,7 +270,7 @@ const LI_LOCATION_LABEL_ALIASES = Object.freeze({
 // The whole catalogue, for the ?all=1 link only. A walk is planned in one
 // place, so the page itself never opens on the Dolomites and Savoy mixed.
 const LI_ALL_TRAILS_CONTEXT = Object.freeze({ kind:'area', country:'all', region:'all', valley:'all', label:'All ORMA trails', transient:true });
-const LI_REGION_LABELS = Object.freeze({ dolomites:'The Dolomites', savoy:'Savoy', frenchalps:'French Alps', lombardy:'Lombardy', friuli:'Friuli Venezia Giulia', aosta:'Valle d’Aosta', piedmont:'Piedmont', tyrol:'Tyrol & Carinthia', switzerland:'Switzerland' });
+const LI_REGION_LABELS = Object.freeze({ dolomites:'The Dolomites', savoy:'Savoy', frenchalps:'French Alps', lombardy:'Lombardy', friuli:'Friuli Venezia Giulia', aosta:'Valle d’Aosta', piedmont:'Piedmont', veneto:'Veneto', tyrol:'Tyrol & Carinthia', switzerland:'Switzerland' });
 // The last trails opened, kept by trail.js in this browser only, for the
 // dog menu's shortlist.
 const LI_RECENT_TRAILS_KEY = 'orma-recent-trails-v1';
@@ -1453,6 +1457,11 @@ function liMatchesRefineFilters(x){
 function filterTrailsForReturningView(list){
   let displayList = filterTrailsForLocationContext(list);
   if(showingSavedOnly) displayList = displayList.filter(x => currentFavorites[x.id]);
+  const seasonRule = window.DoloPawsTrailSeasonWords;
+  if(liInSeasonOnly && seasonRule){
+    const month = new Date().getMonth() + 1;
+    displayList = displayList.filter(x => !seasonRule.outOfSeason(x.season, month));
+  }
   if(activeCountry !== 'all'){
     displayList = displayList.filter(x => {
       return liCountryForRegion(x.region) === activeCountry;
@@ -2132,6 +2141,7 @@ function liActiveFilterCount(){
     liFilters.water,
     liFilters.duration !== 'day',
     showingSavedOnly,
+    liInSeasonOnly,
     liViewIsTheFilter(),
   ].filter(Boolean).length;
 }
@@ -2140,6 +2150,8 @@ function liResetAllFilters(){
   liQuery = '';
   liFilters = { dist: 'any', risk: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false, duration: 'day', lifts: '' };
   showingSavedOnly = false;
+  liInSeasonOnly = false;
+  liSyncInSeasonToggle();
   activeValley = 'all';
   const search = document.getElementById('liSearch');
   if(search) search.value = '';
@@ -3552,7 +3564,7 @@ async function renderReturningHomepage(profile, options = {}){
   if(!showingSavedOnly && displayList.length && trailMapLoaded) setSelectedTrailRoute(displayList[0], { fit:false });
 
   // Reset to page 1 whenever the filters change; clamp if the list shrank.
-  const filterKey = `${liLocationContextLabel()}|${activeCountry}|${activeRegion}|${activeValley}|${showingSavedOnly}|${liQuery}|${JSON.stringify(liFilters)}|${sortKey}`;
+  const filterKey = `${liLocationContextLabel()}|${activeCountry}|${activeRegion}|${activeValley}|${showingSavedOnly}|${liInSeasonOnly}|${liQuery}|${JSON.stringify(liFilters)}|${sortKey}`;
   if (filterKey !== lastFilterKey){ currentPage = 1; lastFilterKey = filterKey; }
   const collapsed = !showFullList && !showingSavedOnly && displayList.length > TOP_MATCHES + 2;
   const totalPages = collapsed ? 1 : Math.max(1, Math.ceil(displayList.length / TRAILS_PER_PAGE));
@@ -3871,6 +3883,19 @@ if(liReasonsToggle){
       else localStorage.removeItem(LI_REASONS_HIDDEN_KEY);
     }catch(error){}
     liSyncReasonsToggle();
+    renderReturningHomepage(currentProfileForAdjust);
+  });
+}
+
+function liSyncInSeasonToggle(){
+  const toggle = document.getElementById('liInSeason');
+  if(toggle) toggle.setAttribute('aria-pressed', String(liInSeasonOnly));
+}
+const liInSeasonToggle = document.getElementById('liInSeason');
+if(liInSeasonToggle){
+  liInSeasonToggle.addEventListener('click', () => {
+    liInSeasonOnly = !liInSeasonOnly;
+    liSyncInSeasonToggle();
     renderReturningHomepage(currentProfileForAdjust);
   });
 }

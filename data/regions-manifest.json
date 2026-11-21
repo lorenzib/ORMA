@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-20T23:58:42.560Z",
+  "generatedAt": "2026-11-21T00:48:11.263Z",
   "regions": {
     "dolomites": {
       "trailCount": 381,
-      "trails": "data/regions/dolomites-trails.js?v=5d66f08995b3",
+      "trails": "data/regions/dolomites-trails.js?v=8acbd4b5140f",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=6b1cc3a2fbef",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
@@ -480,8 +480,8 @@
       "optional": []
     },
     "lombardy": {
-      "trailCount": 21,
-      "trails": "data/regions/lombardy-trails.js?v=bc35ecbefa8c",
+      "trailCount": 23,
+      "trails": "data/regions/lombardy-trails.js?v=fcf435cdb668",
       "details": {
         "lario-brunate-e-le-sue-chiese": "data/trail-details/lario-brunate-e-le-sue-chiese.js?v=ba72cffa8ee5",
         "lario-pognana-lario-e-le-sculture-simposio": "data/trail-details/lario-pognana-lario-e-le-sculture-simposio.js?v=1549bacc0a6c",
@@ -503,7 +503,9 @@
         "iseo-colmi": "data/trail-details/iseo-colmi.js?v=d32af3c00477",
         "altogarda-santuario-montecastello": "data/trail-details/altogarda-santuario-montecastello.js?v=9aac3de26fc6",
         "altogarda-valle-cartiere": "data/trail-details/altogarda-valle-cartiere.js?v=0859c9a6bff5",
-        "altogarda-nasce-formaggio-tombea": "data/trail-details/altogarda-nasce-formaggio-tombea.js?v=ebcd7810299f"
+        "altogarda-nasce-formaggio-tombea": "data/trail-details/altogarda-nasce-formaggio-tombea.js?v=ebcd7810299f",
+        "iseo-riva-di-solto": "data/trail-details/iseo-riva-di-solto.js?v=2f77c7339864",
+        "iseo-piramidi-zone": "data/trail-details/iseo-piramidi-zone.js?v=4b837f1f7dec"
       },
       "water": "data/regions/lombardy-water.geojson",
       "hutsBars": "data/regions/lombardy-huts-bars.geojson",
@@ -579,6 +581,18 @@
       "dogRoutes": "dog-friendly-routes.geojson",
       "optional": []
     },
+    "veneto": {
+      "trailCount": 2,
+      "trails": "data/regions/veneto-trails.js?v=8f369a008f7b",
+      "details": {
+        "veneto-archeovia-campetto-cima-marana": "data/trail-details/veneto-archeovia-campetto-cima-marana.js?v=e2bd1bee34db",
+        "veneto-anello-del-muccion": "data/trail-details/veneto-anello-del-muccion.js?v=2ea10667fa72"
+      },
+      "water": "data/regions/veneto-water.geojson",
+      "hutsBars": "data/regions/veneto-huts-bars.geojson",
+      "dogRoutes": "dog-friendly-routes.geojson",
+      "optional": []
+    },
     "tyrol": {
       "trailCount": 23,
       "trails": "data/regions/tyrol-trails.js?v=6df0ae0ae155",
@@ -614,7 +628,7 @@
     },
     "switzerland": {
       "trailCount": 21,
-      "trails": "data/regions/switzerland-trails.js?v=cf5df005703b",
+      "trails": "data/regions/switzerland-trails.js?v=3ec6703df9c0",
       "details": {
         "engadin-around-lake-st-moritz": "data/trail-details/engadin-around-lake-st-moritz.js?v=fd2ed5887e82",
         "engadin-sils-chaste-peninsula-sils": "data/trail-details/engadin-sils-chaste-peninsula-sils.js?v=b6df69008cd3",
@@ -1113,6 +1127,8 @@
     "altogarda-santuario-montecastello": "lombardy",
     "altogarda-valle-cartiere": "lombardy",
     "altogarda-nasce-formaggio-tombea": "lombardy",
+    "iseo-riva-di-solto": "lombardy",
+    "iseo-piramidi-zone": "lombardy",
     "fvg-laghi-di-fusine": "friuli",
     "fvg-ta-lipa-pot-corto": "friuli",
     "fvg-borgo-stavoli-moggio": "friuli",
@@ -1152,6 +1168,8 @@
     "valsusa-foresto-sentiero-ginepri": "piedmont",
     "valsusa-chianocco-orrido-chouque": "piedmont",
     "valsusa-san-giorio-geat-montebenedetto": "piedmont",
+    "veneto-archeovia-campetto-cima-marana": "veneto",
+    "veneto-anello-del-muccion": "veneto",
     "osttirol-rundwanderung-schloss-weissenstein": "tyrol",
     "osttirol-naturkraftweg-umbalfaelle": "tyrol",
     "osttirol-kulturweg-koednitz": "tyrol",
@@ -1748,6 +1766,10 @@
     "altogarda-santuario-montecastello": "santuario-di-montecastello-tignale",
     "altogarda-valle-cartiere": "valle-delle-cartiere-toscolano-maderno",
     "altogarda-nasce-formaggio-tombea": "cima-rest-formaggio-tombea-magasa",
+    "veneto-archeovia-campetto-cima-marana": "archeovia-campetto-cima-marana",
+    "veneto-anello-del-muccion": "muccion-loop-valdagno",
+    "iseo-riva-di-solto": "giro-panoramico-riva-di-solto",
+    "iseo-piramidi-zone": "piramidi-di-zone-riserva-naturale",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2301,6 +2323,10 @@
     "santuario-di-montecastello-tignale": "altogarda-santuario-montecastello",
     "valle-delle-cartiere-toscolano-maderno": "altogarda-valle-cartiere",
     "cima-rest-formaggio-tombea-magasa": "altogarda-nasce-formaggio-tombea",
+    "archeovia-campetto-cima-marana": "veneto-archeovia-campetto-cima-marana",
+    "muccion-loop-valdagno": "veneto-anello-del-muccion",
+    "giro-panoramico-riva-di-solto": "iseo-riva-di-solto",
+    "piramidi-di-zone-riserva-naturale": "iseo-piramidi-zone",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

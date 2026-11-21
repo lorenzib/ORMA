@@ -205,4 +205,11 @@ describe('The French Alps south of Savoy are their own region, and take nothing 
   ])('%s, over the pass, stays where it was', (name, lat, lng, region) => {
     expect(regions.nearestLocality(lat, lng).region).toBe(region);
   });
+  test('the Vicenza prealps are Veneto, not the Dolomites', () => {
+    // Recoaro and the Pasubio sit 40 km south of the nearest Dolomites base
+    // town; Belluno province stays in the Dolomites region.
+    expect(regions.nearestLocality(45.7050, 11.2240).region).toBe('veneto');
+    expect(regions.nearestLocality(45.7900, 11.2610).region).toBe('veneto');
+    expect(regions.countryForRegion('veneto')).toBe('IT');
+  });
 });

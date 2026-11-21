@@ -294,8 +294,13 @@ describe('the existing-site verification boundary',()=>{
     // Then 551 and 549: Rundweg Schwarzegg removed on 20 November (OSM lacks
     // part of its path) and the 15.3 km Waltner Rundweg variant retired as a
     // duplicate of the Walten loop, whose page its address now opens.
-    expect(catalogue).toHaveLength(551);
-    expect(currentSiteTrails(catalogue)).toHaveLength(549);
+    // Then 553 and 551 with the first Veneto walks from UM.PASUBIO (owner
+    // decision of 19 November 2026): the Archeovia from the Campetto to Cima
+    // Marana (there and back) and the Mucciòn loop above Valdagno.
+    // Then 555 and 553 with the second Lake Iseo batch: the Riva di Solto
+    // panoramic loop and the earth pyramids of Zone.
+    expect(catalogue).toHaveLength(555);
+    expect(currentSiteTrails(catalogue)).toHaveLength(553);
   });
 
   test('requires the artwork the public trail page needs',()=>{
