@@ -85,21 +85,19 @@ describe('the walk\'s own numbers follow only the stretch it shares', () => {
 });
 
 describe('the network is drawn from our own tiles', () => {
-  test('plum lines on a white edge, the walk\'s dashes, then the numbers ranked by network, then the walk\'s own', () => {
+  test('grey lines on a white edge, then the numbers ranked by network, then the walk\'s own; no dashes', () => {
     const map = fakeMap();
     style.addHikingRoutes(map, { beforeId: 'place-labels' });
     expect(map.getSource(style.HIKING_SOURCE).tiles).toEqual(['http://localhost/data/hiking-routes/{z}/{x}/{y}.pbf']);
-    expect(ids(map)).toEqual(['roads', style.HIKING_CASING_LAYER, style.HIKING_LINE_LAYER, style.HIKING_WALK_LINE_LAYER,
+    expect(ids(map)).toEqual(['roads', style.HIKING_CASING_LAYER, style.HIKING_LINE_LAYER,
       style.HIKING_REF_LAYER, style.HIKING_WALK_REF_LAYER, 'place-labels']);
-    // Solid, so a marked route never reads as the basemap's dashed footpaths.
+    // Owner, 20 Nov 2026: no dotted or dashed lines. Solid grey on a white
+    // edge, so the walk is the only coloured line and the routes never read
+    // as contours.
     const line = map.getLayer(style.HIKING_LINE_LAYER);
-    expect(line.paint['line-color']).toBe('#8E5A84');
-    expect(line.paint['line-dasharray']).toBeUndefined();
+    expect(line.paint['line-color']).toBe('#7C837D');
     expect(map.getLayer(style.HIKING_CASING_LAYER).paint['line-color']).toBe('#FFFFFF');
-    // The walk keeps its dark dashes, only along the routes it follows.
-    const walkLine = map.getLayer(style.HIKING_WALK_LINE_LAYER);
-    expect(walkLine.source).toBe('orma-hiking-walk-refs');
-    expect(walkLine.paint['line-dasharray']).toEqual([2, 1.6]);
+    map.layers.forEach(layer => expect((layer.paint || {})['line-dasharray']).toBeUndefined());
     const refs = map.getLayer(style.HIKING_REF_LAYER);
     expect(refs.minzoom).toBe(12);
     expect(refs.layout['symbol-sort-key']).toEqual(['get', 'rank']);
@@ -107,11 +105,11 @@ describe('the network is drawn from our own tiles', () => {
     expect(map.getLayer('waymarked-hiking-layer')).toBeUndefined();
   });
 
-  test('the walk goes over the other routes, under its own dashes and the numbers', () => {
+  test('the walk goes over the other routes and under the numbers', () => {
     const map = fakeMap();
     style.addHikingRoutes(map, { beforeId: 'place-labels' });
     expect(style.walkLineBeforeId(map)).toBe(style.HIKING_REF_LAYER);
-    expect(style.walkCorridorBeforeId(map)).toBe(style.HIKING_WALK_LINE_LAYER);
+    expect(style.walkCorridorBeforeId(map)).toBe(style.HIKING_REF_LAYER);
     expect(style.networkLayerId(map)).toBe(style.HIKING_CASING_LAYER);
   });
 
@@ -130,8 +128,7 @@ describe('the network is drawn from our own tiles', () => {
     const map = fakeMap();
     style.addHikingRoutes(map, { beforeId: 'place-labels' });
     style.setHikingRoutesVisible(map, false);
-    [style.HIKING_CASING_LAYER, style.HIKING_LINE_LAYER, style.HIKING_WALK_LINE_LAYER, style.HIKING_REF_LAYER,
-      style.HIKING_WALK_REF_LAYER]
+    [style.HIKING_CASING_LAYER, style.HIKING_LINE_LAYER, style.HIKING_REF_LAYER, style.HIKING_WALK_REF_LAYER]
       .forEach(id => expect(map.getLayoutProperty(id, 'visibility')).toBe('none'));
   });
 });
@@ -164,7 +161,7 @@ describe('browse maps', () => {
 
   test('the Layers chip lists our layers and the fallback raster', () => {
     expect(style.HIKING_LAYER_IDS).toEqual([
-      style.HIKING_CASING_LAYER, style.HIKING_LINE_LAYER, style.HIKING_WALK_LINE_LAYER,
+      style.HIKING_CASING_LAYER, style.HIKING_LINE_LAYER,
       style.HIKING_REF_LAYER, style.HIKING_WALK_REF_LAYER, 'waymarked-hiking-layer',
     ]);
   });
@@ -279,30 +276,28 @@ describe('the walk lets the satellite path show through', () => {
     expect(map.layers.walk.paint['line-opacity']).toBe(1);
   });
 
-  test('the corridor sits under the contours, else under the walk\'s dashes, else under the network', () => {
+  test('the walk sits over the contours and the routes, under their numbers, else under the network', () => {
     const has = ids => ({ getLayer: id => ids.includes(id), getStyle: () => ({ layers: [] }) });
-    const network = [style.HIKING_CASING_LAYER, style.HIKING_LINE_LAYER, style.HIKING_WALK_LINE_LAYER];
-    expect(style.walkCorridorBeforeId(has([style.CONTOUR_LINE_LAYER, ...network]))).toBe(style.CONTOUR_LINE_LAYER);
-    expect(style.walkCorridorBeforeId(has(network))).toBe(style.HIKING_WALK_LINE_LAYER);
+    const network = [style.HIKING_CASING_LAYER, style.HIKING_LINE_LAYER, style.HIKING_REF_LAYER];
+    expect(style.walkCorridorBeforeId(has([style.CONTOUR_LINE_LAYER, ...network]))).toBe(style.HIKING_REF_LAYER);
     expect(style.walkCorridorBeforeId(has([style.HIKING_LINE_LAYER]))).toBe(style.HIKING_LINE_LAYER);
   });
 
-  test('our routes fade on satellite too, and come back; the walk\'s dashes turn white', () => {
+  test('our routes fade on satellite too, and come back', () => {
     const map = paintMap();
     const layers = [
       [style.HIKING_CASING_LAYER, style.HIKING_CASING_OPACITY],
       [style.HIKING_LINE_LAYER, style.HIKING_LINE_OPACITY],
-      [style.HIKING_WALK_LINE_LAYER, style.HIKING_WALK_LINE_OPACITY],
     ];
+    // Zoom ramps: compare their last stop, the strength at trail zoom.
+    const top = ramp => ramp[ramp.length - 1];
     layers.forEach(([id, opacity]) => map.addLayer({ id, paint: { 'line-opacity': opacity.map } }));
     style.setLinesOnImagery(map, null, true);
     layers.forEach(([id, opacity]) => expect(map.layers[id].paint['line-opacity']).toBe(opacity.imagery));
-    expect(style.HIKING_CASING_OPACITY.imagery).toBeLessThan(style.HIKING_CASING_OPACITY.map);
-    expect(style.HIKING_LINE_OPACITY.imagery).toBeLessThan(style.HIKING_LINE_OPACITY.map);
-    expect(map.layers[style.HIKING_WALK_LINE_LAYER].paint['line-color']).toBe('#FFFFFF');
+    expect(top(style.HIKING_CASING_OPACITY.imagery)).toBeLessThan(top(style.HIKING_CASING_OPACITY.map));
+    expect(top(style.HIKING_LINE_OPACITY.imagery)).toBeLessThan(top(style.HIKING_LINE_OPACITY.map));
     style.setLinesOnImagery(map, null, false);
     layers.forEach(([id, opacity]) => expect(map.layers[id].paint['line-opacity']).toBe(opacity.map));
-    expect(map.layers[style.HIKING_WALK_LINE_LAYER].paint['line-color']).toBe(style.HIKING_WALK_LINE_COLOUR.map);
   });
 
   test('a walk that is not on the map yet is left alone', () => {
