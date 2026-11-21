@@ -352,9 +352,15 @@
   }
 
   // ---- weekly featured collection (rotating editorial catalogue) ----
+  // The homepage features launch regions only: France, Switzerland and Austria
+  // are paused (owner, 4 Nov 2026), so their collections stay on the
+  // Collections page but don't take a week here.
+  var PAUSED_FEATURE_COUNTRIES = ['FR', 'CH', 'AT'];
   function weeklyCollection() {
     var catalogue = window.DoloPawsCollections;
-    var collections = catalogue && typeof catalogue.all === 'function' ? catalogue.all() : [];
+    var all = catalogue && typeof catalogue.all === 'function' ? catalogue.all() : [];
+    var collections = all.filter(function (c) { return PAUSED_FEATURE_COUNTRIES.indexOf(c.countryCode) === -1; });
+    if (!collections.length) collections = all;
     if (!collections.length) return null;
     var now = new Date();
     var wk = Math.floor((now - new Date(now.getFullYear(), 0, 1)) / (7 * 86400000));
@@ -557,7 +563,12 @@
         '<span class="browse-season browse-season--best">' + esc(best) + '</span>' +
         (words.dogSeasonsNow ? words.dogSeasonsNow(trail.season, month) : []).map(function (r) {
           return '<span class="browse-season browse-season--dog">' + esc(r.label) + '</span>';
-        }).join('');
+        }).join('') +
+        // "Sunny in winter" or "Little winter sun", November to February.
+        (function () {
+          var sunTag = words.winterSunTag ? words.winterSunTag(trail.season, month) : null;
+          return sunTag ? '<span class="browse-season browse-season--sun-' + sunTag.kind + '">' + esc(sunTag.label) + '</span>' : '';
+        })();
     }
     return risk + provenance + season;
   }

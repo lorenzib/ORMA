@@ -60,3 +60,14 @@ describe('where it is used', () => {
     expect(read('scripts/generate-trail-pages.js')).toContain("L('Out of season · back in {month}'");
   });
 });
+
+describe('featured this week', () => {
+  test('rotates through launch-region collections only (no paused FR/CH/AT weeks)', () => {
+    const src = fs.readFileSync(path.join(__dirname, 'homepage-search.js'), 'utf8');
+    expect(src).toContain("var PAUSED_FEATURE_COUNTRIES = ['FR', 'CH', 'AT'];");
+    const collections = require('./collections-data').all();
+    const featured = collections.filter(c => !['FR', 'CH', 'AT'].includes(c.countryCode));
+    expect(featured.length).toBeGreaterThan(0);
+    expect(featured.some(c => c.id === 'savoy-hot-day')).toBe(false);
+  });
+});

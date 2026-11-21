@@ -326,6 +326,7 @@
       chairliftSafe,
       impairedVision: conditions.has('vision'),
       small: toy,
+      thinCoat: traits.thinCoat === true,
       behaviour,
       // Confidence measures evidence quality, not behavioural detail, so
       // behaviour deliberately does not enter completeness. Adding it would
@@ -366,7 +367,8 @@
   function seasonBestMonths(season){
     const winterUse = Array.isArray(season.winterUse) && season.winterUse.length > 0;
     const recommended = season.recommended && Array.isArray(season.recommended.months) ? season.recommended.months : null;
-    const snow = season.snow && Array.isArray(season.snow.months) ? season.snow.months : null;
+    // Occasional snow (a walk below 800 m) never takes a month out of season.
+    const snow = season.snow && Array.isArray(season.snow.months) && season.snow.likelihood !== 'occasional' ? season.snow.months : null;
     if(!recommended && !snow && !winterUse) return null;
     if(season.winterWalk){
       const winter = (recommended || []).filter(m => [11, 12, 1, 2, 3, 4].includes(m));
@@ -883,7 +885,13 @@
       }else{
         unknowns.push(item('conditions.heat.unknown', 'Current heat conditions are unavailable.'));
       }
-      if(isColdDay(conditions) && dog.small){
+      // A note, never a penalty: a coat solves it. Small dogs by weight,
+      // thin-coated ones (sighthounds, hairless breeds) by breed.
+      if(isColdDay(conditions) && dog.thinCoat){
+        cautions.push(item('conditions.cold.thin-coat',
+          `The forecast stays cold (up to ${conditions.dayMaxC} °C). A thin-coated dog chills fast at rests, so bring a coat.`,
+          { max:conditions.dayMaxC }));
+      }else if(isColdDay(conditions) && dog.small){
         cautions.push(item('conditions.cold.small',
           `The forecast stays cold (up to ${conditions.dayMaxC} °C). A small dog chills fast at rests, so bring a coat.`,
           { max:conditions.dayMaxC }));
