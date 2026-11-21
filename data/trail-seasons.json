@@ -10061,6 +10061,51 @@
         }
       }
     },
+    "veneto-archeovia-campetto-cima-marana": {
+      "highPoint": 1622,
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/809255432",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "veneto-anello-del-muccion": {
+      "highPoint": 706,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810121175",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
     "iseo-riva-di-solto": {
       "highPoint": 476,
       "snow": {

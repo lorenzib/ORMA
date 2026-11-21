@@ -481,6 +481,7 @@
     'filters.chip.austria': 'Austria',
     'filters.chip.tyrol': 'Tyrol & Carinthia region',
     'filters.chip.piedmont': 'Piedmont region',
+    'filters.chip.veneto': 'Veneto region',
     'filters.chip.frenchalps': 'French Alps region',
     'filters.chip.switzerland': 'Switzerland',
     'filters.chip.swissRegion': 'Switzerland region',
@@ -928,6 +929,7 @@
     'browse.geo.friuli': 'Friuli Venezia Giulia',
     'browse.geo.aosta': 'Valle d’Aosta',
     'browse.geo.piedmont': 'Piedmont',
+    'browse.geo.veneto': 'Veneto',
     'browse.geo.frenchalps': 'French Alps',
     'browse.geo.tyrol': 'Tyrol & Carinthia',
     'browse.geo.austria': 'Austria',
@@ -2520,6 +2522,7 @@
     'filters.chip.austria': 'Austria',
     'filters.chip.tyrol': 'Regione Tirolo e Carinzia',
     'filters.chip.piedmont': 'Regione Piemonte',
+    'filters.chip.veneto': 'Regione Veneto',
     'filters.chip.frenchalps': 'Regione Alpi francesi',
     'filters.chip.switzerland': 'Svizzera',
     'filters.chip.swissRegion': 'Regione Svizzera',
@@ -2967,6 +2970,7 @@
     'browse.geo.friuli': 'Friuli Venezia Giulia',
     'browse.geo.aosta': 'Valle d’Aosta',
     'browse.geo.piedmont': 'Piemonte',
+    'browse.geo.veneto': 'Veneto',
     'browse.geo.frenchalps': 'Alpi francesi',
     'browse.geo.tyrol': 'Tirolo e Carinzia',
     'browse.geo.austria': 'Austria',
@@ -4129,8 +4133,8 @@
   if (lang === 'it' && !window.ORMA_PHRASES_IT && document.readyState === 'loading') {
     const here = document.currentScript && document.currentScript.src;
     const base = here ? here.replace(/[^/]*$/, '') : '';
-    document.write('<script src="' + base + 'i18n-phrases-it.js?v=20261122-2"><\/script>');
-    document.write('<script src="' + base + 'i18n-trail-names-it.js?v=20261123-2"><\/script>');
+    document.write('<script src="' + base + 'i18n-phrases-it.js?v=20261125-4"><\/script>');
+    document.write('<script src="' + base + 'i18n-trail-names-it.js?v=20261125-4"><\/script>');
   }
 
   // ---- Translation functions -------------------------------------------------
