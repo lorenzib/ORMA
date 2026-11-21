@@ -21,7 +21,7 @@ const json = file => JSON.parse(read(file));
 describe('walks removed from ORMA stay removed', () => {
   test('the list names the walks the owner removed', () => {
     expect(REMOVED_TRAILS.map(trail => trail.name).sort())
-      .toEqual(['Alpage de Commune', 'Chalets de Salvadon', 'GEOWeg - Sentiero GEOlogico', 'Giro del Zimon', 'Rundweg Rotwand']);
+      .toEqual(['Alpage de Commune', 'Chalets de Salvadon', 'GEOWeg - Sentiero GEOlogico', 'Giro del Zimon', 'Rundweg Rotwand', 'Rundweg Schwarzegg - Sentiero circolare Dosso Nero', 'Waltner Rundweg - 12 - Sentiero circolare di Valtina - 12']);
   });
 
   const catalogue = loadProductionTrails(ROOT);
@@ -38,7 +38,15 @@ describe('walks removed from ORMA stay removed', () => {
       expect(json('data/trail-image-overrides.json').trails.filter(entry => entry.id === trail.id)).toEqual([]);
       expect(fs.readdirSync(path.join(ROOT, 'images/trails')).filter(file => file.startsWith(`${trail.id}-`))).toEqual([]);
       expect(fs.existsSync(path.join(ROOT, 'data/trail-details', `${trail.id}.js`))).toBe(false);
-      expect(fs.existsSync(path.join(ROOT, 'trails', `${trail.slug}.html`))).toBe(false);
+      // A duplicate's old address opens the walk it duplicated, as a redirect stub, not a page of its own.
+      if (trail.redirectsTo) {
+        const stub = read(`trails/${trail.slug}.html`);
+        expect(stub).toContain('http-equiv="refresh"');
+        expect(stub).not.toContain(trail.id);
+        expect(json('data/trail-slug-overrides.json').trails[trail.redirectsTo].retired).toContain(trail.slug);
+      } else {
+        expect(fs.existsSync(path.join(ROOT, 'trails', `${trail.slug}.html`))).toBe(false);
+      }
       expect(json('data/regions-manifest.json').trailSlug[trail.id]).toBeUndefined();
       expect(read('sitemap.xml')).not.toContain(`/${trail.slug}`);
     });
