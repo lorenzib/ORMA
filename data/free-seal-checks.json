@@ -6708,52 +6708,6 @@
         "onTheWalk": true
       }
     },
-    "osm-12189165": {
-      "checkedAt": "2026-11-09T04:32:49.936Z",
-      "communes": {
-        "status": "checked",
-        "communes": [
-          {
-            "name": "Jenesien - San Genesio Atesino",
-            "names": {
-              "it": "San Genesio Atesino",
-              "de": "Jenesien"
-            },
-            "osmArea": 3600047251
-          }
-        ],
-        "samples": 12,
-        "source": {
-          "label": "OpenStreetMap administrative boundaries (admin level 8)",
-          "url": "https://overpass-api.de/api/interpreter",
-          "authority": "OpenStreetMap contributors",
-          "licence": "ODbL-1.0"
-        }
-      },
-      "protectedAreas": {
-        "status": "checked",
-        "sites": [],
-        "control": {
-          "code": "IT3110049",
-          "name": "Parco Naturale Fanes - Senes - Braies",
-          "found": true
-        },
-        "source": {
-          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
-          "url": "https://natura2000.eea.europa.eu/",
-          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
-          "authority": "European Environment Agency"
-        }
-      },
-      "line": {
-        "status": "no-published-distance",
-        "lineKm": 9.32
-      },
-      "photo": {
-        "status": "host-not-supported",
-        "from": null
-      }
-    },
     "osm-12190538": {
       "checkedAt": "2026-11-09T04:32:49.936Z",
       "communes": {
@@ -11304,66 +11258,6 @@
         "from": "wikimedia-commons",
         "metresFromLine": 4,
         "onTheWalk": true
-      }
-    },
-    "osm-7277805": {
-      "checkedAt": "2026-11-09T04:32:49.936Z",
-      "communes": {
-        "status": "checked",
-        "communes": [
-          {
-            "name": "Sarntal - Sarentino",
-            "names": {
-              "it": "Sarentino",
-              "de": "Sarntal"
-            },
-            "osmArea": 3600047282
-          },
-          {
-            "name": "St. Leonhard in Passeier - San Leonardo in Passiria",
-            "names": {
-              "it": "San Leonardo in Passiria",
-              "de": "St. Leonhard in Passeier"
-            },
-            "osmArea": 3600047310
-          }
-        ],
-        "samples": 18,
-        "source": {
-          "label": "OpenStreetMap administrative boundaries (admin level 8)",
-          "url": "https://overpass-api.de/api/interpreter",
-          "authority": "OpenStreetMap contributors",
-          "licence": "ODbL-1.0"
-        }
-      },
-      "protectedAreas": {
-        "status": "checked",
-        "sites": [],
-        "control": {
-          "code": "IT3110049",
-          "name": "Parco Naturale Fanes - Senes - Braies",
-          "found": true
-        },
-        "source": {
-          "label": "EEA Natura 2000 sites (Habitats and Birds Directives)",
-          "url": "https://natura2000.eea.europa.eu/",
-          "query": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer/2/query",
-          "authority": "European Environment Agency"
-        }
-      },
-      "line": {
-        "status": "no-published-distance",
-        "lineKm": 15.28
-      },
-      "photo": {
-        "status": "located",
-        "geotag": {
-          "lat": 46.82734426,
-          "lng": 11.2041986
-        },
-        "from": "wikimedia-commons",
-        "metresFromLine": 3693,
-        "onTheWalk": false
       }
     },
     "osm-7388748": {
