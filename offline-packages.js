@@ -144,6 +144,8 @@
     'giudicarie-senter-dei-popi-madonna-del-lares': "Senter dei Popi – Madonna del Lares",
     'giudicarie-tione-bolbeno-madonna-del-lares': "Tione – Bolbeno – Madonna del Lares",
     'iseo-colmi': "Santa Maria del Giogo to I Colmi",
+    'iseo-piramidi-zone': "The earth pyramids of Zone",
+    'iseo-riva-di-solto': "Riva di Solto panoramic loop",
     'isere-boucle-du-couzon': "Couzon loop from Saint-Pierre-de-Chartreuse",
     'isere-circuit-pedestre-alpage-des-cloutons': "Alpage des Cloutons loop from Saint-Honoré 1500",
     'isere-de-st-pierre-dentremont-a-corbel': "Saint-Pierre-d’Entremont to Corbel loop",

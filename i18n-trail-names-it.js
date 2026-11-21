@@ -156,6 +156,8 @@ window.ORMA_TRAIL_NAMES_IT = {
   "giudicarie-senter-dei-popi-madonna-del-lares": "Senter dei Popi – Madonna del Lares",
   "giudicarie-tione-bolbeno-madonna-del-lares": "Tione – Bolbeno – Madonna del Lares",
   "iseo-colmi": "Da Santa Maria del Giogo ai Colmi, andata e ritorno",
+  "iseo-piramidi-zone": "Le Piramidi di Zone",
+  "iseo-riva-di-solto": "Giro panoramico di Riva di Solto",
   "isere-boucle-du-couzon": "Anello del Couzon da Saint-Pierre-de-Chartreuse",
   "isere-circuit-pedestre-alpage-des-cloutons": "Anello dell’Alpage des Cloutons da Saint-Honoré 1500",
   "isere-de-st-pierre-dentremont-a-corbel": "Anello da Saint-Pierre-d’Entremont a Corbel",
