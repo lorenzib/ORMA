@@ -51,11 +51,13 @@ describe('the colour and the word agree', () => {
 
 describe('both maps look like the same product', () => {
   const browse=fs.readFileSync('browse-map.js','utf8');
-  const home=fs.readFileSync('script.js','utf8');
+  const home=fs.readFileSync('script.js','utf8')+'\n'+fs.readFileSync('explore-map.js','utf8');
   const page=fs.readFileSync('browse-trails.html','utf8');
 
   test('browse quiets its basemap, as the homepage always did', () => {
-    expect(browse).toContain('ORMAMapStyle.quietBasemap(map)');
+    // One map: browse draws the homepage's base, quiet basemap included.
+    expect(browse).toContain('explore.setupBase(map)');
+    expect(fs.readFileSync('explore-map.js','utf8')).toContain('style.quietBasemap(map)');
     expect(home).toContain('quietBasemap');
   });
 

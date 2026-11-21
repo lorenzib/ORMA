@@ -3879,6 +3879,17 @@ html.early-member .topnav{display:none;}
 .td-layer-switch button.on{background:var(--ink);color:#fff;}
 /* App map: the freed bottom-left slot */
 .li-map .td-layer-switch{bottom:10px;left:10px;}
+/* "Draw a route here" (homepage and Trails page maps): under the map's Layers button, out of the way while
+   the Layers panel is open in the same spot. */
+.li-map-draw{
+  position:absolute;top:52px;left:10px;z-index:6;display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 12px;
+  border:1px solid var(--paper-line);border-radius:8px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.15);
+  color:var(--ink);font:700 12px 'Inter',sans-serif;text-decoration:none;white-space:nowrap;
+}
+.li-map-draw:hover{border-color:var(--accent);color:var(--accent);}
+.li-map-draw:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+.li-map.map-layers-open .li-map-draw{display:none;}
+.li-map.map-fs .li-map-draw{top:max(52px,calc(env(safe-area-inset-top) + 52px));left:max(10px,env(safe-area-inset-left));}
 
 /* ORMA-owned place dog-policy verification. Community evidence stays
    explicitly pending until an operator approves the public badge. */

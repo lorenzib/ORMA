@@ -1,7 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const source = file => fs.readFileSync(path.join(__dirname, file), 'utf8');
+const source = file => fs.readFileSync(path.join(__dirname, file), 'utf8')
+  // The homepage map's base and layers live in explore-map.js, shared with the Trails page.
+  + (file === 'script.js' ? '\n' + fs.readFileSync(path.join(__dirname, 'explore-map.js'), 'utf8') : '');
 
 describe('map browsing controls', () => {
   test('the browse map and trail map expose accessible fullscreen controls', () => {
