@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valsusa-bruzolo-anello-chiotetti",
+  "generatedAt": "2026-11-19T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 7,
+    "ascentM": 638,
+    "highestPointM": 1109,
+    "expectedDuration": "3 h 15 min",
+    "difficulty": "Hard",
+    "shadePercent": 87
+  },
+  "trailhead": {
+    "lat": 45.145358,
+    "lng": 7.197546,
+    "label": "The church of San Giovanni Evangelista, Bruzolo, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "The board advises against summer, when it is too hot: go in spring or autumn and carry water for your dog.",
+    "Stretches on the hamlet road, including about 800 m of asphalt from Chiotetti: keep your dog on a short lead there.",
+    "Old cobbled mule tracks, steep in places (T2): watch your dog’s footing when wet.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-19"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-19",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Chiotetti Loop, Bruzolo": "Anello dei Chiotetti a Bruzolo",
+    "The church of San Giovanni Evangelista, Bruzolo, the board’s start": "La chiesa di San Giovanni Evangelista, Bruzolo, la partenza ufficiale",
+    "The board advises against summer, when it is too hot: go in spring or autumn and carry water for your dog.": "Il sito ufficiale lo sconsiglia d’estate, quando fa troppo caldo: vai in primavera o in autunno e porta acqua per il cane.",
+    "Stretches on the hamlet road, including about 800 m of asphalt from Chiotetti: keep your dog on a short lead there.": "Tratti sulla strada delle borgate, tra cui circa 800 m di asfalto da Chiotetti: lì tieni il cane al guinzaglio corto.",
+    "Old cobbled mule tracks, steep in places (T2): watch your dog’s footing when wet.": "Antiche mulattiere acciottolate, ripide in alcuni tratti (T2): attenzione all’appoggio del cane quando è bagnato."
+  }
+}

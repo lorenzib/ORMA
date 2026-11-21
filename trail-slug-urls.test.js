@@ -171,9 +171,9 @@ describe('the static pages and the app agree on the slug', () => {
     // regional-trails-loader moved again with the detail-first load order, so
     // the expected token is per script rather than one shared value.
     const SLUG_AWARE = {
-      'discovery-state': '20261007-1', 'regional-trails-loader': '20261104-1',
+      'discovery-state': '20261125-4', 'regional-trails-loader': '20261104-1',
       'browse-map': '20261119-1', 'compare-page': '20261007-1',
-      'collections-page': '20261119-9', 'homepage-search': '20261123-7',
+      'collections-page': '20261125-4', 'homepage-search': '20261126-2',
       'mobile-nav': '20261030-1', 'notifications-feed': '20261023-1',
     };
     const stale = [];

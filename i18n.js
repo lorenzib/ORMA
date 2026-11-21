@@ -481,6 +481,7 @@
     'filters.chip.austria': 'Austria',
     'filters.chip.tyrol': 'Tyrol & Carinthia region',
     'filters.chip.piedmont': 'Piedmont region',
+    'filters.chip.veneto': 'Veneto region',
     'filters.chip.frenchalps': 'French Alps region',
     'filters.chip.switzerland': 'Switzerland',
     'filters.chip.swissRegion': 'Switzerland region',
@@ -928,6 +929,7 @@
     'browse.geo.friuli': 'Friuli Venezia Giulia',
     'browse.geo.aosta': 'Valle d’Aosta',
     'browse.geo.piedmont': 'Piedmont',
+    'browse.geo.veneto': 'Veneto',
     'browse.geo.frenchalps': 'French Alps',
     'browse.geo.tyrol': 'Tyrol & Carinthia',
     'browse.geo.austria': 'Austria',
@@ -1601,6 +1603,7 @@
     'recommendation.reason.conditions.heat.low': 'Today’s temperatures are comfortable.',
     'recommendation.reason.conditions.heat.unknown': 'Current heat conditions are unavailable.',
     'recommendation.reason.conditions.cold.small': 'It stays cold (up to {max} °C). A small dog chills fast at rests, so bring a coat for {name}.',
+    'recommendation.reason.conditions.cold.thin-coat': 'It stays cold (up to {max} °C). A thin coat loses heat fast at rests, so bring a coat for {name}.',
     'recommendation.reason.conditions.not-included': 'Today’s weather is not in this score yet.',
     'recommendation.reason.conditions.warning': '{event} in force for this area. Check the weather card before setting out.',
     'recommendation.reason.evidence.route.unverified': 'Route details are based on available map data.',
@@ -1799,6 +1802,8 @@
     'page.index.leastClimb': 'Least climb',
     'page.index.forToday': 'For today',
     'page.index.hideReasons': 'Hide reasons',
+    'page.index.inSeason': 'In season',
+    'page.index.inSeasonTitle': 'Only walks in season this month',
     'page.index.browseAllTrails': 'Browse all trails →',
     'page.index.collapseRankedTrailsPanel': 'Collapse ranked trails panel',
     'page.index.hideTheTrailList': 'Hide the trail list',
@@ -2519,6 +2524,7 @@
     'filters.chip.austria': 'Austria',
     'filters.chip.tyrol': 'Regione Tirolo e Carinzia',
     'filters.chip.piedmont': 'Regione Piemonte',
+    'filters.chip.veneto': 'Regione Veneto',
     'filters.chip.frenchalps': 'Regione Alpi francesi',
     'filters.chip.switzerland': 'Svizzera',
     'filters.chip.swissRegion': 'Regione Svizzera',
@@ -2966,6 +2972,7 @@
     'browse.geo.friuli': 'Friuli Venezia Giulia',
     'browse.geo.aosta': 'Valle d’Aosta',
     'browse.geo.piedmont': 'Piemonte',
+    'browse.geo.veneto': 'Veneto',
     'browse.geo.frenchalps': 'Alpi francesi',
     'browse.geo.tyrol': 'Tirolo e Carinzia',
     'browse.geo.austria': 'Austria',
@@ -3639,6 +3646,7 @@
     'recommendation.reason.conditions.heat.low': 'Le temperature di oggi sono piacevoli.',
     'recommendation.reason.conditions.heat.unknown': 'Le condizioni attuali di caldo non sono disponibili.',
     'recommendation.reason.conditions.cold.small': 'Resta freddo (massimo {max} °C). Un cane piccolo si raffredda in fretta durante le soste: porta un cappottino per {name}.',
+    'recommendation.reason.conditions.cold.thin-coat': 'Resta freddo (massimo {max} °C). Con il pelo sottile si raffredda in fretta durante le soste: porta un cappottino per {name}.',
     'recommendation.reason.conditions.not-included': 'Il meteo di oggi non è ancora incluso nel punteggio.',
     'recommendation.reason.conditions.warning': '{event} in vigore per questa zona. Controlla la scheda meteo prima di partire.',
     'recommendation.reason.evidence.route.unverified': 'I dettagli del percorso si basano sui dati cartografici disponibili.',
@@ -3837,6 +3845,8 @@
     'page.index.leastClimb': 'Meno dislivello',
     'page.index.forToday': 'Per oggi',
     'page.index.hideReasons': 'Nascondi i motivi',
+    'page.index.inSeason': 'Di stagione',
+    'page.index.inSeasonTitle': 'Solo le passeggiate di stagione questo mese',
     'page.index.browseAllTrails': 'Vedi tutti i sentieri →',
     'page.index.collapseRankedTrailsPanel': 'Comprimi il pannello della classifica',
     'page.index.hideTheTrailList': 'Nascondi l’elenco dei sentieri',
@@ -4127,8 +4137,8 @@
   if (lang === 'it' && !window.ORMA_PHRASES_IT && document.readyState === 'loading') {
     const here = document.currentScript && document.currentScript.src;
     const base = here ? here.replace(/[^/]*$/, '') : '';
-    document.write('<script src="' + base + 'i18n-phrases-it.js?v=20261120-7"><\/script>');
-    document.write('<script src="' + base + 'i18n-trail-names-it.js?v=20261123-2"><\/script>');
+    document.write('<script src="' + base + 'i18n-phrases-it.js?v=20261126-3"><\/script>');
+    document.write('<script src="' + base + 'i18n-trail-names-it.js?v=20261125-4"><\/script>');
   }
 
   // ---- Translation functions -------------------------------------------------

@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261123-1">
+<link rel="stylesheet" href="styles.css?v=20261126-3">
 </head>
 <body>
 
@@ -39,6 +39,7 @@
 
   <div id="savedLoading" data-auth-loading role="status" data-i18n="saved.loading" style="margin-top:24px;padding:20px;border:1px solid var(--paper-line);border-radius:14px;background:var(--card);color:var(--ink-soft);font-size:13px;">Loading your saved trails…</div>
   <div id="savedUnavailable" role="status" style="margin-top:18px;padding:12px 14px;border:1px solid #E7D6B6;border-radius:12px;background:#FFF9ED;color:var(--ink-soft);font-size:12.5px;line-height:1.5;" hidden></div>
+  <div id="savedSeason" role="status" style="margin-top:18px;padding:12px 14px;border:1px solid var(--paper-line);border-radius:12px;background:var(--card);color:var(--ink-soft);font-size:13px;line-height:1.5;" hidden></div>
 
   <div id="savedList" style="display:flex;flex-direction:column;gap:13px;margin-top:24px;"></div>
 
@@ -137,22 +138,22 @@
 </footer>
 
 <script src="mobile-nav.js?v=20261030-1"></script>
-<script src="i18n.js?v=20261120-7"></script>
+<script src="i18n.js?v=20261126-3"></script>
 <script src="auth-watchdog.js?v=20261119-1"></script>
 <script type="module" src="firebase-init.js"></script>
 <script src="icon-system.js?v=20260815-4" defer></script>
 <script src="trail-card-visual.js?v=20260815-4" defer></script>
 <script src="auth-ui.js?v=20261030-1" defer></script>
-<script src="breeds-data.js?v=20260815-4" defer></script>
+<script src="breeds-data.js?v=20261126-3" defer></script>
 <script src="trust/evidence-v1.js?v=20261006-2" defer></script>
-<script src="scoring/recommendation-v1.js?v=20260917-1" defer></script>
-<script src="scoring/recommendation-adapters-v1.js?v=20261119-7" defer></script>
-<script src="recommendation-decision.js?v=20261120-7" defer></script>
+<script src="scoring/recommendation-v1.js?v=20261126-3" defer></script>
+<script src="scoring/recommendation-adapters-v1.js?v=20261126-3" defer></script>
+<script src="recommendation-decision.js?v=20261119-7" defer></script>
 <script src="scoring-conditions.js?v=1" defer></script>
 <script src="route-return.js?v=20261106-2" defer></script>
 <script src="scoring.js?v=20260815-4" defer></script>
 <script src="match-verdict.js?v=20261002-1" defer></script>
-<script src="trail-season-words.js?v=20261120-7" defer></script>
+<script src="trail-season-words.js?v=20261126-3" defer></script>
 <script src="regions-runtime-manifest.js?v=20261121-7"></script>
 <script src="regional-trails-loader.js?v=20261104-1" data-default-region="all"></script>
 <script src="regions-config.js" defer></script>
@@ -258,6 +259,29 @@ document.addEventListener('DOMContentLoaded', function(){
     return reason ? reason.message : translate('saved.card.review', 'Open the trail to review this recommendation.');
   }
 
+  // "Back in season this month: A and B." and how many saved walks are out of
+  // season now. Hidden when every saved walk is simply in season.
+  function renderSeasonNote(saved, words, month){
+    var box = document.getElementById('savedSeason');
+    if(!box) return;
+    if(!words || !saved.length){ box.hidden = true; return; }
+    var back = saved.filter(function(tr){ return words.cameBackThisMonth(tr.season, month); })
+      .map(function(tr){ return trailDisplayName(tr); });
+    var out = saved.filter(function(tr){ return words.outOfSeason(tr.season, month); }).length;
+    var parts = [];
+    if(back.length){
+      var names = back.length <= 3 ? back : back.slice(0, 2).concat([tx('{count} more', { count:back.length - 2 })]);
+      var list = names.length === 1 ? names[0]
+        : tx('{list} and {last}', { list:names.slice(0, -1).join(', '), last:names[names.length - 1] });
+      parts.push(tx('Back in season this month: {walks}.', { walks:list }));
+    }
+    var monthLabel = words.monthName(month);
+    if(out === 1) parts.push(tx('1 of your saved walks is out of season in {month}; it is listed last.', { month:monthLabel }));
+    else if(out > 1) parts.push(tx('{count} of your saved walks are out of season in {month}; they are listed last.', { count:out, month:monthLabel }));
+    box.textContent = parts.join(' ');
+    box.hidden = parts.length === 0;
+  }
+
   function render(favs, profile){
     var ov = profile && typeof effectiveOverrides === 'function'
       ? effectiveOverrides(profile, null)
@@ -281,6 +305,12 @@ document.addEventListener('DOMContentLoaded', function(){
         });
       })
       .sort(function(a, b){ return b.score - a.score; });
+    // The walks to go on this month first; the ones back in season since
+    // last month are named at the top, the reminder a saved list is for.
+    var words = window.DoloPawsTrailSeasonWords;
+    var month = new Date().getMonth() + 1;
+    if(words) saved = words.inSeasonFirst(saved, function(tr){ return tr.season; }, month);
+    renderSeasonNote(saved, words, month);
 
     badge.textContent = saved.length;
     badge.hidden = false;
@@ -316,11 +346,20 @@ document.addEventListener('DOMContentLoaded', function(){
           placeholderLabel:window.t('saved.visual.photo'),
         })
         : '<div class="trail-visual trail-visual--placeholder photo tc-thumb" role="img" aria-label="' + esc(translate('saved.visual.photoAria', '{name}: photo coming soon', { name:trailDisplayName(tr) })) + '"><span class="trail-visual-placeholder-label">' + esc(window.t('saved.visual.photo')) + '</span></div>';
+      var seasonTags = '';
+      if(words){
+        var outLabel = words.outOfSeasonTag(tr.season, month, true);
+        seasonTags = words.cameBackThisMonth(tr.season, month)
+          ? '<span class="browse-season browse-season--back">' + esc(tx('Back in season')) + '</span>'
+          : outLabel ? '<span class="browse-season browse-season--out">' + esc(outLabel) + '</span>' : '';
+        var sunTag = words.winterSunTag ? words.winterSunTag(tr.season, month) : null;
+        if(sunTag) seasonTags += '<span class="browse-season browse-season--sun-' + sunTag.kind + '">' + esc(sunTag.label) + '</span>';
+      }
       return '<div class="trail-card" data-id="' + esc(tr.id) + '">' +
         thumb +
         '<div class="body">' +
           '<div class="tc-meta-row">' +
-            provenanceBadge + riskBadge + heatBadge +
+            provenanceBadge + riskBadge + heatBadge + seasonTags +
           '</div>' +
           '<a href="trail.html?id=' + encodeURIComponent(tr.id) + '&from=saved.html" class="name" style="margin-top:2px;display:block;text-decoration:none;color:inherit;">' + esc(trailDisplayName(tr)) + '</a>' +
           '<div class="tc-reason"><span class="mark">&#10022;</span><span class="txt">' + esc(whyFits(tr.recommendation)) + '</span></div>' +

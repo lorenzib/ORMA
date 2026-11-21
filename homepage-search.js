@@ -388,12 +388,20 @@
       if (!best || best.indexOf(month) === -1) return false;
       return filters ? filters.matches(t, {}, options) : true;
     });
-    var list = inSeason
+    // November to February: the sunny ones (six hours of sun or more on the
+    // shortest day, data/winter-sun.json), when there are enough to fill the row.
+    var sunny = words.winterSunTag ? inSeason.filter(function (t) {
+      var tag = words.winterSunTag(t.season, month);
+      return tag && tag.kind === 'sunny';
+    }) : [];
+    var useSunny = sunny.filter(function (t) { return skipIds.indexOf(t.id) === -1; }).length >= 3;
+    var pool = useSunny ? sunny : inSeason;
+    var list = pool
       .filter(function (t) { return skipIds.indexOf(t.id) === -1; })
       .map(function (t) { return { t: t, score: scoreOf(t) }; })
       .sort(function (a, b) { return b.score - a.score; })
       .slice(0, 3);
-    return { list: list, count: inSeason.length, month: words.monthName(month) };
+    return { list: list, count: inSeason.length, month: words.monthName(month), sunny: useSunny };
   }
 
   // ---- renderers ----
@@ -583,7 +591,12 @@
         '<span class="browse-season browse-season--best">' + esc(best) + '</span>' +
         (words.dogSeasonsNow ? words.dogSeasonsNow(trail.season, month) : []).map(function (r) {
           return '<span class="browse-season browse-season--dog">' + esc(r.label) + '</span>';
-        }).join('');
+        }).join('') +
+        // "Sunny in winter" or "Little winter sun", November to February.
+        (function () {
+          var sunTag = words.winterSunTag ? words.winterSunTag(trail.season, month) : null;
+          return sunTag ? '<span class="browse-season browse-season--sun-' + sunTag.kind + '">' + esc(sunTag.label) + '</span>' : '';
+        })();
     }
     return risk + provenance + season;
   }
@@ -704,8 +717,10 @@
         ? '<section class="hp-featured hp-goodnow" aria-labelledby="hpGoodNowTitle">' +
             '<div class="hp-coll-head"><div>' +
               '<div class="hp-kick hp-kick-left">' + esc(tx('In season now')) + '</div>' +
-              '<h2 class="hp-feat-h2" id="hpGoodNowTitle">' + esc(tx('Good Dolomites walks for {month}', { month: now.month })) + '</h2>' +
-              '<p class="hp-coll-sub">' + esc(tx('Dolomites walks whose best months include {month}, ranked for the dog you are browsing with.', { month: now.month })) + '</p></div></div>' +
+              '<h2 class="hp-feat-h2" id="hpGoodNowTitle">' + esc(now.sunny ? tx('Sunny Dolomites walks for {month}', { month: now.month }) : tx('Good Dolomites walks for {month}', { month: now.month })) + '</h2>' +
+              '<p class="hp-coll-sub">' + esc(now.sunny
+                ? tx('Dolomites walks in season in {month} that get six hours of sun or more on the shortest day, ranked for the dog you are browsing with.', { month: now.month })
+                : tx('Dolomites walks whose best months include {month}, ranked for the dog you are browsing with.', { month: now.month })) + '</p></div></div>' +
             '<div class="hp-coll-grid">' + now.list.map(ccardHtml).join('') + '</div>' +
             '<a class="hp-how-link hp-featured-collection-cta" href="browse-trails.html?region=' + GOOD_NOW_REGION + '">' + esc(tx('See the {count} Dolomites walks in season →', { count: now.count })) + '</a>' +
           '</section>'

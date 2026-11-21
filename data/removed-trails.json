@@ -54,6 +54,27 @@
       "reason": "not-a-dog-walk",
       "note": "SAT path 392, graded EE (expert hikers only), on granite at 2,280–2,510 m, starting at a 2,500 m pass hours from any road. Not a walk for dogs.",
       "removedAt": "2026-11-12"
+    },
+    {
+      "id": "osm-12189165",
+      "osmRelation": 12189165,
+      "name": "Rundweg Schwarzegg - Sentiero circolare Dosso Nero",
+      "slug": "rundweg-schwarzegg-sentiero-circolare-dosso-nero",
+      "area": "San Genesio / Jenesien",
+      "reason": "not-drawable",
+      "note": "The official loop from Afing (jenesien.net, 10.9 km) uses about 1.6 km of path OpenStreetMap does not have, so it cannot be drawn on mapped paths. Removed on the owner's decision, 20 November 2026.",
+      "removedAt": "2026-11-20"
+    },
+    {
+      "id": "osm-7277805",
+      "osmRelation": 7277805,
+      "name": "Waltner Rundweg - 12 - Sentiero circolare di Valtina - 12",
+      "slug": "waltner-rundweg-12-sentiero-circolare-di-valtina-12",
+      "area": "San Leonardo in Passiria / St. Leonhard",
+      "reason": "duplicate",
+      "note": "A 15.3 km variant from St. Leonhard of the Tourismusverein Passeiertal's Waltner Rundweg, which is already on ORMA as osm-7446701 (the official 8.4 km loop from Walten). Its address now opens that walk. Owner's decision, 20 November 2026.",
+      "removedAt": "2026-11-20",
+      "redirectsTo": "osm-7446701"
     }
   ]
 }

@@ -189,7 +189,10 @@
       "gloss": "the hills ring"
     },
     "osm-7446701": {
-      "gloss": "the Walten circular walk 18"
+      "gloss": "the Walten circular walk 18",
+      "retired": [
+        "waltner-rundweg-12-sentiero-circolare-di-valtina-12"
+      ]
     },
     "osm-7546708": {
       "gloss": "the Soracrode ring"
@@ -2125,6 +2128,71 @@
       "name": "Cima Rest, where Tombea cheese is made",
       "slug": "cima-rest-formaggio-tombea-magasa",
       "gloss": "from the thatched barns of Cima Rest through pastures and beech woods towards Malga Alvezza, and back"
+    },
+    "veneto-archeovia-campetto-cima-marana": {
+      "name": "Archeovia Campetto to Cima Marana",
+      "slug": "archeovia-campetto-cima-marana",
+      "gloss": "a high grassy ridge with archaeology panels to the Cima Marana cross and back"
+    },
+    "veneto-anello-del-muccion": {
+      "name": "Mucciòn Loop above Valdagno",
+      "slug": "muccion-loop-valdagno",
+      "gloss": "a hill loop between old hamlets to the little Mucciòn church"
+    },
+    "iseo-riva-di-solto": {
+      "name": "Riva di Solto panoramic loop",
+      "slug": "giro-panoramico-riva-di-solto",
+      "gloss": "a loop from the lake up an old mule track to Solto Collina and back down beside the Bogn gorge to the lakeside"
+    },
+    "iseo-piramidi-zone": {
+      "name": "The earth pyramids of Zone",
+      "slug": "piramidi-di-zone-riserva-naturale",
+      "gloss": "a short loop through the nature reserve of the Zone earth pyramids, tall columns of glacial clay capped by boulders"
+    },
+    "veneto-sentiero-forte-enna": {
+      "name": "Forte Enna Loop above Torrebelvicino",
+      "slug": "forte-enna-loop-torrebelvicino",
+      "gloss": "a wooded loop on Monte Enna to a First World War fort, with views over the Val Leogra"
+    },
+    "veneto-sentiero-dei-roccoli": {
+      "name": "Roccoli Path from the Mucciòn",
+      "slug": "roccoli-path-muccion",
+      "gloss": "a short ridge loop from the little Mucciòn church past old bird-catching sites"
+    },
+    "valsusa-bruzolo-anello-chiotetti": {
+      "name": "Chiotetti Loop, Bruzolo",
+      "slug": "chiotetti-loop-bruzolo",
+      "gloss": "old mule tracks up to the last mountain hamlets above Bruzolo"
+    },
+    "valsusa-mattie-alpe-toglie": {
+      "name": "Alpe Toglie, Mattie",
+      "slug": "alpe-toglie-mattie",
+      "gloss": "an old mule track through chestnut and beech woods to a mountain pasture, there and back"
+    },
+    "valsusa-mompantero-sentier8": {
+      "name": "Sentier8, Mompantero",
+      "slug": "sentier8-loop-mompantero",
+      "gloss": "a sunny loop through old hamlets to a frescoed chapel"
+    },
+    "valsusa-giaglione-forte-santa-chiara": {
+      "name": "Forte di Santa Chiara, Giaglione",
+      "slug": "forte-santa-chiara-giaglione",
+      "gloss": "an old mule track past votive shrines to a 19th-century fort, there and back"
+    },
+    "settimo-vittone-pergole-castagneti": {
+      "name": "Pergolas and Chestnut Woods, Settimo Vittone",
+      "slug": "pergolas-chestnut-woods-settimo-vittone",
+      "gloss": "old mule tracks through terraced vineyards and chestnut woods"
+    },
+    "valchiusella-cima-bossola": {
+      "name": "Cima Bossola, Valchiusella",
+      "slug": "cima-bossola-valchiusella",
+      "gloss": "a grassy ridge from a mountain hut to a summit cross with wide views"
+    },
+    "corio-sentiero-del-redio": {
+      "name": "Sentiero del Redìo, Corio",
+      "slug": "sentiero-del-redio-corio",
+      "gloss": "a loop through beech woods and old summer pastures above Piano Audi"
     }
   }
 }

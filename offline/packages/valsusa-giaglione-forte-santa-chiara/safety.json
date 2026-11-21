@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valsusa-giaglione-forte-santa-chiara",
+  "generatedAt": "2026-11-19T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 7.8,
+    "ascentM": 750,
+    "highestPointM": 1499,
+    "expectedDuration": "3 h 45 min",
+    "difficulty": "Hard",
+    "shadePercent": 69
+  },
+  "trailhead": {
+    "lat": 45.144143,
+    "lng": 7.012958,
+    "label": "The car park by the turn for Sant’Andrea, Giaglione, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "About 90 m along the SS25 at the start and end, and road crossings higher up: keep your dog on a short lead there.",
+    "A steady, fairly steep mule track (T2), rocky in places: watch your dog’s footing.",
+    "The lower part runs beside open vineyards: avoid hot afternoons and carry water for your dog.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-19"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-19",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Forte di Santa Chiara, Giaglione": "Forte di Santa Chiara da Giaglione, andata e ritorno",
+    "The car park by the turn for Sant’Andrea, Giaglione, the board’s start": "Il parcheggio vicino all’incrocio per Sant’Andrea, Giaglione, la partenza ufficiale",
+    "About 90 m along the SS25 at the start and end, and road crossings higher up: keep your dog on a short lead there.": "Circa 90 m lungo la SS25 all’inizio e alla fine, e attraversamenti di strada più in alto: lì tieni il cane al guinzaglio corto.",
+    "A steady, fairly steep mule track (T2), rocky in places: watch your dog’s footing.": "Una mulattiera costante e piuttosto ripida (T2), rocciosa in alcuni tratti: attenzione all’appoggio del cane.",
+    "The lower part runs beside open vineyards: avoid hot afternoons and carry water for your dog.": "La parte bassa costeggia vigneti aperti: evita i pomeriggi caldi e porta acqua per il cane."
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valchiusella-cima-bossola",
+  "distanceKm": 5.1,
+  "ascentM": 415,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1094
+    },
+    {
+      "km": 0.4,
+      "elev": 1139
+    },
+    {
+      "km": 0.8,
+      "elev": 1225
+    },
+    {
+      "km": 1.2,
+      "elev": 1294
+    },
+    {
+      "km": 1.6,
+      "elev": 1348
+    },
+    {
+      "km": 2,
+      "elev": 1429
+    },
+    {
+      "km": 2.3,
+      "elev": 1477
+    },
+    {
+      "km": 2.7,
+      "elev": 1410
+    },
+    {
+      "km": 3.1,
+      "elev": 1385
+    },
+    {
+      "km": 3.5,
+      "elev": 1344
+    },
+    {
+      "km": 3.9,
+      "elev": 1272
+    },
+    {
+      "km": 4.3,
+      "elev": 1238
+    },
+    {
+      "km": 4.7,
+      "elev": 1139
+    },
+    {
+      "km": 5.1,
+      "elev": 1093
+    }
+  ]
+}

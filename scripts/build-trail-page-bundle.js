@@ -58,6 +58,8 @@ const SOURCES = [
   'route-return.js',
   // When in the year a walk is a walk; trail-blueprint.js reads it.
   'trail-season-words.js',
+  // Sunset and the latest start in the short-day months; trail-blueprint.js reads it.
+  'daylight.js',
   'trail.js',
   'trail-blueprint.js',
   'trail-detail-ui.js',

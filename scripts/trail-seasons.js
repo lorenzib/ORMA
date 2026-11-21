@@ -33,12 +33,22 @@ const WINTER_WALK_PREFIX = 'winter-';
 // nobody has published the walk's season. From 1,800 m November counts as
 // snowy too: by late November a plateau like Pian dei Buoi (1,864 m) is
 // usually under snow or ice, so "in season" would promise too much.
+// Below 800 m snow is occasional: after a cold spell it can lie for a few
+// days, but the walk is a walk all winter. Until 20 November 2026 these walks
+// were "snow possible" from December to February, which took those months out
+// of their season, so a lakeside walk at 300 m read "Out of season" in January
+// (owner decision, 20 November 2026). The months stay on the record, so the
+// page can still say when a cold spell might bring snow.
+const SNOW_OCCASIONAL_BELOW_M = 800;
 const SNOW_BANDS = [
   { minAlt: 2000, months: [11, 12, 1, 2, 3, 4, 5], likelihood: 'likely' },
   { minAlt: 1800, months: [11, 12, 1, 2, 3, 4], likelihood: 'likely' },
   { minAlt: 1600, months: [12, 1, 2, 3, 4], likelihood: 'likely' },
-  { minAlt: -Infinity, months: [12, 1, 2], likelihood: 'possible' },
+  { minAlt: SNOW_OCCASIONAL_BELOW_M, months: [12, 1, 2], likelihood: 'possible' },
+  { minAlt: -Infinity, months: [12, 1, 2], likelihood: 'occasional' },
 ];
+
+const SNOW_LIKELIHOODS = ['likely', 'possible', 'occasional'];
 
 function snowEstimate(highPoint){
   if(!Number.isFinite(highPoint) || highPoint <= 0) return null;
@@ -83,7 +93,7 @@ function validateSeason(id, season){
   }
   if(season.snow){
     if(!validMonths(season.snow.months)) throw new Error(`Season for ${id} has invalid snow months`);
-    if(!['likely', 'possible'].includes(season.snow.likelihood)) throw new Error(`Season for ${id} has an unknown snow likelihood`);
+    if(!SNOW_LIKELIHOODS.includes(season.snow.likelihood)) throw new Error(`Season for ${id} has an unknown snow likelihood`);
     if(!Number.isFinite(season.snow.highPoint)) throw new Error(`Season for ${id} has a snow estimate without a high point`);
   }
   if(season.highPoint !== undefined && !(Number.isFinite(season.highPoint) && season.highPoint > 0)){
@@ -126,6 +136,8 @@ module.exports = {
   WINTER_USE_MIN_KM,
   WINTER_WALK_PREFIX,
   SNOW_BANDS,
+  SNOW_OCCASIONAL_BELOW_M,
+  SNOW_LIKELIHOODS,
   snowEstimate,
   parseBoardMonths,
   validateSeason,

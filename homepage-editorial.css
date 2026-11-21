@@ -367,6 +367,10 @@
   body.mhome-active #returningCustomerHomepage .li-saved-toggle .li-saved-word{display:none;}
 }
 
+/* "In season": pressed, the list keeps only the walks in season this month. */
+.li-season-toggle{white-space:nowrap;}
+.li-season-toggle[aria-pressed="true"]{border-color:#9FC4B0;background:#EAF3EC;color:#24462E;}
+
 /* "Hide reasons" sits with Sort and Saved. Pressed means reasons are hidden. */
 .li-reasons-toggle[aria-pressed="true"]{border-color:#C9CEC3;background:#F4F2EA;}
 

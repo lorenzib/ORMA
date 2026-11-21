@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "iseo-piramidi-zone",
+  "distanceKm": 2.7,
+  "ascentM": 162,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 610
+    },
+    {
+      "km": 0.2,
+      "elev": 609
+    },
+    {
+      "km": 0.4,
+      "elev": 584
+    },
+    {
+      "km": 0.6,
+      "elev": 581
+    },
+    {
+      "km": 0.8,
+      "elev": 560
+    },
+    {
+      "km": 1,
+      "elev": 530
+    },
+    {
+      "km": 1.2,
+      "elev": 515
+    },
+    {
+      "km": 1.5,
+      "elev": 515
+    },
+    {
+      "km": 1.7,
+      "elev": 499
+    },
+    {
+      "km": 1.9,
+      "elev": 525
+    },
+    {
+      "km": 2.1,
+      "elev": 537
+    },
+    {
+      "km": 2.3,
+      "elev": 589
+    },
+    {
+      "km": 2.5,
+      "elev": 611
+    },
+    {
+      "km": 2.7,
+      "elev": 610
+    }
+  ]
+}

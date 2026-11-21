@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "iseo-riva-di-solto",
+  "distanceKm": 6.8,
+  "ascentM": 290,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 194
+    },
+    {
+      "km": 0.5,
+      "elev": 307
+    },
+    {
+      "km": 1.1,
+      "elev": 365
+    },
+    {
+      "km": 1.6,
+      "elev": 422
+    },
+    {
+      "km": 2.1,
+      "elev": 428
+    },
+    {
+      "km": 2.6,
+      "elev": 465
+    },
+    {
+      "km": 3.1,
+      "elev": 472
+    },
+    {
+      "km": 3.6,
+      "elev": 476
+    },
+    {
+      "km": 4.1,
+      "elev": 454
+    },
+    {
+      "km": 4.7,
+      "elev": 359
+    },
+    {
+      "km": 5.2,
+      "elev": 295
+    },
+    {
+      "km": 5.7,
+      "elev": 219
+    },
+    {
+      "km": 6.2,
+      "elev": 205
+    },
+    {
+      "km": 6.7,
+      "elev": 194
+    },
+    {
+      "km": 6.8,
+      "elev": 194
+    }
+  ]
+}
