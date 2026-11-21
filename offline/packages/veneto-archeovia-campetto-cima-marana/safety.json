@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "veneto-archeovia-campetto-cima-marana",
+  "generatedAt": "2026-11-21T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.8,
+    "ascentM": 143,
+    "highestPointM": 1622,
+    "expectedDuration": "1 h 15 min",
+    "difficulty": "Moderate",
+    "shadePercent": 41
+  },
+  "trailhead": {
+    "lat": 45.668414,
+    "lng": 11.205009,
+    "label": "The Chalet Montefalcone below Monte Falcone, Recoaro Terme, the published start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "The ridge path is a mountain path (T2) with uneven ground and loose stones: keep a steady pace and watch your dog’s paws.",
+    "Cows graze the ridge pastures in summer: keep your dog on a lead and give the herds room.",
+    "The ridge is open: avoid it in thunderstorms, wind or mist.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-19"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-21",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Archeovia Campetto to Cima Marana": "Archeovia dal Campetto a Cima Marana, andata e ritorno",
+    "The Chalet Montefalcone below Monte Falcone, Recoaro Terme, the published start": "Lo Chalet Montefalcone sotto il Monte Falcone, Recoaro Terme, la partenza ufficiale",
+    "The ridge path is a mountain path (T2) with uneven ground and loose stones: keep a steady pace and watch your dog’s paws.": "Il sentiero di crinale è un sentiero di montagna (T2) con fondo irregolare e sassi smossi: procedi con calma e attenzione alle zampe del cane.",
+    "Cows graze the ridge pastures in summer: keep your dog on a lead and give the herds room.": "D’estate le mucche pascolano sul crinale: tieni il cane al guinzaglio e lascia spazio alle mandrie.",
+    "The ridge is open: avoid it in thunderstorms, wind or mist.": "Il crinale è esposto: evitalo con temporali, vento o nebbia."
+  }
+}

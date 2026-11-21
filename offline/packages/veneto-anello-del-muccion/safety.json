@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "trailId": "veneto-anello-del-muccion",
+  "generatedAt": "2026-11-21T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 5.7,
+    "ascentM": 265,
+    "highestPointM": 706,
+    "expectedDuration": "2 h",
+    "difficulty": "Hard",
+    "shadePercent": 62
+  },
+  "trailhead": {
+    "lat": 45.661984,
+    "lng": 11.316453,
+    "label": "Contrà Bergamini di Sopra above Valdagno, the published start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.6737568,
+      "lng": 11.3172364,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.6740319,
+      "lng": 11.3183975,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.6699414,
+      "lng": 11.3254061,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "About half the loop is on quiet hamlet lanes with the odd car: keep your dog close there.",
+    "Two short stretches of road at the Mucciòn pass and at Contrada Preti: keep your dog on a short lead.",
+    "A low hill walk that gets hot in summer: go in spring or autumn, as the board suggests, or early in the day.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-19"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-21",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Mucciòn Loop above Valdagno": "Anello del Mucciòn sopra Valdagno",
+    "Contrà Bergamini di Sopra above Valdagno, the published start": "Contrà Bergamini di Sopra, sopra Valdagno, la partenza ufficiale",
+    "About half the loop is on quiet hamlet lanes with the odd car: keep your dog close there.": "Circa metà dell’anello è su tranquille stradine di contrada con qualche auto: lì tieni il cane vicino.",
+    "Two short stretches of road at the Mucciòn pass and at Contrada Preti: keep your dog on a short lead.": "Due brevi tratti di strada al passo del Mucciòn e a Contrada Preti: tieni il cane al guinzaglio corto.",
+    "A low hill walk that gets hot in summer: go in spring or autumn, as the board suggests, or early in the day.": "Una camminata in bassa collina che d’estate fa caldo: vai in primavera o in autunno, come suggerisce il sito, oppure al mattino presto."
+  }
+}
