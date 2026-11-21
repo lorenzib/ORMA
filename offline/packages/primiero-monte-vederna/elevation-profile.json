@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "primiero-monte-vederna",
+  "distanceKm": 6.4,
+  "ascentM": 216,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1334
+    },
+    {
+      "km": 0.5,
+      "elev": 1362
+    },
+    {
+      "km": 1,
+      "elev": 1417
+    },
+    {
+      "km": 1.5,
+      "elev": 1460
+    },
+    {
+      "km": 2,
+      "elev": 1482
+    },
+    {
+      "km": 2.5,
+      "elev": 1527
+    },
+    {
+      "km": 3,
+      "elev": 1558
+    },
+    {
+      "km": 3.5,
+      "elev": 1556
+    },
+    {
+      "km": 4,
+      "elev": 1516
+    },
+    {
+      "km": 4.5,
+      "elev": 1481
+    },
+    {
+      "km": 5,
+      "elev": 1443
+    },
+    {
+      "km": 5.5,
+      "elev": 1410
+    },
+    {
+      "km": 6,
+      "elev": 1359
+    },
+    {
+      "km": 6.4,
+      "elev": 1334
+    }
+  ]
+}
