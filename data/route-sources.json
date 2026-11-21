@@ -4129,6 +4129,22 @@
       "quote": "Distanza 5,7 km · Durata 1:55 h · Salita 265 m · Discesa 265 m · Facile",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-19T23:00:00.000Z"
+    },
+    "iseo-riva-di-solto": {
+      "url": "https://www.outdooractive.com/it/r/804529444",
+      "publisher": "Visit Lake Iseo (Outdooractive)",
+      "name": "Giro panoramico di Riva di Solto",
+      "quote": "Distanza 6,7 km · Durata 2:30 h · Salita 290 m · Discesa 290 m · Punto più alto 476 m · Punto più basso 187 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T12:00:00.000Z"
+    },
+    "iseo-piramidi-zone": {
+      "url": "https://www.outdooractive.com/it/r/197805889",
+      "publisher": "Visit Lake Iseo (Outdooractive)",
+      "name": "Trekking nella Riserva Naturale delle Piramidi di Zone",
+      "quote": "Distanza 2,6 km · Durata 0:55 h · Salita 162 m · Discesa 161 m · Punto più alto 617 m · Punto più basso 455 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T12:00:00.000Z"
     }
   }
 }

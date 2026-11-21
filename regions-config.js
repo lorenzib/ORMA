@@ -208,6 +208,8 @@
     ['Vedeseta / Val Taleggio', 45.8920, 9.5390, 'Val Taleggio', 'lombardy', 'bergamo'],
     ['Bergamo', 45.6983, 9.6773, 'Bergamo hills', 'lombardy', 'bergamo'],
     ['Sulzano / Lake Iseo', 45.6890, 10.1000, 'Lake Iseo', 'lombardy', 'brescia'],
+    ['Zone / Lake Iseo', 45.7630, 10.1160, 'Lake Iseo', 'lombardy', 'brescia'],
+    ['Riva di Solto / Lake Iseo', 45.7710, 10.0400, 'Lake Iseo', 'lombardy', 'bergamo'],
     ['Tignale', 45.7390, 10.7180, 'Alto Garda Bresciano', 'lombardy', 'brescia'],
     ['Toscolano Maderno', 45.6400, 10.6070, 'Alto Garda Bresciano', 'lombardy', 'brescia'],
     ['Magasa / Valvestino', 45.7800, 10.6170, 'Alto Garda Bresciano', 'lombardy', 'brescia'],

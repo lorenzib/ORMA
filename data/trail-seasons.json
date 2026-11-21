@@ -10105,6 +10105,30 @@
           "accessedAt": "2026-11-19"
         }
       }
+    },
+    "iseo-riva-di-solto": {
+      "highPoint": 476,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 476
+      }
+    },
+    "iseo-piramidi-zone": {
+      "highPoint": 611,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 611
+      }
     }
   }
 }
