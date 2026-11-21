@@ -4193,6 +4193,30 @@
       "quote": "Distanza 7,8 km · Durata 3:45 h · Salita 750 m · Discesa 750 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-19T23:30:00.000Z"
+    },
+    "settimo-vittone-pergole-castagneti": {
+      "url": "https://www.outdooractive.com/it/r/807719711",
+      "publisher": "CANAVESE VILLAGE (Turismo in Canavese) (Outdooractive)",
+      "name": "SETTIMO VITTONE tra pergole e castagneti",
+      "quote": "Distanza 6,7 km · Durata 2:25 h · Salita 308 m · Discesa 313 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-21T10:00:00.000Z"
+    },
+    "valchiusella-cima-bossola": {
+      "url": "https://www.outdooractive.com/it/r/255063717",
+      "publisher": "CANAVESE VILLAGE (Turismo in Canavese) (Outdooractive)",
+      "name": "VALCHIUSELLA Cima Bossola",
+      "quote": "Distanza 5,1 km · Durata 2:10 h · Salita 415 m · Discesa 412 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-21T10:00:00.000Z"
+    },
+    "corio-sentiero-del-redio": {
+      "url": "https://www.outdooractive.com/it/r/810104658",
+      "publisher": "CANAVESE VILLAGE (Turismo in Canavese) (Outdooractive)",
+      "name": "CORIO Sentiero del Redìo",
+      "quote": "Distanza 8,4 km · Durata 3:15 h · Salita 465 m · Discesa 465 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-21T10:00:00.000Z"
     }
   }
 }
