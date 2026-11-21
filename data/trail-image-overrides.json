@@ -1023,6 +1023,23 @@
       }
     },
     {
+      "id": "corio-sentiero-del-redio",
+      "approvedReviewId": "commons-corio-sentiero-del-redio-on-route",
+      "approvedAt": "2026-11-21T10:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/corio-pilone-redio.jpg",
+        "heroImage": "images/trails/corio-pilone-redio.jpg",
+        "imageAlt": "A small stone wayside shrine with a painted saint on blue tiles, in a green meadow with ferns at the edge of a wood",
+        "imageCredit": "A wayside shrine on the Sentiero del Redìo above Corio",
+        "imageCreditText": "A wayside shrine on the Sentiero del Redìo above Corio by Jrachi",
+        "imageCreator": "Jrachi",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:PV_Corio_130.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "cortina-anello-dei-tre-rifugi",
       "approvedReviewId": "commons-cortina-anello-dei-tre-rifugi-on-route",
       "approvedAt": "2026-11-09T21:00:00.000Z",
@@ -7236,6 +7253,23 @@
       }
     },
     {
+      "id": "settimo-vittone-pergole-castagneti",
+      "approvedReviewId": "commons-settimo-vittone-pergole-castagneti-on-route",
+      "approvedAt": "2026-11-21T10:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/settimo-vittone-pieve-mulattiera.jpg",
+        "heroImage": "images/trails/settimo-vittone-pieve-mulattiera.jpg",
+        "imageAlt": "A cobbled mule track between dry-stone walls below an old stone church with a bell tower, with green mountains behind",
+        "imageCredit": "The mule track below the Pieve di San Lorenzo, Settimo Vittone",
+        "imageCreditText": "The mule track below the Pieve di San Lorenzo, Settimo Vittone by Mathieu Brossais",
+        "imageCreator": "Mathieu Brossais",
+        "imageLicence": "CC BY 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Settimo_Vittone_(Août_2025).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "steinegg-pyramidenrundweg",
       "approvedReviewId": "commons-steinegg-pyramidenrundweg-on-route",
       "approvedAt": "2026-11-18T23:00:00.000Z",
@@ -7861,6 +7895,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Larix_trees_and_wooden_bridge_over_ravine_Febbraro_(1487_m.a.s.l.)_-_in_Valchiavenna,_Province_of_Sondrio,_Lombardy,_Italy_-_2017-10-15.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valchiusella-cima-bossola",
+      "approvedReviewId": "commons-valchiusella-cima-bossola-on-route",
+      "approvedAt": "2026-11-21T10:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cima-bossola-rifugio.jpg",
+        "heroImage": "images/trails/cima-bossola-rifugio.jpg",
+        "imageAlt": "A white two-storey mountain hut with a wooden fence and a meadow in front, birch trees beside it and a rocky grass slope behind",
+        "imageCredit": "The Rifugio Cima Bossola at the start",
+        "imageCreditText": "The Rifugio Cima Bossola at the start by E.Zene",
+        "imageCreator": "E.Zene",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Località_Marciana_-_Cima_Bossola,_Rueglio_(TO)_-_panoramio.jpg",
         "imageSourceType": "licensed-source"
       }
     },

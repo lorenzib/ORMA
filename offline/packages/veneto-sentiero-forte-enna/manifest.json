@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "veneto-sentiero-forte-enna",
   "name": "Forte Enna Loop above Torrebelvicino",
-  "version": "2026.11.21-beta.1",
-  "generatedAt": "2026-11-21T19:36:31.821Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:49.941Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 655667,
+  "packageBytes": 655622,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.72433,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Forte Enna Loop above Torrebelvicino OSM offline map",
       "url": "map.svg",
-      "bytes": 313915,
-      "sha256": "3d7dfab0d2eb07ff6b071080c0742958a0eeacc644c4ef74169e27b1b41f20f4"
+      "bytes": 313894,
+      "sha256": "780c9e93c62f08cfa936ddfb2b84a51592fa00d1ba9e6b514af43d701c3b8519"
     },
     {
       "role": "route",

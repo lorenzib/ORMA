@@ -13,6 +13,7 @@ const { applyLiftSeasons } = require('./lift-seasons');
 const { applyRoadSeasons } = require('./road-seasons');
 const { applyHutSeasons } = require('./hut-seasons');
 const { applyDogSeasons } = require('./dog-seasons');
+const { applyWinterSun } = require('./winter-sun');
 const { loadSlugOverrides, applyTrailNameOverrides } = require('./trail-slug-overrides');
 const { applyStartAccessPaths, DATA_FILE:ACCESS_FILE } = require('./start-access-paths');
 
@@ -73,6 +74,9 @@ function loadProductionTrails(root, files = DEFAULT_FILES, options = {}){
   // Seasonal risks to dogs (caterpillars, ticks, cows), curated in data/dog-seasons.json.
   const dogSeasonsPath = path.join(root, 'data', 'dog-seasons.json');
   const dogSeasons = options.seasons !== false && fs.existsSync(dogSeasonsPath) ? JSON.parse(fs.readFileSync(dogSeasonsPath, 'utf8')) : { risks:{} };
+  // Hours of winter sun the terrain allows, built by npm run build:winter-sun.
+  const winterSunPath = path.join(root, 'data', 'winter-sun.json');
+  const winterSun = options.seasons !== false && fs.existsSync(winterSunPath) ? JSON.parse(fs.readFileSync(winterSunPath, 'utf8')) : { trails:{} };
   // The walk-in from the start flag to the line, routed by build-start-access-paths.js.
   const accessPath = path.join(root, ACCESS_FILE);
   const access = fs.existsSync(accessPath) ? JSON.parse(fs.readFileSync(accessPath, 'utf8')) : { paths:{} };
@@ -82,7 +86,7 @@ function loadProductionTrails(root, files = DEFAULT_FILES, options = {}){
   // route-number facts are.
   return applyTrailNameOverrides(
     applyRouteNumberEvidence(
-      applyStartAccessPaths(applyDogSeasons(applyHutSeasons(applyRoadSeasons(applyLiftSeasons(applyTrailSeasons(applyLiftAccess(applyTrailGalleryPhotos(applyTrailImageOverrides(applyVerifiedTrailOverrides(trails, overrides), imageOverrides), gallery), liftAccess), seasons), liftSeasons), roadSeasons), hutSeasons), dogSeasons), access),
+      applyStartAccessPaths(applyWinterSun(applyDogSeasons(applyHutSeasons(applyRoadSeasons(applyLiftSeasons(applyTrailSeasons(applyLiftAccess(applyTrailGalleryPhotos(applyTrailImageOverrides(applyVerifiedTrailOverrides(trails, overrides), imageOverrides), gallery), liftAccess), seasons), liftSeasons), roadSeasons), hutSeasons), dogSeasons), winterSun), access),
       root,
     ),
     loadSlugOverrides(root),

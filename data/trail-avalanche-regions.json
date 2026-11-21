@@ -394,6 +394,13 @@
       ],
       "highPoint": 1460
     },
+    "corio-sentiero-del-redio": {
+      "regions": [
+        "IT-21-TO-03",
+        "IT-21-TO-04"
+      ],
+      "highPoint": 1268
+    },
     "cortina-anello-dei-tre-rifugi": {
       "regions": [
         "IT-32-BZ-19",
@@ -2528,6 +2535,13 @@
         "IT-25-SO-01"
       ],
       "highPoint": 2316
+    },
+    "valchiusella-cima-bossola": {
+      "regions": [
+        "IT-21-TO-03",
+        "IT-21-TO-04"
+      ],
+      "highPoint": 1477
     },
     "valchiusella-fondo-tissone-tallorno": {
       "regions": [
