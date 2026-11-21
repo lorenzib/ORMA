@@ -291,8 +291,10 @@ describe('the existing-site verification boundary',()=>{
     // decision of 18 November 2026): I Colmi above Sulzano, the Montecastello
     // sanctuary loop at Tignale, the Valle delle Cartiere and Cima Rest (the
     // one-way walks there and back).
-    expect(catalogue).toHaveLength(553);
-    expect(currentSiteTrails(catalogue)).toHaveLength(551);
+    // Then 555 and 553 with the second Lake Iseo batch: the Riva di Solto
+    // panoramic loop and the earth pyramids of Zone.
+    expect(catalogue).toHaveLength(555);
+    expect(currentSiteTrails(catalogue)).toHaveLength(553);
   });
 
   test('requires the artwork the public trail page needs',()=>{

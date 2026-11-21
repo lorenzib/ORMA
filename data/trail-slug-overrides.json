@@ -2125,6 +2125,16 @@
       "name": "Cima Rest, where Tombea cheese is made",
       "slug": "cima-rest-formaggio-tombea-magasa",
       "gloss": "from the thatched barns of Cima Rest through pastures and beech woods towards Malga Alvezza, and back"
+    },
+    "iseo-riva-di-solto": {
+      "name": "Riva di Solto panoramic loop",
+      "slug": "giro-panoramico-riva-di-solto",
+      "gloss": "a loop from the lake up an old mule track to Solto Collina and back down beside the Bogn gorge to the lakeside"
+    },
+    "iseo-piramidi-zone": {
+      "name": "The earth pyramids of Zone",
+      "slug": "piramidi-di-zone-riserva-naturale",
+      "gloss": "a short loop through the nature reserve of the Zone earth pyramids, tall columns of glacial clay capped by boulders"
     }
   }
 }
