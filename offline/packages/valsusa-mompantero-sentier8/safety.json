@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valsusa-mompantero-sentier8",
+  "generatedAt": "2026-11-19T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.9,
+    "ascentM": 439,
+    "highestPointM": 991,
+    "expectedDuration": "2 h",
+    "difficulty": "Hard",
+    "shadePercent": 67
+  },
+  "trailhead": {
+    "lat": 45.148527,
+    "lng": 7.035286,
+    "label": "Piazza Mattei, San Giuseppe, Mompantero, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Heat risk is high on this walk: start early and carry extra water.",
+    "A sunny south-facing slope: the board advises against July and August; carry water for your dog.",
+    "Village lanes at the start and end and a short stretch on the SP209 at San Giuseppe: keep your dog on a short lead there.",
+    "Stony mountain paths (T2) for most of the loop: watch your dog’s footing.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-19"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-19",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Sentier8, Mompantero": "Il Sentier8 a Mompantero",
+    "Piazza Mattei, San Giuseppe, Mompantero, the board’s start": "Piazza Mattei, San Giuseppe, Mompantero, la partenza ufficiale",
+    "A sunny south-facing slope: the board advises against July and August; carry water for your dog.": "Un versante soleggiato esposto a sud: il sito ufficiale lo sconsiglia a luglio e agosto; porta acqua per il cane.",
+    "Village lanes at the start and end and a short stretch on the SP209 at San Giuseppe: keep your dog on a short lead there.": "Stradine del paese all’inizio e alla fine e un breve tratto sulla SP209 a San Giuseppe: lì tieni il cane al guinzaglio corto.",
+    "Stony mountain paths (T2) for most of the loop: watch your dog’s footing.": "Sentieri di montagna sassosi (T2) per gran parte dell’anello: attenzione all’appoggio del cane."
+  }
+}

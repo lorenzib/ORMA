@@ -8732,6 +8732,23 @@
       }
     },
     {
+      "id": "valsusa-bruzolo-anello-chiotetti",
+      "approvedReviewId": "commons-valsusa-bruzolo-anello-chiotetti-on-route",
+      "approvedAt": "2026-11-19T23:30:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/bruzolo-san-giovanni-campanile.jpg",
+        "heroImage": "images/trails/bruzolo-san-giovanni-campanile.jpg",
+        "imageAlt": "A slender white bell tower with arched openings rising above a stone-slab roof, with mountains under a clear blue sky behind",
+        "imageCredit": "The bell tower of San Giovanni Evangelista, Bruzolo",
+        "imageCreditText": "The bell tower of San Giovanni Evangelista, Bruzolo by Mastrocom",
+        "imageCreator": "Mastrocom",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Bruzolo_-_Chiesa_di_San_Giovanni_Evangelista_-_2023-09-09_15-29-21_001.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "valsusa-chianocco-orrido-chouque",
       "approvedReviewId": "commons-valsusa-chianocco-orrido-chouque-on-route",
       "approvedAt": "2026-11-19T22:00:00.000Z",
@@ -8766,6 +8783,23 @@
       }
     },
     {
+      "id": "valsusa-giaglione-forte-santa-chiara",
+      "approvedReviewId": "commons-valsusa-giaglione-forte-santa-chiara-on-route",
+      "approvedAt": "2026-11-19T23:30:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/giaglione-pilone-ariundel.jpg",
+        "heroImage": "images/trails/giaglione-pilone-ariundel.jpg",
+        "imageAlt": "A small plastered votive shrine with faded blue paint and a glazed niche, on a stone base under spring trees",
+        "imageCredit": "The Arioundèl votive shrine above Giaglione",
+        "imageCreditText": "The Arioundèl votive shrine above Giaglione by Martj9",
+        "imageCreator": "Martj9",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:PV_Giaglione_-_Ariundel.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "valsusa-giaglione-vigne-mandorli",
       "approvedReviewId": "commons-valsusa-giaglione-vigne-mandorli-on-route",
       "approvedAt": "2026-11-19T22:00:00.000Z",
@@ -8779,6 +8813,40 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cappella_San_Martino_-_Giaglione.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valsusa-mattie-alpe-toglie",
+      "approvedReviewId": "commons-valsusa-mattie-alpe-toglie-on-route",
+      "approvedAt": "2026-11-19T23:30:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/mattie-alpe-toglie.jpg",
+        "heroImage": "images/trails/mattie-alpe-toglie.jpg",
+        "imageAlt": "A stone mountain hut with a dark roof and balconies on a grassy slope among larches and firs, in autumn sun",
+        "imageCredit": "The hut at Alpe Toglie above Mattie",
+        "imageCreditText": "The hut at Alpe Toglie above Mattie by Martj9",
+        "imageCreator": "Martj9",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Alpe_Toglie.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valsusa-mompantero-sentier8",
+      "approvedReviewId": "commons-valsusa-mompantero-sentier8-on-route",
+      "approvedAt": "2026-11-19T23:30:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/mompantero-cappella-san-giuseppe.jpg",
+        "heroImage": "images/trails/mompantero-cappella-san-giuseppe.jpg",
+        "imageAlt": "A pale yellow chapel with a round window and a wooden door, and a bell tower behind, on a village road under a blue sky with clouds",
+        "imageCredit": "The chapel of San Giuseppe, Mompantero",
+        "imageCreditText": "The chapel of San Giuseppe, Mompantero by Martj9",
+        "imageCreator": "Martj9",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cappella_di_San_Giuseppe_(42129).jpg",
         "imageSourceType": "licensed-source"
       }
     },
