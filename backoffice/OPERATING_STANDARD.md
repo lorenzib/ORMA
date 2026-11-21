@@ -296,7 +296,9 @@ Owns discovery before catalogue admission. It prioritises:
 - animal-friendly evidence;
 - valleys where ORMA is thin, measured against the catalogue rather than
   guessed at; and
-- coherent geographic expansion before unrelated new regions.
+- coherent geographic expansion before unrelated new regions; and
+- walks that are good in winter, until they are three in ten of the walks it
+  adds (see "A share of new walks is good in winter").
 
 The third of those used to read "candidates close to areas ORMA already
 covers", and proximity turned out not to measure coverage. The ranking scored
@@ -2471,7 +2473,12 @@ resting and rejection are unchanged.
    of. On 12 November 2026 it was extended to St. Agatha Rundweg
    (Deutschnofen), climb and time both measured, and to Anello dei Colli
    (Lozzo di Cadore), where the CAI publishes the climb and only the time is
-   worked out by DIN 33466. The rule stands for every other walk.
+   worked out by DIN 33466. On 20 November 2026 it was extended to the
+   Passeggiata a Monte Vederna (Imer): the APT's own track goes back over
+   itself and wanders on past the start, so its 8.2 km and 300 m are for a
+   longer track than the walk; ours is the clean out-and-back to the Croce
+   degli Alpini, distance and climb measured (6.4 km, 216 m), and the APT's
+   2 h matches DIN 33466. The rule stands for every other walk.
 2. **Every municipality the line crosses.** The Ranger is given sample points
    along the whole line -- the start, one every kilometre, the point farthest
    from the start, and the end -- because a loop often crosses into the next
@@ -2598,6 +2605,38 @@ dates.
 Pass roads that shut in winter and huts that a walk depends on are seasonal
 limits too, but ORMA holds no dates for them yet; they join this rule when it
 does.
+
+## A share of new walks is good in winter
+
+> Decided by the owner on 20 November 2026. Measured by
+> `npm run report:winter-mix` (`scripts/winter-mix.js`).
+
+ORMA grew as a summer catalogue. On 20 November 2026 only 90 of its 553 walks
+were a good pick in December, January and February; the rest were out of
+season or hidden then, so for three months of the year the app mostly said
+"not now". The seasons work tells a reader honestly when a walk is not a walk;
+it cannot make one that is.
+
+So scouting keeps a share for winter:
+
+- **At least three in ten of the walks added in any 30 days are good all
+  winter.** Good all winter means in season, and not hidden, in each of
+  December, January and February, by the site's own rule
+  (`trail-season-words.js`), so the report and the page never disagree. A walk
+  with no season record does not count.
+- **The report says where the share stands.** It gives the catalogue's share,
+  each region's, and the walks added since a date or commit (30 days by
+  default), with how many more winter walks would meet the quota. `--check`
+  exits 1 below it, for a routine to read; it is not part of the quality gate,
+  because a batch of summer walks is not wrong, only unbalanced.
+- **A pool is chosen with its winter yield in mind.** While the share is below
+  the quota, the next pool is one that is likely to yield winter walks: low
+  valleys, lakes, the coast and hills. `--candidate <high point m>` (with
+  `--months` for a board's own months) says whether one walk would count before
+  it is built.
+- **The quota never relaxes a rule.** A winter walk passes every check a
+  summer walk does; the quota decides which pool is screened next, not what
+  passes.
 
 ## Definition of done for future iterations
 

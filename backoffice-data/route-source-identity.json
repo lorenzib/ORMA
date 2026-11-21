@@ -653,23 +653,6 @@
       "officialDistanceKm": 7.4,
       "distanceDeltaPercent": 1.4
     },
-    "osm-7277805": {
-      "pathContainmentPercent": 100,
-      "externalRelationId": "relation/7277805",
-      "checkedAt": "2026-09-06T09:25:27.892Z",
-      "reviewState": "blocked",
-      "blockers": [
-        "not-closed-loop",
-        "disconnected-components",
-        "official-distance-conflict"
-      ],
-      "closedLoop": false,
-      "relationName": "Waltner Rundweg - 12 - Sentiero circolare di Valtina - 12",
-      "componentCount": 3,
-      "reconstructedDistanceKm": 15.52,
-      "officialDistanceKm": 22.5,
-      "distanceDeltaPercent": -31
-    },
     "osm-7388748": {
       "pathContainmentPercent": 100,
       "externalRelationId": "relation/7388748",
@@ -1433,21 +1416,6 @@
       "reconstructedDistanceKm": 4.01,
       "officialDistanceKm": 6.4,
       "distanceDeltaPercent": -37.3
-    },
-    "osm-12189165": {
-      "pathContainmentPercent": 100,
-      "externalRelationId": "relation/12189165",
-      "checkedAt": "2026-09-06T09:26:42.947Z",
-      "reviewState": "blocked",
-      "blockers": [
-        "not-closed-loop"
-      ],
-      "closedLoop": false,
-      "relationName": "Rundweg Schwarzegg - Sentiero circolare Dosso Nero",
-      "componentCount": 1,
-      "reconstructedDistanceKm": 10.73,
-      "officialDistanceKm": 10.6,
-      "distanceDeltaPercent": 1.2
     },
     "osm-12190538": {
       "pathContainmentPercent": 100,

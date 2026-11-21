@@ -253,7 +253,7 @@ describe('the score says whose it is', () => {
 
   test('browse names the dog it actually scored', () => {
     expect(browse).toContain('function scoredSubjectLabel()');
-    expect(browse).toContain('${esc(scoredSubjectLabel())}');
+    expect(browse).toContain('const who = scoredSubjectLabel();');
     // The claim that was there before, made of whatever was in the scorer.
     expect(browse).not.toContain('<small>FOR YOUR DOG</small>');
   });
@@ -314,7 +314,7 @@ describe('the number is gone from browse', () => {
   const home=require('fs').readFileSync('script.js','utf8');
 
   test('the card leads with the verdict, not a percentage', () => {
-    expect(browse).toContain('<strong>${tier}</strong>');
+    expect(browse).toContain('<span class="tcard__verdict tcard__verdict--${tierClass}">${esc(tier)}');
     expect(browse).not.toContain('<strong>${match}<span>%</span></strong>');
     expect(browse).not.toContain('MATCH FOR YOUR DOG');
   });
