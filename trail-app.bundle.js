@@ -13867,21 +13867,10 @@ function initDetailPois(map, trail){
       type: 'geojson',
       data: { type: 'FeatureCollection', features },
     });
-    map.addLayer({
-      id: sourceId + '-layer-lowzoom',
-      type: 'circle',
-      source: sourceId,
-      filter: ['!', ['has', 'point_count']],
-      maxzoom: iconMinZoom,
-      layout: { visibility: DEFAULT_VISIBLE_GROUPS.has(group) ? 'visible' : 'none' },
-      paint: {
-        'circle-radius': 4,
-        'circle-color': circleColor,
-        'circle-opacity': 0.7,
-        'circle-stroke-width': 1.25,
-        'circle-stroke-color': '#fff',
-      },
-    });
+    // No small unlabelled dots below the icon zoom: the homepage map has none,
+    // and on the trail page a row of blue, green and brown dots said nothing
+    // a reader could use (owner, 19 Nov). The icons and names come in at
+    // iconMinZoom, as they do on the homepage map.
     map.addLayer({
       id: sourceId + '-layer',
       type: 'symbol',
@@ -13914,11 +13903,11 @@ function initDetailPois(map, trail){
         'text-halo-width': 2,
       },
     });
-    [sourceId + '-layer', sourceId + '-layer-lowzoom'].forEach((layerId) => {
+    [sourceId + '-layer'].forEach((layerId) => {
       map.on('mouseenter', layerId, () => { map.getCanvas().style.cursor = 'pointer'; });
       map.on('mouseleave', layerId, () => { map.getCanvas().style.cursor = ''; });
     });
-    [sourceId + '-layer', sourceId + '-layer-lowzoom'].forEach((layerId) => map.on('click', layerId, (e) => {
+    [sourceId + '-layer'].forEach((layerId) => map.on('click', layerId, (e) => {
       const f = e.features[0];
       new maplibregl.Popup({ offset: 10, maxWidth: '220px' })
         .setLngLat(f.geometry.coordinates)
@@ -16402,9 +16391,19 @@ function initTrailReports(map, trail){
   // card, "Good all year" when every month suits. A run across New Year reads
   // as one run.
   function bestTime(season, short) {
+    const range = bestRange(season, short);
+    if (!range) return '';
+    if (range === ALL_YEAR) return tx('Good all year');
+    return tx('Best time: {range}', { range });
+  }
+
+  // The months alone: "June to October", "Jun–Oct", "March, June to October".
+  // ALL_YEAR when every month suits, '' when the walk has no season record.
+  const ALL_YEAR = 'all-year';
+  function bestRange(season, short) {
     const best = bestMonths(season);
     if (!best) return '';
-    if (best.length === 12) return tx('Good all year');
+    if (best.length === 12) return ALL_YEAR;
     const set = new Set(best);
     const name = m => (short ? monthName(m).slice(0, 3) : monthName(m));
     const runs = [];
@@ -16414,7 +16413,26 @@ function initTrailReports(map, trail){
       while (set.has(end === 12 ? 1 : end + 1)) end = end === 12 ? 1 : end + 1;
       runs.push(end === m ? name(m) : (short ? `${name(m)}–${name(end)}` : tx('{from} to {to}', { from: name(m), to: name(end) })));
     }
-    return tx('Best time: {range}', { range: runs.join(', ') });
+    return runs.join(', ');
+  }
+
+  // The homepage card's season line, tagged like its "Fits" and "Watch" lines:
+  // "In season" Best March to November, or "Out of season" Back in June. Same
+  // outOfSeason rule as the tag, the map pins and the score. A dog risk this
+  // month (ticks, heat, salt…) follows an in-season line. null without a record.
+  function seasonFit(season, month) {
+    const range = bestRange(season);
+    if (!range || !month) return null;
+    const back = backInSeason(season, month);
+    if (back) return { out: true, lead: tx('Out of season'), facts: tx('back in {month}', { month: monthName(back) }), risks: '' };
+    const facts = range === ALL_YEAR ? tx('good all year') : tx('best {range}', { range });
+    const risks = dogSeasonsNow(season, month).map(risk => risk.label.charAt(0).toLowerCase() + risk.label.slice(1));
+    return {
+      out: false,
+      lead: tx('In season now'),
+      facts,
+      risks: risks.length ? tx('This month: {risks}', { risks: risks.join(', ') }) : '',
+    };
   }
 
   // The month an out-of-season walk comes back into season: the next of its
@@ -16455,7 +16473,7 @@ function initTrailReports(map, trail){
     return now.concat(later);
   }
 
-  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, WINTER_WALK_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, dayMonth, liftLine, roadLine, hutLine, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime, backInSeason, cameBackThisMonth, outOfSeasonTag, inSeasonFirst, DOG_SEASON_TAGS, dogSeasonsNow, WINTER_SUN_MONTHS, SUNNY_WINTER_HOURS, SHADY_WINTER_HOURS, winterSunTag, winterSunLine };
+  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, WINTER_WALK_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, dayMonth, liftLine, roadLine, hutLine, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime, bestRange, seasonFit, backInSeason, cameBackThisMonth, outOfSeasonTag, inSeasonFirst, DOG_SEASON_TAGS, dogSeasonsNow, WINTER_SUN_MONTHS, SUNNY_WINTER_HOURS, SHADY_WINTER_HOURS, winterSunTag, winterSunLine };
   global.DoloPawsTrailSeasonWords = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);
@@ -18835,6 +18853,7 @@ function renderTrail(t){
       setLayerChipLabel(document.getElementById('routesToggle'), 'routes', tx('Trail routes'));
       setLayerChipLabel(document.getElementById('liftsToggle'), 'lifts', tx('Lift stations'));
       setLayerChipLabel(document.getElementById('nearbyToggle'), 'nearby', tx('Nearby trails'));
+      setLayerChipLabel(document.getElementById('contoursToggle'), 'mountain', tx('Contour lines'));
       addTerrainSource(map);
       increaseLabelDensity(map);
       addTerrainToggle(map, 'trailDetailMap', 1.5, 45,
@@ -18958,13 +18977,29 @@ function renderTrail(t){
         walk: Array.isArray(t.path) ? t.path.map(([lat, lng]) => [lng, lat]) : null,
       });
       if (typeof addBaseHillshade === 'function') addBaseHillshade(map, window.ORMAMapStyle.networkLayerId(map));
-      // Elevation contours from the same DEM -- the detail a street basemap
-      // lacks. Lazy-loaded and fully guarded: if the plugin fails, the map is
-      // unchanged.
-      if (window.DoloPawsMapRuntime && window.DoloPawsMapRuntime.loadContour) {
-        window.DoloPawsMapRuntime.loadContour()
-          .then(() => window.ORMAMapStyle.addContours(map))
-          .catch(() => {});
+      // Elevation contours from the same DEM, now a Layers chip that starts
+      // off: drawn by default they read as a second, dashed path network and
+      // the map did not look like the homepage map (owner, 19 Nov).
+      // Lazy-loaded on the first press and fully guarded: if the plugin
+      // fails, the map is unchanged.
+      const contoursToggleBtn = document.getElementById('contoursToggle');
+      if (contoursToggleBtn && window.DoloPawsMapRuntime && window.DoloPawsMapRuntime.loadContour) {
+        contoursToggleBtn.hidden = false;
+        let contoursReady = null;
+        contoursToggleBtn.addEventListener('click', () => {
+          const showing = contoursToggleBtn.classList.toggle('on');
+          contoursToggleBtn.setAttribute('aria-pressed', showing ? 'true' : 'false');
+          if (!contoursReady) {
+            contoursReady = window.DoloPawsMapRuntime.loadContour()
+              .then(() => window.ORMAMapStyle.addContours(map))
+              .catch(() => null);
+          }
+          contoursReady.then(() => {
+            ['contour-lines', 'contour-labels'].forEach(id => {
+              if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', contoursToggleBtn.classList.contains('on') ? 'visible' : 'none');
+            });
+          });
+        });
       }
       const routesToggleBtn = document.getElementById('routesToggle');
       if (routesToggleBtn){
@@ -21638,6 +21673,12 @@ if(document.querySelector('.td2')){
       .map(item => cardMessage(item, translate, tr, extra)).filter(Boolean);
     const cardCautions = cardMessages(recommendation.hardStops).concat(cardMessages(rankedCautions));
     const cardTrailUnknowns = cardMessages(rawUnknowns.filter(item => !isDogGap(item)));
+    // The cautions with each line's code, so the homepage card can leave out
+    // the one its season line already says.
+    const withCodes = items => (Array.isArray(items) ? items : []).filter(Boolean)
+      .map(item => ({ code:item.code || '', text:cardMessage(item, translate, tr, extra) }))
+      .filter(entry => entry.text);
+    const cardCautionItems = withCodes(recommendation.hardStops).concat(withCodes(rankedCautions));
 
     // The trail page's rows (see ROW_TOPICS): what stops the walk, then what
     // cost points, most first, then notes, then everything that fits.
@@ -21734,6 +21775,7 @@ if(document.querySelector('.td2')){
       // For the homepage card's check lines (see CARD_SENTENCES).
       cardCautions:cardCautions.slice(0, 4),
       cardTrailUnknowns:cardTrailUnknowns.slice(0, 5),
+      cardCautionItems:cardCautionItems.slice(0, 4),
       additionalUnknowns:Math.max(0, unknowns.length - 5),
       heroSummary:dogName
         ? tr('recommendation.hero.dog', '{conclusion} for {name}.', {
