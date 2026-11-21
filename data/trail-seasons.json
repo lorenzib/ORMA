@@ -1044,6 +1044,18 @@
         "highPoint": 2248
       }
     },
+    "corio-sentiero-del-redio": {
+      "highPoint": 1268,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1268
+      }
+    },
     "cortina-castello-di-botestagno": {
       "highPoint": 1488,
       "recommended": {
@@ -7199,6 +7211,30 @@
         "highPoint": 1954
       }
     },
+    "settimo-vittone-pergole-castagneti": {
+      "highPoint": 459,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/807719711",
+          "accessedAt": "2026-11-21"
+        }
+      }
+    },
     "steinegg-pyramidenrundweg": {
       "highPoint": 983,
       "snow": {
@@ -8003,6 +8039,30 @@
           "label": "Outdooractive",
           "url": "https://www.outdooractive.com/it/r/812014696",
           "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "valchiusella-cima-bossola": {
+      "highPoint": 1477,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/255063717",
+          "accessedAt": "2026-11-21"
         }
       }
     },
