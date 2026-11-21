@@ -2148,6 +2148,16 @@
       "name": "The earth pyramids of Zone",
       "slug": "piramidi-di-zone-riserva-naturale",
       "gloss": "a short loop through the nature reserve of the Zone earth pyramids, tall columns of glacial clay capped by boulders"
+    },
+    "veneto-sentiero-forte-enna": {
+      "name": "Forte Enna Loop above Torrebelvicino",
+      "slug": "forte-enna-loop-torrebelvicino",
+      "gloss": "a wooded loop on Monte Enna to a First World War fort, with views over the Val Leogra"
+    },
+    "veneto-sentiero-dei-roccoli": {
+      "name": "Roccoli Path from the Mucciòn",
+      "slug": "roccoli-path-muccion",
+      "gloss": "a short ridge loop from the little Mucciòn church past old bird-catching sites"
     }
   }
 }

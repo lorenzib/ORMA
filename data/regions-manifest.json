@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-21T00:48:11.263Z",
+  "generatedAt": "2026-11-21T01:10:10.324Z",
   "regions": {
     "dolomites": {
       "trailCount": 381,
-      "trails": "data/regions/dolomites-trails.js?v=8acbd4b5140f",
+      "trails": "data/regions/dolomites-trails.js?v=e8a61084d729",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=6b1cc3a2fbef",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
@@ -582,11 +582,13 @@
       "optional": []
     },
     "veneto": {
-      "trailCount": 2,
-      "trails": "data/regions/veneto-trails.js?v=8f369a008f7b",
+      "trailCount": 4,
+      "trails": "data/regions/veneto-trails.js?v=ad0aa9adda61",
       "details": {
         "veneto-archeovia-campetto-cima-marana": "data/trail-details/veneto-archeovia-campetto-cima-marana.js?v=e2bd1bee34db",
-        "veneto-anello-del-muccion": "data/trail-details/veneto-anello-del-muccion.js?v=2ea10667fa72"
+        "veneto-anello-del-muccion": "data/trail-details/veneto-anello-del-muccion.js?v=2ea10667fa72",
+        "veneto-sentiero-forte-enna": "data/trail-details/veneto-sentiero-forte-enna.js?v=ffd585e70435",
+        "veneto-sentiero-dei-roccoli": "data/trail-details/veneto-sentiero-dei-roccoli.js?v=92e8e2f61b0c"
       },
       "water": "data/regions/veneto-water.geojson",
       "hutsBars": "data/regions/veneto-huts-bars.geojson",
@@ -1170,6 +1172,8 @@
     "valsusa-san-giorio-geat-montebenedetto": "piedmont",
     "veneto-archeovia-campetto-cima-marana": "veneto",
     "veneto-anello-del-muccion": "veneto",
+    "veneto-sentiero-forte-enna": "veneto",
+    "veneto-sentiero-dei-roccoli": "veneto",
     "osttirol-rundwanderung-schloss-weissenstein": "tyrol",
     "osttirol-naturkraftweg-umbalfaelle": "tyrol",
     "osttirol-kulturweg-koednitz": "tyrol",
@@ -1770,6 +1774,8 @@
     "veneto-anello-del-muccion": "muccion-loop-valdagno",
     "iseo-riva-di-solto": "giro-panoramico-riva-di-solto",
     "iseo-piramidi-zone": "piramidi-di-zone-riserva-naturale",
+    "veneto-sentiero-forte-enna": "forte-enna-loop-torrebelvicino",
+    "veneto-sentiero-dei-roccoli": "roccoli-path-muccion",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2327,6 +2333,8 @@
     "muccion-loop-valdagno": "veneto-anello-del-muccion",
     "giro-panoramico-riva-di-solto": "iseo-riva-di-solto",
     "piramidi-di-zone-riserva-naturale": "iseo-piramidi-zone",
+    "forte-enna-loop-torrebelvicino": "veneto-sentiero-forte-enna",
+    "roccoli-path-muccion": "veneto-sentiero-dei-roccoli",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

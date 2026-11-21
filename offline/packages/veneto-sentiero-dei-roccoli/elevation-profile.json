@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "veneto-sentiero-dei-roccoli",
+  "distanceKm": 2.8,
+  "ascentM": 72,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 657
+    },
+    {
+      "km": 0.2,
+      "elev": 644
+    },
+    {
+      "km": 0.5,
+      "elev": 661
+    },
+    {
+      "km": 0.7,
+      "elev": 663
+    },
+    {
+      "km": 0.9,
+      "elev": 662
+    },
+    {
+      "km": 1.1,
+      "elev": 677
+    },
+    {
+      "km": 1.3,
+      "elev": 705
+    },
+    {
+      "km": 1.5,
+      "elev": 703
+    },
+    {
+      "km": 1.7,
+      "elev": 698
+    },
+    {
+      "km": 1.9,
+      "elev": 693
+    },
+    {
+      "km": 2.1,
+      "elev": 663
+    },
+    {
+      "km": 2.4,
+      "elev": 641
+    },
+    {
+      "km": 2.6,
+      "elev": 644
+    },
+    {
+      "km": 2.8,
+      "elev": 657
+    }
+  ]
+}
