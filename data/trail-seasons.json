@@ -10129,6 +10129,54 @@
         "likelihood": "occasional",
         "highPoint": 611
       }
+    },
+    "veneto-sentiero-forte-enna": {
+      "highPoint": 955,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/809321294",
+          "accessedAt": "2026-11-21"
+        }
+      }
+    },
+    "veneto-sentiero-dei-roccoli": {
+      "highPoint": 705,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/809321755",
+          "accessedAt": "2026-11-21"
+        }
+      }
     }
   }
 }

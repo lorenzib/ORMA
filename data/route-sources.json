@@ -4145,6 +4145,22 @@
       "quote": "Distanza 2,6 km · Durata 0:55 h · Salita 162 m · Discesa 161 m · Punto più alto 617 m · Punto più basso 455 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-19T12:00:00.000Z"
+    },
+    "veneto-sentiero-forte-enna": {
+      "url": "https://www.outdooractive.com/it/r/809321294",
+      "publisher": "UM.PASUBIO (Unione Montana Pasubio Alto Vicentino) (Outdooractive)",
+      "name": "Sentiero del Forte Enna",
+      "quote": "Distanza 9,4 km · Durata 3:00 h · Salita 368 m · Discesa 367 m · Difficoltà T2",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-21T12:00:00.000Z"
+    },
+    "veneto-sentiero-dei-roccoli": {
+      "url": "https://www.outdooractive.com/it/r/809321755",
+      "publisher": "UM.PASUBIO (Unione Montana Pasubio Alto Vicentino) (Outdooractive)",
+      "name": "Sentiero dei Roccoli",
+      "quote": "Distanza 2,8 km · Durata 0:50 h · Salita 72 m · Discesa 73 m · Difficoltà T1",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-21T12:00:00.000Z"
     }
   }
 }

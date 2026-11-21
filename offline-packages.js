@@ -460,6 +460,8 @@
     'valtellina-rifugi-porro-e-ventina': "Chiareggio to the Porro and Ventina huts",
     'veneto-anello-del-muccion': "Mucciòn Loop above Valdagno",
     'veneto-archeovia-campetto-cima-marana': "Archeovia Campetto to Cima Marana",
+    'veneto-sentiero-dei-roccoli': "Roccoli Path from the Mucciòn",
+    'veneto-sentiero-forte-enna': "Forte Enna Loop above Torrebelvicino",
     'villnoess-da-russis-fino-al-passo-delle-erbe': "Ponte Russis to Passo delle Erbe",
     'villnoess-dolorama-3a-tappa': "Dolorama stage 3: Rifugio Genova to Resciesa",
     'villnoess-ranui-zannes': "Ranui to Zannes",
