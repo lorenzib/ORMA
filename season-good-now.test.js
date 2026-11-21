@@ -47,12 +47,11 @@ describe('where it is used', () => {
     expect(read('homepage-search.js')).toMatch(/inSeasonFirst\(ranked/);
   });
 
-  test('the guest homepage has a good-walks-this-month row', () => {
+  test('the guest homepage has no separate good-walks-this-month row', () => {
+    // Removed 21 Nov 2026 (owner): it repeated the Featured this week row.
     const src = read('homepage-search.js');
-    expect(src).toContain("tx('Good Dolomites walks for {month}'");
-    expect(src).toContain("var GOOD_NOW_REGION = 'dolomites';");
-    expect(src).toMatch(/t\.region !== GOOD_NOW_REGION/);
-    expect(src).toMatch(/function goodNow\(/);
+    expect(src).not.toContain('Good Dolomites walks for {month}');
+    expect(src).not.toMatch(/function goodNow\(/);
   });
 
   test('the tags say when the walk is back', () => {
