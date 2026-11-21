@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-20T23:14:53.046Z",
+  "generatedAt": "2026-11-21T02:20:01.852Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:snow-ice:piemonte",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-11-22T00:00:00+00:00",
       "expiresAt": "2026-11-22T22:59:00+00:00",
       "firstPublishedAt": "2026-11-20T23:14:53.046Z",
-      "lastSeenAt": "2026-11-20T23:14:53.046Z",
+      "lastSeenAt": "2026-11-21T02:20:01.852Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "valsesia-gta-tappa-21-campello-monti-rimella",
@@ -52,7 +52,8 @@
         "Juniper Trail, Foresto",
         "Orrido and Chouqué di Margrit, Chianocco",
         "Rifugio GEAT and Certosa di Montebenedetto Loop, San Giorio"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-italy:snow-ice:valle-d-aosta",
@@ -69,7 +70,7 @@
       "effectiveAt": "2026-11-22T00:00:00+00:00",
       "expiresAt": "2026-11-22T22:59:00+00:00",
       "firstPublishedAt": "2026-11-20T23:14:53.046Z",
-      "lastSeenAt": "2026-11-20T23:14:53.046Z",
+      "lastSeenAt": "2026-11-21T02:20:01.852Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "aosta-ru-courtaud",
@@ -86,7 +87,8 @@
         "Sentiero della Regina",
         "Strada Lombarda",
         "Alpenzù Piccolo and Alpenzù Grande"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-france:avalanches:haute-savoie",
@@ -103,7 +105,7 @@
       "effectiveAt": "2026-11-20T17:00:00+00:00",
       "expiresAt": "2026-11-21T23:00:00+00:00",
       "firstPublishedAt": "2026-11-14T17:12:32.717Z",
-      "lastSeenAt": "2026-11-20T23:14:53.046Z",
+      "lastSeenAt": "2026-11-21T02:20:01.852Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -156,7 +158,7 @@
       "effectiveAt": "2026-11-20T17:00:00+00:00",
       "expiresAt": "2026-11-21T23:00:00+00:00",
       "firstPublishedAt": "2026-11-15T05:15:17.285Z",
-      "lastSeenAt": "2026-11-20T23:14:53.046Z",
+      "lastSeenAt": "2026-11-21T02:20:01.852Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -195,7 +197,7 @@
       "effectiveAt": "2026-11-20T17:00:00+00:00",
       "expiresAt": "2026-11-21T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-20T23:14:53.046Z",
+      "lastSeenAt": "2026-11-21T02:20:01.852Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -310,7 +312,7 @@
       "effectiveAt": "2026-11-22T12:00:00+00:00",
       "expiresAt": "2026-11-22T22:59:00+00:00",
       "firstPublishedAt": "2026-11-20T23:14:53.046Z",
-      "lastSeenAt": "2026-11-20T23:14:53.046Z",
+      "lastSeenAt": "2026-11-21T02:20:01.852Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
@@ -335,7 +337,8 @@
         "Anello Casera Vas - Casera Monte Buoi",
         "Dal Passo Rest al Monte Rest",
         "MIRABILA - Sentiero botanico del Bila Pec"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-italy:thunderstorm:veneto",
@@ -352,7 +355,7 @@
       "effectiveAt": "2026-11-22T00:00:00+00:00",
       "expiresAt": "2026-11-22T22:59:00+00:00",
       "firstPublishedAt": "2026-11-20T23:14:53.046Z",
-      "lastSeenAt": "2026-11-20T23:14:53.046Z",
+      "lastSeenAt": "2026-11-21T02:20:01.852Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -383,7 +386,9 @@
         "auronzo-namos",
         "alleghe-dolomiti-in-miniatura",
         "dolomitiunesco-pecol-malga-pioda",
-        "auronzo-pian-di-barco"
+        "auronzo-pian-di-barco",
+        "veneto-archeovia-campetto-cima-marana",
+        "veneto-anello-del-muccion"
       ],
       "trailNames": [
         "Passo Giau to Rifugio Nuvolau",
@@ -414,8 +419,11 @@
         "Santa Caterina to Pian de Namos",
         "Dolomites in Miniature, San Tomaso Agordino",
         "Pecòl to Malga Pioda",
-        "Santa Caterina to Pian di Barco"
-      ]
+        "Santa Caterina to Pian di Barco",
+        "Archeovia Campetto to Cima Marana",
+        "Mucciòn Loop above Valdagno"
+      ],
+      "sourceStatus": "available"
     }
   ]
 }
