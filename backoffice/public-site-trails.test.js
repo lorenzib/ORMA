@@ -302,8 +302,14 @@ describe('the existing-site verification boundary',()=>{
     // Then 557 and 555 with the second Veneto batch from UM.PASUBIO: the
     // Forte Enna loop above Torrebelvicino and the Roccoli path from the
     // Mucciòn church (each walking a stretch twice, as the board's line does).
-    expect(catalogue).toHaveLength(557);
-    expect(currentSiteTrails(catalogue)).toHaveLength(555);
+    // Then 561 and 559 with the second Val Susa batch: the Chiotetti loop at
+    // Bruzolo, Alpe Toglie from Mattie, the Sentier8 at Mompantero and the
+    // Forte di Santa Chiara from Giaglione.
+    // Then 564 and 562 with the first Canavese walks from CANAVESE VILLAGE
+    // (Turismo in Canavese): the vineyard loop at Settimo Vittone, Cima
+    // Bossola in Valchiusella and the Sentiero del Redìo at Corio.
+    expect(catalogue).toHaveLength(564);
+    expect(currentSiteTrails(catalogue)).toHaveLength(562);
   });
 
   test('requires the artwork the public trail page needs',()=>{

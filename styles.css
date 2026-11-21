@@ -2489,7 +2489,10 @@ body.map-fs-open{overflow:hidden;}
 .browse-season{display:inline-flex;align-items:center;min-height:22px;padding:2px 9px;border-radius:999px;font:700 11px/1.2 'Inter',sans-serif;white-space:nowrap;}
 .browse-season--best{background:#EEF0EA;color:#3C4A3A;}
 .browse-season--out{background:#F6E3DE;color:#7A2E1E;}
+.browse-season--back{background:#DCEBDD;color:#2C5C34;}
 .browse-season--dog{background:#F7EBD2;color:#6D4916;}
+.browse-season--sun-sunny{background:#FBEFC4;color:#6B5100;}
+.browse-season--sun-shady{background:#DDE7F3;color:#24476B;}
 .hp-community{margin:28px 0 8px;background:#fff;border:1px solid var(--paper-line);border-radius:16px;padding:20px 24px;}
 .hp-community-kick{font-family:'Inter',sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
 .hp-community-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}

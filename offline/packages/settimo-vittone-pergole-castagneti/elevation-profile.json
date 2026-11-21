@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "settimo-vittone-pergole-castagneti",
+  "distanceKm": 6.7,
+  "ascentM": 308,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 277
+    },
+    {
+      "km": 0.5,
+      "elev": 330
+    },
+    {
+      "km": 1,
+      "elev": 431
+    },
+    {
+      "km": 1.5,
+      "elev": 459
+    },
+    {
+      "km": 2,
+      "elev": 412
+    },
+    {
+      "km": 2.6,
+      "elev": 337
+    },
+    {
+      "km": 3.1,
+      "elev": 386
+    },
+    {
+      "km": 3.6,
+      "elev": 440
+    },
+    {
+      "km": 4.1,
+      "elev": 383
+    },
+    {
+      "km": 4.6,
+      "elev": 343
+    },
+    {
+      "km": 5.1,
+      "elev": 323
+    },
+    {
+      "km": 5.6,
+      "elev": 271
+    },
+    {
+      "km": 6.1,
+      "elev": 281
+    },
+    {
+      "km": 6.7,
+      "elev": 276
+    }
+  ]
+}

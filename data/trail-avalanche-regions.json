@@ -394,6 +394,13 @@
       ],
       "highPoint": 1460
     },
+    "corio-sentiero-del-redio": {
+      "regions": [
+        "IT-21-TO-03",
+        "IT-21-TO-04"
+      ],
+      "highPoint": 1268
+    },
     "cortina-anello-dei-tre-rifugi": {
       "regions": [
         "IT-32-BZ-19",
@@ -2529,6 +2536,13 @@
       ],
       "highPoint": 2316
     },
+    "valchiusella-cima-bossola": {
+      "regions": [
+        "IT-21-TO-03",
+        "IT-21-TO-04"
+      ],
+      "highPoint": 1477
+    },
     "valchiusella-fondo-tissone-tallorno": {
       "regions": [
         "IT-21-TO-03",
@@ -2837,6 +2851,13 @@
       ],
       "highPoint": 1919
     },
+    "valsusa-bruzolo-anello-chiotetti": {
+      "regions": [
+        "IT-21-TO-02",
+        "IT-21-TO-04"
+      ],
+      "highPoint": 1109
+    },
     "valsusa-chianocco-orrido-chouque": {
       "regions": [
         "IT-21-TO-02",
@@ -2851,12 +2872,34 @@
       ],
       "highPoint": 743
     },
+    "valsusa-giaglione-forte-santa-chiara": {
+      "regions": [
+        "IT-21-TO-02",
+        "IT-21-TO-03",
+        "IT-21-TO-04"
+      ],
+      "highPoint": 1499
+    },
     "valsusa-giaglione-vigne-mandorli": {
       "regions": [
         "IT-21-TO-03",
         "IT-21-TO-04"
       ],
       "highPoint": 821
+    },
+    "valsusa-mattie-alpe-toglie": {
+      "regions": [
+        "IT-21-TO-02",
+        "IT-21-TO-04"
+      ],
+      "highPoint": 1508
+    },
+    "valsusa-mompantero-sentier8": {
+      "regions": [
+        "IT-21-TO-02",
+        "IT-21-TO-04"
+      ],
+      "highPoint": 991
     },
     "valsusa-san-giorio-geat-montebenedetto": {
       "regions": [

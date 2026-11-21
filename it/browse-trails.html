@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css?v=20261123-7">
+<link rel="stylesheet" href="/styles.css?v=20261126-3">
 <style>
   /* Guest bar, the homepage component reused verbatim; CTA is a link here */
   a.hp-guestbar-cta{display:inline-flex;align-items:center;text-decoration:none;white-space:nowrap;}
@@ -60,6 +60,8 @@
   .browse-season--best{background:#EEF0EA;color:#3C4A3A;}
   .browse-season--out{background:#F6E3DE;color:#7A2E1E;}
   .browse-season--dog{background:#F7EBD2;color:#6D4916;}
+  .browse-season--sun-sunny{background:#FBEFC4;color:#6B5100;}
+  .browse-season--sun-shady{background:#DDE7F3;color:#24476B;}
   .browse-card-actions{display:flex;align-items:center;gap:8px;}
   .browse-card-compare{display:inline-flex;align-items:center;justify-content:center;min-height:36px;border-radius:var(--radius-pill);font:700 10.5px 'Inter',sans-serif;border:1px solid var(--paper-line);background:#fff;color:var(--ink-soft);padding:6px 12px;cursor:pointer;}
   .browse-card-compare[aria-pressed="true"]{background:#EAF3EC;border-color:#7EAD91;color:#24462E;}
@@ -933,19 +935,26 @@
 <a href="/it/trails/sentiero-della-regina-gressoney.html" style="display:block;color:inherit;">Sentiero della Regina</a>
 <a href="/it/trails/strada-lombarda-gressoney.html" style="display:block;color:inherit;">Strada Lombarda</a>
 <p style="font-weight:700;color:var(--ink);break-inside:avoid;">Piemonte, Italia</p>
+<a href="/it/trails/alpe-toglie-mattie.html" style="display:block;color:inherit;">Alpe Toglie da Mattie, andata e ritorno</a>
 <a href="/it/trails/gta-campello-monti-rimella.html" style="display:block;color:inherit;">Da Campello Monti a Rimella per la Bocchetta</a>
 <a href="/it/trails/campello-monti-alpe-fornale.html" style="display:block;color:inherit;">Da Campello Monti all’Alpe Fornale di Sopra</a>
 <a href="/it/trails/campello-monti-colle-usciolo.html" style="display:block;color:inherit;">Da Campello Monti al Colle dell’Usciolo</a>
 <a href="/it/trails/campello-monti-lago-capezzone.html" style="display:block;color:inherit;">Da Campello Monti al Lago del Capezzone</a>
 <a href="/it/trails/cervatto-madonna-del-balmone.html" style="display:block;color:inherit;">Da Cervatto alla Madonna del Balmone</a>
 <a href="/it/trails/carbonaie-path-talucco.html" style="display:block;color:inherit;">Sentiero delle Carbonaie al Talucco</a>
+<a href="/it/trails/chiotetti-loop-bruzolo.html" style="display:block;color:inherit;">Anello dei Chiotetti a Bruzolo</a>
+<a href="/it/trails/cima-bossola-valchiusella.html" style="display:block;color:inherit;">Cima Bossola in Valchiusella</a>
 <a href="/it/trails/fondo-tissone-tallorno-loop.html" style="display:block;color:inherit;">Anello Fondo, Tissone e Tallorno in Valchiusella</a>
+<a href="/it/trails/forte-santa-chiara-giaglione.html" style="display:block;color:inherit;">Forte di Santa Chiara da Giaglione, andata e ritorno</a>
 <a href="/it/trails/giro-del-ginepro-carcoforo.html" style="display:block;color:inherit;">Giro del Ginepro da Carcoforo</a>
 <a href="/it/trails/juniper-trail-foresto.html" style="display:block;color:inherit;">Sentiero dei Ginepri a Foresto</a>
 <a href="/it/trails/lower-owl-trail-venaus.html" style="display:block;color:inherit;">Sentiero dei Gufi basso a Venaus, andata e ritorno</a>
 <a href="/it/trails/mulino-turcin-loop-lanzo.html" style="display:block;color:inherit;">Anello del Mulino Turcin a Lanzo Torinese</a>
 <a href="/it/trails/orrido-chouque-margrit-chianocco.html" style="display:block;color:inherit;">L’Orrido e il Chouqué di Margrit a Chianocco</a>
+<a href="/it/trails/pergolas-chestnut-woods-settimo-vittone.html" style="display:block;color:inherit;">Tra pergole e castagneti a Settimo Vittone</a>
 <a href="/it/trails/geat-montebenedetto-loop-san-giorio.html" style="display:block;color:inherit;">Anello del Rifugio GEAT e della Certosa di Montebenedetto</a>
+<a href="/it/trails/sentier8-loop-mompantero.html" style="display:block;color:inherit;">Il Sentier8 a Mompantero</a>
+<a href="/it/trails/sentiero-del-redio-corio.html" style="display:block;color:inherit;">Il Sentiero del Redìo a Corio</a>
 <a href="/it/trails/sentiero-delle-anime-traversella.html" style="display:block;color:inherit;">Sentiero delle Anime a Traversella</a>
 <a href="/it/trails/vineyards-almond-trees-loop-giaglione.html" style="display:block;color:inherit;">Le alture delle viti e dei mandorli a Giaglione</a>
 <p style="font-weight:700;color:var(--ink);break-inside:avoid;">Veneto, Italia</p>
@@ -1068,11 +1077,11 @@
 </footer>
 
 <script src="/mobile-nav.js?v=20261030-1"></script>
-<script src="/i18n.js?v=20261126-1"></script>
+<script src="/i18n.js?v=20261126-4"></script>
 <script src="/trust/evidence-v1.js?v=20261006-2"></script>
 <script src="/trail-trust.js?v=20261118-1"></script>
-<script src="/scoring/recommendation-v1.js?v=20260917-1"></script>
-<script src="/scoring/recommendation-adapters-v1.js?v=20261119-7"></script>
+<script src="/scoring/recommendation-v1.js?v=20261126-3"></script>
+<script src="/scoring/recommendation-adapters-v1.js?v=20261126-3"></script>
 <script src="/scoring-conditions.js?v=1"></script>
 <script src="/route-return.js?v=20261106-2"></script>
 <script src="/scoring.js?v=20260815-4"></script>
@@ -1085,7 +1094,7 @@
 <script src="/guest-context.js?v=20261030-1" defer></script>
 <script src="/auth-ui.js?v=20261030-1" defer></script>
 <script src="/discovery-state.js?v=20261125-4" defer></script>
-<script src="/trail-season-words.js?v=20261112-1" defer></script>
+<script src="/trail-season-words.js?v=20261126-3" defer></script>
 <script src="/discovery-filters.js?v=20261125-4" defer></script>
 <script src="/comparison-state.js?v=20260815-4" defer></script>
 <script src="/area-dropdown.js?v=20260823-2"></script>
@@ -1170,7 +1179,10 @@
       // Seasonal risks to dogs, only in the months they apply.
       const dog = (words.dogSeasonsNow ? words.dogSeasonsNow(trail.season, new Date().getMonth() + 1) : [])
         .map(risk => `<span class="browse-season browse-season--dog">${esc(risk.label)}</span>`).join('');
-      return `${out}<span class="browse-season browse-season--best">${esc(best)}</span>${dog}`;
+      // "Sunny in winter" or "Little winter sun", November to February.
+      const sunTag = words.winterSunTag ? words.winterSunTag(trail.season, new Date().getMonth() + 1) : null;
+      const sun = sunTag ? `<span class="browse-season browse-season--sun-${sunTag.kind}">${esc(sunTag.label)}</span>` : '';
+      return `${out}<span class="browse-season browse-season--best">${esc(best)}</span>${dog}${sun}`;
     }
     const esc = value => String(value == null ? '' : value).replace(/[&<>"']/g, char => ({
       '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;',

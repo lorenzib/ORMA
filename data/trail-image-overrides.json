@@ -1023,6 +1023,23 @@
       }
     },
     {
+      "id": "corio-sentiero-del-redio",
+      "approvedReviewId": "commons-corio-sentiero-del-redio-on-route",
+      "approvedAt": "2026-11-21T10:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/corio-pilone-redio.jpg",
+        "heroImage": "images/trails/corio-pilone-redio.jpg",
+        "imageAlt": "A small stone wayside shrine with a painted saint on blue tiles, in a green meadow with ferns at the edge of a wood",
+        "imageCredit": "A wayside shrine on the Sentiero del Redìo above Corio",
+        "imageCreditText": "A wayside shrine on the Sentiero del Redìo above Corio by Jrachi",
+        "imageCreator": "Jrachi",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:PV_Corio_130.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "cortina-anello-dei-tre-rifugi",
       "approvedReviewId": "commons-cortina-anello-dei-tre-rifugi-on-route",
       "approvedAt": "2026-11-09T21:00:00.000Z",
@@ -7236,6 +7253,23 @@
       }
     },
     {
+      "id": "settimo-vittone-pergole-castagneti",
+      "approvedReviewId": "commons-settimo-vittone-pergole-castagneti-on-route",
+      "approvedAt": "2026-11-21T10:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/settimo-vittone-pieve-mulattiera.jpg",
+        "heroImage": "images/trails/settimo-vittone-pieve-mulattiera.jpg",
+        "imageAlt": "A cobbled mule track between dry-stone walls below an old stone church with a bell tower, with green mountains behind",
+        "imageCredit": "The mule track below the Pieve di San Lorenzo, Settimo Vittone",
+        "imageCreditText": "The mule track below the Pieve di San Lorenzo, Settimo Vittone by Mathieu Brossais",
+        "imageCreator": "Mathieu Brossais",
+        "imageLicence": "CC BY 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Settimo_Vittone_(Août_2025).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "steinegg-pyramidenrundweg",
       "approvedReviewId": "commons-steinegg-pyramidenrundweg-on-route",
       "approvedAt": "2026-11-18T23:00:00.000Z",
@@ -7861,6 +7895,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Larix_trees_and_wooden_bridge_over_ravine_Febbraro_(1487_m.a.s.l.)_-_in_Valchiavenna,_Province_of_Sondrio,_Lombardy,_Italy_-_2017-10-15.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valchiusella-cima-bossola",
+      "approvedReviewId": "commons-valchiusella-cima-bossola-on-route",
+      "approvedAt": "2026-11-21T10:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cima-bossola-rifugio.jpg",
+        "heroImage": "images/trails/cima-bossola-rifugio.jpg",
+        "imageAlt": "A white two-storey mountain hut with a wooden fence and a meadow in front, birch trees beside it and a rocky grass slope behind",
+        "imageCredit": "The Rifugio Cima Bossola at the start",
+        "imageCreditText": "The Rifugio Cima Bossola at the start by E.Zene",
+        "imageCreator": "E.Zene",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Località_Marciana_-_Cima_Bossola,_Rueglio_(TO)_-_panoramio.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -8732,6 +8783,23 @@
       }
     },
     {
+      "id": "valsusa-bruzolo-anello-chiotetti",
+      "approvedReviewId": "commons-valsusa-bruzolo-anello-chiotetti-on-route",
+      "approvedAt": "2026-11-19T23:30:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/bruzolo-san-giovanni-campanile.jpg",
+        "heroImage": "images/trails/bruzolo-san-giovanni-campanile.jpg",
+        "imageAlt": "A slender white bell tower with arched openings rising above a stone-slab roof, with mountains under a clear blue sky behind",
+        "imageCredit": "The bell tower of San Giovanni Evangelista, Bruzolo",
+        "imageCreditText": "The bell tower of San Giovanni Evangelista, Bruzolo by Mastrocom",
+        "imageCreator": "Mastrocom",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Bruzolo_-_Chiesa_di_San_Giovanni_Evangelista_-_2023-09-09_15-29-21_001.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "valsusa-chianocco-orrido-chouque",
       "approvedReviewId": "commons-valsusa-chianocco-orrido-chouque-on-route",
       "approvedAt": "2026-11-19T22:00:00.000Z",
@@ -8766,6 +8834,23 @@
       }
     },
     {
+      "id": "valsusa-giaglione-forte-santa-chiara",
+      "approvedReviewId": "commons-valsusa-giaglione-forte-santa-chiara-on-route",
+      "approvedAt": "2026-11-19T23:30:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/giaglione-pilone-ariundel.jpg",
+        "heroImage": "images/trails/giaglione-pilone-ariundel.jpg",
+        "imageAlt": "A small plastered votive shrine with faded blue paint and a glazed niche, on a stone base under spring trees",
+        "imageCredit": "The Arioundèl votive shrine above Giaglione",
+        "imageCreditText": "The Arioundèl votive shrine above Giaglione by Martj9",
+        "imageCreator": "Martj9",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:PV_Giaglione_-_Ariundel.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "valsusa-giaglione-vigne-mandorli",
       "approvedReviewId": "commons-valsusa-giaglione-vigne-mandorli-on-route",
       "approvedAt": "2026-11-19T22:00:00.000Z",
@@ -8779,6 +8864,40 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cappella_San_Martino_-_Giaglione.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valsusa-mattie-alpe-toglie",
+      "approvedReviewId": "commons-valsusa-mattie-alpe-toglie-on-route",
+      "approvedAt": "2026-11-19T23:30:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/mattie-alpe-toglie.jpg",
+        "heroImage": "images/trails/mattie-alpe-toglie.jpg",
+        "imageAlt": "A stone mountain hut with a dark roof and balconies on a grassy slope among larches and firs, in autumn sun",
+        "imageCredit": "The hut at Alpe Toglie above Mattie",
+        "imageCreditText": "The hut at Alpe Toglie above Mattie by Martj9",
+        "imageCreator": "Martj9",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Alpe_Toglie.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valsusa-mompantero-sentier8",
+      "approvedReviewId": "commons-valsusa-mompantero-sentier8-on-route",
+      "approvedAt": "2026-11-19T23:30:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/mompantero-cappella-san-giuseppe.jpg",
+        "heroImage": "images/trails/mompantero-cappella-san-giuseppe.jpg",
+        "imageAlt": "A pale yellow chapel with a round window and a wooden door, and a bell tower behind, on a village road under a blue sky with clouds",
+        "imageCredit": "The chapel of San Giuseppe, Mompantero",
+        "imageCreditText": "The chapel of San Giuseppe, Mompantero by Martj9",
+        "imageCreator": "Martj9",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cappella_di_San_Giuseppe_(42129).jpg",
         "imageSourceType": "licensed-source"
       }
     },

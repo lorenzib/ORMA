@@ -323,12 +323,26 @@ const BACK_RISK_BREEDS = [
   'Beagle', 'Drever', 'Westphalian Dachsbracke', 'Alpine Dachsbracke',
 ];
 
+// Thin coats over little body fat: the sighthounds, the hairless breeds and a
+// few smooth, single-coated builds. They lose heat fast standing still in
+// the cold, and vets advise a dog coat for them in winter. Small dogs are
+// covered by weight in the engine, whatever their breed.
+const THIN_COAT_BREEDS = [
+  'Greyhound', 'Whippet', 'Italian Sighthound', 'Spanish Greyhound (Galgo Español)',
+  'Hungarian Greyhound (Magyar Agár)', 'Polish Greyhound (Chart Polski)',
+  'Sloughi', 'Azawakh', 'Saluki', 'Pharaoh Hound', "Cirneco dell'Etna",
+  'Ibizan Podenco (Podenco Ibicenco)', 'Basenji', 'Chinese Crested Dog',
+  'Xoloitzcuintle (Mexican Hairless)', 'Peruvian Hairless Dog',
+  'Miniature Pinscher', 'Dobermann', 'Hungarian Short-haired Pointer (Vizsla)',
+  'Weimaraner', 'Dalmatian', 'Boxer',
+];
+
 // Kept for backwards compatibility with older scripts that import this name.
 const HEAT_SENSITIVE_BREEDS = BRACHY_BREEDS.concat(THICK_COAT_BREEDS);
 
 /**
- * breedTraits(name) → { brachy, thickCoat, giant, shortLegged, backRisk,
- * heatSensitive } for a breed string (saved profile value). Unknown or
+ * breedTraits(name) → { brachy, thickCoat, thinCoat, giant, shortLegged,
+ * backRisk, heatSensitive } for a breed string (saved profile value). Unknown or
  * free-text breeds return all-false: the health-conditions dropdown is the
  * catch-all for dogs we can't classify by name.
  */
@@ -340,6 +354,7 @@ function breedTraits(name){
   return {
     brachy,
     thickCoat,
+    thinCoat: has(THIN_COAT_BREEDS),
     giant: has(GIANT_BREEDS),
     shortLegged: has(SHORT_LEGGED_BREEDS),
     backRisk: has(BACK_RISK_BREEDS),
@@ -539,6 +554,11 @@ function breedInsights(name){
   } else if(tr.thickCoat){
     out.push({ icon:'heat', title:'Heat is the real limit',
       sub:'A heavy double coat makes hot, exposed routes costly even on days you find mild. Start early.' });
+  }
+
+  if(tr.thinCoat){
+    out.push({ icon:'shade', title:'Feels the cold',
+      sub:'A thin coat over little body fat loses heat fast at rests in winter. Bring a dog coat and keep stops short in the shade.' });
   }
 
   if(tr.giant){

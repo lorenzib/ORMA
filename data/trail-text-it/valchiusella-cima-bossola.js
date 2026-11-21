@@ -1,0 +1,23 @@
+// valchiusella-cima-bossola in Italian, keyed by the English sentence. See scripts/trail-text-it.js.
+window.ORMA_TRAIL_TEXT_IT = Object.assign(window.ORMA_TRAIL_TEXT_IT || {}, {
+  "a grassy ridge from a mountain hut to a summit cross with wide views": "una cresta erbosa da un rifugio a una croce di vetta panoramica",
+  "A short climb from the Rifugio Cima Bossola up a grassy ridge to the summit cross of Cima di Bossola, with views from the Canavese plain to the Alps, and back round past old pasture huts. The board lists 5.1 km and 415 m up.": "Una breve salita dal Rifugio Cima Bossola lungo una cresta erbosa fino alla croce di vetta della Cima di Bossola, con vista dalla pianura canavesana alle Alpi, e ritorno ad anello accanto a vecchie baite d’alpeggio. Il sito ufficiale indica 5,1 km e 415 m di salita.",
+  "Start at the Rifugio Cima Bossola: 5.1 km and 415 m up, about 2 hours 15, as the board lists. The board says it can be walked in every season, also on snowshoes when there is snow.": "Parti dal Rifugio Cima Bossola: 5,1 km e 415 m di salita, circa 2 ore e un quarto, come indica il sito ufficiale. Il sito dice che è percorribile in tutte le stagioni, anche con le ciaspole quando c’è neve.",
+  "A grassy ridge path (T2), steep in places: watch your dog’s footing and keep it close near the summit": "Un sentiero di cresta erboso (T2), ripido in alcuni tratti: attenzione all’appoggio del cane e tienilo vicino in cima",
+  "Open pastures with no shade: carry water for your dog on warm days": "Pascoli aperti senza ombra: nelle giornate calde porta acqua per il cane",
+  "Cows may graze on the pastures in summer: keep your dog on a short lead near the herd": "D’estate sui pascoli possono esserci mucche: vicino alla mandria tieni il cane al guinzaglio corto",
+  "Grassy ridge path and tracks": "Sentiero di cresta erboso e carrarecce",
+  "The Rifugio Cima Bossola, Località Marciana, the board’s start": "Il Rifugio Cima Bossola, località Marciana, la partenza ufficiale",
+  "A white two-storey mountain hut with a wooden fence and a meadow in front, birch trees beside it and a rocky grass slope behind": "Un rifugio di montagna bianco a due piani con uno steccato in legno e un prato davanti, betulle accanto e un pendio erboso e roccioso dietro",
+  "Open pastures almost all the way; birch woods only on the lower slopes.": "Pascoli aperti quasi ovunque; boschi di betulle solo sui versanti più bassi.",
+  "Start at the Rifugio Cima Bossola (Località Marciana), reached by the asphalt road up from Inverso, the board’s start.": "Parti dal Rifugio Cima Bossola (località Marciana), raggiungibile in auto per la strada asfaltata da Inverso, la partenza ufficiale.",
+  "Take path 753 up from the refuge and climb the ridge on a clear path through the pastures above the birch woods. Go up the last stretch of ridge to the big metal cross on the summit of Cima di Bossola, with views over the Canavese plain, the morainic amphitheatre of Ivrea and the Alps, and come back down the ridge the same way. Then follow the tracks round past Tre Cascine and Case Bossola, and take path 753 back down to the refuge.": "Prendi il sentiero 753 dal rifugio e risali la cresta su un sentiero ben visibile tra i pascoli che sovrastano i boschi di betulle. Sali l’ultimo tratto di cresta fino alla grande croce metallica sulla vetta della Cima di Bossola, con vista sulla pianura canavesana, sull’anfiteatro morenico di Ivrea e sulle Alpi, e ridiscendi la cresta per la stessa via. Poi segui le carrarecce passando per Tre Cascine e Case Bossola e riprendi il sentiero 753 fino al rifugio.",
+  "Path 753 up from the refuge; the grassy ridge above the birch woods; up to the summit cross and back down the ridge; tracks past Tre Cascine and Case Bossola; path 753 back down to the refuge.": "Sentiero 753 dal rifugio; la cresta erbosa sopra i boschi di betulle; su fino alla croce di vetta e giù per la cresta; carrarecce per Tre Cascine e Case Bossola; sentiero 753 fino al rifugio.",
+  "The Rifugio Cima Bossola, Località Marciana": "Il Rifugio Cima Bossola, località Marciana",
+  "Path 753 up the grassy ridge above the birch woods": "Il sentiero 753 su per la cresta erbosa sopra i boschi di betulle",
+  "The summit cross of Cima di Bossola and back down the ridge": "La croce di vetta della Cima di Bossola e giù per la cresta",
+  "The tracks past Tre Cascine and Case Bossola": "Le carrarecce per Tre Cascine e Case Bossola",
+  "Path 753 back down to the refuge": "Il sentiero 753 giù fino al rifugio",
+  "Drinking water": "Acqua potabile",
+  "The Rifugio Cima Bossola at the start": "Il Rifugio Cima Bossola alla partenza"
+});

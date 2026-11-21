@@ -72745,6 +72745,709 @@
       ],
       startPoint: { lat: 45.67046, lng: 11.326209, label: "The Chiesetta del Mucciòn above Monte Magrè, the published start" },
       desc: "A short, easy loop from the little Mucciòn church along the ridge between the Agno and Leogra valleys, past the sites of old bird-catching roccoli, with views to the Pasubio. The board lists 2.8 km and 72 m up."
+    },
+    'valsusa-bruzolo-anello-chiotetti': {
+      // Hand audit: 19 November 2026, verified on arrival (new-trail Piedmont batch 4, Val Susa).
+      // “BRUZOLO – I Sentieri degli Ultimi – Anello dei Chiotetti”, published by Val Susa Outdoor (Turismo Torino e Provincia), drawn on 24 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Bruzolo (no dog rule found online: national rule). No park or Natura 2000 site. Roads: about 2.2 km of hamlet lanes (32%, under half): two bends of the hamlet road each way and about 800 m of asphalt from Chiotetti to the Bigiardi junction, as the board says. About 3.4 km of T2 (OSM mountain_hiking): caution line. Lollipop: the mule track up to the Bigiardi junction is walked both ways, as the board’s directions say.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Bruzolo – Bigiardi – Comba – Chiotetti (Val di Susa)",
+      distance: 7,
+      elevation: 638,
+      hours: '3.25',
+      routeShape: 'lollipop',
+      routeShapeNote: "Up from the church of San Giovanni in Bruzolo on the old mule track to the junction of the Chiotetti–Bigiardi road, round a loop through the hamlets of Bigiardi, Comba and Chiotetti, and back down the same mule track, as the board publishes it (7 km, 638 m up, 3:15 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the church of San Giovanni Evangelista in Bruzolo, the board’s start.",
+        "sequence": "Take the path north of the church; after about 10 minutes it meets the road up to the hamlets. Follow the road round two bends, then take the mule track on the right up to the junction with the Chiotetti–Bigiardi road. Go a few metres east and take the mule track again up to the hamlet of Bigiardi. Leave the hamlet on the gravel road, then turn left on path 542 down to the hamlet of Comba. Just past the chapel leave path 542 and go left on the mule track down to Chiotetti, once known for its talc mines. From Chiotetti follow the asphalt road for about 800 m back to the Bigiardi junction, then go down the mule track you came up to Bruzolo.",
+        "switches": "Path north of the church; two bends of the hamlet road; mule track on the right to the Chiotetti–Bigiardi road; mule track up to Bigiardi; gravel road, then left on path 542 to Comba; left on the mule track to Chiotetti; asphalt road back to the Bigiardi junction; same mule track down to Bruzolo.",
+        "steps": [
+          {
+            "text": "The church of San Giovanni Evangelista, Bruzolo",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The path, two bends of the road and the mule track up to the Chiotetti–Bigiardi road",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Up to Bigiardi and along the gravel road to path 542",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Down to Comba and on the mule track to Chiotetti",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The road back to the Bigiardi junction and the same mule track down to Bruzolo",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Val Susa Outdoor (Turismo Torino e Provincia), BRUZOLO – I Sentieri degli Ultimi – Anello dei Chiotetti (route description)",
+            "url": "https://www.outdooractive.com/it/r/806631049",
+            "authority": "Val Susa Outdoor (Turismo Torino e Provincia)",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The bell tower of San Giovanni Evangelista, Bruzolo (Mastrocom on Wikimedia Commons, CC BY-SA 4.0), 9 September 2023, 36 m from the line.",
+        route: "Official loop of 7 km from The church of San Giovanni Evangelista, Bruzolo, as Val Susa Outdoor (Turismo Torino e Provincia) publishes it; the stored line is drawn on 24 OSM ways along the board’s published line, 6.9 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Part of “I Sentieri degli Ultimi”, partly on path 542. From the church in Bruzolo take the mule track up to Bigiardi, the gravel road and path 542 down to Comba, the mule track to Chiotetti, the road back to the Bigiardi junction and the same mule track down to Bruzolo.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 7 km, 638 m up and 638 m down, 3:15 h (Val Susa Outdoor, Turismo Torino e Provincia, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Val Susa Outdoor (Turismo Torino e Provincia), BRUZOLO – I Sentieri degli Ultimi – Anello dei Chiotetti (its Outdooractive tour)",
+          "No dog rule found online for the Comune di Bruzolo, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park, reserve or Natura 2000 site on the line (CSI Piemonte layers)",
+          "OpenStreetMap ways along the board’s line (24 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 87,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ["The board advises against summer, when it is too hot: go in spring or autumn and carry water for your dog","Stretches on the hamlet road, including about 800 m of asphalt from Chiotetti: keep your dog on a short lead there","Old cobbled mule tracks, steep in places (T2): watch your dog’s footing when wet"],
+      terrainType: "Mule tracks, paths and hamlet roads",
+      shadeDescription: "Mostly in woods; open around the hamlets.",
+      terrainDescription: "A loop on old mule tracks to the mountain hamlets above Bruzolo, part of “I Sentieri degli Ultimi”, dedicated to the people who lived in their hamlets to the last. Chiotetti was once known for its talc mines; the old cableway carried the talc down to Bruzolo.",
+      waterDescription: "No drinking water is mapped on the route: carry enough for you and your dog.",
+      dogNotes: "Bruzolo publishes no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at the church of San Giovanni in Bruzolo: 7 km and 638 m up, about 3 hours 15, as the board lists. The board recommends spring and autumn and advises against summer heat.",
+      sourceLinks: [
+        { label: "Val Susa Outdoor (Turismo Torino e Provincia), BRUZOLO – I Sentieri degli Ultimi – Anello dei Chiotetti", url: "https://www.outdooractive.com/it/r/806631049" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.145358, lng: 7.197546, label: "The church of San Giovanni Evangelista, Bruzolo, the board’s start" },
+      desc: "A loop on old mule tracks from Bruzolo up to the hamlets of Bigiardi, Comba and Chiotetti, once a talc-mining hamlet, mostly in woods. The board lists 7 km and 638 m up."
+    },
+    'valsusa-mattie-alpe-toglie': {
+      // Hand audit: 19 November 2026, verified on arrival (new-trail Piedmont batch 4, Val Susa).
+      // “MATTIE – Alpe Toglie”, published by Val Susa Outdoor (Turismo Torino e Provincia), drawn on 35 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Mattie (no dog rule found online: national rule). The upper part, about 18% of the line, is inside the Orsiera-Rocciavrè natural park: Alpi Cozie regulation art. 23, dogs on a lead. Roads: about 1 km of asphalt lane at the start and about 2 km of dirt road to Alpe Toglie (35% in all, under half). About 4.4 km of T2 (OSM mountain_hiking): caution line. Out-and-back, as the board publishes it (8.8 km is the whole walk).
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Mattie – Cappella delle Toglie – Alpe Toglie (Val di Susa)",
+      distance: 8.8,
+      elevation: 773,
+      hours: '4',
+      routeShape: 'out-and-back',
+      routeShapeNote: "There and back the same way from the La Versina picnic area in Mattie on path 525, an old mule track through chestnut and beech woods past the remains of old hamlets, to the Cappella delle Toglie and on the dirt road to Alpe Toglie, as the board publishes it (8.8 km in all, 773 m up, 3:55 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the La Versina picnic area in Mattie, the board’s start; park in the spaces next to it.",
+        "sequence": "Follow the asphalt lane for a short way, then take path 525, a fine mule track that climbs, very steeply in places, through chestnut and then beech woods, past the remains of old hamlets and the big boulders of Roc de Chantajaleut and Lou Mapas. After the last steep pitch cross the rio Corrente: the path turns right and levels out, and in a few minutes reaches the small Cappella delle Toglie. Carry on along the dirt road, with one last easy climb, to Alpe Toglie di Sotto and Alpe Toglie di Sopra, with the summer farm and, a little further on, the walkers’ hut. Come back the same way.",
+        "switches": "Asphalt lane from La Versina; path 525 up the mule track through chestnut and beech woods; past the old hamlets and boulders; across the rio Corrente; the Cappella delle Toglie; dirt road to Alpe Toglie di Sotto and di Sopra; back the same way.",
+        "steps": [
+          {
+            "text": "The La Versina picnic area, Mattie",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 525 up through chestnut and beech woods past old hamlets",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Across the rio Corrente to the Cappella delle Toglie",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The dirt road to Alpe Toglie di Sotto and di Sopra",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Back the same way to La Versina",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Val Susa Outdoor (Turismo Torino e Provincia), MATTIE – Alpe Toglie (route description)",
+            "url": "https://www.outdooractive.com/it/r/809844270",
+            "authority": "Val Susa Outdoor (Turismo Torino e Provincia)",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The hut at Alpe Toglie above Mattie (Martj9 on Wikimedia Commons, CC BY-SA 4.0), 23 October 2025, 38 m from the line.",
+        route: "Official 8.8 km there and back from The La Versina picnic area, Mattie, as Val Susa Outdoor (Turismo Torino e Provincia) publishes it; the stored line is drawn on 35 OSM ways along the board’s published line, 8.6 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Path 525 (the GTA between Mattie and Usseaux). From the La Versina picnic area in Mattie take path 525 up through the woods to the Cappella delle Toglie and the dirt road to Alpe Toglie, then back the same way.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 8.8 km there and back, 773 m up and 772 m down, 3:55 h (Val Susa Outdoor, Turismo Torino e Provincia, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Val Susa Outdoor (Turismo Torino e Provincia), MATTIE – Alpe Toglie (its Outdooractive tour)",
+          "The Orsiera-Rocciavrè natural park is run by the Alpi Cozie protected-areas authority, whose regulation (art. 23) allows dogs of any breed only on a lead",
+          "No dog rule found online for the Comune di Mattie, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "Parco naturale Orsiera-Rocciavrè and its ZSC/ZPS on the upper part of the line, about a fifth of it (CSI Piemonte layers)",
+          "OpenStreetMap ways along the board’s line (35 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 92,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["The mule track is very steep in places (T2): take it slowly with your dog and watch its footing on wet cobbles","The upper part is inside the Orsiera-Rocciavrè park, where dogs must stay on a lead","Cows may graze at Alpe Toglie in summer: keep your dog on a short lead near the herd"],
+      terrainType: "Mule track, path and dirt road",
+      shadeDescription: "Almost all in chestnut, beech and larch woods; open around Alpe Toglie.",
+      terrainDescription: "A steady climb on an old mule track through chestnut and beech woods above Mattie, past the remains of old hamlets and big boulders, to the small Cappella delle Toglie and the pastures of Alpe Toglie on the GTA, with an unstaffed walkers’ hut.",
+      waterDescription: "No drinking water is mapped on the route: carry enough for you and your dog. The path crosses the rio Corrente near the top.",
+      dogNotes: "Dogs must stay on a lead in the Orsiera-Rocciavrè natural park, by the Alpi Cozie parks regulation. Outside it Mattie has no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at the La Versina picnic area in Mattie: 8.8 km there and back and 773 m up, about 4 hours, as the board lists. The mule track is steep in places: allow time for your dog to rest.",
+      sourceLinks: [
+        { label: "Val Susa Outdoor (Turismo Torino e Provincia), MATTIE – Alpe Toglie", url: "https://www.outdooractive.com/it/r/809844270" },
+        { label: "Ente di gestione delle aree protette delle Alpi Cozie, Regolamento delle aree protette (art. 23, dogs on a lead)", url: "https://www.servizipubblicaamministrazione.it/venere_storico_2/prcrsr597/Data/Allegati/PRAS-2021-00024-A1.PDF" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.114565, lng: 7.113478, label: "The La Versina picnic area, Mattie, the board’s start" },
+      desc: "A climb from Mattie on an old mule track through chestnut and beech woods, past the remains of old hamlets, to the Cappella delle Toglie and the pastures of Alpe Toglie, then back the same way. The board lists 8.8 km and 773 m up."
+    },
+    'valsusa-mompantero-sentier8': {
+      // Hand audit: 19 November 2026, verified on arrival (new-trail Piedmont batch 4, Val Susa).
+      // “MOMPANTERO – Il Sentier8”, published by Val Susa Outdoor (Turismo Torino e Provincia), drawn on 18 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Mompantero (no dog rule found online: national rule). ZSC IT1110030 on about two thirds of the line: its site measures set no lead rule for walkers, so the national rule applies. Roads: about 920 m of village lanes (24%, Via Marzano and Via Bosconero) and about 90 m on the SP209 at San Giuseppe. About 2.8 km of T2 (OSM mountain_hiking): caution line.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "San Giuseppe – Marzano – Case Truccetti – Castagneretto, Mompantero (Val di Susa)",
+      distance: 3.9,
+      elevation: 439,
+      hours: '2',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from San Giuseppe in Mompantero up the old mule track to Pera Pusuera, past the ruins of Caselle and Case Favretti to Case Truccetti and the Strada Vicinale di Pietrabruna, then down past old chestnuts and the Rio Nano to the Castagneretto chapel and back to San Giuseppe, as the board publishes it (3.9 km, 439 m up, 2:05 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at Piazza Mattei in the hamlet of San Giuseppe, Mompantero, the board’s start.",
+        "sequence": "Walk up Via Marzano to the hamlet of Marzano and the San Rocco chapel, then climb the old mule track to Pera Pusuera, an old crossroads of paths. Go through the ruins of the hamlets of Caselle and Case Favretti, with wide views over the Val di Susa, and climb briefly through downy oaks to Case Truccetti, another viewpoint. Carry on to the highest point, about 1,000 m, on the Strada Vicinale di Pietrabruna, where the walk crosses the GTA and the Sentiero Italia. Go down among old chestnuts and the small falls of the Rio Nano to the 17th-century Castagneretto chapel, then on down between dry-stone walls and woods back to San Giuseppe.",
+        "switches": "Via Marzano to Marzano and the San Rocco chapel; mule track to Pera Pusuera; ruins of Caselle and Case Favretti; up to Case Truccetti; Strada Vicinale di Pietrabruna, across the GTA; down past the Rio Nano to the Castagneretto chapel; down between dry-stone walls to San Giuseppe.",
+        "steps": [
+          {
+            "text": "Piazza Mattei, San Giuseppe, Mompantero",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Via Marzano and the mule track up to Pera Pusuera",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The ruins of Caselle and Case Favretti, and Case Truccetti",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Strada Vicinale di Pietrabruna and down past the Rio Nano to the Castagneretto chapel",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Down between dry-stone walls to San Giuseppe",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Val Susa Outdoor (Turismo Torino e Provincia), MOMPANTERO – Il Sentier8 (route description)",
+            "url": "https://www.outdooractive.com/it/r/806598959",
+            "authority": "Val Susa Outdoor (Turismo Torino e Provincia)",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The chapel of San Giuseppe, Mompantero (Martj9 on Wikimedia Commons, CC BY-SA 4.0), 16 June 2025, 7 m from the line.",
+        route: "Official loop of 3.9 km from Piazza Mattei, San Giuseppe, Mompantero, as Val Susa Outdoor (Turismo Torino e Provincia) publishes it; the stored line is drawn on 18 OSM ways along the board’s published line, 3.9 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Signed as the Sentier8, partly on path 529 (GTA and Sentiero Italia). From San Giuseppe go up Via Marzano and the mule track to Pera Pusuera, through Caselle to Case Truccetti and the Strada Vicinale di Pietrabruna, then down past the Castagneretto chapel to San Giuseppe.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 3.9 km, 439 m up and 439 m down, 2:05 h (Val Susa Outdoor, Turismo Torino e Provincia, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Val Susa Outdoor (Turismo Torino e Provincia), MOMPANTERO – Il Sentier8 (its Outdooractive tour)",
+          "No dog rule found online for the Comune di Mompantero, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "ZSC IT1110030 Oasi xerotermiche della Val di Susa – Orrido di Chianocco on about two thirds of the line (CSI Piemonte layers); its conservation measures (DGR 7-4703 of 27 February 2017) set no lead rule for walkers",
+          "OpenStreetMap ways along the board’s line (18 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 67,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ["A sunny south-facing slope: the board advises against July and August; carry water for your dog","Village lanes at the start and end and a short stretch on the SP209 at San Giuseppe: keep your dog on a short lead there","Stony mountain paths (T2) for most of the loop: watch your dog’s footing"],
+      terrainType: "Mule tracks, paths and village lanes",
+      shadeDescription: "Partly under downy oaks and chestnuts; open around the ruined hamlets and viewpoints.",
+      terrainDescription: "A short loop on the sunny slope above Susa through the ruins of old hamlets, with wide views over the Val di Susa, to the Castagneretto chapel, whose 17th-century frescoes were recently restored.",
+      waterDescription: "No drinking water is mapped on the route: carry enough for you and your dog. The path passes the small falls of the Rio Nano.",
+      dogNotes: "Mompantero publishes no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at Piazza Mattei in San Giuseppe, Mompantero: 3.9 km and 439 m up, about 2 hours, as the board lists. The board recommends it in winter, when the whole route is in the sun, and advises against July and August.",
+      sourceLinks: [
+        { label: "Val Susa Outdoor (Turismo Torino e Provincia), MOMPANTERO – Il Sentier8", url: "https://www.outdooractive.com/it/r/806598959" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.148527, lng: 7.035286, label: "Piazza Mattei, San Giuseppe, Mompantero, the board’s start" },
+      desc: "A short, sunny loop above Mompantero through the ruins of old hamlets, with wide views over the Val di Susa, to the Castagneretto chapel and its 17th-century frescoes. The board lists 3.9 km and 439 m up."
+    },
+    'valsusa-giaglione-forte-santa-chiara': {
+      // Hand audit: 19 November 2026, verified on arrival (new-trail Piedmont batch 4, Val Susa).
+      // “GIAGLIONE – Il Forte di Santa Chiara”, published by Val Susa Outdoor (Turismo Torino e Provincia), drawn on 91 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Giaglione (no dog rule found online: national rule). No park or Natura 2000 site. Roads: about 90 m on the SS25 each way at the start (180 m in all, under 300 m) and about 360 m of village lanes (5%). About 5.3 km of T2 (OSM mountain_hiking): caution line. Out-and-back, as the board publishes it (7.8 km is the whole walk).
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Giaglione – Santa Chiara – Forte di Santa Chiara (Val di Susa)",
+      distance: 7.8,
+      elevation: 750,
+      hours: '3.75',
+      routeShape: 'out-and-back',
+      routeShapeNote: "There and back the same way from the car park by the turn for Sant’Andrea in Giaglione on path 820, the old mule track past vineyards, chestnut woods and votive shrines to the hamlet of Santa Chiara and the fort built in 1886–1891, as the board publishes it (7.8 km in all, 750 m up, 3:45 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the car park on the SS25 just before the turn for the hamlet of Sant’Andrea, Giaglione, the board’s start.",
+        "sequence": "From Sant’Andrea go on towards San Rocco, past the chapels of the Immacolata and Sant’Antonio, then take path 820, the old mule track from the village to the hamlet of Santa Chiara. It climbs at a steady, fairly steep gradient beside vineyards and chestnut woods, past many votive shrines, to Pian delle Rovine, where it crosses the road. Carry on up the mule track, cutting across the road several times, past scattered houses in chestnut and beech woods, to the first houses of Santa Chiara. At the fork go right through the houses of Pian del Trucco to the Forte di Santa Chiara. Come back the same way.",
+        "switches": "Past the Immacolata and Sant’Antonio chapels towards San Rocco; path 820 up the old mule track past votive shrines; across the road at Pian delle Rovine; up through scattered houses to Santa Chiara; right at the fork through Pian del Trucco to the fort; back the same way.",
+        "steps": [
+          {
+            "text": "The car park by the turn for Sant’Andrea, Giaglione",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Past the chapels to path 820 and up past vineyards and votive shrines",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Across the road at Pian delle Rovine and up through chestnut and beech woods",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Right at the fork in Santa Chiara, through Pian del Trucco to the fort",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Back the same way to Giaglione",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "Val Susa Outdoor (Turismo Torino e Provincia), GIAGLIONE – Il Forte di Santa Chiara (route description)",
+            "url": "https://www.outdooractive.com/it/r/809848233",
+            "authority": "Val Susa Outdoor (Turismo Torino e Provincia)",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The Arioundèl votive shrine above Giaglione (Martj9 on Wikimedia Commons, CC BY-SA 4.0), 15 May 2022, 3 m from the line.",
+        route: "Official 7.8 km there and back from The car park by the turn for Sant’Andrea, Giaglione, as Val Susa Outdoor (Turismo Torino e Provincia) publishes it; the stored line is drawn on 91 OSM ways along the board’s published line, 7.8 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Path 820. From the car park by the turn for Sant’Andrea in Giaglione go past the chapels to path 820, up the old mule track to Santa Chiara, right at the fork through Pian del Trucco to the Forte di Santa Chiara, then back the same way.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 7.8 km there and back, 750 m up and 750 m down, 3:45 h (Val Susa Outdoor, Turismo Torino e Provincia, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Val Susa Outdoor (Turismo Torino e Provincia), GIAGLIONE – Il Forte di Santa Chiara (its Outdooractive tour)",
+          "No dog rule found online for the Comune di Giaglione, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park, reserve or Natura 2000 site on the line (CSI Piemonte layers)",
+          "OpenStreetMap ways along the board’s line (91 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 69,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About 90 m along the SS25 at the start and end, and road crossings higher up: keep your dog on a short lead there","A steady, fairly steep mule track (T2), rocky in places: watch your dog’s footing","The lower part runs beside open vineyards: avoid hot afternoons and carry water for your dog"],
+      terrainType: "Mule track, paths and tracks",
+      shadeDescription: "Mostly in chestnut and beech woods; open beside the vineyards low down and around Santa Chiara.",
+      terrainDescription: "A climb on the old mule track above Giaglione, past vineyards, chestnut and beech woods and many votive shrines, to the hamlet of Santa Chiara and the Forte di Santa Chiara, built in 1886–1891 as part of the defences of the Col Clapier.",
+      waterDescription: "No drinking water is mapped on the route: carry enough for you and your dog. Giaglione has fountains in the village.",
+      dogNotes: "Giaglione publishes no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at the car park by the turn for Sant’Andrea in Giaglione: 7.8 km there and back and 750 m up, about 3 hours 45, as the board lists. The climb is steady and fairly steep: allow rests for your dog.",
+      sourceLinks: [
+        { label: "Val Susa Outdoor (Turismo Torino e Provincia), GIAGLIONE – Il Forte di Santa Chiara", url: "https://www.outdooractive.com/it/r/809848233" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.144143, lng: 7.012958, label: "The car park by the turn for Sant’Andrea, Giaglione, the board’s start" },
+      desc: "A climb from Giaglione on the old mule track past vineyards, chestnut woods and votive shrines to the hamlet of Santa Chiara and its 19th-century fort, then back the same way. The board lists 7.8 km and 750 m up."
+    },
+    'settimo-vittone-pergole-castagneti': {
+      // Hand audit: 21 November 2026, verified on arrival (new-trail Piedmont batch 5, Canavese).
+      // “SETTIMO VITTONE tra pergole e castagneti”, published by CANAVESE VILLAGE (Turismo in Canavese), drawn on 46 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Settimo Vittone (no dog rule found online: national rule). No park or Natura 2000 site. Roads: about 1.9 km of village lanes (28%, under half) and about 140 m on the SP72 / Via Provinciale, under 300 m. About 790 m of T2 (OSM mountain_hiking, the Via Cornaley path): caution line.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Torre Daniele – Sengie – Cesnola – Costanza, Settimo Vittone (Canavese)",
+      distance: 6.7,
+      elevation: 308,
+      hours: '2.5',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from the Torre Daniele car park up through the old centre and a steep vineyard lane to the mule track to Sengie, along panoramic vineyards to Cesnola, up through vineyards and woods to Costanza and back through Cesnola to Torre Daniele, as the board publishes it (6.7 km, 308 m up, 2:25 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Torre Daniele car park, Settimo Vittone, the board’s start.",
+        "sequence": "Climb into the old centre to the small square by the trattoria and take Via San Rocco; follow the waymarks out of the village to Via Cortasse, where a steep lane between the vineyards leads to a stair and then a mule track through the wood to the hamlet of Sengie and its San Grato chapel. Carry on among panoramic vineyards towards Cesnola, on old stone mule tracks down to the village, across the stream and up through vineyards and woods to Costanza and its San Grato chapel. Go on among vineyards and farm tracks back to Cesnola and its Sant’Agata chapel, then on paths through woods and fields back to Torre Daniele.",
+        "switches": "Via San Rocco out of the old centre; steep lane from Via Cortasse up the vineyards; stair and mule track to Sengie; panoramic vineyards towards Cesnola; across the stream and up to Costanza; farm tracks back to Cesnola; paths back to Torre Daniele.",
+        "steps": [
+          {
+            "text": "The Torre Daniele car park, Settimo Vittone",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Via San Rocco and the steep vineyard lane up to the mule track",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The mule track through the wood to Sengie",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Vineyards and stone mule tracks to Cesnola and up to Costanza",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Back through Cesnola to Torre Daniele",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "CANAVESE VILLAGE (Turismo in Canavese), SETTIMO VITTONE tra pergole e castagneti (route description)",
+            "url": "https://www.outdooractive.com/it/r/807719711",
+            "authority": "CANAVESE VILLAGE (Turismo in Canavese)",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-21"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-21',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The mule track below the Pieve di San Lorenzo, Settimo Vittone (Mathieu Brossais on Wikimedia Commons, CC BY 4.0), 6 August 2025, 27 m from the line.",
+        route: "Official loop of 6.7 km from The Torre Daniele car park, Settimo Vittone, as CANAVESE VILLAGE (Turismo in Canavese) publishes it; the stored line is drawn on 46 OSM ways along the board’s published line, 6.7 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Waymarked paths 854, 852 and 801 (partly the Via Francigena). From the Torre Daniele car park go up through the old centre and the vineyards to Sengie, along to Cesnola, up to Costanza and back through Cesnola to Torre Daniele.",
+        mapPoints: "Start at the board’s start; drinking water at the start, km 2.7, km 3.7, km 4 (OSM nodes 7409937803, 2557346004, 6856040312, 5149956607).",
+        elevation: "Official 6.7 km, 308 m up and 313 m down, 2:25 h (CANAVESE VILLAGE, Turismo in Canavese, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "CANAVESE VILLAGE (Turismo in Canavese), SETTIMO VITTONE tra pergole e castagneti (its Outdooractive tour)",
+          "No dog rule found online for the Comune di Settimo Vittone, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park, reserve or Natura 2000 site on the line (CSI Piemonte and EEA layers)",
+          "OpenStreetMap ways along the board’s line (46 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-21'
+      },
+      shadeCoverage: 6,
+      heatRisk: 'high',
+      exposure: false,
+      surfaceHazards: ["An open, sunny vineyard slope with little shade: avoid summer afternoons and carry water for your dog","Village lanes and a short stretch on the SP72: keep your dog on a short lead there","A steep lane and a short mountain path (T2) on stone steps: watch your dog’s footing"],
+      terrainType: "Mule tracks, vineyard lanes and paths",
+      shadeDescription: "Mostly open among vineyards; short stretches in chestnut woods.",
+      terrainDescription: "A loop on old stone mule tracks through the terraced vineyards of Settimo Vittone, with their stone pergola pillars, and through chestnut woods to the hamlets of Sengie, Cesnola and Costanza, with wide views over the Dora Baltea valley.",
+      waterDescription: "No drinking water is mapped on the route: carry enough for you and your dog. There are fountains in the villages.",
+      dogNotes: "Settimo Vittone publishes no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at the Torre Daniele car park: 6.7 km and 308 m up, about 2 hours 30, as the board lists. A good walk in winter on the sunny slope; hot in summer.",
+      sourceLinks: [
+        { label: "CANAVESE VILLAGE (Turismo in Canavese), SETTIMO VITTONE tra pergole e castagneti", url: "https://www.outdooractive.com/it/r/807719711" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.564312, lng: 7.818394, label: "The Torre Daniele car park, Settimo Vittone, the board’s start" },
+      desc: "A loop on old mule tracks through the terraced vineyards and chestnut woods of Settimo Vittone, past small chapels to the hamlets of Sengie, Cesnola and Costanza. The board lists 6.7 km and 308 m up."
+    },
+    'valchiusella-cima-bossola': {
+      // Hand audit: 21 November 2026, verified on arrival (new-trail Piedmont batch 5, Canavese).
+      // “VALCHIUSELLA Cima Bossola”, published by CANAVESE VILLAGE (Turismo in Canavese), drawn on 30 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Communes: Rueglio and Valchiusa (no dog rule found online: national rule). No park or Natura 2000 site. Roads: about 30 m of service road at the refuge. About 3 km of T2 (OSM mountain_hiking) on the ridge: caution line. The summit spur is declared as a side trip (the board’s goal); the path near the refuge is walked both ways, as the board’s line does.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Rifugio Cima Bossola – Cima di Bossola – Tre Cascine, Valchiusella (Canavese)",
+      distance: 5.1,
+      elevation: 415,
+      hours: '2.25',
+      routeShape: 'lollipop',
+      routeShapeNote: "From the Rifugio Cima Bossola up path 753 along the grassy ridge to the summit cross of Cima di Bossola and back down to the ridge, round on tracks past Tre Cascine and Case Bossola, and back down the same path to the refuge, as the board’s line runs (5.1 km, 415 m up, 2:10 h).",
+      sideTrips: [{"km":2.29,"note":"Up the last stretch of ridge to the summit cross of Cima di Bossola and back, the walk’s goal in the board’s text (“Si sale verso la cima risalendo la cresta… la grande croce metallica posta sulla cima”), as its own line does."}],
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Rifugio Cima Bossola (Località Marciana), reached by the asphalt road up from Inverso, the board’s start.",
+        "sequence": "Take path 753 up from the refuge and climb the ridge on a clear path through the pastures above the birch woods. Go up the last stretch of ridge to the big metal cross on the summit of Cima di Bossola, with views over the Canavese plain, the morainic amphitheatre of Ivrea and the Alps, and come back down the ridge the same way. Then follow the tracks round past Tre Cascine and Case Bossola, and take path 753 back down to the refuge.",
+        "switches": "Path 753 up from the refuge; the grassy ridge above the birch woods; up to the summit cross and back down the ridge; tracks past Tre Cascine and Case Bossola; path 753 back down to the refuge.",
+        "steps": [
+          {
+            "text": "The Rifugio Cima Bossola, Località Marciana",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 753 up the grassy ridge above the birch woods",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The summit cross of Cima di Bossola and back down the ridge",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The tracks past Tre Cascine and Case Bossola",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Path 753 back down to the refuge",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "CANAVESE VILLAGE (Turismo in Canavese), VALCHIUSELLA Cima Bossola (route description)",
+            "url": "https://www.outdooractive.com/it/r/255063717",
+            "authority": "CANAVESE VILLAGE (Turismo in Canavese)",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-21"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-21',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The Rifugio Cima Bossola at the start (E.Zene on Wikimedia Commons, CC BY 3.0), 10 September 2006, 21 m from the line.",
+        route: "Official loop of 5.1 km from The Rifugio Cima Bossola, Località Marciana, as CANAVESE VILLAGE (Turismo in Canavese) publishes it; the stored line is drawn on 30 OSM ways along the board’s published line, 5.1 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Path 753. From the Rifugio Cima Bossola take path 753 up the ridge to the summit cross of Cima di Bossola, back down the ridge, round on the tracks past Tre Cascine and Case Bossola and down path 753 to the refuge.",
+        mapPoints: "Start at the board’s start; drinking water at km 2.8 (OSM nodes 6964614590).",
+        elevation: "Official 5.1 km, 415 m up and 412 m down, 2:10 h (CANAVESE VILLAGE, Turismo in Canavese, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "CANAVESE VILLAGE (Turismo in Canavese), VALCHIUSELLA Cima Bossola (its Outdooractive tour)",
+          "No dog rule found online for the Comuni di Rueglio and Valchiusa, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park, reserve or Natura 2000 site on the line (CSI Piemonte and EEA layers)",
+          "OpenStreetMap ways along the board’s line (30 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-21'
+      },
+      shadeCoverage: 5,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["A grassy ridge path (T2), steep in places: watch your dog’s footing and keep it close near the summit","Open pastures with no shade: carry water for your dog on warm days","Cows may graze on the pastures in summer: keep your dog on a short lead near the herd"],
+      terrainType: "Grassy ridge path and tracks",
+      shadeDescription: "Open pastures almost all the way; birch woods only on the lower slopes.",
+      terrainDescription: "A classic Valchiusella walk from a mountain hut up a grassy ridge to the big metal cross on Cima di Bossola (1,506 m), a famous viewpoint over the Canavese plain, the morainic amphitheatre of Ivrea and the Alps from the Aosta Valley to the Lanzo valleys.",
+      waterDescription: "No drinking water is mapped on the route: carry enough for you and your dog.",
+      dogNotes: "Rueglio and Valchiusa publishes no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at the Rifugio Cima Bossola: 5.1 km and 415 m up, about 2 hours 15, as the board lists. The board says it can be walked in every season, also on snowshoes when there is snow.",
+      sourceLinks: [
+        { label: "CANAVESE VILLAGE (Turismo in Canavese), VALCHIUSELLA Cima Bossola", url: "https://www.outdooractive.com/it/r/255063717" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.488196, lng: 7.734958, label: "The Rifugio Cima Bossola, Località Marciana, the board’s start" },
+      desc: "A short climb from the Rifugio Cima Bossola up a grassy ridge to the summit cross of Cima di Bossola, with views from the Canavese plain to the Alps, and back round past old pasture huts. The board lists 5.1 km and 415 m up."
+    },
+    'corio-sentiero-del-redio': {
+      // Hand audit: 21 November 2026, verified on arrival (new-trail Piedmont batch 5, Canavese).
+      // “CORIO Sentiero del Redìo”, published by CANAVESE VILLAGE (Turismo in Canavese), drawn on 24 OSM ways along the line it publishes
+      // (data/board-line-routes.geojson). Figures from the board’s own page.
+      // Commune: Corio (no dog rule found online: national rule). No park or Natura 2000 site. Roads: about 700 m of hamlet lanes (under 10%) and about 100 m on the SP248. No T2 on OSM; about 130 m of steps.
+      // The stored line follows the board’s own line, 99% each way. A 70 m stub up Strada Case Andrè and back at km 0.23 of the board’s line, which the directions do not mention, was cut from the stored line.
+      area: "Piano Audi – Colle Matteo – Alpe Losera – Alpe Grifun, Corio (Canavese)",
+      distance: 8.4,
+      elevation: 465,
+      hours: '3.25',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from the Consolata chapel at Piano Audi past Le Bausere and Case Terlinto to Colle Matteo, along the Sentiero del Redìo through beech woods to Alpe Losera and Alpe Grifun, and back through the mountain hamlets to Piano Audi, as the board publishes it (8.4 km, 465 m up, 3:15 h).",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Cappella della Consolata at Piano Audi, Corio, by the fountain, the board’s start.",
+        "sequence": "Walk up Strada Case Gobbo past Case Gobbo and take the old path up past the old huts of Le Bausere and Case Terlinto to Colle Matteo, a viewpoint with a picnic area. Carry on along the Sentiero del Redìo through a fine beech wood, with wide views over the upper Val Malone, to the old stone buildings of Alpe Losera, past the big Roc Falcun boulder, then on to Alpe Secia, the ruins of Alpe Grifun and Alpe Pasquet. Go down past the hamlets of Fraschei and Case Ieri, down the steps to Case Rughet and back to the Consolata chapel.",
+        "switches": "Strada Case Gobbo; old path past Le Bausere and Case Terlinto to Colle Matteo; the Sentiero del Redìo through the beech wood; Alpe Losera, Alpe Secia, Alpe Grifun and Alpe Pasquet; down past Fraschei and Case Ieri; steps to Case Rughet; back to the Consolata.",
+        "steps": [
+          {
+            "text": "The Cappella della Consolata, Piano Audi",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Up past Le Bausere and Case Terlinto to Colle Matteo",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "The Sentiero del Redìo through the beech wood to Alpe Losera",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Alpe Secia, Alpe Grifun and Alpe Pasquet",
+            "from": [
+              0
+            ]
+          },
+          {
+            "text": "Down past Fraschei, Case Ieri and Case Rughet to the Consolata",
+            "from": [
+              0
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "label": "CANAVESE VILLAGE (Turismo in Canavese), CORIO Sentiero del Redìo (route description)",
+            "url": "https://www.outdooractive.com/it/r/810104658",
+            "authority": "CANAVESE VILLAGE (Turismo in Canavese)",
+            "tag": "tourist office",
+            "reviewedAt": "2026-11-21"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-21',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "A wayside shrine on the Sentiero del Redìo above Corio (Jrachi on Wikimedia Commons, CC BY-SA 4.0), 29 July 2021, 27 m from the line.",
+        route: "Official loop of 8.4 km from The Cappella della Consolata, Piano Audi, Corio, as CANAVESE VILLAGE (Turismo in Canavese) publishes it; the stored line is drawn on 24 OSM ways along the board’s published line, 8.4 km, with 100% of the board’s line within 25 m of it and 100% of it within 25 m of the board’s line.",
+        routeNumbers: "Paths 416, 410A, 416B, 416C and 411B. From the Consolata chapel at Piano Audi go up to Colle Matteo, along the Sentiero del Redìo (416B) to Alpe Losera and Alpe Grifun, and back down past Fraschei, Case Ieri and Case Rughet to the chapel.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official 8.4 km, 465 m up and 465 m down, 3:15 h (CANAVESE VILLAGE, Turismo in Canavese, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "CANAVESE VILLAGE (Turismo in Canavese), CORIO Sentiero del Redìo (its Outdooractive tour)",
+          "No dog rule found online for the Comune di Corio, so the national rule applies: Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in public places and a muzzle carried",
+          "No park, reserve or Natura 2000 site on the line (CSI Piemonte and EEA layers)",
+          "OpenStreetMap ways along the board’s line (24 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-21'
+      },
+      shadeCoverage: 55,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["Some stony stretches past the old pasture huts and about 130 m of steps near the end: watch your dog’s footing","Short stretches on hamlet lanes at Piano Audi: keep your dog on a short lead there"],
+      terrainType: "Woodland paths and old mule tracks",
+      shadeDescription: "About half in beech woods; open around the old pastures and Colle Matteo.",
+      terrainDescription: "A loop in the woods and old summer pastures above Piano Audi, past old stone huts, the Colle Matteo viewpoint, a fine beech wood with wide views over the upper Val Malone, the big Roc Falcun boulder and the ruins of Alpe Grifun.",
+      waterDescription: "There is a fountain by the Consolata chapel at the start; no other drinking water is mapped on the route, so carry enough for your dog.",
+      dogNotes: "Corio publishes no dog rule of its own online, so the national rule applies: a lead of at most 1.5 m in public places and a muzzle carried.",
+      tips: "Start at the Consolata chapel at Piano Audi, Corio: 8.4 km and 465 m up, about 3 hours 15, as the board lists. Best from spring to autumn: the loop reaches 1,275 m.",
+      sourceLinks: [
+        { label: "CANAVESE VILLAGE (Turismo in Canavese), CORIO Sentiero del Redìo", url: "https://www.outdooractive.com/it/r/810104658" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Piemonte (CSI Piemonte geoserver), protected areas and Natura 2000 layers (WFS)", url: "https://gisserver.territorio.csi.it/geoserver/decsiraogc_aree_protette/wfs?service=WFS&version=2.0.0&request=GetCapabilities" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 45.341187, lng: 7.524154, label: "The Cappella della Consolata, Piano Audi, Corio, the board’s start" },
+      desc: "A loop from Piano Audi through beech woods and old summer pastures with stone huts, past the Colle Matteo viewpoint and the ruins of Alpe Grifun. The board lists 8.4 km and 465 m up."
     }
   };
 

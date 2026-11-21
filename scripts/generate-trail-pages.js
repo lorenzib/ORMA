@@ -717,10 +717,25 @@ function seasonTagsHtml(t) {
     const months = seasonWords.MONTH_NAMES.map((_, i) => (risk.months.includes(i + 1) ? 1 : 0)).join('');
     return `<span class="dp-badge sp-tag sp-tag--dog" data-season-out="${months}" hidden><span>${escapeHtml(L(seasonWords.DOG_SEASON_TAGS[risk.kind]))}</span></span>`;
   }).join('\n    ');
+  // "Sunny in winter" or "Little winter sun", from November to February.
+  const sunTag = seasonWords.winterSunTag(t.season, 1);
+  const sunMonths = seasonWords.MONTH_NAMES.map((_, i) => (seasonWords.WINTER_SUN_MONTHS.includes(i + 1) ? 1 : 0)).join('');
+  const sun = sunTag
+    ? `<span class="dp-badge sp-tag sp-tag--sun sp-tag--sun-${sunTag.kind}" data-season-out="${sunMonths}" hidden><span>${escapeHtml(L(sunTag.kind === 'sunny' ? 'Sunny in winter' : 'Little winter sun'))}</span></span>`
+    : '';
   return `${out}
     <span class="dp-badge sp-tag sp-tag--best"><span>${escapeHtml(best)}</span></span>
     ${dog}
+    ${sun}
     <script>(function(){var m=new Date().getMonth();document.querySelectorAll('.sp-tag[data-season-out]').forEach(function(tag){if(tag.getAttribute('data-season-out').charAt(m)==='1')tag.hidden=false;});})();</script>`;
+}
+
+// Short days: sunset today and the latest start, filled in the reader's
+// browser by daylight.js from October to March. Hidden until then.
+function daylightHtml(t) {
+  if (!Number.isFinite(Number(t.lat)) || !Number.isFinite(Number(t.lng)) || !t.hours) return '';
+  const template = L('Short days: sunset today is at {sunset}. To finish in daylight, set off by {start} at the latest; in a deep valley it gets dark sooner.');
+  return `<p class="sp-daylight" hidden data-lat="${escapeHtml(String(t.lat))}" data-lng="${escapeHtml(String(t.lng))}" data-hours="${escapeHtml(String(t.hours))}" data-template="${escapeHtml(template)}"></p>`;
 }
 
 // "When to go": the walk's months as its board publishes them, or the snowy
@@ -747,6 +762,10 @@ function seasonHtml(t) {
     : '';
   const lifts = words.lifts.map((lift) => `<p>${escapeHtml(lift.line)}</p>
     <p class="sp-src">${escapeHtml(lift.source.before)}<a href="${escapeHtml(lift.source.url)}" rel="noopener">${escapeHtml(lift.source.label)}</a>${escapeHtml(lift.source.after)}</p>`).join('\n    ');
+  const winterSun = words.winterSun
+    ? `<p>${escapeHtml(L('Winter sun: '))}${escapeHtml(words.winterSun.line)}</p>
+    <p class="sp-src">${escapeHtml(words.winterSun.source.before)}<a href="${escapeHtml(words.winterSun.source.url)}" rel="noopener">${escapeHtml(words.winterSun.source.label)}</a>${escapeHtml(words.winterSun.source.after)}</p>`
+    : '';
   const dog = words.dogSeasons.length
     ? `<h3 class="sp-season-dog">${L('For your dog')}</h3>
     ${words.dogSeasons.map((risk) => `<p>${escapeHtml(risk.line)}</p>
@@ -755,11 +774,13 @@ function seasonHtml(t) {
   return `<section class="sp-season" id="season" data-season-notes="${escapeHtml(JSON.stringify(notes))}" data-season-warn="${warn.join('')}">
     <h2>${L('When to go')}</h2>
     <p class="sp-season-now" hidden></p>
+    ${daylightHtml(t)}
     ${strip}
     ${words.line ? `<p>${escapeHtml(words.line)}</p>` : ''}
     ${source}
     ${lifts}
     ${winter}
+    ${winterSun}
     ${dog}
   </section>
   <script>
@@ -1114,7 +1135,7 @@ ${it ? '' : ITALIAN_COPY_BANNER + '\n'}<title>${escapeHtml(title)}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${up}styles.css?v=20261123-1">
+<link rel="stylesheet" href="${up}styles.css?v=20261126-3">
 <style>
   .sp-hero{padding-top:28px;}
   .sp-breadcrumb{font-size:.85rem;color:var(--ink-soft,#666);margin-bottom:14px;}
@@ -1155,8 +1176,11 @@ ${it ? '' : ITALIAN_COPY_BANNER + '\n'}<title>${escapeHtml(title)}</title>
   .sp-tag[hidden]{display:none;}
   .sp-tag--out{background:#F6E3DE;color:#7A2E1E;font-weight:700;}
   .sp-tag--dog{background:#F7EBD2;color:#6D4916;font-weight:700;}
+  .sp-tag--sun-sunny{background:#FBEFC4;color:#6B5100;font-weight:700;}
+  .sp-tag--sun-shady{background:#DDE7F3;color:#24476B;font-weight:700;}
   .sp-season-dog{margin:18px 0 6px;font-size:17px;}
   .sp-tag--best{background:#E3F0E0;color:#24502A;font-weight:700;}
+  .sp-daylight{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF0F6;color:#2B3550;font-weight:600;}
   .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
   .sp-season-now--warn{background:#FBF1EE;color:#4A2A22;border-left:4px solid #9C3A25;}
   .sp-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
@@ -1351,6 +1375,7 @@ ${reviewRecord}
 </footer>
 
 <script src="${up}icon-system.js?v=20260717" defer></script>
+<script src="${up}daylight.js?v=20261126-1" defer></script>
 ${it ? `<script src="${up}i18n.js"></script>\n` : ''}<script src="${up}mobile-nav.js?v=20261030-1"></script>
 </body>
 </html>

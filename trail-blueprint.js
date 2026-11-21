@@ -365,7 +365,10 @@
       // Seasonal risks to dogs, only in the months they apply.
       const dog = seasonWords.dogSeasonsNow(t.season, new Date().getMonth() + 1)
         .map(risk => `<span class="dp-badge trail-season-tag trail-season-tag--dog"><span>${esc(risk.label)}</span></span>`).join('');
-      tags.insertAdjacentHTML('beforeend', `${out}<span class="dp-badge trail-season-tag trail-season-tag--best"><span>${esc(best)}</span></span>${dog}`);
+      // "Sunny in winter" or "Little winter sun", November to February.
+      const sunTag = seasonWords.winterSunTag ? seasonWords.winterSunTag(t.season, new Date().getMonth() + 1) : null;
+      const sun = sunTag ? `<span class="dp-badge trail-season-tag trail-season-tag--sun-${sunTag.kind}"><span>${esc(sunTag.label)}</span></span>` : '';
+      tags.insertAdjacentHTML('beforeend', `${out}<span class="dp-badge trail-season-tag trail-season-tag--best"><span>${esc(best)}</span></span>${dog}${sun}`);
     }
 
     // Elevation figures under the real chart; hide the block honestly
@@ -735,6 +738,16 @@
     } else if (maxAlt >= 1800) {
       caution(tx('High ground'), tx('Up to {alt} m. Snow can last into early summer and the weather changes fast.', { alt: isItalian() ? num(maxAlt) : Number(maxAlt).toLocaleString('en-GB') }), 'altitude');
     }
+    // Short days (daylight.js): sunset today and the latest start that still
+    // finishes in daylight, October to March.
+    const daylight = window.DoloPawsDaylight ? window.DoloPawsDaylight.daylightFor(t) : null;
+    if (daylight) {
+      const locale = isItalian() ? 'it-IT' : 'en-GB';
+      caution(tx('Short days'), tx('Sunset today is at {sunset}. To finish in daylight, set off by {start} at the latest; in a deep valley it gets dark sooner.', {
+        sunset: window.DoloPawsDaylight.formatTime(daylight.sunset, locale),
+        start: window.DoloPawsDaylight.formatTime(daylight.startBy, locale),
+      }), null);
+    }
     // Seasonal risks to dogs that apply this month (data/dog-seasons.json),
     // each with the months and where they come from.
     if (seasonWords && t.season && (t.season.dogSeasons || []).length) {
@@ -744,6 +757,13 @@
         const from = risk.sources.map(source => source.label).join(', ');
         caution(tx(seasonWords.DOG_SEASON_TAGS[risk.kind]), `${risk.line} ${tx('Source: {source}.', { source: from })}`, ({ cows: 'livestock', heat: 'heat', salt: 'paws' })[risk.kind] || null);
       }
+    }
+    // A shady walk in midwinter: where the sun never reaches, the path stays
+    // icy and a short-coated dog gets cold.
+    const sunTag = seasonWords && seasonWords.winterSunTag ? seasonWords.winterSunTag(t.season, month) : null;
+    if (sunTag && sunTag.kind === 'shady') {
+      const sun = seasonWords.winterSunLine(t.season, n => (isItalian() ? Number(n) : Number(n).toLocaleString()));
+      caution(sunTag.label, `${sun.line} ${tx('Paths in the shade stay icy all day, and a short-coated dog gets cold faster.')}`, 'altitude');
     }
 
     if (!rows.length) {

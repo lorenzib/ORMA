@@ -4161,6 +4161,62 @@
       "quote": "Distanza 2,8 km · Durata 0:50 h · Salita 72 m · Discesa 73 m · Difficoltà T1",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-21T12:00:00.000Z"
+    },
+    "valsusa-bruzolo-anello-chiotetti": {
+      "url": "https://www.outdooractive.com/it/r/806631049",
+      "publisher": "Val Susa Outdoor (Turismo Torino e Provincia) (Outdooractive)",
+      "name": "BRUZOLO – I Sentieri degli Ultimi – Anello dei Chiotetti",
+      "quote": "Distanza 7 km · Durata 3:15 h · Salita 638 m · Discesa 638 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T23:30:00.000Z"
+    },
+    "valsusa-mattie-alpe-toglie": {
+      "url": "https://www.outdooractive.com/it/r/809844270",
+      "publisher": "Val Susa Outdoor (Turismo Torino e Provincia) (Outdooractive)",
+      "name": "MATTIE – Alpe Toglie",
+      "quote": "Distanza 8,8 km · Durata 3:55 h · Salita 773 m · Discesa 772 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T23:30:00.000Z"
+    },
+    "valsusa-mompantero-sentier8": {
+      "url": "https://www.outdooractive.com/it/r/806598959",
+      "publisher": "Val Susa Outdoor (Turismo Torino e Provincia) (Outdooractive)",
+      "name": "MOMPANTERO – Il Sentier8",
+      "quote": "Distanza 3,9 km · Durata 2:05 h · Salita 439 m · Discesa 439 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T23:30:00.000Z"
+    },
+    "valsusa-giaglione-forte-santa-chiara": {
+      "url": "https://www.outdooractive.com/it/r/809848233",
+      "publisher": "Val Susa Outdoor (Turismo Torino e Provincia) (Outdooractive)",
+      "name": "GIAGLIONE – Il Forte di Santa Chiara",
+      "quote": "Distanza 7,8 km · Durata 3:45 h · Salita 750 m · Discesa 750 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T23:30:00.000Z"
+    },
+    "settimo-vittone-pergole-castagneti": {
+      "url": "https://www.outdooractive.com/it/r/807719711",
+      "publisher": "CANAVESE VILLAGE (Turismo in Canavese) (Outdooractive)",
+      "name": "SETTIMO VITTONE tra pergole e castagneti",
+      "quote": "Distanza 6,7 km · Durata 2:25 h · Salita 308 m · Discesa 313 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-21T10:00:00.000Z"
+    },
+    "valchiusella-cima-bossola": {
+      "url": "https://www.outdooractive.com/it/r/255063717",
+      "publisher": "CANAVESE VILLAGE (Turismo in Canavese) (Outdooractive)",
+      "name": "VALCHIUSELLA Cima Bossola",
+      "quote": "Distanza 5,1 km · Durata 2:10 h · Salita 415 m · Discesa 412 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-21T10:00:00.000Z"
+    },
+    "corio-sentiero-del-redio": {
+      "url": "https://www.outdooractive.com/it/r/810104658",
+      "publisher": "CANAVESE VILLAGE (Turismo in Canavese) (Outdooractive)",
+      "name": "CORIO Sentiero del Redìo",
+      "quote": "Distanza 8,4 km · Durata 3:15 h · Salita 465 m · Discesa 465 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-21T10:00:00.000Z"
     }
   }
 }

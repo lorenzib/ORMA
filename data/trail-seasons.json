@@ -1044,6 +1044,18 @@
         "highPoint": 2248
       }
     },
+    "corio-sentiero-del-redio": {
+      "highPoint": 1268,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1268
+      }
+    },
     "cortina-castello-di-botestagno": {
       "highPoint": 1488,
       "recommended": {
@@ -2389,7 +2401,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 716
       }
     },
@@ -2430,7 +2442,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 599
       }
     },
@@ -2442,7 +2454,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 316
       }
     },
@@ -2692,7 +2704,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 752
       }
     },
@@ -2716,7 +2728,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 577
       }
     },
@@ -3098,7 +3110,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 523
       }
     },
@@ -3125,7 +3137,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 643
       }
     },
@@ -3137,7 +3149,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 405
       }
     },
@@ -3161,7 +3173,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 336
       }
     },
@@ -3173,7 +3185,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 657
       }
     },
@@ -3681,7 +3693,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 288
       }
     },
@@ -3742,7 +3754,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 727
       }
     },
@@ -3766,7 +3778,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 709
       }
     },
@@ -4117,7 +4129,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 781
       }
     },
@@ -4129,7 +4141,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 623
       }
     },
@@ -4416,7 +4428,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 630
       }
     },
@@ -4428,7 +4440,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 390
       }
     },
@@ -4440,7 +4452,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 356
       }
     },
@@ -4586,7 +4598,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 689
       }
     },
@@ -4598,7 +4610,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 690
       }
     },
@@ -4610,7 +4622,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 365
       }
     },
@@ -4855,7 +4867,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 736
       }
     },
@@ -4879,7 +4891,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 396
       }
     },
@@ -4989,7 +5001,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 313
       }
     },
@@ -5001,7 +5013,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 317
       }
     },
@@ -5138,7 +5150,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 678
       }
     },
@@ -5446,7 +5458,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 555
       }
     },
@@ -5482,7 +5494,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 527
       }
     },
@@ -5518,7 +5530,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 787
       }
     },
@@ -5729,7 +5741,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 560
       }
     },
@@ -5741,7 +5753,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 538
       }
     },
@@ -5753,7 +5765,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 461
       }
     },
@@ -5891,7 +5903,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 748
       }
     },
@@ -5903,7 +5915,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 643
       }
     },
@@ -7199,6 +7211,30 @@
         "highPoint": 1954
       }
     },
+    "settimo-vittone-pergole-castagneti": {
+      "highPoint": 459,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/807719711",
+          "accessedAt": "2026-11-21"
+        }
+      }
+    },
     "steinegg-pyramidenrundweg": {
       "highPoint": 983,
       "snow": {
@@ -8003,6 +8039,30 @@
           "label": "Outdooractive",
           "url": "https://www.outdooractive.com/it/r/812014696",
           "accessedAt": "2026-11-07"
+        }
+      }
+    },
+    "valchiusella-cima-bossola": {
+      "highPoint": 1477,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/255063717",
+          "accessedAt": "2026-11-21"
         }
       }
     },
@@ -8890,6 +8950,43 @@
         "highPoint": 1919
       }
     },
+    "valsusa-bruzolo-anello-chiotetti": {
+      "highPoint": 1109,
+      "recommended": {
+        "months": [
+          2,
+          3,
+          4,
+          5,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/806631049",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "valsusa-giaglione-forte-santa-chiara": {
+      "highPoint": 1499,
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/809848233",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
     "valsusa-giaglione-vigne-mandorli": {
       "highPoint": 821,
       "recommended": {
@@ -8910,6 +9007,46 @@
         "source": {
           "label": "Outdooractive",
           "url": "https://www.outdooractive.com/it/r/809858459",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "valsusa-mattie-alpe-toglie": {
+      "highPoint": 1508,
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/809844270",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "valsusa-mompantero-sentier8": {
+      "highPoint": 991,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/806598959",
           "accessedAt": "2026-11-19"
         }
       }
@@ -9973,7 +10110,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 544
       }
     },
@@ -10114,7 +10251,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 476
       }
     },
@@ -10126,7 +10263,7 @@
           2,
           12
         ],
-        "likelihood": "possible",
+        "likelihood": "occasional",
         "highPoint": 611
       }
     },
