@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-7424683",
   "name": "Marlinger Waalweg",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.420Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T19:54:17.318Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 2539901,
+  "packageBytes": 2539858,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.62276,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Marlinger Waalweg OSM offline map",
       "url": "map.svg",
-      "bytes": 1353983,
-      "sha256": "64fa779f5ac9953141058d694c791bb98b82290a197109db4bf25287ad12de7b"
+      "bytes": 1353964,
+      "sha256": "828bfffef449a7973ee61e3a153438e99dd1c072a4f75a37293d244a428ecf5a"
     },
     {
       "role": "route",

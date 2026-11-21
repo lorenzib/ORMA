@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-9511973",
   "name": "Roda de Armentara",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.474Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:17.462Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 758951,
+  "packageBytes": 758908,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.6057,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Roda de Armentara OSM offline map",
       "url": "map.svg",
-      "bytes": 379911,
-      "sha256": "ab16010340202ead35bd483af1cf1e84ed5d38044b0264e3845f819a224d0008"
+      "bytes": 379892,
+      "sha256": "4e91bb818e1cbf2f3d55d09cf80f873962f1998651f3b2547dc6309c9807ad8c"
     },
     {
       "role": "route",

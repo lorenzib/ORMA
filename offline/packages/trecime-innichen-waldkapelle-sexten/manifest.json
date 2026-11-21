@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-innichen-waldkapelle-sexten",
   "name": "Innichen – Waldkapelle – Sexten",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.633Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:17.772Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1023998,
+  "packageBytes": 1023955,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.6979,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Innichen – Waldkapelle – Sexten OSM offline map",
       "url": "map.svg",
-      "bytes": 499298,
-      "sha256": "a72df0198d2f8f5e7055d769ecef930cdb2a7d749177cbb49c80362abd3f8bef"
+      "bytes": 499279,
+      "sha256": "6cacfa3075f95893b6c12844fcf46541c70e1f8be62f722211b7e1c6dfefbc90"
     },
     {
       "role": "route",

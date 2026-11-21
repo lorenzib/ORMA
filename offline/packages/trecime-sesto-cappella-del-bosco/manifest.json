@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-sesto-cappella-del-bosco",
   "name": "Sexten – Waldkapelle",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.660Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:17.851Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 390543,
+  "packageBytes": 390500,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.69895,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sexten – Waldkapelle OSM offline map",
       "url": "map.svg",
-      "bytes": 181858,
-      "sha256": "5de2f38afd6d3495bb4aad5cc6e1c0ee68d036c309eedf664499a80e8ec158c7"
+      "bytes": 181839,
+      "sha256": "037ed78d5a6b1594c8e8f8fabfa3408d840f8d6eb5eed262f2be2a85ce058f9c"
     },
     {
       "role": "route",

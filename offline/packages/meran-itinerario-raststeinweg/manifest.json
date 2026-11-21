@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "meran-itinerario-raststeinweg",
   "name": "Raststeinweg loop, Schenna",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.149Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.870Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 965719,
+  "packageBytes": 965676,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.6713,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Raststeinweg loop, Schenna OSM offline map",
       "url": "map.svg",
-      "bytes": 520469,
-      "sha256": "238f53076ff1c7ffd8c1abe0fe3388443364561e78197d1f4b567cd38833f2a0"
+      "bytes": 520450,
+      "sha256": "92a5e68db2829d881a7355da61371869f84203823fed6e37cbdd81f93858231c"
     },
     {
       "role": "route",

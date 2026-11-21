@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fiemme-passo-oclini",
   "name": "Passo Oclini, tra il Corno Nero e il Corno Bianco",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.988Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.560Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 479239,
+  "packageBytes": 479196,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.33768,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Passo Oclini, tra il Corno Nero e il Corno Bianco OSM offline map",
       "url": "map.svg",
-      "bytes": 270608,
-      "sha256": "db49239530a45c86a7f06f83bd892a70b0f279b9305ea84c58104f59cab48be9"
+      "bytes": 270589,
+      "sha256": "c5d2b243302a0a9496d76ce57b8e3a303148fb803af42191a8fade50350996c7"
     },
     {
       "role": "route",

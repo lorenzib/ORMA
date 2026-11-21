@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-troi-unika",
   "name": "Troi Unika art trail on Monte Pana",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.764Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:18.046Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 250553,
+  "packageBytes": 250510,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.54611,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Troi Unika art trail on Monte Pana OSM offline map",
       "url": "map.svg",
-      "bytes": 86795,
-      "sha256": "511f6a2eaa84062937ccfa86010c645b944de1ae8149d2e0f5a6f94322d603b4"
+      "bytes": 86776,
+      "sha256": "73b46f1d9e487bc42f95fbb078d2b8e30c37a640474d5e0ccce1bc30e770ea31"
     },
     {
       "role": "route",

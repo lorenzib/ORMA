@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-6410700",
   "name": "Dolomitenblickrunde",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.405Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T19:54:17.288Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 745423,
+  "packageBytes": 745380,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.76291,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Dolomitenblickrunde OSM offline map",
       "url": "map.svg",
-      "bytes": 384122,
-      "sha256": "8cc1e94b799dd7ee0003a5d96724d5d771df837e47372ceb2e8c1705efb934b6"
+      "bytes": 384103,
+      "sha256": "6413daaf28fd66c89e46d7bee3f4d78ba053933f70b04d7d2d36d856289384a4"
     },
     {
       "role": "route",

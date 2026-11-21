@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "weissensee-nordic-7-franz-josephs-hoehe",
   "name": "Franz-Josephs-Höhe loop, Weissensee",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.835Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:18.258Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 847301,
+  "packageBytes": 847258,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.70309,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Franz-Josephs-Höhe loop, Weissensee OSM offline map",
       "url": "map.svg",
-      "bytes": 525423,
-      "sha256": "2356649d2879998ae8834bd2ce2ddbe16e23098c02a5cacd40c5c807fbf57915"
+      "bytes": 525404,
+      "sha256": "5356e5928d3c7d3c0200007a2be54e616c8bce570167f541c621238971db0b70"
     },
     {
       "role": "route",

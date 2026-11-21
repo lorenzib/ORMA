@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "unterengadin-s-charl-alp-sesvenna-return",
   "name": "S-charl to Alp Sesvenna and back",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.677Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:17.880Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 209819,
+  "packageBytes": 209776,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.71186,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "S-charl to Alp Sesvenna and back OSM offline map",
       "url": "map.svg",
-      "bytes": 50434,
-      "sha256": "e9befc2e49029ae585b2772863d8cc4fdc930f42b7ad00c708fadce7fbf41a93"
+      "bytes": 50415,
+      "sha256": "7d210a606ab61f20b684f5bdb0ef63b7966e6025f6150675f330fb9a51e9e575"
     },
     {
       "role": "route",

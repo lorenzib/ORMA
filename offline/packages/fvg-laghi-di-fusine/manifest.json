@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fvg-laghi-di-fusine",
   "name": "Laghi di Fusine",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.003Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.586Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 902089,
+  "packageBytes": 902046,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.46952,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Laghi di Fusine OSM offline map",
       "url": "map.svg",
-      "bytes": 678932,
-      "sha256": "ba7bea895a78d9b77f367944b3f10ba03153c03dfcc3988f333d8266250154a1"
+      "bytes": 678913,
+      "sha256": "8e6cb845db1a7256704052bd52189787d31696926eba518e2871e67125a3105c"
     },
     {
       "role": "route",

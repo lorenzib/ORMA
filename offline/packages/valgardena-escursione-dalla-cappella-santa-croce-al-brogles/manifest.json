@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-escursione-dalla-cappella-santa-croce-al-brogles",
   "name": "Santa Croce – Brogles",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.730Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T19:54:17.975Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 664219,
+  "packageBytes": 664176,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.58877,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Santa Croce – Brogles OSM offline map",
       "url": "map.svg",
-      "bytes": 331737,
-      "sha256": "80f1577ccf33681c5ff08aaadce2a1aae613555920a8dbb87e98a7f9ee1d39e2"
+      "bytes": 331718,
+      "sha256": "fad8c1860fd910d96da5c82df8d771ccd28464e17d5337e68ca8a0283eabbe57"
     },
     {
       "role": "route",

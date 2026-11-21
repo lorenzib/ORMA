@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "auronzo-zamberlan",
   "name": "Cima Gogna to Zamberlan",
-  "version": "2026.11.12-beta.1",
-  "generatedAt": "2026-11-12T16:46:42.803Z",
-  "scoringVersion": "1.9.0",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T19:54:16.051Z",
+  "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 450604,
+  "packageBytes": 450561,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.51606,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Cima Gogna to Zamberlan OSM offline map",
       "url": "map.svg",
-      "bytes": 248726,
-      "sha256": "e7273c65fe03ae74860abbf262061c33695394392bb33621cd12c325992b760f"
+      "bytes": 248707,
+      "sha256": "aed682bf0273d65488648babe3994d78683b765f7b099cf3919c4e149b7b8ecf"
     },
     {
       "role": "route",

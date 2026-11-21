@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "unterengadin-vna-ramosch-via-veglia",
   "name": "Vnà to Ramosch on the old path",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.682Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:17.889Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 325412,
+  "packageBytes": 325369,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.83078,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Vnà to Ramosch on the old path OSM offline map",
       "url": "map.svg",
-      "bytes": 137570,
-      "sha256": "c7604709dd11f5695392e5c1ef24297c08c75fedc628567d14cf7d62d3ae41e0"
+      "bytes": 137551,
+      "sha256": "410e1b6cbe2f25c0d7f1e1c1bc0245779b43052cb81bc51d0129c25ca47c148d"
     },
     {
       "role": "route",

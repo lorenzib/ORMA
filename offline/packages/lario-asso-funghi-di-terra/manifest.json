@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lario-asso-funghi-di-terra",
   "name": "Asso to the earth pyramids of Rezzago",
-  "version": "2026.11.19-beta.1",
-  "generatedAt": "2026-11-19T11:09:59.073Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T19:54:16.775Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 995593,
+  "packageBytes": 995550,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.85245,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Asso to the earth pyramids of Rezzago OSM offline map",
       "url": "map.svg",
-      "bytes": 667579,
-      "sha256": "8de109628b387b1b57348b920892fdf43ef08a9140d72d40b6f21669da3db320"
+      "bytes": 667560,
+      "sha256": "20bcfe9ca63718212079a5f7c8ee606762c21b6812facda58d4d7896083eeda3"
     },
     {
       "role": "route",

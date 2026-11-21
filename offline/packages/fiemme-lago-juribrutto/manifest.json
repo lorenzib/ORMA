@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fiemme-lago-juribrutto",
   "name": "Lago di Juribrutto from Malga Vallazza",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.978Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.546Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 436373,
+  "packageBytes": 436330,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.32705,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Lago di Juribrutto from Malga Vallazza OSM offline map",
       "url": "map.svg",
-      "bytes": 201088,
-      "sha256": "864f34dea19b218ff6cf829c8ca2d2b8f9c47a9f91c068a9918f671770b13e23"
+      "bytes": 201069,
+      "sha256": "814d8c37b5c7dd5c849e013bf09b0737201f3e2f1621a32b2786a19e64fac393"
     },
     {
       "role": "route",

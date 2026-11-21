@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "santa-maddalena",
   "name": "Rundweg St. Magdalena",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.560Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T19:54:17.605Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 729509,
+  "packageBytes": 729466,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.6372,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Rundweg St. Magdalena OSM offline map",
       "url": "map.svg",
-      "bytes": 499746,
-      "sha256": "7d5f7aa082c7d665ea4315908f5f5287a7e3e684e2060dbc5a0448af9dd52160"
+      "bytes": 499727,
+      "sha256": "8aeea0c3d7354fda9cbdf7c77ae7f46ee2a81ee25cd39acdd5bd060668e34d02"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "meran-escursione-alla-forst",
   "name": "Forst and the Marlinger Waalweg from Algund",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.132Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.849Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 922965,
+  "packageBytes": 922922,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.66925,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Forst and the Marlinger Waalweg from Algund OSM offline map",
       "url": "map.svg",
-      "bytes": 541151,
-      "sha256": "86a7b884477be3c61896f89c94ea0d5541fff6d210ea910d95a0d961616862c0"
+      "bytes": 541132,
+      "sha256": "0cde0f07ca138f136d7a4c03d76db35a95c7d6f3f17535f5b2757f476678a1d3"
     },
     {
       "role": "route",

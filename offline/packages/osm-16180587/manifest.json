@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-16180587",
   "name": "Balade du Plateau d'Assy au Lac Vert",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.306Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T19:54:17.174Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 672843,
+  "packageBytes": 672800,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.93358,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Balade du Plateau d'Assy au Lac Vert OSM offline map",
       "url": "map.svg",
-      "bytes": 270252,
-      "sha256": "3791bf559b2f00250f43a006a63e78cc1b649959ee4299b23fe9b5eae29308b2"
+      "bytes": 270233,
+      "sha256": "52748eb7ec81d7f0ef09db907fda5c4bc81de986e1f8b47bb536af20e662f66a"
     },
     {
       "role": "route",

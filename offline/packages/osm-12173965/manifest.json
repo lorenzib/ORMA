@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12173965",
   "name": "Kleine Schlossrunde",
-  "version": "2026.11.19-beta.5",
-  "generatedAt": "2026-11-19T15:40:30.301Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T19:54:17.015Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 521179,
+  "packageBytes": 521134,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.75215,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Kleine Schlossrunde OSM offline map",
       "url": "map.svg",
-      "bytes": 309602,
-      "sha256": "3bb9f48d7477d2acc388b5d1a0f7ac5dfbf4aeafd6147cbe76e70bcc47b749d6"
+      "bytes": 309581,
+      "sha256": "b195fce2b848cede96573243f98d204caf0934b0738e027007cb957380527440"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valsusa-san-giorio-geat-montebenedetto",
   "name": "Rifugio GEAT and Certosa di Montebenedetto Loop, San Giorio",
-  "version": "2026.11.19-beta.1",
-  "generatedAt": "2026-11-19T22:22:28.468Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T19:54:18.107Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 341371,
+  "packageBytes": 341326,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.0812,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Rifugio GEAT and Certosa di Montebenedetto Loop, San Giorio OSM offline map",
       "url": "map.svg",
-      "bytes": 114888,
-      "sha256": "98f3b6f4a1d43501a52de979f327b295d1a4da7675be893f27c1fecc699672eb"
+      "bytes": 114867,
+      "sha256": "0545cfe96b04e5407df38effab6f3fc672ffa618bc1f2af1a2ed0ba3179f43b8"
     },
     {
       "role": "route",

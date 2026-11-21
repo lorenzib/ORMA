@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valchiusella-fondo-tissone-tallorno",
   "name": "Fondo, Tissone and Tallorno Loop, Valchiusella",
-  "version": "2026.11.19-beta.1",
-  "generatedAt": "2026-11-19T19:52:00.357Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T19:54:17.905Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 378845,
+  "packageBytes": 378800,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.52675,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Fondo, Tissone and Tallorno Loop, Valchiusella OSM offline map",
       "url": "map.svg",
-      "bytes": 127819,
-      "sha256": "d3df5fde23452ff372e2e6823f67f15c04b482b8908a75835eb6d8424dd468be"
+      "bytes": 127798,
+      "sha256": "8ab6c41336cb76d10b97b972ae8bd3fa61c7fcb4a16b5f827d5e0f917809b85f"
     },
     {
       "role": "route",

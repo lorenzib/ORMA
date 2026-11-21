@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "auronzo-namos",
   "name": "Santa Caterina to Pian de Namos",
-  "version": "2026.11.16-beta.1",
-  "generatedAt": "2026-11-16T10:21:46.067Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T19:54:16.040Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 371575,
+  "packageBytes": 371532,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.5313,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Santa Caterina to Pian de Namos OSM offline map",
       "url": "map.svg",
-      "bytes": 199240,
-      "sha256": "bc28fc52d0a755366a2aa47fcd8db19d383ee698f864c94d818f8aa78116af2a"
+      "bytes": 199221,
+      "sha256": "3cecb71e5fbd1bdcc34dd5699ceab959892322b4a33234bd31083abc3169e567"
     },
     {
       "role": "route",

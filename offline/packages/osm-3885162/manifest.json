@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-3885162",
   "name": "Seeweg, Val d'Ultimo",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.376Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:17.249Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 603813,
+  "packageBytes": 603770,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.52065,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Seeweg, Val d'Ultimo OSM offline map",
       "url": "map.svg",
-      "bytes": 327151,
-      "sha256": "d369924231cb4c1185551930161aa8e8ffa34b5df7d51200c2fe19d5ba45b923"
+      "bytes": 327132,
+      "sha256": "a53753fdf61fdc094105d69d7312e9b5e723308a51f32986fb6405aa2cbb9c51"
     },
     {
       "role": "route",

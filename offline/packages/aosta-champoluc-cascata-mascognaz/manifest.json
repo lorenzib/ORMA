@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "aosta-champoluc-cascata-mascognaz",
   "name": "Champoluc – Mascognaz waterfall",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.791Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.001Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 427651,
+  "packageBytes": 427608,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.81932,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Champoluc – Mascognaz waterfall OSM offline map",
       "url": "map.svg",
-      "bytes": 214270,
-      "sha256": "7923b64be18eaccaaa89991fc80c64dd73cabec5b9a87f92870d5de3c94e044d"
+      "bytes": 214251,
+      "sha256": "84f9f51281e24abf512ba576eaa38a52f9eec8ae05329ee3794f18490c386488"
     },
     {
       "role": "route",

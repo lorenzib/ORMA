@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-14381584",
   "name": "Beaumollard",
-  "version": "2026.11.19-beta.8",
-  "generatedAt": "2026-11-19T15:42:35.479Z",
+  "version": "2026.11.21-beta.9",
+  "generatedAt": "2026-11-21T19:54:17.152Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 461640,
+  "packageBytes": 461595,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.21117,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Beaumollard OSM offline map",
       "url": "map.svg",
-      "bytes": 178179,
-      "sha256": "3650c4e98ccd4ee179b944c7db13c3c9129e1d05eb2ad621c1a6ea5888956ce3"
+      "bytes": 178158,
+      "sha256": "1ca46a51e4260f8984c5e74727101cdfc4f65cfc8d7bc119e9f0dee2b73071a4"
     },
     {
       "role": "route",

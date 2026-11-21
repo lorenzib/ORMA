@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "kronplatz-passeggiata-leggendaria-sul-kienberg",
   "name": "The Kienberg legends loop",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:14.057Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T19:54:16.707Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1859504,
+  "packageBytes": 1859461,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.76779,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "The Kienberg legends loop OSM offline map",
       "url": "map.svg",
-      "bytes": 1259717,
-      "sha256": "48c3c9d5234b7faec78f03730525dcc6aeadf2ed8fa4461362dafe41758d7631"
+      "bytes": 1259698,
+      "sha256": "4189e48caed5b91dac9d9684d8dcfe7f8ab8f6dd2c94165018296069e0827afd"
     },
     {
       "role": "route",

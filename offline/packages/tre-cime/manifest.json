@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "tre-cime",
   "name": "Tre Cime di Lavaredo classic circuit",
-  "version": "2026.11.12-beta.7",
-  "generatedAt": "2026-11-12T12:31:14.606Z",
+  "version": "2026.11.21-beta.8",
+  "generatedAt": "2026-11-21T19:54:17.712Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 531758,
+  "packageBytes": 531715,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.60827,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Tre Cime di Lavaredo classic circuit OSM offline map",
       "url": "map.svg",
-      "bytes": 174799,
-      "sha256": "7acc2a2041eb7e57c57bf5851c5743a480e9f430578c37b8e4cd4aa9aefe33ab"
+      "bytes": 174780,
+      "sha256": "a4af43a5da808a5ba8d956c3001321df9c34ced4a2f8c17cfe414c055bc113e8"
     },
     {
       "role": "route",

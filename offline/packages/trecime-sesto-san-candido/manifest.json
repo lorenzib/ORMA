@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-sesto-san-candido",
   "name": "Sexten – Innichen and back",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.666Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:17.862Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1460924,
+  "packageBytes": 1460881,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.68459,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sexten – Innichen and back OSM offline map",
       "url": "map.svg",
-      "bytes": 720248,
-      "sha256": "7cb14c6c4b3e338e34c7ba19fde0aaa69a791db33f2c20364b365222fb3f9410"
+      "bytes": 720229,
+      "sha256": "a93faf6c8d75edc651d9808263caa594f8fa7e04edb6269b7d3b25ce8bef5864"
     },
     {
       "role": "route",

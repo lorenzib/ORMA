@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "kronplatz-sorafurcia-plan-de-corones",
   "name": "Sorafurcia to Plan de Corones",
-  "version": "2026.11.12-beta.1",
-  "generatedAt": "2026-11-12T16:45:37.614Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T19:54:16.738Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 831880,
+  "packageBytes": 831837,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.73209,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sorafurcia to Plan de Corones OSM offline map",
       "url": "map.svg",
-      "bytes": 429005,
-      "sha256": "89cdb780bd19192e6d0201d2c916a94b00dd3e2198e33abcb83571fb35464ed2"
+      "bytes": 428986,
+      "sha256": "27608e3ff3af76113485081e8fbded9f863f9ef4e1aa2ae6295333e2220ac90f"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "rendena-giro-del-belvedere-giustino",
   "name": "Giro del Belvedere",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.557Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:17.602Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 484263,
+  "packageBytes": 484220,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.14496,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Giro del Belvedere OSM offline map",
       "url": "map.svg",
-      "bytes": 284570,
-      "sha256": "6dc94f724ecdddddc99ccb4aed9d4ced8d3b4ccda1bea14c66901f844c015fa0"
+      "bytes": 284551,
+      "sha256": "8f0d15982e95d59b574633a3abbab49c5b370386a0e680dd5e32a7f4a36ca352"
     },
     {
       "role": "route",

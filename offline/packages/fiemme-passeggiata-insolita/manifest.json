@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fiemme-passeggiata-insolita",
   "name": "Passeggiata insolita lungo il Rio Gambis",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.986Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.556Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 607848,
+  "packageBytes": 607805,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.2823,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Passeggiata insolita lungo il Rio Gambis OSM offline map",
       "url": "map.svg",
-      "bytes": 358291,
-      "sha256": "226610cf672ecfb82bf8d4a5d93381d37835409b02ca8a8fa8969b1258d811b7"
+      "bytes": 358272,
+      "sha256": "f8ac0b0fa102b0dc9d8f0d53f3f84f7cc093d0bbdc7c56a9b7b6158b7a4ee13b"
     },
     {
       "role": "route",

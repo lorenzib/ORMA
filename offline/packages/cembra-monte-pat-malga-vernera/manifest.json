@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cembra-monte-pat-malga-vernera",
   "name": "Dalla Baita Monte Pat a Malga Vernera",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.853Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.204Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 182379,
+  "packageBytes": 182336,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.21252,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Dalla Baita Monte Pat a Malga Vernera OSM offline map",
       "url": "map.svg",
-      "bytes": 28033,
-      "sha256": "a9ba26c18aedd331c80ca5cf344b21fb5bd7370841c542348c47172a977dfd30"
+      "bytes": 28014,
+      "sha256": "678eb81ec5b1023314b135e5d63a05806befd98ca928635fe65aeac89684d9b3"
     },
     {
       "role": "route",

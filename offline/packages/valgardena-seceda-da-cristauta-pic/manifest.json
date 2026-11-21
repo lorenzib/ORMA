@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-seceda-da-cristauta-pic",
   "name": "Cristauta – Seceda over Monte Pic",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.757Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:18.033Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 701827,
+  "packageBytes": 701784,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.56285,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Cristauta – Seceda over Monte Pic OSM offline map",
       "url": "map.svg",
-      "bytes": 294273,
-      "sha256": "a76f2d56a9ee5d75a66e446abad468d6e246836640635ac099fd0a0aee1f679b"
+      "bytes": 294254,
+      "sha256": "77658a594c2bac979dcc52b47f7cbbbacec978a41216ae83b49b4e1b05cf79b5"
     },
     {
       "role": "route",

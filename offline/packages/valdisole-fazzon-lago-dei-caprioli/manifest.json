@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valdisole-fazzon-lago-dei-caprioli",
   "name": "Rifugio Fazzon – Lago dei Caprioli",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.694Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:17.913Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 186693,
+  "packageBytes": 186650,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.28843,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Rifugio Fazzon – Lago dei Caprioli OSM offline map",
       "url": "map.svg",
-      "bytes": 31109,
-      "sha256": "9ee18157cdb19409f81c7e12898d596d6059d00fa1ddce1718e3da4c92833fd4"
+      "bytes": 31090,
+      "sha256": "d571342ea70d6923f1083ff826283f061f75791ddda9475f75f2fc1dd9b32616"
     },
     {
       "role": "route",

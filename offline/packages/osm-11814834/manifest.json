@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11814834",
   "name": "Geotrail Bula - Pufels - Bulla",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.195Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T19:54:16.943Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 866769,
+  "packageBytes": 866726,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.56036,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Geotrail Bula - Pufels - Bulla OSM offline map",
       "url": "map.svg",
-      "bytes": 633537,
-      "sha256": "a57b869334772e817ea9b3cefb4397fcc191b5407687f13e91216f3cb6a35e48"
+      "bytes": 633518,
+      "sha256": "448252d3bc8b9c7408bfe3bba2134531ec3ad9d2e7f9da77a1006a2b05b7a9ec"
     },
     {
       "role": "route",

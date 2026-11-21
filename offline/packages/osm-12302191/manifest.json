@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12302191",
   "name": "Dorfrundweg Rasen",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.254Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T19:54:17.068Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 661756,
+  "packageBytes": 661713,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.7723,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Dorfrundweg Rasen OSM offline map",
       "url": "map.svg",
-      "bytes": 390450,
-      "sha256": "6fe03ed3cf0f395ace2925083565003e2a302a6506f8f187600aef73d7bc747a"
+      "bytes": 390431,
+      "sha256": "774b4baca62b0be5cc3f1e9ae2ce4ffc44655a7190faeb8f195a71c02a27b7d6"
     },
     {
       "role": "route",

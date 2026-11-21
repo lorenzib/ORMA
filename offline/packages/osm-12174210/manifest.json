@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12174210",
   "name": "Rundweg Reischach",
-  "version": "2026.11.17-beta.1",
-  "generatedAt": "2026-11-17T16:02:14.148Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T19:54:17.024Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 879948,
+  "packageBytes": 879905,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.76334,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Rundweg Reischach OSM offline map",
       "url": "map.svg",
-      "bytes": 482581,
-      "sha256": "78c5e0a5014f33e0e6576a11eac1323361213437c4521e83c8a2fb38454ddf3e"
+      "bytes": 482562,
+      "sha256": "a8c4b4bdcd011c082f481aa5e885586e5ecddedea4154cb3f7fa6d6c4f6fc3d7"
     },
     {
       "role": "route",

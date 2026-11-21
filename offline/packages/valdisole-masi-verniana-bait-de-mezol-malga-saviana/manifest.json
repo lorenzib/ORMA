@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valdisole-masi-verniana-bait-de-mezol-malga-saviana",
   "name": "Forte Strino to Malga Verniana and Malga Saviana",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.700Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:17.923Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 608453,
+  "packageBytes": 608410,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.27602,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Forte Strino to Malga Verniana and Malga Saviana OSM offline map",
       "url": "map.svg",
-      "bytes": 304482,
-      "sha256": "2bdeb67a99365b6e26c314973b7982556213b75fd0521e81cc315c57ebc7e7c7"
+      "bytes": 304463,
+      "sha256": "61c074629a575da1cfc9547e78d4de03a225e7484cff4e4a75d33d0b73096096"
     },
     {
       "role": "route",

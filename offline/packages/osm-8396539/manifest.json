@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-8396539",
   "name": "Kulturwanderweg Peter Mitterhofer",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.458Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T19:54:17.433Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1266696,
+  "packageBytes": 1266653,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.66147,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Kulturwanderweg Peter Mitterhofer OSM offline map",
       "url": "map.svg",
-      "bytes": 837978,
-      "sha256": "5fec6421abdfe9d8447f67a27063f28a7871dc8863802c9a24f84c2e38f1b1fa"
+      "bytes": 837959,
+      "sha256": "1931ca80a40e7c562d559a4c4d0a3843c3d08cf78b6cb36ba1f082a34e331d99"
     },
     {
       "role": "route",

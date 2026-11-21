@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "kronplatz-san-lorenzo-maria-sares",
   "name": "San Lorenzo to Maria Sares",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.069Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T19:54:16.729Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1759978,
+  "packageBytes": 1759935,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.75981,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "San Lorenzo to Maria Sares OSM offline map",
       "url": "map.svg",
-      "bytes": 1255386,
-      "sha256": "0f3adccd2c272a110889059e9969855fc4e87653d44a04d6524faef0eee6a950"
+      "bytes": 1255367,
+      "sha256": "49370276db71f30cddf4d685a05ab1513160f564a758e4d37c4675f30134fff9"
     },
     {
       "role": "route",

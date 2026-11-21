@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fiemme-scalata-alle-malghette",
   "name": "La “scalata” alle Malghette",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:13.991Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T19:54:16.564Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 230084,
+  "packageBytes": 230041,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.2879,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "La “scalata” alle Malghette OSM offline map",
       "url": "map.svg",
-      "bytes": 48342,
-      "sha256": "adec5b4b0a48029aa6ca54bf6c7e8f0fcb7a765961da3dc0b458881e488533e1"
+      "bytes": 48323,
+      "sha256": "5c0a6c9aa84b925803d41e802a97bfeb1ef919f75ee0439aa4a064ab18a6b10b"
     },
     {
       "role": "route",

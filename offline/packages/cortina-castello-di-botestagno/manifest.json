@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cortina-castello-di-botestagno",
   "name": "Castello di Botestagno",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.872Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.283Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 241243,
+  "packageBytes": 241200,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.59354,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Castello di Botestagno OSM offline map",
       "url": "map.svg",
-      "bytes": 82100,
-      "sha256": "227722612e35252a082e11c77e3dcdada21ae8d5247d2cce6aa1ee59351803ec"
+      "bytes": 82081,
+      "sha256": "b64c514adf46868e4c9a2a81a8faeba5de07f2e6c9401048e86b8dae20fd1de7"
     },
     {
       "role": "route",

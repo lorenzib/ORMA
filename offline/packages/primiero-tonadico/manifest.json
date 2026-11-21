@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-tonadico",
   "name": "Tonadico",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:14.545Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T19:54:17.581Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 896820,
+  "packageBytes": 896777,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.17217,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Tonadico OSM offline map",
       "url": "map.svg",
-      "bytes": 612224,
-      "sha256": "3d00f0fae72304490447fe4680889f467d2454a59759b753d5bfaee90bc44ed7"
+      "bytes": 612205,
+      "sha256": "1e44be51e97dd9ce512152b925c0a6bb007dde3b0910a3985a5e6d75ee6e6498"
     },
     {
       "role": "route",

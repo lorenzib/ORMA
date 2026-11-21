@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-123162",
   "name": "Planetenweg - Sentiero dei pianeti",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.257Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:17.072Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 734643,
+  "packageBytes": 734600,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.44688,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Planetenweg - Sentiero dei pianeti OSM offline map",
       "url": "map.svg",
-      "bytes": 481565,
-      "sha256": "3be54131fd5625f533235711082bf4e1887909ea19da25f9f8a9a87a42f479d6"
+      "bytes": 481546,
+      "sha256": "d4e9f9a88c727de7a206375b2b1837a12f0681bb09e654cd64221a100749073b"
     },
     {
       "role": "route",

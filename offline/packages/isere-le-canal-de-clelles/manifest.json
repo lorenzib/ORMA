@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "isere-le-canal-de-clelles",
   "name": "Clelles canal loop",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.036Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.673Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 410382,
+  "packageBytes": 410339,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 44.81945,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Clelles canal loop OSM offline map",
       "url": "map.svg",
-      "bytes": 207699,
-      "sha256": "ecf4509f8797137d16116179d102a96b4a3f30a3cdd054a6462c895f42c81d36"
+      "bytes": 207680,
+      "sha256": "be8b7b610e5cb705ecaff159e391664e137e28b127434463bd1aaa1df715aae2"
     },
     {
       "role": "route",

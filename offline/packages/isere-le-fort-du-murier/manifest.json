@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "isere-le-fort-du-murier",
   "name": "Fort du Murier loop above Gières",
-  "version": "2026.11.19-beta.4",
-  "generatedAt": "2026-11-19T15:45:36.578Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T19:54:16.677Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 451406,
+  "packageBytes": 451361,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.15839,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Fort du Murier loop above Gières OSM offline map",
       "url": "map.svg",
-      "bytes": 200924,
-      "sha256": "d23af94bb4bf544881f629b8bfed29a6c32f987ec6a43de5a7624cb4379df985"
+      "bytes": 200903,
+      "sha256": "7ab3733f10324fcbbec71969a401a6ea2d1f182e992b5cc19e949ac11829d8fc"
     },
     {
       "role": "route",

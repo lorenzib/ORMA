@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fiemme-cristo-pensante",
   "name": "Cristo Pensante on Monte Castellazzo",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.974Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.534Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 387470,
+  "packageBytes": 387427,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.2941,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Cristo Pensante on Monte Castellazzo OSM offline map",
       "url": "map.svg",
-      "bytes": 140949,
-      "sha256": "840fbb0796681b384e759c1b818b8d91727a829416baacf7c2fa0a277bed20c8"
+      "bytes": 140930,
+      "sha256": "b239e2b2830946e281678596f6b42c963e4d02b046e1700d6dd6bde6f063a457"
     },
     {
       "role": "route",

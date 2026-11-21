@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "paganella-sette-passi-sette-ville",
   "name": "Sette passi per sette Ville",
-  "version": "2026.11.19-beta.1",
-  "generatedAt": "2026-11-19T11:08:06.746Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T19:54:17.525Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 552156,
+  "packageBytes": 552113,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.07166,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sette passi per sette Ville OSM offline map",
       "url": "map.svg",
-      "bytes": 299081,
-      "sha256": "0353ef1828af99a24ca94ca75da818a78997cda51f9843c1ad1111697fb8da3e"
+      "bytes": 299062,
+      "sha256": "31b0c454085e3ac410c11705ab7b75bc0cae044066c8a25ab28be77900ac359f"
     },
     {
       "role": "route",

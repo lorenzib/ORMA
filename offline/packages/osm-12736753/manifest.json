@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12736753",
   "name": "Albeins-Klerant-Milland - Albes-Cleran-Millan",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.265Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T19:54:17.107Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1253876,
+  "packageBytes": 1253833,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.67235,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Albeins-Klerant-Milland - Albes-Cleran-Millan OSM offline map",
       "url": "map.svg",
-      "bytes": 733070,
-      "sha256": "c0bee4ed29ede1dd8d675715e21375281f83b8a1ec1f51c397d18eac205a4d9f"
+      "bytes": 733051,
+      "sha256": "a619f83209604d009ba1163cf44e266113d379acc530e5408e123c2427289231"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-14095296",
   "name": "Les Marais d'Albens",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.278Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T19:54:17.130Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 574845,
+  "packageBytes": 574802,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.78551,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Les Marais d'Albens OSM offline map",
       "url": "map.svg",
-      "bytes": 334742,
-      "sha256": "da536b97778473d584940361f16cb88e827ec84082ef1fc280db9a399e7405b8"
+      "bytes": 334723,
+      "sha256": "0c73d14c16476d244876baa942f778fbf40a28b51e892bcd01c216e12d901a4e"
     },
     {
       "role": "route",

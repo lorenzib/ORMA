@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "altogarda-valle-cartiere",
   "name": "Valle delle Cartiere, the paper-mill valley",
-  "version": "2026.11.19-beta.1",
-  "generatedAt": "2026-11-19T21:51:22.225Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T19:54:15.996Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 861792,
+  "packageBytes": 861747,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.63899,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Valle delle Cartiere, the paper-mill valley OSM offline map",
       "url": "map.svg",
-      "bytes": 559052,
-      "sha256": "d5d6746228d7721fe22d2299264fbc9c380969eb1680ce7b44034871c2e4cd9f"
+      "bytes": 559031,
+      "sha256": "bd413c9e5addf80453c6ec6f532e4e25d2ec494397465fa87a7335bf11a557fa"
     },
     {
       "role": "route",

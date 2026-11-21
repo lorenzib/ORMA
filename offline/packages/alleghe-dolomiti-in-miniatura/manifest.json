@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "alleghe-dolomiti-in-miniatura",
   "name": "Dolomites in Miniature, San Tomaso Agordino",
-  "version": "2026.11.16-beta.1",
-  "generatedAt": "2026-11-16T11:08:20.608Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T19:54:15.917Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 351731,
+  "packageBytes": 351688,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.37256,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Dolomites in Miniature, San Tomaso Agordino OSM offline map",
       "url": "map.svg",
-      "bytes": 161241,
-      "sha256": "ea44996912fae0c394d69158d89d270e142410fbed1312f6315dfd3e31cb5e78"
+      "bytes": 161222,
+      "sha256": "b965f8572fc1e5c33e5c9dfe322b2caeeeee35d37777101ca540e441f1abe50c"
     },
     {
       "role": "route",

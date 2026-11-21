@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lario-salendo-al-monte-scioscia-ad-ammirare-la-brianza",
   "name": "Monte Scioscia viewpoint loop",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.112Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.809Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1188661,
+  "packageBytes": 1188618,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.81972,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Monte Scioscia viewpoint loop OSM offline map",
       "url": "map.svg",
-      "bytes": 762877,
-      "sha256": "d6278d68c38de38e0c73d24d8b3e471aadfdde2e4fc92fbe7898e5ea38aaf98d"
+      "bytes": 762858,
+      "sha256": "e0f4f2071c76aa19e1f3d837e31aa83220656ad81972b0e1d2612de023be4091"
     },
     {
       "role": "route",

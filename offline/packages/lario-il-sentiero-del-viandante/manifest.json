@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lario-il-sentiero-del-viandante",
   "name": "Sentiero del Viandante: Varenna – Bellano",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.104Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.795Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1444418,
+  "packageBytes": 1444375,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.00329,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sentiero del Viandante: Varenna – Bellano OSM offline map",
       "url": "map.svg",
-      "bytes": 964646,
-      "sha256": "edabede1210c4d6cdd528ff2dee0d1e613c930fe09abf907b120d550e91fd5df"
+      "bytes": 964627,
+      "sha256": "06d8dfa03f6c7ef8ed550e015a191542f573d58ce147c03f6245d46be2010ab7"
     },
     {
       "role": "route",

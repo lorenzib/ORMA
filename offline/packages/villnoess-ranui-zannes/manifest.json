@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "villnoess-ranui-zannes",
   "name": "Ranui to Zannes",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.805Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T19:54:18.197Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 587843,
+  "packageBytes": 587800,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.62412,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Ranui to Zannes OSM offline map",
       "url": "map.svg",
-      "bytes": 339255,
-      "sha256": "e09dd1952225cd595344e76f3c3f6379bbc4b9655d1b3440b381e4851dd90bce"
+      "bytes": 339236,
+      "sha256": "759232bc50784a6bb05e2ca02eedeaf7ae659c2c1b2659e695c73b85817fc404"
     },
     {
       "role": "route",

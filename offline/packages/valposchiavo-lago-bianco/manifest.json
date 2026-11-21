@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valposchiavo-lago-bianco",
   "name": "Lago Bianco loop from Ospizio Bernina",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.776Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:18.070Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 334371,
+  "packageBytes": 334328,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.38798,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Lago Bianco loop from Ospizio Bernina OSM offline map",
       "url": "map.svg",
-      "bytes": 98747,
-      "sha256": "2b41910b56ed1d7e98ab82398760c6a9564c82d9cd5017b4cb608c8a6626edb2"
+      "bytes": 98728,
+      "sha256": "26fac07b7d8f2b935e61671c43ecb1e0cf5b306e88994f99a3282a8c350a4c35"
     },
     {
       "role": "route",

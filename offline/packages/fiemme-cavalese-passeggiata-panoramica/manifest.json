@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fiemme-cavalese-passeggiata-panoramica",
   "name": "Cavalese - Passeggiata panoramica",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:13.972Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T19:54:16.522Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 595084,
+  "packageBytes": 595041,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.28133,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Cavalese - Passeggiata panoramica OSM offline map",
       "url": "map.svg",
-      "bytes": 351794,
-      "sha256": "1191e7336ac6feaf1eb780eab4153c207244d9cdb0ab2cae3329399ca429be35"
+      "bytes": 351775,
+      "sha256": "2e712e9f6478f5948dc1030797aaea4b9fa32bb7153584d070a5480995f2af0e"
     },
     {
       "role": "route",

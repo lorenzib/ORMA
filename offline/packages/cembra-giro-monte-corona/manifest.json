@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cembra-giro-monte-corona",
   "name": "Giro panoramico sul Monte Corona",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.848Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.192Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 584405,
+  "packageBytes": 584362,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.16159,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Giro panoramico sul Monte Corona OSM offline map",
       "url": "map.svg",
-      "bytes": 321974,
-      "sha256": "903765d54d81705f761cc6c64bd37dde1852f99126b36f68a8c924cac6fb9d98"
+      "bytes": 321955,
+      "sha256": "eb7e93fd5229d44852f8f568bfd1fde39ef2e67db804b1728c85873c6f105e66"
     },
     {
       "role": "route",

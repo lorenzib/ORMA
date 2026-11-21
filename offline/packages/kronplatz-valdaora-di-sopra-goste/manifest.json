@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "kronplatz-valdaora-di-sopra-goste",
   "name": "Valdaora di Sopra to the Alte Goste",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.074Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T19:54:16.748Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 490722,
+  "packageBytes": 490679,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.75296,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Valdaora di Sopra to the Alte Goste OSM offline map",
       "url": "map.svg",
-      "bytes": 293189,
-      "sha256": "c86bb5937241d04c25f1eeb6137001b1b3688433ddcb231c503d2de58a8b53e8"
+      "bytes": 293170,
+      "sha256": "731f64679abcb5e92a720a8ddda71ccab53921d07923f29dbbf9fc5a8d760609"
     },
     {
       "role": "route",

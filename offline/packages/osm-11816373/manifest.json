@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11816373",
   "name": "Bunkerweg",
-  "version": "2026.11.17-beta.1",
-  "generatedAt": "2026-11-17T16:00:04.845Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T19:54:16.950Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 988302,
+  "packageBytes": 988259,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.75997,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Bunkerweg OSM offline map",
       "url": "map.svg",
-      "bytes": 763988,
-      "sha256": "3fb29f94038671334c543166d817daa892dd09e5b7e35b0859d3a77811ba6626"
+      "bytes": 763969,
+      "sha256": "8a9e90a685e1c2e56e24c753630466c35e4547e5db57cae84d6ba79538c81973"
     },
     {
       "role": "route",

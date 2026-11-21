@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-14376573",
   "name": "Crêt de Talière",
-  "version": "2026.11.12-beta.9",
-  "generatedAt": "2026-11-12T12:31:14.282Z",
+  "version": "2026.11.21-beta.10",
+  "generatedAt": "2026-11-21T19:54:17.137Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 280862,
+  "packageBytes": 280819,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.19973,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Crêt de Talière OSM offline map",
       "url": "map.svg",
-      "bytes": 93226,
-      "sha256": "d8ebb3b9f8b9aa9c549d7ba0ce80ad7d9c8e7919d4851e81dd687dd289a722a9"
+      "bytes": 93207,
+      "sha256": "4f4a3ec63a2a1b12309b7f666b8ff892b916d565bf0c5e893b87f2530e5263a9"
     },
     {
       "role": "route",

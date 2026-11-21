@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-6601608",
   "name": "Naturerlebnispfad Sand in Taufers",
-  "version": "2026.11.19-beta.5",
-  "generatedAt": "2026-11-19T15:41:53.601Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T19:54:17.293Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 502753,
+  "packageBytes": 502708,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.909,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Naturerlebnispfad Sand in Taufers OSM offline map",
       "url": "map.svg",
-      "bytes": 276868,
-      "sha256": "c6283351a01b993a740cc6d495fbba846f0dbca0840060c2dfcedb3a687c4a5d"
+      "bytes": 276847,
+      "sha256": "e3b9f6dd1b6176c9dc392fb4c3f4e76190fb9a42a1e65c5a1b45e187296f6471"
     },
     {
       "role": "route",

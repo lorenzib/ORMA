@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "weissensee-nordic-6-rothns-bichl",
   "name": "Rothn’s Bichl loop, Weissensee",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.833Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:18.252Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 644791,
+  "packageBytes": 644748,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.70308,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Rothn’s Bichl loop, Weissensee OSM offline map",
       "url": "map.svg",
-      "bytes": 394824,
-      "sha256": "26f5debef4a94d92cd9d389d0e0a8bbbc68c7fb2672717bbe10f0c229831a55a"
+      "bytes": 394805,
+      "sha256": "d16d331b97913c91ff1621d4f7b130bfab4fd959f9b4c7485eba651645c53c18"
     },
     {
       "role": "route",

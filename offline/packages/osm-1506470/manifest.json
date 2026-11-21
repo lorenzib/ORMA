@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-1506470",
   "name": "Sissiweg - Sentiero Sissi",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.298Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T19:54:17.161Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1194616,
+  "packageBytes": 1194573,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.65671,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sissiweg - Sentiero Sissi OSM offline map",
       "url": "map.svg",
-      "bytes": 790997,
-      "sha256": "57211a3b9eb7cf19670ed92c36d09a94c3791e752fb44375b336d27ff9f7e3e4"
+      "bytes": 790978,
+      "sha256": "7c80b29f5a298c24eef17de2cccede9f69b18dc8a3a2681dee8d6af256e835c7"
     },
     {
       "role": "route",

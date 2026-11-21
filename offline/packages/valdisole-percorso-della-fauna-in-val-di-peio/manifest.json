@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valdisole-percorso-della-fauna-in-val-di-peio",
   "name": "Wildlife trail in the Val di Peio",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.709Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:17.941Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 407168,
+  "packageBytes": 407125,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.33249,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Wildlife trail in the Val di Peio OSM offline map",
       "url": "map.svg",
-      "bytes": 165592,
-      "sha256": "8a0164b8b949dc10d01484902aab62a9b011ceb27c6a6e9819de0049a27da6c0"
+      "bytes": 165573,
+      "sha256": "f915106a5bb489806983104e35d6794398de544f199ca416d5e4b8e33a1c19d5"
     },
     {
       "role": "route",

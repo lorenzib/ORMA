@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo",
   "name": "Terrainkur path 1, Aschbach to St. Vigil",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.154Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.876Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 342978,
+  "packageBytes": 342935,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.63189,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Terrainkur path 1, Aschbach to St. Vigil OSM offline map",
       "url": "map.svg",
-      "bytes": 88404,
-      "sha256": "fcc47418f084d91b0689ecdf168a25ecdb959ebd0f010a98557d71978dfc4143"
+      "bytes": 88385,
+      "sha256": "8db0007478bbeaa360e45e9f5f080eef04d01ba18a9c66a5da3dfbf59da5f548"
     },
     {
       "role": "route",

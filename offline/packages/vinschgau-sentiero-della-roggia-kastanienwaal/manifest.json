@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "vinschgau-sentiero-della-roggia-kastanienwaal",
   "name": "Kastanienwaal, Schlanders",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.816Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:18.217Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 547004,
+  "packageBytes": 546961,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.62388,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Kastanienwaal, Schlanders OSM offline map",
       "url": "map.svg",
-      "bytes": 302255,
-      "sha256": "c66d6b1b2b70cab283f280574dd599160dd5799e9bb4d1be774870125fff5e05"
+      "bytes": 302236,
+      "sha256": "c51786c7f72f94aa83493e219f7266975a249e9137b7c157208269d8dac615be"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-alpe-di-fuciade",
   "name": "Alpe di Fuciade",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:13.929Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T19:54:16.430Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 440120,
+  "packageBytes": 440077,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.37487,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Alpe di Fuciade OSM offline map",
       "url": "map.svg",
-      "bytes": 219194,
-      "sha256": "b7cc7dee6fd042298ebcd8f580bcfa05eb412b9ab9d1cd98a5bb92fcf00e9e8f"
+      "bytes": 219175,
+      "sha256": "1ee080fd422334de907fafa6cd7168e72dbba93df04d5bf48446563929a25023"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valsesia-campello-monti-colle-dell-usciolo",
   "name": "Campello Monti to the Colle dell’Usciolo",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.781Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:18.079Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 353782,
+  "packageBytes": 353739,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.93212,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Campello Monti to the Colle dell’Usciolo OSM offline map",
       "url": "map.svg",
-      "bytes": 133448,
-      "sha256": "f35e140c62f4e17f3eb6f425faa6bc5543d4fac156c541b9b96276650094a75d"
+      "bytes": 133429,
+      "sha256": "25ee9cb4599dc69363c1f9cff710c5baff2e1c5453b706fda0feaaed1676539f"
     },
     {
       "role": "route",

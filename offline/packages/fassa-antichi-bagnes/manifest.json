@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-antichi-bagnes",
   "name": "Agli antichi Bagnes",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:13.930Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T19:54:16.434Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 507545,
+  "packageBytes": 507502,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.4168,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Agli antichi Bagnes OSM offline map",
       "url": "map.svg",
-      "bytes": 280984,
-      "sha256": "07f98106602b9826c4424b0011a4e560b76b4c7539bf4510b96b2f089615752f"
+      "bytes": 280965,
+      "sha256": "f7b0031324e4cb47c9521d0c3e333fbbc57ebef32351354ffee9e5294aed654d"
     },
     {
       "role": "route",

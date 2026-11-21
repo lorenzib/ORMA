@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "talucco-ecomuseo-carbonaie",
   "name": "Charcoal Kilns Path, Talucco",
-  "version": "2026.11.19-beta.1",
-  "generatedAt": "2026-11-19T19:50:14.827Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T19:54:17.702Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 435704,
+  "packageBytes": 435659,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 44.94498,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Charcoal Kilns Path, Talucco OSM offline map",
       "url": "map.svg",
-      "bytes": 122175,
-      "sha256": "ff4418ca1a9299b65f2cfb5ee13340f67c3932914c489414276ede1b873d26a0"
+      "bytes": 122154,
+      "sha256": "0823f0a81bcdbc2040dae34516f301d450bce2607bab053f567e63e5bafd03ac"
     },
     {
       "role": "route",

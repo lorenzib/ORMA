@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lario-brunate-e-le-sue-chiese",
   "name": "Brunate churches loop",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.089Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.779Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 796856,
+  "packageBytes": 796813,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.81346,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Brunate churches loop OSM offline map",
       "url": "map.svg",
-      "bytes": 538168,
-      "sha256": "3fbdc8b19dbf9d91eedca3a09a26b34bc753c0040b55b0654bc76a760bcb76d6"
+      "bytes": 538149,
+      "sha256": "de3d252a38b630ad3026379ae3be4e116ae9660b01b009c385dc0fb619ae3509"
     },
     {
       "role": "route",

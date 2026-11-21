@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11795251",
   "name": "Dörferrundweg (Vintl)",
-  "version": "2026.11.12-beta.7",
-  "generatedAt": "2026-11-12T12:31:14.192Z",
+  "version": "2026.11.21-beta.8",
+  "generatedAt": "2026-11-21T19:54:16.939Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1633113,
+  "packageBytes": 1633070,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.79966,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Dörferrundweg (Vintl) OSM offline map",
       "url": "map.svg",
-      "bytes": 1075433,
-      "sha256": "6f2f9194b3a899247da26c55f710df195943b2a8f998639b7650a2f95bb89e27"
+      "bytes": 1075414,
+      "sha256": "d24bc9bd008ea3d6a0669c3f237ed0be27530e78c9d4dc6c2318bfd6366055c6"
     },
     {
       "role": "route",

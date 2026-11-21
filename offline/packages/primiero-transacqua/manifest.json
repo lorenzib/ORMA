@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-transacqua",
   "name": "Transacqua",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:14.547Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T19:54:17.584Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 813739,
+  "packageBytes": 813696,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.16912,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Transacqua OSM offline map",
       "url": "map.svg",
-      "bytes": 559523,
-      "sha256": "305bd51dde554798293218656460d8b8ee6ccdb0ed20746d00f99f6c55c156d0"
+      "bytes": 559504,
+      "sha256": "18b2527d1ca16ca22c8e9a805ab5bf27fa5b74c01d97ae33fe5e0f42c6491c3b"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "altabadia-da-furnacia-a-la-crusc",
   "name": "Furnacia – La Crusc",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.755Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:15.928Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 434219,
+  "packageBytes": 434176,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.61081,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Furnacia – La Crusc OSM offline map",
       "url": "map.svg",
-      "bytes": 177335,
-      "sha256": "144a13c377457311264f9fddcdf4a510b106c6269e83ebe04716d4f8acea92fc"
+      "bytes": 177316,
+      "sha256": "642aed135196a3640d9369d98683c112c560295fbe6f43e8917e8e66ddbae5fc"
     },
     {
       "role": "route",

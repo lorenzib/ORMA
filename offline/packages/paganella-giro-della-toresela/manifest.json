@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "paganella-giro-della-toresela",
   "name": "Giro della Toresela",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.506Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:17.517Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 693152,
+  "packageBytes": 693109,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.20409,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Giro della Toresela OSM offline map",
       "url": "map.svg",
-      "bytes": 474456,
-      "sha256": "403a46d5cfcd42a9073cc3e0790a117ed2dd3e42466d2717759e5ca68ecb701b"
+      "bytes": 474437,
+      "sha256": "eb03718a7844537044a0b041f1aa186534bfb9d28a4bf66f62ea12db6238e400"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-dipinti-del-giotto",
   "name": "Sulle tracce dei dipinti del Giotto della Val di Fassa",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:13.945Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T19:54:16.461Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 462530,
+  "packageBytes": 462487,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.43666,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sulle tracce dei dipinti del Giotto della Val di Fassa OSM offline map",
       "url": "map.svg",
-      "bytes": 238813,
-      "sha256": "d765aa25e6d16cc5c11fd8b6967a3c7b0d32a61195ecb1e61c1aa7a9909affb7"
+      "bytes": 238794,
+      "sha256": "d344b4c52f1ee15b8310d5ee9c99779063aa98ee0a35b93191c91548987376e7"
     },
     {
       "role": "route",

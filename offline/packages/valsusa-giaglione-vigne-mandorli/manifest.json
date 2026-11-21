@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valsusa-giaglione-vigne-mandorli",
   "name": "Vineyards and Almond Trees Loop, Giaglione",
-  "version": "2026.11.19-beta.1",
-  "generatedAt": "2026-11-19T22:18:08.096Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T19:54:18.105Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 789122,
+  "packageBytes": 789077,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.13016,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Vineyards and Almond Trees Loop, Giaglione OSM offline map",
       "url": "map.svg",
-      "bytes": 433969,
-      "sha256": "b0005b1b7eb99fdaa7e640240e2f0700e57dc3b4955c821647fa21938dfd168e"
+      "bytes": 433948,
+      "sha256": "8bfb0f4be7752fd6e0afa7c49994f3de38c28974f3e9016fb75100cdca80f71e"
     },
     {
       "role": "route",

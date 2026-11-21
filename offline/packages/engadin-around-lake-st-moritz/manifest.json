@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "engadin-around-lake-st-moritz",
   "name": "Lake St. Moritz shore loop",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.904Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.365Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 796960,
+  "packageBytes": 796917,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.48511,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Lake St. Moritz shore loop OSM offline map",
       "url": "map.svg",
-      "bytes": 416663,
-      "sha256": "e2d1e61ccfb3be490be02f3b06d9c73c2aad451ff4eefc13f41294cd4e60175b"
+      "bytes": 416644,
+      "sha256": "c4e40e7f8ddb6378055dc223e999a2b423a97e6cf6d9ed6c845119a52a683727"
     },
     {
       "role": "route",

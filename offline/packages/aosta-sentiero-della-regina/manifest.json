@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "aosta-sentiero-della-regina",
   "name": "Sentiero della Regina",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.799Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.021Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 623830,
+  "packageBytes": 623787,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.76243,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sentiero della Regina OSM offline map",
       "url": "map.svg",
-      "bytes": 293001,
-      "sha256": "24a4006725bb31ae54cf80207a66485241408885b11ca05f90a0f7d8478eab0f"
+      "bytes": 292982,
+      "sha256": "2d6284b796af1efdddf1a1a6c6f32578bb6b0b4df4a43fe7833fef9ce88417c2"
     },
     {
       "role": "route",

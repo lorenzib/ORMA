@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-14378946",
   "name": "Lac de Pramol",
-  "version": "2026.11.12-beta.7",
-  "generatedAt": "2026-11-12T12:31:14.284Z",
+  "version": "2026.11.21-beta.8",
+  "generatedAt": "2026-11-21T19:54:17.140Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 452455,
+  "packageBytes": 452412,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.20923,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Lac de Pramol OSM offline map",
       "url": "map.svg",
-      "bytes": 179439,
-      "sha256": "66cdb5815ba0feaaf6b37fb1fb18cf924da97814b786f4dd550dd11ba68c3406"
+      "bytes": 179420,
+      "sha256": "a96eb514022dbbfa4c1a2c332a648257c9fe577d060f404de1ae7ae5012f3e04"
     },
     {
       "role": "route",

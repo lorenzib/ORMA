@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-seceda-dal-rifugio-firenze",
   "name": "Seceda via the Rifugio Firenze",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.761Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:18.038Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 864969,
+  "packageBytes": 864926,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.56118,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Seceda via the Rifugio Firenze OSM offline map",
       "url": "map.svg",
-      "bytes": 365630,
-      "sha256": "2319e118b17ea6aabf2b3156495f2b87994dc096983141373e097699b8e05432"
+      "bytes": 365611,
+      "sha256": "d9f2d5a19b89cd0d04c836598344d4c6cff20239b75d857b8aeb035fba1303f0"
     },
     {
       "role": "route",

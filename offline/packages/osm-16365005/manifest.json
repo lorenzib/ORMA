@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-16365005",
   "name": "La Galoppaz par la Combe Servenne",
-  "version": "2026.11.19-beta.8",
-  "generatedAt": "2026-11-19T15:37:39.512Z",
+  "version": "2026.11.21-beta.9",
+  "generatedAt": "2026-11-21T19:54:17.187Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 638040,
+  "packageBytes": 637995,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.5581,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "La Galoppaz par la Combe Servenne OSM offline map",
       "url": "map.svg",
-      "bytes": 349006,
-      "sha256": "7b986848649382989b58f4cf2752de5c4ea8f4e354f7f3ffa64705e889e93389"
+      "bytes": 348985,
+      "sha256": "96e97686fe328ab347a5d2d006e7f80b7aae0b7109c65e5f9ab548fd286fcc9e"
     },
     {
       "role": "route",

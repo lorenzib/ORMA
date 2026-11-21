@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "weissensee-ortsee-ronacherfels",
   "name": "Neusach to the east shore by the Kleine Steinwand, Weissensee",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.842Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:18.268Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1201261,
+  "packageBytes": 1201218,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.6858,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Neusach to the east shore by the Kleine Steinwand, Weissensee OSM offline map",
       "url": "map.svg",
-      "bytes": 704660,
-      "sha256": "405a76d082547884d858b0f2d36145393b068f5f61b32cc4aa4775d989527faf"
+      "bytes": 704641,
+      "sha256": "bee65521b8532d412de0f0185252e608ab2b9dffaa925d3fec0ab2ac94e17e6d"
     },
     {
       "role": "route",

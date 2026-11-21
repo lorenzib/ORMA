@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-9493733",
   "name": "Tru di Lëc",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.471Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T19:54:17.458Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 612889,
+  "packageBytes": 612846,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.59262,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Tru di Lëc OSM offline map",
       "url": "map.svg",
-      "bytes": 304652,
-      "sha256": "1e264e7f3640278a4ed11a68254eb3127df5b99e93ff50b8c43614e8a93336d6"
+      "bytes": 304633,
+      "sha256": "d1daf6b0d3e31deaea799104fe6b09fca13f8cb2ef10c1f6b289f83992794f75"
     },
     {
       "role": "route",

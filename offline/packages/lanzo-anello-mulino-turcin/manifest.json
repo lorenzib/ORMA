@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lanzo-anello-mulino-turcin",
   "name": "Mulino Turcin Loop, Lanzo Torinese",
-  "version": "2026.11.19-beta.1",
-  "generatedAt": "2026-11-19T19:49:34.887Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T19:54:16.762Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1031639,
+  "packageBytes": 1031594,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.27483,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Mulino Turcin Loop, Lanzo Torinese OSM offline map",
       "url": "map.svg",
-      "bytes": 574564,
-      "sha256": "66bab0789339fcfbd0c3abdb5961039a728db2be88aec37faa4f874046711431"
+      "bytes": 574543,
+      "sha256": "4cd51857d478003c59d388b595f0458f090965b6366f45bc0a6a98ed71561538"
     },
     {
       "role": "route",

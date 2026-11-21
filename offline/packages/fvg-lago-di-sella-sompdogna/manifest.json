@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fvg-lago-di-sella-sompdogna",
   "name": "Il laghetto di sella Sompdogna",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.005Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.588Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 324535,
+  "packageBytes": 324492,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.45366,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Il laghetto di sella Sompdogna OSM offline map",
       "url": "map.svg",
-      "bytes": 145926,
-      "sha256": "c03061700a0bd8c05bdffe3e2bcb4c215e75e06b62388b74e4b880f49aefa79e"
+      "bytes": 145907,
+      "sha256": "8d6cf91c46e4b25987dd7df3f32bd11ae29e07bba8cf06d4116b1cf57e444b2a"
     },
     {
       "role": "route",

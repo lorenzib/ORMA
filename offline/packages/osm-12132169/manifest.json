@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12132169",
   "name": "Toblacher Höhenweg",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.218Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.987Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 834438,
+  "packageBytes": 834395,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.7516,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Toblacher Höhenweg OSM offline map",
       "url": "map.svg",
-      "bytes": 330675,
-      "sha256": "1e1530accc9dc1d4ebfb5a54e2347f5b52107bd9672db0861de1be70406dd5ff"
+      "bytes": 330656,
+      "sha256": "c1e0e6f8ae3283b512dc495075a8b412f711635f5b187591f265046181f554c5"
     },
     {
       "role": "route",

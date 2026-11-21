@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "ahrntal-sentiero-del-conte-cadipietra",
   "name": "Count’s path above Steinhaus",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.736Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:15.910Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 384934,
+  "packageBytes": 384891,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.98895,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Count’s path above Steinhaus OSM offline map",
       "url": "map.svg",
-      "bytes": 186937,
-      "sha256": "2298ba9d98f2154cc19e7dfee7fc30a0b7f57ad6167e66295daf50b9c4c72876"
+      "bytes": 186918,
+      "sha256": "ece7ef35c51ac4acdb3e7bf013ac6869475b70198d12fc02a188e8b03f18ded9"
     },
     {
       "role": "route",

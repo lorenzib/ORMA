@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "meran-giro-dei-masi-sul-monte-sole",
   "name": "Sonnenberg farms loop from Unterstell, Naturns",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.144Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.863Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 341100,
+  "packageBytes": 341057,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.65486,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sonnenberg farms loop from Unterstell, Naturns OSM offline map",
       "url": "map.svg",
-      "bytes": 142661,
-      "sha256": "94532037ec82022517e3925672ea2cfaa509beb721f47483c431fd8e9e8fbcdf"
+      "bytes": 142642,
+      "sha256": "c823ac815ab72a1da59a0a7125361ba6009328006d3e95050e892e76b40288e8"
     },
     {
       "role": "route",

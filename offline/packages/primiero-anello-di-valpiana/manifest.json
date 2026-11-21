@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-anello-di-valpiana",
   "name": "Anello di Valpiana",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:14.512Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T19:54:17.531Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 391033,
+  "packageBytes": 390990,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.12724,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Anello di Valpiana OSM offline map",
       "url": "map.svg",
-      "bytes": 165269,
-      "sha256": "533b0fc9d2460cf25bf68db81d5594ebba6d7ed65d1acd6893be3a728a7b28b2"
+      "bytes": 165250,
+      "sha256": "9585c442fb34de6664b64676c1a9d51f2cc94ee278378f84dc15e3009e5762cb"
     },
     {
       "role": "route",

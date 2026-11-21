@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-15591346",
   "name": "Sentier des Buis",
-  "version": "2026.11.12-beta.7",
-  "generatedAt": "2026-11-12T12:31:14.302Z",
+  "version": "2026.11.21-beta.8",
+  "generatedAt": "2026-11-21T19:54:17.166Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 984382,
+  "packageBytes": 984339,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.50109,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sentier des Buis OSM offline map",
       "url": "map.svg",
-      "bytes": 601530,
-      "sha256": "f653bff4f79326a8b3c3010a61d524593d2c5299087e5dea97d004ba335f051c"
+      "bytes": 601511,
+      "sha256": "520b667ba06f231d610319238be37e840b97630c611bc94ee5727c22615c4ea4"
     },
     {
       "role": "route",

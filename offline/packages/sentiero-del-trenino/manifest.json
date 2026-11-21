@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "sentiero-del-trenino",
   "name": "Sentiero del Trenino",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.601Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T19:54:17.686Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 3220718,
+  "packageBytes": 3220675,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.53309,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sentiero del Trenino OSM offline map",
       "url": "map.svg",
-      "bytes": 1732447,
-      "sha256": "8f45f21b979de355fdc99aed4f0e2449cba967d83aba652a567dc88af8473071"
+      "bytes": 1732428,
+      "sha256": "c6de06b3abc0a22226773b553da621897f43245857d7059ffa386be2df228c91"
     },
     {
       "role": "route",

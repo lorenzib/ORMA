@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "iseo-colmi",
   "name": "Santa Maria del Giogo to I Colmi",
-  "version": "2026.11.19-beta.1",
-  "generatedAt": "2026-11-19T21:49:59.766Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T19:54:16.644Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 846654,
+  "packageBytes": 846609,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.66133,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Santa Maria del Giogo to I Colmi OSM offline map",
       "url": "map.svg",
-      "bytes": 501168,
-      "sha256": "91d5168149404936d5dcc6c29cee481fe693a0f82679f20e706c40e350464d16"
+      "bytes": 501147,
+      "sha256": "45499b2e92c1f29eb2e09fed0b07671a502c3679d99a70729a4590610b4ca87f"
     },
     {
       "role": "route",

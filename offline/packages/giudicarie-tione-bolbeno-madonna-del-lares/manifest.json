@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "giudicarie-tione-bolbeno-madonna-del-lares",
   "name": "Tione – Bolbeno – Madonna del Lares",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.024Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.639Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 969293,
+  "packageBytes": 969250,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.01737,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Tione – Bolbeno – Madonna del Lares OSM offline map",
       "url": "map.svg",
-      "bytes": 754756,
-      "sha256": "3369a79726937e8b2b527d06cc2d97e40dfa2a35db1b66372612d612400ae9b4"
+      "bytes": 754737,
+      "sha256": "e17c35313a996213642d1b67ad6159e081d70739316bf6ae88a1862d89bdd5e8"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12182895",
   "name": "Talrundweg",
-  "version": "2026.11.12-beta.7",
-  "generatedAt": "2026-11-12T12:31:14.243Z",
+  "version": "2026.11.21-beta.8",
+  "generatedAt": "2026-11-21T19:54:17.032Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1523027,
+  "packageBytes": 1522984,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.61928,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Talrundweg OSM offline map",
       "url": "map.svg",
-      "bytes": 791307,
-      "sha256": "06d55eaa071fc253017df04a22b239443ca3de26e30c8c8ecacf377091a4f14e"
+      "bytes": 791288,
+      "sha256": "ed49bb21a7b1f622ebb7dbd486f3ef0ef92794c82a821ef9acdde76f9de5537f"
     },
     {
       "role": "route",

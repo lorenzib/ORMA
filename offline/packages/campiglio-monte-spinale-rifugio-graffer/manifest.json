@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "campiglio-monte-spinale-rifugio-graffer",
   "name": "Monte Spinale – Rifugio Graffer",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.831Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.131Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 537318,
+  "packageBytes": 537275,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.21065,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Monte Spinale – Rifugio Graffer OSM offline map",
       "url": "map.svg",
-      "bytes": 290113,
-      "sha256": "e9e226501105d16b4e684935d5cb6fb8777caacfe587e500e4c29442567d9141"
+      "bytes": 290094,
+      "sha256": "a4c160eddeb5c2b0afe2bdec1b61fd5ddd5b5e8a3f5c687e2efa8c4cd690dab0"
     },
     {
       "role": "route",

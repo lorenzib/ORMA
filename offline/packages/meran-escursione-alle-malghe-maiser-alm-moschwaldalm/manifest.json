@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "meran-escursione-alle-malghe-maiser-alm-moschwaldalm",
   "name": "Maiser and Moschwald alms loop from Falzeben",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.135Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.852Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 511113,
+  "packageBytes": 511070,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.65954,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Maiser and Moschwald alms loop from Falzeben OSM offline map",
       "url": "map.svg",
-      "bytes": 232288,
-      "sha256": "d5b39bb77ec5bf916d16f9a809d53b800ea1eebc0c1880654b6b371325088957"
+      "bytes": 232269,
+      "sha256": "1d6f73efc5b59df8f2448c14e8c906fd3dd1bcbc58ca215c916dfe655fd7f1e4"
     },
     {
       "role": "route",

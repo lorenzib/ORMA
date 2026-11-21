@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11828233",
   "name": "Valser Rundweg",
-  "version": "2026.11.19-beta.5",
-  "generatedAt": "2026-11-19T15:38:45.793Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T19:54:16.953Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 583097,
+  "packageBytes": 583052,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.83137,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Valser Rundweg OSM offline map",
       "url": "map.svg",
-      "bytes": 325772,
-      "sha256": "c18aa76baffd690e13d319b05989387de45a3f0444fed7d21d1e2b5028c5d953"
+      "bytes": 325751,
+      "sha256": "5a9e40b4367b8bef7cad6f6287d3d23dabb2a1cc6deeaf0754a51f7b37d95a5a"
     },
     {
       "role": "route",

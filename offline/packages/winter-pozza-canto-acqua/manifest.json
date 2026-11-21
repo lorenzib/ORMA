@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "winter-pozza-canto-acqua",
   "name": "Pozza along the Avisio in winter",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.850Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:18.288Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 589172,
+  "packageBytes": 589129,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.42628,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Pozza along the Avisio in winter OSM offline map",
       "url": "map.svg",
-      "bytes": 347040,
-      "sha256": "2b31b20612236088d33b719f170e6209b1abaa2b205de892e9e4d759547f5509"
+      "bytes": 347021,
+      "sha256": "03e4ba57098e221619e625d25c19d230ecb0cbfa709c27d297085bcd2f2f9d98"
     },
     {
       "role": "route",

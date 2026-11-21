@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cembra-erbe-della-salute",
   "name": "Le erbe della salute",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:13.843Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T19:54:16.173Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 482831,
+  "packageBytes": 482788,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.22589,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Le erbe della salute OSM offline map",
       "url": "map.svg",
-      "bytes": 300237,
-      "sha256": "52de71b7c9ffa5046104758fdfb64eff9a98ed1bd7b475e01110139809e6d5c2"
+      "bytes": 300218,
+      "sha256": "865f81f224e22b35d7d7e30c53cba69d90a66f393155b218cff300ad353aac2e"
     },
     {
       "role": "route",

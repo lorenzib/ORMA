@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-9511999",
   "name": "Tru dles Viles",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.478Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T19:54:17.467Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1143699,
+  "packageBytes": 1143656,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.57931,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Tru dles Viles OSM offline map",
       "url": "map.svg",
-      "bytes": 593679,
-      "sha256": "9703d48ebb508755d6c0c4c33530f4f4ffc12a6aeb2eb1443aada1e40718dd36"
+      "bytes": 593660,
+      "sha256": "b5b532d3a409f8326617cbfeee63484b810e444e3534c8f01546359631291259"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "altogarda-nasce-formaggio-tombea",
   "name": "Cima Rest, where Tombea cheese is made",
-  "version": "2026.11.19-beta.1",
-  "generatedAt": "2026-11-19T21:52:10.908Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T19:54:15.986Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 279229,
+  "packageBytes": 279184,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.77743,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Cima Rest, where Tombea cheese is made OSM offline map",
       "url": "map.svg",
-      "bytes": 112569,
-      "sha256": "8b872a02aaa720f645d0273c7a0f5ac528d11534cdf0827c1c6bad8d5074784c"
+      "bytes": 112548,
+      "sha256": "843d2db52f77e73d1d7f09a36e74f7ff39e195a174d3ac6a5285ed3c11140934"
     },
     {
       "role": "route",

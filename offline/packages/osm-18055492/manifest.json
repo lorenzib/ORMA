@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-18055492",
   "name": "Le Mont d'Arbois - Mont Joux",
-  "version": "2026.11.12-beta.7",
-  "generatedAt": "2026-11-12T12:31:14.323Z",
+  "version": "2026.11.21-beta.8",
+  "generatedAt": "2026-11-21T19:54:17.203Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 766510,
+  "packageBytes": 766467,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.83416,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Le Mont d'Arbois - Mont Joux OSM offline map",
       "url": "map.svg",
-      "bytes": 389200,
-      "sha256": "61ee50f8828be02e2a47fdf0b6159ad0be991dd15c25825936bee3f52583845f"
+      "bytes": 389181,
+      "sha256": "cee0e9bd9cde057b79f328e0822dae9f244de0aabdccf61c4ae989d49c8a4bf6"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-16322228",
   "name": "Boucle du Marais des Chassettes",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.312Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T19:54:17.183Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 997958,
+  "packageBytes": 997915,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.54539,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Boucle du Marais des Chassettes OSM offline map",
       "url": "map.svg",
-      "bytes": 678579,
-      "sha256": "528953fd677aee70a3b351ef4ed27df6123f15ef4a3c9d935342c8283f150d0a"
+      "bytes": 678560,
+      "sha256": "9dbca8df09749ed0bb874a04bd085a28d43777023b837ea0ca63f2bf29f9b780"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "engadin-corvatsch-murtel-fuorcla-surlej",
   "name": "Fuorcla Surlej from Murtèl",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.912Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.397Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 202040,
+  "packageBytes": 201997,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.42483,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Fuorcla Surlej from Murtèl OSM offline map",
       "url": "map.svg",
-      "bytes": 31373,
-      "sha256": "a5fcf94fa541e5705e632d1c3606b475f80991ba5ea3dd7322a185bb876ccde2"
+      "bytes": 31354,
+      "sha256": "6ad60360bd90e909cbcb2c514ccf55272465def39fb256e1b493dd5c1eed329a"
     },
     {
       "role": "route",

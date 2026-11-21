@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valdisole-passo-tonale-forte-mero-forte-zaccarana",
   "name": "Passo Tonale – Forte Mero and Forte Zaccarana",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.705Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:17.935Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 419318,
+  "packageBytes": 419275,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.26338,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Passo Tonale – Forte Mero and Forte Zaccarana OSM offline map",
       "url": "map.svg",
-      "bytes": 152141,
-      "sha256": "d00810a4cb964bf8c358fccb86f58f45a286b8e96ac5d5c135b08c7495d104db"
+      "bytes": 152122,
+      "sha256": "260a1eb8f102f2282b1ec446a6d3d09b52e25dcb4d462fe86b99ffe63d12c036"
     },
     {
       "role": "route",

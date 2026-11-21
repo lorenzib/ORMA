@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fiemme-cascatelle-di-ziano",
   "name": "Le Cascatelle di Ziano di Fiemme",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:13.970Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T19:54:16.515Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 503737,
+  "packageBytes": 503694,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.28099,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Le Cascatelle di Ziano di Fiemme OSM offline map",
       "url": "map.svg",
-      "bytes": 331783,
-      "sha256": "49c81cdc468f49f091ae5205ecf50ef1fa8c7cd1488b263e281f18454f42f642"
+      "bytes": 331764,
+      "sha256": "f0fe53ae1d2812369caa578bff764b1576aee7b279d1ffc67701eeaa792ca9e6"
     },
     {
       "role": "route",

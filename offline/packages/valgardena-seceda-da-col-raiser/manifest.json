@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-seceda-da-col-raiser",
   "name": "Col Raiser – Seceda",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.755Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:18.028Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 426298,
+  "packageBytes": 426255,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.58153,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Col Raiser – Seceda OSM offline map",
       "url": "map.svg",
-      "bytes": 156240,
-      "sha256": "f3fab598ff129ddf14780b4072d3c1b965d1bb041e20c4efe77917b93897d431"
+      "bytes": 156221,
+      "sha256": "6adc8d3215c5544e99c72696b14bc327769dc6ab4fc8e6f4a5d70713714b3024"
     },
     {
       "role": "route",

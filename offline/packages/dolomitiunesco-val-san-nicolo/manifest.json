@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "dolomitiunesco-val-san-nicolo",
   "name": "Val San Nicolò to the Jonta waterfalls",
-  "version": "2026.11.16-beta.1",
-  "generatedAt": "2026-11-16T12:16:11.379Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T19:54:16.321Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 361833,
+  "packageBytes": 361790,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.41085,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Val San Nicolò to the Jonta waterfalls OSM offline map",
       "url": "map.svg",
-      "bytes": 131732,
-      "sha256": "c318d644e1dbd6ac5f2c1a755a8c6375099e8814dad795bce5073a9366390b78"
+      "bytes": 131713,
+      "sha256": "9a8c3e15b4afc4cfa493a6cc8d41b0961b8e3f5c1fc9fdbc5dda0cc53e3bfdaf"
     },
     {
       "role": "route",

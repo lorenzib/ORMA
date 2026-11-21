@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "traversella-sentiero-delle-anime",
   "name": "Sentiero delle Anime, Traversella",
-  "version": "2026.11.19-beta.1",
-  "generatedAt": "2026-11-19T19:51:00.877Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T19:54:17.708Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 806482,
+  "packageBytes": 806437,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.5055,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sentiero delle Anime, Traversella OSM offline map",
       "url": "map.svg",
-      "bytes": 421693,
-      "sha256": "d1f18cd6e153f715d88748d0dcab2ed6ef95b3f4ec9ee554ce2e7c79f016a154"
+      "bytes": 421672,
+      "sha256": "1f64614f9c07eb06ee754ab25b3043fdda06d9be7f89ed04a3247d5347df0243"
     },
     {
       "role": "route",

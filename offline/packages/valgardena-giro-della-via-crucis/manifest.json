@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-giro-della-via-crucis",
   "name": "Via Crucis, Santa Cristina",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.741Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:17.997Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 575661,
+  "packageBytes": 575618,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.55496,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Via Crucis, Santa Cristina OSM offline map",
       "url": "map.svg",
-      "bytes": 291702,
-      "sha256": "d5780d5af1da9d5d3dd37635957921fb760ad56c162df664fc1eff29584f64af"
+      "bytes": 291683,
+      "sha256": "23bf8882e0ec28e1a59dd49458bbe789cdd18e17643a2a1824d1f5110b86126d"
     },
     {
       "role": "route",

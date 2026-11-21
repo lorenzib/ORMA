@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cortina-malga-ra-stua",
   "name": "Malga Ra Stua",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:13.875Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T19:54:16.289Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 332504,
+  "packageBytes": 332461,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.59944,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Malga Ra Stua OSM offline map",
       "url": "map.svg",
-      "bytes": 112897,
-      "sha256": "fed6708580288d9e5a13f2cb7332fe5f6801e7f98f71c52d57d83b50df3d566f"
+      "bytes": 112878,
+      "sha256": "b1341c885b03543821f4f34d58632b71ff882450de82de553d83afd49934d875"
     },
     {
       "role": "route",

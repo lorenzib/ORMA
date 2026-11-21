@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-7547983",
   "name": "Anello di Valzalina",
-  "version": "2026.11.12-beta.7",
-  "generatedAt": "2026-11-12T12:31:14.443Z",
+  "version": "2026.11.21-beta.8",
+  "generatedAt": "2026-11-21T19:54:17.408Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 397463,
+  "packageBytes": 397420,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.47732,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Anello di Valzalina OSM offline map",
       "url": "map.svg",
-      "bytes": 220707,
-      "sha256": "a7358ebace61e469e96d635544df263699e3b391fd0cc6692cc9a63b29c2aac1"
+      "bytes": 220688,
+      "sha256": "8a3309b4697d1e8c25d76e6b5e1c698f0b626bff53e634f86b89068f48ce0068"
     },
     {
       "role": "route",

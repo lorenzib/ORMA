@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-passeggiata-da-ortisei-a-s-cristina",
   "name": "Ortisei valley promenade",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.748Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:18.006Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1005204,
+  "packageBytes": 1005161,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.55598,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Ortisei valley promenade OSM offline map",
       "url": "map.svg",
-      "bytes": 559739,
-      "sha256": "a0b55c15235cee060b54cee08e5216f8e6f6e60525cad8d8fb4030d043244076"
+      "bytes": 559720,
+      "sha256": "2b8662f106a0689780ed3c8cce2a25247468595783700e529247272c03ff0854"
     },
     {
       "role": "route",

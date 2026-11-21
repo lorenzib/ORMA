@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-escursione-nella-vallunga",
   "name": "Vallunga",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.731Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:17.978Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 300866,
+  "packageBytes": 300823,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.56032,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Vallunga OSM offline map",
       "url": "map.svg",
-      "bytes": 95733,
-      "sha256": "e8def6def71b533a481b3f669637fff4340b4926b689cd261ef98202070e1d0f"
+      "bytes": 95714,
+      "sha256": "4a673721186edce7f4e0417285b9a4a3d5fb71ab2a57f5b4c477e9d381054406"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valdisole-bivacco-malga-baselga",
   "name": "Bivacco Malga Baselga",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.691Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:17.908Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 321185,
+  "packageBytes": 321142,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.27046,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Bivacco Malga Baselga OSM offline map",
       "url": "map.svg",
-      "bytes": 119380,
-      "sha256": "5b0c23aa59443552207ee3398595a91b8e7aa07c94e990e97f240da6bfa671cc"
+      "bytes": 119361,
+      "sha256": "bbfba002444fd8ea97aaf3dc1f270879f4cc3f75bc546da54d7b79412f3033aa"
     },
     {
       "role": "route",

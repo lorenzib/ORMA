@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-da-alba-a-penia",
   "name": "Da Alba a Penìa",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:13.941Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T19:54:16.452Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 402046,
+  "packageBytes": 402003,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.45238,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Da Alba a Penìa OSM offline map",
       "url": "map.svg",
-      "bytes": 173279,
-      "sha256": "24ff2645c19919eaf883e417ef4247667d302d60eb74f45d8b8241a6304f0b8b"
+      "bytes": 173260,
+      "sha256": "095f1aa62cc6bee10d037c241ab093546924d0c2083ae211d2e2bcacfc7f9a72"
     },
     {
       "role": "route",

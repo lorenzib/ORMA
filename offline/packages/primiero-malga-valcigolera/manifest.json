@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-malga-valcigolera",
   "name": "San Martino di Castrozza - Malga Valcigolera",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:14.530Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T19:54:17.558Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 726621,
+  "packageBytes": 726578,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.24853,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "San Martino di Castrozza - Malga Valcigolera OSM offline map",
       "url": "map.svg",
-      "bytes": 386527,
-      "sha256": "9d8e447d0049a8bd572d7a2f53c466316e58b914d1ff5a0daafd532d8440cd3e"
+      "bytes": 386508,
+      "sha256": "f37c04a24bdf2e9a50f082a1fc9db636f05cc3dfcd1c2ff4b1af6a85b2e2a8a1"
     },
     {
       "role": "route",

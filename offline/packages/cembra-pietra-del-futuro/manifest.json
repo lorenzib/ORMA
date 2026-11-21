@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cembra-pietra-del-futuro",
   "name": "La pietra del futuro - Percorso con audioguida dei ragazzi della scuola elementare di Lona Lases",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.857Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.224Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 530435,
+  "packageBytes": 530392,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.13193,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "La pietra del futuro - Percorso con audioguida dei ragazzi della scuola elementare di Lona Lases OSM offline map",
       "url": "map.svg",
-      "bytes": 332201,
-      "sha256": "cc3c32397e7eb5b3557f5bb2cac5e612d440a9c63b43d83d93cba6a292102477"
+      "bytes": 332182,
+      "sha256": "f25cfab42d71aea51748feef478b34f726f655bb58d040a76bb5957156e23890"
     },
     {
       "role": "route",

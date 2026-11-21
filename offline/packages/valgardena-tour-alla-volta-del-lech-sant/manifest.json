@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-tour-alla-volta-del-lech-sant",
   "name": "Lech Sant",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.763Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:18.041Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 479858,
+  "packageBytes": 479815,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.56285,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Lech Sant OSM offline map",
       "url": "map.svg",
-      "bytes": 196661,
-      "sha256": "8835600d9c81bbf04cea1dd523b90b16812481a1f8763bd3034a6b0ffdb20a8d"
+      "bytes": 196642,
+      "sha256": "20307586bbb6ccbb6b18d3425fd673f9cbe69026a8d62c123527a872fb5fba9c"
     },
     {
       "role": "route",

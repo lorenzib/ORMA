@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-fiera-pieve",
   "name": "Fiera-Pieve",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:14.520Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T19:54:17.543Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 720786,
+  "packageBytes": 720743,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.16873,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Fiera-Pieve OSM offline map",
       "url": "map.svg",
-      "bytes": 469509,
-      "sha256": "13e17eb58af212858b6818f4076a3d85b5182ee2e81c624f473e290b5a5a3c69"
+      "bytes": 469490,
+      "sha256": "fb1e2190809100d17dcf0d55e5c6697f1266989a7692ba222e67eebe4793b2ce"
     },
     {
       "role": "route",

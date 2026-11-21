@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-escursione-al-resciesa",
   "name": "Resciesa summit loop",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.719Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:17.958Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 400495,
+  "packageBytes": 400452,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.59272,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Resciesa summit loop OSM offline map",
       "url": "map.svg",
-      "bytes": 221529,
-      "sha256": "b504e3b88d5e7eafbf15407aae1288e202878d55dcf4e7b68b7a9da5d2ad5f4a"
+      "bytes": 221510,
+      "sha256": "e014cd8253e3ca935995bbe5ea44e7952004d69998bc4292e7b40c1013151f24"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-7567918",
   "name": "Seerundweg Antholzer See",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.449Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T19:54:17.419Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 334900,
+  "packageBytes": 334857,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.87786,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Seerundweg Antholzer See OSM offline map",
       "url": "map.svg",
-      "bytes": 162458,
-      "sha256": "9eac34aaa3677e4656086f1839daa81e9baeb48cc192a4ec244d54625a44cba8"
+      "bytes": 162439,
+      "sha256": "a7c93bf16933aa1f2208a114161ee4e9988f67e562127f497e16d1920bfb48ba"
     },
     {
       "role": "route",

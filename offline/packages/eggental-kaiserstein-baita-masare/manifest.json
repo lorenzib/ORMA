@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "eggental-kaiserstein-baita-masare",
   "name": "Kaiserstein to the Baita Masarè",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.894Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.347Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 249221,
+  "packageBytes": 249178,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.41248,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Kaiserstein to the Baita Masarè OSM offline map",
       "url": "map.svg",
-      "bytes": 74816,
-      "sha256": "56c5584139ae13bace927bb4bdc9131d26682ef550b516f636f9290208d114ba"
+      "bytes": 74797,
+      "sha256": "a89e3351fd72f6f4201a048efb1813f5d0d8c311201d6327d85270bfb6f97b24"
     },
     {
       "role": "route",

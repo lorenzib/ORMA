@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "vinschgau-sentiero-della-roggia-stabnerwaal",
   "name": "Stabnerwaal, Staben to Tschars",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.828Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:18.241Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 835208,
+  "packageBytes": 835165,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.63137,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Stabnerwaal, Staben to Tschars OSM offline map",
       "url": "map.svg",
-      "bytes": 474055,
-      "sha256": "969fed18049b615c84d436c9ee0d8032c9d86b1efff7c00c373551cce7515885"
+      "bytes": 474036,
+      "sha256": "db81a42536251190f68bf13b78fafee9be5be20fe1ac5197e4f1f2c49357eb16"
     },
     {
       "role": "route",

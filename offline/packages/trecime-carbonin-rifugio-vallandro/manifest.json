@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-carbonin-rifugio-vallandro",
   "name": "Schluderbach – Dürrensteinhütte",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.615Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:17.726Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 325639,
+  "packageBytes": 325596,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.61754,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Schluderbach – Dürrensteinhütte OSM offline map",
       "url": "map.svg",
-      "bytes": 98556,
-      "sha256": "171ce18dff8b76ef310169ba562b7f1c2736cdfba309c655f34b77d91609782e"
+      "bytes": 98537,
+      "sha256": "dbc7e4f86a5d950d548aa9b590e79d32aa3553ad0c2fc4fe44d85c61f52a96b0"
     },
     {
       "role": "route",

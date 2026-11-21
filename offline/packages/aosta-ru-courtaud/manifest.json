@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "aosta-ru-courtaud",
   "name": "Rû Courtaud",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.796Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:16.015Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 985406,
+  "packageBytes": 985363,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.80436,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Rû Courtaud OSM offline map",
       "url": "map.svg",
-      "bytes": 463584,
-      "sha256": "a9cd36a48ebce8551bc615cf3523162cb4ebb28e391ebdbf5181f1bac258a103"
+      "bytes": 463565,
+      "sha256": "41c072d623bcd10062100dfd64c201a739b4b758a755f30634b76eaca222c16a"
     },
     {
       "role": "route",

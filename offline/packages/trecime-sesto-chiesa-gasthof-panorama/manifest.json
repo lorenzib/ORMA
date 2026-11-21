@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-sesto-chiesa-gasthof-panorama",
   "name": "Sexten – Gasthof Panorama",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.661Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:17.854Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 423495,
+  "packageBytes": 423452,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.69588,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sexten – Gasthof Panorama OSM offline map",
       "url": "map.svg",
-      "bytes": 209872,
-      "sha256": "f26a2aef027012d2fa5d456b90a1586c370add0dc4c55547e612cfedc15aa75d"
+      "bytes": 209853,
+      "sha256": "3d3a1827ecc35f391f239365eec8afdf5b91565ffc6d2547beedda9994c5bba3"
     },
     {
       "role": "route",

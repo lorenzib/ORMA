@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12118490",
   "name": "Le Balcon des Plagnes",
-  "version": "2026.11.12-beta.7",
-  "generatedAt": "2026-11-12T12:31:14.211Z",
+  "version": "2026.11.21-beta.8",
+  "generatedAt": "2026-11-21T19:54:16.975Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 440974,
+  "packageBytes": 440931,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.30187,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Le Balcon des Plagnes OSM offline map",
       "url": "map.svg",
-      "bytes": 202453,
-      "sha256": "fa9eb74878e5d7d4154972546b0ec2d62f72bfd84eca33d0bc77535fbebcd561"
+      "bytes": 202434,
+      "sha256": "e36b30a7540e44f267aa74aff7356296d82746d5a8cb9b3c3cf7f9da53dde43d"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-19153189",
   "name": "Le Belvédère (Saint-Pierre-d'Albigny)",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.325Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T19:54:17.206Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 610867,
+  "packageBytes": 610824,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.56837,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Le Belvédère (Saint-Pierre-d'Albigny) OSM offline map",
       "url": "map.svg",
-      "bytes": 406413,
-      "sha256": "574906b53b82ab3fd073a8e25bee7e4578836f7bcbd048081713ef2760ac682e"
+      "bytes": 406394,
+      "sha256": "df9b9d83027978816057e91f18fde6b6bdc9100ae95fc555f0c08ba8dd242524"
     },
     {
       "role": "route",

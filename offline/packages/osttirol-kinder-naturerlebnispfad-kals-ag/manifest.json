@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osttirol-kinder-naturerlebnispfad-kals-ag",
   "name": "Children’s nature trail, Kals",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.486Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T19:54:17.484Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 523467,
+  "packageBytes": 523424,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 47.00677,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Children’s nature trail, Kals OSM offline map",
       "url": "map.svg",
-      "bytes": 241821,
-      "sha256": "b8800fd3121b1d44c2c01165f4200e0fe275a2fae9bc5b5a78285623ec71d30f"
+      "bytes": 241802,
+      "sha256": "75199456703e196865294c8e24b019b9ac1f5e68b18b6da298b4e2b1bfd2d42e"
     },
     {
       "role": "route",

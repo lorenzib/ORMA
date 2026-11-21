@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-6404258",
   "name": "Rundweg Salla",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.402Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T19:54:17.283Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 616025,
+  "packageBytes": 615982,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.74281,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Rundweg Salla OSM offline map",
       "url": "map.svg",
-      "bytes": 320109,
-      "sha256": "0d236b5e4844f509b12adfc5737d5d83ef38e861f7362066a1988a14936f5cdb"
+      "bytes": 320090,
+      "sha256": "ce01253598ae9cc58da890d65cb49035d9c0dfeef0834dc2e3c1a8bbb0175cb6"
     },
     {
       "role": "route",
