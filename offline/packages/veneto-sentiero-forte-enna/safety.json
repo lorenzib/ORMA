@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "trailId": "veneto-sentiero-forte-enna",
+  "generatedAt": "2026-11-21T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 9.4,
+    "ascentM": 368,
+    "highestPointM": 955,
+    "expectedDuration": "3 h",
+    "difficulty": "Hard",
+    "shadePercent": 76
+  },
+  "trailhead": {
+    "lat": 45.737015,
+    "lng": 11.283374,
+    "label": "The square in Enna by the church of San Giovanni Battista, Torrebelvicino, the published start"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 45.7370183,
+      "lng": 11.2829225,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.7359013,
+      "lng": 11.2853009,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.732812,
+      "lng": 11.2882967,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    },
+    {
+      "type": "water",
+      "lat": 45.7399546,
+      "lng": 11.2859307,
+      "label": "Water point mapped in OpenStreetMap",
+      "reliability": "Not field-verified"
+    }
+  ],
+  "cautions": [
+    "The board grades the walk T2: stony mule tracks and a short path through the wood, so wear proper shoes and watch your dog’s paws.",
+    "Forte Enna is a crumbling ruin: stay outside the walls and keep your dog out of the fort and the cave.",
+    "The author notes the path is walkable all year, but watch for snow and ice in winter.",
+    "Carry water even though water points are listed.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-21"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-21",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Forte Enna Loop above Torrebelvicino": "Anello del Forte Enna sopra Torrebelvicino",
+    "The square in Enna by the church of San Giovanni Battista, Torrebelvicino, the published start": "La piazza di Enna presso la chiesa di San Giovanni Battista, Torrebelvicino, la partenza ufficiale",
+    "The board grades the walk T2: stony mule tracks and a short path through the wood, so wear proper shoes and watch your dog’s paws.": "Il sito ufficiale classifica il percorso T2: mulattiere sassose e un breve sentiero nel bosco, quindi porta scarpe adatte e fai attenzione alle zampe del cane.",
+    "Forte Enna is a crumbling ruin: stay outside the walls and keep your dog out of the fort and the cave.": "Il Forte Enna è una rovina pericolante: resta fuori dalle mura e tieni il cane fuori dal forte e dalla grotta.",
+    "The author notes the path is walkable all year, but watch for snow and ice in winter.": "L’autore indica che il sentiero è percorribile tutto l’anno, ma in inverno fai attenzione a neve e ghiaccio."
+  }
+}

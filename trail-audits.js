@@ -72597,6 +72597,154 @@
       ],
       startPoint: { lat: 45.752856, lng: 10.114382, label: "The church of San Giorgio in Cislano, Zone, the published start" },
       desc: "A short loop through the regional nature reserve of the Zone earth pyramids, above Lake Iseo: tall columns of glacial clay, each capped by a boulder, seen from a string of viewpoints along a woodland path, with the return on the old Strada Valeriana to the hamlet of Cislano. Visit Lake Iseo lists 2.6 km, 162 m up, 55 min."
+    },
+    'veneto-sentiero-forte-enna': {
+      // Hand audit: 21 November 2026, verified on arrival (Veneto batch 2, Vicenza prealps; walked twice where the board’s own line is, owner decision of 6 November 2026).
+      // UM.PASUBIO (Unione Montana Pasubio Alto Vicentino), on Outdooractive: “Sentiero del Forte Enna”, drawn on 36 OSM ways along its published line (data/board-line-routes.geojson).
+      // Communes: Torrebelvicino (start and most of the line) and Schio (the Monte Enna side): their police regulations have no lead or ban rule beyond the national one. No regional park; no Natura 2000 site (EEA). Roads: hamlet lanes about 11% of the line (Contrada Sberze and Contrada Maule at the start and end); tertiary road 50 m on the square at Enna. The board grades the walk T2; OSM has no T2 or harder on the line: caution line. The board’s own line goes out to the fort and back on the same track (km 3.89–5.36), so the drawn line does too.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Enna – Contrada Sberze – Forte Enna – Contrada Maule (Torrebelvicino, Val Leogra)",
+      distance: 9.4,
+      elevation: 368,
+      hours: '3',
+      routeShape: 'loop',
+      routeShapeNote: "A loop from Enna up through the woods of Monte Enna to Forte Enna and back down past the old barracks, as the board publishes it (9.4 km, 368 m up, 3:00 h). Like the board’s own line, it walks the last 700 m to the fort and back on the same track.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start on the square in Enna, above Torrebelvicino, by the church of San Giovanni Battista and the Ai Combattenti bar, the published start.",
+        "sequence": "Walk up through Contrada Sberze and along Strada degli Sberze, then take the gravel track signed for the Sentiero panoramico Val Leogra (paths 31 and 33) past the crosses of Contrada Soglio-Corà, Contrada Garbini and Contrada Cappelletto. Follow Strada delle Giare and a short path into the wood, then the track signed 33 and S3 up Monte Enna to Forte Enna, the fort built in 1910–12. Walk back down the same track for about 700 m, past the old barracks and the Forte Enna cave, then follow the S. Caterina – M. Enna track down, cross the lane and take the track back to Contrada Maule and the square in Enna.",
+        "switches": "Contrada Sberze and Strada degli Sberze from the square in Enna; gravel track of the Sentiero panoramico Val Leogra (paths 31 and 33) past three wayside crosses; Strada delle Giare and a short path into the wood; track 33/S3 up Monte Enna to Forte Enna; back down the same track past the old barracks; S. Caterina – M. Enna track down; across the lane and the track to Contrada Maule and Enna.",
+        "sources": [
+          {
+            "label": "UM.PASUBIO, Sentiero del Forte Enna (route description)",
+            "url": "https://www.outdooractive.com/it/r/809321294",
+            "authority": "UM.PASUBIO (Unione Montana Pasubio Alto Vicentino)",
+            "tag": "tourist board",
+            "reviewedAt": "2026-11-21"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-21',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The stony track between a meadow and the wood near Enna, on the walk (andreadfc on Mapillary, CC BY-SA 4.0), 11 October 2025, 8 m from the line.",
+        route: "Official loop of 9.4 km from The square in Enna by the church of San Giovanni Battista, Torrebelvicino, as UM.PASUBIO (Unione Montana Pasubio Alto Vicentino), on Outdooractive publishes it; the stored line is drawn on 36 OSM ways along the published line, 9.4 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "From the square in Enna, follow path 31, the Sentiero panoramico Val Leogra, then path 33 (Percorso 33 of the Torrebelvicino Pro Loco) and S3 up Monte Enna to Forte Enna, and back down on path 33 to Enna.",
+        mapPoints: "Start at the board’s start; drinking water at the start, km 0.1, km 0.5, km 8.7 (OSM nodes 441885210, 529430121, 2909170730, 441885319).",
+        elevation: "Official 9.4 km, 368 m up and 367 m down, 3:00 h, between 601 m and 958 m (UM.PASUBIO, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "UM.PASUBIO (Unione Montana Pasubio Alto Vicentino), on Outdooractive, “Sentiero del Forte Enna” (its Outdooractive tour, with its line)",
+          "Comune di Torrebelvicino (Regolamento di Polizia Urbana 2015, Art. 32; Regolamento di Polizia Rurale 2021) and Comune di Schio (Regolamento di Polizia Urbana): no lead or ban rule beyond the Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026: a lead of at most 1.5 m in places open to the public and a muzzle carried)",
+          "Veneto Natura 2000 conservation measures (DGR 786/2016, Art. 99) and Veneto regional law (LR 60/1993, Art. 18 bis): no dog rule for walkers beyond the national one",
+          "No regional park on the line (the Pasubio and Piccole Dolomiti lie outside Veneto’s five regional parks); European Environment Agency Natura 2000 service: no Natura 2000 site on the line",
+          "OpenStreetMap ways along the board’s line (36 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-21'
+      },
+      shadeCoverage: 76,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["The board grades the walk T2: stony mule tracks and a short path through the wood, so wear proper shoes and watch your dog’s paws","Forte Enna is a crumbling ruin: stay outside the walls and keep your dog out of the fort and the cave","The author notes the path is walkable all year, but watch for snow and ice in winter"],
+      terrainType: "Gravel tracks, mule tracks and a short woodland path",
+      shadeDescription: "About three quarters in beech and hornbeam woods; the hamlets and a few clearings are open.",
+      terrainDescription: "A loop from the hamlet of Enna on the slopes of Monte Enna, above the Val Leogra, through beech and hornbeam woods to Forte Enna, a fort built in 1910–12 to close the valley and now a ruin with panels on its history, then back down past old barracks and half-empty hamlets, with wide views over the Val Leogra and the Alto Vicentino.",
+      waterDescription: "No drinking water is mapped on the line (OSM). The Ai Combattenti bar and trattoria on the square in Enna serve food and drink when open. Bring water and a bowl for your dog.",
+      dogNotes: "Keep your dog close through the hamlets at the start and end, and out of the fort ruins and the cave.",
+      tips: "Start on the square in Enna above Torrebelvicino: 9.4 km and 368 m up, about 3 hours, as the board lists. The south-west slope gets good sun, so the board says it is walkable all year; read about the fort on the Torrebelvicino Pro Loco site first, and check whether the trattoria in Enna is open for a meal at the end.",
+      sourceLinks: [
+        { label: "UM.PASUBIO, Sentiero del Forte Enna (Outdooractive)", url: "https://www.outdooractive.com/it/r/809321294" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      sideTrips: [{"km":4.63,"note":"Out to Forte Enna and back on the same track, as the board’s own line goes."}],
+      walkedTwice: [
+        { from: 3.89, to: 4.58, note: "Out along the track to Forte Enna, as the board’s own line goes." },
+        { from: 4.67, to: 5.36, note: "Back the same track from the fort to the junction, as the board’s own line does." }
+      ],
+      startPoint: { lat: 45.737015, lng: 11.283374, label: "The square in Enna by the church of San Giovanni Battista, Torrebelvicino, the published start" },
+      desc: "A wooded loop on Monte Enna above the Val Leogra to Forte Enna, a First World War fort now in ruins, and back down past old hamlets with views over the valley. The board lists 9.4 km and 368 m up."
+    },
+    'veneto-sentiero-dei-roccoli': {
+      // Hand audit: 21 November 2026, verified on arrival (Veneto batch 2, Vicenza prealps; walked twice where the board’s own line is, owner decision of 6 November 2026).
+      // UM.PASUBIO (Unione Montana Pasubio Alto Vicentino), on Outdooractive: “Sentiero dei Roccoli”, drawn on 19 OSM ways along its published line (data/board-line-routes.geojson).
+      // Communes: Valdagno and Monte di Malo. Valdagno’s regulations have only dog-mess and barking rules; Monte di Malo publishes no dog rule online. Neither adds a lead or ban rule beyond the national one. No regional park; no Natura 2000 site (EEA). Roads: hamlet lanes about 18% of the line (the dirt lane of Località Mucchione at the start); the road at the trattoria is only crossed. No T2 on the line. The board’s own line walks the stem from the church and the short step to Località Cima both ways, so the drawn line does too. 18% of the line is shared with the Mucciòn loop (veneto-anello-del-muccion).
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Chiesetta del Mucciòn – Strada dei Rocoli – Località Cima (Valdagno and Monte di Malo, on the Agno–Leogra ridge)",
+      distance: 2.8,
+      elevation: 72,
+      hours: '0.8',
+      routeShape: 'loop',
+      routeShapeNote: "A short loop on the Strada dei Rocoli from the Mucciòn church, as the board publishes it (2.8 km, 72 m up, 0:50 h). Like the board’s own line, it walks the 600 m stem from the church both ways and steps out to Località Cima and back.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start at the Chiesetta del Mucciòn, the little church on the pass above Monte Magrè, by the Trattoria Chiesetta del Muccion, the published start.",
+        "sequence": "Take the dirt lane of Località Mucchione and then the Strada dei Rocoli track past the Ex Voto dell’Emigrante wayside shrine, signed for the Anello ecoturistico Piccole Dolomiti. Keep on the Strada dei Rocoli along the ridge past the old Castellani Mondin fountain (1924) to the Capitello Cima wayside shrine, and step out to Località Cima, the saddle on the Agno–Leogra ridge, and back. Follow the Strada dei Rocoli round the loop signed Maronari Lungo, then walk back along the ridge the way you came to the church.",
+        "switches": "Dirt lane of Località Mucchione from the church; Strada dei Rocoli past the Ex Voto dell’Emigrante shrine; along the ridge past the old Castellani Mondin fountain to the Capitello Cima and Località Cima and back; round the Maronari Lungo loop; back along the ridge to the church.",
+        "sources": [
+          {
+            "label": "UM.PASUBIO, Sentiero dei Roccoli (route description)",
+            "url": "https://www.outdooractive.com/it/r/809321755",
+            "authority": "UM.PASUBIO (Unione Montana Pasubio Alto Vicentino)",
+            "tag": "tourist board",
+            "reviewedAt": "2026-11-21"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-21',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The Strada dei Rocoli in the wood on the ridge, on the walk (andreadfc on Mapillary, CC BY-SA 4.0), 15 November 2025, 10 m from the line.",
+        route: "Official loop of 2.8 km from The Chiesetta del Mucciòn above Monte Magrè, as UM.PASUBIO (Unione Montana Pasubio Alto Vicentino), on Outdooractive publishes it; the stored line is drawn on 19 OSM ways along the published line, 2.8 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "From the Mucciòn church, follow the Strada dei Rocoli with the Ortogonale 1 eco-trail (ORT1, “Anello ecoturistico Piccole Dolomiti” signs) along the ridge to Località Cima, round the loop signed Maronari Lungo, and back the same way to the church. No path number.",
+        mapPoints: "Start at the board’s start; drinking water at the start, km 1.4, km 1.5 (OSM nodes 690912102, 711871398, 690912155).",
+        elevation: "Official 2.8 km, 72 m up and 73 m down, 0:50 h, between 644 m and 709 m (UM.PASUBIO, Outdooractive)."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "UM.PASUBIO (Unione Montana Pasubio Alto Vicentino), on Outdooractive, “Sentiero dei Roccoli” (its Outdooractive tour, with its line)",
+          "Comune di Valdagno (only dog-mess and barking rules) and Comune di Monte di Malo (no dog rule published online): no lead or ban rule beyond the Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026: a lead of at most 1.5 m in places open to the public and a muzzle carried)",
+          "Veneto Natura 2000 conservation measures (DGR 786/2016, Art. 99) and Veneto regional law (LR 60/1993, Art. 18 bis): no dog rule for walkers beyond the national one",
+          "No regional park on the line (the Pasubio and Piccole Dolomiti lie outside Veneto’s five regional parks); European Environment Agency Natura 2000 service: no Natura 2000 site on the line",
+          "OpenStreetMap ways along the board’s line (19 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-21'
+      },
+      shadeCoverage: 56,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["The ridge has meadows and pastures: keep your dog close where animals graze","Cars park on the lane by the church and the trattoria: keep your dog on a short lead at the start"],
+      terrainType: "Dirt lanes and woodland tracks",
+      shadeDescription: "About half in hornbeam, beech and hazel woods; the rest on open meadows along the ridge.",
+      terrainDescription: "A short, easy loop on the ridge between the Agno and Leogra valleys, from the little Mucciòn church along the Strada dei Rocoli, past the sites of the old roccoli, rings of hedges and towers once used to catch birds, through hornbeam, beech and hazel woods and meadows, with views over the Val Leogra, Monte Malo and the Pasubio.",
+      waterDescription: "No drinking water is mapped on the line (OSM); the old Castellani Mondin fountain is dry. The trattoria by the Mucciòn church serves food and drink when open. Bring water for your dog.",
+      dogNotes: "Keep your dog close where animals graze on the ridge meadows, and on a short lead by the parked cars at the start.",
+      tips: "Start at the Mucciòn church above Monte Magrè: 2.8 km and 72 m up, about 50 minutes, as the board lists. The board suggests sunset or dawn for the view over the plain; the restaurants near the start make a good stop. It pairs well with the longer Mucciòn loop from Valdagno.",
+      sourceLinks: [
+        { label: "UM.PASUBIO, Sentiero dei Roccoli (Outdooractive)", url: "https://www.outdooractive.com/it/r/809321755" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      sideTrips: [{"km":1.46,"note":"Out to Località Cima, the saddle, and back, as the board’s own line goes."}],
+      walkedTwice: [
+        { from: 0, to: 0.63, note: "Out from the Mucciòn church along the Strada dei Rocoli, as the board’s own line goes." },
+        { from: 1.32, to: 1.42, note: "Out to Località Cima, the saddle, as the board’s own line goes." },
+        { from: 1.51, to: 1.61, note: "Back from Località Cima, as the board’s own line does." },
+        { from: 2.18, to: 2.8, note: "Back the same way along the ridge to the church, as the board’s own line does." }
+      ],
+      startPoint: { lat: 45.67046, lng: 11.326209, label: "The Chiesetta del Mucciòn above Monte Magrè, the published start" },
+      desc: "A short, easy loop from the little Mucciòn church along the ridge between the Agno and Leogra valleys, past the sites of old bird-catching roccoli, with views to the Pasubio. The board lists 2.8 km and 72 m up."
     }
   };
 

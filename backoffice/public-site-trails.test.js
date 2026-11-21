@@ -299,8 +299,11 @@ describe('the existing-site verification boundary',()=>{
     // Marana (there and back) and the Mucciòn loop above Valdagno.
     // Then 555 and 553 with the second Lake Iseo batch: the Riva di Solto
     // panoramic loop and the earth pyramids of Zone.
-    expect(catalogue).toHaveLength(555);
-    expect(currentSiteTrails(catalogue)).toHaveLength(553);
+    // Then 557 and 555 with the second Veneto batch from UM.PASUBIO: the
+    // Forte Enna loop above Torrebelvicino and the Roccoli path from the
+    // Mucciòn church (each walking a stretch twice, as the board's line does).
+    expect(catalogue).toHaveLength(557);
+    expect(currentSiteTrails(catalogue)).toHaveLength(555);
   });
 
   test('requires the artwork the public trail page needs',()=>{
