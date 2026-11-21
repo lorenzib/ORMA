@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "veneto-anello-del-muccion",
+  "distanceKm": 5.6,
+  "ascentM": 265,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 452
+    },
+    {
+      "km": 0.4,
+      "elev": 545
+    },
+    {
+      "km": 0.8,
+      "elev": 562
+    },
+    {
+      "km": 1.3,
+      "elev": 620
+    },
+    {
+      "km": 1.7,
+      "elev": 659
+    },
+    {
+      "km": 2.1,
+      "elev": 659
+    },
+    {
+      "km": 2.6,
+      "elev": 706
+    },
+    {
+      "km": 3,
+      "elev": 678
+    },
+    {
+      "km": 3.4,
+      "elev": 684
+    },
+    {
+      "km": 3.8,
+      "elev": 644
+    },
+    {
+      "km": 4.3,
+      "elev": 603
+    },
+    {
+      "km": 4.7,
+      "elev": 501
+    },
+    {
+      "km": 5.1,
+      "elev": 457
+    },
+    {
+      "km": 5.5,
+      "elev": 452
+    },
+    {
+      "km": 5.6,
+      "elev": 452
+    }
+  ]
+}

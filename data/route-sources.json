@@ -1698,14 +1698,6 @@
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-10-24T12:00:00.000Z"
     },
-    "osm-7277805": {
-      "url": "https://www.merano-suedtirol.it/it/val-passiria/vacanze-in-montagna/camminate-escursioni/sentieri-escursionistici/121154995-sentiero-waltner-rundweg-a-valtina.html",
-      "publisher": "Associazione turistica Val Passiria (Tourismusverein Passeiertal)",
-      "name": "Sentiero “Waltner Rundweg” a Valtina",
-      "quote": "Partendo dall’albergo Alpenrose si segue il sentiero che porta alla chiesa.",
-      "foundBy": "orma-route-source-scout",
-      "verifiedAt": "2026-10-12T20:04:08.598Z"
-    },
     "osm-7388748": {
       "url": "https://www.lozzodicadore.eu/parcodellamemoria/13-1-col-vidal-e-13-2-anello-dei-colli-solo-testo-e-pdf/",
       "publisher": "Parco della Memoria di Pian dei Buoi / Lozzo di Cadore",
@@ -4119,6 +4111,38 @@
       "publisher": "Comunità Montana Parco Alto Garda Bresciano (Outdooractive)",
       "name": "Dove nasce il formaggio di Tombea",
       "quote": "Distanza 1,8 km · Durata 0:45 h · Salita 139 m · Discesa 0 m · Punto più alto 1.326 m · Punto più basso 1.187 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T12:00:00.000Z"
+    },
+    "veneto-archeovia-campetto-cima-marana": {
+      "url": "https://www.outdooractive.com/it/r/809255432",
+      "publisher": "UM.PASUBIO (Unione Montana Pasubio Alto Vicentino) (Outdooractive)",
+      "name": "Archeovia Campetto - Cima Marana",
+      "quote": "Distanza 1,9 km · Durata 0:40 h · Salita 32 m · Discesa 111 m · Difficoltà T2",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T23:00:00.000Z"
+    },
+    "veneto-anello-del-muccion": {
+      "url": "https://www.outdooractive.com/it/r/810121175",
+      "publisher": "UM.PASUBIO (Unione Montana Pasubio Alto Vicentino) (Outdooractive)",
+      "name": "Anello del Mucciòn",
+      "quote": "Distanza 5,7 km · Durata 1:55 h · Salita 265 m · Discesa 265 m · Facile",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T23:00:00.000Z"
+    },
+    "iseo-riva-di-solto": {
+      "url": "https://www.outdooractive.com/it/r/804529444",
+      "publisher": "Visit Lake Iseo (Outdooractive)",
+      "name": "Giro panoramico di Riva di Solto",
+      "quote": "Distanza 6,7 km · Durata 2:30 h · Salita 290 m · Discesa 290 m · Punto più alto 476 m · Punto più basso 187 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T12:00:00.000Z"
+    },
+    "iseo-piramidi-zone": {
+      "url": "https://www.outdooractive.com/it/r/197805889",
+      "publisher": "Visit Lake Iseo (Outdooractive)",
+      "name": "Trekking nella Riserva Naturale delle Piramidi di Zone",
+      "quote": "Distanza 2,6 km · Durata 0:55 h · Salita 162 m · Discesa 161 m · Punto più alto 617 m · Punto più basso 455 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-19T12:00:00.000Z"
     }

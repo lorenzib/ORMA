@@ -898,6 +898,18 @@
       ],
       "highPoint": 967
     },
+    "iseo-piramidi-zone": {
+      "regions": [
+        "IT-25-BS-02"
+      ],
+      "highPoint": 611
+    },
+    "iseo-riva-di-solto": {
+      "regions": [
+        "IT-25-BG-02"
+      ],
+      "highPoint": 476
+    },
     "kronplatz-attraverso-il-sentiero-panoramico-a-brunico": {
       "regions": [
         "IT-32-BZ-12",
@@ -1510,13 +1522,6 @@
       ],
       "highPoint": 1001
     },
-    "osm-12189165": {
-      "regions": [
-        "IT-32-BZ-08",
-        "IT-32-BZ-08-03"
-      ],
-      "highPoint": 1478
-    },
     "osm-12190538": {
       "regions": [
         "IT-32-BZ-08",
@@ -1820,15 +1825,6 @@
         "IT-32-TN-11"
       ],
       "highPoint": 1405
-    },
-    "osm-7277805": {
-      "regions": [
-        "IT-32-BZ-04",
-        "IT-32-BZ-04-02",
-        "IT-32-BZ-08",
-        "IT-32-BZ-08-01"
-      ],
-      "highPoint": 2710
     },
     "osm-7388748": {
       "regions": [
@@ -2887,6 +2883,12 @@
         "IT-25-SO-02"
       ],
       "highPoint": 1958
+    },
+    "veneto-archeovia-campetto-cima-marana": {
+      "regions": [
+        "IT-34-VI-01"
+      ],
+      "highPoint": 1622
     },
     "villnoess-da-russis-fino-al-passo-delle-erbe": {
       "regions": [
