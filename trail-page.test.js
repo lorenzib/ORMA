@@ -337,9 +337,9 @@ describe('trail page map controls', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
 
-    expect(html).toContain('i18n.js?v=20261123-2');
-    expect(html).toContain('trail-app.bundle.js?v=20261123-2');
-    expect(html).toContain('trail-mobile.css?v=20260904-3');
+    expect(html).toContain('i18n.js?v=20261125-4');
+    expect(html).toContain('trail-app.bundle.js?v=20261125-4');
+    expect(html).toContain('trail-mobile.css?v=20261123-7');
     [
       'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',
       'detail-pois.js', 'trail-access-directions.js', 'footpath-router.js',

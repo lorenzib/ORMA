@@ -141,12 +141,12 @@ describe('guest dog persistence and the quick wizard chairlift question', () => 
     const page = read('collections-page.js');
     expect(page).toMatch(/if\(!auth \|\| !auth\.currentUser[^\n]*\)\{\s*const device = deviceDogProfile\(\);\s*if\(device\) applyMatchSubject\(subjectFor\(device\)\);/);
     expect(page).toContain('matchSubject || scoring.GUEST_SUBJECT');
-    expect(read('collections.html')).toContain('collections-page.js?v=20261119-9');
+    expect(read('collections.html')).toContain('collections-page.js?v=20261125-4');
   });
 
   test('the homepage ships the new controller and guest-context versions', () => {
     const html = read('index.html');
-    expect(html).toContain('homepage-search.js?v=20261123-1');
+    expect(html).toContain('homepage-search.js?v=20261123-7');
     expect(html).toContain('guest-context.js?v=20261030-1');
     expect(read('browse-trails.html')).toContain('guest-context.js?v=20261030-1');
   });

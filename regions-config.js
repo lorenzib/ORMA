@@ -208,6 +208,8 @@
     ['Vedeseta / Val Taleggio', 45.8920, 9.5390, 'Val Taleggio', 'lombardy', 'bergamo'],
     ['Bergamo', 45.6983, 9.6773, 'Bergamo hills', 'lombardy', 'bergamo'],
     ['Sulzano / Lake Iseo', 45.6890, 10.1000, 'Lake Iseo', 'lombardy', 'brescia'],
+    ['Zone / Lake Iseo', 45.7630, 10.1160, 'Lake Iseo', 'lombardy', 'brescia'],
+    ['Riva di Solto / Lake Iseo', 45.7710, 10.0400, 'Lake Iseo', 'lombardy', 'bergamo'],
     ['Tignale', 45.7390, 10.7180, 'Alto Garda Bresciano', 'lombardy', 'brescia'],
     ['Toscolano Maderno', 45.6400, 10.6070, 'Alto Garda Bresciano', 'lombardy', 'brescia'],
     ['Magasa / Valvestino', 45.7800, 10.6170, 'Alto Garda Bresciano', 'lombardy', 'brescia'],
@@ -399,6 +401,20 @@
     ['Valdieri', 44.2780, 7.3910, 'Valle Gesso – Marittime', 'piedmont', 'cuneo'],
     ['Entracque', 44.2400, 7.3980, 'Valle Gesso – Marittime', 'piedmont', 'cuneo'],
     ['Limone Piemonte', 44.2010, 7.5770, 'Valle Gesso – Marittime', 'piedmont', 'cuneo'],
+    // Veneto outside the Belluno Dolomites: the Vicenza prealps (Pasubio,
+    // Piccole Dolomiti, Val Leogra, Val Posina, Novegno). Belluno stays in the
+    // Dolomites region.
+    ['Recoaro Terme', 45.7050, 11.2240, 'Piccole Dolomiti – Recoaro', 'veneto', 'vicenza'],
+    ['Campogrosso', 45.7280, 11.1730, 'Piccole Dolomiti – Recoaro', 'veneto', 'vicenza'],
+    ['Valdagno', 45.6480, 11.3010, 'Piccole Dolomiti – Recoaro', 'veneto', 'vicenza'],
+    ['Valli del Pasubio', 45.7400, 11.2600, 'Pasubio – Val Leogra', 'veneto', 'vicenza'],
+    ['Sant\'Antonio / Pian delle Fugazze', 45.7570, 11.2160, 'Pasubio – Val Leogra', 'veneto', 'vicenza'],
+    ['Staro', 45.7250, 11.2230, 'Pasubio – Val Leogra', 'veneto', 'vicenza'],
+    ['Torrebelvicino', 45.7150, 11.3100, 'Pasubio – Val Leogra', 'veneto', 'vicenza'],
+    ['Schio', 45.7130, 11.3570, 'Pasubio – Val Leogra', 'veneto', 'vicenza'],
+    ['Posina', 45.7900, 11.2610, 'Val Posina – Novegno', 'veneto', 'vicenza'],
+    ['Laghi', 45.8240, 11.2720, 'Val Posina – Novegno', 'veneto', 'vicenza'],
+    ['Monte Novegno', 45.7700, 11.3150, 'Val Posina – Novegno', 'veneto', 'vicenza'],
     // The French Alps south of Savoy (#1235): Isère's massifs, the Hautes-Alpes,
     // the Ubaye and the Mercantour valleys. Village centres checked against
     // Nominatim on 4 Nov 2026.
@@ -464,6 +480,7 @@
     friuli: { label: 'Friuli Venezia Giulia', country: 'Italy', countryCode: 'IT' },
     aosta: { label: 'Valle d\'Aosta', country: 'Italy', countryCode: 'IT' },
     piedmont: { label: 'Piedmont', country: 'Italy', countryCode: 'IT' },
+    veneto: { label: 'Veneto', country: 'Italy', countryCode: 'IT' },
     tyrol: { label: 'Tyrol & Carinthia', country: 'Austria', countryCode: 'AT' },
     switzerland: { label: 'Switzerland', country: 'Switzerland', countryCode: 'CH' }
   };

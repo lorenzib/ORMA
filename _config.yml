@@ -49,6 +49,8 @@ exclude:
   - backoffice
   # Repository tooling and internal documentation, never fetched at runtime.
   - docs
+  # Walk-scouting tools, rules and findings (scouting/README.md).
+  - scouting
   - scripts
   - schemas
   - test-support

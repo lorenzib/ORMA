@@ -121,7 +121,6 @@
   <url><loc>https://www.app-orma.com/trails/timpfler-rundweg.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/trails/talrundweg.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/trails/schorgaurunde.html</loc><lastmod>2026-08-03</lastmod></url>
-  <url><loc>https://www.app-orma.com/trails/rundweg-schwarzegg-sentiero-circolare-dosso-nero.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/trails/flaaser-rundweg.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/trails/rundweg-langfenn.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/trails/dorfrundweg-rasen.html</loc><lastmod>2026-08-03</lastmod></url>
@@ -141,7 +140,6 @@
   <url><loc>https://www.app-orma.com/trails/rundweg-beimsteinkogel.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/trails/mittlerer-rundweg-am-karer-see.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/trails/langer-rundweg-am-karer-see.html</loc><lastmod>2026-08-03</lastmod></url>
-  <url><loc>https://www.app-orma.com/trails/waltner-rundweg-12-sentiero-circolare-di-valtina-12.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/trails/sissiweg-sentiero-sissi.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/trails/sonnenberger-panoramaweg-sentiero.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/trails/algunder-waalweg.html</loc><lastmod>2026-08-03</lastmod></url>
@@ -572,6 +570,10 @@
   <url><loc>https://www.app-orma.com/trails/santuario-di-montecastello-tignale.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/trails/valle-delle-cartiere-toscolano-maderno.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/trails/cima-rest-formaggio-tombea-magasa.html</loc><lastmod>2026-08-03</lastmod></url>
+  <url><loc>https://www.app-orma.com/trails/archeovia-campetto-cima-marana.html</loc><lastmod>2026-08-03</lastmod></url>
+  <url><loc>https://www.app-orma.com/trails/muccion-loop-valdagno.html</loc><lastmod>2026-08-03</lastmod></url>
+  <url><loc>https://www.app-orma.com/trails/giro-panoramico-riva-di-solto.html</loc><lastmod>2026-08-03</lastmod></url>
+  <url><loc>https://www.app-orma.com/trails/piramidi-di-zone-riserva-naturale.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/trails/cinque-torri-three-refuges-assisted-circuit.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/it/</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/it/browse-trails.html</loc><lastmod>2026-08-03</lastmod></url>
@@ -694,7 +696,6 @@
   <url><loc>https://www.app-orma.com/it/trails/timpfler-rundweg.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/it/trails/talrundweg.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/it/trails/schorgaurunde.html</loc><lastmod>2026-08-03</lastmod></url>
-  <url><loc>https://www.app-orma.com/it/trails/rundweg-schwarzegg-sentiero-circolare-dosso-nero.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/it/trails/flaaser-rundweg.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/it/trails/rundweg-langfenn.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/it/trails/dorfrundweg-rasen.html</loc><lastmod>2026-08-03</lastmod></url>
@@ -714,7 +715,6 @@
   <url><loc>https://www.app-orma.com/it/trails/rundweg-beimsteinkogel.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/it/trails/mittlerer-rundweg-am-karer-see.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/it/trails/langer-rundweg-am-karer-see.html</loc><lastmod>2026-08-03</lastmod></url>
-  <url><loc>https://www.app-orma.com/it/trails/waltner-rundweg-12-sentiero-circolare-di-valtina-12.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/it/trails/sissiweg-sentiero-sissi.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/it/trails/sonnenberger-panoramaweg-sentiero.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/it/trails/algunder-waalweg.html</loc><lastmod>2026-08-03</lastmod></url>
@@ -1145,5 +1145,9 @@
   <url><loc>https://www.app-orma.com/it/trails/santuario-di-montecastello-tignale.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/it/trails/valle-delle-cartiere-toscolano-maderno.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/it/trails/cima-rest-formaggio-tombea-magasa.html</loc><lastmod>2026-08-03</lastmod></url>
+  <url><loc>https://www.app-orma.com/it/trails/archeovia-campetto-cima-marana.html</loc><lastmod>2026-08-03</lastmod></url>
+  <url><loc>https://www.app-orma.com/it/trails/muccion-loop-valdagno.html</loc><lastmod>2026-08-03</lastmod></url>
+  <url><loc>https://www.app-orma.com/it/trails/giro-panoramico-riva-di-solto.html</loc><lastmod>2026-08-03</lastmod></url>
+  <url><loc>https://www.app-orma.com/it/trails/piramidi-di-zone-riserva-naturale.html</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://www.app-orma.com/it/trails/cinque-torri-three-refuges-assisted-circuit.html</loc><lastmod>2026-08-03</lastmod></url>
 </urlset>
