@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "trailId": "corio-sentiero-del-redio",
+  "generatedAt": "2026-11-21T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 8.4,
+    "ascentM": 465,
+    "highestPointM": 1268,
+    "expectedDuration": "3 h 15 min",
+    "difficulty": "Hard",
+    "shadePercent": 55
+  },
+  "trailhead": {
+    "lat": 45.341187,
+    "lng": 7.524154,
+    "label": "The Cappella della Consolata, Piano Audi, Corio, the board’s start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "Some stony stretches past the old pasture huts and about 130 m of steps near the end: watch your dog’s footing.",
+    "Short stretches on hamlet lanes at Piano Audi: keep your dog on a short lead there.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-21"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-21",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Sentiero del Redìo, Corio": "Il Sentiero del Redìo a Corio",
+    "The Cappella della Consolata, Piano Audi, Corio, the board’s start": "La cappella della Consolata, Piano Audi, Corio, la partenza ufficiale",
+    "Some stony stretches past the old pasture huts and about 130 m of steps near the end: watch your dog’s footing.": "Alcuni tratti sassosi vicino alle vecchie baite e circa 130 m di gradini verso la fine: attenzione all’appoggio del cane.",
+    "Short stretches on hamlet lanes at Piano Audi: keep your dog on a short lead there.": "Brevi tratti sulle stradine di borgata a Piano Audi: lì tieni il cane al guinzaglio corto."
+  }
+}
