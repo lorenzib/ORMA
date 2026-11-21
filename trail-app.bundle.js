@@ -16059,6 +16059,56 @@ function initTrailReports(map, trail){
 
   // Seasonal risks to dogs (trail.season.dogSeasons, from data/dog-seasons.json):
   // a tag in the months they apply and a line under "When to go" with the source.
+  // Winter sun (scripts/winter-sun.js, data/winter-sun.json): the hours of
+  // direct sun the terrain allows on the shortest day, averaged along the walk.
+  // A tag in the months it matters: a sunny walk is the one to pick, and a
+  // shady one is where the path stays icy.
+  const WINTER_SUN_MONTHS = [11, 12, 1, 2];
+  // Six hours is the top quarter of ORMA's walks (median 5 of a possible 8.3 at
+  // 46.5° N); under two is the shadiest tenth (20 November 2026).
+  const SUNNY_WINTER_HOURS = 6;
+  const SHADY_WINTER_HOURS = 2;
+  const WINTER_SUN_SOURCE = { label: 'AWS Terrain Tiles', url: 'https://registry.opendata.aws/terrain-tiles/' };
+  function winterSunKind(season) {
+    const sun = season && season.winterSun;
+    if (!sun || !Number.isFinite(sun.hours)) return null;
+    if (sun.hours >= SUNNY_WINTER_HOURS) return 'sunny';
+    if (sun.hours < SHADY_WINTER_HOURS) return 'shady';
+    return null;
+  }
+  // { kind, label } in November to February, else null.
+  function winterSunTag(season, month) {
+    if (!WINTER_SUN_MONTHS.includes(month)) return null;
+    const kind = winterSunKind(season);
+    if (!kind) return null;
+    return { kind, label: kind === 'sunny' ? tx('Sunny in winter') : tx('Little winter sun') };
+  }
+  // The "When to go" line: the hours, and ice where much of the line sees none.
+  function winterSunLine(season, formatNumber) {
+    const sun = season && season.winterSun;
+    if (!sun || !Number.isFinite(sun.hours)) return null;
+    const fmt = typeof formatNumber === 'function' ? formatNumber : value => value;
+    const half = Math.round(sun.hours * 2) / 2;
+    const parts = [half < 1
+      ? tx('On the shortest day the mountains keep direct sun off this walk for all but a few minutes.')
+      : half === 1
+        ? tx('On the shortest day the sun reaches this walk for about an hour.')
+        : tx('On the shortest day the sun reaches this walk for about {hours} hours.', { hours: fmt(half) })];
+    if (sun.noSunShare >= 0.3) {
+      parts.push(tx('About {share}% of the line gets no direct sun at all in midwinter: expect ice there.', { share: fmt(Math.round(sun.noSunShare * 10) * 10) }));
+    }
+    return {
+      kind: winterSunKind(season),
+      line: parts.join(' '),
+      source: {
+        before: tx('Worked out from the terrain alone ('),
+        label: WINTER_SUN_SOURCE.label,
+        url: WINTER_SUN_SOURCE.url,
+        after: tx('): trees, buildings and weather are not counted.'),
+      },
+    };
+  }
+
   const DOG_SEASON_TAGS = { caterpillars: 'Caterpillar season', ticks: 'Tick season', cows: 'Cows on the pastures', heat: 'Hot months', salt: 'Salted roads' };
   const DOG_SEASON_SENTENCES = {
     caterpillars: '{range}: pine processionary caterpillars come down from the pines below about {alt} m, and they are a danger to dogs. Keep your dog away from pines and from the caterpillars.',
@@ -16198,6 +16248,7 @@ function initTrailReports(map, trail){
         after: tx(', read on {date}.', { date: readOn(source.accessedAt) }),
       })),
     }));
+    out.winterSun = winterSunLine(season, fmt);
     return out;
   }
 
@@ -16346,7 +16397,7 @@ function initTrailReports(map, trail){
     return now.concat(later);
   }
 
-  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, WINTER_WALK_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, dayMonth, liftLine, roadLine, hutLine, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime, backInSeason, outOfSeasonTag, inSeasonFirst, DOG_SEASON_TAGS, dogSeasonsNow };
+  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, WINTER_WALK_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, dayMonth, liftLine, roadLine, hutLine, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime, backInSeason, outOfSeasonTag, inSeasonFirst, DOG_SEASON_TAGS, dogSeasonsNow, WINTER_SUN_MONTHS, SUNNY_WINTER_HOURS, SHADY_WINTER_HOURS, winterSunTag, winterSunLine };
   global.DoloPawsTrailSeasonWords = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);
@@ -19797,7 +19848,10 @@ if(document.querySelector('.td2')){
       // Seasonal risks to dogs, only in the months they apply.
       const dog = seasonWords.dogSeasonsNow(t.season, new Date().getMonth() + 1)
         .map(risk => `<span class="dp-badge trail-season-tag trail-season-tag--dog"><span>${esc(risk.label)}</span></span>`).join('');
-      tags.insertAdjacentHTML('beforeend', `${out}<span class="dp-badge trail-season-tag trail-season-tag--best"><span>${esc(best)}</span></span>${dog}`);
+      // "Sunny in winter" or "Little winter sun", November to February.
+      const sunTag = seasonWords.winterSunTag ? seasonWords.winterSunTag(t.season, new Date().getMonth() + 1) : null;
+      const sun = sunTag ? `<span class="dp-badge trail-season-tag trail-season-tag--sun-${sunTag.kind}"><span>${esc(sunTag.label)}</span></span>` : '';
+      tags.insertAdjacentHTML('beforeend', `${out}<span class="dp-badge trail-season-tag trail-season-tag--best"><span>${esc(best)}</span></span>${dog}${sun}`);
     }
 
     // Elevation figures under the real chart; hide the block honestly
@@ -20176,6 +20230,13 @@ if(document.querySelector('.td2')){
         const from = risk.sources.map(source => source.label).join(', ');
         caution(tx(seasonWords.DOG_SEASON_TAGS[risk.kind]), `${risk.line} ${tx('Source: {source}.', { source: from })}`, ({ cows: 'livestock', heat: 'heat', salt: 'paws' })[risk.kind] || null);
       }
+    }
+    // A shady walk in midwinter: where the sun never reaches, the path stays
+    // icy and a short-coated dog gets cold.
+    const sunTag = seasonWords && seasonWords.winterSunTag ? seasonWords.winterSunTag(t.season, month) : null;
+    if (sunTag && sunTag.kind === 'shady') {
+      const sun = seasonWords.winterSunLine(t.season, n => (isItalian() ? Number(n) : Number(n).toLocaleString()));
+      caution(sunTag.label, `${sun.line} ${tx('Paths in the shade stay icy all day, and a short-coated dog gets cold faster.')}`, 'altitude');
     }
 
     if (!rows.length) {

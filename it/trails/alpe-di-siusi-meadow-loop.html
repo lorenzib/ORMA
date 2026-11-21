@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../styles.css?v=20261123-1">
+<link rel="stylesheet" href="../../styles.css?v=20261126-2">
 <style>
   .sp-hero{padding-top:28px;}
   .sp-breadcrumb{font-size:.85rem;color:var(--ink-soft,#666);margin-bottom:14px;}
@@ -64,6 +64,8 @@
   .sp-tag[hidden]{display:none;}
   .sp-tag--out{background:#F6E3DE;color:#7A2E1E;font-weight:700;}
   .sp-tag--dog{background:#F7EBD2;color:#6D4916;font-weight:700;}
+  .sp-tag--sun-sunny{background:#FBEFC4;color:#6B5100;font-weight:700;}
+  .sp-tag--sun-shady{background:#DDE7F3;color:#24476B;font-weight:700;}
   .sp-season-dog{margin:18px 0 6px;font-size:17px;}
   .sp-tag--best{background:#E3F0E0;color:#24502A;font-weight:700;}
   .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
@@ -172,6 +174,7 @@
     <span class="dp-badge sp-tag sp-tag--out" data-season-out="111100000011" hidden><span>Fuori stagione · torna a maggio</span></span>
     <span class="dp-badge sp-tag sp-tag--best"><span>Periodo migliore: da maggio a ottobre</span></span>
     <span class="dp-badge sp-tag sp-tag--dog" data-season-out="110000000001" hidden><span>Strade con sale</span></span>
+    <span class="dp-badge sp-tag sp-tag--sun sp-tag--sun-sunny" data-season-out="110000000011" hidden><span>Soleggiato d’inverno</span></span>
     <script>(function(){var m=new Date().getMonth();document.querySelectorAll('.sp-tag[data-season-out]').forEach(function(tag){if(tag.getAttribute('data-season-out').charAt(m)==='1')tag.hidden=false;});})();</script>
     <span class="dp-badge dp-badge--low-risk"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>Basso rischio</span></span>
     <span class="dp-badge dp-badge--neutral"><span>Revisionato da ORMA</span></span>
@@ -220,6 +223,8 @@
     <p>Seiser Alm cable car (Seis – Compatsch): in funzione tra 22 maggio e 2 novembre (date 2026; quelle invernali non ancora pubblicate). La passeggiata non ne ha bisogno.</p>
     <p class="sp-src">Fonte: <a href="https://www.seiseralm.it/liftssummer" rel="noopener">Seiser Alm Marketing</a>, consultata il 9 novembre 2026.</p>
     
+    <p>Sole d’inverno: Nel giorno più corto dell’anno il sole raggiunge questo percorso per circa 7 ore.</p>
+    <p class="sp-src">Calcolato solo dal terreno (<a href="https://registry.opendata.aws/terrain-tiles/" rel="noopener">AWS Terrain Tiles</a>): alberi, edifici e meteo non sono considerati.</p>
     <h3 class="sp-season-dog">Per il tuo cane</h3>
     <p>Da dicembre a febbraio (una stima): le strade di questa passeggiata possono essere salate quando ghiacciano. Il sale fa male alle zampe dei cani: controllale dopo la passeggiata e sciacquale con acqua tiepida.</p>
     <p class="sp-src">Fonte: <a href="https://www.provinz.bz.it/wetter/download/83200MS-Bozen-Bolzano-multiannual-LT-monthly-temperature.pdf" rel="noopener">Province of Bolzano weather service, Bozen station temperatures</a>, consultata il 10 novembre 2026. <a href="https://www.bundestieraerztekammer.de/presse/archiv/2014/PM_2_14_Wintertipps.pdf" rel="noopener">German Federal Chamber of Veterinarians</a>, consultata il 10 novembre 2026.</p>

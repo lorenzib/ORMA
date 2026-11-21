@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../styles.css?v=20261123-1">
+<link rel="stylesheet" href="../styles.css?v=20261126-2">
 <style>
   .sp-hero{padding-top:28px;}
   .sp-breadcrumb{font-size:.85rem;color:var(--ink-soft,#666);margin-bottom:14px;}
@@ -64,6 +64,8 @@
   .sp-tag[hidden]{display:none;}
   .sp-tag--out{background:#F6E3DE;color:#7A2E1E;font-weight:700;}
   .sp-tag--dog{background:#F7EBD2;color:#6D4916;font-weight:700;}
+  .sp-tag--sun-sunny{background:#FBEFC4;color:#6B5100;font-weight:700;}
+  .sp-tag--sun-shady{background:#DDE7F3;color:#24476B;font-weight:700;}
   .sp-season-dog{margin:18px 0 6px;font-size:17px;}
   .sp-tag--best{background:#E3F0E0;color:#24502A;font-weight:700;}
   .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
@@ -172,6 +174,7 @@
     <span class="dp-badge sp-tag sp-tag--best"><span>Best time: March to November</span></span>
     <span class="dp-badge sp-tag sp-tag--dog" data-season-out="001111000000" hidden><span>Tick season</span></span>
     <span class="dp-badge sp-tag sp-tag--dog" data-season-out="110000000001" hidden><span>Salted roads</span></span>
+    
     <script>(function(){var m=new Date().getMonth();document.querySelectorAll('.sp-tag[data-season-out]').forEach(function(tag){if(tag.getAttribute('data-season-out').charAt(m)==='1')tag.hidden=false;});})();</script>
     <span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Higher risk</span></span>
     <span class="dp-badge dp-badge--verified"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>Verified by ORMA</span></span>
@@ -219,6 +222,8 @@
     <p class="sp-src">Estimated from the walk’s high point (1216 m). No tourist board publishes this walk’s season, and every winter is different.</p>
     
     
+    <p>Winter sun: On the shortest day the sun reaches this walk for about 3 hours.</p>
+    <p class="sp-src">Worked out from the terrain alone (<a href="https://registry.opendata.aws/terrain-tiles/" rel="noopener">AWS Terrain Tiles</a>): trees, buildings and weather are not counted.</p>
     <h3 class="sp-season-dog">For your dog</h3>
     <p>March to June: ticks in the woods below about 1200 m, most of all from late May to mid-June. Check your dog after the walk.</p>
     <p class="sp-src">Source: <a href="https://www.ufficiostampa.provincia.tn.it/content/view/pdf/186846" rel="noopener">Province of Trento and Fondazione Edmund Mach</a>, read on 9 November 2026.</p>

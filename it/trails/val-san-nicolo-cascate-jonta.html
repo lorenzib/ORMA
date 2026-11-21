@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../styles.css?v=20261123-1">
+<link rel="stylesheet" href="../../styles.css?v=20261126-2">
 <style>
   .sp-hero{padding-top:28px;}
   .sp-breadcrumb{font-size:.85rem;color:var(--ink-soft,#666);margin-bottom:14px;}
@@ -64,6 +64,8 @@
   .sp-tag[hidden]{display:none;}
   .sp-tag--out{background:#F6E3DE;color:#7A2E1E;font-weight:700;}
   .sp-tag--dog{background:#F7EBD2;color:#6D4916;font-weight:700;}
+  .sp-tag--sun-sunny{background:#FBEFC4;color:#6B5100;font-weight:700;}
+  .sp-tag--sun-shady{background:#DDE7F3;color:#24476B;font-weight:700;}
   .sp-season-dog{margin:18px 0 6px;font-size:17px;}
   .sp-tag--best{background:#E3F0E0;color:#24502A;font-weight:700;}
   .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
@@ -173,6 +175,7 @@
     <span class="dp-badge sp-tag sp-tag--best"><span>Periodo migliore: da maggio a ottobre</span></span>
     <span class="dp-badge sp-tag sp-tag--dog" data-season-out="000001111000" hidden><span>Mucche al pascolo</span></span>
     <span class="dp-badge sp-tag sp-tag--dog" data-season-out="110000000001" hidden><span>Strade con sale</span></span>
+    <span class="dp-badge sp-tag sp-tag--sun sp-tag--sun-shady" data-season-out="110000000011" hidden><span>Poco sole d’inverno</span></span>
     <script>(function(){var m=new Date().getMonth();document.querySelectorAll('.sp-tag[data-season-out]').forEach(function(tag){if(tag.getAttribute('data-season-out').charAt(m)==='1')tag.hidden=false;});})();</script>
     <span class="dp-badge dp-badge--moderate"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Rischio moderato</span></span>
     <span class="dp-badge dp-badge--verified"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>Verificato da ORMA</span></span>
@@ -235,6 +238,8 @@
     <p>D’estate la strada della Val San Nicolò è chiusa alle auto private (Fondazione Dolomiti UNESCO, scheda Dolomiti Accessibili 2B). Nel 2026, dal 20 giugno al 20 settembre, un trenino su gomma saliva da Pozza di Fassa (Piaza de Comun) fino alla Baita Ciampiè; i cani viaggiavano a 3 €, al guinzaglio e con la museruola.</p>
     <p class="sp-src">Fonte: <a href="https://www.fassa.com/02-file-documenti-APT/PIANIFICA/COME%20MUOVERSI/Orari-timetables-trenino-train-Val-San-Nicolo.pdf" rel="noopener">APT Val di Fassa, orario del trenino della Val San Nicolò (estate 2026)</a>, consultata il 16 novembre 2026.</p>
     
+    <p>Sole d’inverno: Nel giorno più corto dell’anno le montagne tengono il sole diretto lontano da questo percorso, salvo pochi minuti. In pieno inverno circa il 50% del tracciato non riceve mai sole diretto: lì aspettati ghiaccio.</p>
+    <p class="sp-src">Calcolato solo dal terreno (<a href="https://registry.opendata.aws/terrain-tiles/" rel="noopener">AWS Terrain Tiles</a>): alberi, edifici e meteo non sono considerati.</p>
     <h3 class="sp-season-dog">Per il tuo cane</h3>
     <p>Da giugno a settembre (una stima): le mucche possono essere al pascolo. Tieni il cane vicino e stai alla larga dalle mandrie.</p>
     <p class="sp-src">Fonte: <a href="https://www.suedtirol.info/de/das-ist-suedtirol/menschen/tradition/almwirtschaft-und-transhumanz" rel="noopener">IDM Alto Adige</a>, consultata il 9 novembre 2026.</p>

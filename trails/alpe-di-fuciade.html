@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../styles.css?v=20261123-1">
+<link rel="stylesheet" href="../styles.css?v=20261126-2">
 <style>
   .sp-hero{padding-top:28px;}
   .sp-breadcrumb{font-size:.85rem;color:var(--ink-soft,#666);margin-bottom:14px;}
@@ -64,6 +64,8 @@
   .sp-tag[hidden]{display:none;}
   .sp-tag--out{background:#F6E3DE;color:#7A2E1E;font-weight:700;}
   .sp-tag--dog{background:#F7EBD2;color:#6D4916;font-weight:700;}
+  .sp-tag--sun-sunny{background:#FBEFC4;color:#6B5100;font-weight:700;}
+  .sp-tag--sun-shady{background:#DDE7F3;color:#24476B;font-weight:700;}
   .sp-season-dog{margin:18px 0 6px;font-size:17px;}
   .sp-tag--best{background:#E3F0E0;color:#24502A;font-weight:700;}
   .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
@@ -171,6 +173,7 @@
     <span class="dp-badge sp-tag sp-tag--out" data-season-out="111000000001" hidden><span>Out of season · back in April</span></span>
     <span class="dp-badge sp-tag sp-tag--best"><span>Best time: April to November</span></span>
     <span class="dp-badge sp-tag sp-tag--dog" data-season-out="000001111000" hidden><span>Cows on the pastures</span></span>
+    
     <script>(function(){var m=new Date().getMonth();document.querySelectorAll('.sp-tag[data-season-out]').forEach(function(tag){if(tag.getAttribute('data-season-out').charAt(m)==='1')tag.hidden=false;});})();</script>
     <span class="dp-badge dp-badge--low-risk"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>Low risk</span></span>
     <span class="dp-badge dp-badge--verified"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>Verified by ORMA</span></span>
@@ -232,6 +235,8 @@
     <p class="sp-src">Source: <a href="https://www.outdooractive.com/it/r/37940398" rel="noopener">Outdooractive</a>, read on 6 November 2026.</p>
     
     
+    <p>Winter sun: On the shortest day the sun reaches this walk for about 6 hours.</p>
+    <p class="sp-src">Worked out from the terrain alone (<a href="https://registry.opendata.aws/terrain-tiles/" rel="noopener">AWS Terrain Tiles</a>): trees, buildings and weather are not counted.</p>
     <h3 class="sp-season-dog">For your dog</h3>
     <p>June to September (an estimate): cows may be out on the pastures. Keep your dog close and give the herds a wide berth.</p>
     <p class="sp-src">Source: <a href="https://www.suedtirol.info/de/das-ist-suedtirol/menschen/tradition/almwirtschaft-und-transhumanz" rel="noopener">South Tyrol tourist board</a>, read on 9 November 2026.</p>
