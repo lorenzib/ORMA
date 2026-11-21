@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "trailId": "valsusa-bruzolo-anello-chiotetti",
+  "distanceKm": 6.9,
+  "ascentM": 638,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 507
+    },
+    {
+      "km": 0.5,
+      "elev": 599
+    },
+    {
+      "km": 1.1,
+      "elev": 658
+    },
+    {
+      "km": 1.6,
+      "elev": 824
+    },
+    {
+      "km": 2.1,
+      "elev": 1022
+    },
+    {
+      "km": 2.6,
+      "elev": 1076
+    },
+    {
+      "km": 3.2,
+      "elev": 1109
+    },
+    {
+      "km": 3.7,
+      "elev": 1047
+    },
+    {
+      "km": 4.2,
+      "elev": 989
+    },
+    {
+      "km": 4.8,
+      "elev": 923
+    },
+    {
+      "km": 5.3,
+      "elev": 824
+    },
+    {
+      "km": 5.8,
+      "elev": 654
+    },
+    {
+      "km": 6.3,
+      "elev": 606
+    },
+    {
+      "km": 6.9,
+      "elev": 526
+    }
+  ]
+}

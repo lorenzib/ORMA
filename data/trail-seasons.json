@@ -8890,6 +8890,43 @@
         "highPoint": 1919
       }
     },
+    "valsusa-bruzolo-anello-chiotetti": {
+      "highPoint": 1109,
+      "recommended": {
+        "months": [
+          2,
+          3,
+          4,
+          5,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/806631049",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "valsusa-giaglione-forte-santa-chiara": {
+      "highPoint": 1499,
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/809848233",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
     "valsusa-giaglione-vigne-mandorli": {
       "highPoint": 821,
       "recommended": {
@@ -8910,6 +8947,46 @@
         "source": {
           "label": "Outdooractive",
           "url": "https://www.outdooractive.com/it/r/809858459",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "valsusa-mattie-alpe-toglie": {
+      "highPoint": 1508,
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/809844270",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "valsusa-mompantero-sentier8": {
+      "highPoint": 991,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/806598959",
           "accessedAt": "2026-11-19"
         }
       }
@@ -10128,6 +10205,54 @@
         ],
         "likelihood": "possible",
         "highPoint": 611
+      }
+    },
+    "veneto-sentiero-forte-enna": {
+      "highPoint": 955,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/809321294",
+          "accessedAt": "2026-11-21"
+        }
+      }
+    },
+    "veneto-sentiero-dei-roccoli": {
+      "highPoint": 705,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/809321755",
+          "accessedAt": "2026-11-21"
+        }
       }
     }
   }
