@@ -44,6 +44,7 @@
     "check:generated": "node scripts/check-generated-artifacts.js",
     "check:seal-seasons": "node scripts/check-seal-seasons.js",
     "check:season-dates": "node scripts/season-dates-review.js",
+    "report:winter-mix": "node scripts/winter-mix.js",
     "quality:gate": "node scripts/run-quality-gate.js",
     "build:dolomites-trails": "npm run fetch:dolomites-trails && npm run validate:dolomites-trails",
     "test:backoffice": "jest --runInBand backoffice/backoffice.test.js",

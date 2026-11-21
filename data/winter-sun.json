@@ -766,6 +766,16 @@
       "noSunShare": 0,
       "points": 20
     },
+    "iseo-piramidi-zone": {
+      "hours": 4.6,
+      "noSunShare": 0,
+      "points": 12
+    },
+    "iseo-riva-di-solto": {
+      "hours": 6,
+      "noSunShare": 0,
+      "points": 20
+    },
     "isere-boucle-du-couzon": {
       "hours": 5.9,
       "noSunShare": 0,
@@ -1316,11 +1326,6 @@
       "noSunShare": 0,
       "points": 20
     },
-    "osm-12189165": {
-      "hours": 6.3,
-      "noSunShare": 0.05,
-      "points": 20
-    },
     "osm-12190538": {
       "hours": 7.4,
       "noSunShare": 0,
@@ -1744,11 +1749,6 @@
     "osm-7045225": {
       "hours": 6.3,
       "noSunShare": 0,
-      "points": 20
-    },
-    "osm-7277805": {
-      "hours": 2.6,
-      "noSunShare": 0.4,
       "points": 20
     },
     "osm-7388748": {
@@ -2645,6 +2645,26 @@
       "hours": 1,
       "noSunShare": 0.5,
       "points": 14
+    },
+    "veneto-anello-del-muccion": {
+      "hours": 7.3,
+      "noSunShare": 0,
+      "points": 20
+    },
+    "veneto-archeovia-campetto-cima-marana": {
+      "hours": 8.4,
+      "noSunShare": 0,
+      "points": 16
+    },
+    "veneto-sentiero-dei-roccoli": {
+      "hours": 7.7,
+      "noSunShare": 0,
+      "points": 13
+    },
+    "veneto-sentiero-forte-enna": {
+      "hours": 6.3,
+      "noSunShare": 0.05,
+      "points": 20
     },
     "villnoess-da-russis-fino-al-passo-delle-erbe": {
       "hours": 0.9,

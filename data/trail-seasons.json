@@ -4336,18 +4336,6 @@
         "highPoint": 1001
       }
     },
-    "osm-12189165": {
-      "highPoint": 1478,
-      "snow": {
-        "months": [
-          1,
-          2,
-          12
-        ],
-        "likelihood": "possible",
-        "highPoint": 1478
-      }
-    },
     "osm-12190538": {
       "highPoint": 1522,
       "snow": {
@@ -5716,22 +5704,6 @@
         ],
         "likelihood": "possible",
         "highPoint": 1405
-      }
-    },
-    "osm-7277805": {
-      "highPoint": 2710,
-      "snow": {
-        "months": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          11,
-          12
-        ],
-        "likelihood": "likely",
-        "highPoint": 2710
       }
     },
     "osm-7388748": {
@@ -10086,6 +10058,123 @@
           "label": "Outdooractive",
           "url": "https://www.outdooractive.com/it/r/806982416",
           "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "veneto-archeovia-campetto-cima-marana": {
+      "highPoint": 1622,
+      "recommended": {
+        "months": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/809255432",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "veneto-anello-del-muccion": {
+      "highPoint": 706,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/810121175",
+          "accessedAt": "2026-11-19"
+        }
+      }
+    },
+    "iseo-riva-di-solto": {
+      "highPoint": 476,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 476
+      }
+    },
+    "iseo-piramidi-zone": {
+      "highPoint": 611,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 611
+      }
+    },
+    "veneto-sentiero-forte-enna": {
+      "highPoint": 955,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/809321294",
+          "accessedAt": "2026-11-21"
+        }
+      }
+    },
+    "veneto-sentiero-dei-roccoli": {
+      "highPoint": 705,
+      "recommended": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/809321755",
+          "accessedAt": "2026-11-21"
         }
       }
     }

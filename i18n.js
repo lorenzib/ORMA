@@ -481,6 +481,7 @@
     'filters.chip.austria': 'Austria',
     'filters.chip.tyrol': 'Tyrol & Carinthia region',
     'filters.chip.piedmont': 'Piedmont region',
+    'filters.chip.veneto': 'Veneto region',
     'filters.chip.frenchalps': 'French Alps region',
     'filters.chip.switzerland': 'Switzerland',
     'filters.chip.swissRegion': 'Switzerland region',
@@ -928,6 +929,7 @@
     'browse.geo.friuli': 'Friuli Venezia Giulia',
     'browse.geo.aosta': 'Valle d’Aosta',
     'browse.geo.piedmont': 'Piedmont',
+    'browse.geo.veneto': 'Veneto',
     'browse.geo.frenchalps': 'French Alps',
     'browse.geo.tyrol': 'Tyrol & Carinthia',
     'browse.geo.austria': 'Austria',
@@ -1056,8 +1058,8 @@
     'hp.filters.5to10': '5–10 km',
     'hp.filters.10plus': '10 km+',
     'hp.filters.lowRisk': 'Low risk',
-    'hp.filters.moderate': 'Moderate',
-    'hp.filters.caution': 'Caution',
+    'hp.filters.moderate': 'Moderate risk',
+    'hp.filters.caution': 'Higher risk',
     'hp.filters.gentle': 'Gentle only',
     'hp.filters.mixed': 'Up to moderate',
     'hp.filters.rocky': 'Steep is okay',
@@ -1071,9 +1073,9 @@
     'hp.sug.forDog': 'for {name}',
     'hp.sug.seeAll': 'See all {count} for “{query}” →',
     'hp.sug.enter': '↵ Enter',
-    'hp.difficulty.lowRisk': 'Low-risk',
-    'hp.difficulty.moderate': 'Moderate',
-    'hp.difficulty.caution': 'Caution',
+    'hp.difficulty.lowRisk': 'Low risk',
+    'hp.difficulty.moderate': 'Moderate risk',
+    'hp.difficulty.caution': 'Higher risk',
     'hp.results.matching': 'Trails matching “{query}”',
     'hp.results.filtered': 'Filtered trails',
     'hp.results.rankedFor': '{count} · ranked for {name}',
@@ -1799,6 +1801,8 @@
     'page.index.leastClimb': 'Least climb',
     'page.index.forToday': 'For today',
     'page.index.hideReasons': 'Hide reasons',
+    'page.index.inSeason': 'In season',
+    'page.index.inSeasonTitle': 'Only walks in season this month',
     'page.index.browseAllTrails': 'Browse all trails →',
     'page.index.collapseRankedTrailsPanel': 'Collapse ranked trails panel',
     'page.index.hideTheTrailList': 'Hide the trail list',
@@ -2518,6 +2522,7 @@
     'filters.chip.austria': 'Austria',
     'filters.chip.tyrol': 'Regione Tirolo e Carinzia',
     'filters.chip.piedmont': 'Regione Piemonte',
+    'filters.chip.veneto': 'Regione Veneto',
     'filters.chip.frenchalps': 'Regione Alpi francesi',
     'filters.chip.switzerland': 'Svizzera',
     'filters.chip.swissRegion': 'Regione Svizzera',
@@ -2965,6 +2970,7 @@
     'browse.geo.friuli': 'Friuli Venezia Giulia',
     'browse.geo.aosta': 'Valle d’Aosta',
     'browse.geo.piedmont': 'Piemonte',
+    'browse.geo.veneto': 'Veneto',
     'browse.geo.frenchalps': 'Alpi francesi',
     'browse.geo.tyrol': 'Tirolo e Carinzia',
     'browse.geo.austria': 'Austria',
@@ -3093,8 +3099,8 @@
     'hp.filters.5to10': '5–10 km',
     'hp.filters.10plus': 'Oltre 10 km',
     'hp.filters.lowRisk': 'Basso rischio',
-    'hp.filters.moderate': 'Moderato',
-    'hp.filters.caution': 'Attenzione',
+    'hp.filters.moderate': 'Rischio moderato',
+    'hp.filters.caution': 'Rischio più alto',
     'hp.filters.gentle': 'Solo dolce',
     'hp.filters.mixed': 'Fino a moderata',
     'hp.filters.rocky': 'Anche ripida',
@@ -3109,8 +3115,8 @@
     'hp.sug.seeAll': 'Vedi tutti: {count} per “{query}” →',
     'hp.sug.enter': '↵ Invio',
     'hp.difficulty.lowRisk': 'Basso rischio',
-    'hp.difficulty.moderate': 'Moderato',
-    'hp.difficulty.caution': 'Attenzione',
+    'hp.difficulty.moderate': 'Rischio moderato',
+    'hp.difficulty.caution': 'Rischio più alto',
     'hp.results.matching': 'Sentieri per “{query}”',
     'hp.results.filtered': 'Sentieri filtrati',
     'hp.results.rankedFor': '{count} · classificati per {name}',
@@ -3836,6 +3842,8 @@
     'page.index.leastClimb': 'Meno dislivello',
     'page.index.forToday': 'Per oggi',
     'page.index.hideReasons': 'Nascondi i motivi',
+    'page.index.inSeason': 'Di stagione',
+    'page.index.inSeasonTitle': 'Solo le passeggiate di stagione questo mese',
     'page.index.browseAllTrails': 'Vedi tutti i sentieri →',
     'page.index.collapseRankedTrailsPanel': 'Comprimi il pannello della classifica',
     'page.index.hideTheTrailList': 'Nascondi l’elenco dei sentieri',
@@ -4125,8 +4133,8 @@
   if (lang === 'it' && !window.ORMA_PHRASES_IT && document.readyState === 'loading') {
     const here = document.currentScript && document.currentScript.src;
     const base = here ? here.replace(/[^/]*$/, '') : '';
-    document.write('<script src="' + base + 'i18n-phrases-it.js?v=20261122-4"><\/script>');
-    document.write('<script src="' + base + 'i18n-trail-names-it.js?v=20261123-2"><\/script>');
+    document.write('<script src="' + base + 'i18n-phrases-it.js?v=20261126-2"><\/script>');
+    document.write('<script src="' + base + 'i18n-trail-names-it.js?v=20261125-4"><\/script>');
   }
 
   // ---- Translation functions -------------------------------------------------

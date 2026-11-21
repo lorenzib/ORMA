@@ -355,7 +355,7 @@ function displayStartLabel(t, label) {
   return L('Suggested start from map data, {label}. Check current access before travelling.', { label: tr(plainStartLabel(tr(label))) });
 }
 
-const REGION_LABEL = { dolomites: 'Dolomites, Italy', savoy: 'Savoy, France', frenchalps: 'French Alps, France', lombardy: 'Lombardy, Italy', friuli: 'Friuli Venezia Giulia, Italy', aosta: 'Valle d\'Aosta, Italy', piedmont: 'Piedmont, Italy', tyrol: 'Tyrol & Carinthia, Austria', switzerland: 'Switzerland' };
+const REGION_LABEL = { dolomites: 'Dolomites, Italy', savoy: 'Savoy, France', frenchalps: 'French Alps, France', lombardy: 'Lombardy, Italy', friuli: 'Friuli Venezia Giulia, Italy', aosta: 'Valle d\'Aosta, Italy', piedmont: 'Piedmont, Italy', veneto: 'Veneto, Italy', tyrol: 'Tyrol & Carinthia, Austria', switzerland: 'Switzerland' };
 const REGION_COUNTRY = { savoy: 'FR', tyrol: 'AT', switzerland: 'CH' };
 
 // REGION_LABEL in the page's language (the browse index stays English).
@@ -365,6 +365,9 @@ function regionLabelText(region) {
     case 'lombardy': return L('Lombardy, Italy');
     case 'friuli': return L('Friuli Venezia Giulia, Italy');
     case 'aosta': return L('Valle d\'Aosta, Italy');
+    case 'piedmont': return L('Piedmont, Italy');
+    case 'veneto': return L('Veneto, Italy');
+    case 'frenchalps': return L('French Alps, France');
     case 'tyrol': return L('Tyrol & Carinthia, Austria');
     case 'switzerland': return L('Switzerland');
     default: return L('Dolomites, Italy');
@@ -1112,7 +1115,7 @@ ${it ? '' : ITALIAN_COPY_BANNER + '\n'}<title>${escapeHtml(title)}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${up}styles.css?v=20261123-2">
+<link rel="stylesheet" href="${up}styles.css?v=20261126-2">
 <style>
   .sp-hero{padding-top:28px;}
   .sp-breadcrumb{font-size:.85rem;color:var(--ink-soft,#666);margin-bottom:14px;}
@@ -1412,11 +1415,11 @@ function updateBrowseIndex(entries) {
   const b = html.indexOf(END);
   if (a === -1 || b === -1) return console.warn('Index markers not found in browse-trails.html, skipping.');
 
-  const byRegion = { dolomites: [], savoy: [], frenchalps: [], lombardy: [], friuli: [], aosta: [], piedmont: [], tyrol: [], switzerland: [] };
+  const byRegion = { dolomites: [], savoy: [], frenchalps: [], lombardy: [], friuli: [], aosta: [], piedmont: [], veneto: [], tyrol: [], switzerland: [] };
   for (const e of entries) (byRegion[e.region] || byRegion.dolomites).push(e);
   for (const k of Object.keys(byRegion)) byRegion[k].sort((x, y) => x.name.localeCompare(y.name));
 
-  const block = ['dolomites', 'savoy', 'frenchalps', 'lombardy', 'friuli', 'aosta', 'piedmont', 'tyrol', 'switzerland']
+  const block = ['dolomites', 'savoy', 'frenchalps', 'lombardy', 'friuli', 'aosta', 'piedmont', 'veneto', 'tyrol', 'switzerland']
     .filter((r) => byRegion[r].length)
     .map(
       (r) =>

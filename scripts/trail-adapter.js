@@ -117,6 +117,8 @@ function regionFor(legacy){
       ? { id: 'aosta', name: 'Valle d\'Aosta', countryCode: 'IT' }
     : legacy.region === 'piedmont'
       ? { id: 'piedmont', name: 'Piedmont', countryCode: 'IT' }
+    : legacy.region === 'veneto'
+      ? { id: 'veneto', name: 'Veneto', countryCode: 'IT' }
     : legacy.region === 'tyrol'
       ? { id: 'tyrol', name: 'Tyrol & Carinthia', countryCode: 'AT' }
     : legacy.region === 'switzerland'

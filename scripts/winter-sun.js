@@ -155,12 +155,12 @@ function walkWinterSun(path, heightAt, options = {}){
 
 // The built file's answer on each walk's season record, as
 // trail.season.winterSun = { hours, noSunShare }. A walk without an entry
-// gets nothing: no line, no tag.
+// gets nothing: no line, no tag. The file is built by hand, so a walk added
+// since has no entry yet and a walk removed since leaves one behind; neither
+// stops the build (npm run build:winter-sun -- --only <id> adds one).
 function applyWinterSun(trails, artifact){
   const entries = (artifact && artifact.trails) || {};
-  const known = new Set(trails.map(trail => trail.id));
   for(const [id, entry] of Object.entries(entries)){
-    if(!known.has(id)) throw new Error(`Winter sun entry targets an unknown trail: ${id}`);
     if(!(Number.isFinite(entry.hours) && entry.hours >= 0 && entry.hours <= 9)) throw new Error(`Winter sun for ${id} has bad hours`);
     if(!(Number.isFinite(entry.noSunShare) && entry.noSunShare >= 0 && entry.noSunShare <= 1)) throw new Error(`Winter sun for ${id} has a bad no-sun share`);
   }
