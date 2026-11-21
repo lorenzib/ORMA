@@ -367,7 +367,8 @@
   function seasonBestMonths(season){
     const winterUse = Array.isArray(season.winterUse) && season.winterUse.length > 0;
     const recommended = season.recommended && Array.isArray(season.recommended.months) ? season.recommended.months : null;
-    const snow = season.snow && Array.isArray(season.snow.months) ? season.snow.months : null;
+    // Occasional snow (a walk below 800 m) never takes a month out of season.
+    const snow = season.snow && Array.isArray(season.snow.months) && season.snow.likelihood !== 'occasional' ? season.snow.months : null;
     if(!recommended && !snow && !winterUse) return null;
     if(season.winterWalk){
       const winter = (recommended || []).filter(m => [11, 12, 1, 2, 3, 4].includes(m));
