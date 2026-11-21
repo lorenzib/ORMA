@@ -2487,6 +2487,7 @@ body.map-fs-open{overflow:hidden;}
 .browse-season{display:inline-flex;align-items:center;min-height:22px;padding:2px 9px;border-radius:999px;font:700 11px/1.2 'Inter',sans-serif;white-space:nowrap;}
 .browse-season--best{background:#EEF0EA;color:#3C4A3A;}
 .browse-season--out{background:#F6E3DE;color:#7A2E1E;}
+.browse-season--back{background:#DCEBDD;color:#2C5C34;}
 .browse-season--dog{background:#F7EBD2;color:#6D4916;}
 .browse-season--sun-sunny{background:#FBEFC4;color:#6B5100;}
 .browse-season--sun-shady{background:#DDE7F3;color:#24476B;}

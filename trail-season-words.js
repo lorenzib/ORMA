@@ -426,6 +426,14 @@
     return null;
   }
 
+  // Back this month: in season now, out of season last month. The month a
+  // saved walk is worth a reminder.
+  function cameBackThisMonth(season, month) {
+    if (!month) return false;
+    const last = month === 1 ? 12 : month - 1;
+    return !outOfSeason(season, month) && outOfSeason(season, last);
+  }
+
   // The "Out of season" tag with the month it comes back: "Out of season ·
   // back in June" ("back in Jun" on a card). '' when the walk is in season.
   function outOfSeasonTag(season, month, short) {
@@ -444,7 +452,7 @@
     return now.concat(later);
   }
 
-  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, WINTER_WALK_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, dayMonth, liftLine, roadLine, hutLine, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime, backInSeason, outOfSeasonTag, inSeasonFirst, DOG_SEASON_TAGS, dogSeasonsNow, WINTER_SUN_MONTHS, SUNNY_WINTER_HOURS, SHADY_WINTER_HOURS, winterSunTag, winterSunLine };
+  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, WINTER_WALK_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, dayMonth, liftLine, roadLine, hutLine, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime, backInSeason, cameBackThisMonth, outOfSeasonTag, inSeasonFirst, DOG_SEASON_TAGS, dogSeasonsNow, WINTER_SUN_MONTHS, SUNNY_WINTER_HOURS, SHADY_WINTER_HOURS, winterSunTag, winterSunLine };
   global.DoloPawsTrailSeasonWords = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);
