@@ -5,8 +5,9 @@ describe('generated trail page assets', () => {
     const image = 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Trail.jpg';
     expect(trailPageAssetUrl(image)).toBe(image);
     expect(publicAssetUrl(image)).toBe(image);
+    // The page asks Commons for a phone-sized copy instead of the original.
     expect(photoHtml({ name:'Trail name', imageIcon:image, imageAlt:'Exact approved alt text' }))
-      .toContain(`src="${image}" alt="Exact approved alt text"`);
+      .toContain(`src="${image}?width=1200" alt="Exact approved alt text"`);
   });
 
   test('keeps repository assets relative to generated trail pages', () => {

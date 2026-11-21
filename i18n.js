@@ -1999,7 +1999,8 @@
     'page.walk.finishSave': 'Finish &amp; save',
     'page.walk.recordAWalk': 'Record a walk',
     'page.walk.walksAreSavedToYour': 'Walks are saved to your journal, so recording needs your account. Log in and press start, any walk, anywhere, not just catalogued trails.',
-    'page.walk.signInOnTheHomepage': 'Log in on the homepage &rarr;',
+    'page.walk.signInOnTheHomepage': 'Log in',
+    'page.walk.notNow': 'Not now',
     // Shared footer, translated by its English text (see translateFooter).
     'footer.blurb': 'The personalised trail guide for dogs and their humans: what each walk asks of your dog, so you can choose well.',
     'footer.getApp': 'Get the app',
@@ -4036,7 +4037,8 @@
     'page.walk.finishSave': 'Termina e salva',
     'page.walk.recordAWalk': 'Registra una passeggiata',
     'page.walk.walksAreSavedToYour': 'Le passeggiate vengono salvate nel tuo diario, quindi per registrarle serve un account. Accedi e premi avvio: qualsiasi passeggiata, ovunque, non solo i sentieri in catalogo.',
-    'page.walk.signInOnTheHomepage': 'Accedi dalla home &rarr;',
+    'page.walk.signInOnTheHomepage': 'Accedi',
+    'page.walk.notNow': 'Non ora',
     // Shared footer, translated by its English text (see translateFooter).
     'footer.blurb': 'La guida ai sentieri personalizzata per i cani e i loro umani: cosa chiede ogni percorso al tuo cane, per scegliere bene.',
     'footer.getApp': 'Scarica l’app',
