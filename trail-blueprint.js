@@ -738,6 +738,16 @@
     } else if (maxAlt >= 1800) {
       caution(tx('High ground'), tx('Up to {alt} m. Snow can last into early summer and the weather changes fast.', { alt: isItalian() ? num(maxAlt) : Number(maxAlt).toLocaleString('en-GB') }), 'altitude');
     }
+    // Short days (daylight.js): sunset today and the latest start that still
+    // finishes in daylight, October to March.
+    const daylight = window.DoloPawsDaylight ? window.DoloPawsDaylight.daylightFor(t) : null;
+    if (daylight) {
+      const locale = isItalian() ? 'it-IT' : 'en-GB';
+      caution(tx('Short days'), tx('Sunset today is at {sunset}. To finish in daylight, set off by {start} at the latest; in a deep valley it gets dark sooner.', {
+        sunset: window.DoloPawsDaylight.formatTime(daylight.sunset, locale),
+        start: window.DoloPawsDaylight.formatTime(daylight.startBy, locale),
+      }), null);
+    }
     // Seasonal risks to dogs that apply this month (data/dog-seasons.json),
     // each with the months and where they come from.
     if (seasonWords && t.season && (t.season.dogSeasons || []).length) {

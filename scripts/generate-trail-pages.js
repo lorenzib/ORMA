@@ -719,6 +719,14 @@ function seasonTagsHtml(t) {
     <script>(function(){var m=new Date().getMonth();document.querySelectorAll('.sp-tag[data-season-out]').forEach(function(tag){if(tag.getAttribute('data-season-out').charAt(m)==='1')tag.hidden=false;});})();</script>`;
 }
 
+// Short days: sunset today and the latest start, filled in the reader's
+// browser by daylight.js from October to March. Hidden until then.
+function daylightHtml(t) {
+  if (!Number.isFinite(Number(t.lat)) || !Number.isFinite(Number(t.lng)) || !t.hours) return '';
+  const template = L('Short days: sunset today is at {sunset}. To finish in daylight, set off by {start} at the latest; in a deep valley it gets dark sooner.');
+  return `<p class="sp-daylight" hidden data-lat="${escapeHtml(String(t.lat))}" data-lng="${escapeHtml(String(t.lng))}" data-hours="${escapeHtml(String(t.hours))}" data-template="${escapeHtml(template)}"></p>`;
+}
+
 // "When to go": the walk's months as its board publishes them, or the snowy
 // months estimated from its high point, and the stretches mapped as ski runs.
 // The page is built once and read all year, so the month a reader is in is
@@ -755,6 +763,7 @@ function seasonHtml(t) {
   return `<section class="sp-season" id="season" data-season-notes="${escapeHtml(JSON.stringify(notes))}" data-season-warn="${warn.join('')}">
     <h2>${L('When to go')}</h2>
     <p class="sp-season-now" hidden></p>
+    ${daylightHtml(t)}
     ${strip}
     ${words.line ? `<p>${escapeHtml(words.line)}</p>` : ''}
     ${source}
@@ -1160,6 +1169,7 @@ ${it ? '' : ITALIAN_COPY_BANNER + '\n'}<title>${escapeHtml(title)}</title>
   .sp-tag--sun-shady{background:#DDE7F3;color:#24476B;font-weight:700;}
   .sp-season-dog{margin:18px 0 6px;font-size:17px;}
   .sp-tag--best{background:#E3F0E0;color:#24502A;font-weight:700;}
+  .sp-daylight{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF0F6;color:#2B3550;font-weight:600;}
   .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
   .sp-season-now--warn{background:#FBF1EE;color:#4A2A22;border-left:4px solid #9C3A25;}
   .sp-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
@@ -1354,6 +1364,7 @@ ${reviewRecord}
 </footer>
 
 <script src="${up}icon-system.js?v=20260717" defer></script>
+<script src="${up}daylight.js?v=20261126-1" defer></script>
 ${it ? `<script src="${up}i18n.js"></script>\n` : ''}<script src="${up}mobile-nav.js?v=20261030-1"></script>
 </body>
 </html>
