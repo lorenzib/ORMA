@@ -53,6 +53,7 @@
       shortLegged: !!derived.shortLegged,
       giant: !!derived.giant,
       backRisk: !!derived.backRisk,
+      thinCoat: !!derived.thinCoat,
     };
   }
 

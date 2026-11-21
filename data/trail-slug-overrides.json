@@ -2178,6 +2178,21 @@
       "name": "Forte di Santa Chiara, Giaglione",
       "slug": "forte-santa-chiara-giaglione",
       "gloss": "an old mule track past votive shrines to a 19th-century fort, there and back"
+    },
+    "settimo-vittone-pergole-castagneti": {
+      "name": "Pergolas and Chestnut Woods, Settimo Vittone",
+      "slug": "pergolas-chestnut-woods-settimo-vittone",
+      "gloss": "old mule tracks through terraced vineyards and chestnut woods"
+    },
+    "valchiusella-cima-bossola": {
+      "name": "Cima Bossola, Valchiusella",
+      "slug": "cima-bossola-valchiusella",
+      "gloss": "a grassy ridge from a mountain hut to a summit cross with wide views"
+    },
+    "corio-sentiero-del-redio": {
+      "name": "Sentiero del Redìo, Corio",
+      "slug": "sentiero-del-redio-corio",
+      "gloss": "a loop through beech woods and old summer pastures above Piano Audi"
     }
   }
 }
