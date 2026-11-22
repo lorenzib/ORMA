@@ -132,6 +132,42 @@
     return [provenance,confidence,checked].filter(Boolean).join(' · ');
   }
 
+  // A card used to show the dog verdict ("Strong option") beside the trail's
+  // own risk chip ("Higher risk"): two ratings that read as one verdict
+  // contradicting itself. A card now carries one verdict; the trail's risk
+  // becomes the reason under it, in words: the engine's first caution that
+  // the card does not already say (the season has its own tag), else a plain
+  // sentence for the risk level. A low-risk trail has nothing to watch here.
+  const WATCH_FALLBACK=Object.freeze({
+    caution:['card.watch.caution','A higher-risk trail: check the hazards before you go.'],
+    moderate:['card.watch.moderate','A moderate-risk trail: read the cautions before you go.'],
+  });
+  function say(translate,key,fallback){
+    if(typeof translate==='function'){
+      const value=translate(key);
+      if(value&&value!==key)return value;
+    }
+    return fallback;
+  }
+  function cardWatch(trail,recommendation,options){
+    const opts=options||{};
+    const level=trail&&trail.safetyLevel;
+    if(level!=='caution'&&level!=='moderate')return '';
+    const decision=opts.decision||(typeof globalThis!=='undefined'&&globalThis.DoloPawsRecommendationDecision);
+    if(recommendation&&decision&&typeof decision.present==='function'){
+      const notSeason=list=>(Array.isArray(list)?list:[]).filter(entry=>!(entry&&/^trail\.season\./.test(String(entry.code||''))));
+      try{
+        const view=decision.present({...recommendation,
+          hardStops:notSeason(recommendation.hardStops),cautions:notSeason(recommendation.cautions)},
+          {translate:opts.translate||null,dogName:opts.dogName||''});
+        const first=view&&Array.isArray(view.cardCautions)?String(view.cardCautions[0]||'').trim():'';
+        if(first)return first;
+      }catch(e){/* fall through to the plain sentence */}
+    }
+    const [key,fallback]=WATCH_FALLBACK[level];
+    return say(opts.translate,key,fallback);
+  }
+
   return {VERDICTS,STRONG_AT,POSSIBLE_AT,CONFIDENCE_LEVELS,CONFIDENCE_LABELS,
-    categoryForScore,categoryLabel,verdictFor,confidenceLabel,evidenceLine};
+    categoryForScore,categoryLabel,verdictFor,confidenceLabel,evidenceLine,cardWatch};
 });
