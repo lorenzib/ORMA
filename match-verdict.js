@@ -149,6 +149,19 @@
     }
     return fallback;
   }
+  function hazardWords(trail,opts){
+    const list=Array.isArray(trail&&trail.surfaceHazards)?trail.surfaceHazards.filter(h=>typeof h==='string'&&h.trim()):[];
+    if(!list.length)return '';
+    const trust=opts.trust||(typeof globalThis!=='undefined'&&globalThis.DoloPawsTrailTrust);
+    if(trust&&typeof trust.categoryVerified==='function'&&!trust.categoryVerified(trail,'surfaceHazards'))return '';
+    const exposed=trail.exposure?list.find(h=>/drop|expos|ledge|cable|edge/i.test(h)):null;
+    const pick=(exposed||list[0]).trim();
+    const i18n=opts.i18n||(typeof globalThis!=='undefined'&&globalThis.DoloPawsI18n);
+    const lang=i18n?(typeof i18n.lang==='function'?i18n.lang():i18n.lang):'en';
+    if(!lang||lang==='en')return pick;
+    const shown=typeof i18n.trailText==='function'?i18n.trailText(pick):pick;
+    return shown&&shown!==pick?shown:'';
+  }
   function cardWatch(trail,recommendation,options){
     const opts=options||{};
     const level=trail&&trail.safetyLevel;
@@ -164,6 +177,12 @@
         if(first)return first;
       }catch(e){/* fall through to the plain sentence */}
     }
+    // Next, the trail's own hazard words ("Narrow ledges with drop-offs"),
+    // an exposed one first, but only where the reader can read them: on a
+    // list page the Italian trail text is not loaded, so Italian gets the
+    // plain sentence rather than an English one.
+    const hazard=hazardWords(trail,opts);
+    if(hazard)return hazard;
     const [key,fallback]=WATCH_FALLBACK[level];
     return say(opts.translate,key,fallback);
   }
