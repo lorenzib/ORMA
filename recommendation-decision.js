@@ -492,6 +492,12 @@
       .map(item => cardMessage(item, translate, tr, extra)).filter(Boolean);
     const cardCautions = cardMessages(recommendation.hardStops).concat(cardMessages(rankedCautions));
     const cardTrailUnknowns = cardMessages(rawUnknowns.filter(item => !isDogGap(item)));
+    // The cautions with each line's code, so the homepage card can leave out
+    // the one its season line already says.
+    const withCodes = items => (Array.isArray(items) ? items : []).filter(Boolean)
+      .map(item => ({ code:item.code || '', text:cardMessage(item, translate, tr, extra) }))
+      .filter(entry => entry.text);
+    const cardCautionItems = withCodes(recommendation.hardStops).concat(withCodes(rankedCautions));
 
     // The trail page's rows (see ROW_TOPICS): what stops the walk, then what
     // cost points, most first, then notes, then everything that fits.
@@ -588,6 +594,7 @@
       // For the homepage card's check lines (see CARD_SENTENCES).
       cardCautions:cardCautions.slice(0, 4),
       cardTrailUnknowns:cardTrailUnknowns.slice(0, 5),
+      cardCautionItems:cardCautionItems.slice(0, 4),
       additionalUnknowns:Math.max(0, unknowns.length - 5),
       heroSummary:dogName
         ? tr('recommendation.hero.dog', '{conclusion} for {name}.', {
