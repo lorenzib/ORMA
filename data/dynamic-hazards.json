@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-21T23:13:50.368Z",
+  "generatedAt": "2026-11-22T02:21:25.165Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:wind:piemonte",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-11-22T00:00:00+00:00",
       "expiresAt": "2026-11-22T23:59:00+00:00",
       "firstPublishedAt": "2026-11-21T11:13:42.049Z",
-      "lastSeenAt": "2026-11-21T23:13:50.368Z",
+      "lastSeenAt": "2026-11-22T02:21:25.165Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "valsesia-gta-tappa-21-campello-monti-rimella",
@@ -84,7 +84,7 @@
       "effectiveAt": "2026-11-21T00:00:00+00:00",
       "expiresAt": "2026-11-22T23:59:00+00:00",
       "firstPublishedAt": "2026-11-21T11:13:42.049Z",
-      "lastSeenAt": "2026-11-21T23:13:50.368Z",
+      "lastSeenAt": "2026-11-22T02:21:25.165Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "aosta-ru-courtaud",
@@ -119,7 +119,7 @@
       "effectiveAt": "2026-11-21T15:00:00+00:00",
       "expiresAt": "2026-11-22T23:00:00+00:00",
       "firstPublishedAt": "2026-11-14T17:12:32.717Z",
-      "lastSeenAt": "2026-11-21T23:13:50.368Z",
+      "lastSeenAt": "2026-11-22T02:21:25.165Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -172,7 +172,7 @@
       "effectiveAt": "2026-11-21T15:00:00+00:00",
       "expiresAt": "2026-11-22T23:00:00+00:00",
       "firstPublishedAt": "2026-11-15T05:15:17.285Z",
-      "lastSeenAt": "2026-11-21T23:13:50.368Z",
+      "lastSeenAt": "2026-11-22T02:21:25.165Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -211,7 +211,7 @@
       "effectiveAt": "2026-11-21T15:00:00+00:00",
       "expiresAt": "2026-11-22T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-21T23:13:50.368Z",
+      "lastSeenAt": "2026-11-22T02:21:25.165Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -326,7 +326,7 @@
       "effectiveAt": "2026-11-21T23:00:00+00:00",
       "expiresAt": "2026-11-22T23:00:00+00:00",
       "firstPublishedAt": "2026-11-21T05:15:51.932Z",
-      "lastSeenAt": "2026-11-21T23:13:50.368Z",
+      "lastSeenAt": "2026-11-22T02:21:25.165Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -377,7 +377,7 @@
       "effectiveAt": "2026-11-21T23:00:00+00:00",
       "expiresAt": "2026-11-22T23:00:00+00:00",
       "firstPublishedAt": "2026-11-21T05:15:51.932Z",
-      "lastSeenAt": "2026-11-21T23:13:50.368Z",
+      "lastSeenAt": "2026-11-22T02:21:25.165Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -414,7 +414,7 @@
       "effectiveAt": "2026-11-21T23:00:00+00:00",
       "expiresAt": "2026-11-22T23:00:00+00:00",
       "firstPublishedAt": "2026-11-21T05:15:51.932Z",
-      "lastSeenAt": "2026-11-21T23:13:50.368Z",
+      "lastSeenAt": "2026-11-22T02:21:25.165Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -527,7 +527,7 @@
       "effectiveAt": "2026-11-22T00:00:00+00:00",
       "expiresAt": "2026-11-22T23:59:00+00:00",
       "firstPublishedAt": "2026-11-20T23:14:53.046Z",
-      "lastSeenAt": "2026-11-21T23:13:50.368Z",
+      "lastSeenAt": "2026-11-22T02:21:25.165Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "valsesia-gta-tappa-21-campello-monti-rimella",
@@ -594,7 +594,7 @@
       "effectiveAt": "2026-11-22T00:00:00+00:00",
       "expiresAt": "2026-11-22T23:59:00+00:00",
       "firstPublishedAt": "2026-11-20T23:14:53.046Z",
-      "lastSeenAt": "2026-11-21T23:13:50.368Z",
+      "lastSeenAt": "2026-11-22T02:21:25.165Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "aosta-ru-courtaud",
@@ -629,7 +629,7 @@
       "effectiveAt": "2026-11-22T12:00:00+00:00",
       "expiresAt": "2026-11-22T17:59:00+00:00",
       "firstPublishedAt": "2026-11-20T23:14:53.046Z",
-      "lastSeenAt": "2026-11-21T23:13:50.368Z",
+      "lastSeenAt": "2026-11-22T02:21:25.165Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
@@ -672,7 +672,7 @@
       "effectiveAt": "2026-11-22T12:00:00+00:00",
       "expiresAt": "2026-11-22T17:59:00+00:00",
       "firstPublishedAt": "2026-11-20T23:14:53.046Z",
-      "lastSeenAt": "2026-11-21T23:13:50.368Z",
+      "lastSeenAt": "2026-11-22T02:21:25.165Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
