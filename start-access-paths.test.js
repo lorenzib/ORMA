@@ -93,7 +93,7 @@ describe('the walk-in from a start flag that sits off the line', () => {
     const page = fs.readFileSync(path.join(root, 'trail.js'), 'utf8');
     expect(page).toContain("beforeId: 'single-trail-path-line-casing'");
     expect(page).toContain('Not part of the walk’s distance.');
-    const home = fs.readFileSync(path.join(root, 'script.js'), 'utf8');
+    const home = fs.readFileSync(path.join(root, 'script.js'), 'utf8') + '\n' + fs.readFileSync(path.join(root, 'explore-map.js'), 'utf8');
     expect(home).toContain("beforeId:'trail-selected-route-casing'");
     const italian = fs.readFileSync(path.join(root, 'i18n-phrases-it.js'), 'utf8');
     expect(italian).toContain('"Grey line: about {distance} on foot from the start flag to the walk. Not part of the walk’s distance."');

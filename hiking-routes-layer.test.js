@@ -201,7 +201,9 @@ describe('satellite and 3D stay under the walk', () => {
   // walk, so imagery placed below it covered the walk and the routes.
   const fs = require('fs');
   const path = require('path');
-  const source = file => fs.readFileSync(path.join(__dirname, file), 'utf8');
+  const source = file => fs.readFileSync(path.join(__dirname, file), 'utf8')
+  // The homepage map's base and layers live in explore-map.js, shared with the Trails page.
+  + (file === 'script.js' ? '\n' + fs.readFileSync(path.join(__dirname, 'explore-map.js'), 'utf8') : '');
   const insertedBefore = (text, id) => {
     const at = text.indexOf(`id: '${id}'`) >= 0 ? text.indexOf(`id: '${id}'`) : text.indexOf(`id:'${id}'`);
     expect(at).toBeGreaterThan(-1);
