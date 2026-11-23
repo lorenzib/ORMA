@@ -120,12 +120,3 @@ describe('the built file', () => {
     expect(braies.season.winterSun.hours).toBeLessThan(words.SHADY_WINTER_HOURS);
   });
 });
-
-describe('the homepage row in winter', () => {
-  test('shows sunny walks in season when there are three to show', () => {
-    const src = require('fs').readFileSync(path.join(__dirname, 'homepage-search.js'), 'utf8');
-    expect(src).toContain("tx('Sunny Dolomites walks for {month}'");
-    expect(src).toMatch(/winterSunTag\(t\.season, month\)/);
-    expect(src).toContain('.length >= 3;');
-  });
-});

@@ -30,7 +30,7 @@ describe('shared map quality profile', () => {
     pages.forEach(([page, mapScript]) => {
       const html = read(page);
       if(page === 'trail.html'){
-        expect(html).toContain('trail-app.bundle.js?v=20261127-1');
+        expect(html).toContain('trail-app.bundle.js?v=20261128-1');
         expect(html).not.toContain('<script src="map-runtime.js');
         return;
       }
@@ -115,11 +115,11 @@ describe('shared map quality profile', () => {
     expect(style).toContain('widthRamp(4, 5.5, 7, 9, scale)');
     expect(style).toContain('widthRamp(2, 2.75, 3.75, 5, scale)');
     expect(style).not.toContain("'line-gap-width': widthRamp(7, 12, 18, 26, scale)");
-    // Default insertion point: under the contours and the walk's own dashed
-    // route (or Waymarked's raster), so both draw over it, but over the other
-    // marked routes, which pass under the walk.
+    // Default insertion point: over the contours and the marked routes,
+    // which pass under the walk, and under the route numbers (or under
+    // Waymarked's raster when the page has fallen back to it).
     expect(style).toContain('const fallbackBefore = walkCorridorBeforeId(map);');
-    expect(style).toMatch(/function walkCorridorBeforeId\(map\) \{\s*if \(map && map.getLayer\(CONTOUR_LINE_LAYER\)\) return CONTOUR_LINE_LAYER;\s*if \(map && map.getLayer\(HIKING_WALK_LINE_LAYER\)\) return HIKING_WALK_LINE_LAYER;\s*return networkLayerId\(map\);/);
+    expect(style).toMatch(/function walkCorridorBeforeId\(map\) \{\s*if \(map && map.getLayer\(HIKING_REF_LAYER\)\) return HIKING_REF_LAYER;\s*return networkLayerId\(map\);/);
     expect(style).toMatch(/function walkLineBeforeId\(map\) \{\s*if \(map && map.getLayer\(HIKING_REF_LAYER\)\) return HIKING_REF_LAYER;\s*if \(map && map.getLayer\(WAYMARKED_LAYER\)\) return WAYMARKED_LAYER;/);
     // The opaque-on-top treatment stays available for maps with no raster.
     expect(style).toContain("config.mode === 'overlay'");
@@ -250,12 +250,13 @@ describe('shared map quality profile', () => {
     //
     // The chip default stands. What changed on 2026-10-16 is WHEN: at region
     // zoom the network is a mesh of lines and route shields over the six walks
-    // a reader is choosing between, so it now draws from zoom 12.5 up, where
-    // the shape it gives a valley is the shape of a walk.
+    // a reader is choosing between, so it drew from zoom 12.5 up. On 20 Nov
+    // 2026 the owner asked for the homepage map to read like the trail page:
+    // it now starts at 11.5, faint until 13 (the opacity ramp in map-style.js).
     const homepage = read('script.js');
     expect(homepage).toContain('const overlayStates = { routes: true, lifts: false');
     expect(homepage).toContain('visible: true, minzoom: BROWSE_NETWORK_MIN_ZOOM');
-    expect(homepage).toContain('const BROWSE_NETWORK_MIN_ZOOM = 12.5');
+    expect(homepage).toContain('const BROWSE_NETWORK_MIN_ZOOM = 11.5');
     // Still one tap to turn off: the Layers chip drives the layer either way.
     expect(homepage).toContain('routes:   window.ORMAMapStyle.HIKING_LAYER_IDS,');
 
@@ -349,5 +350,24 @@ describe('shared map quality profile', () => {
     ['index.html', 'collections.html', 'route-planner.html', 'walk.html']
       .forEach(file => expect(read(file)).toContain('map-style.js'));
     expect(read('scripts/build-trail-page-bundle.js')).toContain("'map-style.js'");
+  });
+});
+
+describe('no dotted or dashed lines on the maps', () => {
+  // Owner, 20 Nov 2026: the homepage map should look like the trail page,
+  // with no dotted lines anywhere. The path network, the walk-in, lifts and
+  // nearby walks are all solid; the base map's own dashed footpaths, park
+  // edges and borders are switched to solid in calmBasemap.
+  test('no map layer is given a dash pattern', () => {
+    ['map-style.js', 'script.js', 'trail.js', 'walk-page.js'].forEach(file => {
+      const dashes = read(file).match(/'line-dasharray'\s*[:,]\s*[^n\s][^\n]*/g) || [];
+      expect({ file, dashes }).toEqual({ file, dashes: [] });
+    });
+  });
+
+  test('the base map\'s dashed layers are made solid', () => {
+    const style = read('map-style.js');
+    expect(style).toContain("BASE_DASHED_LAYERS.forEach(id => setPaint(map, id, 'line-dasharray', null));");
+    ['road_path_pedestrian', 'park_outline', 'boundary_3'].forEach(id => expect(style).toContain(`'${id}'`));
   });
 });

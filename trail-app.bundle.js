@@ -354,24 +354,28 @@
   // only coloured line on the map. Approved on renders, 26 Oct 2026.
   //
   // 18 Nov 2026: the grey dashes looked like the basemap's own footpaths and
-  // the contours, so the other marked routes are now a solid muted plum line
-  // on a white edge, under the walk's corridor. Plum is not a match colour
-  // (green / amber / red), not water blue and not a contour brown. The walk
-  // keeps the old dark dashes down its middle, drawn only along the stretch
-  // it shares with a marked route (HIKING_WALK_LINE_LAYER).
+  // the contours, so the routes became a solid line on a white edge (#1534,
+  // in plum). 20 Nov 2026, owner: no dotted or dashed lines on any map, and
+  // the homepage map should look like the trail page (option B of the
+  // mock-ups). The routes are grey again, solid on a white edge -- the edge
+  // is what keeps them from reading as contours -- and they pass under the
+  // walk, so the walk is the only coloured line. Faint while zoomed out.
   //
   // Waymarked stays as the fallback: if the tiles are missing or fail to
   // load, the raster is put back in their place.
   const HIKING_SOURCE = 'orma-hiking-routes';
   const HIKING_CASING_LAYER = 'orma-hiking-routes-casing';
   const HIKING_LINE_LAYER = 'orma-hiking-routes-line';
-  const HIKING_WALK_LINE_LAYER = 'orma-hiking-routes-line-walk';
-  // Fainter over satellite, so the track in the photo is not painted over.
-  const HIKING_LINE_OPACITY = { map: 0.9, imagery: 0.8 };
-  const HIKING_CASING_OPACITY = { map: 0.85, imagery: 0.35 };
-  // The walk's dashes turn white and stronger on satellite: dark dashes
-  // vanish into forest, and the walk has to stay the line that leads.
-  const HIKING_WALK_LINE_OPACITY = { map: 0.75, imagery: 0.9 };
+  // Fainter over satellite, so the track in the photo is not painted over,
+  // and faint while zoomed out, where the network is a web over the valley.
+  const HIKING_LINE_OPACITY = {
+    map: ['interpolate', ['linear'], ['zoom'], 11, 0.4, 13, 0.9],
+    imagery: ['interpolate', ['linear'], ['zoom'], 11, 0.35, 13, 0.8],
+  };
+  const HIKING_CASING_OPACITY = {
+    map: ['interpolate', ['linear'], ['zoom'], 11.5, 0, 12.5, 0.85],
+    imagery: ['interpolate', ['linear'], ['zoom'], 11.5, 0, 12.5, 0.35],
+  };
   const HIKING_REF_LAYER = 'orma-hiking-routes-ref';
   const HIKING_WALK_SOURCE = 'orma-hiking-walk-refs';
   const HIKING_WALK_REF_LAYER = 'orma-hiking-routes-ref-walk';
@@ -384,10 +388,8 @@
   // The regions' padded extents together (REGIONS in build-hiking-routes.js),
   // so the map does not ask for tiles across the rest of Europe.
   const HIKING_BOUNDS = [5.25, 43.73, 12.66, 47.81];
-  const HIKING_LINE_COLOUR = '#8E5A84';
-  const HIKING_REF_COLOUR = '#6E3F65';
-  // The walk's own stretch of route: the dark dashes the walk always had.
-  const HIKING_WALK_LINE_COLOUR = { map: '#4D554E', imagery: '#FFFFFF' };
+  const HIKING_LINE_COLOUR = '#7C837D';
+  const HIKING_REF_COLOUR = '#4D554E';
   const HIKING_WALK_REF_COLOUR = '#2E4034';
   // How close (metres) the walk must run to a route to be walking on it.
   const WALK_ROUTE_TOLERANCE_M = 25;
@@ -395,7 +397,7 @@
   const WALK_ROUTE_MIN_STRETCH_M = 120;
   // Every layer of ours, bottom to top: the Layers chip toggles them together.
   const HIKING_OWN_LAYERS = [
-    HIKING_CASING_LAYER, HIKING_LINE_LAYER, HIKING_WALK_LINE_LAYER, HIKING_REF_LAYER, HIKING_WALK_REF_LAYER,
+    HIKING_CASING_LAYER, HIKING_LINE_LAYER, HIKING_REF_LAYER, HIKING_WALK_REF_LAYER,
   ];
   // Every numbered route, before a walk takes its own routes' numbers.
   const ALL_ROUTE_NUMBERS = ['!=', ['get', 'ref'], ''];
@@ -523,7 +525,7 @@
     const visible = map.getLayoutProperty(HIKING_LINE_LAYER, 'visibility') !== 'none';
     const state = hikingState.get(map) || {};
     addWaymarkedHiking(map, { beforeId: HIKING_REF_LAYER, visible, minzoom: state.minzoom });
-    [HIKING_WALK_REF_LAYER, HIKING_REF_LAYER, HIKING_WALK_LINE_LAYER, HIKING_LINE_LAYER, HIKING_CASING_LAYER].forEach(id => {
+    [HIKING_WALK_REF_LAYER, HIKING_REF_LAYER, HIKING_LINE_LAYER, HIKING_CASING_LAYER].forEach(id => {
       if (map.getLayer(id)) map.removeLayer(id);
     });
     [HIKING_WALK_SOURCE, HIKING_SOURCE].forEach(id => {
@@ -558,7 +560,7 @@
     });
     map.addSource(HIKING_WALK_SOURCE, { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
     // A white edge lifts the line off the relief and the basemap's own
-    // white-dashed footpaths, the way a printed hiking map does it.
+    // footpaths, the way a printed hiking map does it.
     map.addLayer({
       id: HIKING_CASING_LAYER, type: 'line', source: HIKING_SOURCE, 'source-layer': 'routes',
       ...(minzoom !== undefined ? { minzoom } : {}),
@@ -569,8 +571,8 @@
         'line-width': ['interpolate', ['linear'], ['zoom'], 10, 1.2, 12, 2.4, 13, 3.6, 16, 5.6],
       },
     }, target);
-    // Solid and in a colour of its own, so a marked route never reads as a
-    // footpath, a track or a contour.
+    // Solid grey on that edge, so a marked route never reads as a footpath,
+    // a track or a contour, and never competes with the walk's colour.
     map.addLayer({
       id: HIKING_LINE_LAYER, type: 'line', source: HIKING_SOURCE, 'source-layer': 'routes',
       ...(minzoom !== undefined ? { minzoom } : {}),
@@ -582,19 +584,7 @@
         'line-width': ['interpolate', ['linear'], ['zoom'], 10, 0.5, 12, 1, 13, 1.7, 16, 2.8],
       },
     }, target);
-    // The walk's corridor goes between the network and this: the stretch of
-    // marked route the walk follows, dashed down the middle of the corridor.
-    map.addLayer({
-      id: HIKING_WALK_LINE_LAYER, type: 'line', source: HIKING_WALK_SOURCE,
-      ...(minzoom !== undefined ? { minzoom } : {}),
-      layout: { visibility, 'line-join': 'round', 'line-cap': 'butt' },
-      paint: {
-        'line-color': HIKING_WALK_LINE_COLOUR.map,
-        'line-opacity': HIKING_WALK_LINE_OPACITY.map,
-        'line-dasharray': [2, 1.6],
-        'line-width': ['interpolate', ['linear'], ['zoom'], 10, 0.8, 13, 1.4, 16, 2.4],
-      },
-    }, target);
+    // The walk goes between the network and the numbers (walkCorridorBeforeId).
     map.addLayer({
       id: HIKING_REF_LAYER, type: 'symbol', source: HIKING_SOURCE, 'source-layer': 'routes',
       minzoom: Math.max(12, minzoom || 0),
@@ -713,8 +703,8 @@
   }
 
   /**
-   * Where a walk's own line goes: above our dashed routes but below their
-   * numbers, or under Waymarked's raster as before.
+   * Where a walk's own line goes: above our routes but below their numbers,
+   * or under Waymarked's raster as before.
    */
   function walkLineBeforeId(map) {
     if (map && map.getLayer(HIKING_REF_LAYER)) return HIKING_REF_LAYER;
@@ -723,20 +713,17 @@
   }
 
   /**
-   * Where a walk's corridor goes: over the other marked routes, so they
-   * pass under it, but under the relief and the walk's own dashed route, so
-   * the contours and the path the walker follows draw over it. Contours
-   * added later still land above it (they go just under the walk's dashes).
+   * Where the chosen walk goes: over the marked routes and the contours, so
+   * they pass under it and nothing is drawn across the walk, but under the
+   * route numbers. Under Waymarked's raster when the page has fallen back.
    */
   function walkCorridorBeforeId(map) {
-    if (map && map.getLayer(CONTOUR_LINE_LAYER)) return CONTOUR_LINE_LAYER;
-    if (map && map.getLayer(HIKING_WALK_LINE_LAYER)) return HIKING_WALK_LINE_LAYER;
+    if (map && map.getLayer(HIKING_REF_LAYER)) return HIKING_REF_LAYER;
     return networkLayerId(map);
   }
 
-  /** Where contours go: under the walk's dashes, else under the network. */
+  /** Where contours go: under the network, so routes draw over the relief. */
   function contourBeforeId(map) {
-    if (map && map.getLayer(HIKING_WALK_LINE_LAYER)) return HIKING_WALK_LINE_LAYER;
     return networkLayerId(map);
   }
 
@@ -854,6 +841,12 @@
     { id: 'landcover_ice', colour: '#E8EFEF', opacity: 0.9 },
   ]);
 
+  // Liberty layers drawn with a dash pattern (see calmBasemap).
+  const BASE_DASHED_LAYERS = Object.freeze([
+    'road_path_pedestrian', 'tunnel_path_pedestrian', 'bridge_path_pedestrian',
+    'park_outline', 'boundary_3', 'boundary_disputed', 'waterway_tunnel',
+  ]);
+
   function setPaint(map, id, property, value) {
     if (!map.getLayer(id)) return;
     try {
@@ -876,6 +869,11 @@
     setPaint(map, 'landuse_residential', 'fill-color', '#EDE9E2');
     setPaint(map, 'landuse_residential', 'fill-opacity', 0.6);
     setPaint(map, 'park_outline', 'line-color', 'rgba(220, 228, 208, 0.8)');
+    // No dotted or dashed lines on an ORMA map (owner, 20 Nov 2026): the
+    // base map's footpaths, park edges, borders and buried streams go solid.
+    // Railway hatching stays -- those are cross-ticks, not a dotted line.
+    BASE_DASHED_LAYERS.forEach(id => setPaint(map, id, 'line-dasharray', null));
+    setPaint(map, 'road_path_pedestrian', 'line-opacity', 0.75);
   }
 
   // ── Match colour ────────────────────────────────────────────────────────
@@ -1033,24 +1031,25 @@
   }
 
   /**
-   * The walk-in from the start flag to the walk (trail.accessPath): thinner
-   * than the walk and dashed, in the same colour on a narrow white edge, and
-   * drawn under it, so it reads as the way to the walk, not part of it.
+   * The walk-in from the start flag to the walk (trail.accessPath): solid
+   * dark grey on a white edge, thinner than the walk and drawn under it.
+   * Grey, not the walk's colour, so it reads as the way to the walk, not
+   * part of it, without a dash (owner, 20 Nov 2026: no dotted lines).
    * Pass beforeId as the walk's casing layer to keep it underneath.
    */
-  function accessLinePaint(color, scale) {
+  const ACCESS_LINE_COLOUR = '#4D554E';
+  function accessLinePaint(scale) {
     const s = scale || 1;
     return {
       casing: {
         'line-color': '#FFFFFF',
         'line-opacity': 0.9,
-        'line-width': widthRamp(2.5, 3.5, 4.5, 6, s),
+        'line-width': widthRamp(3, 4, 5.5, 7, s),
       },
       line: {
-        'line-color': color,
+        'line-color': ACCESS_LINE_COLOUR,
         'line-opacity': 0.95,
-        'line-width': widthRamp(1.25, 1.75, 2.25, 3, s),
-        'line-dasharray': [1.6, 1.4],
+        'line-width': widthRamp(1.5, 2, 2.75, 3.5, s),
       },
     };
   }
@@ -1060,7 +1059,7 @@
     const source = config.source;
     const id = config.id;
     if (!map || !source || !id || map.getLayer(id)) return null;
-    const paint = accessLinePaint(config.color || '#2E4034', config.scale);
+    const paint = accessLinePaint(config.scale);
     const beforeId = config.beforeId && map.getLayer(config.beforeId) ? config.beforeId : undefined;
     map.addLayer({
       id: id + '-casing', type: 'line', source,
@@ -1068,7 +1067,7 @@
     }, beforeId);
     map.addLayer({
       id, type: 'line', source,
-      layout: { 'line-join': 'round', 'line-cap': 'butt' }, paint: paint.line,
+      layout: { 'line-join': 'round', 'line-cap': 'round' }, paint: paint.line,
     }, beforeId);
     return { casing: id + '-casing', line: id };
   }
@@ -1086,14 +1085,9 @@
     [
       [HIKING_CASING_LAYER, HIKING_CASING_OPACITY],
       [HIKING_LINE_LAYER, HIKING_LINE_OPACITY],
-      [HIKING_WALK_LINE_LAYER, HIKING_WALK_LINE_OPACITY],
     ].forEach(([id, opacity]) => {
       if (map.getLayer(id)) map.setPaintProperty(id, 'line-opacity', onImagery ? opacity.imagery : opacity.map);
     });
-    if (map.getLayer(HIKING_WALK_LINE_LAYER)) {
-      map.setPaintProperty(HIKING_WALK_LINE_LAYER, 'line-color',
-        onImagery ? HIKING_WALK_LINE_COLOUR.imagery : HIKING_WALK_LINE_COLOUR.map);
-    }
     if (!walkId || !map.getLayer(walkId)) return;
     const normal = routeLinePaint('#000');
     const casing = onImagery ? ROUTE_LINE_ON_IMAGERY.casing : normal.casing['line-opacity'];
@@ -1213,7 +1207,6 @@
     HIKING_SOURCE,
     HIKING_CASING_LAYER,
     HIKING_LINE_LAYER,
-    HIKING_WALK_LINE_LAYER,
     HIKING_REF_LAYER,
     HIKING_WALK_REF_LAYER,
     HIKING_LAYER_IDS: [...HIKING_OWN_LAYERS, WAYMARKED_LAYER],
@@ -1235,8 +1228,8 @@
     ROUTE_LINE_ON_IMAGERY,
     HIKING_LINE_OPACITY,
     HIKING_CASING_OPACITY,
-    HIKING_WALK_LINE_OPACITY,
-    HIKING_WALK_LINE_COLOUR,
+    ACCESS_LINE_COLOUR,
+    BASE_DASHED_LAYERS,
     addContours,
     setContoursVisible,
     CONTOUR_SOURCE,
@@ -13867,21 +13860,10 @@ function initDetailPois(map, trail){
       type: 'geojson',
       data: { type: 'FeatureCollection', features },
     });
-    map.addLayer({
-      id: sourceId + '-layer-lowzoom',
-      type: 'circle',
-      source: sourceId,
-      filter: ['!', ['has', 'point_count']],
-      maxzoom: iconMinZoom,
-      layout: { visibility: DEFAULT_VISIBLE_GROUPS.has(group) ? 'visible' : 'none' },
-      paint: {
-        'circle-radius': 4,
-        'circle-color': circleColor,
-        'circle-opacity': 0.7,
-        'circle-stroke-width': 1.25,
-        'circle-stroke-color': '#fff',
-      },
-    });
+    // No small unlabelled dots below the icon zoom: the homepage map has none,
+    // and on the trail page a row of blue, green and brown dots said nothing
+    // a reader could use (owner, 19 Nov). The icons and names come in at
+    // iconMinZoom, as they do on the homepage map.
     map.addLayer({
       id: sourceId + '-layer',
       type: 'symbol',
@@ -13914,11 +13896,11 @@ function initDetailPois(map, trail){
         'text-halo-width': 2,
       },
     });
-    [sourceId + '-layer', sourceId + '-layer-lowzoom'].forEach((layerId) => {
+    [sourceId + '-layer'].forEach((layerId) => {
       map.on('mouseenter', layerId, () => { map.getCanvas().style.cursor = 'pointer'; });
       map.on('mouseleave', layerId, () => { map.getCanvas().style.cursor = ''; });
     });
-    [sourceId + '-layer', sourceId + '-layer-lowzoom'].forEach((layerId) => map.on('click', layerId, (e) => {
+    [sourceId + '-layer'].forEach((layerId) => map.on('click', layerId, (e) => {
       const f = e.features[0];
       new maplibregl.Popup({ offset: 10, maxWidth: '220px' })
         .setLngLat(f.geometry.coordinates)
@@ -16402,9 +16384,19 @@ function initTrailReports(map, trail){
   // card, "Good all year" when every month suits. A run across New Year reads
   // as one run.
   function bestTime(season, short) {
+    const range = bestRange(season, short);
+    if (!range) return '';
+    if (range === ALL_YEAR) return tx('Good all year');
+    return tx('Best time: {range}', { range });
+  }
+
+  // The months alone: "June to October", "Jun–Oct", "March, June to October".
+  // ALL_YEAR when every month suits, '' when the walk has no season record.
+  const ALL_YEAR = 'all-year';
+  function bestRange(season, short) {
     const best = bestMonths(season);
     if (!best) return '';
-    if (best.length === 12) return tx('Good all year');
+    if (best.length === 12) return ALL_YEAR;
     const set = new Set(best);
     const name = m => (short ? monthName(m).slice(0, 3) : monthName(m));
     const runs = [];
@@ -16414,7 +16406,26 @@ function initTrailReports(map, trail){
       while (set.has(end === 12 ? 1 : end + 1)) end = end === 12 ? 1 : end + 1;
       runs.push(end === m ? name(m) : (short ? `${name(m)}–${name(end)}` : tx('{from} to {to}', { from: name(m), to: name(end) })));
     }
-    return tx('Best time: {range}', { range: runs.join(', ') });
+    return runs.join(', ');
+  }
+
+  // The homepage card's season line, tagged like its "Fits" and "Watch" lines:
+  // "In season" Best March to November, or "Out of season" Back in June. Same
+  // outOfSeason rule as the tag, the map pins and the score. A dog risk this
+  // month (ticks, heat, salt…) follows an in-season line. null without a record.
+  function seasonFit(season, month) {
+    const range = bestRange(season);
+    if (!range || !month) return null;
+    const back = backInSeason(season, month);
+    if (back) return { out: true, lead: tx('Out of season'), facts: tx('back in {month}', { month: monthName(back) }), risks: '' };
+    const facts = range === ALL_YEAR ? tx('good all year') : tx('best {range}', { range });
+    const risks = dogSeasonsNow(season, month).map(risk => risk.label.charAt(0).toLowerCase() + risk.label.slice(1));
+    return {
+      out: false,
+      lead: tx('In season now'),
+      facts,
+      risks: risks.length ? tx('This month: {risks}', { risks: risks.join(', ') }) : '',
+    };
   }
 
   // The month an out-of-season walk comes back into season: the next of its
@@ -16455,7 +16466,7 @@ function initTrailReports(map, trail){
     return now.concat(later);
   }
 
-  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, WINTER_WALK_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, dayMonth, liftLine, roadLine, hutLine, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime, backInSeason, cameBackThisMonth, outOfSeasonTag, inSeasonFirst, DOG_SEASON_TAGS, dogSeasonsNow, WINTER_SUN_MONTHS, SUNNY_WINTER_HOURS, SHADY_WINTER_HOURS, winterSunTag, winterSunLine };
+  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, WINTER_WALK_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, dayMonth, liftLine, roadLine, hutLine, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime, bestRange, seasonFit, backInSeason, cameBackThisMonth, outOfSeasonTag, inSeasonFirst, DOG_SEASON_TAGS, dogSeasonsNow, WINTER_SUN_MONTHS, SUNNY_WINTER_HOURS, SHADY_WINTER_HOURS, winterSunTag, winterSunLine };
   global.DoloPawsTrailSeasonWords = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);
@@ -17719,7 +17730,6 @@ function renderAllLifts(map, options){
       'line-color': ['match', ['get', 'status'], 'summer', '#4E90A8', 'no-summer', '#9C3A25', '#5A5548'],
       'line-width': 1.5,
       'line-opacity': 0.9,
-      'line-dasharray': ['match', ['get', 'status'], 'summer', ['literal', [1, 0]], ['literal', [2, 1]]],
     },
   });
   map.addSource('detail-gondola-stations', { type: 'geojson', data: { type: 'FeatureCollection', features: stationFeatures } });
@@ -17820,8 +17830,8 @@ function accessPathWords(trail){
   const distance = !Number.isFinite(lengthM) ? null
     : lengthM >= 1000 ? `${num(Math.round(lengthM / 100) / 10)} km` : `${Math.max(10, Math.round(lengthM / 10) * 10)} m`;
   return distance
-    ? tx('Dashed line: about {distance} on foot from the start flag to the walk. Not part of the walk’s distance.', { distance })
-    : tx('Dashed line: on foot from the start flag to the walk. Not part of the walk’s distance.');
+    ? tx('Grey line: about {distance} on foot from the start flag to the walk. Not part of the walk’s distance.', { distance })
+    : tx('Grey line: on foot from the start flag to the walk. Not part of the walk’s distance.');
 }
 
 function nearestPathIndex(path, pt){
@@ -18835,6 +18845,7 @@ function renderTrail(t){
       setLayerChipLabel(document.getElementById('routesToggle'), 'routes', tx('Trail routes'));
       setLayerChipLabel(document.getElementById('liftsToggle'), 'lifts', tx('Lift stations'));
       setLayerChipLabel(document.getElementById('nearbyToggle'), 'nearby', tx('Nearby trails'));
+      setLayerChipLabel(document.getElementById('contoursToggle'), 'mountain', tx('Contour lines'));
       addTerrainSource(map);
       increaseLabelDensity(map);
       addTerrainToggle(map, 'trailDetailMap', 1.5, 45,
@@ -18945,7 +18956,7 @@ function renderTrail(t){
 
 
       // The marked hiking network, drawn by us from OSM route data: every
-      // route a dashed grey line with its number, so the walk is the only
+      // route a solid grey line on a white edge with its number, so the walk is the only
       // coloured line on the map. Waymarked's raster used to sit here in its
       // own colours; map-style.js puts it back if our tiles cannot load.
       // The walk's path lets the routes it follows be numbered beside it.
@@ -18958,13 +18969,29 @@ function renderTrail(t){
         walk: Array.isArray(t.path) ? t.path.map(([lat, lng]) => [lng, lat]) : null,
       });
       if (typeof addBaseHillshade === 'function') addBaseHillshade(map, window.ORMAMapStyle.networkLayerId(map));
-      // Elevation contours from the same DEM -- the detail a street basemap
-      // lacks. Lazy-loaded and fully guarded: if the plugin fails, the map is
-      // unchanged.
-      if (window.DoloPawsMapRuntime && window.DoloPawsMapRuntime.loadContour) {
-        window.DoloPawsMapRuntime.loadContour()
-          .then(() => window.ORMAMapStyle.addContours(map))
-          .catch(() => {});
+      // Elevation contours from the same DEM, now a Layers chip that starts
+      // off: drawn by default they read as a second, dashed path network and
+      // the map did not look like the homepage map (owner, 19 Nov).
+      // Lazy-loaded on the first press and fully guarded: if the plugin
+      // fails, the map is unchanged.
+      const contoursToggleBtn = document.getElementById('contoursToggle');
+      if (contoursToggleBtn && window.DoloPawsMapRuntime && window.DoloPawsMapRuntime.loadContour) {
+        contoursToggleBtn.hidden = false;
+        let contoursReady = null;
+        contoursToggleBtn.addEventListener('click', () => {
+          const showing = contoursToggleBtn.classList.toggle('on');
+          contoursToggleBtn.setAttribute('aria-pressed', showing ? 'true' : 'false');
+          if (!contoursReady) {
+            contoursReady = window.DoloPawsMapRuntime.loadContour()
+              .then(() => window.ORMAMapStyle.addContours(map))
+              .catch(() => null);
+          }
+          contoursReady.then(() => {
+            ['contour-lines', 'contour-labels'].forEach(id => {
+              if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', contoursToggleBtn.classList.contains('on') ? 'visible' : 'none');
+            });
+          });
+        });
       }
       const routesToggleBtn = document.getElementById('routesToggle');
       if (routesToggleBtn){
@@ -19046,27 +19073,27 @@ function renderTrail(t){
             },
           });
           // A neighbour's line shows only when asked for: the one a reader
-          // tapped, or all of them in the overview. Dashed in its own match
-          // colour on a white edge, so it never reads as the walk on this page.
+          // tapped, or all of them in the overview. A thinner, paler solid line in
+          // its own match colour on a white edge (no dashes, owner 20 Nov), so
+          // it never reads as the walk on this page.
           map.addLayer({
             id: 'other-trails-casing',
             type: 'line',
             source: 'other-trails',
             minzoom: 9,
             layout: { visibility: 'none', 'line-join': 'round', 'line-cap': 'round' },
-            paint: { 'line-color': '#FFFFFF', 'line-width': 6, 'line-opacity': 0.85 },
+            paint: { 'line-color': '#FFFFFF', 'line-width': 5, 'line-opacity': 0.85 },
           }, neighbourLinesBeforeId());
           map.addLayer({
             id: 'other-trails-line',
             type: 'line',
             source: 'other-trails',
             minzoom: 9,
-            layout: { visibility: 'none', 'line-join': 'round', 'line-cap': 'butt' },
+            layout: { visibility: 'none', 'line-join': 'round', 'line-cap': 'round' },
             paint: {
               'line-color': ['get', 'colour'],
-              'line-width': 3,
-              'line-opacity': 0.9,
-              'line-dasharray': [1.6, 1.1],
+              'line-width': 2.25,
+              'line-opacity': 0.65,
             },
           }, neighbourLinesBeforeId());
           // Wide invisible twin so the thin neighbour lines are easy to hit.
@@ -19278,10 +19305,10 @@ function renderTrail(t){
             geometry: { type: 'LineString', coordinates: t.path.map(([lat, lng]) => [lng, lat]) },
           },
         });
-        // The route is a pale match-colour corridor edged in white, under the
-        // contours and the dashed routes, so the path a walker follows and
-        // its numbers draw over it. (Under Waymarked's raster instead, when
-        // the page has fallen back to it.)
+        // The route is a thin match-colour line edged in white, drawn
+        // over the contours and the marked routes, so nothing is drawn across
+        // the path a walker follows; the route numbers still draw over it.
+        // (Under Waymarked's raster instead, when the page has fallen back.)
         window.ORMAMapStyle.addRouteLine(map, {
           id: 'single-trail-path-line',
           source: 'single-trail-path',
@@ -19294,7 +19321,7 @@ function renderTrail(t){
         }
 
         // The walk-in from the start flag to the walk, where the flag sits off
-        // the line (a car park or bus stop): thin and dashed, under the walk,
+        // the line (a car park or bus stop): thin solid grey, under the walk,
         // and never counted in its distance, climb or time.
         const accessLine = accessPathLine(t);
         if(accessLine){
@@ -19305,10 +19332,9 @@ function renderTrail(t){
           window.ORMAMapStyle.addAccessLine(map, {
             id: 'single-trail-access-line',
             source: 'single-trail-access',
-            color: selectedRouteColor,
             beforeId: 'single-trail-path-line-casing',
           });
-          // A wide, invisible twin so a fingertip finds the thin dashed line.
+          // A wide, invisible twin so a fingertip finds the thin line.
           map.addLayer({
             id: 'single-trail-access-hit', type: 'line', source: 'single-trail-access',
             paint: { 'line-color': '#000', 'line-opacity': 0, 'line-width': 18 },
@@ -21649,6 +21675,12 @@ if(document.querySelector('.td2')){
       .map(item => cardMessage(item, translate, tr, extra)).filter(Boolean);
     const cardCautions = cardMessages(recommendation.hardStops).concat(cardMessages(rankedCautions));
     const cardTrailUnknowns = cardMessages(rawUnknowns.filter(item => !isDogGap(item)));
+    // The cautions with each line's code, so the homepage card can leave out
+    // the one its season line already says.
+    const withCodes = items => (Array.isArray(items) ? items : []).filter(Boolean)
+      .map(item => ({ code:item.code || '', text:cardMessage(item, translate, tr, extra) }))
+      .filter(entry => entry.text);
+    const cardCautionItems = withCodes(recommendation.hardStops).concat(withCodes(rankedCautions));
 
     // The trail page's rows (see ROW_TOPICS): what stops the walk, then what
     // cost points, most first, then notes, then everything that fits.
@@ -21745,6 +21777,7 @@ if(document.querySelector('.td2')){
       // For the homepage card's check lines (see CARD_SENTENCES).
       cardCautions:cardCautions.slice(0, 4),
       cardTrailUnknowns:cardTrailUnknowns.slice(0, 5),
+      cardCautionItems:cardCautionItems.slice(0, 4),
       additionalUnknowns:Math.max(0, unknowns.length - 5),
       heroSummary:dogName
         ? tr('recommendation.hero.dog', '{conclusion} for {name}.', {

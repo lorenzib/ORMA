@@ -201,7 +201,7 @@ describe('trail page map controls', () => {
     // that used to be visible must be reachable, not merely gone.
     expect([...panel.querySelectorAll('button')].map(button => button.id)).toEqual([
       'routesToggle', 'fountainsToggle', 'hutsToggle', 'foodToggle',
-      'placesToggle', 'liftsToggle', 'nearbyToggle',
+      'placesToggle', 'liftsToggle', 'contoursToggle', 'nearbyToggle',
     ]);
     expect(document.getElementById('fountainsToggle').getAttribute('aria-pressed')).toBe('true');
     expect(document.getElementById('hutsToggle').getAttribute('aria-pressed')).toBe('true');
@@ -337,9 +337,9 @@ describe('trail page map controls', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
 
-    expect(html).toContain('i18n.js?v=20261127-1');
-    expect(html).toContain('trail-app.bundle.js?v=20261127-1');
-    expect(html).toContain('trail-mobile.css?v=20261127-1');
+    expect(html).toContain('i18n.js?v=20261128-1');
+    expect(html).toContain('trail-app.bundle.js?v=20261128-1');
+    expect(html).toContain('trail-mobile.css?v=20261123-7');
     [
       'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',
       'detail-pois.js', 'trail-access-directions.js', 'footpath-router.js',
