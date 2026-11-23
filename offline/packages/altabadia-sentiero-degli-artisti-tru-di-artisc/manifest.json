@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "altabadia-sentiero-degli-artisti-tru-di-artisc",
   "name": "Tru di artisć",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.789Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.579Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 851173,
+  "packageBytes": 851130,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.55735,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Tru di artisć OSM offline map",
       "url": "map.svg",
-      "bytes": 400766,
-      "sha256": "d8e44f607f9f46005f70b4891ecd96f9947f2afd34cb87051a37ccc26059ce1b"
+      "bytes": 400747,
+      "sha256": "c0ee82b7207871eba8c8fe2aa4fb9fd622b0d094bea2250c77feb8bfb3fa6683"
     },
     {
       "role": "route",

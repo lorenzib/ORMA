@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-passato-ritrovato",
   "name": "Il passato ritrovato",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:13.956Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T22:46:48.870Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 568539,
+  "packageBytes": 568496,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.46963,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Il passato ritrovato OSM offline map",
       "url": "map.svg",
-      "bytes": 284363,
-      "sha256": "cbf0b0767e991468e791a478e354dbf6f2609f1327545eeb6adb3ded9869e266"
+      "bytes": 284344,
+      "sha256": "4f3b8865dc94a3d3d1a81e956f7afc84b5ebb4d1f12c1631a0945f81f96e26b5"
     },
     {
       "role": "route",

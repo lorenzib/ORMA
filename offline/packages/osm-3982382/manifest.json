@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-3982382",
   "name": "Circuit Béatrice de Savoie",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.382Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T22:46:49.328Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 540661,
+  "packageBytes": 540618,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.43173,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Circuit Béatrice de Savoie OSM offline map",
       "url": "map.svg",
-      "bytes": 298159,
-      "sha256": "1a3a66d505fcba7cc4f287877548230d593a8af0856a1f687424c14ca59e608f"
+      "bytes": 298140,
+      "sha256": "48f75adaaffd28442a9f5f3357a2a912aa659451f6b6a9eb56474f58dd84dde1"
     },
     {
       "role": "route",

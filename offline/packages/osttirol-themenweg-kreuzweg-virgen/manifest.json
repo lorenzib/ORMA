@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osttirol-themenweg-kreuzweg-virgen",
   "name": "Kreuzweg to Maria Schnee, Virgen",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.496Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.452Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 781069,
+  "packageBytes": 781026,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.99924,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Kreuzweg to Maria Schnee, Virgen OSM offline map",
       "url": "map.svg",
-      "bytes": 495247,
-      "sha256": "e7c119af7c747cb3ee1a14ed3a79ff671a21bf4b458eb7d56828ba1434b46556"
+      "bytes": 495228,
+      "sha256": "5ea08d79008e2eae43f8c5721a1e3a0ac82467ad250462259fbc57932a25a263"
     },
     {
       "role": "route",

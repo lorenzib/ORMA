@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-anello-poit-cordogne-san-giovanni",
   "name": "Anello Poit - Cordognè - San Giovanni",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.517Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.486Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 514152,
+  "packageBytes": 514109,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.13297,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Anello Poit - Cordognè - San Giovanni OSM offline map",
       "url": "map.svg",
-      "bytes": 278263,
-      "sha256": "24697e1769a3822080dada82f1ef728500bdc62054543df2a6d51139ad6f4047"
+      "bytes": 278244,
+      "sha256": "f89de5bbf55e43d58643a23a608b26aeeae6491e121787d32033d8a9c1cabacc"
     },
     {
       "role": "route",

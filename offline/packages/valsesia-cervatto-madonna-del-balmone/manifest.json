@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valsesia-cervatto-madonna-del-balmone",
   "name": "Cervatto to the Madonna del Balmone",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.787Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.895Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 431246,
+  "packageBytes": 431203,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.87177,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Cervatto to the Madonna del Balmone OSM offline map",
       "url": "map.svg",
-      "bytes": 192949,
-      "sha256": "d8df45a108ef0a61a3b59ee20e804a93e6f50f767ae1afa21c5d73dc5a57b10d"
+      "bytes": 192930,
+      "sha256": "0e2ee43c8ce8954d94a50156ca6d9172f30e155449d4b98aa347c2fe4a4e8498"
     },
     {
       "role": "route",

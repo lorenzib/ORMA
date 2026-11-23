@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "winter-voels-voelser-weiher",
   "name": "Völs to the Völser Weiher in winter",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.854Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:50.035Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 907700,
+  "packageBytes": 907657,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.51373,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Völs to the Völser Weiher in winter OSM offline map",
       "url": "map.svg",
-      "bytes": 565571,
-      "sha256": "70e1d24c04497c99d5b61a77622a509fdab70725c0591006bdfa3b960dbe83fc"
+      "bytes": 565552,
+      "sha256": "892bc464cb924208214804d32faccd99a7c2364c48a636ee8d97a0e80c4b2be3"
     },
     {
       "role": "route",

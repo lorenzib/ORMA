@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio",
   "name": "Madonna di Campiglio – Malga Ritort",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.823Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.638Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 469866,
+  "packageBytes": 469823,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.20816,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Madonna di Campiglio – Malga Ritort OSM offline map",
       "url": "map.svg",
-      "bytes": 239434,
-      "sha256": "50ed101b4274a9127476a35684073d2c3eb324dc734773b9e0d1c309aa1615bb"
+      "bytes": 239415,
+      "sha256": "9623e2febf955574ae9e4c544d1ce4d88cb9b0581bd8362f3f6585645c8b1f02"
     },
     {
       "role": "route",

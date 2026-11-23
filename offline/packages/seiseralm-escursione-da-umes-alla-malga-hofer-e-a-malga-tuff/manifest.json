@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "seiseralm-escursione-da-umes-alla-malga-hofer-e-a-malga-tuff",
   "name": "Umes, Hofer Alpl and Malga Tuff loop",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:14.585Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T22:46:49.622Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 690975,
+  "packageBytes": 690932,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.49924,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Umes, Hofer Alpl and Malga Tuff loop OSM offline map",
       "url": "map.svg",
-      "bytes": 410236,
-      "sha256": "90c63ff8efacc246089eeb7f0d0c232067f9713c4f3569501a979d44b7acf29c"
+      "bytes": 410217,
+      "sha256": "89572fd34da21f17a2fd0f8b3b6508d4bce8c5fd36ddb44ddf15d593bfe8a345"
     },
     {
       "role": "route",

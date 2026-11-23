@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "savoie-areches-beaufort-la-grande-berge",
   "name": "La Grande Berge from the Plan de la Lai",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.563Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T22:46:49.595Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 361838,
+  "packageBytes": 361795,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.67318,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "La Grande Berge from the Plan de la Lai OSM offline map",
       "url": "map.svg",
-      "bytes": 131145,
-      "sha256": "1dac958d8a34b4a9cb679990cc2243a13d5d3c6c9a5088b13c1e9463864ea270"
+      "bytes": 131126,
+      "sha256": "54a3909874e63870f30414e259a10dc1cde4ca988e64b967b8ebf22bf0c0f2c0"
     },
     {
       "role": "route",

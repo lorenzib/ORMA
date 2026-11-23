@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-3707731",
   "name": "Gratschenbergrunde",
-  "version": "2026.11.12-beta.7",
-  "generatedAt": "2026-11-12T12:31:14.371Z",
+  "version": "2026.11.21-beta.8",
+  "generatedAt": "2026-11-21T22:46:49.323Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 499280,
+  "packageBytes": 499237,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.64876,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Gratschenbergrunde OSM offline map",
       "url": "map.svg",
-      "bytes": 248514,
-      "sha256": "8b22f1aae4a5d014db68e0234fe3d360d3be5c9b5f28bde696236b15e6e42296"
+      "bytes": 248495,
+      "sha256": "29f69b8e4a45fd1e951feba98f1c5d9f3dd7eb23c71bd08fee39dda0613f8b1b"
     },
     {
       "role": "route",

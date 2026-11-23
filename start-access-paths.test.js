@@ -82,10 +82,10 @@ describe('the walk-in from a start flag that sits off the line', () => {
     expect(stale).toEqual([]);
   });
 
-  test('the trail page and the homepage preview draw it solid grey under the walk; the offline map draws it too', () => {
+  test('the trail page and the homepage preview and the offline map draw it solid grey under the walk', () => {
     // Owner, 20 Nov 2026: no dotted or dashed lines on the maps. The walk-in
     // is solid dark grey on a white edge, so the walk stays the only
-    // coloured line. (The offline SVG map keeps its own drawing for now.)
+    // coloured line, on the online maps and in the offline packages alike.
     const style = fs.readFileSync(path.join(root, 'map-style.js'), 'utf8');
     expect(style).toContain("const ACCESS_LINE_COLOUR = '#4D554E';");
     const accessPaint = style.slice(style.indexOf('function accessLinePaint'), style.indexOf('function addAccessLine'));
@@ -109,6 +109,8 @@ describe('the walk-in from a start flag that sits off the line', () => {
     const { svg } = renderOfflineMap({ trailId:'test-walk', xml, route, height:600 });
     expect(svg.indexOf('class="access"')).toBeGreaterThan(-1);
     expect(svg.indexOf('class="access"')).toBeLessThan(svg.indexOf('class="route"'));
+    expect(svg).toContain('.access{fill:none;stroke:#4D554E;');
+    expect(svg).not.toContain('stroke-dasharray');
     expect(svg).toContain('~180 m');
     const long = JSON.parse(JSON.stringify(route));
     long.features[1].properties.lengthM = 2124;

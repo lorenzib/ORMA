@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fiemme-varena-spianez",
   "name": "Col passeggino tra Varena e Spianez",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:13.996Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T22:46:48.914Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 561110,
+  "packageBytes": 561067,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.29102,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Col passeggino tra Varena e Spianez OSM offline map",
       "url": "map.svg",
-      "bytes": 271746,
-      "sha256": "40617c91c9551a88038ce205cd2a6ff72760bf60bc41df9aa96407ea9627974a"
+      "bytes": 271727,
+      "sha256": "87ae066e7e02d1b89c9be946cdbf2f7add6ac1ab048f56e3215c48dd703cc3e2"
     },
     {
       "role": "route",

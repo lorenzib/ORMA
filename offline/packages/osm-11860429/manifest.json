@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11860429",
   "name": "Roda dles Viles",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.209Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T22:46:49.161Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 417103,
+  "packageBytes": 417060,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.6539,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Roda dles Viles OSM offline map",
       "url": "map.svg",
-      "bytes": 188579,
-      "sha256": "8f880bf8b4f5040a38191f930723cf72f5a06ae7b7206251670bcbe906e0918e"
+      "bytes": 188560,
+      "sha256": "20a4aa8557a9d0797f3237dcc6a3c32d70d8e20ff8f5a192ad0cc820079c34b7"
     },
     {
       "role": "route",

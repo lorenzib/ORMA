@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cortina-zumeles-val-padeon",
   "name": "Forcella Zumeles and Val Padeon",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.883Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.714Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 559885,
+  "packageBytes": 559842,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.54785,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Forcella Zumeles and Val Padeon OSM offline map",
       "url": "map.svg",
-      "bytes": 231389,
-      "sha256": "59bca45a1e0f7d2e746566a65a1647b4348840f6bd14bc50ff68a7defd295f66"
+      "bytes": 231370,
+      "sha256": "bb09faffbeb4acf82af43820c8aaefb9b3c8da6a1a4e55cc9d4187b7c2b85ff0"
     },
     {
       "role": "route",
