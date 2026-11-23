@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "eggental-escursione-per-famiglie-dal-lago-di-carezza-alla-malga-stadl",
   "name": "Lake Carezza to the Stadlalm",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:13.888Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T22:46:48.736Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 458807,
+  "packageBytes": 458764,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.39934,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Lake Carezza to the Stadlalm OSM offline map",
       "url": "map.svg",
-      "bytes": 221850,
-      "sha256": "f177fb92ecb39b214c0bd417587a3d5e7e76000ecc09a8d0be650c75637e3843"
+      "bytes": 221831,
+      "sha256": "bdfd9b778732e89bc05367cd28195fa7b8ebdff1c489a26d6f486db48cc87998"
     },
     {
       "role": "route",

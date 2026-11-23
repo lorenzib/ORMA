@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-monte-vederna",
   "name": "Passeggiata a Monte Vederna – Croce degli Alpini",
-  "version": "2026.11.21-beta.1",
-  "generatedAt": "2026-11-21T00:11:00.727Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:49.517Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 330215,
+  "packageBytes": 330170,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.11801,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Passeggiata a Monte Vederna – Croce degli Alpini OSM offline map",
       "url": "map.svg",
-      "bytes": 122213,
-      "sha256": "cf27b59ef2c8d954d6932b7de45b91d0e92c595da205dd2f4db4698d34381d37"
+      "bytes": 122192,
+      "sha256": "bea0292afe99ccbdfe03e216dec67b390e07e49487188ca8e2bbb3a25bd38592"
     },
     {
       "role": "route",

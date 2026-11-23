@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-siror",
   "name": "Siror",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:14.542Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T22:46:49.561Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 994651,
+  "packageBytes": 994608,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.17444,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Siror OSM offline map",
       "url": "map.svg",
-      "bytes": 690528,
-      "sha256": "2e48f3ca286ce9c184b71ce498af7919296ccc2d071c7dd49a32f53fea87d576"
+      "bytes": 690509,
+      "sha256": "05c5866d3f844e291c4e777cbf6ec363981c6fc0e30eca96ad59891b3b1c5513"
     },
     {
       "role": "route",

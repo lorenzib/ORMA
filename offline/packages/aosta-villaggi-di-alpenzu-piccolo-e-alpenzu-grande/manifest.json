@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "aosta-villaggi-di-alpenzu-piccolo-e-alpenzu-grande",
   "name": "Alpenzù Piccolo and Alpenzù Grande",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.804Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.605Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 428918,
+  "packageBytes": 428875,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.79559,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Alpenzù Piccolo and Alpenzù Grande OSM offline map",
       "url": "map.svg",
-      "bytes": 168363,
-      "sha256": "e14dba89be27576703f6807f1aeb01a449849d5cd86a8ad3cf1161206533f37c"
+      "bytes": 168344,
+      "sha256": "06dd1f5bf8f72a0a376e5cca5293e68efbd2eaef20dd5f78687d0383ea15de8b"
     },
     {
       "role": "route",

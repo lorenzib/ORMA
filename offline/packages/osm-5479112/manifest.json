@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-5479112",
   "name": "Chemin des Diligences",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.387Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T22:46:49.332Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1248402,
+  "packageBytes": 1248359,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.01551,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Chemin des Diligences OSM offline map",
       "url": "map.svg",
-      "bytes": 650303,
-      "sha256": "c951ee4459c4f77798df1ad167900e33b7d0cd38f48af867457080b08507cc75"
+      "bytes": 650284,
+      "sha256": "c258f4bcc5d4a2637e66d207919c28b7fd02e61acac5866ce7dd5bf9fec9994f"
     },
     {
       "role": "route",

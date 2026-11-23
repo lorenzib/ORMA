@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-6823031",
   "name": "Naturlehrpfad",
-  "version": "2026.11.18-beta.1",
-  "generatedAt": "2026-11-18T10:04:46.089Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:49.356Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 373963,
+  "packageBytes": 373920,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.77723,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Naturlehrpfad OSM offline map",
       "url": "map.svg",
-      "bytes": 182053,
-      "sha256": "a7df1d819ea96c2be595984dbc9a8d2cb0899312ac6b2b000ab902086b916f80"
+      "bytes": 182034,
+      "sha256": "48edb204b2b019c44335a936a4d72c16e207bcfe999b9d2300e3272461c285f7"
     },
     {
       "role": "route",

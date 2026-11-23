@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11517208",
   "name": "La Croix des Salles",
-  "version": "2026.11.12-beta.7",
-  "generatedAt": "2026-11-12T12:31:14.174Z",
+  "version": "2026.11.21-beta.8",
+  "generatedAt": "2026-11-21T22:46:49.117Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 837999,
+  "packageBytes": 837956,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.86599,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "La Croix des Salles OSM offline map",
       "url": "map.svg",
-      "bytes": 350849,
-      "sha256": "183eaa21e60db123210372c4ee2aec17ff9f1bdabe6b01baf5805cc97d593f48"
+      "bytes": 350830,
+      "sha256": "2b31d686591dd63bb71492f20b4278df23975ce7183da14dbe0b443688a30429"
     },
     {
       "role": "route",

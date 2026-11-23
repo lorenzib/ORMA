@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "engadin-nature-trail-la-senda-samedan-smartrail",
   "name": "La Senda nature trail, Samedan",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.922Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.823Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 808986,
+  "packageBytes": 808943,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.52159,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "La Senda nature trail, Samedan OSM offline map",
       "url": "map.svg",
-      "bytes": 450547,
-      "sha256": "af0d0b4015fa766c4d6efcfa627c7ae6ecd118a8d1842b6b91541d976f8189b9"
+      "bytes": 450528,
+      "sha256": "466ada580262b4f5b1566df6a03715115048f113d7ac5b1c9a17f15843a9f220"
     },
     {
       "role": "route",

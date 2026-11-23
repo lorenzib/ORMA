@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-19855818",
   "name": "Boucle des cascades",
-  "version": "2026.11.12-beta.7",
-  "generatedAt": "2026-11-12T12:31:14.332Z",
+  "version": "2026.11.21-beta.8",
+  "generatedAt": "2026-11-21T22:46:49.303Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 571026,
+  "packageBytes": 570983,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.4373,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Boucle des cascades OSM offline map",
       "url": "map.svg",
-      "bytes": 241179,
-      "sha256": "e000dfb1ce24fd9fff9ed83a0cb0e335546286341c66ea705f15ed568e157537"
+      "bytes": 241160,
+      "sha256": "2856a65647e2b2f921bf25c49b1b1b21707ae6fe149d321f75067ecef6c413b9"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "isere-le-plateau-de-la-moliere",
   "name": "Molière plateau loop above Autrans",
-  "version": "2026.11.19-beta.4",
-  "generatedAt": "2026-11-19T15:44:52.586Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T22:46:48.973Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 377942,
+  "packageBytes": 377897,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.17589,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Molière plateau loop above Autrans OSM offline map",
       "url": "map.svg",
-      "bytes": 115951,
-      "sha256": "096bbee160ca71c340f0898e4bbb681c5932799fc669566c8b6f12b305754b7c"
+      "bytes": 115930,
+      "sha256": "1e3131d3af1bbd0e003c463aec27f180d875509f485c0746428f1b793148bd1b"
     },
     {
       "role": "route",

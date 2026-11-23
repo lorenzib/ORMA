@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-bagni-di-san-candido",
   "name": "Wildbad Innichen",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.609Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.663Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 555434,
+  "packageBytes": 555391,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.71342,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Wildbad Innichen OSM offline map",
       "url": "map.svg",
-      "bytes": 310200,
-      "sha256": "cad8fc5dabb293b20b4ae1196a40cd95a6f769747c4f2c94b5b7aa27164824e3"
+      "bytes": 310181,
+      "sha256": "36a2bd2960d733f01f31c4da72ca3b6e656f56e8f3dc210f030f2d2ff646c3b8"
     },
     {
       "role": "route",

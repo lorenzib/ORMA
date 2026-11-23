@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "ahrntal-escursione-rifugio-ponte-di-ghiaccio",
   "name": "Lake Neves to the Ponte di Ghiaccio hut",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.732Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.519Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 326799,
+  "packageBytes": 326756,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.93924,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Lake Neves to the Ponte di Ghiaccio hut OSM offline map",
       "url": "map.svg",
-      "bytes": 116461,
-      "sha256": "ee6aa853da71cf66dccbc469d3076f0811c255760cbc474651efef298185723f"
+      "bytes": 116442,
+      "sha256": "994c3699cb3362f0a024134646be954bf328e403f5d6b9a081aa99964e2941e8"
     },
     {
       "role": "route",

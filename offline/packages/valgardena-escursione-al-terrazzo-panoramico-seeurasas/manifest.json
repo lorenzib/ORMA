@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-escursione-al-terrazzo-panoramico-seeurasas",
   "name": "Sëurasas",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.723Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.814Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 324106,
+  "packageBytes": 324063,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.56259,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sëurasas OSM offline map",
       "url": "map.svg",
-      "bytes": 109677,
-      "sha256": "874a668bf842eed2fc39a61a6f28badbf09a3d6273e86386e552086ed46f48e5"
+      "bytes": 109658,
+      "sha256": "643f9f3ea9856b55d6c9c95762f101c24aa52e08326a5edeee4e8beec9e0657c"
     },
     {
       "role": "route",

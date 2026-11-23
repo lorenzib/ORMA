@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lago-carezza",
   "name": "Lago di Carezza Loop",
-  "version": "2026.11.12-beta.28",
-  "generatedAt": "2026-11-12T12:31:14.081Z",
+  "version": "2026.11.21-beta.29",
+  "generatedAt": "2026-11-21T22:46:48.425Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 153539,
+  "packageBytes": 153496,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.407,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Lago di Carezza Loop OSM offline map",
       "url": "map.svg",
-      "bytes": 17775,
-      "sha256": "c45119df17d0e21c5a07fd3877f9b00059bc813d39800ba5ca05fb2dcf3c2c8e"
+      "bytes": 17756,
+      "sha256": "e37be96ed1f242b003192b003d1d103ea930082f5cd0ca88b166ea72416931d6"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fvg-borgo-stavoli-moggio",
   "name": "Il borgo isolato di Stavoli di Moggio",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.999Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.918Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 380323,
+  "packageBytes": 380280,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.39635,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Il borgo isolato di Stavoli di Moggio OSM offline map",
       "url": "map.svg",
-      "bytes": 145239,
-      "sha256": "2649fc6e56b4e4a634aedd23a3306c426d9321438780895c5fb08fb2c392403a"
+      "bytes": 145220,
+      "sha256": "8e15c12a9e97fa53e1269d9944ff4532de129db555bbe230a00a3962f63b79e4"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valley-view",
   "name": "Val di Funes Panorama Trail",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.771Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T22:46:49.873Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1036780,
+  "packageBytes": 1036737,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.63601,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Val di Funes Panorama Trail OSM offline map",
       "url": "map.svg",
-      "bytes": 650683,
-      "sha256": "ddbd47b5c9941450f1e3bb1d8906ad8ec676cb9b9ad43a77977a6988c28a3e6d"
+      "bytes": 650664,
+      "sha256": "350ddb343ef7a295ce9e88a96d45e142266267fbc88c6bb9ebea1868427ea39d"
     },
     {
       "role": "route",

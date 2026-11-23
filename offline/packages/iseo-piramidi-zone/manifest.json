@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "iseo-piramidi-zone",
   "name": "The earth pyramids of Zone",
-  "version": "2026.11.21-beta.1",
-  "generatedAt": "2026-11-21T00:07:05.104Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:48.954Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 418834,
+  "packageBytes": 418789,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.74584,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "The earth pyramids of Zone OSM offline map",
       "url": "map.svg",
-      "bytes": 230961,
-      "sha256": "8100831812c2a48cac7dbc99abf5e55db863128ec98fd60ebc98d5abb46a0a8f"
+      "bytes": 230940,
+      "sha256": "04a9e40a9423fd817c65e2d46bd667a5c7f4292d9a5f4dfdc0aad9d57f5b265e"
     },
     {
       "role": "route",

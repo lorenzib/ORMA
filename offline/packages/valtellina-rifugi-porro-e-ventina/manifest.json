@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valtellina-rifugi-porro-e-ventina",
   "name": "Chiareggio to the Porro and Ventina huts",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.793Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.932Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 330013,
+  "packageBytes": 329970,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.29213,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Chiareggio to the Porro and Ventina huts OSM offline map",
       "url": "map.svg",
-      "bytes": 120542,
-      "sha256": "c3a6ac6329ab646c834ec9d514c3e0d522b191ecbc1cce12c10ae86b1f988936"
+      "bytes": 120523,
+      "sha256": "df8ebf825195b9cf90ad875ae07946683018afa3723899da85c9fe632c0fb7f3"
     },
     {
       "role": "route",

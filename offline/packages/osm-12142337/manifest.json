@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12142337",
   "name": "Rundweg Peitlerkofel",
-  "version": "2026.11.19-beta.5",
-  "generatedAt": "2026-11-19T15:39:31.322Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T22:46:49.180Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1116259,
+  "packageBytes": 1116214,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.64216,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Rundweg Peitlerkofel OSM offline map",
       "url": "map.svg",
-      "bytes": 699085,
-      "sha256": "510d0e70fe6cafd39be3bb276cb65e3fb91c4fa5199b08638abe535c1c7a5666"
+      "bytes": 699064,
+      "sha256": "5978fed330854c6ab804dba138e38e724a231518ddb0b11871e05c18e529a3c4"
     },
     {
       "role": "route",

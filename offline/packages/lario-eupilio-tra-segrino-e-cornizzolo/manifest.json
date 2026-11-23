@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lario-eupilio-tra-segrino-e-cornizzolo",
   "name": "Eupilio and the Madonna della Neve",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.097Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.039Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 654364,
+  "packageBytes": 654321,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.81386,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Eupilio and the Madonna della Neve OSM offline map",
       "url": "map.svg",
-      "bytes": 359221,
-      "sha256": "2d22565d1c583225d43b2f56b505403d7e7906a3a8533750b1479e339ffa7622"
+      "bytes": 359202,
+      "sha256": "168000afa5224080549a332071c52ca23272430f25895a97bc51b7f3c61bd863"
     },
     {
       "role": "route",
