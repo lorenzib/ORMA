@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11768853",
   "name": "Panoramaweg in Feldthurns",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.181Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T22:46:49.124Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 658885,
+  "packageBytes": 658842,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.65606,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Panoramaweg in Feldthurns OSM offline map",
       "url": "map.svg",
-      "bytes": 369750,
-      "sha256": "fed5253ca8ed01875b0bd41be857edc35939612cc92a1bd3f993d27f62b65992"
+      "bytes": 369731,
+      "sha256": "d19e71cfbe37b687a40d8292beb79cf5b20a428d9b344aa778b225a2d17e06d8"
     },
     {
       "role": "route",

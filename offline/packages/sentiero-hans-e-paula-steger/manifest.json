@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "sentiero-hans-e-paula-steger",
   "name": "Sentiero Hans e Paula Steger",
-  "version": "2026.11.19-beta.5",
-  "generatedAt": "2026-11-19T15:37:01.322Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T22:46:49.647Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 957233,
+  "packageBytes": 957188,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.5159,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sentiero Hans e Paula Steger OSM offline map",
       "url": "map.svg",
-      "bytes": 546406,
-      "sha256": "d2bdd240ebcf2bf91f5513bb6d16dd7f8ec1de09e0d845962ec4ee87104bb0e2"
+      "bytes": 546385,
+      "sha256": "f7c5d9d40c3d564ecbc2ae61477e471f663b023460de7d7e5b06c09cf102d912"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "settimo-vittone-pergole-castagneti",
   "name": "Pergolas and Chestnut Woods, Settimo Vittone",
-  "version": "2026.11.21-beta.1",
-  "generatedAt": "2026-11-21T21:05:51.263Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:49.650Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 655563,
+  "packageBytes": 655518,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.54794,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Pergolas and Chestnut Woods, Settimo Vittone OSM offline map",
       "url": "map.svg",
-      "bytes": 333626,
-      "sha256": "76e2ac3dcb77ef18b2bec80709fb2482e07252d92e5d5910bc4d1d2f464e6490"
+      "bytes": 333605,
+      "sha256": "6ade63e039323d21777bdcd1d705e431458bc7f8ea673b9174e791679489bb76"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-circolare-maistatt",
   "name": "Maistatt loop",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.619Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.677Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1016700,
+  "packageBytes": 1016657,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.72366,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Maistatt loop OSM offline map",
       "url": "map.svg",
-      "bytes": 625333,
-      "sha256": "8cae3dfbf79d2becd23726e891d6af1294738ea8e015098992a77d0d8aa253f2"
+      "bytes": 625314,
+      "sha256": "2dc9ab53e0c3415b0015258128d6e18800261109555439e27f0297f7b94212ef"
     },
     {
       "role": "route",

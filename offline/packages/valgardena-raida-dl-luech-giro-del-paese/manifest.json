@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-raida-dl-luech-giro-del-paese",
   "name": "Raida dl luech",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.753Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.848Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 597084,
+  "packageBytes": 597041,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.55188,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Raida dl luech OSM offline map",
       "url": "map.svg",
-      "bytes": 302099,
-      "sha256": "4a97a623f2bcb00bb99a9c724101069c4655ad3b3ffeb9484724b4dcff2bcf0b"
+      "bytes": 302080,
+      "sha256": "f7f720d3274cddf11e6775acac5e6d1a6f39ac8f65fcea980336c5784a4d2727"
     },
     {
       "role": "route",

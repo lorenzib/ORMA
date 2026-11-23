@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "rendena-ciclabile-javre-dare-vigo-pelugo",
   "name": "Javrè – Pelugo cycle path loop",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.555Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.583Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1058818,
+  "packageBytes": 1058775,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.05735,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Javrè – Pelugo cycle path loop OSM offline map",
       "url": "map.svg",
-      "bytes": 670404,
-      "sha256": "c3f4e41555f05d8f30aa57e13334b2181f59bf105de47d913dd6efc6b4d52196"
+      "bytes": 670385,
+      "sha256": "714413c6e15d1c86d9df37285d373d222919010bab89c5890ea138cab4ae89b8"
     },
     {
       "role": "route",

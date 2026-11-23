@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "iseo-riva-di-solto",
   "name": "Riva di Solto panoramic loop",
-  "version": "2026.11.21-beta.1",
-  "generatedAt": "2026-11-21T00:06:30.272Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:48.957Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 851935,
+  "packageBytes": 851890,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.76763,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Riva di Solto panoramic loop OSM offline map",
       "url": "map.svg",
-      "bytes": 585208,
-      "sha256": "1800afe61b7fa0450482436a04b864710414bbe2c34badc14096001259676c97"
+      "bytes": 585187,
+      "sha256": "64aeb5645954558d8207ca507c4a84782ba0b5313e01b1a5f76762a6d205d5a8"
     },
     {
       "role": "route",

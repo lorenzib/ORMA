@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "villnoess-dolorama-3a-tappa",
   "name": "Dolorama stage 3: Rifugio Genova to Resciesa",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.803Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T22:46:49.957Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 2183578,
+  "packageBytes": 2183535,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.58615,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Dolorama stage 3: Rifugio Genova to Resciesa OSM offline map",
       "url": "map.svg",
-      "bytes": 926225,
-      "sha256": "6eb8ebac799bf6efa13d976f3c00b408c9899b5241474b372d139bbac2a3f72f"
+      "bytes": 926206,
+      "sha256": "372161868b5133de03001391ab119b0ae33e20d4814431dc8fb583a9569d8ab1"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-20380913",
   "name": "Hinzlweg",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.340Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T22:46:49.311Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 370257,
+  "packageBytes": 370214,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.62343,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Hinzlweg OSM offline map",
       "url": "map.svg",
-      "bytes": 151503,
-      "sha256": "ec26e907b938064a1666f299cfba7184986840bbb79368b5c5a2f05e4d0515c8"
+      "bytes": 151484,
+      "sha256": "7a4cc6420e341c8c5cf0dcf18cc8fcb0c2345453f6d17b209cb618f1a914d80a"
     },
     {
       "role": "route",

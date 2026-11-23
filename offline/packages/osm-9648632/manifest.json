@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-9648632",
   "name": "Pana Raida",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.479Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T22:46:49.432Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 261042,
+  "packageBytes": 260999,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.54267,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Pana Raida OSM offline map",
       "url": "map.svg",
-      "bytes": 87460,
-      "sha256": "7766f13152e61fb1520aa22a495e59a3595f9466c8472652ca12ac655c4680ff"
+      "bytes": 87441,
+      "sha256": "4377d6859df96711010ad12a2270ce5093ccf4ff3874ebd289c9fa0e055dfb70"
     },
     {
       "role": "route",

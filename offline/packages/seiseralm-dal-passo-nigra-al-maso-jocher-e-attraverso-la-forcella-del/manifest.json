@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "seiseralm-dal-passo-nigra-al-maso-jocher-e-attraverso-la-forcella-del",
   "name": "Passo Nigra to Tiers by the Jocher farm",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:14.583Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T22:46:49.619Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1175784,
+  "packageBytes": 1175741,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.43766,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Passo Nigra to Tiers by the Jocher farm OSM offline map",
       "url": "map.svg",
-      "bytes": 633721,
-      "sha256": "f932b0c95b61dc60858483097de236c2a0b472027d5fb4f788bd7275f673da5d"
+      "bytes": 633702,
+      "sha256": "39fa994b6c1a93763b9e444057890e11d4588fba22072d79cc4861cf600fc5b9"
     },
     {
       "role": "route",

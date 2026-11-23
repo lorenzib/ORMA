@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "eggental-passo-nigra-malga-hagner",
   "name": "Passo Nigra to the Malga Hagner Alm",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.899Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.752Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 644568,
+  "packageBytes": 644525,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.4428,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Passo Nigra to the Malga Hagner Alm OSM offline map",
       "url": "map.svg",
-      "bytes": 343263,
-      "sha256": "041cdaa3ca41de830be36a7c67e2981c5a1dd8334305458fe094cbca651f59be"
+      "bytes": 343244,
+      "sha256": "a2f4c066b1cd170b845061cb589868a6002f793f0d4ff40b2ab5a4118e84eb25"
     },
     {
       "role": "route",

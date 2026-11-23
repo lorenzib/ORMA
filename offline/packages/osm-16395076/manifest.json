@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-16395076",
   "name": "Boucle du Lac de la Thuile",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.315Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T22:46:49.284Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 456875,
+  "packageBytes": 456832,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.5243,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Boucle du Lac de la Thuile OSM offline map",
       "url": "map.svg",
-      "bytes": 288195,
-      "sha256": "107a096beee0a37bcdf36adc1ca5438f84239e5365e0a8a2adc4231ec7dc0786"
+      "bytes": 288176,
+      "sha256": "848375d1ef60ea53210d0291b67096ac94dc0a483af01babb85ece894bd2180b"
     },
     {
       "role": "route",

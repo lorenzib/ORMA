@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valsusa-chianocco-orrido-chouque",
   "name": "Orrido and Chouqué di Margrit, Chianocco",
-  "version": "2026.11.19-beta.1",
-  "generatedAt": "2026-11-19T22:20:29.049Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:49.905Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 625030,
+  "packageBytes": 624985,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.14459,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Orrido and Chouqué di Margrit, Chianocco OSM offline map",
       "url": "map.svg",
-      "bytes": 223963,
-      "sha256": "fa63f9044e37b31b512f1e057346016cbd5dec6c3ab6e3d2cbaef649ee299a0e"
+      "bytes": 223942,
+      "sha256": "307714919db408e3ca0f694a9be4d17488cafa46f507b97500ace49c4f3af32b"
     },
     {
       "role": "route",

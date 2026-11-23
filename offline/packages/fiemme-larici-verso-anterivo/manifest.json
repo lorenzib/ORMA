@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fiemme-larici-verso-anterivo",
   "name": "Passeggiata col passeggino tra i larici verso Anterivo",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.980Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.899Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 287000,
+  "packageBytes": 286957,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.27258,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Passeggiata col passeggino tra i larici verso Anterivo OSM offline map",
       "url": "map.svg",
-      "bytes": 87932,
-      "sha256": "523077c7c8e628babeecec8b581bcf226870c3120337e228c4e4b9040af1fd0d"
+      "bytes": 87913,
+      "sha256": "369d0466c16ac6a17dfe6235999a40c4051f2dac3dadbfae6134e20425573e22"
     },
     {
       "role": "route",

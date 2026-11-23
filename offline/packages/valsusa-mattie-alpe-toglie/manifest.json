@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valsusa-mattie-alpe-toglie",
   "name": "Alpe Toglie, Mattie",
-  "version": "2026.11.21-beta.1",
-  "generatedAt": "2026-11-21T19:44:42.552Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:49.919Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 434010,
+  "packageBytes": 433965,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.08725,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Alpe Toglie, Mattie OSM offline map",
       "url": "map.svg",
-      "bytes": 153016,
-      "sha256": "7086d1a74748464855f81b79bd719bcb105e5aac18a28143b768cdc84edac7dc"
+      "bytes": 152995,
+      "sha256": "42b428441f8736eee4401b6ddf1c54245316e4ea7a3723ee8400e7e8aeb0c334"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "altabadia-colfosco-rifugio-puez",
   "name": "Colfosco to the Rifugio Puez",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.753Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.534Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 696896,
+  "packageBytes": 696853,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.55079,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Colfosco to the Rifugio Puez OSM offline map",
       "url": "map.svg",
-      "bytes": 256292,
-      "sha256": "ee73cf3b3ae99de8d43e54fd8db1404b000c05f08b98cb21f1d5fed293c0ff0d"
+      "bytes": 256273,
+      "sha256": "9332e58028b36f56e9eee44a36b9f487789926f37c7d9cc0ac6923122be44d53"
     },
     {
       "role": "route",
