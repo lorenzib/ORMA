@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-21T21:35:42.974Z",
+  "generatedAt": "2026-11-23T08:24:07.518Z",
   "regions": {
     "dolomites": {
       "trailCount": 381,
@@ -480,8 +480,8 @@
       "optional": []
     },
     "lombardy": {
-      "trailCount": 23,
-      "trails": "data/regions/lombardy-trails.js?v=3f1fd28abe0f",
+      "trailCount": 24,
+      "trails": "data/regions/lombardy-trails.js?v=7a1711694946",
       "details": {
         "lario-brunate-e-le-sue-chiese": "data/trail-details/lario-brunate-e-le-sue-chiese.js?v=ba72cffa8ee5",
         "lario-pognana-lario-e-le-sculture-simposio": "data/trail-details/lario-pognana-lario-e-le-sculture-simposio.js?v=9b29078774d2",
@@ -505,7 +505,8 @@
         "altogarda-valle-cartiere": "data/trail-details/altogarda-valle-cartiere.js?v=0859c9a6bff5",
         "altogarda-nasce-formaggio-tombea": "data/trail-details/altogarda-nasce-formaggio-tombea.js?v=ebcd7810299f",
         "iseo-riva-di-solto": "data/trail-details/iseo-riva-di-solto.js?v=caf29749e8bb",
-        "iseo-piramidi-zone": "data/trail-details/iseo-piramidi-zone.js?v=dd6bb346a7e0"
+        "iseo-piramidi-zone": "data/trail-details/iseo-piramidi-zone.js?v=dd6bb346a7e0",
+        "camonica-val-brandet": "data/trail-details/camonica-val-brandet.js?v=74071c04c406"
       },
       "water": "data/regions/lombardy-water.geojson",
       "hutsBars": "data/regions/lombardy-huts-bars.geojson",
@@ -637,7 +638,7 @@
     },
     "switzerland": {
       "trailCount": 21,
-      "trails": "data/regions/switzerland-trails.js?v=3ec6703df9c0",
+      "trails": "data/regions/switzerland-trails.js?v=3b40c3a48158",
       "details": {
         "engadin-around-lake-st-moritz": "data/trail-details/engadin-around-lake-st-moritz.js?v=fd2ed5887e82",
         "engadin-sils-chaste-peninsula-sils": "data/trail-details/engadin-sils-chaste-peninsula-sils.js?v=b6df69008cd3",
@@ -1138,6 +1139,7 @@
     "altogarda-nasce-formaggio-tombea": "lombardy",
     "iseo-riva-di-solto": "lombardy",
     "iseo-piramidi-zone": "lombardy",
+    "camonica-val-brandet": "lombardy",
     "fvg-laghi-di-fusine": "friuli",
     "fvg-ta-lipa-pot-corto": "friuli",
     "fvg-borgo-stavoli-moggio": "friuli",
@@ -1797,6 +1799,7 @@
     "settimo-vittone-pergole-castagneti": "pergolas-chestnut-woods-settimo-vittone",
     "valchiusella-cima-bossola": "cima-bossola-valchiusella",
     "corio-sentiero-del-redio": "sentiero-del-redio-corio",
+    "camonica-val-brandet": "val-brandet-sant-antonio-corteno-golgi",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2363,6 +2366,7 @@
     "pergolas-chestnut-woods-settimo-vittone": "settimo-vittone-pergole-castagneti",
     "cima-bossola-valchiusella": "valchiusella-cima-bossola",
     "sentiero-del-redio-corio": "corio-sentiero-del-redio",
+    "val-brandet-sant-antonio-corteno-golgi": "camonica-val-brandet",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

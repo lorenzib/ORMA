@@ -40,6 +40,7 @@
     'brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl': "Mühlbach to Spinges",
     'brixen-escursione-al-rifugio-bressanone': "Fane Alm to the Brixner Hütte",
     'brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia': "Altfasstal to the Wieserhütte",
+    'camonica-val-brandet': "Val Brandet from Sant’Antonio",
     'campiglio-carisolo-centro-storico': "Carisolo old village",
     'campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio': "Madonna di Campiglio – Malga Ritort",
     'campiglio-laghi-di-san-giuliano-garzone-e-vacarsa': "San Giuliano, Garzonè and Vacarsa lakes",
