@@ -235,10 +235,13 @@ describe('the page and the app describe the route the same way',()=>{
 describe('the published pages carry what the record established',()=>{
   const slugs=JSON.parse(read('data/regions-manifest.json')).trailSlug;
   const trails=loadProductionTrails(ROOT);
+  // A one-page pilot walk is the app page; trail-blueprint.js draws its directions.
+  const pilot=new Set(JSON.parse(read('data/one-page-pilot.json')).slugs);
 
   test('every published trail with directions shows them on its page',()=>{
     const missing=[];
     for(const trail of trails){
+      if(pilot.has(slugs[trail.id]))continue;
       const file=path.join(ROOT,'trails',`${slugs[trail.id]}.html`);
       if(!fs.existsSync(file))continue;
       const html=fs.readFileSync(file,'utf8');

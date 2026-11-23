@@ -14,6 +14,9 @@ const all = fs.readdirSync(trailDirectory)
 const isRedirect = name => /<meta http-equiv="refresh"/.test(html(name));
 const redirects = all.filter(isRedirect);
 const pages = all.filter(name => !isRedirect(name));
+// Audit finding 1, pilot: these Google addresses serve the app page itself.
+const onePage = new Set(require('./data/one-page-pilot.json').slugs.map(slug => `${slug}.html`));
+const handoffPages = pages.filter(name => !onePage.has(name));
 
 describe('SEO-01 generated trail handoff', () => {
   test('covers the complete published trail-page set', () => {
@@ -36,7 +39,26 @@ describe('SEO-01 generated trail handoff', () => {
     }
   });
 
-  test.each(pages)('%s preserves discovery and hands off to one interactive trail', filename => {
+  test.each([...onePage])('%s is the app trail page, findable as the same address', filename => {
+    const body = html(filename);
+    const slug = filename.replace(/\.html$/, '');
+    // Search reads it as the same page as before...
+    expect(body).toContain(`<link rel="canonical" href="https://www.app-orma.com/trails/${filename}">`);
+    expect(body).toContain(`<link rel="alternate" hreflang="it" href="https://www.app-orma.com/it/trails/${filename}">`);
+    expect(body).toMatch(/<title id="pageTitle">[^<]+, dog-friendly trail, ORMA<\/title>/);
+    expect(body).toMatch(/<meta name="description" content="[^"]{40,}">/);
+    expect(body).toContain('<script type="application/ld+json">');
+    // ...and a visitor gets the app page: verdict, map, Save and Directions.
+    expect(body).toContain('<base href="../">');
+    expect(body).toContain(`p.set('id', ${JSON.stringify(slug)})`);
+    for(const id of ['trailName', 'recommendationDecision', 'detailSaveBtn', 'getDirectionsBtn', 'td2WhenCard']) {
+      expect(body).toContain(`id="${id}"`);
+    }
+    expect(body).not.toContain('<a class="sp-cta"');
+    expect(body).not.toMatch(/http-equiv="refresh"|location\.replace\s*\(/i);
+  });
+
+  test.each(handoffPages)('%s preserves discovery and hands off to one interactive trail', filename => {
     const html = fs.readFileSync(path.join(trailDirectory, filename), 'utf8');
     const canonical = `https://www.app-orma.com/trails/${filename}`;
     const primary = html.match(/<a class="sp-cta" href="\.\.\/trail\.html\?id=([^"]+)">Open the full trail guide →<\/a>/g) || [];

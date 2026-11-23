@@ -70,6 +70,63 @@ function retiredSlugPage(from, to, name, lang = 'en'){
 const BASE_URL = 'https://www.app-orma.com';
 
 // ---------------------------------------------------------------
+// 1a. One trail page (audit finding 1, pilot)
+//
+// A walk had two pages: this generated one, which Google finds, with no score,
+// map, Save or Directions; and the app page (trail.html?id=…) with no month
+// grid or road rules. For the walks in data/one-page-pilot.json the Google
+// address now serves the app page itself, carrying this page's title,
+// description, canonical and structured data so search still reads it as
+// the same page. The app page already shows "When to go" and "Good to know".
+// ---------------------------------------------------------------
+const ONE_PAGE_PILOT = new Set(JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'one-page-pilot.json'), 'utf8')).slugs);
+
+function onePageTrailPage(staticHtml, slug) {
+  const app = fs.readFileSync(path.join(__dirname, '..', 'trail.html'), 'utf8');
+  const head = staticHtml.match(/<title>[\s\S]*?<meta name="twitter:card"[^>]*>/);
+  const ld = staticHtml.match(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g) || [];
+  if (!head) throw new Error(`one-page pilot: no SEO head found for ${slug}`);
+  const id = JSON.stringify(slug);
+  // The app's files sit one folder up. <base> points every relative URL --
+  // markup, fetches, links the scripts build -- there; the address keeps the
+  // walk's id so the page's scripts find it, and in-page "#" links stay on
+  // this page instead of resolving against the base.
+  const boot = `<base href="../">
+<script>
+(function(){
+  var p = new URLSearchParams(location.search);
+  if (p.get('id') !== ${id}) { p.set('id', ${id}); history.replaceState(history.state, '', location.pathname + '?' + p.toString() + location.hash); }
+  document.addEventListener('click', function(e){
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    var h = a.getAttribute('href');
+    e.preventDefault();
+    if (h.length < 2) return;
+    var el = document.getElementById(h.slice(1));
+    // The skip link's own handler would write its base-resolved href into
+    // the address; this one moves focus the same way and keeps the path.
+    if (a.classList.contains('dp-skip-link')) {
+      e.stopImmediatePropagation();
+      if (el && !el.hasAttribute('tabindex')) el.setAttribute('tabindex', '-1');
+      if (el) el.focus();
+    }
+    if (el) el.scrollIntoView();
+    history.replaceState(history.state, '', location.pathname + location.search + h);
+  }, true);
+})();
+</script>`;
+  let html = app.replace(/<meta charset="UTF-8">/i, m => `${m}\n${boot}`);
+  html = html.replace(/<title id="pageTitle">[^<]*<\/title>/, head[0].replace('<title>', '<title id="pageTitle">'));
+  html = html.replace('</head>', `${ld.join('\n')}\n</head>`);
+  // What every generated English page carries: the Italian-copy marker and
+  // the scoring version the page was built against.
+  html = html.replace(/<meta charset="UTF-8">/i, m => `${m}\n${ITALIAN_COPY_BANNER}`);
+  html = html.replace(/<body\b([^>]*)>/, (m, attrs) => `<body${attrs} data-scoring-version="${recommendationContract.VERSION}">`);
+  if (!html.includes('<base href="../">') || !html.includes('rel="canonical"')) throw new Error(`one-page pilot: could not build ${slug}`);
+  return html;
+}
+
+// ---------------------------------------------------------------
 // 1b. Language
 //
 // Every trail has an English page at trails/<slug>.html and an Italian one at
@@ -1524,7 +1581,9 @@ function main() {
     .filter(page => fs.existsSync(path.join(ROOT, IT_DIR, page || 'index.html')))
     .map(page => `${BASE_URL}/${IT_DIR}/${page}`);
   for (const { t, slug } of entries) {
-    fs.writeFileSync(path.join(OUT_DIR, `${slug}.html`), trailPage(t, slug, all), 'utf8');
+    const englishPage = trailPage(t, slug, all);
+    fs.writeFileSync(path.join(OUT_DIR, `${slug}.html`),
+      ONE_PAGE_PILOT.has(slug) ? onePageTrailPage(englishPage, slug) : englishPage, 'utf8');
     fs.writeFileSync(path.join(IT_OUT_DIR, `${slug}.html`), trailPage(t, slug, all, 'it'), 'utf8');
     urls.push(`${BASE_URL}/trails/${slug}.html`);
     italianUrls.push(`${BASE_URL}/${IT_DIR}/trails/${slug}.html`);
@@ -1587,4 +1646,4 @@ function main() {
 
 if(require.main === module) main();
 
-module.exports = { TIER_BADGE, badgeForTrail, directionsSection, displayStartLabel, displayWaterLabel, displayWaterLines, photoHtml, photoCreditHtml, publicAssetUrl, trailPageAssetUrl, trailPage };
+module.exports = { ONE_PAGE_PILOT, onePageTrailPage, TIER_BADGE, badgeForTrail, directionsSection, displayStartLabel, displayWaterLabel, displayWaterLines, photoHtml, photoCreditHtml, publicAssetUrl, trailPageAssetUrl, trailPage };

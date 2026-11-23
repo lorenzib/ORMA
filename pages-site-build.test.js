@@ -13,6 +13,12 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const { execFileSync } = require('child_process');
+
+// A <base href> (the one-page trail pilot) moves where relative links point.
+const pageDir = page => {
+  const base = (fs.readFileSync(page, 'utf8').match(/<base\s+href=["']([^"']+)["']/i) || [])[1];
+  return base ? path.resolve(path.dirname(page), base) : path.dirname(page);
+};
 const { createHash } = require('crypto');
 
 const ROOT = __dirname;
@@ -187,7 +193,7 @@ describe('every asset reference names the file it actually points at', () => {
         if(/^(?:[a-z]+:)?\/\//i.test(reference)) continue;
         const target = reference.startsWith('/')
           ? path.join(SITE, reference.slice(1))
-          : path.resolve(path.dirname(page), reference);
+          : path.resolve(pageDir(page), reference);
         if(!target.startsWith(SITE) || !fs.existsSync(target)) continue;
         if(!hash(target).startsWith(key)){
           wrong.push(`${path.relative(SITE, page)} -> ${reference}?v=${key}`);
@@ -223,7 +229,7 @@ describe('every asset reference names the file it actually points at', () => {
         if(/^(?:[a-z]+:)?\/\//i.test(reference)) continue;
         const target = reference.startsWith('/')
           ? path.join(SITE, reference.slice(1))
-          : path.resolve(path.dirname(page), reference);
+          : path.resolve(pageDir(page), reference);
         if(!target.startsWith(SITE) || !fs.existsSync(target)) continue;
         if(!keysFor.has(target)) keysFor.set(target, new Set());
         keysFor.get(target).add(key);

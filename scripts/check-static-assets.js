@@ -29,12 +29,16 @@ const BACKOFFICE_SOURCE_PAGES = new Set([
 for(const file of htmlFiles){
   if(BACKOFFICE_SOURCE_PAGES.has(path.relative(root, file))) continue;
   const html = fs.readFileSync(file, 'utf8');
+  // A page with <base href> (the one-page trail pilot) resolves its relative
+  // links against that folder, as the browser does.
+  const baseHref = (html.match(/<base\s+href=["']([^"']+)["']/i) || [])[1];
+  const from = baseHref ? path.resolve(path.dirname(file), baseHref) : path.dirname(file);
   for(const match of html.matchAll(/(?:href|src)=["']([^"']+)["']/g)){
     const raw = match[1];
     if(/^(?:https?:|mailto:|tel:|data:|#|javascript:|\/)/i.test(raw) || /[{}]/.test(raw)) continue;
     const clean = raw.split(/[?#]/)[0];
     if(!clean) continue;
-    const target = path.resolve(path.dirname(file), clean);
+    const target = path.resolve(from, clean);
     if(!fs.existsSync(target)) missing.push(`${path.relative(root, file)} -> ${raw}`);
   }
 }

@@ -34,8 +34,11 @@ describe('every licensed trail photo is credited on its page',()=>{
     expect(f.imageAlt.trim().length).toBeGreaterThan(10);
   });
 
+  // A one-page pilot walk is the app page itself, credited by trail.js below.
+  const pilot=new Set(JSON.parse(fs.readFileSync(path.join(root,'data','one-page-pilot.json'),'utf8')).slugs
+    .map(slug=>`${slug}.html`));
   const pageFor=assetRef=>fs.readdirSync(path.join(root,'trails'))
-    .filter(name=>name.endsWith('.html'))
+    .filter(name=>name.endsWith('.html')&&!pilot.has(name))
     .find(name=>fs.readFileSync(path.join(root,'trails',name),'utf8').includes(assetRef));
 
   // Only 144 of 165 trails have a static page; the rest are served by trail.js,
