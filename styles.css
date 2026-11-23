@@ -4267,6 +4267,7 @@ html.early-member .topnav{display:none;}
 .li-answer-tag{flex:none;padding:1px 8px;border-radius:999px;font:800 11px/1.5 'Inter',sans-serif;}
 .li-answer-tag.is-fit{background:#E3EEE3;color:#3B6A47;}
 .li-answer-tag.is-watch{background:#F6ECD6;color:#7A5A12;}
+.li-answer-season{display:flex;gap:8px;align-items:baseline;margin:0;font:600 12.5px/1.5 'Inter',sans-serif;color:var(--ink);}
 .li-answer-actions{margin-top:4px;}
 /* The one gap on the card the reader can close themselves. Spans both columns
    so it reads as an invitation under the findings, not a third finding. */

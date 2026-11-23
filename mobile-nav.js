@@ -718,7 +718,7 @@
             });
           }
           // i18n first, auth-ui's modal copy calls window.t().
-          const script = loadScript('i18n.js?v=20260917-1')
+          const script = loadScript('i18n.js?v=20261127-8')
             .then(() => loadScript('auth-ui.js?v=20261030-1'));
           // import() inside a classic script resolves against THIS script's
           // URL (the site root), not the page, resolve explicitly against
