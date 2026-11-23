@@ -47,17 +47,27 @@ describe('where it is used', () => {
     expect(read('homepage-search.js')).toMatch(/inSeasonFirst\(ranked/);
   });
 
-  test('the guest homepage has a good-walks-this-month row', () => {
+  test('the guest homepage has no separate good-walks-this-month row', () => {
+    // Removed 21 Nov 2026 (owner): it repeated the Featured this week row.
     const src = read('homepage-search.js');
-    expect(src).toContain("tx('Good Dolomites walks for {month}'");
-    expect(src).toContain("var GOOD_NOW_REGION = 'dolomites';");
-    expect(src).toMatch(/t\.region !== GOOD_NOW_REGION/);
-    expect(src).toMatch(/function goodNow\(/);
+    expect(src).not.toContain('Good Dolomites walks for {month}');
+    expect(src).not.toMatch(/function goodNow\(/);
   });
 
   test('the tags say when the walk is back', () => {
     expect(read('trail-blueprint.js')).toContain('outOfSeasonTag(');
     expect(read('browse-trails.html')).toContain('outOfSeasonTag(');
     expect(read('scripts/generate-trail-pages.js')).toContain("L('Out of season · back in {month}'");
+  });
+});
+
+describe('featured this week', () => {
+  test('rotates through launch-region collections only (no paused FR/CH/AT weeks)', () => {
+    const src = fs.readFileSync(path.join(__dirname, 'homepage-search.js'), 'utf8');
+    expect(src).toContain("var PAUSED_FEATURE_COUNTRIES = ['FR', 'CH', 'AT'];");
+    const collections = require('./collections-data').all();
+    const featured = collections.filter(c => !['FR', 'CH', 'AT'].includes(c.countryCode));
+    expect(featured.length).toBeGreaterThan(0);
+    expect(featured.some(c => c.id === 'savoy-hot-day')).toBe(false);
   });
 });

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "prato-piazza",
   "name": "Prato Piazza (Plätzwiese)",
-  "version": "2026.11.12-beta.8",
-  "generatedAt": "2026-11-12T13:45:54.893Z",
+  "version": "2026.11.21-beta.9",
+  "generatedAt": "2026-11-21T22:46:49.477Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 359010,
+  "packageBytes": 358967,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.63878,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Prato Piazza (Plätzwiese) OSM offline map",
       "url": "map.svg",
-      "bytes": 134089,
-      "sha256": "c4a428916eda8555049276fcce7603f299ce5cc001caad5306650790525f7aca"
+      "bytes": 134070,
+      "sha256": "3f9dc0e26503cc4380e8cdfb61f7734d9023cb007b6237a5249ee69734b737ff"
     },
     {
       "role": "route",

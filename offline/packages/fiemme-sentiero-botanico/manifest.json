@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fiemme-sentiero-botanico",
   "name": "Sentiero botanico naturalistico",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:13.994Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T22:46:48.912Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 835623,
+  "packageBytes": 835580,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.22777,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sentiero botanico naturalistico OSM offline map",
       "url": "map.svg",
-      "bytes": 451375,
-      "sha256": "f213ba27a6c04250ab951f496f6c65cb04d51ff201cbcd59ec16142b88451d7a"
+      "bytes": 451356,
+      "sha256": "785e517464be9087a4a2eff9db0b1735fcc6c92e8d9dca3aac6cf21a2811a240"
     },
     {
       "role": "route",

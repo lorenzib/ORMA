@@ -278,17 +278,6 @@
 .li-today[data-tone="high"]{background:#F7E2DB;color:#8C3A28;}
 @media (max-width:700px){.li-today{margin:8px 0 0;padding:9px 12px;font-size:12.5px;}}
 
-/* "Draw a route here": under the map's Layers button, out of the way while
-   the Layers panel is open in the same spot. */
-.li-map-draw{
-  position:absolute;top:52px;left:10px;z-index:6;display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 12px;
-  border:1px solid var(--paper-line);border-radius:8px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.15);
-  color:var(--ink);font:700 12px 'Inter',sans-serif;text-decoration:none;white-space:nowrap;
-}
-.li-map-draw:hover{border-color:var(--accent);color:var(--accent);}
-.li-map-draw:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
-.li-map.map-layers-open .li-map-draw{display:none;}
-.li-map.map-fs .li-map-draw{top:max(52px,calc(env(safe-area-inset-top) + 52px));left:max(10px,env(safe-area-inset-left));}
 .li-menu-badge{display:inline-block;padding:1px 7px;border-radius:999px;background:#F7EEDC;color:#6E4E14;font:700 10px/1.5 'Inter',sans-serif;vertical-align:1px;}
 @media (max-width:700px){
   body.mhome-active .li-map-draw{top:52px;left:12px;height:32px;padding:0 11px;font-size:11.5px;border-radius:9px;}
@@ -419,38 +408,3 @@
   #returningCustomerHomepage .li-list-count{display:none;}
 }
 
-/* ---------- Today's picks ----------
-   The page opens on three walks from the ranked list (script.js
-   liRenderTodaysPicks). The map and the full list wait behind "See all N
-   walks on the map" and come back to this with "Back to today's picks". */
-#returningCustomerHomepage .li-picks{box-sizing:border-box;width:100%;padding:4px 24px 28px;}
-#returningCustomerHomepage .li-picks[hidden]{display:none!important;}
-#returningCustomerHomepage .li-picks-title{margin:0 0 12px;font:700 20px/1.2 'Bricolage Grotesque',sans-serif;color:var(--ink);}
-#returningCustomerHomepage .li-picks-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
-#returningCustomerHomepage .li-picks-list>.li-empty{grid-column:1/-1;}
-#returningCustomerHomepage .tcard.li-pick:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
-#returningCustomerHomepage .li-picks-more,
-#returningCustomerHomepage .li-picks-back{padding:0;border:0;background:none;color:var(--accent);font:700 13.5px 'Inter',sans-serif;text-decoration:underline;text-underline-offset:3px;cursor:pointer;}
-#returningCustomerHomepage .li-picks-more{display:block;margin:18px auto 0;}
-#returningCustomerHomepage .li-picks-more[hidden]{display:none;}
-#returningCustomerHomepage .li-picks-back{display:block;margin:0 0 8px;font-size:12.5px;}
-#returningCustomerHomepage .li-picks-more:hover,
-#returningCustomerHomepage .li-picks-back:hover{color:var(--ink);}
-@media (min-width:1041px){
-  body[data-homepage-view="returning"] #returningCustomerHomepage > .li-picks{width:calc(100% - 48px);margin-inline:auto;padding-inline:0;}
-}
-@media (max-width:700px){
-  #returningCustomerHomepage .li-picks{padding:12px 14px 24px;}
-  #returningCustomerHomepage .li-picks-list{grid-template-columns:1fr;gap:12px;}
-  /* The phone layout pins the toolbar and makes the map the screen. With the
-     map folded away the picks scroll like a page, below that toolbar. */
-  body.mhome-active.li-picks-mode{overflow:auto;height:auto;}
-  body.mhome-active.li-picks-mode #returningCustomerHomepage .li-picks{padding-top:calc(var(--mhome-top,62px) + 12px);}
-  body.mhome-active .li-picks-back{margin:0 0 6px;}
-}
-/* Short landscape tablets lock the page to the viewport for the map; the
-   picks need the page to scroll. */
-@media (orientation:landscape) and (max-height:520px) and (min-width:701px) and (max-width:1040px){
-  body.li-picks-mode[data-homepage-view="returning"]{overflow:auto;}
-  body.li-picks-mode[data-homepage-view="returning"] #returningCustomerHomepage{height:auto;min-height:100dvh;overflow:visible;}
-}

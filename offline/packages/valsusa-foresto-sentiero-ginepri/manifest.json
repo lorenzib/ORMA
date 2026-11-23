@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valsusa-foresto-sentiero-ginepri",
   "name": "Juniper Trail, Foresto",
-  "version": "2026.11.19-beta.1",
-  "generatedAt": "2026-11-19T22:19:41.646Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:49.908Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 457292,
+  "packageBytes": 457247,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.13681,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Juniper Trail, Foresto OSM offline map",
       "url": "map.svg",
-      "bytes": 197850,
-      "sha256": "cc542b23de4cb0113d29260aa79d468c780b67a9bd34a43f4053f0b88b9d6a50"
+      "bytes": 197829,
+      "sha256": "e018a0a9e8ebbb01cd35d0ce30b1125f21937fd58b836cb7a8e212e1873cbac4"
     },
     {
       "role": "route",

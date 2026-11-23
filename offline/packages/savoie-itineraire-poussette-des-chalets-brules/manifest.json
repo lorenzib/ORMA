@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "savoie-itineraire-poussette-des-chalets-brules",
   "name": "Chalets Brûlés pasture track, Crest-Voland",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.569Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.602Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 258815,
+  "packageBytes": 258772,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.78497,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Chalets Brûlés pasture track, Crest-Voland OSM offline map",
       "url": "map.svg",
-      "bytes": 99781,
-      "sha256": "1594602199577754c5b54c0a5ae212325a356ec91908bed82f1badf6a96e3e34"
+      "bytes": 99762,
+      "sha256": "83af4f26aa7be467c3fff47e8d51c25951559d72617d00269eeaf2a2d5f243be"
     },
     {
       "role": "route",

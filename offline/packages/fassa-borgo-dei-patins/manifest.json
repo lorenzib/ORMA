@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-borgo-dei-patins",
   "name": "Vigo, borgo dei patins",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:13.932Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T22:46:48.835Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 496658,
+  "packageBytes": 496615,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.40851,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Vigo, borgo dei patins OSM offline map",
       "url": "map.svg",
-      "bytes": 274754,
-      "sha256": "8a95a6257f7d143527cccf157cfa2eefe9735bd6d6f3337becc54710ee9746c3"
+      "bytes": 274735,
+      "sha256": "0b2f82cfb0ff3f6b7027c5bf2e718b82c5e07acf96617590a2ee498e4973740f"
     },
     {
       "role": "route",

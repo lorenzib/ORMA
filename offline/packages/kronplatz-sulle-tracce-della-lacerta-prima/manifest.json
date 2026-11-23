@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "kronplatz-sulle-tracce-della-lacerta-prima",
   "name": "Lacerta Prima theme trail at Valdaora di Sopra",
-  "version": "2026.11.12-beta.1",
-  "generatedAt": "2026-11-12T13:48:04.042Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:49.009Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 544912,
+  "packageBytes": 544869,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.74282,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Lacerta Prima theme trail at Valdaora di Sopra OSM offline map",
       "url": "map.svg",
-      "bytes": 320259,
-      "sha256": "b4eebca0b41554d00e7e4e7cded8e86765598465db1ec20c79b33e2fd56dde60"
+      "bytes": 320240,
+      "sha256": "2f2360e869741ec0a526bf6d5b3b505cf035704a4968631220098a523b062997"
     },
     {
       "role": "route",

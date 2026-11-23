@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "brixen-alto-sentiero-di-lazfons",
   "name": "Latzfons high trail",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.810Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.623Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 932252,
+  "packageBytes": 932209,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.67981,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Latzfons high trail OSM offline map",
       "url": "map.svg",
-      "bytes": 461009,
-      "sha256": "38c6f1816486cb4d7341843480f28c4dccd86ffaf27e235f56d16845443ddf99"
+      "bytes": 460990,
+      "sha256": "69defc8f727a4c390b6b5a6dc65c829978e539f5afa90b6b6f94321b78f9d2e0"
     },
     {
       "role": "route",

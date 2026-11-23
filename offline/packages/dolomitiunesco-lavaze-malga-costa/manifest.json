@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "dolomitiunesco-lavaze-malga-costa",
   "name": "Passo Lavazè to Malga Costa",
-  "version": "2026.11.16-beta.1",
-  "generatedAt": "2026-11-16T12:17:29.254Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:48.716Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 449534,
+  "packageBytes": 449491,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.35116,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Passo Lavazè to Malga Costa OSM offline map",
       "url": "map.svg",
-      "bytes": 227629,
-      "sha256": "9babd5e6090ad41cae8c462da29b6281f63d9291d2597d53eb6bab2a4edc7347"
+      "bytes": 227610,
+      "sha256": "30b9e2e773f0ab5a669fe35a6985ff1de0ed26f1f51919ed818302774b97a82d"
     },
     {
       "role": "route",

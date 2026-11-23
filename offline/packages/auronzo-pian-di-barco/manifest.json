@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "auronzo-pian-di-barco",
   "name": "Santa Caterina to Pian di Barco",
-  "version": "2026.11.18-beta.1",
-  "generatedAt": "2026-11-18T09:21:08.106Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:48.610Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 371237,
+  "packageBytes": 371194,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.52549,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Santa Caterina to Pian di Barco OSM offline map",
       "url": "map.svg",
-      "bytes": 202976,
-      "sha256": "6d2c238fb90bb86265e86d41606cca80872117b014b709fcec5de1f71eced791"
+      "bytes": 202957,
+      "sha256": "ecf62ae92eb22a1a205986b1cc49fe3c88deaf462567151a50dd5870deac2196"
     },
     {
       "role": "route",

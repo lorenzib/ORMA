@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fvg-sappada-rifugio-siera-longrone",
   "name": "Cima Sappada to Rifugio Siera through the Longrone forest",
-  "version": "2026.11.18-beta.1",
-  "generatedAt": "2026-11-18T23:19:25.263Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:48.931Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 246397,
+  "packageBytes": 246354,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.55229,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Cima Sappada to Rifugio Siera through the Longrone forest OSM offline map",
       "url": "map.svg",
-      "bytes": 64826,
-      "sha256": "994e7d1e265cb95fdcffa8fbba0eb0ad0ed8efeaf72cec07a8c3238df0e75729"
+      "bytes": 64807,
+      "sha256": "96b8432ee537c8c6ed9cc3411a6aaccab80b378e5c2cf85c3fccfd7e5419faf0"
     },
     {
       "role": "route",

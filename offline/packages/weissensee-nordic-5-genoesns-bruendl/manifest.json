@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "weissensee-nordic-5-genoesns-bruendl",
   "name": "Genösn’s Bründl loop, Weissensee",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.830Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.993Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 409497,
+  "packageBytes": 409454,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.70309,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Genösn’s Bründl loop, Weissensee OSM offline map",
       "url": "map.svg",
-      "bytes": 207657,
-      "sha256": "c59032eae92312fb2956893c9bcad3c79e809b6c28edc60b215f6f51ace35d25"
+      "bytes": 207638,
+      "sha256": "07bffc966db9f6834103d207172e7dc61339226f68abe52400a20fb20695f7dc"
     },
     {
       "role": "route",

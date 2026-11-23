@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11839597",
   "name": "Fenn Promenade",
-  "version": "2026.11.19-beta.9",
-  "generatedAt": "2026-11-19T10:57:27.211Z",
+  "version": "2026.11.21-beta.10",
+  "generatedAt": "2026-11-21T22:46:49.157Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 393334,
+  "packageBytes": 393289,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.53432,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Fenn Promenade OSM offline map",
       "url": "map.svg",
-      "bytes": 192932,
-      "sha256": "708cf458ee7ae114dda207038ec49221b97bdf432a150be598ffaf2d76436731"
+      "bytes": 192911,
+      "sha256": "e833d6734ecdf753eab0ccaf75ca3b7341b46ef8698696c5f0955640e8d169b8"
     },
     {
       "role": "route",

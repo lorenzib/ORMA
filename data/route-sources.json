@@ -4217,6 +4217,14 @@
       "quote": "Distanza 8,4 km · Durata 3:15 h · Salita 465 m · Discesa 465 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-21T10:00:00.000Z"
+    },
+    "camonica-val-brandet": {
+      "url": "https://www.outdooractive.com/it/r/293371226",
+      "publisher": "Turismo Valle Camonica (Outdooractive)",
+      "name": "Val Brandet",
+      "quote": "Distanza 1,8 km · Durata 1:15 h · Salita 185 m · Discesa 0 m · Punto più alto 1.306 m · Punto più basso 1.130 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-19T12:00:00.000Z"
     }
   }
 }

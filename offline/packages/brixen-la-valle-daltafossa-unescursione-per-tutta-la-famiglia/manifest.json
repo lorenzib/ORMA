@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia",
   "name": "Altfasstal to the Wieserhütte",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.819Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.634Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1063946,
+  "packageBytes": 1063903,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.82112,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Altfasstal to the Wieserhütte OSM offline map",
       "url": "map.svg",
-      "bytes": 574567,
-      "sha256": "e709619a58ccb0ced23e5c750cc32dbf779112104c152cb52e3d9bdbd58d37ed"
+      "bytes": 574548,
+      "sha256": "72b00d6632d83d186c2b4af9ee2ac62fe6c772c1eefb8b86ebf766b07f092a8a"
     },
     {
       "role": "route",

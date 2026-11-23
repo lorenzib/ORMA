@@ -39,6 +39,7 @@ window.ORMA_TRAIL_NAMES_IT = {
   "brixen-escursione-al-rifugio-bressanone": "Dalla Fane Alm alla Brixner Hütte",
   "brixen-la-valle-daltafossa-unescursione-per-tutta-la-famiglia": "Dall’Altfasstal alla Wieserhütte",
   "cadini": "Belvedere dei Cadini di Misurina",
+  "camonica-val-brandet": "Val Brandet da Sant’Antonio, andata e ritorno",
   "campiglio-carisolo-centro-storico": "Il borgo antico di Carisolo",
   "campiglio-escursione-a-malga-ritort-da-madonna-di-campiglio": "Madonna di Campiglio – Malga Ritort",
   "campiglio-laghi-di-san-giuliano-garzone-e-vacarsa": "Laghi di San Giuliano, Garzonè e Vacarsa",

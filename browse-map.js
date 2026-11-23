@@ -41,12 +41,9 @@
     return withinLng && lat >= bounds.south && lat <= bounds.north;
   }
 
-  // How strongly a pin out of season this month shows: still findable, but
-  // quieter than the walks to go on now.
-  const OUT_OF_SEASON_OPACITY = 0.35;
-  // From this zoom a walk is its line, not a dot. Below it (a whole region on
-  // screen) the lines are scribbles and the dots read better.
-  const LINE_MIN_ZOOM = 9;
+  // From this zoom every walk is drawn as its line, on the same shared map
+  // as the homepage (explore-map.js); a dot marks each start at every zoom.
+  const LINE_MIN_ZOOM = 7;
 
   function trailFeature(trail, presentation){
     const coordinate = coordinateFor(trail);
@@ -73,8 +70,7 @@
         // Out of season this month (trail-season-words.js): the pin fades and
         // sits under the walks to go on now, the order the list is in.
         out:outOfSeasonNow(trail) ? 1 : 0,
-        // Walks with a line show it from LINE_MIN_ZOOM up; the dot is for
-        // the zoomed-out overview and for walks with no line.
+        // Whether the walk also has a line on the map.
         line:Array.isArray(trail.path) && trail.path.length > 1 ? 1 : 0,
       },
     };
@@ -106,13 +102,18 @@
     return Boolean(words && trail && trail.season && words.outOfSeason(trail.season, new Date().getMonth() + 1));
   }
 
+  // The Trails page map is the homepage map (explore-map.js): the same base,
+  // Layers panel, Draw a route and Expand. Owner, 20 Nov: "applying the
+  // homepage map to trails as well". Here every walk stands out, coloured by
+  // its fit for the dog the page is about, because this list is every walk.
   function create(options){
     const settings = options || {};
-    const container = document.getElementById(settings.containerId || 'browseMap');
+    const containerId = settings.containerId || 'browseMap';
+    const container = document.getElementById(containerId);
     if(!container) return null;
+    const explore = root.ORMAExploreMap;
 
     const searchAreaButton = document.getElementById(settings.searchAreaButtonId || 'browseSearchArea');
-    const mapButtons = Array.from(document.querySelectorAll('[data-browse-map-style]'));
     let map = null;
     let loaded = false;
     let trails = [];
@@ -120,7 +121,6 @@
     let pendingFit = true;
     let ignoreNextMove = false;
     let popup = null;
-    let terrainOn = false;
 
     function verdictFor(trail){
       return typeof settings.verdictFor === 'function' ? (settings.verdictFor(trail) || null) : null;
@@ -131,13 +131,6 @@
       return verdict && root.ORMAMapStyle ? root.ORMAMapStyle.fitForCategory(verdict.category) : '';
     }
 
-    function data(){
-      return {
-        type:'FeatureCollection',
-        features:trails.map(trail => trailFeature(trail, presentationFor(trail))).filter(Boolean),
-      };
-    }
-
     function presentationFor(trail){
       return {
         score:typeof settings.scoreFor === 'function' ? settings.scoreFor(trail) : trail.score,
@@ -146,11 +139,28 @@
       };
     }
 
+    function data(){
+      return {
+        type:'FeatureCollection',
+        features:trails.map(trail => trailFeature(trail, presentationFor(trail))).filter(Boolean),
+      };
+    }
+
     function lineData(){
       return {
         type:'FeatureCollection',
         features:trails.map(trail => trailLineFeature(trail, presentationFor(trail))).filter(Boolean),
       };
+    }
+
+    // The picked walk keeps its fit colour: a dark green line under a red
+    // "Not recommended" card read as a good fit.
+    function routeColourFor(trail){
+      const style = root.ORMAMapStyle;
+      const fit = fitFor(trail);
+      if(style && style.MATCH_COLOURS && style.MATCH_COLOURS[fit]) return style.MATCH_COLOURS[fit];
+      const score = presentationFor(trail).score;
+      return style ? style.matchColour(score) : '#4A7856';
     }
 
     function fitToTrails(){
@@ -172,34 +182,14 @@
       });
     }
 
-    function routeFeature(trail){
-      if(!trail || !Array.isArray(trail.path) || trail.path.length < 2){
-        return { type:'FeatureCollection', features:[] };
-      }
-      const coordinates = trail.path.map(point => [Number(point[1]), Number(point[0])])
-        .filter(point => point.every(Number.isFinite));
-      return coordinates.length > 1 ? {
-        type:'Feature',
-        geometry:{ type:'LineString', coordinates },
-        properties:{
-          id:String(trail.id || ''),
-          fit:fitFor(trail),
-          score:Number(typeof settings.scoreFor === 'function' ? settings.scoreFor(trail) : trail.score) || 0,
-        },
-      } : { type:'FeatureCollection', features:[] };
-    }
-
     function selectedTrail(){
       return trails.find(trail => String(trail.id) === String(selectedId));
     }
 
     function syncSelection(){
       if(!loaded || !map) return;
-      ['browse-trails-selected-halo', 'browse-trails-selected'].forEach(layerId => {
-        if(map.getLayer(layerId)) map.setFilter(layerId, ['==', ['get', 'id'], selectedId || '__none__']);
-      });
-      const routeSource = map.getSource('browse-selected-route');
-      if(routeSource) routeSource.setData(routeFeature(selectedTrail()));
+      const trail = selectedTrail();
+      explore.setSelected(map, trail || null, { routeColor:trail ? routeColourFor(trail) : null, fit:false });
     }
 
     function showPopup(trail){
@@ -242,193 +232,48 @@
 
     function applyData(shouldFit){
       if(!loaded || !map) return;
-      const source = map.getSource('browse-trails');
-      if(source) source.setData(data());
-      const lines = map.getSource('browse-trail-lines');
+      const points = map.getSource('trail-points');
+      if(points) points.setData(data());
+      const lines = map.getSource('trail-paths');
       if(lines) lines.setData(lineData());
       syncSelection();
       if(shouldFit) fitToTrails();
     }
 
-    function addTerrain(){
-      if(map.getSource('browse-terrain-dem')) return;
-      map.addSource('browse-terrain-dem', {
-        type:'raster-dem',
-        tiles:['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'],
-        tileSize:256,
-        encoding:'terrarium',
-        maxzoom:15,
-        attribution:'Elevation tiles © AWS Terrain Tiles',
-      });
-      const firstSymbol = (map.getStyle().layers || []).find(layer => layer.type === 'symbol');
-      map.addLayer({
-        id:'browse-terrain-hillshade',
-        type:'hillshade',
-        source:'browse-terrain-dem',
-        layout:{ visibility:'none' },
-        paint:{
-          'hillshade-shadow-color':'#31483a',
-          'hillshade-highlight-color':'#f8f3e5',
-          'hillshade-accent-color':'#6f8d79',
-          'hillshade-exaggeration':0.38,
-        },
-      }, firstSymbol && firstSymbol.id);
-    }
-
-    function setTerrain(on){
-      if(!loaded || !map) return;
-      terrainOn = !!on;
-      addTerrain();
-      if(map.getLayer('browse-terrain-hillshade')){
-        map.setLayoutProperty('browse-terrain-hillshade', 'visibility', terrainOn ? 'visible' : 'none');
-      }
-      if(typeof map.setTerrain === 'function'){
-        map.setTerrain(terrainOn ? { source:'browse-terrain-dem', exaggeration:1.12 } : null);
-      }
-      ignoreNextMove = true;
-      map.easeTo({ pitch:terrainOn ? 38 : 0, duration:360 });
-      mapButtons.forEach(button => {
-        const pressed = (button.dataset.browseMapStyle === 'terrain') === terrainOn;
-        button.classList.toggle('on', pressed);
-        button.setAttribute('aria-pressed', String(pressed));
-      });
-    }
-
-    function installLayers(){
-      map.addSource('browse-trails', { type:'geojson', data:data() });
-      const fitColour = root.ORMAMapStyle
-        ? root.ORMAMapStyle.fitColourExpression('fit', 'score')
-        : '#3e7a91';
-      // Every walk as a thin line in its match colour on a white edge, the
-      // same look as the trail page. Out-of-season walks fade like their pins.
-      map.addSource('browse-trail-lines', { type:'geojson', data:lineData() });
-      const lineOpacity = ['case', ['==', ['coalesce', ['get', 'out'], 0], 1], OUT_OF_SEASON_OPACITY, 1];
-      map.addLayer({
-        id:'browse-trail-lines-casing', type:'line', source:'browse-trail-lines', minzoom:LINE_MIN_ZOOM,
-        layout:{ 'line-join':'round', 'line-cap':'round', 'line-sort-key':['-', 1, ['coalesce', ['get', 'out'], 0]] },
-        paint:{
-          'line-color':'#fff',
-          'line-width':['interpolate', ['linear'], ['zoom'], 9, 3, 12, 4.5, 15, 7],
-          'line-opacity':lineOpacity,
-        },
-      });
-      map.addLayer({
-        id:'browse-trail-lines', type:'line', source:'browse-trail-lines', minzoom:LINE_MIN_ZOOM,
-        layout:{ 'line-join':'round', 'line-cap':'round', 'line-sort-key':['-', 1, ['coalesce', ['get', 'out'], 0]] },
-        paint:{
-          'line-color':fitColour,
-          'line-width':['interpolate', ['linear'], ['zoom'], 9, 1.5, 12, 2.5, 15, 4],
-          'line-opacity':lineOpacity,
-        },
-      });
-      // A wide, near-invisible twin so a fingertip still hits a thin line.
-      map.addLayer({
-        id:'browse-trail-lines-hit', type:'line', source:'browse-trail-lines', minzoom:LINE_MIN_ZOOM,
-        layout:{ 'line-join':'round', 'line-cap':'round' },
-        paint:{ 'line-color':'#000', 'line-width':16, 'line-opacity':0.01 },
-      });
-      // Dots: walks with a line only below LINE_MIN_ZOOM, walks without one
-      // at every zoom.
-      map.addLayer({
-        id:'browse-trails-individual', type:'circle', source:'browse-trails',
-        filter:['==', ['coalesce', ['get', 'line'], 0], 0],
-        // Walks in season draw on top of those out of season this month.
-        layout:{ 'circle-sort-key':['-', 1, ['coalesce', ['get', 'out'], 0]] },
-        paint:{
-          'circle-color':fitColour,
-          'circle-radius':7,
-          'circle-opacity':['case', ['==', ['coalesce', ['get', 'out'], 0], 1], OUT_OF_SEASON_OPACITY, 1],
-          'circle-stroke-opacity':['case', ['==', ['coalesce', ['get', 'out'], 0], 1], OUT_OF_SEASON_OPACITY, 1],
-          'circle-stroke-width':2.5,
-          'circle-stroke-color':[
-            'case', ['==', ['coalesce', ['get', 'saved'], 0], 1], '#9C3A25', '#fff',
-          ],
-        },
-      });
-      map.addLayer({
-        id:'browse-trails-overview', type:'circle', source:'browse-trails',
-        filter:['==', ['coalesce', ['get', 'line'], 0], 1], maxzoom:LINE_MIN_ZOOM,
-        // Walks in season draw on top of those out of season this month.
-        layout:{ 'circle-sort-key':['-', 1, ['coalesce', ['get', 'out'], 0]] },
-        paint:{
-          'circle-color':fitColour,
-          'circle-radius':7,
-          'circle-opacity':['case', ['==', ['coalesce', ['get', 'out'], 0], 1], OUT_OF_SEASON_OPACITY, 1],
-          'circle-stroke-opacity':['case', ['==', ['coalesce', ['get', 'out'], 0], 1], OUT_OF_SEASON_OPACITY, 1],
-          'circle-stroke-width':2.5,
-          'circle-stroke-color':[
-            'case', ['==', ['coalesce', ['get', 'saved'], 0], 1], '#9C3A25', '#fff',
-          ],
-        },
-      });
-      map.addLayer({
-        id:'browse-trails-selected-halo', type:'circle', source:'browse-trails',
-        filter:['==', ['get','id'], '__none__'],
-        paint:{ 'circle-color':'rgba(46,64,52,.18)', 'circle-radius':16 },
-      });
-      map.addLayer({
-        id:'browse-trails-selected', type:'circle', source:'browse-trails',
-        filter:['==', ['get','id'], '__none__'],
-        paint:{ 'circle-color':fitColour, 'circle-radius':9, 'circle-stroke-color':'#fff', 'circle-stroke-width':3 },
-      });
-      // The picked walk keeps its fit colour: a dark green line under a red
-      // "Not recommended" card read as a good fit. A white casing keeps a
-      // red or amber line clear of the pins in the same colours.
-      map.addSource('browse-selected-route', { type:'geojson', data:{ type:'FeatureCollection', features:[] } });
-      map.addLayer({
-        id:'browse-selected-route-casing', type:'line', source:'browse-selected-route',
-        layout:{ 'line-join':'round', 'line-cap':'round' },
-        paint:{ 'line-color':'#fff', 'line-width':['interpolate', ['linear'], ['zoom'], 9, 5, 12, 6.5, 15, 9], 'line-opacity':0.95 },
-      }, 'browse-trails-individual');
-      map.addLayer({
-        id:'browse-selected-route-line', type:'line', source:'browse-selected-route',
-        layout:{ 'line-join':'round', 'line-cap':'round' },
-        paint:{ 'line-color':fitColour, 'line-width':['interpolate', ['linear'], ['zoom'], 9, 2.5, 12, 3.5, 15, 5], 'line-opacity':1 },
-      }, 'browse-trails-individual');
-
-      const clickable = ['browse-trails-individual', 'browse-trails-overview', 'browse-trail-lines-hit'];
-      clickable.forEach(layerId => map.on('click', layerId, event => {
-        const feature = event.features && event.features[0];
-        if(!feature) return;
-        const id = feature.properties.id;
-        select(id, { popup:true });
-        if(typeof settings.onSelect === 'function') settings.onSelect(id);
-      }));
-      clickable.forEach(layerId => {
-        map.on('mouseenter', layerId, () => { map.getCanvas().style.cursor = 'pointer'; });
-        map.on('mouseleave', layerId, () => { map.getCanvas().style.cursor = ''; });
-      });
-    }
-
     function initialise(){
-      const mapOptions = {
-        container:settings.containerId || 'browseMap',
-        style:'https://tiles.openfreemap.org/styles/liberty',
-        center:[11.3, 46.45],
-        zoom:7.3,
-        pitch:0,
-        attributionControl:{ compact:true },
-      };
-      map = new root.maplibregl.Map(root.DoloPawsMapRuntime
-        ? root.DoloPawsMapRuntime.mapOptions(mapOptions) : mapOptions);
-      map.addControl(new root.maplibregl.NavigationControl({ showCompass:false }), 'top-right');
-      map.addControl(new root.maplibregl.GeolocateControl({
-        positionOptions:{ enableHighAccuracy:false },
-        trackUserLocation:false,
-        showUserHeading:false,
-        fitBoundsOptions:{ maxZoom:12.5 },
-      }), 'top-right');
-      map.on('load', () => {
+      map = new root.maplibregl.Map(explore.mapOptions({ container:containerId, center:[11.3, 46.45], zoom:7.3 }));
+      const wrap = container.closest('.li-map');
+      explore.addChrome(map, {
+        wrap,
+        expandButton:settings.expandButtonId ? document.getElementById(settings.expandButtonId) : null,
+        drawLinks:(settings.drawLinkIds || []).map(linkId => document.getElementById(linkId)),
+      });
+      map.on('load', async () => {
+        const beforeIds = await explore.setupBase(map);
+        const fitColour = root.ORMAMapStyle.fitColourExpression('fit', 'score');
+        const layers = explore.addTrailLayers(map, beforeIds, {
+          colour:fitColour,
+          // Every walk is in the list, so every line stands out in its fit
+          // colour and every start is a dot in the same colour.
+          lineEmphasis:true,
+          pinEmphasis:false,
+          pinOtherColour:fitColour,
+          pinRadius:5,
+          pinOpacity:0.95,
+        });
+        layers.clickLayers.forEach(layerId => {
+          map.on('click', layerId, event => {
+            const feature = event.features && event.features[0];
+            if(!feature) return;
+            const id = feature.properties.id;
+            select(id, { popup:true });
+            if(typeof settings.onSelect === 'function') settings.onSelect(id);
+          });
+          map.on('mouseenter', layerId, () => { map.getCanvas().style.cursor = 'pointer'; });
+          map.on('mouseleave', layerId, () => { map.getCanvas().style.cursor = ''; });
+        });
+        explore.addOverlays(map, containerId);
         loaded = true;
-        if(root.DoloPawsMapRuntime) root.DoloPawsMapRuntime.enhance(map);
-        // The same calmed basemap the homepage map has always used. Browse was
-        // left on full Liberty, so the two maps of the same trails did not look
-        // like the same product, and every cafe and bus stop competed with the
-        // markers that are the point of the screen.
-        if(root.ORMAMapStyle && typeof root.ORMAMapStyle.quietBasemap === 'function'){
-          root.ORMAMapStyle.quietBasemap(map);
-        }
-        installLayers();
         applyData(pendingFit);
         pendingFit = false;
         container.querySelectorAll('.browse-map-placeholder').forEach(element => element.remove());
@@ -440,10 +285,6 @@
       });
       return map;
     }
-
-    mapButtons.forEach(button => button.addEventListener('click', () => {
-      setTerrain(button.dataset.browseMapStyle === 'terrain');
-    }));
 
     const schedule = root.DoloPawsMapRuntime
       ? root.DoloPawsMapRuntime.whenVisible(container, initialise, { rootMargin:'520px 0px' })

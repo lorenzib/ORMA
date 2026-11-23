@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valsusa-giaglione-forte-santa-chiara",
   "name": "Forte di Santa Chiara, Giaglione",
-  "version": "2026.11.21-beta.1",
-  "generatedAt": "2026-11-21T19:44:43.611Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:49.912Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 821762,
+  "packageBytes": 821717,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.13601,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Forte di Santa Chiara, Giaglione OSM offline map",
       "url": "map.svg",
-      "bytes": 422826,
-      "sha256": "174c596ba4a771f486c9d8f62ed62d29e23d3e28bb619cc7ced43c65c17c06ab"
+      "bytes": 422805,
+      "sha256": "e39d8f6029c583c71c1af100d6d56739a4d8ff392fd678d7e61a838ecea6b1dd"
     },
     {
       "role": "route",

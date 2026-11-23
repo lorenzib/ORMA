@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lario-alla-ricerca-di-un-panorama-unico",
   "name": "Brogno to the Nuvolone viewpoint",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.083Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.022Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 773519,
+  "packageBytes": 773476,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.93203,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Brogno to the Nuvolone viewpoint OSM offline map",
       "url": "map.svg",
-      "bytes": 484208,
-      "sha256": "081dfa93a96bac656f8fc9cf2e640b1739c43e282e4d27e5a2ca63109e234a83"
+      "bytes": 484189,
+      "sha256": "4130be983ca729aa6f711db0fb744d3836235a4138891238393ca6687dd2679b"
     },
     {
       "role": "route",

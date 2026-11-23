@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-13491868",
   "name": "Birmehlweg - Sentiero Birmehl",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.275Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T22:46:49.241Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 545475,
+  "packageBytes": 545432,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.64696,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Birmehlweg - Sentiero Birmehl OSM offline map",
       "url": "map.svg",
-      "bytes": 329180,
-      "sha256": "4068d8756fb6fb3e648a6c2095c0b9e969912ff845c6d21bf2f0c7c7027df410"
+      "bytes": 329161,
+      "sha256": "d3be96e13635cb20c002e52941321abf7180376e12a6ca0f0d51ed967b00e897"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "seiseralm-compatsch-wiedner-eck",
   "name": "Compatsch – Wiedner Eck loop",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.579Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.616Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 691857,
+  "packageBytes": 691814,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.52769,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Compatsch – Wiedner Eck loop OSM offline map",
       "url": "map.svg",
-      "bytes": 388187,
-      "sha256": "5a210b15dc51f4f9e2f09772b8ebc81a073d2343848cd5dbf3df900941adfe6c"
+      "bytes": 388168,
+      "sha256": "0f7715a59044845b2df9326e9809f7fc7e7f3320a2c849c95fd37869c144895f"
     },
     {
       "role": "route",

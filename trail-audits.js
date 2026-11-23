@@ -73448,6 +73448,78 @@
       ],
       startPoint: { lat: 45.341187, lng: 7.524154, label: "The Cappella della Consolata, Piano Audi, Corio, the board’s start" },
       desc: "A loop from Piano Audi through beech woods and old summer pastures with stone huts, past the Colle Matteo viewpoint and the ruins of Alpe Grifun. The board lists 8.4 km and 465 m up."
+    },
+    'camonica-val-brandet': {
+      // Hand audit: 21 November 2026, verified on arrival (Valle Camonica batch 1, scouting queue row 4; owner decision of 18 November 2026 to add Northern Italy mountain walks).
+      // Turismo Valle Camonica: “Val Brandet” on Outdooractive, drawn there and back on 5 OSM ways along its published line (data/board-line-routes.geojson).
+      // One way on the page with no return given: distance and climb are the published one-way figures doubled; the time is measured by ORMA (DIN 33466).
+      // Commune: Corteno Golgi (no dog rule found online; its site and the Unione police pages were searched), so the national rule applies. Riserva naturale regionale Valli di Sant’Antonio and SIC/ZSC IT2070017 on the line: the site’s conservation measures (D.g.r. X/4429 of 30 November 2015, Allegato 2, art. 3 b) ask for dogs on a lead and closely watched, all year. The reserve’s own plan is not published online. About 0.1 km of cobbled lane in Sant’Antonio each way; the rest is the forest road (path 129). No main road, no T2.
+      // The stored line follows the published line, 100% each way.
+      area: "Sant’Antonio – Val Brandet, Corteno Golgi",
+      distance: 3.6,
+      elevation: 185,
+      hours: '1.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: "Turismo Valle Camonica publishes the walk one way, from Sant’Antonio to the Rifugio Brandet (1.8 km, 185 m up, 1 h 15), and gives no return. ORMA walks it there and back on the same road: 3.6 km with 185 m up and down. The time, about 1 h 30, is measured by ORMA (DIN 33466), not the board’s.",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start in the hamlet of Sant’Antonio, Corteno Golgi, by the church of Sant’Antonio, where you can park, the published start; turn off the SS39 between Edolo and Aprica for Sant’Antonio.",
+        "sequence": "From the church follow the cobbled Via Sant’Antonio to the start of the forest road into the Val Brandet (path 129). It stays on the left bank of the Brandet stream, steep at first, then nearly level past the farm buildings of Brandet, towards the Rifugio Brandet. Come back the same way.",
+        "switches": "Via Sant’Antonio from the church; path 129, the forest road on the left bank of the Brandet stream, up the Val Brandet towards the Rifugio Brandet; back the same way.",
+        "sources": [
+          {
+            "label": "Turismo Valle Camonica, Val Brandet (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/293371226",
+            "authority": "Turismo Valle Camonica",
+            "tag": "tourist board",
+            "reviewedAt": "2026-11-19"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-19',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The covered wooden bridge over the stream at Sant’Antonio, by the start (Luca Giarelli on Wikimedia Commons, CC BY-SA 3.0), 5 October 2008, 25 m from the line.",
+        route: "Official one-way walk of 1.8 km from The hamlet of Sant’Antonio, Corteno Golgi, by its church, as Turismo Valle Camonica, the tourism portal of the Valle Camonica, based at the Comunità Montana di Valle Camonica in Breno publishes it, with no return given; ORMA walks it there and back on the same path (owner rule of 12 November 2026). The stored line is drawn on 5 OSM ways along the published line out and back, 3.6 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "Path 129 (CAI), the forest road from Sant’Antonio up the Val Brandet on the left bank of the Brandet stream, towards the Rifugio Brandet; back the same way.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official one way: 1.8 km, 185 m up, 0 m down, 1 h 15, between 1,130 m and 1,306 m (Turismo Valle Camonica, Outdooractive). There and back on the same road: 3.6 km, 185 m up and 185 m down; about 1 h 30 measured by ORMA (DIN 33466), since the board times the walk one way only."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Turismo Valle Camonica, “Val Brandet” (Outdooractive tour with its line and figures)",
+          "Comune di Corteno Golgi publishes no dog regulation online (searched its site and the Unione police pages), so the Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in places open to the public and a muzzle carried",
+          "Regione Lombardia, D.g.r. X/4429 of 30 November 2015, Allegato 2, IT2070017 Valli di Sant’Antonio, norme di attuazione, art. 3 b: dogs on a lead and closely watched",
+          "Regione Lombardia geoportal (AreeProtette: regional, natural and national parks, regional and national reserves, PLIS, natural monuments): Riserva naturale regionale Valli di Sant’Antonio (DCR III/1902 of 5 February 1985) on the line; European Environment Agency Natura 2000 service: ZSC IT2070017 Valli di Sant’Antonio",
+          "OpenStreetMap ways along the board’s line (5 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-19'
+      },
+      shadeCoverage: 30,
+      heatRisk: 'low',
+      exposure: false,
+      surfaceHazards: ["The first part of the forest road is steep, then it levels out: let your dog set the pace","The road is open to farm and forestry vehicles: keep your dog close and step aside for them","The Brandet stream runs beside the road and is fast after rain or snowmelt: keep your dog out of the water"],
+      terrainType: "Forest road in a mountain valley",
+      shadeDescription: "Partly shaded: the forest road runs through woods along the stream in places, as photos show, though OSM maps no woodland on the line; the meadows by the Brandet farm buildings are open.",
+      terrainDescription: "A short walk at 1,130–1,310 m in the Valli di Sant’Antonio nature reserve, from the hamlet of Sant’Antonio up the forest road beside the Brandet stream, steep at first and then nearly level past the old farm buildings of Brandet, and back the same way.",
+      waterDescription: "No drinking water is mapped on the line (OSM). The Rifugio Brandet near the top serves food and drink in season. Bring water and a bowl for your dog.",
+      dogNotes: "The rules of the Valli di Sant’Antonio Natura 2000 site, which covers the valley, ask for dogs on a lead and closely watched all year. Corteno Golgi publishes no dog rule of its own; the national rule adds a lead of at most 1.5 m and a muzzle carried.",
+      tips: "Park in Sant’Antonio, off the road between Edolo and Aprica: 1.8 km up the Val Brandet towards the Rifugio Brandet, about 1 h 15 as the board gives, and the same way back, about 1 h 30 in all by ORMA’s DIN 33466 estimate. Keep your dog on a lead in the reserve and carry a muzzle.",
+      sourceLinks: [
+        { label: "Turismo Valle Camonica, Val Brandet (Outdooractive)", url: "https://www.outdooractive.com/it/r/293371226" },
+        { label: "Turismo Valle Camonica (Piazza Tassara 3, Breno)", url: "https://www.turismovallecamonica.it/" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Lombardia, D.g.r. 30 novembre 2015 n. X/4429, Allegato 2: misure di conservazione sito-specifiche (IT2070017 Valli di Sant’Antonio)", url: "https://www.regione.lombardia.it/content/dam/rl/canali-tematici-servizi/06-ambiente-e-territorio/05-biodiversita/misure-di-conservazione-zsc-e-sic/allegati/dgr-4429-2015-allegato-2-%20misure-di-conservazione-sito-specifiche.pdf" },
+        { label: "Regione Lombardia geoportal, protected-area services (parks, reserves, PLIS, natural monuments)", url: "https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.15172, lng: 10.209757, label: "The hamlet of Sant’Antonio, Corteno Golgi, by its church, the published start" },
+      desc: "A short walk into the Val Brandet, one of the two valleys of the Valli di Sant’Antonio nature reserve above Corteno Golgi, up the forest road beside the Brandet stream from the hamlet of Sant’Antonio towards the Rifugio Brandet, and back the same way. Turismo Valle Camonica lists 1.8 km one way; there and back it is 3.6 km with 185 m up and down, about 1 h 30."
     }
   };
 

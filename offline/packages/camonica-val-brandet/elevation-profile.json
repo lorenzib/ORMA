@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "camonica-val-brandet",
+  "distanceKm": 3.6,
+  "ascentM": 185,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1120
+    },
+    {
+      "km": 0.3,
+      "elev": 1177
+    },
+    {
+      "km": 0.6,
+      "elev": 1242
+    },
+    {
+      "km": 0.9,
+      "elev": 1298
+    },
+    {
+      "km": 1.1,
+      "elev": 1281
+    },
+    {
+      "km": 1.4,
+      "elev": 1287
+    },
+    {
+      "km": 1.6,
+      "elev": 1306
+    },
+    {
+      "km": 1.9,
+      "elev": 1301
+    },
+    {
+      "km": 2.2,
+      "elev": 1287
+    },
+    {
+      "km": 2.5,
+      "elev": 1296
+    },
+    {
+      "km": 2.8,
+      "elev": 1288
+    },
+    {
+      "km": 3,
+      "elev": 1269
+    },
+    {
+      "km": 3.3,
+      "elev": 1177
+    },
+    {
+      "km": 3.5,
+      "elev": 1127
+    },
+    {
+      "km": 3.6,
+      "elev": 1120
+    }
+  ]
+}

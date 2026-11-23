@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "brixen-da-rio-di-pusteria-al-bunker-di-spinga-escursione-per-famigl",
   "name": "Mühlbach to Spinges",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.813Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.627Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 946252,
+  "packageBytes": 946209,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.78478,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Mühlbach to Spinges OSM offline map",
       "url": "map.svg",
-      "bytes": 602995,
-      "sha256": "6a30dcb75a33ec5815c2c148c67f652f2166cc44af64ef0338bc0ba48debd950"
+      "bytes": 602976,
+      "sha256": "a4eea399425643bb62c87709a329e9713616937b3f7c61e899f997f60a189e27"
     },
     {
       "role": "route",

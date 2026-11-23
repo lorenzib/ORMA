@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valchiusella-cima-bossola",
   "name": "Cima Bossola, Valchiusella",
-  "version": "2026.11.21-beta.1",
-  "generatedAt": "2026-11-21T21:05:52.247Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:49.769Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 282668,
+  "packageBytes": 282623,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.47742,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Cima Bossola, Valchiusella OSM offline map",
       "url": "map.svg",
-      "bytes": 76149,
-      "sha256": "a6f450f88cbd7feb34b80e69f4be430831a5106290ccd5b42bc45851e9898d79"
+      "bytes": 76128,
+      "sha256": "365f68fb4ed5616003a4555cec6a71cb6e7292ad5cc51efc2a2ce67d54be2b92"
     },
     {
       "role": "route",

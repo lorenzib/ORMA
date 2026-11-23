@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12172440",
   "name": "Natur- und Kulturweg",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.231Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T22:46:49.189Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 764703,
+  "packageBytes": 764660,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.82544,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Natur- und Kulturweg OSM offline map",
       "url": "map.svg",
-      "bytes": 424044,
-      "sha256": "7aec323ab372d23a9b1b1575aa9ec9be8add952b2a2ada2657c45b2b7f784296"
+      "bytes": 424025,
+      "sha256": "d752a9c5577900427ed39d960bdf0b84e85b73b0c1d65946f5fce715a5bbd6e8"
     },
     {
       "role": "route",

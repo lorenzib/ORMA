@@ -79,7 +79,7 @@ const flushPromises = () => new Promise((resolve) => setTimeout(resolve, 0));
 
 describe('shared map icon layers', () => {
   test('homepage water source layers switch to symbol icons at high zoom', () => {
-    const context = loadBrowserScript('script.js', { DoloPawsIcons: icons });
+    const context = loadBrowserScript('explore-map.js', { DoloPawsIcons: icons });
     const map = createMapMock();
 
     context.addWaterSourcesLayers(map);
