@@ -282,7 +282,7 @@
           map.addSource('walk-lifts', { type:'geojson', data:{ type:'FeatureCollection', features:features } });
           var before = map.getLayer('walk-line') ? 'walk-line' : undefined;
           map.addLayer({ id:'walk-lifts-line', type:'line', source:'walk-lifts', layout:{ visibility:'none' },
-            paint:{ 'line-color':'#4E90A8', 'line-width':2, 'line-dasharray':['match',['get','status'],'summer',['literal',[1,0]],['literal',[2,1]]] } }, before);
+            paint:{ 'line-color':['match',['get','status'],'summer','#4E90A8','no-summer','#9C3A25','#5A5548'], 'line-width':2 } }, before);
           map.addLayer({ id:'walk-lifts-labels', type:'symbol', source:'walk-lifts', layout:{ visibility:'none',
             'symbol-placement':'line', 'text-field':['get','name'], 'text-size':10 },
             paint:{ 'text-color':'#2E4034', 'text-halo-color':'#fff', 'text-halo-width':1.5 } }, before);

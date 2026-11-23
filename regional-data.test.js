@@ -5,7 +5,9 @@ const { loadProductionTrails } = require('./scripts/load-production-trails');
 const { loadSlugOverrides, overriddenName, overriddenGloss } = require('./scripts/trail-slug-overrides');
 
 const root = __dirname;
-const read = file => fs.readFileSync(path.join(root, file), 'utf8');
+const read = file => fs.readFileSync(path.join(root, file), 'utf8')
+  // The homepage map's base and layers live in explore-map.js, shared with the Trails page.
+  + (file === 'script.js' ? '\n' + fs.readFileSync(path.join(root, 'explore-map.js'), 'utf8') : '');
 const json = file => JSON.parse(read(file));
 
 function loadRegionalTrailFile(file) {
@@ -182,8 +184,8 @@ describe('DATA-03 regional runtime boundaries', () => {
   });
 
   test('runtime POI consumers request the selected regional asset', () => {
-    expect(read('script.js')).toContain("DoloPawsRegionalData.poiUrl(activeRegion, 'water')");
-    expect(read('script.js')).toContain("DoloPawsRegionalData.poiUrl(activeRegion, 'huts-bars')");
+    expect(read('script.js')).toContain("DoloPawsRegionalData.poiUrl(emRegion(), 'water')");
+    expect(read('script.js')).toContain("DoloPawsRegionalData.poiUrl(emRegion(), 'huts-bars')");
     expect(read('detail-pois.js')).toContain("regionalPoiUrl('water')");
     expect(read('detail-pois.js')).toContain("regionalPoiUrl('huts-bars')");
     expect(read('dog-routes-layer.js')).toContain("poiUrl(activeRegion, 'dog-routes')");

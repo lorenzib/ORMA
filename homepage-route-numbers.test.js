@@ -3,7 +3,7 @@ const path = require('path');
 
 describe('logged-in homepage mapped-route hierarchy', () => {
   const root = __dirname;
-  const script = fs.readFileSync(path.join(root, 'script.js'), 'utf8');
+  const script = fs.readFileSync(path.join(root, 'script.js'), 'utf8') + '\n' + fs.readFileSync(path.join(root, 'explore-map.js'), 'utf8');
   const routeRefs = fs.readFileSync(path.join(root, 'trail-route-refs.js'), 'utf8');
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 
@@ -17,10 +17,11 @@ describe('logged-in homepage mapped-route hierarchy', () => {
     // into one cased corridor once masking the raster stopped being the goal.
     // What must survive is the personalised colour, not the layer count.
     // One definition of the tiers now, in map-style.js.
-    expect(script).toContain("const catalogueMatchColour = window.ORMAMapStyle.matchColourExpression('score');");
+    expect(script).toContain("colour:window.ORMAMapStyle.matchColourExpression('score'),");
+    expect(script).toContain('const catalogueMatchColour = settings.colour;');
     expect(fs.readFileSync(path.join(root, 'map-style.js'), 'utf8'))
       .toContain("MATCH_COLOURS = Object.freeze({ good: '#4A7856', fair: '#C98A2E', poor: '#9C3A25' })");
-    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-color': \[[\s\S]*?catalogueMatchColour, '#9AA19C'/);
+    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-color': \[[\s\S]*?catalogueMatchColour, otherColour/);
     // The shortlist is a thin solid match-colour line on a white edge (owner,
     // 19 Nov: the old 15-20 px translucent bands read as blobs); the other
     // trails are fainter hairlines at 0.5.
@@ -30,7 +31,7 @@ describe('logged-in homepage mapped-route hierarchy', () => {
     // Thin lines, expressed per rank rather than as a bare zoom ramp.
     expect(script).toContain('rankWidth([3, 4.5, 5.5, 7], [1.5, 2.5, 3.5, 4.5])');
     expect(script).toContain('rankWidth([1.5, 2, 2.5, 3.5], [0.8, 1.2, 1.6, 2])');
-    expect(script).toContain("'line-opacity': ['case', TOP_MATCH_TEST, 1, 0.5]");
+    expect(script).toContain("'line-opacity': ['case', outOfSeason, 0.3, lineEmphasis, 1, 0.5]");
     expect(script).not.toContain('rankWidth([5, 10, 15, 20]');
   });
 

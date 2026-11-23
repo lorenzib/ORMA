@@ -2,12 +2,12 @@ const fs = require('fs');
 
 describe('mobile map trail-card selection', () => {
   const homepage = fs.readFileSync('index.html', 'utf8');
-  const script = fs.readFileSync('script.js', 'utf8');
+  const script = fs.readFileSync('script.js', 'utf8') + '\n' + fs.readFileSync('explore-map.js', 'utf8');
   const mobile = fs.readFileSync('homepage-mobile.css', 'utf8');
 
   test('completes route selection before showing the matching card', () => {
-    expect(script).toContain('function liRouteDistanceMeters(first, second)');
-    expect(script).toContain('liRouteDistanceMeters(route[0], route[route.length - 1]) <= 75');
+    expect(script).toContain('function metresBetween(first, second)');
+    expect(script).toContain('metresBetween(first, last) <= 75');
     expect(script).not.toContain('visible && distMeters(route[0], route[route.length - 1]) <= 75');
     expect(script).toContain("if(typeof showMapCallout === 'function') showMapCallout(t)");
   });
