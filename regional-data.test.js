@@ -191,6 +191,21 @@ describe('DATA-03 regional runtime boundaries', () => {
     expect(read('dog-routes-layer.js')).toContain("poiUrl(activeRegion, 'dog-routes')");
   });
 
+  test("dog routes fall back to the shared file when the region has none (the Trails page's 'all')", () => {
+    const requested = [];
+    const sandbox = {
+      window: { DoloPawsRegionalData: { poiUrl: region => (region === 'savoy' ? 'dog-friendly-routes-savoy.geojson' : null) } },
+      fetch: url => { requested.push(url); return new Promise(() => {}); },
+      console,
+    };
+    vm.createContext(sandbox);
+    vm.runInContext(read('dog-routes-layer.js'), sandbox);
+    const map = { getSource: () => null };
+    sandbox.initializeDogRoutes(map, 'all');
+    sandbox.initializeDogRoutes(map, 'savoy');
+    expect(requested).toEqual(['./dog-friendly-routes.geojson', 'dog-friendly-routes-savoy.geojson']);
+  });
+
   test('background route overlays do not open third-party route popups', () => {
     const layer = read('dog-routes-layer.js');
     expect(layer).toContain("id: 'dog-routes-line'");
