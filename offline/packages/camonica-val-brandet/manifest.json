@@ -3,10 +3,10 @@
   "trailId": "camonica-val-brandet",
   "name": "Val Brandet from Sant’Antonio",
   "version": "2026.11.23-beta.1",
-  "generatedAt": "2026-11-23T08:24:00.109Z",
+  "generatedAt": "2026-11-23T10:23:22.855Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 405475,
+  "packageBytes": 405430,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.13413,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Val Brandet from Sant’Antonio OSM offline map",
       "url": "map.svg",
-      "bytes": 245321,
-      "sha256": "4efc6a21b544279e8fcabd65a30fe16f67ebd7b1cc7db075a5184bfaedc86122"
+      "bytes": 245300,
+      "sha256": "ecd2338366cbc381494c065c8ed15212561d4f0e41d2ef341ceb03170e7a43ed"
     },
     {
       "role": "route",
