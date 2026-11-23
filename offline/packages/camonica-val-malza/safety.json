@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "camonica-val-malza",
+  "generatedAt": "2026-11-23T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 9.6,
+    "ascentM": 401,
+    "highestPointM": 1941,
+    "expectedDuration": "3 h 30 min",
+    "difficulty": "Hard",
+    "shadePercent": 10
+  },
+  "trailhead": {
+    "lat": 46.297545,
+    "lng": 10.5063,
+    "label": "The park car park and picnic area at Sant’Apollonia, Ponte di Legno, the published start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "The first 0.7 km is a tarmac lane open to cars: keep your dog on a short lead.",
+    "The farm road serves summer farms and pastures: expect cows and farm vehicles, and keep your dog close.",
+    "The last stretch to the hut is steeper: let your dog set the pace.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-23"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-23",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Rifugio Val Malza from Sant’Apollonia": "Rifugio Val Malza da Sant’Apollonia, andata e ritorno",
+    "The park car park and picnic area at Sant’Apollonia, Ponte di Legno, the published start": "Il parcheggio e l’area picnic del parco a Sant’Apollonia, Ponte di Legno, la partenza indicata",
+    "The first 0.7 km is a tarmac lane open to cars: keep your dog on a short lead.": "I primi 0,7 km sono una strada asfaltata aperta alle auto: tenete il cane al guinzaglio corto.",
+    "The farm road serves summer farms and pastures: expect cows and farm vehicles, and keep your dog close.": "La strada agricola serve alpeggi e pascoli estivi: aspettatevi mucche e mezzi agricoli, e tenete il cane vicino.",
+    "The last stretch to the hut is steeper: let your dog set the pace.": "L’ultimo tratto fino al rifugio è più ripido: lasciate che sia il cane a dettare il ritmo."
+  }
+}

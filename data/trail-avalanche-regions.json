@@ -238,12 +238,26 @@
       ],
       "highPoint": 2600
     },
+    "camonica-rifugio-bozzi": {
+      "regions": [
+        "IT-25-BS-01",
+        "IT-25-SO-03"
+      ],
+      "highPoint": 2385
+    },
     "camonica-val-brandet": {
       "regions": [
         "IT-25-BG-01",
         "IT-25-SO-04"
       ],
       "highPoint": 1306
+    },
+    "camonica-val-malza": {
+      "regions": [
+        "IT-25-BS-01",
+        "IT-25-SO-03"
+      ],
+      "highPoint": 1941
     },
     "campiglio-carisolo-centro-storico": {
       "regions": [

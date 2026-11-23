@@ -598,6 +598,23 @@
       }
     },
     {
+      "id": "camonica-rifugio-bozzi",
+      "approvedReviewId": "commons-camonica-rifugio-bozzi-on-route",
+      "approvedAt": "2026-11-23T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/camonica-rifugio-bozzi-case-di-viso.jpg",
+        "heroImage": "images/trails/camonica-rifugio-bozzi-case-di-viso.jpg",
+        "imageAlt": "A green alpine valley with a cluster of stone and wooden huts, a gravel road winding through the meadows, conifers on the slopes and snowy peaks in the distance",
+        "imageCredit": "Case di Viso and the Valle di Viso, seen on the way down from the Rifugio Bozzi",
+        "imageCreditText": "Case di Viso and the Valle di Viso, seen on the way down from the Rifugio Bozzi by Snowdog",
+        "imageCreator": "Snowdog",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Case_di_Viso_scendendo_dal_Rifugio_Bozzi.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "camonica-val-brandet",
       "approvedReviewId": "commons-camonica-val-brandet-on-route",
       "approvedAt": "2026-11-19T12:00:00.000Z",
@@ -611,6 +628,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Ponte_in_legno_-_Sant'Antonio_-_Corteno_Golgi_(Foto_Luca_Giarelli).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "camonica-val-malza",
+      "approvedReviewId": "commons-camonica-val-malza-on-route",
+      "approvedAt": "2026-11-23T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/camonica-val-malza-rifugio.jpg",
+        "heroImage": "images/trails/camonica-val-malza-rifugio.jpg",
+        "imageAlt": "A wooden mountain hut with a long balcony stands on a grassy slope above a rocky stream, with waterfalls on the craggy hillside behind and alpenrose in flower",
+        "imageCredit": "The Rifugio Val Malza above its stream, at the end of the walk",
+        "imageCreditText": "The Rifugio Val Malza above its stream, at the end of the walk by Denis Faustinelli",
+        "imageCreator": "Denis Faustinelli",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Malga_Val_Malza_-_panoramio.jpg",
         "imageSourceType": "licensed-source"
       }
     },

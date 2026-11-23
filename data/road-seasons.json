@@ -1,6 +1,6 @@
 {
   "contractVersion": "road-seasons-v1",
-  "note": "Roads that close for the winter and are the only drive to a walk's start. openMonths are the months the road is open for most of the month, read from the road's operator or town on accessedAt; usually says, in the source's own terms, when it opens and shuts (part: early, mid or late). A walk listed under trails is out of season in the months its road is shut. Curated by hand; check each spring and autumn. Roads checked and left out, because they stay open in winter or the walk can be reached another way, are in checked. access holds roads that stay open but limit cars for part of the year (a summer booking, a winter toll with time windows): information only, never a change to a walk's months; months are the months its monthly note shows. Seasonal buses are access rules too (ids start bus-): a bus to the start that runs for part of the year only, read from the South Tyrol timetable feed (STA open data, stops within 400 m of the start; checked for every walk start in South Tyrol). Trentino and Cortina are not covered yet: the Trentino feed holds the winter timetable only and Dolomiti Bus publishes none.",
+  "note": "Roads that close for the winter and are the only drive to a walk's start. openMonths are the months the road is open for most of the month, read from the road's operator or town on accessedAt; usually says, in the source's own terms, when it opens and shuts (part: early, mid or late). A walk listed under trails is out of season in the months its road is shut. Curated by hand; check each spring and autumn. Roads checked and left out, because they stay open in winter or the walk can be reached another way, are in checked. access holds roads that stay open but limit cars for part of the year (a summer booking, a winter toll with time windows): information only, never a change to a walk's months; months are the months its monthly note shows. Seasonal buses are access rules too (ids start bus-): a bus to the start that runs for part of the year only, read from the South Tyrol timetable feed (STA open data, stops within 400 m of the start; checked for every walk start in South Tyrol). Trentino and Cortina are not covered yet: the Trentino feed holds the winter timetable only and Dolomiti Bus publishes none. dogRules are park rules that keep dogs off a walk for part of the year: allowed gives the first and last day dogs may come; the months with no allowed day are out of season, and the months the window starts or ends in say the date in their monthly note.",
   "roads": {
     "tre-cime-toll-road": {
       "name": "Tre Cime toll road (Misurina – Rifugio Auronzo)",
@@ -349,6 +349,16 @@
       "access": [
         "san-nicolo-road"
       ]
+    },
+    "camonica-rifugio-bozzi": {
+      "dogRules": [
+        "stelvio-zones-a-b"
+      ]
+    },
+    "camonica-val-malza": {
+      "dogRules": [
+        "stelvio-zones-a-b"
+      ]
     }
   },
   "checked": [
@@ -411,5 +421,25 @@
       "url": "https://cortina.dolomiti.org/wp-content/uploads/2025/06/Cortina_Sentieri_Hiking_Map_2025_web.pdf",
       "accessedAt": "2026-11-12"
     }
-  ]
+  ],
+  "dogRules": {
+    "stelvio-zones-a-b": {
+      "operator": "Regione Lombardia, D.g.r. X/5928 of 30 November 2016 (Stelvio National Park Natura 2000 measures)",
+      "url": "https://www.regione.lombardia.it/content/dam/rl/canali-tematici-servizi/06-ambiente-e-territorio/05-biodiversita/misure-di-conservazione-zsc-e-sic/allegati/dgr-5928-2016-adozione-misure-conservazione-9-siti-rete-natura-200-nel-parco-dello-stelvio.pdf",
+      "accessedAt": "2026-11-21",
+      "allowed": {
+        "from": {
+          "day": 15,
+          "month": 7
+        },
+        "to": {
+          "day": 15,
+          "month": 9
+        }
+      },
+      "line": "This walk crosses zone B of the Stelvio National Park, in the Natura 2000 site IT2040044. There dogs are allowed only from 15 July to 15 September, on signed paths and on a lead; the rest of the year they are kept out of zones A and B.",
+      "shutNote": "In {month} dogs are kept out of zone B of the Stelvio National Park, which this walk crosses: they may come only from 15 July to 15 September.",
+      "partNote": "In {month} check the date: dogs may come on this walk only from 15 July to 15 September, on a lead."
+    }
+  }
 }

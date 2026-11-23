@@ -73520,6 +73520,154 @@
       ],
       startPoint: { lat: 46.15172, lng: 10.209757, label: "The hamlet of Sant’Antonio, Corteno Golgi, by its church, the published start" },
       desc: "A short walk into the Val Brandet, one of the two valleys of the Valli di Sant’Antonio nature reserve above Corteno Golgi, up the forest road beside the Brandet stream from the hamlet of Sant’Antonio towards the Rifugio Brandet, and back the same way. Turismo Valle Camonica lists 1.8 km one way; there and back it is 3.6 km with 185 m up and down, about 1 h 30."
+    },
+    'camonica-rifugio-bozzi': {
+      // Hand audit: 23 November 2026, verified on arrival (Valle Camonica batch 2, sealed summer-only on the owner's call of 23 November 2026, scouting queue row 4; owner decision of 18 November 2026 to add Northern Italy mountain walks).
+      // Turismo Valle Camonica: “Sentiero n. 152 – Rifugio Bozzi” on Outdooractive, drawn there and back on 45 OSM ways along its published line (data/board-line-routes.geojson).
+      // One way on the page with no return given: distance and climb are the published one-way figures doubled; the time is measured by ORMA (DIN 33466).
+      // Commune: Ponte di Legno (no dog rule found online), so the national rule applies. Parco Nazionale dello Stelvio and ZPS IT2040044 on the whole line; on the park’s zoning map (Tav. Gf, plan adopted 2020) the path climbs through zone B, with Case di Viso and the hut’s basin in zone C. D.g.r. X/5928/2016 keeps dogs out of zones A and B except on signed paths from 15 July to 15 September, on a lead: sealed summer-only on the owner’s call of 23 November 2026, with the window as a season rule (data/road-seasons.json dogRules). About 0.4 km of cobbled lane through Case di Viso each way; the rest is the gravel military road and, for the last 0.2 km, a mountain path (T2, caution line). No main road.
+      // The stored line follows the published line, 100% each way.
+      area: "Case di Viso – Rifugio Bozzi, Ponte di Legno",
+      distance: 12.8,
+      elevation: 606,
+      hours: '4.75',
+      routeShape: 'out-and-back',
+      routeShapeNote: "Turismo Valle Camonica publishes the walk one way, from Case di Viso to the Rifugio Bozzi (6.4 km, 604 m up, 2 h 15), and gives no return. ORMA walks it there and back on the same road: 12.8 km with 606 m up and down. The time, about 4 h 45, is measured by ORMA (DIN 33466), not the board’s.",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the car park at the end of the road in Case di Viso, Ponte di Legno, the published start; from Ponte di Legno take the SS300 towards the Gavia pass and turn off for Case di Viso.",
+        "sequence": "Walk through the hamlet of Case di Viso on the cobbled lane, then follow path 152, the old military road of the First World War, as it climbs the Valle di Viso in wide bends. Near the top a short mountain path (path 102) leads up to the Rifugio Bozzi in the Conca del Montozzo, by the war museum and restored trenches. Come back the same way.",
+        "switches": "The cobbled lane through Case di Viso; path 152, the gravel military road up the Valle di Viso; path 102, the last 0.2 km of mountain path to the Rifugio Bozzi; back the same way.",
+        "sources": [
+          {
+            "label": "Turismo Valle Camonica, Sentiero n. 152 – Rifugio Bozzi (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/293430639",
+            "authority": "Turismo Valle Camonica",
+            "tag": "tourist board",
+            "reviewedAt": "2026-11-23"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Case di Viso and the Valle di Viso, seen on the way down from the Rifugio Bozzi (Snowdog on Wikimedia Commons, CC BY-SA 4.0), 24 June 2017, 26 m from the line.",
+        route: "Official one-way walk of 6.4 km from The car park at the end of the road in Case di Viso, Ponte di Legno, as Turismo Valle Camonica, the tourism portal of the Valle Camonica, based at the Comunità Montana di Valle Camonica in Breno publishes it, with no return given; ORMA walks it there and back on the same path (owner rule of 12 November 2026). The stored line is drawn on 45 OSM ways along the published line out and back, 12.7 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "Path 152 (CAI), the First World War military road from Case di Viso up the Valle di Viso, then path 102 for the last 0.2 km to the Rifugio Bozzi; back the same way.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official one way: 6.4 km, 604 m up, 2 m down, 2 h 15, between 1,756 m and 2,475 m (Turismo Valle Camonica, Outdooractive). There and back on the same road: 12.8 km, 606 m up and 606 m down; about 4 h 45 measured by ORMA (DIN 33466), since the board times the walk one way only."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Turismo Valle Camonica, “Sentiero n. 152 – Rifugio Bozzi” (Outdooractive tour with its line and figures)",
+          "Comune di Ponte di Legno publishes no dog regulation online (searched its site and the Unione dei Comuni dell’Alta Valle Camonica pages), so the Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in places open to the public and a muzzle carried",
+          "Regione Lombardia, D.g.r. X/5928 of 30 November 2016, Allegato 1, section 4.9 (ZPS IT2040044 Parco Nazionale dello Stelvio): dogs are not to be brought into park zones A and B, except in the valley-floor areas and, from 15 July to 15 September, on signed paths, always on a lead",
+          "Parco Nazionale dello Stelvio, Lombardy sector, Piano del Parco adopted in 2020 (D.g.r. XI/3087), Tav. Gf zoning map: path 152 in zone B, Case di Viso and the Conca del Montozzo in zone C. Which plan’s zoning D.g.r. 5928 means (2005 or 2020) is not stated; the seal reads the path as zone B",
+          "Regione Lombardia geoportal (AreeProtette: regional, natural and national parks, regional and national reserves, PLIS, natural monuments): Parco Nazionale dello Stelvio on the line; European Environment Agency Natura 2000 service: ZPS IT2040044 Parco Nazionale dello Stelvio",
+          "OpenStreetMap ways along the board’s line (45 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-23'
+      },
+      shadeCoverage: 0,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["The last 0.2 km up to the Rifugio Bozzi is a mountain path (T2), rocky underfoot: keep your dog close and let it pick its footing","There is no shade and no water on the way up to 2,475 m: carry water for your dog and rest it in the hut’s basin","Storms build fast at this height in summer: check the forecast and turn back if the sky darkens"],
+      terrainType: "Gravel military road and a short mountain path",
+      shadeDescription: "No shade: above Case di Viso the road climbs through open meadows and scree, with no woodland on the line (OSM).",
+      terrainDescription: "A long mountain walk at 1,760–2,480 m in the Stelvio National Park, from the summer hamlet of Case di Viso up the gravel military road of the First World War in wide bends, then a short mountain path to the Rifugio Bozzi and its small war museum, and back the same way.",
+      waterDescription: "No drinking water is mapped on the line (OSM). The Rifugio Bozzi at the top serves food and drink in season. Bring water and a bowl for your dog.",
+      dogNotes: "The path climbs through zone B of the Stelvio National Park, inside the Natura 2000 site IT2040044. The site’s rules let dogs into zones A and B only on signed paths from 15 July to 15 September, on a lead, so bring your dog only in those weeks and keep it on a lead the whole way. Ponte di Legno publishes no dog rule of its own; the national rule adds a lead of at most 1.5 m and a muzzle carried.",
+      tips: "Come between 15 July and 15 September, the only weeks the park lets dogs on this path, and keep your dog on a lead. Park at the end of the road in Case di Viso: 6.4 km up the military road to the Rifugio Bozzi, about 2 h 15 as the board gives, and the same way back, about 4 h 45 in all by ORMA’s DIN 33466 estimate. Carry water and a muzzle.",
+      sourceLinks: [
+        { label: "Turismo Valle Camonica, Sentiero n. 152 – Rifugio Bozzi (Outdooractive)", url: "https://www.outdooractive.com/it/r/293430639" },
+        { label: "Turismo Valle Camonica (Piazza Tassara 3, Breno)", url: "https://www.turismovallecamonica.it/" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Lombardia, D.g.r. 30 novembre 2016 n. X/5928, Allegato 1: misure di conservazione dei siti Natura 2000 nel Parco Nazionale dello Stelvio (ZPS IT2040044)", url: "https://www.regione.lombardia.it/content/dam/rl/canali-tematici-servizi/06-ambiente-e-territorio/05-biodiversita/misure-di-conservazione-zsc-e-sic/allegati/dgr-5928-2016-adozione-misure-conservazione-9-siti-rete-natura-200-nel-parco-dello-stelvio.pdf" },
+        { label: "Parco Nazionale dello Stelvio, Lombardy sector, Piano del Parco (adopted 2020), Tav. Gf: zoning map Passo Gavia – Case di Viso", url: "https://lombardia.stelviopark.it/wp-content/uploads/sites/2/2020/05/PPAD_Tav.Gf_Carta-della-Zonizzazione_10000_Passo-Gavia-Case-di-Viso.pdf" },
+        { label: "Regione Lombardia geoportal, protected-area services (parks, reserves, PLIS, natural monuments)", url: "https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.298912, lng: 10.549002, label: "The car park at the end of the road in Case di Viso, Ponte di Legno, the published start" },
+      desc: "A long summer walk in the Stelvio National Park above Ponte di Legno, up the First World War military road from Case di Viso to the Rifugio Bozzi in the Conca del Montozzo, with its small war museum and restored trenches, and back the same way. Turismo Valle Camonica lists 6.4 km one way; there and back it is 12.8 km with 606 m up and down, about 4 h 45. Dogs may come only from 15 July to 15 September."
+    },
+    'camonica-val-malza': {
+      // Hand audit: 23 November 2026, verified on arrival (Valle Camonica batch 2, sealed summer-only on the owner's call of 23 November 2026, scouting queue row 4; owner decision of 18 November 2026 to add Northern Italy mountain walks).
+      // Turismo Valle Camonica: “Sentiero n. 158 – S. Apollonia – Rifugio Val Malza” on Outdooractive, drawn there and back on 37 OSM ways along its published line (data/board-line-routes.geojson).
+      // One way on the page with no return given: distance and climb are the published one-way figures doubled; the time is measured by ORMA (DIN 33466).
+      // Commune: Ponte di Legno (no dog rule found online), so the national rule applies. Parco Nazionale dello Stelvio and ZPS IT2040044 on the line; on the park’s zoning map (Tav. Gf, plan adopted 2020) the Valle delle Messi floor is zone C and the upper stretch below the hut touches zone B. D.g.r. X/5928/2016 keeps dogs out of zones A and B except on signed paths from 15 July to 15 September, on a lead: read conservatively for the whole walk and sealed summer-only on the owner’s call of 23 November 2026 (data/road-seasons.json dogRules). 40 m on the SS300 at the start, then 0.7 km of tarmac lane each way (16% of the walk); the rest is the gravel farm road. No T2.
+      // The stored line follows the published line, 100% each way.
+      area: "Sant’Apollonia – Rifugio Val Malza, Ponte di Legno",
+      distance: 9.6,
+      elevation: 401,
+      hours: '3.5',
+      routeShape: 'out-and-back',
+      routeShapeNote: "Turismo Valle Camonica publishes the walk one way, from Sant’Apollonia to the Rifugio Val Malza (4.8 km, 400 m up, 2 h), and gives no return. ORMA walks it there and back on the same road: 9.6 km with 401 m up and down. The time, about 3 h 30, is measured by ORMA (DIN 33466), not the board’s.",
+      routeNumberGuidance: {
+        "mode": "numbered",
+        "start": "Start at the car park and picnic area of the Stelvio National Park at Sant’Apollonia, Ponte di Legno, the published start, on the SS300 towards the Gavia pass.",
+        "sequence": "From the car park follow path 158 up the Valle delle Messi, first on a short tarmac lane, then on the gravel farm road that serves the old farm buildings, keeping to the left bank of the stream. After a last steeper stretch you reach the Rifugio Val Malza. Come back the same way.",
+        "switches": "Path 158 from the Sant’Apollonia car park; the tarmac lane, then the gravel farm road up the Valle delle Messi on the left bank of the stream, past the Case Pradazzo; the last steeper stretch to the Rifugio Val Malza; back the same way.",
+        "sources": [
+          {
+            "label": "Turismo Valle Camonica, Sentiero n. 158 – S. Apollonia – Rifugio Val Malza (Outdooractive, route description)",
+            "url": "https://www.outdooractive.com/it/r/293393873",
+            "authority": "Turismo Valle Camonica",
+            "tag": "tourist board",
+            "reviewedAt": "2026-11-23"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-23',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The Rifugio Val Malza above its stream, at the end of the walk (Denis Faustinelli on Wikimedia Commons, CC BY 3.0), 23 June 2008, 20 m from the line.",
+        route: "Official one-way walk of 4.8 km from The park car park and picnic area at Sant’Apollonia, Ponte di Legno, as Turismo Valle Camonica, the tourism portal of the Valle Camonica, based at the Comunità Montana di Valle Camonica in Breno publishes it, with no return given; ORMA walks it there and back on the same path (owner rule of 12 November 2026). The stored line is drawn on 37 OSM ways along the published line out and back, 9.5 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "Path 158 (CAI), from Sant’Apollonia up the Valle delle Messi on the farm road, on the left bank of the stream, to the Rifugio Val Malza; back the same way.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official one way: 4.8 km, 400 m up, 1 m down, 2 h, between 1,584 m and 1,978 m (Turismo Valle Camonica, Outdooractive). There and back on the same road: 9.6 km, 401 m up and 401 m down; about 3 h 30 measured by ORMA (DIN 33466), since the board times the walk one way only."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Turismo Valle Camonica, “Sentiero n. 158 – S. Apollonia – Rifugio Val Malza” (Outdooractive tour with its line and figures)",
+          "Comune di Ponte di Legno publishes no dog regulation online (searched its site and the Unione dei Comuni dell’Alta Valle Camonica pages), so the Italian national rule (Ministero della Salute dog ordinance, extended on 16 July 2026): dogs on a lead of at most 1.5 m in places open to the public and a muzzle carried",
+          "Regione Lombardia, D.g.r. X/5928 of 30 November 2016, Allegato 1, section 4.9 (ZPS IT2040044 Parco Nazionale dello Stelvio): dogs are not to be brought into park zones A and B, except in the valley-floor areas and, from 15 July to 15 September, on signed paths, always on a lead",
+          "Parco Nazionale dello Stelvio, Lombardy sector, Piano del Parco adopted in 2020 (D.g.r. XI/3087), Tav. Gf zoning map: the Valle delle Messi floor in zone C, the upper stretch below the Rifugio Val Malza touching zone B. Which plan’s zoning D.g.r. 5928 means (2005 or 2020) is not stated; the seal applies the zone B rule to the whole walk",
+          "Regione Lombardia geoportal (AreeProtette: regional, natural and national parks, regional and national reserves, PLIS, natural monuments): Parco Nazionale dello Stelvio on the line; European Environment Agency Natura 2000 service: ZPS IT2040044 Parco Nazionale dello Stelvio",
+          "OpenStreetMap ways along the board’s line (37 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-23'
+      },
+      shadeCoverage: 10,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["The first 0.7 km is a tarmac lane open to cars: keep your dog on a short lead","The farm road serves summer farms and pastures: expect cows and farm vehicles, and keep your dog close","The last stretch to the hut is steeper: let your dog set the pace"],
+      terrainType: "Farm road in a mountain valley",
+      shadeDescription: "Mostly open: the farm road runs up the meadows of the valley floor, with only a few trees near the start (OSM).",
+      terrainDescription: "A mountain walk at 1,580–1,980 m in the Stelvio National Park, from Sant’Apollonia up the gentle floor of the Valle delle Messi on a farm road past old farm buildings, then a steeper last stretch to the Rifugio Val Malza, and back the same way.",
+      waterDescription: "No drinking water is mapped on the line (OSM). The Rifugio Val Malza at the top serves food and drink in season. Bring water and a bowl for your dog.",
+      dogNotes: "The walk is in the Stelvio National Park and the Natura 2000 site IT2040044, and its upper stretch touches park zone B. The site’s rules let dogs into zones A and B only on signed paths from 15 July to 15 September, on a lead, so bring your dog only in those weeks and keep it on a lead the whole way. Ponte di Legno publishes no dog rule of its own; the national rule adds a lead of at most 1.5 m and a muzzle carried.",
+      tips: "Come between 15 July and 15 September, the only weeks the park lets dogs into its zone B, and keep your dog on a lead. Park at Sant’Apollonia on the road to the Gavia pass: 4.8 km up the Valle delle Messi to the Rifugio Val Malza, about 2 h as the board gives, and the same way back, about 3 h 30 in all by ORMA’s DIN 33466 estimate. Carry water and a muzzle.",
+      sourceLinks: [
+        { label: "Turismo Valle Camonica, Sentiero n. 158 – S. Apollonia – Rifugio Val Malza (Outdooractive)", url: "https://www.outdooractive.com/it/r/293393873" },
+        { label: "Turismo Valle Camonica (Piazza Tassara 3, Breno)", url: "https://www.turismovallecamonica.it/" },
+        { label: "Ministero della Salute, Ordinanza 16 luglio 2026 (extension of the 2013 dog ordinance)", url: "https://www.trovanorme.salute.gov.it/norme/dettaglioAtto?id=114315" },
+        { label: "Regione Lombardia, D.g.r. 30 novembre 2016 n. X/5928, Allegato 1: misure di conservazione dei siti Natura 2000 nel Parco Nazionale dello Stelvio (ZPS IT2040044)", url: "https://www.regione.lombardia.it/content/dam/rl/canali-tematici-servizi/06-ambiente-e-territorio/05-biodiversita/misure-di-conservazione-zsc-e-sic/allegati/dgr-5928-2016-adozione-misure-conservazione-9-siti-rete-natura-200-nel-parco-dello-stelvio.pdf" },
+        { label: "Parco Nazionale dello Stelvio, Lombardy sector, Piano del Parco (adopted 2020), Tav. Gf: zoning map Passo Gavia – Case di Viso", url: "https://lombardia.stelviopark.it/wp-content/uploads/sites/2/2020/05/PPAD_Tav.Gf_Carta-della-Zonizzazione_10000_Passo-Gavia-Case-di-Viso.pdf" },
+        { label: "Regione Lombardia geoportal, protected-area services (parks, reserves, PLIS, natural monuments)", url: "https://www.cartografia.servizirl.it/arcgis2/rest/services/ambiente" },
+        { label: "European Environment Agency, Natura 2000 sites (map service)", url: "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 46.297545, lng: 10.5063, label: "The park car park and picnic area at Sant’Apollonia, Ponte di Legno, the published start" },
+      desc: "A summer walk in the Stelvio National Park above Ponte di Legno, up the Valle delle Messi from Sant’Apollonia on a farm road past old farm buildings to the Rifugio Val Malza, and back the same way. Turismo Valle Camonica lists 4.8 km one way; there and back it is 9.6 km with 401 m up and down, about 3 h 30. Dogs may come only from 15 July to 15 September."
     }
   };
 

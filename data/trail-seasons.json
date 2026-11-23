@@ -10332,6 +10332,41 @@
           "accessedAt": "2026-11-22"
         }
       }
+    },
+    "camonica-rifugio-bozzi": {
+      "highPoint": 2385,
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/293430639",
+          "accessedAt": "2026-11-23"
+        }
+      }
+    },
+    "camonica-val-malza": {
+      "highPoint": 1941,
+      "recommended": {
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "source": {
+          "label": "Outdooractive",
+          "url": "https://www.outdooractive.com/it/r/293393873",
+          "accessedAt": "2026-11-23"
+        }
+      }
     }
   }
 }

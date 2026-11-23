@@ -212,6 +212,7 @@
     ['Riva di Solto / Lake Iseo', 45.7710, 10.0400, 'Lake Iseo', 'lombardy', 'bergamo'],
     ['Tignale', 45.7390, 10.7180, 'Alto Garda Bresciano', 'lombardy', 'brescia'],
     ['Corteno Golgi / Valle Camonica', 46.1670, 10.2440, 'Valle Camonica', 'lombardy', 'brescia'],
+    ['Ponte di Legno / Valle Camonica', 46.2600, 10.5100, 'Valle Camonica', 'lombardy', 'brescia'],
     ['Toscolano Maderno', 45.6400, 10.6070, 'Alto Garda Bresciano', 'lombardy', 'brescia'],
     ['Magasa / Valvestino', 45.7800, 10.6170, 'Alto Garda Bresciano', 'lombardy', 'brescia'],
     // ---- Friuli Venezia Giulia ----
