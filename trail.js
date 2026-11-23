@@ -2270,6 +2270,7 @@ function renderTrail(t){
       setLayerChipLabel(document.getElementById('routesToggle'), 'routes', tx('Trail routes'));
       setLayerChipLabel(document.getElementById('liftsToggle'), 'lifts', tx('Lift stations'));
       setLayerChipLabel(document.getElementById('nearbyToggle'), 'nearby', tx('Nearby trails'));
+      setLayerChipLabel(document.getElementById('contoursToggle'), 'mountain', tx('Contour lines'));
       addTerrainSource(map);
       increaseLabelDensity(map);
       addTerrainToggle(map, 'trailDetailMap', 1.5, 45,
@@ -2393,13 +2394,29 @@ function renderTrail(t){
         walk: Array.isArray(t.path) ? t.path.map(([lat, lng]) => [lng, lat]) : null,
       });
       if (typeof addBaseHillshade === 'function') addBaseHillshade(map, window.ORMAMapStyle.networkLayerId(map));
-      // Elevation contours from the same DEM -- the detail a street basemap
-      // lacks. Lazy-loaded and fully guarded: if the plugin fails, the map is
-      // unchanged.
-      if (window.DoloPawsMapRuntime && window.DoloPawsMapRuntime.loadContour) {
-        window.DoloPawsMapRuntime.loadContour()
-          .then(() => window.ORMAMapStyle.addContours(map))
-          .catch(() => {});
+      // Elevation contours from the same DEM, now a Layers chip that starts
+      // off: drawn by default they read as a second, dashed path network and
+      // the map did not look like the homepage map (owner, 19 Nov).
+      // Lazy-loaded on the first press and fully guarded: if the plugin
+      // fails, the map is unchanged.
+      const contoursToggleBtn = document.getElementById('contoursToggle');
+      if (contoursToggleBtn && window.DoloPawsMapRuntime && window.DoloPawsMapRuntime.loadContour) {
+        contoursToggleBtn.hidden = false;
+        let contoursReady = null;
+        contoursToggleBtn.addEventListener('click', () => {
+          const showing = contoursToggleBtn.classList.toggle('on');
+          contoursToggleBtn.setAttribute('aria-pressed', showing ? 'true' : 'false');
+          if (!contoursReady) {
+            contoursReady = window.DoloPawsMapRuntime.loadContour()
+              .then(() => window.ORMAMapStyle.addContours(map))
+              .catch(() => null);
+          }
+          contoursReady.then(() => {
+            ['contour-lines', 'contour-labels'].forEach(id => {
+              if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', contoursToggleBtn.classList.contains('on') ? 'visible' : 'none');
+            });
+          });
+        });
       }
       const routesToggleBtn = document.getElementById('routesToggle');
       if (routesToggleBtn){

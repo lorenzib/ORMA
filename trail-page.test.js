@@ -201,7 +201,7 @@ describe('trail page map controls', () => {
     // that used to be visible must be reachable, not merely gone.
     expect([...panel.querySelectorAll('button')].map(button => button.id)).toEqual([
       'routesToggle', 'fountainsToggle', 'hutsToggle', 'foodToggle',
-      'placesToggle', 'liftsToggle', 'nearbyToggle',
+      'placesToggle', 'liftsToggle', 'contoursToggle', 'nearbyToggle',
     ]);
     expect(document.getElementById('fountainsToggle').getAttribute('aria-pressed')).toBe('true');
     expect(document.getElementById('hutsToggle').getAttribute('aria-pressed')).toBe('true');
@@ -218,7 +218,7 @@ describe('trail page map controls', () => {
   test('marked routes and relief are on by default, opt-out via the toggle', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const trail = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
-    const home = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
+    const home = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8') + '\n' + fs.readFileSync(path.join(__dirname, 'explore-map.js'), 'utf8');
     document.body.innerHTML = html;
     const toggle = document.getElementById('routesToggle');
     expect(toggle.getAttribute('aria-pressed')).toBe('true');
@@ -228,7 +228,7 @@ describe('trail page map controls', () => {
     // and both carry the always-on hillshade. The chip hides whichever is drawn.
     expect(trail).toContain('ORMAMapStyle.addHikingRoutes(map');
     expect(trail).toContain('window.ORMAMapStyle.setHikingRoutesVisible(map, showing);');
-    expect(home).toContain('ORMAMapStyle.addHikingRoutes(trailMapInstance');
+    expect(home).toContain('style.addHikingRoutes(map, {');
     expect(fs.readFileSync(path.join(__dirname, 'map-style.js'), 'utf8'))
       .toContain("visibility: config.visible === false ? 'none' : 'visible'");
     // Both maps now start with the network on. The detail map always did --
@@ -337,8 +337,8 @@ describe('trail page map controls', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
 
-    expect(html).toContain('i18n.js?v=20261126-5');
-    expect(html).toContain('trail-app.bundle.js?v=20261125-5');
+    expect(html).toContain('i18n.js?v=20261127-8');
+    expect(html).toContain('trail-app.bundle.js?v=20261127-8');
     expect(html).toContain('trail-mobile.css?v=20261123-7');
     [
       'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',

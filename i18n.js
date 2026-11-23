@@ -986,9 +986,6 @@
     'browse.map.loading': 'Loading the trail map…',
     'browse.map.loadingSub': 'You can keep browsing the catalogue while the map loads.',
     'browse.map.searchArea': 'Search this area',
-    'browse.map.styleAria': 'Map appearance',
-    'browse.map.styleMap': 'Map',
-    'browse.map.styleTerrain': 'Terrain',
     'browse.map.keyAria': 'What the colours mean',
     'browse.results.foundAria': '{count} found.',
     'browse.results.ofTotal': '{n} of {total} trails',
@@ -1780,8 +1777,6 @@
     'page.index.trailActions': 'Trail actions',
     'page.index.trailMapNumberedMarkersCorrespond': 'Trail map. Numbered markers correspond to the ranked shortlist; other trails are grey.',
     'page.index.drawARouteHere': 'Draw a route here',
-    'page.index.todaysPicks': 'Today’s picks',
-    'page.index.backToTodaysPicks': '← Back to today’s picks',
     'page.index.expandMap': 'Expand map',
     'page.index.mapKey': 'Map key',
     'page.index.1MatchesList': '<i class="is-ranked">1</i>Matches list',
@@ -1968,6 +1963,7 @@
     'page.trail.foodDrink': 'Food &amp; drink',
     'page.trail.pointsOfInterest': 'Points of interest',
     'page.trail.liftStations': 'Lift stations',
+    'page.trail.contourLines': 'Contour lines',
     'page.trail.youAreHereLive': '<span class="dot"></span>You are here · live',
     'page.trail.routeSteps': 'Route steps',
     'page.trail.getDirectionsToTrail': 'Get directions to trail',
@@ -3029,9 +3025,6 @@
     'browse.map.loading': 'Caricamento della mappa…',
     'browse.map.loadingSub': 'Puoi continuare a esplorare il catalogo mentre la mappa si carica.',
     'browse.map.searchArea': 'Cerca in questa zona',
-    'browse.map.styleAria': 'Aspetto della mappa',
-    'browse.map.styleMap': 'Mappa',
-    'browse.map.styleTerrain': 'Rilievo',
     'browse.map.keyAria': 'Cosa significano i colori',
     'browse.results.foundAria': '{count} trovati.',
     'browse.results.ofTotal': '{n} di {total} sentieri',
@@ -3823,8 +3816,6 @@
     'page.index.trailActions': 'Azioni sul sentiero',
     'page.index.trailMapNumberedMarkersCorrespond': 'Mappa dei sentieri. I segnaposto numerati corrispondono alla classifica; gli altri sentieri sono in grigio.',
     'page.index.drawARouteHere': 'Disegna un percorso qui',
-    'page.index.todaysPicks': 'Le scelte di oggi',
-    'page.index.backToTodaysPicks': '← Torna alle scelte di oggi',
     'page.index.expandMap': 'Ingrandisci la mappa',
     'page.index.mapKey': 'Legenda',
     'page.index.1MatchesList': '<i class="is-ranked">1</i>In classifica',
@@ -4011,6 +4002,7 @@
     'page.trail.foodDrink': 'Cibo e bevande',
     'page.trail.pointsOfInterest': 'Punti di interesse',
     'page.trail.liftStations': 'Stazioni degli impianti',
+    'page.trail.contourLines': 'Curve di livello',
     'page.trail.youAreHereLive': '<span class="dot"></span>Sei qui · in tempo reale',
     'page.trail.routeSteps': 'Tappe del percorso',
     'page.trail.getDirectionsToTrail': 'Indicazioni per il sentiero',
@@ -4137,7 +4129,7 @@
   if (lang === 'it' && !window.ORMA_PHRASES_IT && document.readyState === 'loading') {
     const here = document.currentScript && document.currentScript.src;
     const base = here ? here.replace(/[^/]*$/, '') : '';
-    document.write('<script src="' + base + 'i18n-phrases-it.js?v=20261126-5"><\/script>');
+    document.write('<script src="' + base + 'i18n-phrases-it.js?v=20261127-8"><\/script>');
     document.write('<script src="' + base + 'i18n-trail-names-it.js?v=20261125-4"><\/script>');
   }
 

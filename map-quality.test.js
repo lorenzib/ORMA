@@ -1,7 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const read = file => fs.readFileSync(path.join(__dirname, file), 'utf8');
+const read = file => fs.readFileSync(path.join(__dirname, file), 'utf8')
+  // The homepage map's base and layers live in explore-map.js, shared with the Trails page.
+  + (file === 'script.js' ? '\n' + fs.readFileSync(path.join(__dirname, 'explore-map.js'), 'utf8') : '');
 
 describe('shared map quality profile', () => {
   test('uses antialiasing and hiking-specific vector refinements', () => {
@@ -30,7 +32,7 @@ describe('shared map quality profile', () => {
     pages.forEach(([page, mapScript]) => {
       const html = read(page);
       if(page === 'trail.html'){
-        expect(html).toContain('trail-app.bundle.js?v=20261125-5');
+        expect(html).toContain('trail-app.bundle.js?v=20261127-8');
         expect(html).not.toContain('<script src="map-runtime.js');
         return;
       }
