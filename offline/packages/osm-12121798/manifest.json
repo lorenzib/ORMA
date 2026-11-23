@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12121798",
   "name": "Le terroir de Serpolière",
-  "version": "2026.11.12-beta.7",
-  "generatedAt": "2026-11-12T12:31:14.215Z",
+  "version": "2026.11.21-beta.8",
+  "generatedAt": "2026-11-21T22:46:49.172Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 338759,
+  "packageBytes": 338716,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.24532,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Le terroir de Serpolière OSM offline map",
       "url": "map.svg",
-      "bytes": 136959,
-      "sha256": "5e5259bdf3d9ab615c9e1afa38ce2c9180743b70a1411867980878dfbf4f0ae2"
+      "bytes": 136940,
+      "sha256": "80dd3f46ca483487ff6719f2fa819e0ea5273701c2be5550f4f3877046308888"
     },
     {
       "role": "route",

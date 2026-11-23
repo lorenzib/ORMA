@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-moena-soraga-someda",
   "name": "Da Moena a Soraga, la natura a due passi da casa",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:13.951Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T22:46:48.864Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 774014,
+  "packageBytes": 773971,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.37271,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Da Moena a Soraga, la natura a due passi da casa OSM offline map",
       "url": "map.svg",
-      "bytes": 473983,
-      "sha256": "4300f16f863cac53babc5a347538d32790f25c767b7ff0496b42be2fd7c3ce98"
+      "bytes": 473964,
+      "sha256": "2411e7d9c60a5e6ec7cdb01290f3181018814fb711fc83b02bcbe75316489650"
     },
     {
       "role": "route",

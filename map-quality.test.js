@@ -1,7 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const read = file => fs.readFileSync(path.join(__dirname, file), 'utf8');
+const read = file => fs.readFileSync(path.join(__dirname, file), 'utf8')
+  // The homepage map's base and layers live in explore-map.js, shared with the Trails page.
+  + (file === 'script.js' ? '\n' + fs.readFileSync(path.join(__dirname, 'explore-map.js'), 'utf8') : '');
 
 describe('shared map quality profile', () => {
   test('uses antialiasing and hiking-specific vector refinements', () => {
@@ -369,5 +371,20 @@ describe('no dotted or dashed lines on the maps', () => {
     const style = read('map-style.js');
     expect(style).toContain("BASE_DASHED_LAYERS.forEach(id => setPaint(map, id, 'line-dasharray', null));");
     ['road_path_pedestrian', 'park_outline', 'boundary_3'].forEach(id => expect(style).toContain(`'${id}'`));
+  });
+
+  test('the offline SVG maps in downloaded packages have no dashes either', () => {
+    // The renderer's embedded CSS once dashed tracks, footpaths, steps,
+    // barriers and the walk-in; all are solid now, told apart by colour and
+    // width, and the walk-in is the online maps' dark grey.
+    const renderer = read('scripts/render-offline-osm-map.js');
+    expect(renderer).not.toContain('stroke-dasharray');
+    expect(renderer).toContain('.access{fill:none;stroke:#4D554E;');
+    expect(read('offline/offline.css')).not.toContain('border-top-style:dashed');
+    const packages = path.join(__dirname, 'offline', 'packages');
+    const dashed = fs.readdirSync(packages)
+      .filter(id => fs.existsSync(path.join(packages, id, 'map.svg')))
+      .filter(id => read(path.join('offline', 'packages', id, 'map.svg')).includes('stroke-dasharray'));
+    expect(dashed).toEqual([]);
   });
 });

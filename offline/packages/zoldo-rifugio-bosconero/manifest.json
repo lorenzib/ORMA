@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "zoldo-rifugio-bosconero",
   "name": "Pontesei to the Rifugio Bosconero",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.858Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:50.040Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 375306,
+  "packageBytes": 375263,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.33286,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Pontesei to the Rifugio Bosconero OSM offline map",
       "url": "map.svg",
-      "bytes": 110448,
-      "sha256": "08e0a09fcb3079b54758fe6b86a4b18d48f29f1831d8faf1ee6dda6f23f944ed"
+      "bytes": 110429,
+      "sha256": "509c321b9c397112d34960882003947683009b3e6f3883f0535e69c53d7fae8c"
     },
     {
       "role": "route",

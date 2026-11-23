@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-dobbiaco-lago-di-dobbiaco",
   "name": "Toblach – Lago di Dobbiaco",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.622Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.681Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 790408,
+  "packageBytes": 790365,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.69351,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Toblach – Lago di Dobbiaco OSM offline map",
       "url": "map.svg",
-      "bytes": 471418,
-      "sha256": "e3b1b21dc6608159349f31ec1e60eb0d8cfa54b3e9d3092d37487dc3e4fc8ace"
+      "bytes": 471399,
+      "sha256": "f73794d93127566ebe067e5caaf94462176a9fefb89b1879ed32deb8f497d329"
     },
     {
       "role": "route",

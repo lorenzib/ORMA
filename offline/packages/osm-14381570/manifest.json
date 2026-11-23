@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-14381570",
   "name": "Albanne",
-  "version": "2026.11.12-beta.7",
-  "generatedAt": "2026-11-12T12:31:14.290Z",
+  "version": "2026.11.21-beta.8",
+  "generatedAt": "2026-11-21T22:46:49.257Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 598266,
+  "packageBytes": 598223,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.20183,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Albanne OSM offline map",
       "url": "map.svg",
-      "bytes": 230785,
-      "sha256": "d3cfe1acd5aa193b0312128d043f0b2c893bf257aaf8c917abf1dc01074c71d8"
+      "bytes": 230766,
+      "sha256": "bf1ab3631627d66340e5f3ca7b1e449c4d1a53cae6ae5c626d33d4ef5fc99121"
     },
     {
       "role": "route",

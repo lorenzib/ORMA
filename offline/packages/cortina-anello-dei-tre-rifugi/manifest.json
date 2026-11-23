@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cortina-anello-dei-tre-rifugi",
   "name": "Three-hut loop from Malga Ra Stua",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.871Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.698Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 570047,
+  "packageBytes": 570004,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.62175,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Three-hut loop from Malga Ra Stua OSM offline map",
       "url": "map.svg",
-      "bytes": 178698,
-      "sha256": "959727b3501ebd555e29a05fa06d8d175a4f79ddedf06cc419c46763d2f5d34c"
+      "bytes": 178679,
+      "sha256": "95a5edb7aa0507dba2f5f456e0c9d269e4d6e3a5811c4166ec0ae853e9bdb17e"
     },
     {
       "role": "route",

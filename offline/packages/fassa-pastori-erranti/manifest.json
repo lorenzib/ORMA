@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-pastori-erranti",
   "name": "Sulla via degli antichi pastori erranti",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:13.958Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T22:46:48.873Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 567157,
+  "packageBytes": 567114,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.40282,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sulla via degli antichi pastori erranti OSM offline map",
       "url": "map.svg",
-      "bytes": 301855,
-      "sha256": "f92d21356500ee5d3bab8fee4b072935d8b324dcd392c08f708fa5491c883d40"
+      "bytes": 301836,
+      "sha256": "24dfe4dab53451d86c460a9394cfaba3170b06ead9761b9d47e1efebfea85e91"
     },
     {
       "role": "route",

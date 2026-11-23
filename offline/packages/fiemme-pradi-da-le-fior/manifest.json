@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fiemme-pradi-da-le-fior",
   "name": "I Pradi da le Fior",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.990Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.907Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 390380,
+  "packageBytes": 390337,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.1973,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "I Pradi da le Fior OSM offline map",
       "url": "map.svg",
-      "bytes": 213400,
-      "sha256": "431a6dc7c3b0a9c35dcc84296183285a7a4977a34b97d4bdbe2509272f766f28"
+      "bytes": 213381,
+      "sha256": "7595bfc467e012ddfb6ec4832f4c8a1e19e1107dec0404827dec0834538eba97"
     },
     {
       "role": "route",

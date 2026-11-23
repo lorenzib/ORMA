@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cortina-passeggiata-gourmet",
   "name": "Passeggiata gourmet",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.878Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.708Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 267888,
+  "packageBytes": 267845,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.51224,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Passeggiata gourmet OSM offline map",
       "url": "map.svg",
-      "bytes": 99068,
-      "sha256": "057ed13c00abd6e1bba377d5d243aec3a6f2da8d007bb210e8003065722452be"
+      "bytes": 99049,
+      "sha256": "b844b608878781b4fdc531e6754a387c0ecbe3a05da82ce56dc13885e30ff2e6"
     },
     {
       "role": "route",

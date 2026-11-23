@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-lago-di-braies-malga-foresta",
   "name": "Lago di Braies – Grünwaldalm",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T13:45:55.147Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T22:46:49.697Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 371256,
+  "packageBytes": 371213,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.68602,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Lago di Braies – Grünwaldalm OSM offline map",
       "url": "map.svg",
-      "bytes": 205860,
-      "sha256": "2374b35ac534616f0b0512b083c253ae3b618fbbbf732040770fc34b0bc342c1"
+      "bytes": 205841,
+      "sha256": "27fa035b989d16692b82e184af6befc176804b76080151ab0a3982731b5f3039"
     },
     {
       "role": "route",

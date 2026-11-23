@@ -21,8 +21,11 @@ describe('map pins out of season', () => {
   });
 
   test('both maps fade those pins and draw them under the rest', () => {
-    const read = (file) => fs.readFileSync(path.join(__dirname, file), 'utf8');
-    for (const file of ['browse-map.js', 'script.js']) {
+    const read = (file) => fs.readFileSync(path.join(__dirname, file), 'utf8')
+  // The homepage map's base and layers live in explore-map.js, shared with the Trails page.
+  + (file === 'script.js' ? '\n' + fs.readFileSync(path.join(__dirname, 'explore-map.js'), 'utf8') : '');
+    // Both maps draw their pins with explore-map.js.
+    for (const file of ['explore-map.js']) {
       const src = read(file);
       expect(src).toMatch(/'circle-sort-key'\s*:\s*\['-', 1, \['coalesce', \['get', 'out'\], 0\]\]/);
       expect(src).toMatch(/'circle-opacity'\s*:\s*\[\s*'case',\s*\['==', \['coalesce', \['get', 'out'\], 0\], 1\]/);

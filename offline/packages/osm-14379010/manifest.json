@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-14379010",
   "name": "Croix de Pralognan",
-  "version": "2026.11.12-beta.7",
-  "generatedAt": "2026-11-12T12:31:14.287Z",
+  "version": "2026.11.21-beta.8",
+  "generatedAt": "2026-11-21T22:46:49.255Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 505274,
+  "packageBytes": 505231,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.20806,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Croix de Pralognan OSM offline map",
       "url": "map.svg",
-      "bytes": 189713,
-      "sha256": "256205e74f02d26fb203a4c34052be9ac958a1c2417b046a71624a6c525fa328"
+      "bytes": 189694,
+      "sha256": "92875007947094ad47da94c2522e74c1c4cad18531b804f7fc7d70c7e16fabc5"
     },
     {
       "role": "route",

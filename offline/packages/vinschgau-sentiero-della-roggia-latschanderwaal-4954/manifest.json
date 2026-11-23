@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "vinschgau-sentiero-della-roggia-latschanderwaal-4954",
   "name": "Latschanderwaal, Latsch to Kastelbell",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.819Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.978Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 878579,
+  "packageBytes": 878536,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.61013,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Latschanderwaal, Latsch to Kastelbell OSM offline map",
       "url": "map.svg",
-      "bytes": 471456,
-      "sha256": "5223fc166f63d794b4d30bca569d65ce04dcd1d2a5bf739477225544f7cb7c52"
+      "bytes": 471437,
+      "sha256": "4fcba81c9681e559ce5faad35560bea0d5dceef131f21d6291d4545c19df3c4f"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "campiglio-trekking-al-rifugio-segantini",
   "name": "Rifugio Segantini loop",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.833Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.651Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 230551,
+  "packageBytes": 230508,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.2004,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Rifugio Segantini loop OSM offline map",
       "url": "map.svg",
-      "bytes": 50213,
-      "sha256": "4cb97cfe536c07ae2b1997b4059ba5dc3876436e7d0b433a523af8a48b6980dc"
+      "bytes": 50194,
+      "sha256": "d3d59878c89b33a0dc221d8fe6fbfcb1905cd03e5bcf51d594789da1f7e1a418"
     },
     {
       "role": "route",

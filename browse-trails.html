@@ -153,9 +153,6 @@
   .browse-map-placeholder strong{color:#2E4034;font:700 18px 'Bricolage Grotesque',sans-serif;}
   .browse-search-area{position:absolute;top:16px;left:50%;z-index:8;transform:translateX(-50%);display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:8px 16px;border:1px solid rgba(46,64,52,.15);border-radius:999px;background:rgba(255,255,255,.96);color:#32697E;box-shadow:0 6px 20px rgba(35,53,40,.18);font:800 12.5px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;}
   .browse-search-area[hidden]{display:none;}
-  .browse-map-style{position:absolute;right:14px;bottom:14px;z-index:8;display:flex;gap:3px;padding:3px;border:1px solid rgba(46,64,52,.14);border-radius:11px;background:rgba(255,255,255,.94);box-shadow:0 4px 14px rgba(35,53,40,.15);}
-  .browse-map-style button{min-height:34px;padding:7px 12px;border:0;border-radius:8px;background:transparent;color:#2E4034;font:700 11.5px 'Inter',sans-serif;cursor:pointer;}
-  .browse-map-style button.on{background:#2E4034;color:#fff;}
   .browse-view-toggle{display:none;}
   .browse-map-popup{display:grid;gap:4px;padding:2px 14px 2px 0;color:#2E4034;}
   .browse-map-popup strong{font:700 14px/1.25 'Bricolage Grotesque',sans-serif;}
@@ -163,15 +160,13 @@
   .browse-map-popup__verdict{display:grid;gap:1px;margin:2px 0 1px;}
   .browse-map-popup__verdict small{color:#66766B;font-size:10px;font-weight:700;letter-spacing:.03em;}
   .browse-map-popup__verdict b{font:700 13px/1.2 'Bricolage Grotesque',sans-serif;}
-  .browse-map-key{position:absolute;left:14px;bottom:14px;z-index:8;display:grid;gap:4px;padding:8px 11px;border:1px solid rgba(46,64,52,.14);border-radius:11px;background:rgba(255,255,255,.94);box-shadow:0 4px 14px rgba(35,53,40,.15);color:#2E4034;font:600 11px/1.2 'Inter',sans-serif;}
+  .browse-map-key{position:absolute;left:10px;bottom:58px;z-index:8;display:grid;gap:4px;padding:8px 11px;border:1px solid rgba(46,64,52,.14);border-radius:11px;background:rgba(255,255,255,.94);box-shadow:0 4px 14px rgba(35,53,40,.15);color:#2E4034;font:600 11px/1.2 'Inter',sans-serif;}
   .browse-map-key__title{color:#66766B;font-size:10px;font-weight:700;letter-spacing:.03em;}
   .browse-map-key__row{display:flex;align-items:center;gap:7px;}
-  @media(max-width:760px){.browse-map-key{bottom:58px;}}
-  /* A short line, since the map draws walks as lines (dots only zoomed far out). */
+  /* A short line, since the map draws every walk as a line. */
   .browse-map-key__dot{width:16px;height:4px;border-radius:2px;border:1px solid #fff;box-shadow:0 0 0 1px rgba(46,64,52,.18);}
   .browse-map-popup a{color:#32697E;font-size:11.5px;font-weight:800;text-decoration:none;}
   .browse-map-pane .maplibregl-popup-content{border:1px solid rgba(46,64,52,.12);border-radius:13px;padding:11px 12px;box-shadow:0 10px 30px rgba(35,53,40,.18);}
-  .browse-map-pane .maplibregl-ctrl-top-right{top:8px;right:8px;}
   @media(max-width:1040px){
     .browse-location-breadcrumb{justify-content:flex-start;margin-top:2px;}
     .browse-view-toggle{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:8px 0 12px;padding:4px;border:1px solid var(--paper-line);border-radius:12px;background:#F0EDE3;}
@@ -183,7 +178,6 @@
     .browse-map-pane{height:clamp(430px,62dvh,680px);min-height:430px;}
     .browse-explorer[data-mobile-view="list"] .browse-map-pane{display:none;}
     .browse-explorer[data-mobile-view="map"] .browse-list-pane{display:none;}
-    .browse-map-style{bottom:10px;right:10px;}
     .browse-search-area{top:12px;}
   }
   @media(max-width:760px){
@@ -399,7 +393,7 @@
     <button type="button" data-browse-view="map" aria-pressed="false" data-i18n="browse.view.map">Map</button>
   </div>
   <section id="browseExplorer" class="browse-explorer" data-mobile-view="list" aria-label="Trail catalogue and map" data-i18n-aria-label="page.browseTrails.trailCatalogueAndMap">
-    <div class="browse-map-pane" aria-label="Map of matching trails" data-i18n-aria-label="browse.map.aria">
+    <div class="browse-map-pane li-map" aria-label="Map of matching trails" data-i18n-aria-label="browse.map.aria">
       <div id="browseMap">
         <div class="browse-map-placeholder"><strong data-i18n="browse.map.loading">Loading the trail map…</strong><span data-i18n="browse.map.loadingSub">You can keep browsing the catalogue while the map loads.</span></div>
       </div>
@@ -413,10 +407,10 @@
         <span class="browse-map-key__row"><i class="browse-map-key__dot" data-fit="fair"></i><span data-category="possible-with-cautions"></span></span>
         <span class="browse-map-key__row"><i class="browse-map-key__dot" data-fit="poor"></i><span data-category="not-recommended"></span></span>
       </div>
-      <div class="browse-map-style" role="group" aria-label="Map appearance" data-i18n-aria-label="browse.map.styleAria">
-        <button type="button" class="on" data-browse-map-style="map" aria-pressed="true" data-i18n="browse.map.styleMap">Map</button>
-        <button type="button" data-browse-map-style="terrain" aria-pressed="false" data-i18n="browse.map.styleTerrain">Terrain</button>
-      </div>
+      <!-- The same map as the homepage: the route planner on the area on
+           screen, and the map full screen. -->
+      <a id="browseMapDrawBtn" class="li-map-draw" href="route-planner.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h8.5a3.5 3.5 0 0 0 0-7h-9a3.5 3.5 0 0 1 0-7H16"/></svg><span data-i18n="page.index.drawARouteHere">Draw a route here</span></a>
+      <button id="browseMapExpandBtn" type="button" class="map-expand-btn li-map-expand" aria-label="Expand map" aria-expanded="false" data-i18n-aria-label="page.index.expandMap"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span data-i18n="page.index.expandMap">Expand map</span></button>
     </div>
     <div class="browse-list-pane">
       <!-- What Compare does, feeds the tray at the bottom + compare.html -->
@@ -907,6 +901,7 @@
 <a href="trail.html?id=sentiero-del-viandante-varenna-bellano" style="display:block;color:inherit;">Sentiero del Viandante: Varenna – Bellano</a>
 <a href="trail.html?id=piramidi-di-zone-riserva-naturale" style="display:block;color:inherit;">The earth pyramids of Zone</a>
 <a href="trail.html?id=santuario-di-montecastello-tignale" style="display:block;color:inherit;">Tignale to the Montecastello sanctuary</a>
+<a href="trail.html?id=val-brandet-sant-antonio-corteno-golgi" style="display:block;color:inherit;">Val Brandet from Sant’Antonio</a>
 <a href="trail.html?id=valle-delle-cartiere-toscolano-maderno" style="display:block;color:inherit;">Valle delle Cartiere, the paper-mill valley</a>
 <p style="font-weight:700;color:var(--ink);break-inside:avoid;">Friuli Venezia Giulia, Italy</p>
 <a href="trail.html?id=anello-casera-vas-monte-buoi" style="display:block;color:inherit;">Anello Casera Vas - Casera Monte Buoi</a>
@@ -1101,7 +1096,10 @@
 <script src="map-runtime.js?v=20260908-2"></script>
 <script src="match-verdict.js?v=20261128-2"></script>
 <script src="map-style.js?v=20261120-3"></script>
-<script src="browse-map.js?v=20261119-1"></script>
+<script src="basemap-poi-click.js"></script>
+<script src="dog-routes-layer.js?v=20260826-1"></script>
+<script src="explore-map.js?v=20261126-1"></script>
+<script src="browse-map.js?v=20261120-1"></script>
 <script>
   // A walk's name as the reader sees it (i18n.js); search also keeps the English one.
   function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
@@ -1204,6 +1202,8 @@
     const browseMap = window.DoloPawsBrowseMap && window.DoloPawsBrowseMap.create({
       containerId:'browseMap',
       searchAreaButtonId:'browseSearchArea',
+      expandButtonId:'browseMapExpandBtn',
+      drawLinkIds:['browseMapDrawBtn'],
       scoreFor:matchScore,
       verdictFor:matchVerdict,
       subjectLabel:scoredSubjectLabel,

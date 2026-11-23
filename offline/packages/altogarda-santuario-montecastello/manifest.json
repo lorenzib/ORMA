@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "altogarda-santuario-montecastello",
   "name": "Tignale to the Montecastello sanctuary",
-  "version": "2026.11.19-beta.1",
-  "generatedAt": "2026-11-19T21:50:51.719Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:48.583Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1163702,
+  "packageBytes": 1163657,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.73791,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Tignale to the Montecastello sanctuary OSM offline map",
       "url": "map.svg",
-      "bytes": 936461,
-      "sha256": "a186416f0b8b62d8724644f152a23b6add842fac3d8eb7ce469feb0e6f5a2122"
+      "bytes": 936440,
+      "sha256": "78cf19de47b7a3b3d818f2bfbe7df22c1c75ec8f0f233768d936c4caf5c1bba6"
     },
     {
       "role": "route",

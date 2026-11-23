@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "paganella-andalo-tana-ermellino",
   "name": "Andalo – Tana dell’Ermellino",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.501Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T22:46:49.456Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 505261,
+  "packageBytes": 505218,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.16851,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Andalo – Tana dell’Ermellino OSM offline map",
       "url": "map.svg",
-      "bytes": 305982,
-      "sha256": "0b9aa60b64f3d32dcd79057db563b80bd9193cee9dd934ad977f50f72ab2df2a"
+      "bytes": 305963,
+      "sha256": "7a5aa7b7803db215d31f86afdcabc6a465de9c8781760d45ec0ebec719a13587"
     },
     {
       "role": "route",

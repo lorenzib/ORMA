@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valdisole-lago-dei-caprioli-malga-alta-di-fazzon",
   "name": "Lago dei Caprioli – Malga Alta di Fazzon",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.695Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.779Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 196299,
+  "packageBytes": 196256,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.28809,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Lago dei Caprioli – Malga Alta di Fazzon OSM offline map",
       "url": "map.svg",
-      "bytes": 30674,
-      "sha256": "05366cede0b27bb1a9a499a31314fbd5fcc30c392e60ebc4788432540003d224"
+      "bytes": 30655,
+      "sha256": "7d709c667973e2c0f222dccc0013506205bd4b8a6172d498de608a4dac9d6627"
     },
     {
       "role": "route",

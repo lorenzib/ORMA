@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "corio-sentiero-del-redio",
   "name": "Sentiero del Redìo, Corio",
-  "version": "2026.11.21-beta.1",
-  "generatedAt": "2026-11-21T21:05:53.306Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:48.695Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 610770,
+  "packageBytes": 610725,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.32714,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sentiero del Redìo, Corio OSM offline map",
       "url": "map.svg",
-      "bytes": 263926,
-      "sha256": "f95abb7fa3158782fe5c5c6035001ba4325155772559c6579c1076d2972bfada"
+      "bytes": 263905,
+      "sha256": "7adb277b572d53555833f1a5751de990e960a5a2a88486ed6040fd4576d364c2"
     },
     {
       "role": "route",

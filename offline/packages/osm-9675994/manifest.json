@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-9675994",
   "name": "St. Agatha Rundweg",
-  "version": "2026.11.12-beta.1",
-  "generatedAt": "2026-11-12T16:49:37.197Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:49.436Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 338003,
+  "packageBytes": 337960,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.42009,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "St. Agatha Rundweg OSM offline map",
       "url": "map.svg",
-      "bytes": 183974,
-      "sha256": "873a8f73ff63df3474e328666c42aec3a7c3b00d9f6580c309594e153e8c0a89"
+      "bytes": 183955,
+      "sha256": "fa878b59a5032c53fb7a2365f5c55ac97f45fdcba2d1cc2b003968d67ca285b4"
     },
     {
       "role": "route",

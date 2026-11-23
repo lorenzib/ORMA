@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-7655311",
   "name": "Sonnenberger Panoramaweg - Sentiero",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.454Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T22:46:49.408Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1738051,
+  "packageBytes": 1738008,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.64858,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sonnenberger Panoramaweg - Sentiero OSM offline map",
       "url": "map.svg",
-      "bytes": 1032370,
-      "sha256": "464f612dc068d4cddd603b8ccc63bbfb988d521a5d2bdcb5c53f3af0cd3283b5"
+      "bytes": 1032351,
+      "sha256": "b4d7815696f99f4a9465422eccb5e2ade159d1f13bcda8c24c33511232b2111a"
     },
     {
       "role": "route",

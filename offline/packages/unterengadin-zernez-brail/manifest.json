@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "unterengadin-zernez-brail",
   "name": "Zernez to Brail",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.687Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.765Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 948744,
+  "packageBytes": 948701,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.65241,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Zernez to Brail OSM offline map",
       "url": "map.svg",
-      "bytes": 505797,
-      "sha256": "e107a66bc692b7508f029ba788d351ff405b5806e01a18db12291ba38c7d9d70"
+      "bytes": 505778,
+      "sha256": "abc6c0c8fe653ef073b720fceae4cd00fa8c20d9fc48f6f437543a64029fef6d"
     },
     {
       "role": "route",

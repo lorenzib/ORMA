@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-19541366",
   "name": "Lac Blanc",
-  "version": "2026.11.19-beta.8",
-  "generatedAt": "2026-11-19T15:44:19.184Z",
+  "version": "2026.11.21-beta.9",
+  "generatedAt": "2026-11-21T22:46:49.298Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 354525,
+  "packageBytes": 354480,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.2866,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Lac Blanc OSM offline map",
       "url": "map.svg",
-      "bytes": 105583,
-      "sha256": "e0dba11f8c5565934a41220b8fd337622c139e5f818cc6b681d11a6a4ee196f3"
+      "bytes": 105562,
+      "sha256": "063adb76a63680616481ca522a9f217e469d4db5c5cd4b1d2c8b0a7a141e909b"
     },
     {
       "role": "route",

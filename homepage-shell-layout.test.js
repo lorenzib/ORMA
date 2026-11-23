@@ -83,7 +83,7 @@ describe('logged-in discovery workspace layout', () => {
     const head = html.slice(html.indexOf('class="li-list-head"'), html.indexOf('id="returningTrailList"'));
     expect(head).toContain('<h2 class="li-list-title" id="companionListTitle" data-i18n="account.nav.browse">');
     // Not "Best matches for Teo": the headline above already says "Best walk for Teo".
-    expect(fs.readFileSync('script.js', 'utf8')).not.toContain('`Best matches for ${profile.name}`');
+    expect(fs.readFileSync('script.js', 'utf8') + '\n' + fs.readFileSync('explore-map.js', 'utf8')).not.toContain('`Best matches for ${profile.name}`');
     expect(head).toContain('id="companionListCount"');
     // ORMA's own menu, not a native select: the system popup did not match.
     expect(head).not.toContain('<select');
@@ -106,7 +106,7 @@ describe('logged-in discovery workspace layout', () => {
     const editorialCss = fs.readFileSync('homepage-editorial.css', 'utf8');
     // Nothing is folded away behind a toggle.
     expect(editorialCss).not.toContain('li-refine-open');
-    expect(fs.readFileSync('script.js', 'utf8')).not.toContain('li-refine-open');
+    expect(fs.readFileSync('script.js', 'utf8') + '\n' + fs.readFileSync('explore-map.js', 'utf8')).not.toContain('li-refine-open');
     expect(editorialCss).toContain('#returningCustomerHomepage #liToolbar .li-search{');
     // Record a walk sits beside the headline, inside the greeting row.
     const greet = html.slice(html.indexOf('class="li-toolbar-greet"'), html.indexOf('id="liToday"'));
@@ -122,13 +122,13 @@ describe('logged-in discovery workspace layout', () => {
 
   test('Draw a route is a button, so the one-time hint about it is gone', () => {
     const editorialCss = fs.readFileSync('homepage-editorial.css', 'utf8');
-    const source = fs.readFileSync('script.js', 'utf8');
+    const source = fs.readFileSync('script.js', 'utf8') + '\n' + fs.readFileSync('explore-map.js', 'utf8');
     // Owner, 19 Nov: the hint pointed at the caret; the button replaces it.
     expect(html).not.toContain('id="liNewCallout"');
     expect(source).not.toContain('LI_NEW_CALLOUT_KEY');
     expect(editorialCss).not.toContain('.li-new-callout');
     // The toolbar's button opens the planner where the map is.
-    expect(source).toContain("const toolbarDraw = document.getElementById('liDrawRouteBtn');");
+    expect(source).toContain("drawLinks:[document.getElementById('homeMapDrawBtn'), document.getElementById('liDrawRouteBtn')],");
     // The menu entry is a plain row with the tag on its title line.
     expect(html).toContain('<span class="li-menu-title" data-i18n="page.index.drawYourOwnRouteNew">Draw your own route <span class="li-menu-badge">New</span></span>');
     expect(editorialCss).toContain('.li-new-menu .li-menu-item.li-plan-route{display:flex;height:auto;margin:0;border:0;');
