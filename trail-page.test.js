@@ -339,7 +339,7 @@ describe('trail page map controls', () => {
 
     expect(html).toContain('i18n.js?v=20261128-1');
     expect(html).toContain('trail-app.bundle.js?v=20261128-1');
-    expect(html).toContain('trail-mobile.css?v=20261123-7');
+    expect(html).toContain('trail-mobile.css?v=20261127-1');
     [
       'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',
       'detail-pois.js', 'trail-access-directions.js', 'footpath-router.js',
