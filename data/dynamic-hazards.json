@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-26T02:21:16.982Z",
+  "generatedAt": "2026-11-26T05:17:30.118Z",
   "hazards": [
     {
       "id": "avalanche-aineva:avalanche-3:it-34-bl-01",
@@ -24,7 +24,7 @@
       "effectiveAt": "2026-11-25T23:00:00Z",
       "expiresAt": "2026-11-26T23:00:00Z",
       "firstPublishedAt": "2026-11-26T02:21:16.982Z",
-      "lastSeenAt": "2026-11-26T02:21:16.982Z",
+      "lastSeenAt": "2026-11-26T05:17:30.118Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-11855879",
@@ -35,7 +35,8 @@
         "Roda de Cherz",
         "Castello di Andraz",
         "Pecòl to Malga Pioda"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "avalanche-aineva:avalanche-3:it-34-bl-01-it-34-bl-02",
@@ -60,14 +61,15 @@
       "effectiveAt": "2026-11-25T23:00:00Z",
       "expiresAt": "2026-11-26T23:00:00Z",
       "firstPublishedAt": "2026-11-26T02:21:16.982Z",
-      "lastSeenAt": "2026-11-26T02:21:16.982Z",
+      "lastSeenAt": "2026-11-26T05:17:30.118Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau"
       ],
       "trailNames": [
         "Passo Giau to Rifugio Nuvolau"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "avalanche-aineva:avalanche-3:it-34-bl-02",
@@ -91,7 +93,7 @@
       "effectiveAt": "2026-11-25T23:00:00Z",
       "expiresAt": "2026-11-26T23:00:00Z",
       "firstPublishedAt": "2026-11-26T02:21:16.982Z",
-      "lastSeenAt": "2026-11-26T02:21:16.982Z",
+      "lastSeenAt": "2026-11-26T05:17:30.118Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "lago-sorapis",
@@ -108,7 +110,8 @@
         "Three-hut loop from Malga Ra Stua",
         "Passo Cimabanche to Forcella Lerosa",
         "Cinque Torri three-refuges assisted circuit"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "avalanche-aineva:avalanche-3:it-34-bl-03",
@@ -132,7 +135,7 @@
       "effectiveAt": "2026-11-25T23:00:00Z",
       "expiresAt": "2026-11-26T23:00:00Z",
       "firstPublishedAt": "2026-11-26T02:21:16.982Z",
-      "lastSeenAt": "2026-11-26T02:21:16.982Z",
+      "lastSeenAt": "2026-11-26T05:17:30.118Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "tre-cime",
@@ -141,7 +144,8 @@
       "trailNames": [
         "Tre Cime di Lavaredo classic circuit",
         "Cadini di Misurina Viewpoint"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "avalanche-aineva:avalanche-3:it-34-bl-04",
@@ -165,7 +169,7 @@
       "effectiveAt": "2026-11-25T23:00:00Z",
       "expiresAt": "2026-11-26T23:00:00Z",
       "firstPublishedAt": "2026-11-26T02:21:16.982Z",
-      "lastSeenAt": "2026-11-26T02:21:16.982Z",
+      "lastSeenAt": "2026-11-26T05:17:30.118Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-7388748",
@@ -174,7 +178,8 @@
       "trailNames": [
         "Anello dei Colli",
         "Anello dei Forti"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-france:avalanches:haute-savoie",
@@ -186,12 +191,12 @@
       "message": "An official moderate avalanches warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-france",
       "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/f61dd7c3-4ac4-43ba-b5b4-cf023e11155f",
-      "identifier": "2.49.0.0.250.0.FR.20261125220039.457028",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/919a0bbe-7407-47cf-9c4c-a680816dd54a",
+      "identifier": "2.49.0.0.250.0.FR.20261126060025.884028",
       "effectiveAt": "2026-11-25T21:00:00+00:00",
       "expiresAt": "2026-11-26T23:00:00+00:00",
       "firstPublishedAt": "2026-11-14T17:12:32.717Z",
-      "lastSeenAt": "2026-11-26T02:21:16.982Z",
+      "lastSeenAt": "2026-11-26T05:17:30.118Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -239,12 +244,12 @@
       "message": "An official moderate avalanches warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-france",
       "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/f61dd7c3-4ac4-43ba-b5b4-cf023e11155f",
-      "identifier": "2.49.0.0.250.0.FR.20261125220039.457028",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/919a0bbe-7407-47cf-9c4c-a680816dd54a",
+      "identifier": "2.49.0.0.250.0.FR.20261126060025.884028",
       "effectiveAt": "2026-11-25T21:00:00+00:00",
       "expiresAt": "2026-11-26T23:00:00+00:00",
       "firstPublishedAt": "2026-11-15T05:15:17.285Z",
-      "lastSeenAt": "2026-11-26T02:21:16.982Z",
+      "lastSeenAt": "2026-11-26T05:17:30.118Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -278,12 +283,12 @@
       "message": "An official moderate avalanches warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-france",
       "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/f61dd7c3-4ac4-43ba-b5b4-cf023e11155f",
-      "identifier": "2.49.0.0.250.0.FR.20261125220039.457028",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/919a0bbe-7407-47cf-9c4c-a680816dd54a",
+      "identifier": "2.49.0.0.250.0.FR.20261126060025.884028",
       "effectiveAt": "2026-11-25T21:00:00+00:00",
       "expiresAt": "2026-11-26T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-26T02:21:16.982Z",
+      "lastSeenAt": "2026-11-26T05:17:30.118Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -398,7 +403,7 @@
       "effectiveAt": "2026-11-25T00:00:00+00:00",
       "expiresAt": "2026-11-26T11:59:00+00:00",
       "firstPublishedAt": "2026-11-24T23:13:56.436Z",
-      "lastSeenAt": "2026-11-26T02:21:16.982Z",
+      "lastSeenAt": "2026-11-26T05:17:30.118Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
@@ -441,7 +446,7 @@
       "effectiveAt": "2026-11-25T08:00:00+00:00",
       "expiresAt": "2026-11-25T23:59:00+00:00",
       "firstPublishedAt": "2026-11-20T23:14:53.046Z",
-      "lastSeenAt": "2026-11-26T02:21:16.982Z",
+      "lastSeenAt": "2026-11-26T05:17:30.118Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "valsesia-gta-tappa-21-campello-monti-rimella",
@@ -508,7 +513,7 @@
       "effectiveAt": "2026-11-25T00:00:00+00:00",
       "expiresAt": "2026-11-26T11:59:00+00:00",
       "firstPublishedAt": "2026-11-23T23:15:21.987Z",
-      "lastSeenAt": "2026-11-26T02:21:16.982Z",
+      "lastSeenAt": "2026-11-26T05:17:30.118Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
@@ -1231,7 +1236,7 @@
       "effectiveAt": "2026-11-25T08:00:00+00:00",
       "expiresAt": "2026-11-25T23:59:00+00:00",
       "firstPublishedAt": "2026-11-20T23:14:53.046Z",
-      "lastSeenAt": "2026-11-26T02:21:16.982Z",
+      "lastSeenAt": "2026-11-26T05:17:30.118Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "aosta-ru-courtaud",
@@ -1266,7 +1271,7 @@
       "effectiveAt": "2026-11-25T00:00:00+00:00",
       "expiresAt": "2026-11-26T11:59:00+00:00",
       "firstPublishedAt": "2026-11-24T23:13:56.436Z",
-      "lastSeenAt": "2026-11-26T02:21:16.982Z",
+      "lastSeenAt": "2026-11-26T05:17:30.118Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
