@@ -1,186 +1,7 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-26T23:15:24.574Z",
+  "generatedAt": "2026-11-27T02:21:55.261Z",
   "hazards": [
-    {
-      "id": "avalanche-aineva:avalanche-3:it-34-bl-01",
-      "kind": "avalanche",
-      "state": "active",
-      "severity": "moderate",
-      "event": "Avalanche danger",
-      "area": "Agordino, Zoldano",
-      "dangerLevel": 3,
-      "dangerWord": "considerable",
-      "regionIds": [
-        "IT-34-BL-01"
-      ],
-      "title": "Avalanche danger 3 of 5, considerable, for Agordino, Zoldano",
-      "message": "The avalanche bulletin gives considerable danger (3 of 5) at this walk's height. Keep to the cleared path, stay away from the foot of steep snowy slopes, and turn back where snow covers the way.",
-      "summary": "Over a wide area 50 cm of snow, and even more in some localities, will fall.",
-      "sourceKey": "avalanche-aineva",
-      "sourceLabel": "AINEVA",
-      "sourceUrl": "https://bollettini.aineva.it/",
-      "identifier": "2a789d72-e941-4086-9e1e-980b62094b41",
-      "effectiveAt": "2026-11-25T23:00:00Z",
-      "expiresAt": "2026-11-26T23:00:00Z",
-      "firstPublishedAt": "2026-11-26T02:21:16.982Z",
-      "lastSeenAt": "2026-11-26T23:15:24.574Z",
-      "removalRequiresHumanReview": true,
-      "trailIds": [
-        "osm-11855879",
-        "arabba-castello-di-andraz-passeggiata-per-famiglie",
-        "dolomitiunesco-pecol-malga-pioda"
-      ],
-      "trailNames": [
-        "Roda de Cherz",
-        "Castello di Andraz",
-        "Pecòl to Malga Pioda"
-      ],
-      "sourceStatus": "available"
-    },
-    {
-      "id": "avalanche-aineva:avalanche-3:it-34-bl-01-it-34-bl-02",
-      "kind": "avalanche",
-      "state": "active",
-      "severity": "moderate",
-      "event": "Avalanche danger",
-      "area": "Agordino, Zoldano / Ampezzo - Cadore",
-      "dangerLevel": 3,
-      "dangerWord": "considerable",
-      "regionIds": [
-        "IT-34-BL-01",
-        "IT-34-BL-02"
-      ],
-      "title": "Avalanche danger 3 of 5, considerable, for Agordino, Zoldano / Ampezzo - Cadore",
-      "message": "The avalanche bulletin gives considerable danger (3 of 5) at this walk's height. Keep to the cleared path, stay away from the foot of steep snowy slopes, and turn back where snow covers the way.",
-      "summary": "Over a wide area 50 cm of snow, and even more in some localities, will fall.",
-      "sourceKey": "avalanche-aineva",
-      "sourceLabel": "AINEVA",
-      "sourceUrl": "https://bollettini.aineva.it/",
-      "identifier": "2a789d72-e941-4086-9e1e-980b62094b41",
-      "effectiveAt": "2026-11-25T23:00:00Z",
-      "expiresAt": "2026-11-26T23:00:00Z",
-      "firstPublishedAt": "2026-11-26T02:21:16.982Z",
-      "lastSeenAt": "2026-11-26T23:15:24.574Z",
-      "removalRequiresHumanReview": true,
-      "trailIds": [
-        "nuvolau"
-      ],
-      "trailNames": [
-        "Passo Giau to Rifugio Nuvolau"
-      ],
-      "sourceStatus": "available"
-    },
-    {
-      "id": "avalanche-aineva:avalanche-3:it-34-bl-02",
-      "kind": "avalanche",
-      "state": "active",
-      "severity": "moderate",
-      "event": "Avalanche danger",
-      "area": "Ampezzo - Cadore",
-      "dangerLevel": 3,
-      "dangerWord": "considerable",
-      "regionIds": [
-        "IT-34-BL-02"
-      ],
-      "title": "Avalanche danger 3 of 5, considerable, for Ampezzo - Cadore",
-      "message": "The avalanche bulletin gives considerable danger (3 of 5) at this walk's height. Keep to the cleared path, stay away from the foot of steep snowy slopes, and turn back where snow covers the way.",
-      "summary": "Over a wide area 50 cm of snow, and even more in some localities, will fall.",
-      "sourceKey": "avalanche-aineva",
-      "sourceLabel": "AINEVA",
-      "sourceUrl": "https://bollettini.aineva.it/",
-      "identifier": "2a789d72-e941-4086-9e1e-980b62094b41",
-      "effectiveAt": "2026-11-25T23:00:00Z",
-      "expiresAt": "2026-11-26T23:00:00Z",
-      "firstPublishedAt": "2026-11-26T02:21:16.982Z",
-      "lastSeenAt": "2026-11-26T23:15:24.574Z",
-      "removalRequiresHumanReview": true,
-      "trailIds": [
-        "lago-sorapis",
-        "cortina-sotecordes",
-        "cortina-zumeles-val-padeon",
-        "cortina-anello-dei-tre-rifugi",
-        "cortina-forcella-lerosa",
-        "cinque-torri-assisted"
-      ],
-      "trailNames": [
-        "Lago di Sorapis Trail",
-        "Escursione di Sotecordes",
-        "Forcella Zumeles and Val Padeon",
-        "Three-hut loop from Malga Ra Stua",
-        "Passo Cimabanche to Forcella Lerosa",
-        "Cinque Torri three-refuges assisted circuit"
-      ],
-      "sourceStatus": "available"
-    },
-    {
-      "id": "avalanche-aineva:avalanche-3:it-34-bl-03",
-      "kind": "avalanche",
-      "state": "active",
-      "severity": "moderate",
-      "event": "Avalanche danger",
-      "area": "Ansiei - Comelico",
-      "dangerLevel": 3,
-      "dangerWord": "considerable",
-      "regionIds": [
-        "IT-34-BL-03"
-      ],
-      "title": "Avalanche danger 3 of 5, considerable, for Ansiei - Comelico",
-      "message": "The avalanche bulletin gives considerable danger (3 of 5) at this walk's height. Keep to the cleared path, stay away from the foot of steep snowy slopes, and turn back where snow covers the way.",
-      "summary": "Over a wide area 50 cm of snow, and even more in some localities, will fall.",
-      "sourceKey": "avalanche-aineva",
-      "sourceLabel": "AINEVA",
-      "sourceUrl": "https://bollettini.aineva.it/",
-      "identifier": "2a789d72-e941-4086-9e1e-980b62094b41",
-      "effectiveAt": "2026-11-25T23:00:00Z",
-      "expiresAt": "2026-11-26T23:00:00Z",
-      "firstPublishedAt": "2026-11-26T02:21:16.982Z",
-      "lastSeenAt": "2026-11-26T23:15:24.574Z",
-      "removalRequiresHumanReview": true,
-      "trailIds": [
-        "tre-cime",
-        "cadini"
-      ],
-      "trailNames": [
-        "Tre Cime di Lavaredo classic circuit",
-        "Cadini di Misurina Viewpoint"
-      ],
-      "sourceStatus": "available"
-    },
-    {
-      "id": "avalanche-aineva:avalanche-3:it-34-bl-04",
-      "kind": "avalanche",
-      "state": "active",
-      "severity": "moderate",
-      "event": "Avalanche danger",
-      "area": "Cadore",
-      "dangerLevel": 3,
-      "dangerWord": "considerable",
-      "regionIds": [
-        "IT-34-BL-04"
-      ],
-      "title": "Avalanche danger 3 of 5, considerable, for Cadore",
-      "message": "The avalanche bulletin gives considerable danger (3 of 5) at this walk's height. Keep to the cleared path, stay away from the foot of steep snowy slopes, and turn back where snow covers the way.",
-      "summary": "Over a wide area 50 cm of snow, and even more in some localities, will fall.",
-      "sourceKey": "avalanche-aineva",
-      "sourceLabel": "AINEVA",
-      "sourceUrl": "https://bollettini.aineva.it/",
-      "identifier": "2a789d72-e941-4086-9e1e-980b62094b41",
-      "effectiveAt": "2026-11-25T23:00:00Z",
-      "expiresAt": "2026-11-26T23:00:00Z",
-      "firstPublishedAt": "2026-11-26T02:21:16.982Z",
-      "lastSeenAt": "2026-11-26T23:15:24.574Z",
-      "removalRequiresHumanReview": true,
-      "trailIds": [
-        "osm-7388748",
-        "osm-7547653"
-      ],
-      "trailNames": [
-        "Anello dei Colli",
-        "Anello dei Forti"
-      ],
-      "sourceStatus": "available"
-    },
     {
       "id": "meteoalarm-france:avalanches:haute-savoie",
       "state": "active",
@@ -196,7 +17,7 @@
       "effectiveAt": "2026-11-26T15:00:00+00:00",
       "expiresAt": "2026-11-27T23:00:00+00:00",
       "firstPublishedAt": "2026-11-14T17:12:32.717Z",
-      "lastSeenAt": "2026-11-26T23:15:24.574Z",
+      "lastSeenAt": "2026-11-27T02:21:55.261Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -249,7 +70,7 @@
       "effectiveAt": "2026-11-26T15:00:00+00:00",
       "expiresAt": "2026-11-27T23:00:00+00:00",
       "firstPublishedAt": "2026-11-15T05:15:17.285Z",
-      "lastSeenAt": "2026-11-26T23:15:24.574Z",
+      "lastSeenAt": "2026-11-27T02:21:55.261Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -288,7 +109,7 @@
       "effectiveAt": "2026-11-26T15:00:00+00:00",
       "expiresAt": "2026-11-27T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-26T23:15:24.574Z",
+      "lastSeenAt": "2026-11-27T02:21:55.261Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -403,7 +224,7 @@
       "effectiveAt": "2026-11-26T12:00:00+00:00",
       "expiresAt": "2026-11-26T17:59:00+00:00",
       "firstPublishedAt": "2026-11-24T23:13:56.436Z",
-      "lastSeenAt": "2026-11-26T23:15:24.574Z",
+      "lastSeenAt": "2026-11-27T02:21:55.261Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo",
@@ -446,7 +267,7 @@
       "effectiveAt": "2026-11-25T08:00:00+00:00",
       "expiresAt": "2026-11-25T23:59:00+00:00",
       "firstPublishedAt": "2026-11-20T23:14:53.046Z",
-      "lastSeenAt": "2026-11-26T23:15:24.574Z",
+      "lastSeenAt": "2026-11-27T02:21:55.261Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "valsesia-gta-tappa-21-campello-monti-rimella",
@@ -513,7 +334,7 @@
       "effectiveAt": "2026-11-25T09:00:00+00:00",
       "expiresAt": "2026-11-26T17:59:00+00:00",
       "firstPublishedAt": "2026-11-23T23:15:21.987Z",
-      "lastSeenAt": "2026-11-26T23:15:24.574Z",
+      "lastSeenAt": "2026-11-27T02:21:55.261Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
@@ -1236,7 +1057,7 @@
       "effectiveAt": "2026-11-25T08:00:00+00:00",
       "expiresAt": "2026-11-25T23:59:00+00:00",
       "firstPublishedAt": "2026-11-20T23:14:53.046Z",
-      "lastSeenAt": "2026-11-26T23:15:24.574Z",
+      "lastSeenAt": "2026-11-27T02:21:55.261Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "aosta-ru-courtaud",
