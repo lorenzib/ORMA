@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-28T19:15:34.511Z",
+  "generatedAt": "2026-11-28T19:28:16.466Z",
   "regions": {
     "dolomites": {
       "trailCount": 381,
-      "trails": "data/regions/dolomites-trails.js?v=1444710701b1",
+      "trails": "data/regions/dolomites-trails.js?v=ef7cd78b00de",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=6b1cc3a2fbef",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
@@ -332,7 +332,7 @@
         "meran-escursione-alla-forst": "data/trail-details/meran-escursione-alla-forst.js?v=386aea7da5b9",
         "meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer": "data/trail-details/meran-passeggiata-alpestre-ai-piedi-del-monte-hirzer.js?v=af7372a00afb",
         "meran-itinerario-raststeinweg": "data/trail-details/meran-itinerario-raststeinweg.js?v=c93a23beb33e",
-        "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof": "data/trail-details/meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof.js?v=692e6c887777",
+        "meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof": "data/trail-details/meran-da-malga-taser-a-malga-streitweide-sino-al-maso-haashof.js?v=23dccc250160",
         "meran-sull-alta-via-di-merano-da-giggelberg-a-unterstell": "data/trail-details/meran-sull-alta-via-di-merano-da-giggelberg-a-unterstell.js?v=8c6e2050fd5b",
         "meran-escursione-alle-malghe-maiser-alm-moschwaldalm": "data/trail-details/meran-escursione-alle-malghe-maiser-alm-moschwaldalm.js?v=8df694d64b3d",
         "meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo": "data/trail-details/meran-sentiero-circolare-rio-lagundo-monte-san-vigilio-rio-lagundo.js?v=5ff75c115809",
