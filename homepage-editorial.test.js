@@ -148,7 +148,7 @@ describe('guest homepage editorial structure', () => {
     const css = read('homepage-editorial.css');
     expect(css).toContain('.hp-content{max-width:1440px;padding:50px clamp(28px,4vw,52px) 44px;}');
     expect(read('index.html')).toContain('homepage-editorial.css?v=20261123-7');
-    expect(read('index.html')).toContain('homepage-search.js?v=20261126-2');
+    expect(read('index.html')).toContain('homepage-search.js?v=20261127-2');
   });
   test('opens the phone filters as a full panel along the bottom, not a squashed drop-down', () => {
     const css = read('homepage-editorial.css');
