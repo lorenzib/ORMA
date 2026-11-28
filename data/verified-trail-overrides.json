@@ -57137,7 +57137,7 @@
       "verificationScope": "routeReviewed",
       "fields": {
         "name": "Kranterrunde",
-        "desc": "A 4.9 km loop near Vandoies / Vintl, imported from the OpenStreetMap hiking network. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record. Direction shown climbs more gradually (computed from elevation data).",
+        "desc": "A 4.9 km loop near Rodengo / Rodeneck, imported from the OpenStreetMap hiking network. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record. Direction shown climbs more gradually (computed from elevation data).",
         "tips": "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.",
         "imageIcon": "images/trails/osm-11795103-meransen.jpg",
         "imageCredit": "Meransen",
@@ -57171,7 +57171,7 @@
             }
           ]
         },
-        "area": "Vandoies / Vintl",
+        "area": "Rodengo / Rodeneck",
         "distance": 4.9,
         "elevation": 270,
         "hours": "1.5–2",
