@@ -166,12 +166,16 @@ function addDir(dir){
 // scripts/check-static-assets.js so both agree on what "a local asset" means.
 function scanHtml(r){
   const html = fs.readFileSync(path.join(root, r), 'utf8');
+  // A <base href> (the one-page trail pilot) moves where relative links point.
+  const baseHref = (html.match(/<base\s+href=["']([^"']+)["']/i) || [])[1];
+  const from = baseHref ? path.resolve(path.dirname(path.join(root, r)), baseHref) : path.dirname(path.join(root, r));
   for(const match of html.matchAll(/(?:href|src)=["']([^"']+)["']/g)){
     const raw = match[1];
+    if(raw === baseHref) continue;
     if(/^(?:https?:|mailto:|tel:|data:|#|javascript:|\/)/i.test(raw) || /[{}]/.test(raw)) continue;
     const clean = raw.split(/[?#]/)[0];
     if(!clean) continue;
-    const target = rel(path.resolve(path.dirname(path.join(root, r)), clean));
+    const target = rel(path.resolve(from, clean));
     if(addFile(target) && target.endsWith('.html')) scanHtml(target);
   }
 }

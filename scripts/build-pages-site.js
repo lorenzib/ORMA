@@ -160,7 +160,9 @@ function alreadyKeyed(existing, file) {
  */
 function stampPage(pageFile, outDir, keys) {
   const html = fs.readFileSync(pageFile, 'utf8');
-  const pageDir = path.dirname(pageFile);
+  // A <base href> (the one-page trail pilot) moves where relative links point.
+  const baseHref = (html.match(/<base\s+href=["']([^"']+)["']/i) || [])[1];
+  const pageDir = baseHref ? path.resolve(path.dirname(pageFile), baseHref) : path.dirname(pageFile);
   let changed = 0;
   const stamped = html.replace(
     new RegExp(`(src|href)="([^"?#]+\\.(?:${KEYED}))(\\?[^"]*)?"`, 'g'),
@@ -195,6 +197,8 @@ function stampPage(pageFile, outDir, keys) {
  */
 function stampEmbeddedKeys(file, outDir, keys) {
   const source = fs.readFileSync(file, 'utf8');
+  const baseHref = /\.html$/.test(file) ? (source.match(/<base\s+href=["']([^"']+)["']/i) || [])[1] : null;
+  const fileDir = baseHref ? path.resolve(path.dirname(file), baseHref) : path.dirname(file);
   let changed = 0;
   const stamped = source.replace(
     new RegExp(`([\\w./-]+\\.(?:${KEYED}|${REKEYED}))\\?v=([\\w.-]+)`, 'g'),
@@ -202,7 +206,7 @@ function stampEmbeddedKeys(file, outDir, keys) {
       if (EXTERNAL.test(reference)) return match;
       const target = reference.startsWith('/')
         ? path.join(outDir, reference.slice(1))
-        : path.resolve(path.dirname(file), reference);
+        : path.resolve(fileDir, reference);
       if (!target.startsWith(outDir) || !fs.existsSync(target)) return match;
       if (alreadyKeyed(existing, target)) return match;
       if (!keys.has(target)) keys.set(target, contentKey(target));

@@ -337,8 +337,8 @@ describe('trail page map controls', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
 
-    expect(html).toContain('i18n.js?v=20261128-2');
-    expect(html).toContain('trail-app.bundle.js?v=20261128-2');
+    expect(html).toContain('i18n.js?v=20261128-3');
+    expect(html).toContain('trail-app.bundle.js?v=20261128-3');
     expect(html).toContain('trail-mobile.css?v=20261127-1');
     [
       'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',
@@ -443,7 +443,7 @@ describe('trail page map controls', () => {
     const sidebarColumn = document.querySelector('.td2-sidebar-column');
     // What the walk is, then what other people said.
     expect(Array.from(story.children).map(node => node.id)).toEqual([
-      'td2AboutCard', 'td2PhotosCard', 'td2ReviewsCard'
+      'td2AboutCard', 'td2WhenCard', 'td2PhotosCard', 'td2ReviewsCard'
     ]);
     expect(story.parentElement).toBe(contentColumn);
     expect(story.previousElementSibling.classList.contains('td2-map-stack')).toBe(true);

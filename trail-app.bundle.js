@@ -18201,7 +18201,7 @@ window.DoloPawsTrailAction = {
   request(action){
     const url = new URL(window.location.href);
     url.searchParams.set('action', action);
-    window.history.replaceState(null, '', url.pathname.split('/').pop() + url.search + url.hash);
+    window.history.replaceState(null, '', url.pathname + url.search + url.hash);
     pendingTrailAction = action;
     trailActionConsumed = false;
     if(window.DoloPawsGuestContext){
@@ -18225,7 +18225,7 @@ window.DoloPawsTrailAction = {
         window.history.replaceState(
           null,
           '',
-          staleUrl.pathname.split('/').pop() + staleUrl.search + staleUrl.hash
+          staleUrl.pathname + staleUrl.search + staleUrl.hash
         );
         return false;
       }
@@ -18234,7 +18234,7 @@ window.DoloPawsTrailAction = {
     pendingTrailAction = null;
     const url = new URL(window.location.href);
     url.searchParams.delete('action');
-    window.history.replaceState(null, '', url.pathname.split('/').pop() + url.search + url.hash);
+    window.history.replaceState(null, '', url.pathname + url.search + url.hash);
     return true;
   },
   get pending(){ return pendingTrailAction; },
@@ -19792,6 +19792,40 @@ if(document.querySelector('.td2')){
   const $ = (id) => document.getElementById(id);
   const trust = window.DoloPawsTrailTrust;
   const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  // The same "When to go" the generated trail pages wrote
+  // (scripts/generate-trail-pages.js seasonHtml), from the same
+  // trail-season-words.js, so the two can't say different things. The
+  // daylight line is left out: this page has its own, by the weather.
+  function whenToGoHtml(t) {
+    const seasonWords = window.DoloPawsTrailSeasonWords;
+    if (!seasonWords || !t || !t.season) return '';
+    const words = seasonWords.describe(t.season, num);
+    if (!words || (!words.kind && !words.winter.length && !words.lifts.length && !words.dogSeasons.length)) return '';
+    const month = new Date().getMonth() + 1;
+    const link = (src) => src
+      ? `${esc(src.before)}${src.url ? `<a href="${esc(src.url)}" rel="noopener" target="_blank">${esc(src.label)}</a>${esc(src.after)}` : ''}`
+      : '';
+    const nowNote = seasonWords.nowNote(t.season, month);
+    const warn = seasonWords.outOfSeason(t.season, month);
+    const legendFor = (state) => (words.legend.find(([s]) => s === state) || [])[1] || '';
+    const strip = words.strip.length
+      ? `<ol class="sp-months" aria-label="${esc(tx('Months of the year'))}">${words.strip.map(m =>
+        `<li class="sp-month sp-month--${esc(m.state)}${m.month === month ? ' sp-month--now' : ''}"><span aria-hidden="true">${esc(m.initial)}</span><span class="sp-vh">${esc(m.name)}: ${esc(legendFor(m.state))}</span></li>`).join('')}</ol>
+        <p class="sp-month-key" aria-hidden="true">${words.legend.map(([state, label]) => `<span><span class="sp-key sp-key--${esc(state)}"></span>${esc(label)}</span>`).join(' ')}</p>`
+      : '';
+    return [
+      nowNote ? `<p class="sp-season-now${warn ? ' sp-season-now--warn' : ''}">${esc(nowNote)}</p>` : '',
+      strip,
+      words.line ? `<p>${esc(words.line)}</p>` : '',
+      words.source ? `<p class="sp-src">${link(words.source)}</p>` : '',
+      ...words.lifts.map(lift => `<p>${esc(lift.line)}</p><p class="sp-src">${link(lift.source)}</p>`),
+      words.winter.length ? `<p>${words.winter.map(esc).join(' ')} ${esc(words.winterNote)}</p><p class="sp-src">${esc(words.winterSource)}</p>` : '',
+      words.winterSun ? `<p>${esc(tx('Winter sun: '))}${esc(words.winterSun.line)}</p><p class="sp-src">${link(words.winterSun.source)}</p>` : '',
+      words.dogSeasons.length ? `<h3 class="sp-season-dog">${esc(tx('For your dog'))}</h3>${words.dogSeasons.map(risk =>
+        `<p>${esc(risk.line)}</p><p class="sp-src">${esc(tx('Source: '))}${risk.sources.map(src => `<a href="${esc(src.url)}" rel="noopener" target="_blank">${esc(src.label)}</a>${esc(src.after)}`).join(' ')}</p>`).join('')}` : '',
+    ].filter(Boolean).join('');
+  }
   // Where ORMA got a route is not something a walker asked. 123 of 162 trails
   // still described themselves as "imported from the OpenStreetMap hiking
   // network", and 70 start points as an "(OSM-verified access point)" -- the
@@ -20381,6 +20415,21 @@ if(document.querySelector('.td2')){
     const descEl = $('matchDescription');
     if (descEl && t.desc) {
       descEl.textContent = cardCopy(trailWords(t.desc));
+    }
+
+    // "Good to know" and "When to go" used to be on the Google page only:
+    // the summer road booking, parking rules, the months a board publishes,
+    // cows on the pastures. One trail page carries all of it (audit finding 1).
+    const tipsEl = $('td2GoodToKnow');
+    if (tipsEl && t.tips && t.curated !== false) {
+      tipsEl.innerHTML = `<b>${esc(tx('Good to know'))}</b> ${esc(trailWords(t.tips))}`;
+      tipsEl.hidden = false;
+    }
+    const whenCard = $('td2WhenCard');
+    const whenHtml = whenToGoHtml(t);
+    if (whenCard && whenHtml) {
+      $('td2WhenBody').innerHTML = whenHtml;
+      whenCard.hidden = false;
     }
     
     // In-page tabs: Overview / Dog safety / Reviews & photos.

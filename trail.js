@@ -1556,7 +1556,7 @@ window.DoloPawsTrailAction = {
   request(action){
     const url = new URL(window.location.href);
     url.searchParams.set('action', action);
-    window.history.replaceState(null, '', url.pathname.split('/').pop() + url.search + url.hash);
+    window.history.replaceState(null, '', url.pathname + url.search + url.hash);
     pendingTrailAction = action;
     trailActionConsumed = false;
     if(window.DoloPawsGuestContext){
@@ -1580,7 +1580,7 @@ window.DoloPawsTrailAction = {
         window.history.replaceState(
           null,
           '',
-          staleUrl.pathname.split('/').pop() + staleUrl.search + staleUrl.hash
+          staleUrl.pathname + staleUrl.search + staleUrl.hash
         );
         return false;
       }
@@ -1589,7 +1589,7 @@ window.DoloPawsTrailAction = {
     pendingTrailAction = null;
     const url = new URL(window.location.href);
     url.searchParams.delete('action');
-    window.history.replaceState(null, '', url.pathname.split('/').pop() + url.search + url.hash);
+    window.history.replaceState(null, '', url.pathname + url.search + url.hash);
     return true;
   },
   get pending(){ return pendingTrailAction; },

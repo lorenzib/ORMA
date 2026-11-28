@@ -1,0 +1,10 @@
+{
+  "note": "Audit finding 1, pilot (user decision, 23 Nov 2026): these walks' Google addresses (trails/<slug>.html) open the app trail page itself, so a visitor from search gets the verdict, map, Save and Directions with no second page. English only for now; widen once search traffic for these holds.",
+  "slugs": [
+    "anello-del-sole",
+    "prato-piazza-platzwiese",
+    "lake-carezza-to-stadlalm",
+    "rundweg-langfenn",
+    "costalunga-to-lake-carezza"
+  ]
+}
