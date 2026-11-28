@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "seiseralm-umser-rundweg",
   "name": "Umser Rundweg, Ums",
-  "version": "2026.11.16-beta.1",
-  "generatedAt": "2026-11-16T17:14:01.501Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:49.633Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 597269,
+  "packageBytes": 597226,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.49974,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Umser Rundweg, Ums OSM offline map",
       "url": "map.svg",
-      "bytes": 387852,
-      "sha256": "d28bd834c6d0ba37053b82008b585ffa5f1809ba6c5afd2f44b9f2f9162d8b43"
+      "bytes": 387833,
+      "sha256": "37bbd969b4f14dbd371fcd32919bc322a2459cd103d4fd6f715cd418cb62a620"
     },
     {
       "role": "route",

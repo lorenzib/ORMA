@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "altabadia-escursione-da-la-villa-al-lago-lech-da-sompunt",
   "name": "La Villa – Lech da Sompunt",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.782Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.571Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1018355,
+  "packageBytes": 1018312,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.57901,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "La Villa – Lech da Sompunt OSM offline map",
       "url": "map.svg",
-      "bytes": 532085,
-      "sha256": "d466da38c10fb2853ff3841cd76003fa45834e38ffc2a6ba69417821c83a93f1"
+      "bytes": 532066,
+      "sha256": "d8548ceeb30b578ebfc2e53648a708a5d276e363ffaf23c7e9cf33649b43c5ae"
     },
     {
       "role": "route",

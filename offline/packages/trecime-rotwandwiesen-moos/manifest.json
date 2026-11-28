@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-rotwandwiesen-moos",
   "name": "Rotwandwiesen – Moos",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.648Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.713Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 427573,
+  "packageBytes": 427530,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.65833,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Rotwandwiesen – Moos OSM offline map",
       "url": "map.svg",
-      "bytes": 198316,
-      "sha256": "6bfd205fef437b861a6d2e039ad2d8ef9c41bc4fddfc2d397bac5ec1d8abeb51"
+      "bytes": 198297,
+      "sha256": "1aeda7050e824a0d46f4250e4a6638d208c1db3652edc9cedffd8cab3350d6b9"
     },
     {
       "role": "route",

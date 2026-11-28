@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-percorso-verde",
   "name": "Percorso Verde (I percorsi del benessere)",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:14.533Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T22:46:49.535Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 769343,
+  "packageBytes": 769300,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.17234,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Percorso Verde (I percorsi del benessere) OSM offline map",
       "url": "map.svg",
-      "bytes": 531110,
-      "sha256": "7168e5a5b8e104250d6e46699ba78fcf2a4f169b60f13a8a7e0a5a2c99a43900"
+      "bytes": 531091,
+      "sha256": "b8f76a20cebd044a26474a3382174cef793a1dd18d7331bcf7134561ec2ead07"
     },
     {
       "role": "route",

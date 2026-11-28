@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lago-braies",
   "name": "Lago di Braies Seeweg circuit",
-  "version": "2026.11.12-beta.8",
-  "generatedAt": "2026-11-12T13:45:55.031Z",
+  "version": "2026.11.21-beta.9",
+  "generatedAt": "2026-11-21T22:46:49.016Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 367221,
+  "packageBytes": 367178,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.6855,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Lago di Braies Seeweg circuit OSM offline map",
       "url": "map.svg",
-      "bytes": 198000,
-      "sha256": "dded2682ea1b5ddc9fbcfc1dea90f5b51cae30e35902cecd08dfc28d67a82001"
+      "bytes": 197981,
+      "sha256": "13b0725ed1007f7a277bd4b17fc316c3c3e0e6edc89628c62295d982e7f9bdc7"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "nuvolau",
   "name": "Passo Giau to Rifugio Nuvolau",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.165Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.107Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 493386,
+  "packageBytes": 493343,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.48148,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Passo Giau to Rifugio Nuvolau OSM offline map",
       "url": "map.svg",
-      "bytes": 196239,
-      "sha256": "e9101066f8731fdb2dfb47da1406a5a366bac1d2e28b4d70ef0522f054871dd2"
+      "bytes": 196220,
+      "sha256": "24ecd77b76701b031fb5f89cbd9011fb65bd8cc3adc26f13af04c518893303b5"
     },
     {
       "role": "route",

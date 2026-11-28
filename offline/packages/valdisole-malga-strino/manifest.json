@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valdisole-malga-strino",
   "name": "Malga Strino",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.696Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.781Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 308494,
+  "packageBytes": 308451,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.27241,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Malga Strino OSM offline map",
       "url": "map.svg",
-      "bytes": 115411,
-      "sha256": "64177bc4e33cfeba2ce25c06d6a80dd57f63bcd5fab751fdba1024b73ef6e180"
+      "bytes": 115392,
+      "sha256": "6bb3df5600aa4505690a0d151e0d70cb42a5b03d1e07def45465087e9536e1f0"
     },
     {
       "role": "route",

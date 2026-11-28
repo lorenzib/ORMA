@@ -598,6 +598,23 @@
       }
     },
     {
+      "id": "camonica-val-brandet",
+      "approvedReviewId": "commons-camonica-val-brandet-on-route",
+      "approvedAt": "2026-11-19T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/camonica-val-brandet-bridge.jpg",
+        "heroImage": "images/trails/camonica-val-brandet-bridge.jpg",
+        "imageAlt": "A covered wooden footbridge with a shingle roof and railings spans a rocky stream, among leafy trees and conifers turning to autumn colours",
+        "imageCredit": "The covered wooden bridge over the stream at Sant’Antonio, by the start",
+        "imageCreditText": "The covered wooden bridge over the stream at Sant’Antonio, by the start by Luca Giarelli",
+        "imageCreator": "Luca Giarelli",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Ponte_in_legno_-_Sant'Antonio_-_Corteno_Golgi_(Foto_Luca_Giarelli).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "campiglio-carisolo-centro-storico",
       "approvedReviewId": "commons-campiglio-carisolo-centro-storico-on-route",
       "approvedAt": "2026-10-28T08:00:00.000Z",
@@ -1019,6 +1036,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Colle_Santa_Lucia_in_Belluno,_Veneto,_Italy,_2025_September.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "corio-sentiero-del-redio",
+      "approvedReviewId": "commons-corio-sentiero-del-redio-on-route",
+      "approvedAt": "2026-11-21T10:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/corio-pilone-redio.jpg",
+        "heroImage": "images/trails/corio-pilone-redio.jpg",
+        "imageAlt": "A small stone wayside shrine with a painted saint on blue tiles, in a green meadow with ferns at the edge of a wood",
+        "imageCredit": "A wayside shrine on the Sentiero del Redìo above Corio",
+        "imageCreditText": "A wayside shrine on the Sentiero del Redìo above Corio by Jrachi",
+        "imageCreator": "Jrachi",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:PV_Corio_130.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -2566,6 +2600,40 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=1404804143532934",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "iseo-piramidi-zone",
+      "approvedReviewId": "commons-iseo-piramidi-zone-on-route",
+      "approvedAt": "2026-11-19T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/iseo-piramidi-zone-pyramids.jpg",
+        "heroImage": "images/trails/iseo-piramidi-zone-pyramids.jpg",
+        "imageAlt": "Through the dark trunks and leaves of a summer wood, two tall pale earth pillars rise against a bright sky, each with a large boulder balanced on top",
+        "imageCredit": "Two of the Zone earth pyramids, each capped by its boulder, seen through the trees of the reserve",
+        "imageCreditText": "Two of the Zone earth pyramids, each capped by its boulder, seen through the trees of the reserve by Simone Milini",
+        "imageCreator": "Simone Milini",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Le_piramidi.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "iseo-riva-di-solto",
+      "approvedReviewId": "commons-iseo-riva-di-solto-on-route",
+      "approvedAt": "2026-11-19T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/iseo-riva-di-solto-bogn-view.jpg",
+        "heroImage": "images/trails/iseo-riva-di-solto-bogn-view.jpg",
+        "imageAlt": "From a leafy slope with an old wooden rail in the foreground, steep green cliffs drop to the blue-green water of Lake Iseo, with a road at the foot of the cliffs and hazy mountains beyond",
+        "imageCredit": "Lake Iseo from above the Bögn di Zorzino, on the walk",
+        "imageCreditText": "Lake Iseo from above the Bögn di Zorzino, on the walk by Fabio Pani",
+        "imageCreator": "Fabio Pani",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:High-angle_view_of_lake_Iseo_seen_from_B%C3%B6gn_di_Zorzino,_Riva_di_Solto,_Italy.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -4402,21 +4470,6 @@
       }
     },
     {
-      "id": "osm-12189165",
-      "approvedReviewId": "orma-illustration-osm-12189165",
-      "approvedAt": "2026-10-24T12:17:30.000Z",
-      "fields": {
-        "imageIcon": "images/trails/osm-12189165-orma-illustration.jpg",
-        "heroImage": "images/trails/osm-12189165-orma-illustration.jpg",
-        "imageAlt": "ORMA illustration of Rundweg Schwarzegg - Sentiero circolare Dosso Nero: its climb drawn as contour bands and its route shape, not a photograph",
-        "imageCredit": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
-        "imageCreditText": "ORMA illustration of this walk, drawn from its route and climb, not a photograph",
-        "imageCreator": "ORMA",
-        "imageLicence": "ORMA-owned",
-        "imageSourceType": "orma-illustration"
-      }
-    },
-    {
       "id": "osm-12190538",
       "approvedReviewId": "commons-osm-12190538",
       "approvedAt": "2026-09-07T20:33:09.392Z",
@@ -5808,23 +5861,6 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Guidepost_(86979).jpg",
-        "imageSourceType": "licensed-source"
-      }
-    },
-    {
-      "id": "osm-7277805",
-      "approvedReviewId": "commons-osm-7277805",
-      "approvedAt": "2026-09-07T16:56:37.540Z",
-      "fields": {
-        "imageIcon": "images/trails/osm-7277805-stuls.jpg",
-        "heroImage": "images/trails/osm-7277805-stuls.jpg",
-        "imageAlt": "A lane climbing past farmhouses through a dandelion meadow at Stuls, with the snow-capped Texel range across the valley.",
-        "imageCredit": "Stuls above Moos in Passeier",
-        "imageCreditText": "Stuls above Moos in Passeier by Uwelino",
-        "imageCreator": "Uwelino",
-        "imageLicence": "CC BY-SA 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Blick_nach_Stuls_Moos_in_Passeier.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -7234,6 +7270,23 @@
       }
     },
     {
+      "id": "settimo-vittone-pergole-castagneti",
+      "approvedReviewId": "commons-settimo-vittone-pergole-castagneti-on-route",
+      "approvedAt": "2026-11-21T10:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/settimo-vittone-pieve-mulattiera.jpg",
+        "heroImage": "images/trails/settimo-vittone-pieve-mulattiera.jpg",
+        "imageAlt": "A cobbled mule track between dry-stone walls below an old stone church with a bell tower, with green mountains behind",
+        "imageCredit": "The mule track below the Pieve di San Lorenzo, Settimo Vittone",
+        "imageCreditText": "The mule track below the Pieve di San Lorenzo, Settimo Vittone by Mathieu Brossais",
+        "imageCreator": "Mathieu Brossais",
+        "imageLicence": "CC BY 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Settimo_Vittone_(Août_2025).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "steinegg-pyramidenrundweg",
       "approvedReviewId": "commons-steinegg-pyramidenrundweg-on-route",
       "approvedAt": "2026-11-18T23:00:00.000Z",
@@ -7859,6 +7912,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Larix_trees_and_wooden_bridge_over_ravine_Febbraro_(1487_m.a.s.l.)_-_in_Valchiavenna,_Province_of_Sondrio,_Lombardy,_Italy_-_2017-10-15.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valchiusella-cima-bossola",
+      "approvedReviewId": "commons-valchiusella-cima-bossola-on-route",
+      "approvedAt": "2026-11-21T10:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/cima-bossola-rifugio.jpg",
+        "heroImage": "images/trails/cima-bossola-rifugio.jpg",
+        "imageAlt": "A white two-storey mountain hut with a wooden fence and a meadow in front, birch trees beside it and a rocky grass slope behind",
+        "imageCredit": "The Rifugio Cima Bossola at the start",
+        "imageCreditText": "The Rifugio Cima Bossola at the start by E.Zene",
+        "imageCreator": "E.Zene",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Località_Marciana_-_Cima_Bossola,_Rueglio_(TO)_-_panoramio.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -8730,6 +8800,23 @@
       }
     },
     {
+      "id": "valsusa-bruzolo-anello-chiotetti",
+      "approvedReviewId": "commons-valsusa-bruzolo-anello-chiotetti-on-route",
+      "approvedAt": "2026-11-19T23:30:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/bruzolo-san-giovanni-campanile.jpg",
+        "heroImage": "images/trails/bruzolo-san-giovanni-campanile.jpg",
+        "imageAlt": "A slender white bell tower with arched openings rising above a stone-slab roof, with mountains under a clear blue sky behind",
+        "imageCredit": "The bell tower of San Giovanni Evangelista, Bruzolo",
+        "imageCreditText": "The bell tower of San Giovanni Evangelista, Bruzolo by Mastrocom",
+        "imageCreator": "Mastrocom",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Bruzolo_-_Chiesa_di_San_Giovanni_Evangelista_-_2023-09-09_15-29-21_001.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "valsusa-chianocco-orrido-chouque",
       "approvedReviewId": "commons-valsusa-chianocco-orrido-chouque-on-route",
       "approvedAt": "2026-11-19T22:00:00.000Z",
@@ -8764,6 +8851,23 @@
       }
     },
     {
+      "id": "valsusa-giaglione-forte-santa-chiara",
+      "approvedReviewId": "commons-valsusa-giaglione-forte-santa-chiara-on-route",
+      "approvedAt": "2026-11-19T23:30:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/giaglione-pilone-ariundel.jpg",
+        "heroImage": "images/trails/giaglione-pilone-ariundel.jpg",
+        "imageAlt": "A small plastered votive shrine with faded blue paint and a glazed niche, on a stone base under spring trees",
+        "imageCredit": "The Arioundèl votive shrine above Giaglione",
+        "imageCreditText": "The Arioundèl votive shrine above Giaglione by Martj9",
+        "imageCreator": "Martj9",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:PV_Giaglione_-_Ariundel.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "valsusa-giaglione-vigne-mandorli",
       "approvedReviewId": "commons-valsusa-giaglione-vigne-mandorli-on-route",
       "approvedAt": "2026-11-19T22:00:00.000Z",
@@ -8777,6 +8881,40 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cappella_San_Martino_-_Giaglione.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valsusa-mattie-alpe-toglie",
+      "approvedReviewId": "commons-valsusa-mattie-alpe-toglie-on-route",
+      "approvedAt": "2026-11-19T23:30:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/mattie-alpe-toglie.jpg",
+        "heroImage": "images/trails/mattie-alpe-toglie.jpg",
+        "imageAlt": "A stone mountain hut with a dark roof and balconies on a grassy slope among larches and firs, in autumn sun",
+        "imageCredit": "The hut at Alpe Toglie above Mattie",
+        "imageCreditText": "The hut at Alpe Toglie above Mattie by Martj9",
+        "imageCreator": "Martj9",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Alpe_Toglie.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "valsusa-mompantero-sentier8",
+      "approvedReviewId": "commons-valsusa-mompantero-sentier8-on-route",
+      "approvedAt": "2026-11-19T23:30:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/mompantero-cappella-san-giuseppe.jpg",
+        "heroImage": "images/trails/mompantero-cappella-san-giuseppe.jpg",
+        "imageAlt": "A pale yellow chapel with a round window and a wooden door, and a bell tower behind, on a village road under a blue sky with clouds",
+        "imageCredit": "The chapel of San Giuseppe, Mompantero",
+        "imageCreditText": "The chapel of San Giuseppe, Mompantero by Martj9",
+        "imageCreator": "Martj9",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cappella_di_San_Giuseppe_(42129).jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -8845,6 +8983,74 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
         "imageSourcePage": "https://www.mapillary.com/app/?pKey=558122092473106",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "veneto-anello-del-muccion",
+      "approvedReviewId": "mapillary-veneto-anello-del-muccion-on-route",
+      "approvedAt": "2026-11-19T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/veneto-muccion-path-above-valdagno.jpg",
+        "heroImage": "images/trails/veneto-muccion-path-above-valdagno.jpg",
+        "imageAlt": "A gravel path edged with grass beside a concrete pole and green bushes, with wooded hills and a blue mountain ridge under a cloudy evening sky",
+        "imageCredit": "The gravel path past Contrada Bernardi, looking towards the Piccole Dolomiti",
+        "imageCreditText": "The gravel path past Contrada Bernardi, looking towards the Piccole Dolomiti by mircozorzo",
+        "imageCreator": "mircozorzo",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1091868574634808",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "veneto-archeovia-campetto-cima-marana",
+      "approvedReviewId": "commons-veneto-archeovia-campetto-cima-marana-on-route",
+      "approvedAt": "2026-11-19T23:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/veneto-campetto-sella-crucifix.jpg",
+        "heroImage": "images/trails/veneto-campetto-sella-crucifix.jpg",
+        "imageAlt": "A tall carved wooden crucifix under a little roof stands on a green grassy ridge with white limestone rocks, a few walkers resting on the grass behind it, under a grey summer sky",
+        "imageCredit": "The wooden crucifix at the Sella del Campetto, on the walk",
+        "imageCreditText": "The wooden crucifix at the Sella del Campetto, on the walk by Gianfranco Graizzaro",
+        "imageCreator": "Gianfranco Graizzaro",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Croce_Sella_del_Campetto-001.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "veneto-sentiero-dei-roccoli",
+      "approvedReviewId": "mapillary-veneto-sentiero-dei-roccoli-on-route",
+      "approvedAt": "2026-11-21T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/veneto-roccoli-path-ridge-wood.jpg",
+        "heroImage": "images/trails/veneto-roccoli-path-ridge-wood.jpg",
+        "imageAlt": "A broad gravel track covered in fallen brown and yellow leaves runs through a wood of slim trees, with a big mossy boulder on the left",
+        "imageCredit": "The Strada dei Rocoli in the wood on the ridge, on the walk",
+        "imageCreditText": "The Strada dei Rocoli in the wood on the ridge, on the walk by andreadfc",
+        "imageCreator": "andreadfc",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=1429897548532056",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "veneto-sentiero-forte-enna",
+      "approvedReviewId": "mapillary-veneto-sentiero-forte-enna-on-route",
+      "approvedAt": "2026-11-21T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/veneto-forte-enna-track-val-leogra.jpg",
+        "heroImage": "images/trails/veneto-forte-enna-track-val-leogra.jpg",
+        "imageAlt": "A stony mule track runs between ivy-covered stone walls and slim trees, with a sunny green meadow on the left and autumn leaves on the ground",
+        "imageCredit": "The stony track between a meadow and the wood near Enna, on the walk",
+        "imageCreditText": "The stony track between a meadow and the wood near Enna, on the walk by andreadfc",
+        "imageCreator": "andreadfc",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=609192865616638",
         "imageSourceType": "licensed-source"
       }
     },

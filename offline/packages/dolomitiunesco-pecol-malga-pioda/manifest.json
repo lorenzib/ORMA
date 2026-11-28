@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "dolomitiunesco-pecol-malga-pioda",
   "name": "Pecòl to Malga Pioda",
-  "version": "2026.11.16-beta.1",
-  "generatedAt": "2026-11-16T12:16:54.720Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:48.718Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 356506,
+  "packageBytes": 356463,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.39563,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Pecòl to Malga Pioda OSM offline map",
       "url": "map.svg",
-      "bytes": 105716,
-      "sha256": "ae4f94fa1df951abe00900abac5d1e8598c3101cfb6d74e999b334303ffe52ec"
+      "bytes": 105697,
+      "sha256": "73c407ce17664bcd5f0ddec67ea816531bb956610291c61d57f469941a765042"
     },
     {
       "role": "route",

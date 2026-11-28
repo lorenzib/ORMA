@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "kronplatz-sentiero-della-roggia-a-gais-sentieri-degli-elementi",
   "name": "The Gais channel path loop",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.071Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T22:46:49.002Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 654079,
+  "packageBytes": 654036,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.82282,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "The Gais channel path loop OSM offline map",
       "url": "map.svg",
-      "bytes": 416613,
-      "sha256": "a1a75cb6a209c6840a0e57fcc44d51c4166da6e4887f2aab1acb610c743abd00"
+      "bytes": 416594,
+      "sha256": "d6d0880c12683406c67823cc71093b200c03901721ed397b6fc8c66c555aa6f4"
     },
     {
       "role": "route",

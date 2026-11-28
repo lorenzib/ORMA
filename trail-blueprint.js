@@ -232,38 +232,64 @@
     const picks = sameValley.slice(0, 4);
     for (const o of sameRegion) { if (picks.length >= 4) break; picks.push(o); }
     if (!picks.length) return;
-    // Reference gallery card: photo, floating match % chip, serif name, meta.
+    // The one trail card (styles.css .tcard), small: photo, name with the
+    // verified tick, the walk's figures. The verdict pill on the photo is
+    // filled in for a signed-in dog below; a guest gets none, as on the rest
+    // of this page.
     const cardPhoto = source => ({
       'images/lago-di-braies.webp':'images/lago-di-braies-480.webp',
       'images/lago-di-carezza.webp':'images/lago-di-carezza-480.webp',
       'images/boucle-du-marais-des-chassettes.webp':'images/boucle-du-marais-des-chassettes-480.webp',
       'images/itineraire-decouverte-de-la-nature.webp':'images/itineraire-decouverte-de-la-nature-480.webp',
     }[source] || source);
+    const nearMeta = o => {
+      const routeReturn = window.ORMARouteReturn;
+      const oneWayWalk = !!(routeReturn && routeReturn.isOneWay(o));
+      const shown = oneWayWalk ? routeReturn.forView(o) : o;
+      const back = shown !== o;
+      return [
+        shown.distance ? (back ? tt('card.thereAndBack', { km: shown.distance }, '{km} km there and back')
+          : oneWayWalk ? tt('card.oneWay', { km: num(shown.distance) }, '{km} km one way')
+          : `${num(Math.round(Number(shown.distance) * 10) / 10)} km`) : null,
+        shown.elevation != null ? tt('card.climb', { m: shown.elevation }, '{m} m climb') : null,
+        shown.hours ? `${back ? '≈ ' : ''}${num(shown.hours)} h` : null,
+      ].filter(Boolean).join(' · ');
+    };
+    const nearTick = o => {
+      if (!trust || trust.tierBadgeStyle(o) !== 'verified') return '';
+      const label = esc(trust.tierLabel(o));
+      return `<svg class="tcard__tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="${label}"><title>${label}</title><circle cx="12" cy="12" r="9.5"/><path d="m8 12 3 3 5-6"/></svg>`;
+    };
     grid.innerHTML = picks.map(o => `
-      <a class="near-card" href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(o.id) : (o.id)))}" data-near-id="${esc(o.id)}">
-        <div class="ph"${o.imageIcon ? ` style="background-image:url('${esc(cardPhoto(o.imageIcon))}');"` : ''}><span class="pct near-pct" hidden></span></div>
-        <div class="bd">
-          <div class="nm">${esc(trailDisplayName(o))}</div>
-          <div class="mt">${esc(o.valley || o.area || '')} · ${num(o.distance)} km · ${esc(trust ? trust.riskLabel(o, safetyLabel(o.safetyLevel)) : safetyLabel(o.safetyLevel))}</div>
-        </div>
+      <a class="tcard tcard--small near-card" href="trail.html?id=${encodeURIComponent((window.DoloPawsRegionalData && window.DoloPawsRegionalData.slugFor ? window.DoloPawsRegionalData.slugFor(o.id) : (o.id)))}" data-near-id="${esc(o.id)}">
+        <span class="tcard__photo"${o.imageIcon ? ` style="background-image:url('${esc(cardPhoto(o.imageIcon))}');"` : ''}><span class="tcard__verdict near-verdict" hidden></span></span>
+        <span class="tcard__body">
+          <span class="tcard__name">${esc(trailDisplayName(o))}${nearTick(o)}</span>
+          <span class="tcard__meta">${esc(nearMeta(o))}</span>
+        </span>
       </a>`).join('');
     wrapEl.hidden = false;
     const seeAll = $('nearbySeeAll');
     if (seeAll && (t.valley || t.area)) seeAll.textContent = tx('See all in {place}', { place: t.valley || t.area }) + ' \u2192';
 
-    // Personalise: retitle the section and fill each pick's real match %
-    // chip, same scoreTrail() as everywhere else.
+    // Personalise: retitle the section and put each pick's verdict for this
+    // dog on its photo, in the words every other card uses, never a %.
     function personalise() {
-      if (typeof scoreTrail !== 'function' || !window.DoloPawsAuth || !window.DoloPawsAuth.currentUser) return;
+      if (typeof recommendTrail !== 'function' || !window.OrmaMatchVerdict || !window.DoloPawsAuth || !window.DoloPawsAuth.currentUser) return;
       window.DoloPawsAuth.getDogProfile().then(profile => {
         if (!profile) return;
         const heading = $('nearbyTitle');
         if (heading && profile.name) heading.textContent = tx('Nearby trails, ranked for {name}', { name: profile.name });
         const ov = (typeof effectiveOverrides === 'function') ? effectiveOverrides(profile, null) : profile;
+        const forDog = tt('browse.card.forDog', { name: profile.name || tx('your dog') }, 'For {name}');
+        const who = forDog.charAt(0).toLowerCase() + forDog.slice(1);
         for (const o of picks) {
-          const slot = grid.querySelector(`[data-near-id="${CSS.escape(o.id)}"] .near-pct`);
+          const slot = grid.querySelector(`[data-near-id="${CSS.escape(o.id)}"] .near-verdict`);
           if (!slot) continue;
-          slot.textContent = (o.curated === false ? '≈' : '') + scoreTrail(o, ov, conditionsForScoring(o)) + '%';
+          const verdict = window.OrmaMatchVerdict.verdictFor(recommendTrail(o, ov, conditionsForScoring(o)));
+          if (!verdict || !verdict.label) continue;
+          slot.className = `tcard__verdict tcard__verdict--${verdict.tone} near-verdict`;
+          slot.innerHTML = `${esc(verdict.label)} <small>${esc(who)}</small>`;
           slot.hidden = false;
         }
       }).catch(() => {});
@@ -300,7 +326,7 @@
     // Breadcrumb: "← Trails · {region} · {valley}"
     const crumb = $('tdBreadcrumb');
     if (crumb && /^browse-trails\.html(?:[?#]|$)/.test(crumb.getAttribute('href') || '')) {
-      const regionName = t.region === 'savoy' ? tx('Savoy') : t.region === 'frenchalps' ? tx('French Alps') : t.region === 'lombardy' ? tx('Lombardy') : t.region === 'friuli' ? 'Friuli Venezia Giulia' : t.region === 'aosta' ? 'Valle d\'Aosta' : t.region === 'piedmont' ? tx('Piedmont') : t.region === 'tyrol' ? tx('Tyrol & Carinthia') : t.region === 'switzerland' ? tx('Switzerland') : tx('Dolomites');
+      const regionName = t.region === 'savoy' ? tx('Savoy') : t.region === 'frenchalps' ? tx('French Alps') : t.region === 'lombardy' ? tx('Lombardy') : t.region === 'friuli' ? 'Friuli Venezia Giulia' : t.region === 'aosta' ? 'Valle d\'Aosta' : t.region === 'piedmont' ? tx('Piedmont') : t.region === 'veneto' ? 'Veneto' : t.region === 'tyrol' ? tx('Tyrol & Carinthia') : t.region === 'switzerland' ? tx('Switzerland') : tx('Dolomites');
       crumb.textContent = '← ' + tx('Trails') + ' · ' + regionName + (t.valley ? ' · ' + t.valley : '');
     }
 
@@ -339,7 +365,10 @@
       // Seasonal risks to dogs, only in the months they apply.
       const dog = seasonWords.dogSeasonsNow(t.season, new Date().getMonth() + 1)
         .map(risk => `<span class="dp-badge trail-season-tag trail-season-tag--dog"><span>${esc(risk.label)}</span></span>`).join('');
-      tags.insertAdjacentHTML('beforeend', `${out}<span class="dp-badge trail-season-tag trail-season-tag--best"><span>${esc(best)}</span></span>${dog}`);
+      // "Sunny in winter" or "Little winter sun", November to February.
+      const sunTag = seasonWords.winterSunTag ? seasonWords.winterSunTag(t.season, new Date().getMonth() + 1) : null;
+      const sun = sunTag ? `<span class="dp-badge trail-season-tag trail-season-tag--sun-${sunTag.kind}"><span>${esc(sunTag.label)}</span></span>` : '';
+      tags.insertAdjacentHTML('beforeend', `${out}<span class="dp-badge trail-season-tag trail-season-tag--best"><span>${esc(best)}</span></span>${dog}${sun}`);
     }
 
     // Elevation figures under the real chart; hide the block honestly
@@ -709,6 +738,16 @@
     } else if (maxAlt >= 1800) {
       caution(tx('High ground'), tx('Up to {alt} m. Snow can last into early summer and the weather changes fast.', { alt: isItalian() ? num(maxAlt) : Number(maxAlt).toLocaleString('en-GB') }), 'altitude');
     }
+    // Short days (daylight.js): sunset today and the latest start that still
+    // finishes in daylight, October to March.
+    const daylight = window.DoloPawsDaylight ? window.DoloPawsDaylight.daylightFor(t) : null;
+    if (daylight) {
+      const locale = isItalian() ? 'it-IT' : 'en-GB';
+      caution(tx('Short days'), tx('Sunset today is at {sunset}. To finish in daylight, set off by {start} at the latest; in a deep valley it gets dark sooner.', {
+        sunset: window.DoloPawsDaylight.formatTime(daylight.sunset, locale),
+        start: window.DoloPawsDaylight.formatTime(daylight.startBy, locale),
+      }), null);
+    }
     // Seasonal risks to dogs that apply this month (data/dog-seasons.json),
     // each with the months and where they come from.
     if (seasonWords && t.season && (t.season.dogSeasons || []).length) {
@@ -718,6 +757,13 @@
         const from = risk.sources.map(source => source.label).join(', ');
         caution(tx(seasonWords.DOG_SEASON_TAGS[risk.kind]), `${risk.line} ${tx('Source: {source}.', { source: from })}`, ({ cows: 'livestock', heat: 'heat', salt: 'paws' })[risk.kind] || null);
       }
+    }
+    // A shady walk in midwinter: where the sun never reaches, the path stays
+    // icy and a short-coated dog gets cold.
+    const sunTag = seasonWords && seasonWords.winterSunTag ? seasonWords.winterSunTag(t.season, month) : null;
+    if (sunTag && sunTag.kind === 'shady') {
+      const sun = seasonWords.winterSunLine(t.season, n => (isItalian() ? Number(n) : Number(n).toLocaleString()));
+      caution(sunTag.label, `${sun.line} ${tx('Paths in the shade stay icy all day, and a short-coated dog gets cold faster.')}`, 'altitude');
     }
 
     if (!rows.length) {

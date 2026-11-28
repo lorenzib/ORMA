@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-da-canazei-a-penia",
   "name": "Da Canazei a Penìa",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.943Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.850Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 589902,
+  "packageBytes": 589859,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.45455,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Da Canazei a Penìa OSM offline map",
       "url": "map.svg",
-      "bytes": 288470,
-      "sha256": "dd39ed6af0410bf698f521ffe5441727cdad7a28f4b79fbf0ef6fa7e8844e9cb"
+      "bytes": 288451,
+      "sha256": "31df7269bf7dcf7beda33a960a8892e4bcd2431a288059fe127974560d07716b"
     },
     {
       "role": "route",

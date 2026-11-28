@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-7045225",
   "name": "Giro del Fausior",
-  "version": "2026.11.12-beta.7",
-  "generatedAt": "2026-11-12T12:31:14.412Z",
+  "version": "2026.11.21-beta.8",
+  "generatedAt": "2026-11-21T22:46:49.359Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 902709,
+  "packageBytes": 902666,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.17305,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Giro del Fausior OSM offline map",
       "url": "map.svg",
-      "bytes": 555861,
-      "sha256": "df0158107989dcffadcc046f9dc3f641dcc939b3fe74bb6a9c47a1526cfce532"
+      "bytes": 555842,
+      "sha256": "6eb5b4e0ee60234d7076ee4a447621c5240a96f177fb4337b532df5cb8863155"
     },
     {
       "role": "route",

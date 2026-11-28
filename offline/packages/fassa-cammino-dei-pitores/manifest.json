@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-cammino-dei-pitores",
   "name": "Il cammino dei pitores",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.937Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.841Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 494629,
+  "packageBytes": 494586,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.45234,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Il cammino dei pitores OSM offline map",
       "url": "map.svg",
-      "bytes": 223956,
-      "sha256": "acc7553ae1644d2bf1edb0baa5562f261792f8e720dcf3f115b54b955550115f"
+      "bytes": 223937,
+      "sha256": "989595ab1ff9d092c82bd84ae5d57a324faca9153a7b73ad70765a4e1c61517d"
     },
     {
       "role": "route",

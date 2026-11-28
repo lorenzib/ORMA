@@ -154,18 +154,6 @@
       ]
     },
     {
-      "id": "osm-12189165",
-      "name": "Rundweg Schwarzegg - Sentiero circolare Dosso Nero",
-      "needs": [
-        "water",
-        "heat",
-        "exposure",
-        "livestock",
-        "surfaceHazards",
-        "access"
-      ]
-    },
-    {
       "id": "osm-12190538",
       "name": "Flaaser Rundweg",
       "needs": [

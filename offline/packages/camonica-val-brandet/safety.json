@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "camonica-val-brandet",
+  "generatedAt": "2026-11-23T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 3.6,
+    "ascentM": 185,
+    "highestPointM": 1306,
+    "expectedDuration": "1 h 30 min",
+    "difficulty": "Moderate",
+    "shadePercent": 30
+  },
+  "trailhead": {
+    "lat": 46.15172,
+    "lng": 10.209757,
+    "label": "The hamlet of Sant’Antonio, Corteno Golgi, by its church, the published start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "The first part of the forest road is steep, then it levels out: let your dog set the pace.",
+    "The road is open to farm and forestry vehicles: keep your dog close and step aside for them.",
+    "The Brandet stream runs beside the road and is fast after rain or snowmelt: keep your dog out of the water.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-19"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-23",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Val Brandet from Sant’Antonio": "Val Brandet da Sant’Antonio, andata e ritorno",
+    "The hamlet of Sant’Antonio, Corteno Golgi, by its church, the published start": "La frazione di Sant’Antonio, Corteno Golgi, vicino alla chiesa, la partenza indicata",
+    "The first part of the forest road is steep, then it levels out: let your dog set the pace.": "Il primo tratto della strada forestale è ripido, poi spiana: lasciate che sia il cane a dettare il ritmo.",
+    "The road is open to farm and forestry vehicles: keep your dog close and step aside for them.": "La strada è aperta ai mezzi agricoli e forestali: tenete il cane vicino e fatevi da parte al loro passaggio.",
+    "The Brandet stream runs beside the road and is fast after rain or snowmelt: keep your dog out of the water.": "Il torrente Brandet scorre accanto alla strada ed è impetuoso dopo la pioggia o al disgelo: tenete il cane fuori dall’acqua."
+  }
+}

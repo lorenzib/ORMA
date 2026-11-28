@@ -35,7 +35,8 @@ describe('Trails page map', () => {
     expect(source).not.toContain('cluster:true');
     expect(source).not.toContain('point_count');
     expect(source).not.toContain('getClusterExpansionZoom');
-    expect(source).toContain("id:'browse-trails-individual'");
+    // The dots and lines are the homepage map's (explore-map.js).
+    expect(source).toContain('explore.addTrailLayers(map, beforeIds');
     expect(source).toContain("fitColourExpression('fit', 'score')");
   });
 
@@ -48,19 +49,18 @@ describe('Trails page map', () => {
     expect(trailLineFeature({ id:'n', lat:46.6, lng:11.7 })).toBeNull();
     expect(trailFeature(walk).properties.line).toBe(1);
     expect(trailFeature({ id:'n', lat:46.6, lng:11.7 }).properties.line).toBe(0);
-    expect(LINE_MIN_ZOOM).toBe(9);
+    expect(LINE_MIN_ZOOM).toBe(7);
 
+    // The same layers as the homepage: every walk's line from region zoom,
+    // in its fit colour, and its start as a dot in the same colour.
+    const explore=fs.readFileSync('explore-map.js','utf8');
+    expect(explore).toContain("id: 'trail-paths-orma-line',\n      type: 'line',\n      source: 'trail-paths',\n      minzoom: 7,");
     const source=fs.readFileSync('browse-map.js','utf8');
-    const layer=id => { const at=source.indexOf(`id:'${id}'`); return source.slice(at, source.indexOf('});', at)); };
-    // Lines in the match colour from LINE_MIN_ZOOM, thin on a white edge.
-    expect(layer('browse-trail-lines')).toContain('minzoom:LINE_MIN_ZOOM');
-    expect(layer('browse-trail-lines')).toContain("'line-color':fitColour");
-    expect(layer('browse-trail-lines-casing')).toContain("'line-color':'#fff'");
-    // Dots for line walks only below that zoom; walks with no line keep theirs.
-    expect(layer('browse-trails-overview')).toContain("['get', 'line'], 0], 1], maxzoom:LINE_MIN_ZOOM");
-    expect(layer('browse-trails-individual')).toContain("['get', 'line'], 0], 0]");
-    // A tap on the line picks the walk.
-    expect(source).toContain("'browse-trail-lines-hit'];");
+    expect(source).toContain('lineEmphasis:true');
+    expect(source).toContain('pinOtherColour:fitColour');
+    // A tap on the line or the dot picks the walk.
+    expect(explore).toContain("return { clickLayers:['trail-unclustered', 'trail-paths-hit'] };");
+    expect(source).toContain('layers.clickLayers.forEach');
   });
 
   test('a pin carries its verdict tier, so it is the colour of its card', () => {
@@ -70,11 +70,23 @@ describe('Trails page map', () => {
 
   test('the picked walk is drawn in its fit colour, not a fixed green', () => {
     const source=fs.readFileSync('browse-map.js','utf8');
-    const line=source.slice(source.indexOf("id:'browse-selected-route-line'"));
-    expect(line.slice(0, line.indexOf('});'))).toContain("'line-color':fitColour");
-    expect(source).not.toContain("'line-color':'#2e4034'");
-    const dot=source.slice(source.indexOf("id:'browse-trails-selected'"));
-    expect(dot.slice(0, dot.indexOf('});'))).toContain("'circle-color':fitColour");
+    expect(source).toContain('style.MATCH_COLOURS[fit]');
+    expect(source).toContain('explore.setSelected(map, trail || null, { routeColor:trail ? routeColourFor(trail) : null, fit:false });');
+    const explore=fs.readFileSync('explore-map.js','utf8');
+    expect(explore).toContain("'line-color':['coalesce',['get','routeColor'],'#4A7856']");
+  });
+
+  test('the Trails page map is the homepage map', () => {
+    // Owner, 20 Nov: "applying the homepage map to trails as well".
+    const source=fs.readFileSync('browse-map.js','utf8');
+    ['explore.mapOptions(', 'explore.addChrome(map', 'explore.setupBase(map)', 'explore.addOverlays(map, containerId)']
+      .forEach(call => expect(source).toContain(call));
+    const html=fs.readFileSync('browse-trails.html','utf8');
+    expect(html).toContain('class="browse-map-pane li-map"');
+    expect(html).toContain('id="browseMapDrawBtn" class="li-map-draw"');
+    expect(html).toContain('id="browseMapExpandBtn"');
+    expect(html).not.toContain('data-browse-map-style');
+    expect(html.indexOf('explore-map.js')).toBeLessThan(html.indexOf('browse-map.js'));
   });
 
   test('the popup says the verdict, not a heading with nothing under it', () => {
@@ -106,7 +118,7 @@ describe('Trails page map', () => {
     expect(html).toContain('id="browseSearchArea"');
     expect(html).toContain('data-browse-view="list"');
     expect(html).toContain('data-browse-view="map"');
-    expect(html).toContain('src="browse-map.js?v=20261119-1"');
+    expect(html).toContain('src="browse-map.js?v=20261120-1"');
     expect(html).toContain('scoreFor:matchScore');
     expect(html).toContain('savedFor:trail => !!currentFavorites[trail.id]');
   });
@@ -114,7 +126,7 @@ describe('Trails page map', () => {
   test('uses the same map-left, results-right desktop order as the logged-in homepage', () => {
     const explore=fs.readFileSync('browse-trails.html','utf8');
     const homepage=fs.readFileSync('index.html','utf8');
-    expect(explore.indexOf('<div class="browse-map-pane"')).toBeLessThan(
+    expect(explore.indexOf('<div class="browse-map-pane li-map"')).toBeLessThan(
       explore.indexOf('<div class="browse-list-pane"')
     );
     expect(homepage.indexOf('<div class="li-map"')).toBeLessThan(

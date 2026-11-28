@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "meran-da-oberkirn-a-verdins-passando-per-prenn-e-talle-di-sotto",
   "name": "Oberkirn to Verdins via Prenn and Untertall",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.122Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.070Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 791008,
+  "packageBytes": 790965,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.71224,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Oberkirn to Verdins via Prenn and Untertall OSM offline map",
       "url": "map.svg",
-      "bytes": 409257,
-      "sha256": "9b2dfdbea028c89894a1eb857126f29f3006e8b003b026b1e7b111eee950413b"
+      "bytes": 409238,
+      "sha256": "fb3502a1062a6c1c27b5075b6166c8bc2ad543c1a624a76c0a944ce28cbee74d"
     },
     {
       "role": "route",

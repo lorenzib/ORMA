@@ -95,7 +95,7 @@ describe('guest dog persistence and the quick wizard chairlift question', () => 
     // The trail-shadowed renderers use the `tr` alias, never a bare `t(` that would resolve to the trail.
     expect(controller).toContain('var tr = t;');
     expect(controller).toContain("tr('hp.sug.topFor', 'Top matches for {name}', { name: esc(m.name) })");
-    expect(controller).toContain("'low-risk': { label: tr('hp.difficulty.lowRisk', 'Low-risk'), dot: '#2C5C34' }");
+    expect(controller).toContain("'low-risk': { label: tr('hp.difficulty.lowRisk', 'Low risk'), dot: '#2C5C34' }");
   });
 
   test('the Browse page carries Italian copy for its controls, cards, tray and empty states', () => {
@@ -141,12 +141,12 @@ describe('guest dog persistence and the quick wizard chairlift question', () => 
     const page = read('collections-page.js');
     expect(page).toMatch(/if\(!auth \|\| !auth\.currentUser[^\n]*\)\{\s*const device = deviceDogProfile\(\);\s*if\(device\) applyMatchSubject\(subjectFor\(device\)\);/);
     expect(page).toContain('matchSubject || scoring.GUEST_SUBJECT');
-    expect(read('collections.html')).toContain('collections-page.js?v=20261119-9');
+    expect(read('collections.html')).toContain('collections-page.js?v=20261125-4');
   });
 
   test('the homepage ships the new controller and guest-context versions', () => {
     const html = read('index.html');
-    expect(html).toContain('homepage-search.js?v=20261123-1');
+    expect(html).toContain('homepage-search.js?v=20261126-2');
     expect(html).toContain('guest-context.js?v=20261030-1');
     expect(read('browse-trails.html')).toContain('guest-context.js?v=20261030-1');
   });

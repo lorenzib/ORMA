@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valsusa-venaus-sentiero-gufi-basso",
   "name": "Lower Owl Trail, Venaus",
-  "version": "2026.11.19-beta.1",
-  "generatedAt": "2026-11-19T22:18:42.932Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:49.928Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 671690,
+  "packageBytes": 671645,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.14685,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Lower Owl Trail, Venaus OSM offline map",
       "url": "map.svg",
-      "bytes": 338222,
-      "sha256": "731c10756815ffcec0725a390b7b1d9369e2e73b55557ce680decf2d75094e94"
+      "bytes": 338201,
+      "sha256": "4fbbc7c46a2f8a7867e794101b7b85ceee65de67df0c7bbaf1751e0d7dad06c4"
     },
     {
       "role": "route",

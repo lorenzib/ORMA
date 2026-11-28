@@ -106,6 +106,56 @@
 
   // Seasonal risks to dogs (trail.season.dogSeasons, from data/dog-seasons.json):
   // a tag in the months they apply and a line under "When to go" with the source.
+  // Winter sun (scripts/winter-sun.js, data/winter-sun.json): the hours of
+  // direct sun the terrain allows on the shortest day, averaged along the walk.
+  // A tag in the months it matters: a sunny walk is the one to pick, and a
+  // shady one is where the path stays icy.
+  const WINTER_SUN_MONTHS = [11, 12, 1, 2];
+  // Six hours is the top quarter of ORMA's walks (median 5 of a possible 8.3 at
+  // 46.5° N); under two is the shadiest tenth (20 November 2026).
+  const SUNNY_WINTER_HOURS = 6;
+  const SHADY_WINTER_HOURS = 2;
+  const WINTER_SUN_SOURCE = { label: 'AWS Terrain Tiles', url: 'https://registry.opendata.aws/terrain-tiles/' };
+  function winterSunKind(season) {
+    const sun = season && season.winterSun;
+    if (!sun || !Number.isFinite(sun.hours)) return null;
+    if (sun.hours >= SUNNY_WINTER_HOURS) return 'sunny';
+    if (sun.hours < SHADY_WINTER_HOURS) return 'shady';
+    return null;
+  }
+  // { kind, label } in November to February, else null.
+  function winterSunTag(season, month) {
+    if (!WINTER_SUN_MONTHS.includes(month)) return null;
+    const kind = winterSunKind(season);
+    if (!kind) return null;
+    return { kind, label: kind === 'sunny' ? tx('Sunny in winter') : tx('Little winter sun') };
+  }
+  // The "When to go" line: the hours, and ice where much of the line sees none.
+  function winterSunLine(season, formatNumber) {
+    const sun = season && season.winterSun;
+    if (!sun || !Number.isFinite(sun.hours)) return null;
+    const fmt = typeof formatNumber === 'function' ? formatNumber : value => value;
+    const half = Math.round(sun.hours * 2) / 2;
+    const parts = [half < 1
+      ? tx('On the shortest day the mountains keep direct sun off this walk for all but a few minutes.')
+      : half === 1
+        ? tx('On the shortest day the sun reaches this walk for about an hour.')
+        : tx('On the shortest day the sun reaches this walk for about {hours} hours.', { hours: fmt(half) })];
+    if (sun.noSunShare >= 0.3) {
+      parts.push(tx('About {share}% of the line gets no direct sun at all in midwinter: expect ice there.', { share: fmt(Math.round(sun.noSunShare * 10) * 10) }));
+    }
+    return {
+      kind: winterSunKind(season),
+      line: parts.join(' '),
+      source: {
+        before: tx('Worked out from the terrain alone ('),
+        label: WINTER_SUN_SOURCE.label,
+        url: WINTER_SUN_SOURCE.url,
+        after: tx('): trees, buildings and weather are not counted.'),
+      },
+    };
+  }
+
   const DOG_SEASON_TAGS = { caterpillars: 'Caterpillar season', ticks: 'Tick season', cows: 'Cows on the pastures', heat: 'Hot months', salt: 'Salted roads' };
   const DOG_SEASON_SENTENCES = {
     caterpillars: '{range}: pine processionary caterpillars come down from the pines below about {alt} m, and they are a danger to dogs. Keep your dog away from pines and from the caterpillars.',
@@ -156,6 +206,16 @@
         after: tx(', read on {date}.', { date: readOn(season.recommended.source.accessedAt) }),
       };
       out.legend = [['good', tx('Recommended')], ['off', tx('Outside the season')]];
+    } else if (season.snow && season.snow.likelihood === 'occasional') {
+      // Below 800 m: a walk all year, and the line says when a cold spell
+      // might still bring snow for a few days.
+      out.kind = 'snow';
+      out.strip = MONTH_NAMES.map((name, i) => ({ month: i + 1, initial: monthInitial(i + 1), name: monthName(i + 1), state: 'good' }));
+      out.line = tx('Usually snow-free all year. After a cold spell, snow can lie for a few days {range}.', { range: monthRange(season.snow.months) });
+      out.source = {
+        before: tx('Estimated from the walk’s high point ({alt} m). No tourist board publishes this walk’s season, and every winter is different.', { alt: fmt(season.snow.highPoint) }),
+      };
+      out.legend = [['good', tx('Usually snow-free')]];
     } else if (season.snow) {
       const snowy = new Set(season.snow.months);
       out.kind = 'snow';
@@ -245,6 +305,7 @@
         after: tx(', read on {date}.', { date: readOn(source.accessedAt) }),
       })),
     }));
+    out.winterSun = winterSunLine(season, fmt);
     return out;
   }
 
@@ -266,7 +327,9 @@
     } else if (season.snow && season.snow.months.includes(month)) {
       notes.push(season.snow.likelihood === 'likely'
         ? tx('In {month} snow is likely on this walk.', { month: name })
-        : tx('In {month} snow is possible on this walk.', { month: name }));
+        : season.snow.likelihood === 'occasional'
+          ? tx('In {month} this walk is usually snow-free; after a cold spell, snow can lie for a few days.', { month: name })
+          : tx('In {month} snow is possible on this walk.', { month: name }));
     }
     for (const lift of (season.lifts || [])) {
       if (!liftShut(lift, month)) continue;
@@ -307,7 +370,7 @@
     if (!season.recommended && !season.snow && !(season.winterUse || []).length) return null;
     let months = season.recommended
       ? season.recommended.months.slice()
-      : MONTH_NAMES.map((_, i) => i + 1).filter(m => !(season.snow && season.snow.months.includes(m)));
+      : MONTH_NAMES.map((_, i) => i + 1).filter(m => !(season.snow && season.snow.likelihood !== 'occasional' && season.snow.months.includes(m)));
     if ((season.winterUse || []).length) {
       const summer = months.filter(m => !WINTER_SPORT_MONTHS.includes(m));
       if (summer.length) months = summer;
@@ -348,9 +411,19 @@
   // card, "Good all year" when every month suits. A run across New Year reads
   // as one run.
   function bestTime(season, short) {
+    const range = bestRange(season, short);
+    if (!range) return '';
+    if (range === ALL_YEAR) return tx('Good all year');
+    return tx('Best time: {range}', { range });
+  }
+
+  // The months alone: "June to October", "Jun–Oct", "March, June to October".
+  // ALL_YEAR when every month suits, '' when the walk has no season record.
+  const ALL_YEAR = 'all-year';
+  function bestRange(season, short) {
     const best = bestMonths(season);
     if (!best) return '';
-    if (best.length === 12) return tx('Good all year');
+    if (best.length === 12) return ALL_YEAR;
     const set = new Set(best);
     const name = m => (short ? monthName(m).slice(0, 3) : monthName(m));
     const runs = [];
@@ -360,7 +433,26 @@
       while (set.has(end === 12 ? 1 : end + 1)) end = end === 12 ? 1 : end + 1;
       runs.push(end === m ? name(m) : (short ? `${name(m)}–${name(end)}` : tx('{from} to {to}', { from: name(m), to: name(end) })));
     }
-    return tx('Best time: {range}', { range: runs.join(', ') });
+    return runs.join(', ');
+  }
+
+  // The homepage card's season line, tagged like its "Fits" and "Watch" lines:
+  // "In season" Best March to November, or "Out of season" Back in June. Same
+  // outOfSeason rule as the tag, the map pins and the score. A dog risk this
+  // month (ticks, heat, salt…) follows an in-season line. null without a record.
+  function seasonFit(season, month) {
+    const range = bestRange(season);
+    if (!range || !month) return null;
+    const back = backInSeason(season, month);
+    if (back) return { out: true, lead: tx('Out of season'), facts: tx('back in {month}', { month: monthName(back) }), risks: '' };
+    const facts = range === ALL_YEAR ? tx('good all year') : tx('best {range}', { range });
+    const risks = dogSeasonsNow(season, month).map(risk => risk.label.charAt(0).toLowerCase() + risk.label.slice(1));
+    return {
+      out: false,
+      lead: tx('In season now'),
+      facts,
+      risks: risks.length ? tx('This month: {risks}', { risks: risks.join(', ') }) : '',
+    };
   }
 
   // The month an out-of-season walk comes back into season: the next of its
@@ -373,6 +465,14 @@
       if (best.includes(next)) return next;
     }
     return null;
+  }
+
+  // Back this month: in season now, out of season last month. The month a
+  // saved walk is worth a reminder.
+  function cameBackThisMonth(season, month) {
+    if (!month) return false;
+    const last = month === 1 ? 12 : month - 1;
+    return !outOfSeason(season, month) && outOfSeason(season, last);
   }
 
   // The "Out of season" tag with the month it comes back: "Out of season ·
@@ -393,7 +493,7 @@
     return now.concat(later);
   }
 
-  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, WINTER_WALK_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, dayMonth, liftLine, roadLine, hutLine, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime, backInSeason, outOfSeasonTag, inSeasonFirst, DOG_SEASON_TAGS, dogSeasonsNow };
+  const api = { MONTH_NAMES, WINTER_SPORT_MONTHS, WINTER_WALK_MONTHS, HIGH_MOUNTAIN_M, monthName, monthRange, dayMonth, liftLine, roadLine, hutLine, describe, nowNote, bestMonths, outOfSeason, hiddenThisMonth, bestTime, bestRange, seasonFit, backInSeason, cameBackThisMonth, outOfSeasonTag, inSeasonFirst, DOG_SEASON_TAGS, dogSeasonsNow, WINTER_SUN_MONTHS, SUNNY_WINTER_HOURS, SHADY_WINTER_HOURS, winterSunTag, winterSunLine };
   global.DoloPawsTrailSeasonWords = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);

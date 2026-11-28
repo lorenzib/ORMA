@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "meran-escursione-ad-anello-da-scena-sul-sentiero-blosegg",
   "name": "Bloseggweg loop from Schenna",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.127Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.074Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1085565,
+  "packageBytes": 1085522,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.67315,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Bloseggweg loop from Schenna OSM offline map",
       "url": "map.svg",
-      "bytes": 607012,
-      "sha256": "8a89bb05f42bac4ab2ba39b5a476e805fc99519776aa8cdc5efe94143cdb3297"
+      "bytes": 606993,
+      "sha256": "1b35675157c23c5f7c53b6eff2c8e1a55b7f8646be228ec32625eb8c0aa7f04b"
     },
     {
       "role": "route",

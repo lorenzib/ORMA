@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-12150790",
   "name": "Giro dei Capitelli - Kapellenrunde",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.224Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.182Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 594687,
+  "packageBytes": 594644,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.23201,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Giro dei Capitelli - Kapellenrunde OSM offline map",
       "url": "map.svg",
-      "bytes": 370849,
-      "sha256": "0e4032fca0dfc298b642a48afb794ce08c23c6cc064048c25699e4388a7db420"
+      "bytes": 370830,
+      "sha256": "b8f1a8cbcbb08e50ef68142d7ab1defc86f3d255ae9650607ee4115bba55e9f4"
     },
     {
       "role": "route",

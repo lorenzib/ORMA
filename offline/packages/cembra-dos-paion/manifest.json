@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cembra-dos-paion",
   "name": "Passeggiata al belvedere del Dos Paion sul Monte Corona",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:13.841Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T22:46:48.661Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 545062,
+  "packageBytes": 545019,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.16451,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Passeggiata al belvedere del Dos Paion sul Monte Corona OSM offline map",
       "url": "map.svg",
-      "bytes": 307782,
-      "sha256": "387ac1d62cca2426446ea22c1d1d7b9eae8861011894f2f93e32a3269e3a3068"
+      "bytes": 307763,
+      "sha256": "7b0b10e3755681704e9990cd983e901db32b8ac7d73f19ff63df014735d7dc4c"
     },
     {
       "role": "route",

@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../styles.css?v=20261123-1">
+<link rel="stylesheet" href="../styles.css?v=20261126-3">
 <style>
   .sp-hero{padding-top:28px;}
   .sp-breadcrumb{font-size:.85rem;color:var(--ink-soft,#666);margin-bottom:14px;}
@@ -64,8 +64,11 @@
   .sp-tag[hidden]{display:none;}
   .sp-tag--out{background:#F6E3DE;color:#7A2E1E;font-weight:700;}
   .sp-tag--dog{background:#F7EBD2;color:#6D4916;font-weight:700;}
+  .sp-tag--sun-sunny{background:#FBEFC4;color:#6B5100;font-weight:700;}
+  .sp-tag--sun-shady{background:#DDE7F3;color:#24476B;font-weight:700;}
   .sp-season-dog{margin:18px 0 6px;font-size:17px;}
   .sp-tag--best{background:#E3F0E0;color:#24502A;font-weight:700;}
+  .sp-daylight{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF0F6;color:#2B3550;font-weight:600;}
   .sp-season-now{margin:8px 0;padding:10px 12px;border-radius:10px;background:#EEF4EC;color:#24502A;font-weight:600;}
   .sp-season-now--warn{background:#FBF1EE;color:#4A2A22;border-left:4px solid #9C3A25;}
   .sp-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
@@ -77,7 +80,7 @@
   .sp-route-source{margin-top:4px;color:#657369;font-size:13px;line-height:1.5;}
   .sp-route-credit{margin-top:6px;color:#8A968C;font-size:11.5px;line-height:1.45;}
   .sp-route-credit a{color:inherit;text-decoration:underline;text-decoration-color:rgba(138,150,140,.5);}
-  /* The photo is lazy-loaded and the credit toggle is pinned to the figure's
+  /* The photo can arrive after the page draws and the credit toggle is pinned to the figure's
      corner, so the figure reserves its height up front; otherwise the toggle
      floats over whatever sits above until the image arrives. */
   .sp-photo{position:relative;width:480px;max-width:100%;aspect-ratio:8/5;margin:6px 0 14px;overflow:hidden;border-radius:12px;}
@@ -171,6 +174,7 @@
     <span class="dp-badge sp-tag sp-tag--out" data-season-out="111100000011" hidden><span>Out of season · back in May</span></span>
     <span class="dp-badge sp-tag sp-tag--best"><span>Best time: May to October</span></span>
     <span class="dp-badge sp-tag sp-tag--dog" data-season-out="000001111000" hidden><span>Cows on the pastures</span></span>
+    
     <script>(function(){var m=new Date().getMonth();document.querySelectorAll('.sp-tag[data-season-out]').forEach(function(tag){if(tag.getAttribute('data-season-out').charAt(m)==='1')tag.hidden=false;});})();</script>
     <span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Higher risk</span></span>
     <span class="dp-badge dp-badge--verified"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>Verified by ORMA</span></span>
@@ -178,7 +182,7 @@
     
   </div>
   
-  <figure class="sp-photo"><img class="sp-img" src="../images/trails/fiemme-pradi-da-le-fior-view.jpg" alt="Snow-streaked peaks of the Brenta Dolomites above blue valleys, with green larch woods and a single larch in the foreground under a clear summer sky" loading="lazy" decoding="async"><details class="sp-photo-credit">
+  <figure class="sp-photo"><img class="sp-img" src="../images/trails/fiemme-pradi-da-le-fior-view.jpg" alt="Snow-streaked peaks of the Brenta Dolomites above blue valleys, with green larch woods and a single larch in the foreground under a clear summer sky" fetchpriority="high" decoding="async"><details class="sp-photo-credit">
       <summary aria-label="Show photo credit" title="Photo credit">C</summary>
       <div class="sp-photo-credit__body"><a href="https://commons.wikimedia.org/wiki/File:38040_Valfloriana,_Province_of_Trento,_Italy_-_panoramio.jpg" rel="noopener nofollow">The Brenta from Valfloriana</a> by giovanni bidi <span aria-hidden="true">·</span> <a href="https://creativecommons.org/licenses/by/3.0" rel="license noopener">CC BY 3.0</a> <span aria-hidden="true">·</span> Cropped for display.</div>
     </details></figure>
@@ -226,12 +230,15 @@
     <section class="sp-season" id="season" data-season-notes="[&quot;January is outside the season the board publishes for this walk.&quot;,&quot;February is outside the season the board publishes for this walk.&quot;,&quot;March is outside the season the board publishes for this walk.&quot;,&quot;April is outside the season the board publishes for this walk.&quot;,&quot;May is in this walk’s season.&quot;,&quot;June is in this walk’s season.&quot;,&quot;July is in this walk’s season.&quot;,&quot;August is in this walk’s season.&quot;,&quot;September is in this walk’s season.&quot;,&quot;October is in this walk’s season.&quot;,&quot;November is outside the season the board publishes for this walk.&quot;,&quot;December is outside the season the board publishes for this walk.&quot;]" data-season-warn="111100000011">
     <h2>When to go</h2>
     <p class="sp-season-now" hidden></p>
+    <p class="sp-daylight" hidden data-lat="46.200892" data-lng="11.378738" data-hours="1" data-template="Short days: sunset today is at {sunset}. To finish in daylight, set off by {start} at the latest; in a deep valley it gets dark sooner."></p>
     <ol class="sp-months" aria-label="Months of the year"><li class="sp-month sp-month--off" data-month="1"><span aria-hidden="true">J</span><span class="sp-vh">January: Outside the season</span></li><li class="sp-month sp-month--off" data-month="2"><span aria-hidden="true">F</span><span class="sp-vh">February: Outside the season</span></li><li class="sp-month sp-month--off" data-month="3"><span aria-hidden="true">M</span><span class="sp-vh">March: Outside the season</span></li><li class="sp-month sp-month--off" data-month="4"><span aria-hidden="true">A</span><span class="sp-vh">April: Outside the season</span></li><li class="sp-month sp-month--good" data-month="5"><span aria-hidden="true">M</span><span class="sp-vh">May: Recommended</span></li><li class="sp-month sp-month--good" data-month="6"><span aria-hidden="true">J</span><span class="sp-vh">June: Recommended</span></li><li class="sp-month sp-month--good" data-month="7"><span aria-hidden="true">J</span><span class="sp-vh">July: Recommended</span></li><li class="sp-month sp-month--good" data-month="8"><span aria-hidden="true">A</span><span class="sp-vh">August: Recommended</span></li><li class="sp-month sp-month--good" data-month="9"><span aria-hidden="true">S</span><span class="sp-vh">September: Recommended</span></li><li class="sp-month sp-month--good" data-month="10"><span aria-hidden="true">O</span><span class="sp-vh">October: Recommended</span></li><li class="sp-month sp-month--off" data-month="11"><span aria-hidden="true">N</span><span class="sp-vh">November: Outside the season</span></li><li class="sp-month sp-month--off" data-month="12"><span aria-hidden="true">D</span><span class="sp-vh">December: Outside the season</span></li></ol>
     <p class="sp-month-key" aria-hidden="true"><span class="sp-key sp-key--good"></span>Recommended <span class="sp-key sp-key--off"></span>Outside the season</p>
     <p>Recommended from May to October.</p>
     <p class="sp-src">Source: <a href="https://www.outdooractive.com/it/r/811025075" rel="noopener">Outdooractive</a>, read on 6 November 2026.</p>
     
     
+    <p>Winter sun: On the shortest day the sun reaches this walk for about 4.5 hours.</p>
+    <p class="sp-src">Worked out from the terrain alone (<a href="https://registry.opendata.aws/terrain-tiles/" rel="noopener">AWS Terrain Tiles</a>): trees, buildings and weather are not counted.</p>
     <h3 class="sp-season-dog">For your dog</h3>
     <p>June to September (an estimate): cows may be out on the pastures. Keep your dog close and give the herds a wide berth.</p>
     <p class="sp-src">Source: <a href="https://www.suedtirol.info/de/das-ist-suedtirol/menschen/tradition/almwirtschaft-und-transhumanz" rel="noopener">South Tyrol tourist board</a>, read on 9 November 2026.</p>
@@ -383,6 +390,7 @@
 </footer>
 
 <script src="../icon-system.js?v=20260717" defer></script>
+<script src="../daylight.js?v=20261126-1" defer></script>
 <script src="../mobile-nav.js?v=20261030-1"></script>
 </body>
 </html>

@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css?v=20261123-1">
+<link rel="stylesheet" href="/styles.css?v=20261126-3">
 <style>
   /* Guest bar, the homepage component reused verbatim; CTA is a link here */
   a.hp-guestbar-cta{display:inline-flex;align-items:center;text-decoration:none;white-space:nowrap;}
@@ -49,28 +49,19 @@
   .browse-primary-controls .browse-tools{width:100%;min-width:0;margin:0;flex-wrap:nowrap;justify-content:flex-start;}
   .browse-primary-controls .browse-search-shell{flex:1 1 300px;width:auto;max-width:360px;min-width:0;}
   .browse-primary-controls .browse-filter-divider{display:none;}
-  .simple-grid{display:flex;flex-direction:column;gap:12px;}
-  .simple-card{display:grid;grid-template-columns:120px minmax(0,1fr) minmax(190px,235px);grid-template-rows:auto auto;column-gap:16px;row-gap:9px;align-items:center;padding:14px;background:var(--card);border:1px solid var(--paper-line);border-radius:var(--radius-panel);overflow:hidden;transition:box-shadow .2s,border-color .2s,transform .2s;}
-  .simple-card:hover{border-color:var(--accent-light);transform:translateY(-2px);box-shadow:var(--shadow-card-hover);}
-  .simple-card .photo{grid-column:1;grid-row:1/3;width:120px;height:96px;border-radius:var(--radius-thumb,12px);background:#E7ECE3;overflow:hidden;}
-  .simple-card__main{grid-column:2;grid-row:1;min-width:0;align-self:end;text-decoration:none;}
-  .simple-card .name{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:17px;color:var(--ink);}
-  .simple-card__meta{font-size:12px;color:var(--ink-soft);margin-top:3px;}
-  .simple-card__facts{grid-column:2;grid-row:2;display:flex;gap:7px;flex-wrap:wrap;align-items:center;align-self:start;}
+  /* Trail cards are the shared .tcard (styles.css), in a grid: two across
+     beside the map, more where the list has the room. */
+  .simple-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;}
+  .browse-list-pane .tcard.is-map-selected{border-color:#2E4034;box-shadow:0 0 0 1px #2E4034,0 9px 24px rgba(35,53,40,.12);transform:none;}
+  .tcard__foot.browse-card-actions{flex-direction:row;align-items:center;justify-content:space-between;}
+  .tcard__foot .browse-card-open{min-height:0;padding:0;border-radius:0;background:none;color:var(--accent);font:700 13px 'Inter',sans-serif;}
+  .tcard__foot .browse-card-open:hover{filter:none;text-decoration:underline;}
   .browse-season{display:inline-flex;align-items:center;min-height:22px;padding:2px 9px;border-radius:999px;font:700 11px/1.2 'Inter',sans-serif;white-space:nowrap;}
   .browse-season--best{background:#EEF0EA;color:#3C4A3A;}
   .browse-season--out{background:#F6E3DE;color:#7A2E1E;}
   .browse-season--dog{background:#F7EBD2;color:#6D4916;}
-  .simple-card__match{grid-column:3;grid-row:1/3;align-self:stretch;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:12px;min-width:0;margin:-14px -14px -14px 0;padding:18px;border-left:1px solid rgba(46,64,52,.08);background:var(--success-dim);}
-  .simple-card__score{display:flex;flex-direction:column;align-items:flex-start;gap:4px;width:100%;}
-  .simple-card__match strong{font:800 14px/1.25 'Inter',sans-serif;color:var(--success);text-align:left;text-wrap:balance;}
-  .simple-card__match small{font:700 9.5px/1 'Inter',sans-serif;letter-spacing:.09em;color:var(--ink-soft);white-space:nowrap;text-align:left;}
-  .simple-card__match-reason{margin:6px 0 0;color:var(--ink-soft);font:500 11.5px/1.35 'Inter',sans-serif;}
-  .simple-card__match-actions{display:flex;align-items:center;gap:7px;}
-  .simple-card__match--good{background:#FFF0D6;}
-  .simple-card__match--good strong{color:#9A6518;}
-  .simple-card__match--check{background:#F7E5E0;}
-  .simple-card__match--check strong{color:#9C3A25;}
+  .browse-season--sun-sunny{background:#FBEFC4;color:#6B5100;}
+  .browse-season--sun-shady{background:#DDE7F3;color:#24476B;}
   .browse-card-actions{display:flex;align-items:center;gap:8px;}
   .browse-card-compare{display:inline-flex;align-items:center;justify-content:center;min-height:36px;border-radius:var(--radius-pill);font:700 10.5px 'Inter',sans-serif;border:1px solid var(--paper-line);background:#fff;color:var(--ink-soft);padding:6px 12px;cursor:pointer;}
   .browse-card-compare[aria-pressed="true"]{background:#EAF3EC;border-color:#7EAD91;color:#24462E;}
@@ -114,19 +105,7 @@
     /* The wrappers are the flex items, without flex:none they shrink in
        the nowrap scroll row and the selects inside pile onto each other. */
     .browse-filter-controls .browse-field,.browse-filter-controls select,.browse-water{flex:none;}
-    .simple-card{grid-template-columns:84px minmax(0,1fr);grid-template-rows:auto auto auto;column-gap:12px;row-gap:12px;padding:12px;}
-    .simple-card .photo{grid-column:1;grid-row:1;width:84px;height:76px;align-self:start;}
-    .simple-card__main{grid-column:2;grid-row:1;align-self:center;}
-    .simple-card__facts{grid-column:1/-1;grid-row:2;align-items:center;}
-    .simple-card__match{grid-column:1/-1;grid-row:3;width:auto;min-width:0;margin:0 -12px -12px;align-items:flex-start;justify-content:flex-start;border-left:0;border-top:1px solid rgba(46,64,52,.08);padding:13px 12px 12px;}
-    .simple-card__score{align-items:flex-start;gap:4px;min-width:0;}
-    .simple-card__match strong{font-size:13px;}
-    .simple-card__match-actions{margin-left:0;flex:none;}
     .browse-card-compare{min-height:32px;padding-inline:11px;}
-  }
-  @media(max-width:360px){
-    .simple-card__match{display:flex;}
-    .simple-card__match-actions{width:auto;justify-content:flex-start;margin-left:0;}
   }
   .trail-trust-note{margin:0 0 14px;padding:11px 13px;border-left:3px solid #8a5a16;background:#f6ecdb;border-radius:0 10px 10px 0;color:#5f4a2c;font-size:12.5px;line-height:1.55;}
   .browse-results-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 14px;color:var(--ink-soft);font-size:12.5px;font-weight:600;flex-wrap:wrap;}
@@ -170,24 +149,12 @@
   .browse-list-pane{min-width:0;overflow-y:auto;overscroll-behavior:contain;padding:18px 16px 22px;background:#FBFAF5;border-left:1px solid var(--paper-line);scrollbar-gutter:stable;}
   .browse-list-pane .browse-compare-note{margin-bottom:14px;}
   .browse-list-pane .browse-results-meta{position:sticky;top:-18px;z-index:4;margin:0 -16px 12px;padding:14px 16px 10px;background:rgba(251,250,245,.96);backdrop-filter:blur(8px);}
-  .browse-list-pane .simple-card{grid-template-columns:112px minmax(0,1fr) 165px;grid-template-rows:auto auto;gap:9px 13px;padding:12px;}
-  .browse-list-pane .simple-card .photo{grid-column:1;grid-row:1/3;width:112px;height:92px;align-self:start;}
-  .browse-list-pane .simple-card__main{grid-column:2;grid-row:1;align-self:end;}
-  .browse-list-pane .simple-card__facts{grid-column:2;grid-row:2;}
-  .browse-list-pane .simple-card__match{grid-column:3;grid-row:1/3;min-width:0;margin:-12px -12px -12px 0;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:10px;border:0;border-left:1px solid rgba(46,64,52,.08);padding:14px;}
-  .browse-list-pane .simple-card__score{flex-direction:column;align-items:flex-start;gap:3px;}
-  .browse-list-pane .simple-card__score small{font-size:8.5px;}
-  .browse-list-pane .simple-card__match-actions{margin-left:0;}
-  .browse-list-pane .simple-card.is-map-selected{border-color:#2E4034;box-shadow:0 0 0 1px #2E4034,0 9px 24px rgba(35,53,40,.12);transform:none;}
   .browse-map-pane{position:relative;min-width:0;background:#DCE6D8;}
   #browseMap{position:absolute;inset:0;}
   .browse-map-placeholder{position:absolute;inset:0;display:grid;place-content:center;gap:8px;padding:24px;text-align:center;background:linear-gradient(145deg,#EEF1E7,#D7E4D7);color:#53675A;font:650 13px/1.45 'Inter',sans-serif;}
   .browse-map-placeholder strong{color:#2E4034;font:700 18px 'Bricolage Grotesque',sans-serif;}
   .browse-search-area{position:absolute;top:16px;left:50%;z-index:8;transform:translateX(-50%);display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:8px 16px;border:1px solid rgba(46,64,52,.15);border-radius:999px;background:rgba(255,255,255,.96);color:#32697E;box-shadow:0 6px 20px rgba(35,53,40,.18);font:800 12.5px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;}
   .browse-search-area[hidden]{display:none;}
-  .browse-map-style{position:absolute;right:14px;bottom:14px;z-index:8;display:flex;gap:3px;padding:3px;border:1px solid rgba(46,64,52,.14);border-radius:11px;background:rgba(255,255,255,.94);box-shadow:0 4px 14px rgba(35,53,40,.15);}
-  .browse-map-style button{min-height:34px;padding:7px 12px;border:0;border-radius:8px;background:transparent;color:#2E4034;font:700 11.5px 'Inter',sans-serif;cursor:pointer;}
-  .browse-map-style button.on{background:#2E4034;color:#fff;}
   .browse-view-toggle{display:none;}
   .browse-map-popup{display:grid;gap:4px;padding:2px 14px 2px 0;color:#2E4034;}
   .browse-map-popup strong{font:700 14px/1.25 'Bricolage Grotesque',sans-serif;}
@@ -195,15 +162,13 @@
   .browse-map-popup__verdict{display:grid;gap:1px;margin:2px 0 1px;}
   .browse-map-popup__verdict small{color:#66766B;font-size:10px;font-weight:700;letter-spacing:.03em;}
   .browse-map-popup__verdict b{font:700 13px/1.2 'Bricolage Grotesque',sans-serif;}
-  .browse-map-key{position:absolute;left:14px;bottom:14px;z-index:8;display:grid;gap:4px;padding:8px 11px;border:1px solid rgba(46,64,52,.14);border-radius:11px;background:rgba(255,255,255,.94);box-shadow:0 4px 14px rgba(35,53,40,.15);color:#2E4034;font:600 11px/1.2 'Inter',sans-serif;}
+  .browse-map-key{position:absolute;left:10px;bottom:58px;z-index:8;display:grid;gap:4px;padding:8px 11px;border:1px solid rgba(46,64,52,.14);border-radius:11px;background:rgba(255,255,255,.94);box-shadow:0 4px 14px rgba(35,53,40,.15);color:#2E4034;font:600 11px/1.2 'Inter',sans-serif;}
   .browse-map-key__title{color:#66766B;font-size:10px;font-weight:700;letter-spacing:.03em;}
   .browse-map-key__row{display:flex;align-items:center;gap:7px;}
-  @media(max-width:760px){.browse-map-key{bottom:58px;}}
-  /* A short line, since the map draws walks as lines (dots only zoomed far out). */
+  /* A short line, since the map draws every walk as a line. */
   .browse-map-key__dot{width:16px;height:4px;border-radius:2px;border:1px solid #fff;box-shadow:0 0 0 1px rgba(46,64,52,.18);}
   .browse-map-popup a{color:#32697E;font-size:11.5px;font-weight:800;text-decoration:none;}
   .browse-map-pane .maplibregl-popup-content{border:1px solid rgba(46,64,52,.12);border-radius:13px;padding:11px 12px;box-shadow:0 10px 30px rgba(35,53,40,.18);}
-  .browse-map-pane .maplibregl-ctrl-top-right{top:8px;right:8px;}
   @media(max-width:1040px){
     .browse-location-breadcrumb{justify-content:flex-start;margin-top:2px;}
     .browse-view-toggle{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:8px 0 12px;padding:4px;border:1px solid var(--paper-line);border-radius:12px;background:#F0EDE3;}
@@ -215,28 +180,13 @@
     .browse-map-pane{height:clamp(430px,62dvh,680px);min-height:430px;}
     .browse-explorer[data-mobile-view="list"] .browse-map-pane{display:none;}
     .browse-explorer[data-mobile-view="map"] .browse-list-pane{display:none;}
-    .browse-map-style{bottom:10px;right:10px;}
     .browse-search-area{top:12px;}
   }
   @media(max-width:760px){
-    .browse-list-pane .simple-card{grid-template-columns:84px minmax(0,1fr);grid-template-rows:auto auto auto;gap:12px;padding:12px;}
-    .browse-list-pane .simple-card .photo{grid-column:1;grid-row:1;width:84px;height:76px;}
-    .browse-list-pane .simple-card__main{grid-column:2;grid-row:1;align-self:center;}
-    .browse-list-pane .simple-card__facts{grid-column:1/-1;grid-row:2;}
-    .browse-list-pane .simple-card__match{grid-column:1/-1;grid-row:3;width:auto;margin:0 -12px -12px;align-items:flex-start;justify-content:flex-start;border-left:0;border-top:1px solid rgba(46,64,52,.08);padding:13px 12px 12px;}
-    /* On a phone the verdict band spans the card, so stacking the verdict,
-       View trail and Compare left most of it empty: View trail sits beside
-       the verdict and Compare under it. */
-    .simple-card__match,.browse-list-pane .simple-card__match{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:12px;row-gap:8px;}
-    .simple-card__match-actions,.browse-card-actions{display:contents;}
-    .browse-card-open{grid-column:2;grid-row:1/3;}
-    .browse-card-compare,.browse-card-compare[aria-pressed="true"]{grid-column:1;grid-row:2;justify-self:start;}
   }
   @media(max-width:430px){
     .browse-search-group{gap:6px;}
     .browse-search-submit{padding-inline:13px;}
-    .browse-list-pane .simple-card{grid-template-columns:88px minmax(0,1fr);}
-    .browse-list-pane .simple-card .photo{width:88px;height:78px;}
   }
 
   /* One row, like the homepage: search, Area, Filters, Saved. Area opens the
@@ -401,9 +351,9 @@
       <label class="browse-field"><span data-i18n="browse.filters.rating">Valutazione del sentiero</span>
         <select id="browseRisk" aria-label="Filtra per valutazione del sentiero" data-i18n-aria-label="browse.filters.filterRating">
           <option value="all">Valutazione del sentiero</option>
-          <option value="low-risk">Basso rischio</option>
-          <option value="moderate" data-i18n="hp.difficulty.moderate">Moderato</option>
-          <option value="caution">Attenzione</option>
+          <option value="low-risk" data-i18n="hp.filters.lowRisk">Basso rischio</option>
+          <option value="moderate" data-i18n="hp.filters.moderate">Rischio moderato</option>
+          <option value="caution" data-i18n="hp.filters.caution">Rischio più alto</option>
         </select>
       </label>
       <label class="browse-field browse-field--advanced"><span data-i18n="browse.filters.terrain">Pendenza</span>
@@ -445,7 +395,7 @@
     <button type="button" data-browse-view="map" aria-pressed="false" data-i18n="browse.view.map">Mappa</button>
   </div>
   <section id="browseExplorer" class="browse-explorer" data-mobile-view="list" aria-label="Catalogo dei sentieri e mappa" data-i18n-aria-label="page.browseTrails.trailCatalogueAndMap">
-    <div class="browse-map-pane" aria-label="Mappa dei sentieri corrispondenti" data-i18n-aria-label="browse.map.aria">
+    <div class="browse-map-pane li-map" aria-label="Mappa dei sentieri corrispondenti" data-i18n-aria-label="browse.map.aria">
       <div id="browseMap">
         <div class="browse-map-placeholder"><strong data-i18n="browse.map.loading">Caricamento della mappa…</strong><span data-i18n="browse.map.loadingSub">Puoi continuare a esplorare il catalogo mentre la mappa si carica.</span></div>
       </div>
@@ -459,10 +409,10 @@
         <span class="browse-map-key__row"><i class="browse-map-key__dot" data-fit="fair"></i><span data-category="possible-with-cautions"></span></span>
         <span class="browse-map-key__row"><i class="browse-map-key__dot" data-fit="poor"></i><span data-category="not-recommended"></span></span>
       </div>
-      <div class="browse-map-style" role="group" aria-label="Aspetto della mappa" data-i18n-aria-label="browse.map.styleAria">
-        <button type="button" class="on" data-browse-map-style="map" aria-pressed="true" data-i18n="browse.map.styleMap">Mappa</button>
-        <button type="button" data-browse-map-style="terrain" aria-pressed="false" data-i18n="browse.map.styleTerrain">Rilievo</button>
-      </div>
+      <!-- The same map as the homepage: the route planner on the area on
+           screen, and the map full screen. -->
+      <a id="browseMapDrawBtn" class="li-map-draw" href="/route-planner.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h8.5a3.5 3.5 0 0 0 0-7h-9a3.5 3.5 0 0 1 0-7H16"/></svg><span data-i18n="page.index.drawARouteHere">Disegna un percorso qui</span></a>
+      <button id="browseMapExpandBtn" type="button" class="map-expand-btn li-map-expand" aria-label="Ingrandisci la mappa" aria-expanded="false" data-i18n-aria-label="page.index.expandMap"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span data-i18n="page.index.expandMap">Ingrandisci la mappa</span></button>
     </div>
     <div class="browse-list-pane">
       <!-- What Compare does, feeds the tray at the bottom + compare.html -->
@@ -757,7 +707,6 @@
 <a href="/it/trails/rundweg-reischach.html" style="display:block;color:inherit;">Rundweg Reischach</a>
 <a href="/it/trails/rundweg-salla.html" style="display:block;color:inherit;">Rundweg Salla</a>
 <a href="/it/trails/rundweg-schmieden.html" style="display:block;color:inherit;">Rundweg Schmieden</a>
-<a href="/it/trails/rundweg-schwarzegg-sentiero-circolare-dosso-nero.html" style="display:block;color:inherit;">Rundweg Schwarzegg - Sentiero circolare Dosso Nero</a>
 <a href="/it/trails/rundweg-st-magdalena.html" style="display:block;color:inherit;">Rundweg St. Magdalena</a>
 <a href="/it/trails/sagenweg-sentiero-delle-leggende.html" style="display:block;color:inherit;">Sagenweg - Sentiero delle leggende</a>
 <a href="/it/trails/san-cassiano-pralongia-corvara.html" style="display:block;color:inherit;">San Cassiano – Pralongiá – Corvara</a>
@@ -858,7 +807,6 @@
 <a href="/it/trails/walderlebnispfad-aschbach.html" style="display:block;color:inherit;">Walderlebnispfad Aschbach</a>
 <a href="/it/trails/passeggiata-intorno-al-colle-santa-lucia.html" style="display:block;color:inherit;">Passeggiata intorno al Colle di Santa Lucia</a>
 <a href="/it/trails/wallburgweg.html" style="display:block;color:inherit;">Wallburgweg</a>
-<a href="/it/trails/waltner-rundweg-12-sentiero-circolare-di-valtina-12.html" style="display:block;color:inherit;">Waltner Rundweg - 12 - Sentiero circolare di Valtina - 12</a>
 <a href="/it/trails/waltner-rundweg-18.html" style="display:block;color:inherit;">Waltner Rundweg 18</a>
 <a href="/it/trails/wildbad-innichen.html" style="display:block;color:inherit;">Wildbad Innichen</a>
 <a href="/it/trails/percorso-della-fauna-val-di-peio.html" style="display:block;color:inherit;">Percorso della fauna in Val di Peio</a>
@@ -922,7 +870,7 @@
 <a href="/it/trails/sentier-eco-sylve-de-poingt-ravier.html" style="display:block;color:inherit;">Sentier éco-sylve de Poingt-Ravier</a>
 <a href="/it/trails/sentier-pedestre-des-graniteurs.html" style="display:block;color:inherit;">Sentier pédestre des Graniteurs</a>
 <a href="/it/trails/val-pelouse-crest-path-perriere-refuge.html" style="display:block;color:inherit;">Sentiero di cresta di Val Pelouse e rifugio della Perrière</a>
-<p style="font-weight:700;color:var(--ink);break-inside:avoid;">French Alps, France</p>
+<p style="font-weight:700;color:var(--ink);break-inside:avoid;">Alpi francesi, Francia</p>
 <a href="/it/trails/alpage-des-cloutons-loop-saint-honore-1500.html" style="display:block;color:inherit;">Anello dell’Alpage des Cloutons da Saint-Honoré 1500</a>
 <a href="/it/trails/clelles-canal-loop.html" style="display:block;color:inherit;">Anello del canale di Clelles</a>
 <a href="/it/trails/couzon-loop-saint-pierre-de-chartreuse.html" style="display:block;color:inherit;">Anello del Couzon da Saint-Pierre-de-Chartreuse</a>
@@ -948,9 +896,12 @@
 <a href="/it/trails/passo-del-giovo-rifugio-sommafiume.html" style="display:block;color:inherit;">Dal Passo del Giovo al Rifugio Sommafiume</a>
 <a href="/it/trails/pognana-lario-sculpture-walk.html" style="display:block;color:inherit;">Passeggiata delle sculture di Pognana Lario</a>
 <a href="/it/trails/piani-di-artavaggio-reggetto.html" style="display:block;color:inherit;">Da Reggetto ai Piani di Artavaggio, andata e ritorno</a>
+<a href="/it/trails/giro-panoramico-riva-di-solto.html" style="display:block;color:inherit;">Giro panoramico di Riva di Solto</a>
 <a href="/it/trails/i-colmi-santa-maria-del-giogo.html" style="display:block;color:inherit;">Da Santa Maria del Giogo ai Colmi, andata e ritorno</a>
 <a href="/it/trails/sentiero-del-viandante-varenna-bellano.html" style="display:block;color:inherit;">Sentiero del Viandante: Varenna – Bellano</a>
+<a href="/it/trails/piramidi-di-zone-riserva-naturale.html" style="display:block;color:inherit;">Le Piramidi di Zone</a>
 <a href="/it/trails/santuario-di-montecastello-tignale.html" style="display:block;color:inherit;">Anello del santuario di Montecastello, Tignale</a>
+<a href="/it/trails/val-brandet-sant-antonio-corteno-golgi.html" style="display:block;color:inherit;">Val Brandet da Sant’Antonio, andata e ritorno</a>
 <a href="/it/trails/valle-delle-cartiere-toscolano-maderno.html" style="display:block;color:inherit;">Nella Valle delle Cartiere, Toscolano Maderno, andata e ritorno</a>
 <p style="font-weight:700;color:var(--ink);break-inside:avoid;">Friuli Venezia Giulia, Italia</p>
 <a href="/it/trails/anello-casera-vas-monte-buoi.html" style="display:block;color:inherit;">Anello Casera Vas - Casera Monte Buoi</a>
@@ -978,22 +929,34 @@
 <a href="/it/trails/ru-courtaud-ayas.html" style="display:block;color:inherit;">Rû Courtaud</a>
 <a href="/it/trails/sentiero-della-regina-gressoney.html" style="display:block;color:inherit;">Sentiero della Regina</a>
 <a href="/it/trails/strada-lombarda-gressoney.html" style="display:block;color:inherit;">Strada Lombarda</a>
-<p style="font-weight:700;color:var(--ink);break-inside:avoid;">Piedmont, Italy</p>
+<p style="font-weight:700;color:var(--ink);break-inside:avoid;">Piemonte, Italia</p>
+<a href="/it/trails/alpe-toglie-mattie.html" style="display:block;color:inherit;">Alpe Toglie da Mattie, andata e ritorno</a>
 <a href="/it/trails/gta-campello-monti-rimella.html" style="display:block;color:inherit;">Da Campello Monti a Rimella per la Bocchetta</a>
 <a href="/it/trails/campello-monti-alpe-fornale.html" style="display:block;color:inherit;">Da Campello Monti all’Alpe Fornale di Sopra</a>
 <a href="/it/trails/campello-monti-colle-usciolo.html" style="display:block;color:inherit;">Da Campello Monti al Colle dell’Usciolo</a>
 <a href="/it/trails/campello-monti-lago-capezzone.html" style="display:block;color:inherit;">Da Campello Monti al Lago del Capezzone</a>
 <a href="/it/trails/cervatto-madonna-del-balmone.html" style="display:block;color:inherit;">Da Cervatto alla Madonna del Balmone</a>
 <a href="/it/trails/carbonaie-path-talucco.html" style="display:block;color:inherit;">Sentiero delle Carbonaie al Talucco</a>
+<a href="/it/trails/chiotetti-loop-bruzolo.html" style="display:block;color:inherit;">Anello dei Chiotetti a Bruzolo</a>
+<a href="/it/trails/cima-bossola-valchiusella.html" style="display:block;color:inherit;">Cima Bossola in Valchiusella</a>
 <a href="/it/trails/fondo-tissone-tallorno-loop.html" style="display:block;color:inherit;">Anello Fondo, Tissone e Tallorno in Valchiusella</a>
+<a href="/it/trails/forte-santa-chiara-giaglione.html" style="display:block;color:inherit;">Forte di Santa Chiara da Giaglione, andata e ritorno</a>
 <a href="/it/trails/giro-del-ginepro-carcoforo.html" style="display:block;color:inherit;">Giro del Ginepro da Carcoforo</a>
 <a href="/it/trails/juniper-trail-foresto.html" style="display:block;color:inherit;">Sentiero dei Ginepri a Foresto</a>
 <a href="/it/trails/lower-owl-trail-venaus.html" style="display:block;color:inherit;">Sentiero dei Gufi basso a Venaus, andata e ritorno</a>
 <a href="/it/trails/mulino-turcin-loop-lanzo.html" style="display:block;color:inherit;">Anello del Mulino Turcin a Lanzo Torinese</a>
 <a href="/it/trails/orrido-chouque-margrit-chianocco.html" style="display:block;color:inherit;">L’Orrido e il Chouqué di Margrit a Chianocco</a>
+<a href="/it/trails/pergolas-chestnut-woods-settimo-vittone.html" style="display:block;color:inherit;">Tra pergole e castagneti a Settimo Vittone</a>
 <a href="/it/trails/geat-montebenedetto-loop-san-giorio.html" style="display:block;color:inherit;">Anello del Rifugio GEAT e della Certosa di Montebenedetto</a>
+<a href="/it/trails/sentier8-loop-mompantero.html" style="display:block;color:inherit;">Il Sentier8 a Mompantero</a>
+<a href="/it/trails/sentiero-del-redio-corio.html" style="display:block;color:inherit;">Il Sentiero del Redìo a Corio</a>
 <a href="/it/trails/sentiero-delle-anime-traversella.html" style="display:block;color:inherit;">Sentiero delle Anime a Traversella</a>
 <a href="/it/trails/vineyards-almond-trees-loop-giaglione.html" style="display:block;color:inherit;">Le alture delle viti e dei mandorli a Giaglione</a>
+<p style="font-weight:700;color:var(--ink);break-inside:avoid;">Veneto, Italia</p>
+<a href="/it/trails/archeovia-campetto-cima-marana.html" style="display:block;color:inherit;">Archeovia dal Campetto a Cima Marana, andata e ritorno</a>
+<a href="/it/trails/forte-enna-loop-torrebelvicino.html" style="display:block;color:inherit;">Anello del Forte Enna sopra Torrebelvicino</a>
+<a href="/it/trails/muccion-loop-valdagno.html" style="display:block;color:inherit;">Anello del Mucciòn sopra Valdagno</a>
+<a href="/it/trails/roccoli-path-muccion.html" style="display:block;color:inherit;">Sentiero dei Roccoli dal Mucciòn</a>
 <p style="font-weight:700;color:var(--ink);break-inside:avoid;">Tirolo e Carinzia, Austria</p>
 <a href="/it/trails/alpine-cheese-walk-sonnenalpe-nassfeld.html" style="display:block;color:inherit;">Passeggiata dei formaggi d’alpeggio, Sonnenalpe Nassfeld</a>
 <a href="/it/trails/auernig-ridge-walk-nassfeld.html" style="display:block;color:inherit;">Passeggiata in cresta sull’Auernig, Nassfeld</a>
@@ -1109,11 +1072,11 @@
 </footer>
 
 <script src="/mobile-nav.js?v=20261030-1"></script>
-<script src="/i18n.js?v=20261123-2"></script>
+<script src="/i18n.js?v=20261127-8"></script>
 <script src="/trust/evidence-v1.js?v=20261006-2"></script>
 <script src="/trail-trust.js?v=20261118-1"></script>
-<script src="/scoring/recommendation-v1.js?v=20260917-1"></script>
-<script src="/scoring/recommendation-adapters-v1.js?v=20261119-7"></script>
+<script src="/scoring/recommendation-v1.js?v=20261126-3"></script>
+<script src="/scoring/recommendation-adapters-v1.js?v=20261126-3"></script>
 <script src="/scoring-conditions.js?v=1"></script>
 <script src="/route-return.js?v=20261106-2"></script>
 <script src="/scoring.js?v=20260815-4"></script>
@@ -1125,15 +1088,18 @@
 <script src="/regions-config.js"></script>
 <script src="/guest-context.js?v=20261030-1" defer></script>
 <script src="/auth-ui.js?v=20261030-1" defer></script>
-<script src="/discovery-state.js?v=20261007-1" defer></script>
-<script src="/trail-season-words.js?v=20261112-1" defer></script>
-<script src="/discovery-filters.js?v=20261108-1" defer></script>
+<script src="/discovery-state.js?v=20261125-4" defer></script>
+<script src="/trail-season-words.js?v=20261127-8" defer></script>
+<script src="/discovery-filters.js?v=20261125-4" defer></script>
 <script src="/comparison-state.js?v=20260815-4" defer></script>
 <script src="/area-dropdown.js?v=20260823-2"></script>
 <script src="/map-runtime.js?v=20260908-2"></script>
 <script src="/match-verdict.js?v=20261002-1"></script>
-<script src="/map-style.js?v=20261120-2"></script>
-<script src="/browse-map.js?v=20261119-1"></script>
+<script src="/map-style.js?v=20261120-3"></script>
+<script src="/basemap-poi-click.js"></script>
+<script src="/dog-routes-layer.js?v=20260826-1"></script>
+<script src="/explore-map.js?v=20261126-1"></script>
+<script src="/browse-map.js?v=20261120-1"></script>
 <script>
   // A walk's name as the reader sees it (i18n.js); search also keeps the English one.
   function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
@@ -1211,7 +1177,10 @@
       // Seasonal risks to dogs, only in the months they apply.
       const dog = (words.dogSeasonsNow ? words.dogSeasonsNow(trail.season, new Date().getMonth() + 1) : [])
         .map(risk => `<span class="browse-season browse-season--dog">${esc(risk.label)}</span>`).join('');
-      return `${out}<span class="browse-season browse-season--best">${esc(best)}</span>${dog}`;
+      // "Sunny in winter" or "Little winter sun", November to February.
+      const sunTag = words.winterSunTag ? words.winterSunTag(trail.season, new Date().getMonth() + 1) : null;
+      const sun = sunTag ? `<span class="browse-season browse-season--sun-${sunTag.kind}">${esc(sunTag.label)}</span>` : '';
+      return `${out}<span class="browse-season browse-season--best">${esc(best)}</span>${dog}${sun}`;
     }
     const esc = value => String(value == null ? '' : value).replace(/[&<>"']/g, char => ({
       '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;',
@@ -1233,6 +1202,8 @@
     const browseMap = window.DoloPawsBrowseMap && window.DoloPawsBrowseMap.create({
       containerId:'browseMap',
       searchAreaButtonId:'browseSearchArea',
+      expandButtonId:'browseMapExpandBtn',
+      drawLinkIds:['browseMapDrawBtn'],
       scoreFor:matchScore,
       verdictFor:matchVerdict,
       subjectLabel:scoredSubjectLabel,
@@ -1746,7 +1717,7 @@
         { label:bt('hp.filters.any', 'Any'), v:'all' }, { label:bt('hp.filters.under5', 'Under 5 km'), v:'u5' }, { label:bt('hp.filters.5to10', '5–10 km'), v:'5to10' }, { label:bt('hp.filters.10plus', '10 km+'), v:'10p' },
       ], distance.value, v => { distance.value = v; });
       brSeg('brRiskSeg', [
-        { label:bt('hp.filters.any', 'Any'), v:'all' }, { label:bt('hp.filters.lowRisk', 'Low risk'), v:'low-risk' }, { label:bt('hp.filters.moderate', 'Moderate'), v:'moderate' }, { label:bt('hp.filters.caution', 'Caution'), v:'caution' },
+        { label:bt('hp.filters.any', 'Any'), v:'all' }, { label:bt('hp.filters.lowRisk', 'Low risk'), v:'low-risk' }, { label:bt('hp.filters.moderate', 'Moderate risk'), v:'moderate' }, { label:bt('hp.filters.caution', 'Higher risk'), v:'caution' },
       ], risk.value, v => { risk.value = v; });
       brSeg('brTerrainSeg', [
         { label:bt('hp.filters.any', 'Any'), v:'' }, { label:bt('hp.filters.gentle', 'Gentle only'), v:'soft' }, { label:bt('hp.filters.mixed', 'Up to moderate'), v:'mixed' }, { label:bt('hp.filters.rocky', 'Steep is okay'), v:'rocky' },
@@ -1971,35 +1942,37 @@
         const openHref = `trail.html?id=${encodeURIComponent(t.id)}&from=${encodeURIComponent(browseStateTarget())}`;
         const isCompared = compareIds.includes(t.id);
         const compareDisabled = !isCompared && compareIds.length >= compareApi.MAX_TRAILS;
+        // The one trail card (styles.css .tcard): the verdict for this dog on
+        // the photo, then name, figures, chips, the reason, and the actions.
+        const verified = provStyle === 'verified';
+        const tick = verified
+          ? `<svg class="tcard__tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="${esc(provenanceLabel)}"><title>${esc(provenanceLabel)}</title><circle cx="12" cy="12" r="9.5"/><path d="m8 12 3 3 5-6"/></svg>`
+          : '';
+        const who = scoredSubjectLabel();
+        const pill = tier
+          ? `<span class="tcard__verdict tcard__verdict--${tierClass}">${esc(tier)} <small>${esc(who.charAt(0).toLowerCase() + who.slice(1))}</small></span>`
+          : '';
         return `
-        <article class="simple-card${String(t.id) === selectedTrailId ? ' is-map-selected' : ''}" data-trail-id="${esc(t.id)}">
-          ${thumb}
-          <a class="simple-card__main" href="${openHref}">
-            <div class="name">${trailDisplayName(t)}</div>
-            <div class="simple-card__meta">${meta}</div>
-          </a>
-          <div class="simple-card__facts">
-            ${ratingLink(t.safetyLevel, icons
-              ? icons.badgeHtml(t.safetyLevel, ratingLabel)
-              : `<span class="safety-badge ${t.safetyLevel === 'low-risk' ? 'safety-low' : t.safetyLevel === 'moderate' ? 'safety-moderate' : 'safety-caution'}">${ratingLabel}</span>`, ratingLabel)}
-            ${provenance}
-            ${seasonTags(t)}
+        <article class="tcard${String(t.id) === selectedTrailId ? ' is-map-selected' : ''}" data-trail-id="${esc(t.id)}">
+          <a class="tcard__photo" href="${openHref}" tabindex="-1">${thumb}${pill}</a>
+          <div class="tcard__body">
+            <a class="tcard__name" href="${openHref}">${trailDisplayName(t)}${tick}</a>
+            <div class="tcard__meta">${meta}</div>
+            <div class="tcard__chips">
+              ${ratingLink(t.safetyLevel, icons
+                ? icons.badgeHtml(t.safetyLevel, ratingLabel)
+                : `<span class="safety-badge ${t.safetyLevel === 'low-risk' ? 'safety-low' : t.safetyLevel === 'moderate' ? 'safety-moderate' : 'safety-caution'}">${ratingLabel}</span>`, ratingLabel)}
+              ${verified ? '' : provenance}
+              ${seasonTags(t)}
+            </div>
+            ${reason ? `<p class="tcard__reason">${esc(reason)}</p>` : ''}
           </div>
-          <div class="simple-card__match simple-card__match--${tierClass}">
-            <div class="simple-card__score">
-              <small>${esc(scoredSubjectLabel())}</small>
-              <strong>${tier}</strong>
-              ${reason ? `<p class="simple-card__match-reason">${esc(reason)}</p>` : ''}
-            </div>
-            <div class="simple-card__match-actions">
-              <div class="browse-card-actions">
-                <a class="browse-card-open" href="${openHref}">${esc(bt('browse.card.view', 'View trail'))} <span aria-hidden="true">→</span></a>
-                <button type="button" class="browse-card-compare" data-compare-id="${esc(t.id)}"
-                  aria-pressed="${isCompared ? 'true' : 'false'}" ${compareDisabled ? 'disabled' : ''}>
-                  ${esc(bt('browse.compare.add', 'Compare'))}
-                </button>
-              </div>
-            </div>
+          <div class="tcard__foot browse-card-actions">
+            <a class="browse-card-open" href="${openHref}">${esc(bt('browse.card.view', 'View trail'))} <span aria-hidden="true">→</span></a>
+            <button type="button" class="browse-card-compare" data-compare-id="${esc(t.id)}"
+              aria-pressed="${isCompared ? 'true' : 'false'}" ${compareDisabled ? 'disabled' : ''}>
+              ${esc(bt('browse.compare.add', 'Compare'))}
+            </button>
           </div>
         </article>`;
       }).join('') : emptyHtml;
@@ -2015,7 +1988,7 @@
           renderPage(null);
         });
       });
-      list.querySelectorAll('.simple-card__main,.browse-card-open').forEach(link => {
+      list.querySelectorAll('.tcard__photo,.tcard__name,.browse-card-open').forEach(link => {
         link.addEventListener('click', () => {
           primeTrailLink(link);
         });

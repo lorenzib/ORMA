@@ -82,16 +82,21 @@ describe('the walk-in from a start flag that sits off the line', () => {
     expect(stale).toEqual([]);
   });
 
-  test('the trail page, the homepage preview and the offline map draw it dashed under the walk', () => {
+  test('the trail page and the homepage preview and the offline map draw it solid grey under the walk', () => {
+    // Owner, 20 Nov 2026: no dotted or dashed lines on the maps. The walk-in
+    // is solid dark grey on a white edge, so the walk stays the only
+    // coloured line, on the online maps and in the offline packages alike.
     const style = fs.readFileSync(path.join(root, 'map-style.js'), 'utf8');
-    expect(style).toContain("'line-dasharray': [1.6, 1.4]");
+    expect(style).toContain("const ACCESS_LINE_COLOUR = '#4D554E';");
+    const accessPaint = style.slice(style.indexOf('function accessLinePaint'), style.indexOf('function addAccessLine'));
+    expect(accessPaint).not.toContain('line-dasharray');
     const page = fs.readFileSync(path.join(root, 'trail.js'), 'utf8');
     expect(page).toContain("beforeId: 'single-trail-path-line-casing'");
     expect(page).toContain('Not part of the walk’s distance.');
-    const home = fs.readFileSync(path.join(root, 'script.js'), 'utf8');
+    const home = fs.readFileSync(path.join(root, 'script.js'), 'utf8') + '\n' + fs.readFileSync(path.join(root, 'explore-map.js'), 'utf8');
     expect(home).toContain("beforeId:'trail-selected-route-casing'");
     const italian = fs.readFileSync(path.join(root, 'i18n-phrases-it.js'), 'utf8');
-    expect(italian).toContain('"Dashed line: about {distance} on foot from the start flag to the walk. Not part of the walk’s distance."');
+    expect(italian).toContain('"Grey line: about {distance} on foot from the start flag to the walk. Not part of the walk’s distance."');
 
     const route = {
       type:'FeatureCollection',
@@ -104,6 +109,8 @@ describe('the walk-in from a start flag that sits off the line', () => {
     const { svg } = renderOfflineMap({ trailId:'test-walk', xml, route, height:600 });
     expect(svg.indexOf('class="access"')).toBeGreaterThan(-1);
     expect(svg.indexOf('class="access"')).toBeLessThan(svg.indexOf('class="route"'));
+    expect(svg).toContain('.access{fill:none;stroke:#4D554E;');
+    expect(svg).not.toContain('stroke-dasharray');
     expect(svg).toContain('~180 m');
     const long = JSON.parse(JSON.stringify(route));
     long.features[1].properties.lengthM = 2124;

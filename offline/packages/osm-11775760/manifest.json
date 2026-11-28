@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11775760",
   "name": "Carl-Toldt-Weg",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.182Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T22:46:49.128Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 436351,
+  "packageBytes": 436308,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.73545,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Carl-Toldt-Weg OSM offline map",
       "url": "map.svg",
-      "bytes": 231215,
-      "sha256": "0a95fa2adedcf809b342503ba6dd59bb7451d9c3d32db0bbe857e4e55ea9ca53"
+      "bytes": 231196,
+      "sha256": "928dc6337896a9424d4d744aa406fbd502742c0f52f7fb72711580bba11a6cdd"
     },
     {
       "role": "route",

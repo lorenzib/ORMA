@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "primiero-malga-ces",
   "name": "San Martino di Castrozza - Malga Ces",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:14.527Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T22:46:49.502Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 693928,
+  "packageBytes": 693885,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.25342,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "San Martino di Castrozza - Malga Ces OSM offline map",
       "url": "map.svg",
-      "bytes": 385656,
-      "sha256": "cb3b9f5a86cad2633fcb40b8599749258940618a1a1bc1a5f33b8da5ea9ac028"
+      "bytes": 385637,
+      "sha256": "5f25ca4b3f5b36130aab1008f49558c34ea6dcc62de7a7763f3781f3951d7f38"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-malga-aloch",
   "name": "Malga Aloch e Masc Aloch",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:13.946Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T22:46:48.856Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 432363,
+  "packageBytes": 432320,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.41967,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Malga Aloch e Masc Aloch OSM offline map",
       "url": "map.svg",
-      "bytes": 237610,
-      "sha256": "c42e33d6f7671a616c95600ecbd4c1399921c9a4ad31db9e698f25b6e1dc1152"
+      "bytes": 237591,
+      "sha256": "0cd7c8fd554bbd62ce63f4267ae831137f4fb0c23b22771bf27190dfec3f8e96"
     },
     {
       "role": "route",

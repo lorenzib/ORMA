@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valgardena-val-danna-percorso-kneipp",
   "name": "Val d’Anna",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.768Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.869Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 415907,
+  "packageBytes": 415864,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.5729,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Val d’Anna OSM offline map",
       "url": "map.svg",
-      "bytes": 185539,
-      "sha256": "bcb460cde7dc08f375ed14eb9aa3605ce2a408734fdc0f9269c9d516f2de948d"
+      "bytes": 185520,
+      "sha256": "278200af54cd587506937aefa79b1acd20929f7001f7dc955a3f90c06cb38ebb"
     },
     {
       "role": "route",

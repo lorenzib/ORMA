@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "eggental-jolanda-baita-messnerjoch",
   "name": "Jolanda to the Baita Messnerjoch",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.892Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.745Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 521599,
+  "packageBytes": 521556,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.43032,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Jolanda to the Baita Messnerjoch OSM offline map",
       "url": "map.svg",
-      "bytes": 325998,
-      "sha256": "26e67765627c4c6a6688fec8a5f2dec1bb8bd8aa42847469a4d9e07bd163b85b"
+      "bytes": 325979,
+      "sha256": "2742739b98ed179f33997de13d7905afcc5199139cafce340ba31414cc8c6a1e"
     },
     {
       "role": "route",

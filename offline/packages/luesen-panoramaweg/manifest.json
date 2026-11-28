@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "luesen-panoramaweg",
   "name": "Panoramaweg, Lüsen",
-  "version": "2026.11.19-beta.1",
-  "generatedAt": "2026-11-19T03:24:17.712Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:49.064Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 984606,
+  "packageBytes": 984563,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.73278,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Panoramaweg, Lüsen OSM offline map",
       "url": "map.svg",
-      "bytes": 711798,
-      "sha256": "a9918e932d5c809de2e3d1320e56fca2b9d89c6dc13a87d34c3bd611680756df"
+      "bytes": 711779,
+      "sha256": "84d236354adc053aee2485fe2055afca356c6baa9040c0a062fcccba5768864d"
     },
     {
       "role": "route",
