@@ -41,6 +41,9 @@
   const adjustShare = document.getElementById('plannerAdjustShare');
   const adjustScore = document.getElementById('plannerAdjustScore');
   const plannerTitle = document.getElementById('plannerTitle');
+  // "Fit for your dog": an estimate for a freshly drawn line (route-fit.js).
+  const fit = window.ORMARouteFit;
+  const fitBox = document.getElementById('plannerFit');
   const MIN_LOOP_POINTS = 3;
   const MAX_POINTS = 25;
   const MAX_ROUTE_DISTANCE_M = 30000;
@@ -93,6 +96,14 @@
   // Whom the adjusted walk is scored for (the guest's medium dog until the
   // reader's own dog is known).
   let dogProfile = null;
+  // Whether the reader's dog has been looked for yet, and whether they are
+  // logged in: the card asks for a dog only once it knows there is none.
+  let dogLooked = false;
+  let signedIn = false;
+  // The last verdict shown for the current dog, to say when a change moved it.
+  let lastFit = null;
+  // Mapped water near the finished line: { path, result } once worked out.
+  let waterFor = null;
   // The reader asked for a finished route, and still wants one if that
   // attempt failed: the next move of a point finishes it again, rather than
   // leaving a closed loop open because one drag landed off the paths.
@@ -754,6 +765,7 @@
     status.textContent = finishRequested ? tx('Finishing the draft on footpaths…') : tx('Connecting your selected points…');
     render();
     updateAdjust();
+    updateFit();
 
     const closeLoop = finishRequested && wantsLoop();
     const outAndBack = finishRequested && shape === 'out-and-back';
@@ -786,6 +798,7 @@
       : failureMessage(routeFailure);
     render();
     updateAdjust();
+    updateFit();
   }
 
   function reset(){
@@ -801,6 +814,7 @@
     basedOn = null;
     comparison = null;
     updateAdjust();
+    updateFit();
     drawMarkers();
     drawPath([]);
     status.textContent = startAdvice();
@@ -830,11 +844,13 @@
     map.fitBounds(bounds, { padding:70, maxZoom:15 });
     status.textContent = tx('Saved draft reopened. Check signs, access and current conditions before using it.');
     render();
+    updateFit();
     if(record.basedOn) findTrail(record.basedOn.id).then(trail => {
       if(!trail || editingId !== record.id) return;
       basedOn = trail;
       drawMarkers();
       updateAdjust();
+      updateFit();
     });
   }
 
@@ -1062,21 +1078,35 @@
         return profile && typeof profile.name === 'string' && profile.name.trim() ? profile : null;
       } catch(error){ return null; }
     };
+    const settle = profile => {
+      if(profile) dogProfile = profile;
+      dogLooked = true;
+      updateAdjust();
+      updateFit();
+    };
     const resolve = () => {
       const auth = window.DoloPawsAuth;
+      signedIn = Boolean(auth && auth.currentUser);
       if(auth && auth.currentUser && typeof auth.getDogProfile === 'function'){
-        auth.getDogProfile().then(profile => {
-          if(profile){ dogProfile = profile; updateAdjust(); }
-        }).catch(() => {});
+        auth.getDogProfile().then(settle).catch(() => settle(null));
         return;
       }
+      // Logged out, a dog kept on this device counts. Until the login check
+      // has run, a missing one is not yet a reason to ask for a dog.
       const profile = device();
-      if(profile){ dogProfile = profile; updateAdjust(); }
+      if(profile || window.DoloPawsAuth) settle(profile);
     };
     resolve();
+    // If the login service never answers (offline, blocked), stop waiting.
+    setTimeout(() => { if(!dogLooked) settle(device()); }, 5000);
     if(typeof window.addEventListener === 'function'){
       window.addEventListener('dolopaws-auth-ready', resolve);
       window.addEventListener('dolopaws-auth-changed', resolve);
+      // The card's "Add your dog" and "Log in" open in a new tab, so the
+      // drawn route stays here; a dog saved there arrives through storage.
+      window.addEventListener('storage', event => {
+        if(!event || event.key === 'dolopaws-pending-dog-profile' || event.key === null) resolve();
+      });
     }
   }
 
@@ -1146,6 +1176,141 @@
       : `<strong>${esc(num(percent))}%</strong> ${esc(tx('on the checked line of {walk}', { walk:walkName }))}` +
         (comparison.offLines.length ? `<span class="planner-adjust-key">${esc(tx('Orange dashes: not checked by ORMA. Look for signs and local dog rules there.'))}</span>` : '');
     adjustScore.innerHTML = preview ? scoreHtml(walkName) : '';
+  }
+
+  // ---- Fit for your dog ---------------------------------------------------
+  // An estimate for a line the reader drew (route-fit.js has the rules). A
+  // walk being adjusted has its own score in the box above, so it gets none.
+
+  const FIT_ICONS = {
+    ok:'<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="#DCEBDD"/><path d="M5.2 9.3 7.8 11.8 12.8 6.4" fill="none" stroke="#2C5C34" stroke-width="1.8"/></svg>',
+    cost:'<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 1.8 16.6 15.6H1.4Z" fill="#F5E4C6"/><path d="M9 6.5v4.4M9 12.6v.9" stroke="#8A5A16" stroke-width="1.8"/></svg>',
+    stop:'<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="#F3D9D2"/><path d="M6 6l6 6M12 6l-6 6" stroke="#9C3A25" stroke-width="1.8"/></svg>',
+    info:'<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="8" fill="#EAF3F6"/><circle cx="9" cy="9" r="2.4" fill="#33667A"/></svg>',
+  };
+  FIT_ICONS.note = FIT_ICONS.cost;
+
+  // The steepness section of how-scoring-works, in the reader's language.
+  function howHref(){
+    const key = 'recommendation.breakdown.howHref';
+    const value = typeof window.t === 'function' ? window.t(key) : '';
+    return value && value !== key ? value : 'how-scoring-works.html#steepness';
+  }
+
+  function fitName(){
+    return dogProfile && String(dogProfile.name || '').trim() ? String(dogProfile.name).trim() : '';
+  }
+
+  function verdictWords(verdict, name){
+    if(verdict === 'beyond') return tx('Beyond {name}’s range', { name });
+    if(verdict === 'stretch') return tx('A stretch for {name}', { name });
+    return tx('Within {name}’s range', { name });
+  }
+
+  // Mapped water near the finished line, worked out once per line. The water
+  // map is the Dolomites' only, so elsewhere nothing is said about water.
+  function ensureWater(){
+    if(!fit || !preview || !preview.path) return null;
+    if(waterFor && waterFor.path === preview.path) return waterFor.result;
+    const path = preview.path;
+    waterFor = { path, result:null };
+    loadPoiData('water').then(data => {
+      if(!waterFor || waterFor.path !== path) return;
+      waterFor.result = fit.waterNear(path, data && data.features);
+      updateFit();
+    }).catch(() => {});
+    return null;
+  }
+
+  function fitHead(name){
+    return `<div class="planner-fit-head"><span class="planner-fit-title">${esc(name ? tx('Fit for {name}', { name }) : tx('Fit for your dog'))}</span>` +
+      `<span class="planner-fit-tag">${esc(tx('Estimate'))}</span></div>`;
+  }
+
+  function fitAsk(){
+    const here = encodeURIComponent(`route-planner.html${location.search || ''}`);
+    const login = signedIn ? '' : `<a class="planner-fit-btn" href="account.html?next=${here}" target="_blank" rel="noopener">${esc(tx('Log in'))}</a>`;
+    return fitHead('') +
+      `<p class="planner-fit-big">${esc(tx('See how this route suits your dog'))}</p>` +
+      `<p class="planner-fit-sub">${esc(signedIn
+        ? tx('Add your dog and ORMA estimates the distance, climb and steepness for them.')
+        : tx('Add your dog, or log in, and ORMA estimates the distance, climb and steepness for them.'))}</p>` +
+      `<div class="planner-fit-actions"><a class="planner-fit-btn primary" href="/?wizard=1" target="_blank" rel="noopener">${esc(tx('Add your dog'))}</a>${login}</div>` +
+      `<p class="planner-fit-foot">${esc(tx('Opens in a new tab. Your route stays here.'))}</p>`;
+  }
+
+  function fitRated(name){
+    const record = fit.draftRecord({ ...preview }, shape);
+    // eslint-disable-next-line no-undef
+    const subject = typeof effectiveOverrides === 'function' ? effectiveOverrides(dogProfile, null) : {};
+    let rec = null;
+    try { rec = fit.recommend(record, subject); } catch(error){ rec = null; }
+    if(!rec) return '';
+    const verdict = fit.verdictOf(rec);
+    const decision = window.DoloPawsRecommendationDecision;
+    const presented = decision ? decision.present(rec, { translate:window.t, dogName:name }) : {};
+    const water = ensureWater();
+    const rows = fit.cardRows({ record, presented, water, name, say:tx, num });
+    const words = verdictWords(verdict, name);
+    // "Was: …" stays until the verdict moves again: the card is redrawn when
+    // the water arrives, and that is not a change the reader made.
+    const same = lastFit && lastFit.name === name;
+    const was = !same ? ''
+      : lastFit.verdict !== verdict ? lastFit.words
+        : lastFit.path === preview.path ? lastFit.was : '';
+    lastFit = { name, verdict, words, was, path:preview.path };
+    return fitHead(name) +
+      `<p class="planner-fit-verdict planner-fit-verdict--${esc(verdict)}">${esc(words)}</p>` +
+      (was ? `<p class="planner-fit-was">${esc(tx('Was: {before}', { before:was }))}</p>` : '') +
+      `<ul class="planner-fit-rows">${rows.map(row => `<li class="planner-fit-row planner-fit-row--${esc(row.tone)}">` +
+        `${FIT_ICONS[row.tone] || FIT_ICONS.info}<span class="planner-fit-topic">${esc(row.topic)}</span>` +
+        `<span class="planner-fit-detail">${esc(row.detail)}</span></li>`).join('')}</ul>` +
+      `<p class="planner-fit-foot">${esc(tx('Estimated from OpenStreetMap paths and heights for the line you drew. Not an ORMA check: drops, livestock, what the path is like underfoot and local dog rules are not known. Today’s weather is not included.'))} ` +
+      `<a href="${esc(howHref())}">${esc(tx('How scores work'))}</a></p>`;
+  }
+
+  function updateFit(){
+    if(!fitBox) return;
+    if(!fit || basedOn || !points.length || (!preview && !busy)){
+      fitBox.hidden = true;
+      fitBox.innerHTML = '';
+      lastFit = null;
+      return;
+    }
+    // Working out the route again: the last estimate stays, greyed, rather
+    // than a verdict for a line that is no longer on the map.
+    if(busy){
+      if(!fitBox.hidden && fitBox.innerHTML){
+        fitBox.classList.add('is-updating');
+        const note = fitBox.querySelector('.planner-fit-updating');
+        if(!note) fitBox.insertAdjacentHTML('beforeend', `<p class="planner-fit-updating">${esc(tx('Updating for your change…'))}</p>`);
+      }
+      return;
+    }
+    fitBox.classList.remove('is-updating');
+    fitBox.hidden = false;
+    const name = fitName();
+    if(!finished){
+      fitBox.innerHTML = fitHead(name) +
+        `<p class="planner-fit-sub">${esc(name
+          ? tx('Finish the route to see how it suits {name}.', { name })
+          : tx('Finish the route to see how it suits your dog.'))}</p>`;
+      return;
+    }
+    if(!fit.rateable(preview)){
+      const km = Math.max(0, Number(preview.distanceM) || 0) / 1000;
+      fitBox.innerHTML = fitHead(name) +
+        `<p class="planner-fit-big">${esc(tx('Keep drawing: estimates start at 1 km'))}</p>` +
+        `<p class="planner-fit-sub">${esc(tx('A few hundred metres says too little about steepness to be worth a verdict.'))}</p>` +
+        `<div class="planner-fit-bar" aria-hidden="true"><span style="width:${Math.round(Math.min(1, km) * 100)}%"></span></div>`;
+      return;
+    }
+    if(!dogProfile){
+      fitBox.innerHTML = dogLooked ? fitAsk()
+        : fitHead('') + `<p class="planner-fit-sub">${esc(tx('Looking for your dog…'))}</p>`;
+      return;
+    }
+    fitBox.innerHTML = fitRated(name);
   }
 
   // Opened from a walk: say so at once, before the map has loaded.

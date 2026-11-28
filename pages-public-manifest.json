@@ -146,6 +146,7 @@
     "robots.txt",
     "route-adjust.js",
     "route-drafts.js",
+    "route-fit.js",
     "route-guidance-sources.js",
     "route-operational-facts.js",
     "route-planner-routing.js",
