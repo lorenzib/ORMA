@@ -132,6 +132,61 @@
     return [provenance,confidence,checked].filter(Boolean).join(' · ');
   }
 
+  // A card used to show the dog verdict ("Strong option") beside the trail's
+  // own risk chip ("Higher risk"): two ratings that read as one verdict
+  // contradicting itself. A card now carries one verdict; the trail's risk
+  // becomes the reason under it, in words: the engine's first caution that
+  // the card does not already say (the season has its own tag), else a plain
+  // sentence for the risk level. A low-risk trail has nothing to watch here.
+  const WATCH_FALLBACK=Object.freeze({
+    caution:['card.watch.caution','A higher-risk trail: check the hazards before you go.'],
+    moderate:['card.watch.moderate','A moderate-risk trail: read the cautions before you go.'],
+  });
+  function say(translate,key,fallback){
+    if(typeof translate==='function'){
+      const value=translate(key);
+      if(value&&value!==key)return value;
+    }
+    return fallback;
+  }
+  function hazardWords(trail,opts){
+    const list=Array.isArray(trail&&trail.surfaceHazards)?trail.surfaceHazards.filter(h=>typeof h==='string'&&h.trim()):[];
+    if(!list.length)return '';
+    const trust=opts.trust||(typeof globalThis!=='undefined'&&globalThis.DoloPawsTrailTrust);
+    if(trust&&typeof trust.categoryVerified==='function'&&!trust.categoryVerified(trail,'surfaceHazards'))return '';
+    const exposed=trail.exposure?list.find(h=>/drop|expos|ledge|cable|edge/i.test(h)):null;
+    const pick=(exposed||list[0]).trim();
+    const i18n=opts.i18n||(typeof globalThis!=='undefined'&&globalThis.DoloPawsI18n);
+    const lang=i18n?(typeof i18n.lang==='function'?i18n.lang():i18n.lang):'en';
+    if(!lang||lang==='en')return pick;
+    const shown=typeof i18n.trailText==='function'?i18n.trailText(pick):pick;
+    return shown&&shown!==pick?shown:'';
+  }
+  function cardWatch(trail,recommendation,options){
+    const opts=options||{};
+    const level=trail&&trail.safetyLevel;
+    if(level!=='caution'&&level!=='moderate')return '';
+    const decision=opts.decision||(typeof globalThis!=='undefined'&&globalThis.DoloPawsRecommendationDecision);
+    if(recommendation&&decision&&typeof decision.present==='function'){
+      const notSeason=list=>(Array.isArray(list)?list:[]).filter(entry=>!(entry&&/^trail\.season\./.test(String(entry.code||''))));
+      try{
+        const view=decision.present({...recommendation,
+          hardStops:notSeason(recommendation.hardStops),cautions:notSeason(recommendation.cautions)},
+          {translate:opts.translate||null,dogName:opts.dogName||''});
+        const first=view&&Array.isArray(view.cardCautions)?String(view.cardCautions[0]||'').trim():'';
+        if(first)return first;
+      }catch(e){/* fall through to the plain sentence */}
+    }
+    // Next, the trail's own hazard words ("Narrow ledges with drop-offs"),
+    // an exposed one first, but only where the reader can read them: on a
+    // list page the Italian trail text is not loaded, so Italian gets the
+    // plain sentence rather than an English one.
+    const hazard=hazardWords(trail,opts);
+    if(hazard)return hazard;
+    const [key,fallback]=WATCH_FALLBACK[level];
+    return say(opts.translate,key,fallback);
+  }
+
   return {VERDICTS,STRONG_AT,POSSIBLE_AT,CONFIDENCE_LEVELS,CONFIDENCE_LABELS,
-    categoryForScore,categoryLabel,verdictFor,confidenceLabel,evidenceLine};
+    categoryForScore,categoryLabel,verdictFor,confidenceLabel,evidenceLine,cardWatch};
 });
