@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-28T18:45:00.281Z",
+  "generatedAt": "2026-11-28T19:07:50.447Z",
   "regions": {
     "dolomites": {
       "trailCount": 381,
-      "trails": "data/regions/dolomites-trails.js?v=1444710701b1",
+      "trails": "data/regions/dolomites-trails.js?v=e81cca95a33a",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=6b1cc3a2fbef",
         "seceda": "data/trail-details/seceda.js?v=294c1245c924",
@@ -250,8 +250,8 @@
         "giudicarie-senter-dei-popi-madonna-del-lares": "data/trail-details/giudicarie-senter-dei-popi-madonna-del-lares.js?v=6918d0d2b0b3",
         "rendena-giro-del-belvedere-giustino": "data/trail-details/rendena-giro-del-belvedere-giustino.js?v=8d24cf35e468",
         "valdisole-monclassico-presson-meridiane": "data/trail-details/valdisole-monclassico-presson-meridiane.js?v=e436056efadd",
-        "valdisole-passo-tonale-forte-mero-forte-zaccarana": "data/trail-details/valdisole-passo-tonale-forte-mero-forte-zaccarana.js?v=1def35f96078",
-        "valdisole-passo-tonale-forte-mero": "data/trail-details/valdisole-passo-tonale-forte-mero.js?v=f41c7d82dea2",
+        "valdisole-passo-tonale-forte-mero-forte-zaccarana": "data/trail-details/valdisole-passo-tonale-forte-mero-forte-zaccarana.js?v=d82da6dea9b9",
+        "valdisole-passo-tonale-forte-mero": "data/trail-details/valdisole-passo-tonale-forte-mero.js?v=72157dbd7b33",
         "valdisole-ortise-malga-stabli": "data/trail-details/valdisole-ortise-malga-stabli.js?v=45d252e7328c",
         "paganella-andalo-tana-ermellino": "data/trail-details/paganella-andalo-tana-ermellino.js?v=2890ed97abcd",
         "paganella-giro-della-toresela": "data/trail-details/paganella-giro-della-toresela.js?v=89fea332cc43",
@@ -480,8 +480,8 @@
       "optional": []
     },
     "lombardy": {
-      "trailCount": 24,
-      "trails": "data/regions/lombardy-trails.js?v=7a1711694946",
+      "trailCount": 26,
+      "trails": "data/regions/lombardy-trails.js?v=013cf093d40f",
       "details": {
         "lario-brunate-e-le-sue-chiese": "data/trail-details/lario-brunate-e-le-sue-chiese.js?v=ba72cffa8ee5",
         "lario-pognana-lario-e-le-sculture-simposio": "data/trail-details/lario-pognana-lario-e-le-sculture-simposio.js?v=9b29078774d2",
@@ -506,7 +506,9 @@
         "altogarda-nasce-formaggio-tombea": "data/trail-details/altogarda-nasce-formaggio-tombea.js?v=ebcd7810299f",
         "iseo-riva-di-solto": "data/trail-details/iseo-riva-di-solto.js?v=caf29749e8bb",
         "iseo-piramidi-zone": "data/trail-details/iseo-piramidi-zone.js?v=dd6bb346a7e0",
-        "camonica-val-brandet": "data/trail-details/camonica-val-brandet.js?v=74071c04c406"
+        "camonica-val-brandet": "data/trail-details/camonica-val-brandet.js?v=74071c04c406",
+        "camonica-rifugio-bozzi": "data/trail-details/camonica-rifugio-bozzi.js?v=35177973b430",
+        "camonica-val-malza": "data/trail-details/camonica-val-malza.js?v=a41fa5921636"
       },
       "water": "data/regions/lombardy-water.geojson",
       "hutsBars": "data/regions/lombardy-huts-bars.geojson",
@@ -1140,6 +1142,8 @@
     "iseo-riva-di-solto": "lombardy",
     "iseo-piramidi-zone": "lombardy",
     "camonica-val-brandet": "lombardy",
+    "camonica-rifugio-bozzi": "lombardy",
+    "camonica-val-malza": "lombardy",
     "fvg-laghi-di-fusine": "friuli",
     "fvg-ta-lipa-pot-corto": "friuli",
     "fvg-borgo-stavoli-moggio": "friuli",
@@ -1800,6 +1804,8 @@
     "valchiusella-cima-bossola": "cima-bossola-valchiusella",
     "corio-sentiero-del-redio": "sentiero-del-redio-corio",
     "camonica-val-brandet": "val-brandet-sant-antonio-corteno-golgi",
+    "camonica-rifugio-bozzi": "rifugio-bozzi-case-di-viso-ponte-di-legno",
+    "camonica-val-malza": "rifugio-val-malza-sant-apollonia-ponte-di-legno",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2367,6 +2373,8 @@
     "cima-bossola-valchiusella": "valchiusella-cima-bossola",
     "sentiero-del-redio-corio": "corio-sentiero-del-redio",
     "val-brandet-sant-antonio-corteno-golgi": "camonica-val-brandet",
+    "rifugio-bozzi-case-di-viso-ponte-di-legno": "camonica-rifugio-bozzi",
+    "rifugio-val-malza-sant-apollonia-ponte-di-legno": "camonica-val-malza",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",
