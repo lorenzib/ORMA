@@ -1094,7 +1094,7 @@
 <script src="/comparison-state.js?v=20260815-4" defer></script>
 <script src="/area-dropdown.js?v=20260823-2"></script>
 <script src="/map-runtime.js?v=20260908-2"></script>
-<script src="/match-verdict.js?v=20261002-1"></script>
+<script src="/match-verdict.js?v=20261128-2"></script>
 <script src="/map-style.js?v=20261120-3"></script>
 <script src="/basemap-poi-click.js"></script>
 <script src="/dog-routes-layer.js?v=20260826-1"></script>
@@ -1501,7 +1501,7 @@
           window.ORMAScoringConditions && window.ORMAScoringConditions.forTrail(trail));
         const result = verdict ? verdict.verdictFor(recommendation)
           : { score:recommendation.score, label:'', color:'', tone:'check' };
-        return { ...result, steepness:steepnessCaution(recommendation) };
+        return { ...result, steepness:steepnessCaution(recommendation), recommendation };
       } catch(e){
         return verdict ? verdict.verdictFor(0) : { score:0, label:'', color:'', tone:'check' };
       }
@@ -1949,8 +1949,17 @@
           ? `<svg class="tcard__tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="${esc(provenanceLabel)}"><title>${esc(provenanceLabel)}</title><circle cx="12" cy="12" r="9.5"/><path d="m8 12 3 3 5-6"/></svg>`
           : '';
         const who = scoredSubjectLabel();
+        // One verdict, with its score: the trail's own risk is no longer a
+        // second coloured rating beside it, but the "Watch" reason below.
+        const pct = Number.isFinite(verdict.score) ? ` · ${Math.round(verdict.score)}%` : '';
         const pill = tier
-          ? `<span class="tcard__verdict tcard__verdict--${tierClass}">${esc(tier)} <small>${esc(who.charAt(0).toLowerCase() + who.slice(1))}</small></span>`
+          ? `<span class="tcard__verdict tcard__verdict--${tierClass}">${esc(tier)}${pct} <small>${esc(who.charAt(0).toLowerCase() + who.slice(1))}</small></span>`
+          : '';
+        const watch = window.OrmaMatchVerdict && typeof window.OrmaMatchVerdict.cardWatch === 'function'
+          ? window.OrmaMatchVerdict.cardWatch(t, verdict.recommendation, { translate: window.t, dogName: activeDogProfile() && activeDogProfile().name || '' })
+          : '';
+        const watchLine = watch
+          ? `<p class="tcard__reason tcard__watch">${ratingLink(t.safetyLevel, `<b>${esc(bt('card.watch.label', 'Watch'))}:</b>`, ratingLabel)} ${esc(watch)}</p>`
           : '';
         return `
         <article class="tcard${String(t.id) === selectedTrailId ? ' is-map-selected' : ''}" data-trail-id="${esc(t.id)}">
@@ -1959,13 +1968,10 @@
             <a class="tcard__name" href="${openHref}">${trailDisplayName(t)}${tick}</a>
             <div class="tcard__meta">${meta}</div>
             <div class="tcard__chips">
-              ${ratingLink(t.safetyLevel, icons
-                ? icons.badgeHtml(t.safetyLevel, ratingLabel)
-                : `<span class="safety-badge ${t.safetyLevel === 'low-risk' ? 'safety-low' : t.safetyLevel === 'moderate' ? 'safety-moderate' : 'safety-caution'}">${ratingLabel}</span>`, ratingLabel)}
               ${verified ? '' : provenance}
               ${seasonTags(t)}
             </div>
-            ${reason ? `<p class="tcard__reason">${esc(reason)}</p>` : ''}
+            ${watchLine || (reason ? `<p class="tcard__reason">${esc(reason)}</p>` : '')}
           </div>
           <div class="tcard__foot browse-card-actions">
             <a class="browse-card-open" href="${openHref}">${esc(bt('browse.card.view', 'View trail'))} <span aria-hidden="true">→</span></a>

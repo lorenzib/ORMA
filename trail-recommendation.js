@@ -213,8 +213,19 @@
     root.hidden = false;
 
     renderGuideLinks(recommendation);
+    // The answer sits under the trail name, so a phone shows it without
+    // scrolling past the map; the full card stays one tap away.
     const hero = document.getElementById('heroVerdict');
-    if(hero) hero.textContent = view.heroSummary;
+    if(hero){
+      const score = Number.isFinite(view.score) ? Math.round(view.score) : null;
+      hero.innerHTML =
+        (score === null ? '' :
+          `<span class="td2-verdict-score" data-tone="${esc(view.tone || 'unknown')}" aria-label="${esc(tr('recommendation.hero.scoreLabel', 'Dog match {score} out of 100', { score }))}">${score}%</span> `) +
+        `<span class="td2-verdict-text">${esc(view.heroSummary)}</span> ` +
+        `<a class="td2-verdict-why" href="#recommendationDecision">${esc(tr('recommendation.hero.why', 'Why'))} <span aria-hidden="true">→</span></a>`;
+      hero.dataset.scored = 'true';
+      hero.hidden = false;
+    }
     wireActions(root, trail);
   }
 
