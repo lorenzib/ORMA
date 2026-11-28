@@ -194,18 +194,24 @@ describe('Browse filter UI', () => {
     expect(source('browse-trails.html')).not.toContain('.browse-card-open{display:none;}');
   });
 
-  test('each trail rating links to its explanation', () => {
+  test('a risky trail says what to watch, linked to what its rating means', () => {
     [
-      ['low-risk', 'rating-low-risk', 'Low risk'],
       ['moderate', 'rating-moderate', 'Moderate risk'],
       ['caution', 'rating-caution', 'Higher risk'],
     ].forEach(([safetyLevel, anchor, label]) => {
-      const window = setup('https://www.app-orma.com/browse-trails.html?region=dolomites', { safetyLevel });
-      const link = window.document.querySelector('.tcard__chips .browse-rating-link');
+      const window = setup('https://www.app-orma.com/browse-trails.html?region=dolomites', { safetyLevel }, win => {
+        const runInPage = code => win.eval(code);
+        evaluateInto(runInPage, 'browse-trails.html', ['match-verdict.js']);
+      });
+      const link = window.document.querySelector('.tcard__watch .browse-rating-link');
       expect(link.getAttribute('href')).toBe(`how-scoring-works.html#${anchor}`);
       expect(link.getAttribute('aria-label')).toBe(`${label}: what this rating means`);
-      expect(link.textContent).toContain(label);
+      expect(link.textContent).toContain('Watch');
     });
+    // A low-risk trail has nothing to watch, and no second rating chip.
+    const low = setup('https://www.app-orma.com/browse-trails.html?region=dolomites', { safetyLevel:'low-risk' });
+    expect(low.document.querySelector('.tcard__watch')).toBeNull();
+    expect(low.document.querySelector('.tcard__chips').textContent).not.toContain('Low risk');
 
     // The scoring page answers each of those anchors in both languages.
     const scoring = source('how-scoring-works.html');
@@ -262,7 +268,8 @@ describe('Browse filter UI', () => {
     ].forEach(([safetyLevel, label]) => {
       const window = setup('https://www.app-orma.com/browse-trails.html?region=dolomites', { safetyLevel });
       const card = window.document.querySelector('.tcard');
-      expect(card.querySelector('.tcard__chips').textContent).toContain(label);
+      // One verdict per card: the risk is never a chip beside it any more.
+      expect(card.querySelector('.tcard__chips').textContent).not.toContain(label);
       expect(card.textContent).not.toContain('Trail rating');
       // Option C card: photo (the verdict sits on it when the engine gives
       // one; this setup scores nothing), the reason under the chips, the
