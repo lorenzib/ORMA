@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "liguria-beigua-piampaludo-monte-rama",
+  "generatedAt": "2026-11-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 15,
+    "ascentM": 407,
+    "highestPointM": 1134,
+    "expectedDuration": "4 h 40 min",
+    "difficulty": "Hard",
+    "shadePercent": 51
+  },
+  "trailhead": {
+    "lat": 44.467869,
+    "lng": 8.579984,
+    "label": "The village of Piampaludo (Sassello), the published start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "About 7 km of the walk, out and back, is a mountain path (T2) with stony, uneven ground: wear proper shoes and watch your dog’s paws.",
+    "The top of the walk is on the open ridge of the Alta Via dei Monti Liguri: turn back in thunderstorms, strong wind or mist.",
+    "The walk crosses the Urbe–Piampaludo road near the start and follows lanes open to cars for about 2 km each way: keep your dog close.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-21"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-28",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Piampaludo to Monte Rama": "Da Piampaludo al Monte Rama",
+    "The village of Piampaludo (Sassello), the published start": "Il borgo di Piampaludo (Sassello), la partenza ufficiale",
+    "About 7 km of the walk, out and back, is a mountain path (T2) with stony, uneven ground: wear proper shoes and watch your dog’s paws.": "Circa 7 km del percorso, tra andata e ritorno, sono un sentiero di montagna (T2) sassoso e irregolare: porta scarpe adatte e fai attenzione alle zampe del cane.",
+    "The top of the walk is on the open ridge of the Alta Via dei Monti Liguri: turn back in thunderstorms, strong wind or mist.": "La parte alta del percorso è sul crinale aperto dell’Alta Via dei Monti Liguri: torna indietro in caso di temporale, vento forte o nebbia.",
+    "The walk crosses the Urbe–Piampaludo road near the start and follows lanes open to cars for about 2 km each way: keep your dog close.": "Il percorso attraversa la strada Urbe–Piampaludo vicino alla partenza e segue stradine aperte alle auto per circa 2 km all’andata e al ritorno: tieni il cane vicino."
+  }
+}

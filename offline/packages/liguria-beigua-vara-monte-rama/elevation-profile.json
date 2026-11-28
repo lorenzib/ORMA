@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "liguria-beigua-vara-monte-rama",
+  "distanceKm": 13.7,
+  "ascentM": 666,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 682
+    },
+    {
+      "km": 1.1,
+      "elev": 668
+    },
+    {
+      "km": 2.1,
+      "elev": 772
+    },
+    {
+      "km": 3.1,
+      "elev": 908
+    },
+    {
+      "km": 4.1,
+      "elev": 1054
+    },
+    {
+      "km": 5.2,
+      "elev": 1159
+    },
+    {
+      "km": 6.2,
+      "elev": 1130
+    },
+    {
+      "km": 7.3,
+      "elev": 1134
+    },
+    {
+      "km": 8.3,
+      "elev": 1147
+    },
+    {
+      "km": 9.3,
+      "elev": 1085
+    },
+    {
+      "km": 10.4,
+      "elev": 921
+    },
+    {
+      "km": 11.4,
+      "elev": 781
+    },
+    {
+      "km": 12.5,
+      "elev": 673
+    },
+    {
+      "km": 13.5,
+      "elev": 669
+    },
+    {
+      "km": 13.7,
+      "elev": 682
+    }
+  ]
+}

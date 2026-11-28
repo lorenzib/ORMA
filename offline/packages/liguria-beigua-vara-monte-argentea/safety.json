@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "liguria-beigua-vara-monte-argentea",
+  "generatedAt": "2026-11-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 10,
+    "ascentM": 414,
+    "highestPointM": 1024,
+    "expectedDuration": "3 h 35 min",
+    "difficulty": "Hard",
+    "shadePercent": 55
+  },
+  "trailhead": {
+    "lat": 44.465917,
+    "lng": 8.608384,
+    "label": "The church of San Giovanni Gualberto in Vara Inferiore (Urbe), the published start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "About 3 km of the walk, out and back, is a mountain path (T2) with stony, uneven ground: wear proper shoes and watch your dog’s paws.",
+    "The top of the walk is on the open ridge of the Alta Via dei Monti Liguri: turn back in thunderstorms, strong wind or mist.",
+    "The first and last kilometre is on Via Dano, a quiet lane open to cars: keep your dog close.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-21"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-28",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Vara Inferiore to Monte Argentea": "Da Vara Inferiore al Monte Argentea",
+    "The church of San Giovanni Gualberto in Vara Inferiore (Urbe), the published start": "La chiesa di San Giovanni Gualberto a Vara Inferiore (Urbe), la partenza ufficiale",
+    "About 3 km of the walk, out and back, is a mountain path (T2) with stony, uneven ground: wear proper shoes and watch your dog’s paws.": "Circa 3 km del percorso, tra andata e ritorno, sono un sentiero di montagna (T2) sassoso e irregolare: porta scarpe adatte e fai attenzione alle zampe del cane.",
+    "The top of the walk is on the open ridge of the Alta Via dei Monti Liguri: turn back in thunderstorms, strong wind or mist.": "La parte alta del percorso è sul crinale aperto dell’Alta Via dei Monti Liguri: torna indietro in caso di temporale, vento forte o nebbia.",
+    "The first and last kilometre is on Via Dano, a quiet lane open to cars: keep your dog close.": "Il primo e l’ultimo chilometro sono su Via Dano, una stradina tranquilla aperta alle auto: tieni il cane vicino."
+  }
+}
