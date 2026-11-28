@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "liguria-beigua-vara-monte-argentea",
+  "distanceKm": 10.1,
+  "ascentM": 414,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 682
+    },
+    {
+      "km": 0.8,
+      "elev": 644
+    },
+    {
+      "km": 1.5,
+      "elev": 704
+    },
+    {
+      "km": 2.3,
+      "elev": 768
+    },
+    {
+      "km": 3.1,
+      "elev": 810
+    },
+    {
+      "km": 3.8,
+      "elev": 918
+    },
+    {
+      "km": 4.6,
+      "elev": 1014
+    },
+    {
+      "km": 5.4,
+      "elev": 1024
+    },
+    {
+      "km": 6.1,
+      "elev": 939
+    },
+    {
+      "km": 6.9,
+      "elev": 806
+    },
+    {
+      "km": 7.7,
+      "elev": 792
+    },
+    {
+      "km": 8.4,
+      "elev": 674
+    },
+    {
+      "km": 9.2,
+      "elev": 651
+    },
+    {
+      "km": 9.9,
+      "elev": 674
+    },
+    {
+      "km": 10.1,
+      "elev": 682
+    }
+  ]
+}

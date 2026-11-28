@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "liguria-beigua-piampaludo-monte-rama",
+  "distanceKm": 14.6,
+  "ascentM": 407,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 852
+    },
+    {
+      "km": 1.1,
+      "elev": 874
+    },
+    {
+      "km": 2.2,
+      "elev": 870
+    },
+    {
+      "km": 3.3,
+      "elev": 873
+    },
+    {
+      "km": 4.4,
+      "elev": 979
+    },
+    {
+      "km": 5.6,
+      "elev": 1069
+    },
+    {
+      "km": 6.7,
+      "elev": 1106
+    },
+    {
+      "km": 7.8,
+      "elev": 1134
+    },
+    {
+      "km": 8.9,
+      "elev": 1078
+    },
+    {
+      "km": 10,
+      "elev": 1031
+    },
+    {
+      "km": 11.1,
+      "elev": 868
+    },
+    {
+      "km": 12.2,
+      "elev": 856
+    },
+    {
+      "km": 13.3,
+      "elev": 861
+    },
+    {
+      "km": 14.4,
+      "elev": 883
+    },
+    {
+      "km": 14.6,
+      "elev": 852
+    }
+  ]
+}

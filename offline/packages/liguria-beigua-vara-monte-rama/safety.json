@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "liguria-beigua-vara-monte-rama",
+  "generatedAt": "2026-11-28T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 13,
+    "ascentM": 666,
+    "highestPointM": 1159,
+    "expectedDuration": "5 h 20 min",
+    "difficulty": "Hard",
+    "shadePercent": 50
+  },
+  "trailhead": {
+    "lat": 44.465955,
+    "lng": 8.608505,
+    "label": "The church of San Giovanni Gualberto in Vara Inferiore (Urbe), the published start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "About 9 km of the walk, out and back, is a mountain path (T2) with stony, uneven ground: wear proper shoes and watch your dog’s paws.",
+    "The top of the walk is on the open ridge of the Alta Via dei Monti Liguri: turn back in thunderstorms, strong wind or mist.",
+    "Via Dano, the lane at the start, is open to cars for about 2 km each way: keep your dog close.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-21"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-28",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Vara Inferiore to Monte Rama": "Da Vara Inferiore al Monte Rama",
+    "The church of San Giovanni Gualberto in Vara Inferiore (Urbe), the published start": "La chiesa di San Giovanni Gualberto a Vara Inferiore (Urbe), la partenza ufficiale",
+    "About 9 km of the walk, out and back, is a mountain path (T2) with stony, uneven ground: wear proper shoes and watch your dog’s paws.": "Circa 9 km del percorso, tra andata e ritorno, sono un sentiero di montagna (T2) sassoso e irregolare: porta scarpe adatte e fai attenzione alle zampe del cane.",
+    "The top of the walk is on the open ridge of the Alta Via dei Monti Liguri: turn back in thunderstorms, strong wind or mist.": "La parte alta del percorso è sul crinale aperto dell’Alta Via dei Monti Liguri: torna indietro in caso di temporale, vento forte o nebbia.",
+    "Via Dano, the lane at the start, is open to cars for about 2 km each way: keep your dog close.": "Via Dano, la stradina alla partenza, è aperta alle auto per circa 2 km all’andata e al ritorno: tieni il cane vicino."
+  }
+}
