@@ -53,7 +53,10 @@
 
   function guestProfile(dog){
     const profiles = {
-      medium:{ name:tx('Medium dog'), fitness:'moderate', conditions:[], weightBand:'15-20' },
+      // No dog of the reader's: the table still scores for a typical medium
+      // dog, but the heading says no dog was added, like the trail page's
+      // "General view".
+      medium:{ name:tx('Medium dog'), general:true, fitness:'moderate', conditions:[], weightBand:'15-20' },
       rufus:{ name:'Rufus', fitness:'moderate', conditions:['heat'], weightBand:'30-40' },
       bella:{ name:'Bella', fitness:'low', conditions:[], weightBand:'5-10' },
       milo:{ name:'Milo', fitness:'high', conditions:[], weightBand:'15-20' },
@@ -110,7 +113,7 @@
     const context = document.getElementById('compareContext');
     const returnTarget = safeReturn(params.get('from'));
     back.href = returnTarget;
-    context.textContent = activeProfile && activeProfile.name
+    context.textContent = activeProfile && activeProfile.name && !activeProfile.general
       ? tx('Compared for {name}', { name:activeProfile.name })
       : tx('General comparison: no dog added');
 

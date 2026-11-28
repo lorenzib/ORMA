@@ -27,7 +27,14 @@ describe('Trail comparison journey', () => {
       'Surface hazards', 'Dog restrictions', 'Verification',
     ].forEach(label => expect(controller).toContain(label));
     expect(page).toContain('.compare-cell--unknown');
-    expect(page).toContain('Unknown means ORMA does not have enough reviewed evidence');
+    // The intro names the word the unknown cells actually show ("Not listed").
+    expect(page).toContain('Where a row says “Not listed”, ORMA doesn’t have that fact yet');
+  });
+
+  test('a reader with no dog sees a general comparison, not "Compared for Medium dog"', () => {
+    expect(controller).toContain("name:tx('Medium dog'), general:true");
+    expect(controller).toContain('activeProfile.name && !activeProfile.general');
+    expect(controller).toContain("tx('General comparison: no dog added')");
   });
 
   test('uses the same wide responsive canvas as Collections', () => {
