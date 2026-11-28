@@ -133,8 +133,8 @@ html.orma-app .li-rating-kick{display:none;}
      export are left to the website. */
   html.orma-app body .td2-actrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
   html.orma-app body .td2-actrow>#walkedThisBtn,
-  html.orma-app body .td2-actrow>#logWalkBtn,
-  html.orma-app body .td2-actrow>#exportGpxBtn{display:none;}
+  html.orma-app body .td2-actrow #logWalkBtn,
+  html.orma-app body .td2-actrow #exportGpxBtn{display:none;}
   html.orma-app body .td2-hero .td2-actrow .td2-btn-g,
   html.orma-app body .td2-hero .td2-actrow .td2-textlink{flex:none;width:auto;min-height:36px;padding:7px 12px;border-radius:10px;font-size:13px;}
 

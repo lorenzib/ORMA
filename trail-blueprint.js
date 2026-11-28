@@ -402,7 +402,8 @@
         ? tx('A more demanding trail: check the hazards and your dog’s confidence before committing.')
         : tx('A manageable trail for prepared dogs; review the route constraints before committing.');
     const heroVerdict = $('heroVerdict');
-    if (heroVerdict) heroVerdict.textContent = verdict;
+    // The scored verdict (trail-recommendation.js) owns the slot once drawn.
+    if (heroVerdict && !heroVerdict.dataset.scored) heroVerdict.textContent = verdict;
 
     const svg = (kind) => {
       const paths = {
@@ -463,6 +464,16 @@
 
     // Share popover (reference): Copy link with inline "✓ Link copied",
     // Message a walking buddy (sms:), Email this trail (mailto:).
+    // The More menu closes once an item is chosen or on a tap elsewhere.
+    const moreMenu = $('tdMoreActions');
+    if (moreMenu) {
+      moreMenu.addEventListener('click', (e) => {
+        if (e.target.closest('.td2-more-menu a, .td2-more-menu button')) moreMenu.open = false;
+      });
+      document.addEventListener('click', (e) => {
+        if (moreMenu.open && !moreMenu.contains(e.target)) moreMenu.open = false;
+      });
+    }
     const shareBtn = $('detailShareBtn');
     const sharePop = $('tdSharePop');
     if (shareBtn && sharePop) {
