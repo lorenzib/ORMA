@@ -1859,6 +1859,7 @@
     'page.reviews.loadingApprovedReviews': 'Loading approved reviews…',
     'page.routePlanner.drawARoute': 'Draw a route',
     'page.routePlanner.yourVersion': 'Your version · not Verified',
+    'page.routePlanner.fitForYourDog': 'Fit for your dog',
     'page.routePlanner.backToExplore': '← Back to Explore',
     'page.routePlanner.experimentalRouteTool': 'Experimental route tool',
     'page.routePlanner.clickTheMapToDrop': 'Click the map to drop must-pass points, ORMA joins them along footpaths. <strong>Drag any point to move it, or click the drawn line to insert one.</strong>',
@@ -3904,6 +3905,7 @@
     'page.reviews.loadingApprovedReviews': 'Caricamento delle recensioni approvate…',
     'page.routePlanner.drawARoute': 'Disegna un percorso',
     'page.routePlanner.yourVersion': 'La tua versione · non Verificata',
+    'page.routePlanner.fitForYourDog': 'Per il tuo cane',
     'page.routePlanner.backToExplore': '← Torna a Esplora',
     'page.routePlanner.experimentalRouteTool': 'Strumento sperimentale per i percorsi',
     'page.routePlanner.clickTheMapToDrop': 'Clicca sulla mappa per mettere i punti di passaggio: ORMA li collega lungo i sentieri. <strong>Trascina un punto per spostarlo, o clicca sulla linea per inserirne uno.</strong>',
@@ -4141,7 +4143,7 @@
   if (lang === 'it' && !window.ORMA_PHRASES_IT && document.readyState === 'loading') {
     const here = document.currentScript && document.currentScript.src;
     const base = here ? here.replace(/[^/]*$/, '') : '';
-    document.write('<script src="' + base + 'i18n-phrases-it.js?v=20261127-8"><\/script>');
+    document.write('<script src="' + base + 'i18n-phrases-it.js?v=20261128-9"><\/script>');
     document.write('<script src="' + base + 'i18n-trail-names-it.js?v=20261125-4"><\/script>');
   }
 
