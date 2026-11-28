@@ -408,3 +408,33 @@
   #returningCustomerHomepage .li-list-count{display:none;}
 }
 
+
+/* Every walk on the map, for guests too (owner, 28 Nov 2026): the Trails
+   page's map under the search hero. The key, popup and placeholder copy the
+   Trails page's own rules (browse-trails.html), scoped to this section. */
+.hp-map-section{max-width:1440px;margin:0 auto;padding:44px clamp(28px,4vw,52px) 0;}
+.hp-map-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:16px;}
+.hp-map-h2{margin:0;font:700 clamp(21px,2.35vw,30px)/1.15 'Bricolage Grotesque',sans-serif;color:var(--ink);}
+.hp-map-all{margin-top:0;white-space:nowrap;}
+.hp-map-pane{height:clamp(420px,62vh,640px);border:1px solid var(--paper-line);border-radius:22px;box-shadow:0 16px 36px rgba(35,51,42,.08);}
+.hp-map-pane #hpMap{position:absolute;inset:0;}
+.hp-map-section .browse-map-placeholder{position:absolute;inset:0;display:grid;place-content:center;gap:8px;padding:24px;text-align:center;background:linear-gradient(145deg,#EEF1E7,#D7E4D7);color:#53675A;font:650 13px/1.45 'Inter',sans-serif;}
+.hp-map-section .browse-map-placeholder strong{color:#2E4034;font:700 18px 'Bricolage Grotesque',sans-serif;}
+.hp-map-section .browse-map-key{position:absolute;left:10px;bottom:58px;z-index:8;display:grid;gap:4px;padding:8px 11px;border:1px solid rgba(46,64,52,.14);border-radius:11px;background:rgba(255,255,255,.94);box-shadow:0 4px 14px rgba(35,53,40,.15);color:#2E4034;font:600 11px/1.2 'Inter',sans-serif;}
+.hp-map-section .browse-map-key__title{color:#66766B;font-size:10px;font-weight:700;letter-spacing:.03em;}
+.hp-map-section .browse-map-key__row{display:flex;align-items:center;gap:7px;}
+.hp-map-section .browse-map-key__dot{width:16px;height:4px;border-radius:2px;border:1px solid #fff;box-shadow:0 0 0 1px rgba(46,64,52,.18);}
+.hp-map-section .browse-map-popup{display:grid;gap:4px;padding:2px 14px 2px 0;color:#2E4034;}
+.hp-map-section .browse-map-popup strong{font:700 14px/1.25 'Bricolage Grotesque',sans-serif;}
+.hp-map-section .browse-map-popup span{color:#66766B;font-size:11.5px;}
+.hp-map-section .browse-map-popup__verdict{display:grid;gap:1px;margin:2px 0 1px;}
+.hp-map-section .browse-map-popup__verdict small{color:#66766B;font-size:10px;font-weight:700;letter-spacing:.03em;}
+.hp-map-section .browse-map-popup__verdict b{font:700 13px/1.2 'Bricolage Grotesque',sans-serif;}
+.hp-map-section .browse-map-popup a{color:#32697E;font-size:11.5px;font-weight:800;text-decoration:none;}
+.hp-map-section .maplibregl-popup-content{border:1px solid rgba(46,64,52,.12);border-radius:13px;padding:11px 12px;box-shadow:0 10px 30px rgba(35,53,40,.18);}
+@media (max-width:640px){
+  .hp-map-section{padding:24px 18px 0;}
+  .hp-map-head{flex-direction:column;align-items:flex-start;gap:6px;}
+  .hp-map-h2{font-size:24px;}
+  .hp-map-pane{height:clamp(380px,62dvh,560px);border-radius:18px;}
+}

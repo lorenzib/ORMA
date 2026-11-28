@@ -750,6 +750,37 @@
     }
   }
 
+  // ---- the map: every walk, for guests too (owner, 28 Nov 2026) ----
+  // The Trails page's map (browse-map.js), coloured for the dog being
+  // previewed and narrowed by the same filters as the list. It is created
+  // once and only redrawn, so changing dog or filter keeps the view.
+  var guestMap = null;
+
+  function setupMap() {
+    if (guestMap || !window.DoloPawsBrowseMap || !document.getElementById('hpMap')) return;
+    guestMap = window.DoloPawsBrowseMap.create({
+      containerId: 'hpMap',
+      expandButtonId: 'hpMapExpandBtn',
+      drawLinkIds: ['hpMapDrawBtn'],
+      scoreFor: scoreOf,
+      verdictFor: verdictOf,
+      subjectLabel: subjectLabel,
+    });
+  }
+
+  function renderMap() {
+    if (!guestMap) return;
+    var keyTitle = document.getElementById('hpMapKeyTitle');
+    if (keyTitle) keyTitle.textContent = subjectLabel();
+    if (window.OrmaMatchVerdict) root.querySelectorAll('#hpMapKey [data-category]').forEach(function (label) {
+      label.textContent = window.OrmaMatchVerdict.categoryLabel(label.dataset.category, window.t);
+    });
+    if (window.ORMAMapStyle) root.querySelectorAll('#hpMapKey .browse-map-key__dot[data-fit]').forEach(function (dot) {
+      dot.style.background = window.ORMAMapStyle.MATCH_COLOURS[dot.dataset.fit] || '';
+    });
+    guestMap.update(rankedList().map(function (entry) { return entry.t; }), { fit: false });
+  }
+
   function renderAll() {
     renderDogPill();
     renderDogMenu();
@@ -758,6 +789,7 @@
     renderGuestBar();
     renderSuggest();
     renderContent();
+    renderMap();
   }
 
   function resetFilters() {
@@ -1142,6 +1174,7 @@
     if (!ready()) return;
     setupStatic();
     bind();
+    setupMap();
     restoreDeviceDog();
     renderAll();
     loadToday();

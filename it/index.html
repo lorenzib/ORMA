@@ -131,6 +131,32 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
     </div>
   </div>
 
+  <!-- Every walk on the map, for guests too (owner, 28 Nov 2026). The same
+       map as the Trails page (browse-map.js on explore-map.js), coloured for
+       the dog being previewed, and kept in step with the dog and filters. -->
+  <section class="hp-map-section" aria-labelledby="hpMapTitle">
+    <div class="hp-map-head">
+      <div>
+        <div class="hp-kick hp-kick-left" data-i18n="hp.map.kick">Sulla mappa</div>
+        <h2 class="hp-map-h2" id="hpMapTitle" data-i18n="hp.map.title">Tutti i sentieri, colorati per il tuo cane</h2>
+      </div>
+      <a class="hp-how-link hp-map-all" href="/it/browse-trails.html" data-i18n="hp.map.browse">Sfogliali come elenco →</a>
+    </div>
+    <div class="hp-map-pane li-map" aria-label="Mappa dei sentieri corrispondenti" data-i18n-aria-label="browse.map.aria">
+      <div id="hpMap">
+        <div class="browse-map-placeholder"><strong data-i18n="browse.map.loading">Caricamento della mappa…</strong></div>
+      </div>
+      <div class="browse-map-key" id="hpMapKey" aria-label="Cosa significano i colori" data-i18n-aria-label="browse.map.keyAria">
+        <span class="browse-map-key__title" id="hpMapKeyTitle" data-i18n="page.browseTrails.forAMediumDog">Per un cane di taglia media</span>
+        <span class="browse-map-key__row"><i class="browse-map-key__dot" data-fit="good"></i><span data-category="strong-option"></span></span>
+        <span class="browse-map-key__row"><i class="browse-map-key__dot" data-fit="fair"></i><span data-category="possible-with-cautions"></span></span>
+        <span class="browse-map-key__row"><i class="browse-map-key__dot" data-fit="poor"></i><span data-category="not-recommended"></span></span>
+      </div>
+      <a id="hpMapDrawBtn" class="li-map-draw" href="/route-planner.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h8.5a3.5 3.5 0 0 0 0-7h-9a3.5 3.5 0 0 1 0-7H16"/></svg><span data-i18n="page.index.drawARouteHere">Disegna un percorso qui</span></a>
+      <button id="hpMapExpandBtn" type="button" class="map-expand-btn li-map-expand" aria-label="Ingrandisci la mappa" aria-expanded="false" data-i18n-aria-label="page.index.expandMap"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span data-i18n="page.index.expandMap">Ingrandisci la mappa</span></button>
+    </div>
+  </section>
+
   <!-- CONTENT: results OR collections -->
   <div class="hp-content" id="hpContent"></div>
 </div>
@@ -568,6 +594,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="/basemap-poi-click.js" defer></script>
 <script src="/dog-routes-layer.js?v=20260826-1" defer></script>
 <script src="/explore-map.js?v=20261126-1" defer></script>
+<script src="/browse-map.js?v=20261120-1" defer></script>
 <script src="/trail-access-directions.js?v=20260815-4" defer></script>
 <script src="/trail-route-refs.js?v=20261119-5" defer></script>
 <script src="/area-dropdown.js" defer></script>
