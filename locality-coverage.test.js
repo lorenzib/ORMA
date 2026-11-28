@@ -212,4 +212,9 @@ describe('The French Alps south of Savoy are their own region, and take nothing 
     expect(regions.nearestLocality(45.7900, 11.2610).region).toBe('veneto');
     expect(regions.countryForRegion('veneto')).toBe('IT');
   });
+  test('the Beigua park above the Riviera is Liguria', () => {
+    expect(regions.nearestLocality(44.4660, 8.6080).region).toBe('liguria');
+    expect(regions.nearestLocality(44.5020, 8.7160).region).toBe('liguria');
+    expect(regions.countryForRegion('liguria')).toBe('IT');
+  });
 });

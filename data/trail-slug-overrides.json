@@ -2198,6 +2198,21 @@
       "name": "Val Brandet from Sant’Antonio",
       "slug": "val-brandet-sant-antonio-corteno-golgi",
       "gloss": "up the forest road beside the Brandet stream from the hamlet of Sant’Antonio into the Val Brandet, and back"
+    },
+    "liguria-beigua-vara-monte-argentea": {
+      "name": "Vara Inferiore to Monte Argentea",
+      "slug": "vara-inferiore-monte-argentea",
+      "gloss": "a woodland track and park path from a Beigua hamlet up to the Alta Via ridge at Monte Argentea, and back"
+    },
+    "liguria-beigua-piampaludo-monte-rama": {
+      "name": "Piampaludo to Monte Rama",
+      "slug": "piampaludo-monte-rama",
+      "gloss": "lanes and park paths from Piampaludo over the Beigua plateau to the summit of Monte Rama, and back"
+    },
+    "liguria-beigua-vara-monte-rama": {
+      "name": "Vara Inferiore to Monte Rama",
+      "slug": "vara-inferiore-monte-rama",
+      "gloss": "a quiet lane and woodland path from a Beigua hamlet up to the Alta Via and the summit of Monte Rama, and back"
     }
   }
 }
