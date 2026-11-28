@@ -86,9 +86,7 @@
   body.mtrail-active .td2-actrow>#heroStartHike{order:1;grid-column:span 2;}
   body.mtrail-active .td2-actrow>#detailSaveBtn{order:2;}
   body.mtrail-active .td2-actrow>#getDirectionsBtn{order:3;}
-  body.mtrail-active .td2-actrow>#logWalkBtn{order:4;}
-  body.mtrail-active .td2-actrow>#exportGpxBtn{order:5;}
-  body.mtrail-active .td2-actrow>#detailShareBtn{order:6;}
+  body.mtrail-active .td2-actrow>#tdMoreActions{order:4;}
   body.mtrail-active .td2-actrow>#offlinePackagePanel:not([hidden]),
   body.mtrail-active .td2-actrow>#offlinePackagePanel:not([hidden]) .offline-package-row{display:contents;}
   body.mtrail-active .td2-actrow>#offlinePackagePanel #offlineDownloadBtn,

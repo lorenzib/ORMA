@@ -52,7 +52,7 @@ describe('UX-04 canonical recommendation journey', () => {
     expect(controller).toContain('view.confidenceLabel');
     expect(controller).toContain('recommendation-gaps');
     expect(controller).not.toContain('recommendationEvidenceMeta');
-    expect(controller).toContain('hero.textContent = view.heroSummary');
+    expect(controller).toContain('${esc(view.heroSummary)}');
     expect(controller).not.toContain('trail.safetyLevel');
   });
 
@@ -161,8 +161,11 @@ describe('UX-04 canonical recommendation journey', () => {
     expect(block.textContent).not.toContain('dog rules');
     expect(block.textContent).not.toContain('Access is not reviewed.');
     expect(block.querySelector('.recommendation-unchecked')).toBeNull();
-    expect(document.getElementById('heroVerdict').textContent)
+    const heroVerdict = document.getElementById('heroVerdict');
+    expect(heroVerdict.hidden).toBe(false);
+    expect(heroVerdict.querySelector('.td2-verdict-text').textContent)
       .toBe('Good with care for a typical dog. Add your dog for a personal match.');
+    expect(heroVerdict.querySelector('a.td2-verdict-why').getAttribute('href')).toBe('#recommendationDecision');
     expect(window.recommendTrail).toHaveBeenCalledTimes(1);
   });
 });
