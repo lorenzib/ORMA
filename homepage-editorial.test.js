@@ -104,19 +104,35 @@ describe('guest homepage editorial structure', () => {
   test('homepage trail cards are the one shared trail card', () => {
     const css = read('styles.css');
     const js = read('homepage-search.js');
+    const card = require('./trail-card.js');
 
-    // Same chips and verdict in words, no percentage.
-    expect(js).not.toContain('MATCH FOR YOUR DOG');
-    expect(js).toContain('class="hp-ccard tcard"');
-    expect(js).toContain('tcard__chips');
-    expect(js).toContain('browse-season--best');
-    expect(js).toContain("tr('browse.card.forDog', 'For {name}'");
+    // Collections and search results both draw the card from trail-card.js.
+    expect(js).toContain('window.ORMATrailCard');
+    expect(js).toContain("className: 'hp-ccard'");
+    expect(js).toContain("'<div class=\"hp-coll-grid hp-results-grid\">' + list.map(ccardHtml).join('')");
+    expect(js).not.toContain('hp-trailrow');
     expect(js).toContain('shared.verdictFor(rec)');
-    // The verdict sits on the photo, coloured by its tone.
-    expect(js).toContain("'<span class=\"tcard__verdict tcard__verdict--' + verdict.tone");
+    // No percentage anywhere a trail is listed: card, results, wizard payoff.
+    expect(js).not.toContain('MATCH FOR YOUR DOG');
+    expect(js).not.toContain("entry.score + '%</strong>'");
+    expect(js).not.toContain('hp-match-pct');
+
+    const html = card.html({ name:'Fenn Promenade', distance:2.2349, elevation:100, hours:0.75, area:'Ritten', safetyLevel:'low-risk' }, {
+      href:'trail.html?id=fenn&from=x', className:'hp-ccard', photo:'<img src="a.jpg" alt="">',
+      verdict:{ label:'Strong option', tone:'great' }, who:card.forDog(''), name:'Fenn Promenade',
+    });
+    expect(html).toContain('class="tcard hp-ccard"');
+    expect(html).toContain('data-href="trail.html?id=fenn&amp;from=x"');
+    expect(html).toContain('<span class="tcard__verdict tcard__verdict--great">Strong option <small>for a medium dog</small></span>');
+    expect(html).toContain('2.2 km · 100 m climb · 0.75 h · Ritten');
+    expect(html).toContain('Low risk');
+    expect(html).not.toMatch(/\d%/);
+    // No verdict, no empty pill.
+    expect(card.html({ name:'x', distance:1 }, { verdict:null })).not.toContain('tcard__verdict');
+
     expect(css).toContain('.tcard__verdict{position:absolute;');
     expect(css).toContain('.tcard__verdict--good{color:#9A6518;}');
-    expect(css).not.toContain('.hp-ccard-match');
+    expect(css).not.toContain('.hp-trailrow');
   });
 
   test('keeps the method cards on the same three-column rhythm as featured trails', () => {
@@ -148,7 +164,7 @@ describe('guest homepage editorial structure', () => {
     const css = read('homepage-editorial.css');
     expect(css).toContain('.hp-content{max-width:1440px;padding:50px clamp(28px,4vw,52px) 44px;}');
     expect(read('index.html')).toContain('homepage-editorial.css?v=20261123-7');
-    expect(read('index.html')).toContain('homepage-search.js?v=20261126-2');
+    expect(read('index.html')).toContain('homepage-search.js?v=20261126-9');
   });
   test('opens the phone filters as a full panel along the bottom, not a squashed drop-down', () => {
     const css = read('homepage-editorial.css');
