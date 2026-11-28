@@ -539,13 +539,8 @@
     ].filter(Boolean).join(' · ');
   }
 
-  var RISK_KEYS = { 'low-risk':'legend.low', 'moderate':'legend.moderate', 'caution':'legend.caution' };
   function cardFacts(trail) {
     var icons = window.DoloPawsIcons, trust = window.DoloPawsTrailTrust;
-    var df = difficulty(trail);
-    var riskWords = tr(RISK_KEYS[df.value], df.label);
-    var risk = icons ? icons.badgeHtml(df.value, riskWords)
-      : '<span class="dp-badge dp-badge--' + df.value + '"><span>' + esc(riskWords) + '</span></span>';
     // An earned verification is the tick after the name (verifiedTick);
     // a reviewed or imported walk still says so in a chip.
     var provenance = '';
@@ -570,7 +565,8 @@
           return sunTag ? '<span class="browse-season browse-season--sun-' + sunTag.kind + '">' + esc(sunTag.label) + '</span>' : '';
         })();
     }
-    return risk + provenance + season;
+    // The risk is the card's "Watch" line now, not a chip beside the verdict.
+    return provenance + season;
   }
 
   // The engine's own verdict, as the Trails page asks for it: a strong option
@@ -581,7 +577,9 @@
     if (!shared) return null;
     try {
       var rec = window.DoloPawsScoring.recommendTrail(trail, effectiveOverrides(activeProfile(), null), conditionsFor(trail));
-      return shared.verdictFor(rec);
+      var result = shared.verdictFor(rec);
+      result.recommendation = rec;
+      return result;
     } catch (e) { return shared.verdictFor(scoreOf(trail)); }
   }
 
@@ -605,18 +603,31 @@
     if (!verdict || !verdict.label) return '';
     var who = subjectLabel();
     who = who.charAt(0).toLowerCase() + who.slice(1);
+    var pct = typeof verdict.score === 'number' && isFinite(verdict.score) ? ' · ' + Math.round(verdict.score) + '%' : '';
     return '<span class="tcard__verdict tcard__verdict--' + verdict.tone + '">' +
-      esc(verdict.label) + ' <small>' + esc(who) + '</small></span>';
+      esc(verdict.label) + pct + ' <small>' + esc(who) + '</small></span>';
+  }
+
+  // The trail's risk, said as the reason to watch rather than as a second
+  // rating beside the verdict (match-verdict.js cardWatch).
+  function watchLine(trail, verdict) {
+    var shared = window.OrmaMatchVerdict;
+    if (!shared || typeof shared.cardWatch !== 'function') return '';
+    var dog = state.dog === 'medium' ? '' : ((dogMeta() || {}).name || '');
+    var words = shared.cardWatch(trail, verdict && verdict.recommendation, { translate: window.t, dogName: dog });
+    return words ? '<span class="tcard__reason tcard__watch"><b>' + esc(tr('card.watch.label', 'Watch')) + ':</b> ' + esc(words) + '</span>' : '';
   }
 
   function ccardHtml(entry) {
     var trail = entry.t;
+    var verdict = verdictOf(trail);
     return '<button type="button" class="hp-ccard tcard" data-href="' + esc(trailHref(trail)) + '">' +
-      '<span class="tcard__photo">' + thumb(trail) + verdictPill(verdictOf(trail)) + '</span>' +
+      '<span class="tcard__photo">' + thumb(trail) + verdictPill(verdict) + '</span>' +
       '<span class="tcard__body">' +
         '<span class="tcard__name">' + esc(trailDisplayName(trail)) + verifiedTick(trail) + '</span>' +
         '<span class="tcard__meta">' + esc(cardMetaLine(trail)) + '</span>' +
         '<span class="tcard__chips">' + cardFacts(trail) + '</span>' +
+        watchLine(trail, verdict) +
       '</span>' +
     '</button>';
   }
