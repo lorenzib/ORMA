@@ -337,9 +337,9 @@ describe('trail page map controls', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
 
-    expect(html).toContain('i18n.js?v=20261127-8');
-    expect(html).toContain('trail-app.bundle.js?v=20261127-8');
-    expect(html).toContain('trail-mobile.css?v=20261123-7');
+    expect(html).toContain('i18n.js?v=20261128-1');
+    expect(html).toContain('trail-app.bundle.js?v=20261128-1');
+    expect(html).toContain('trail-mobile.css?v=20261127-1');
     [
       'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',
       'detail-pois.js', 'trail-access-directions.js', 'footpath-router.js',
@@ -575,10 +575,13 @@ describe('trail page map controls', () => {
       .map(node => node.id)
       .filter(Boolean);
     expect(actionIds.slice(0, 2)).toEqual(['heroStartHike', 'detailSaveBtn']);
+    // Three things stay in view (Save, Directions, the offline map); the
+    // rarer actions sit behind More.
     expect(actionIds).toEqual(expect.arrayContaining([
-      'detailSaveBtn', 'heroStartHike', 'getDirectionsBtn', 'logWalkBtn',
-      'exportGpxBtn', 'detailShareBtn'
+      'detailSaveBtn', 'heroStartHike', 'getDirectionsBtn', 'offlinePackagePanel', 'tdMoreActions'
     ]));
+    const moreIds = Array.from(copy.querySelectorAll('#tdMoreActions .td2-more-menu > [id]')).map(node => node.id);
+    expect(moreIds).toEqual(['adjustWalkBtn', 'detailShareBtn', 'exportGpxBtn', 'logWalkBtn']);
     expect(copy.querySelector('#offlineDownloadBtn')).not.toBeNull();
     expect(document.getElementById('tdHeroPhoto')).not.toBeNull();
     expect(html).toContain('grid-template-columns:minmax(0,1.65fr) minmax(340px,.85fr);grid-template-areas:"tags weather"');
