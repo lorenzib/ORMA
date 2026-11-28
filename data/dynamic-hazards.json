@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-11-28T05:15:46.120Z",
+  "generatedAt": "2026-11-28T08:18:22.616Z",
   "hazards": [
     {
       "id": "meteoalarm-france:avalanches:haute-savoie",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-11-27T15:00:00+00:00",
       "expiresAt": "2026-11-29T23:00:00+00:00",
       "firstPublishedAt": "2026-11-14T17:12:32.717Z",
-      "lastSeenAt": "2026-11-28T05:15:46.120Z",
+      "lastSeenAt": "2026-11-28T08:18:22.616Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-6250300",
@@ -70,7 +70,7 @@
       "effectiveAt": "2026-11-27T15:00:00+00:00",
       "expiresAt": "2026-11-29T23:00:00+00:00",
       "firstPublishedAt": "2026-11-15T05:15:17.285Z",
-      "lastSeenAt": "2026-11-28T05:15:46.120Z",
+      "lastSeenAt": "2026-11-28T08:18:22.616Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "isere-circuit-pedestre-alpage-des-cloutons",
@@ -109,7 +109,7 @@
       "effectiveAt": "2026-11-27T15:00:00+00:00",
       "expiresAt": "2026-11-28T23:00:00+00:00",
       "firstPublishedAt": "2026-11-16T05:17:46.485Z",
-      "lastSeenAt": "2026-11-28T05:15:46.120Z",
+      "lastSeenAt": "2026-11-28T08:18:22.616Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
