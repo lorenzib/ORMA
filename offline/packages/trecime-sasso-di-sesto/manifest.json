@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-sasso-di-sesto",
   "name": "Fischleintal – Sextner Stein",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.653Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.720Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 418399,
+  "packageBytes": 418356,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.63339,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Fischleintal – Sextner Stein OSM offline map",
       "url": "map.svg",
-      "bytes": 138826,
-      "sha256": "0e217cc90b6b14bd5f3a0812fc05eb75dfbabc0f3c1d53e5179607238c8c3465"
+      "bytes": 138807,
+      "sha256": "d90d860ebf12f71937bbea4c16c5603bbb22116c46cccfbbb47d6b23a9eef552"
     },
     {
       "role": "route",

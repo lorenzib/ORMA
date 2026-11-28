@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "bormio-da-arnoga-al-rifugio-federico",
   "name": "Arnoga – Rifugio Federico, Val Viola",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.806Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.617Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 565873,
+  "packageBytes": 565830,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.4176,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Arnoga – Rifugio Federico, Val Viola OSM offline map",
       "url": "map.svg",
-      "bytes": 228092,
-      "sha256": "420b01c30d9dedf5a7e72f35035480b55c10f07b6def6a856d98afdfde5a578a"
+      "bytes": 228073,
+      "sha256": "a10bc43c9c5bc5283cbcf0172816faf1701bd14f49eeab39c6649d693524ef41"
     },
     {
       "role": "route",

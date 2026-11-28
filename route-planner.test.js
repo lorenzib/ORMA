@@ -29,10 +29,11 @@ describe('standalone draft route planner', () => {
     // address follows the map.
     expect(homeHtml).toContain('<a id="homeMapDrawBtn" class="li-map-draw" href="route-planner.html">');
     expect(homeHtml.indexOf('id="homeMapDrawBtn"')).toBeGreaterThan(homeHtml.indexOf('id="trailMapWrap"'));
-    const homeSource = fs.readFileSync(path.join(root, 'script.js'), 'utf8');
-    expect(homeSource).toContain("trailMapInstance.on('moveend', syncDrawLink);");
-    expect(homeSource).toContain('const view = `lat=${centre.lat.toFixed(5)}&lng=${centre.lng.toFixed(5)}&z=${trailMapInstance.getZoom().toFixed(2)}`;');
-    expect(homeSource).toContain('drawLink.href = `route-planner.html?${view}`;');
+    const homeSource = fs.readFileSync(path.join(root, 'script.js'), 'utf8') + '\n' + fs.readFileSync(path.join(root, 'explore-map.js'), 'utf8');
+    expect(homeSource).toContain("map.on('moveend', syncDrawLinks);");
+    expect(homeSource).toContain('const view = `lat=${centre.lat.toFixed(5)}&lng=${centre.lng.toFixed(5)}&z=${map.getZoom().toFixed(2)}`;');
+    expect(homeSource).toContain('drawLinks.forEach(link => { link.href = `route-planner.html?${view}`; });');
+    expect(homeSource).toContain("drawLinks:[document.getElementById('homeMapDrawBtn'), document.getElementById('liDrawRouteBtn')],");
   });
 
   test('starts at the view it is given, and ignores one it cannot use', () => {

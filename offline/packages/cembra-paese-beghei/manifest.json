@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cembra-paese-beghei",
   "name": "Il paese dei “Beghei”",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:13.854Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T22:46:48.676Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 553997,
+  "packageBytes": 553954,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.16628,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Il paese dei “Beghei” OSM offline map",
       "url": "map.svg",
-      "bytes": 342743,
-      "sha256": "3a40aec15c362a369b69b8634d01d2ac64b1e806ab43abd39ee4b042d9485d56"
+      "bytes": 342724,
+      "sha256": "7969bdbd0b95175f06466aefd6b7979f8a5350905a476c02ad596b4e291a5a11"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "kronplatz-steinmeile",
   "name": "Steinmeile stone trail",
-  "version": "2026.11.12-beta.1",
-  "generatedAt": "2026-11-12T16:46:21.373Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:49.007Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 475708,
+  "packageBytes": 475665,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.7544,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Steinmeile stone trail OSM offline map",
       "url": "map.svg",
-      "bytes": 274151,
-      "sha256": "2a057d6e1a1d4cc89d4b5d0d3beb7b363a9c0963e597f70d84dc3e8e508812f7"
+      "bytes": 274132,
+      "sha256": "e85cfdae729e5a477ae6dc23f651204c010f30276dbbe6411a3f6f9d6c57df8a"
     },
     {
       "role": "route",

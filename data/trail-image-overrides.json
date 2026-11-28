@@ -598,6 +598,23 @@
       }
     },
     {
+      "id": "camonica-val-brandet",
+      "approvedReviewId": "commons-camonica-val-brandet-on-route",
+      "approvedAt": "2026-11-19T12:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/camonica-val-brandet-bridge.jpg",
+        "heroImage": "images/trails/camonica-val-brandet-bridge.jpg",
+        "imageAlt": "A covered wooden footbridge with a shingle roof and railings spans a rocky stream, among leafy trees and conifers turning to autumn colours",
+        "imageCredit": "The covered wooden bridge over the stream at Sant’Antonio, by the start",
+        "imageCreditText": "The covered wooden bridge over the stream at Sant’Antonio, by the start by Luca Giarelli",
+        "imageCreator": "Luca Giarelli",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Ponte_in_legno_-_Sant'Antonio_-_Corteno_Golgi_(Foto_Luca_Giarelli).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "campiglio-carisolo-centro-storico",
       "approvedReviewId": "commons-campiglio-carisolo-centro-storico-on-route",
       "approvedAt": "2026-10-28T08:00:00.000Z",

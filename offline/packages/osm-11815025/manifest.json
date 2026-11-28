@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11815025",
   "name": "Rundweg Kasserol",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.197Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.146Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 636232,
+  "packageBytes": 636189,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.60312,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Rundweg Kasserol OSM offline map",
       "url": "map.svg",
-      "bytes": 414427,
-      "sha256": "68b0d685bc009f2e0c0591fc71b86542d241a1d94aca53ffa35f845afbcc592e"
+      "bytes": 414408,
+      "sha256": "bea58b2e52aae5e8760821c742ad7c37b097df445eff7bfb343c5b5aa28d1241"
     },
     {
       "role": "route",

@@ -238,6 +238,13 @@
       ],
       "highPoint": 2600
     },
+    "camonica-val-brandet": {
+      "regions": [
+        "IT-25-BG-01",
+        "IT-25-SO-04"
+      ],
+      "highPoint": 1306
+    },
     "campiglio-carisolo-centro-storico": {
       "regions": [
         "IT-32-TN-01"

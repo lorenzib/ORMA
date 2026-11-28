@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-6453504",
   "name": "Walderlebnispfad Aschbach",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.407Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T22:46:49.352Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 236058,
+  "packageBytes": 236015,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.63271,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Walderlebnispfad Aschbach OSM offline map",
       "url": "map.svg",
-      "bytes": 48821,
-      "sha256": "c8db3f2f45d13f7c4c581f6b36e6a54d3661d0316aa901523266c7919bca2dd5"
+      "bytes": 48802,
+      "sha256": "e8403cc981fcb9bf2903a02bdcde7befab2fb19c98d4d9651138c37b719bf9a8"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valposchiavo-alp-grum-cavaglia-via-palu",
   "name": "Alp Grüm to Cavaglia via Lagh da Palü",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.773Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.875Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 320305,
+  "packageBytes": 320262,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.36061,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Alp Grüm to Cavaglia via Lagh da Palü OSM offline map",
       "url": "map.svg",
-      "bytes": 116266,
-      "sha256": "7a518e15f4b823f6bd8463c30162f8e2da81e1b627ab2b769e0b90ecf4f5a0d2"
+      "bytes": 116247,
+      "sha256": "fff259d35b74cc0cca7a1ba259535eb86cfe7ee2bc3052acb991a1196dceb855"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-val-freida",
   "name": "Sulle tracce dei pastori all'imbocco della Val Freida",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.968Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.886Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 299030,
+  "packageBytes": 298987,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.3759,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sulle tracce dei pastori all'imbocco della Val Freida OSM offline map",
       "url": "map.svg",
-      "bytes": 143674,
-      "sha256": "248794abe578cdee9955b6a98490ebc6a03dfbb92e88d939350785f15b6055d1"
+      "bytes": 143655,
+      "sha256": "709f8809725fdc6a52713437993840af4dd06f1815375d49692968a5ac4e7346"
     },
     {
       "role": "route",

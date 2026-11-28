@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-9651462",
   "name": "Sagenweg - Sentiero delle leggende",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.481Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.435Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 619472,
+  "packageBytes": 619429,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.77327,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sagenweg - Sentiero delle leggende OSM offline map",
       "url": "map.svg",
-      "bytes": 360091,
-      "sha256": "a6f0959c3f98c85d8361e52b19c5ca24120ec6cf0e5a0db6f766937b801d995b"
+      "bytes": 360072,
+      "sha256": "60202abd77a5017356858fb28c1aea1b7339b7ee00a07e68b56dc3b08f2dcf37"
     },
     {
       "role": "route",

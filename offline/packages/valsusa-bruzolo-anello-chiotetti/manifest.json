@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valsusa-bruzolo-anello-chiotetti",
   "name": "Chiotetti Loop, Bruzolo",
-  "version": "2026.11.21-beta.1",
-  "generatedAt": "2026-11-21T19:44:42.017Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:49.902Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 441513,
+  "packageBytes": 441468,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.14177,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Chiotetti Loop, Bruzolo OSM offline map",
       "url": "map.svg",
-      "bytes": 157815,
-      "sha256": "d1c51205682979e75a6aaf3e2f8e70fbd9602ca6b797ef147afe1468a38c8588"
+      "bytes": 157794,
+      "sha256": "a8daf27e416d1a4ea1b5e3edfb96b305c0a66556a6fbe77f382a67f55e44472d"
     },
     {
       "role": "route",

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valsusa-mompantero-sentier8",
   "name": "Sentier8, Mompantero",
-  "version": "2026.11.21-beta.1",
-  "generatedAt": "2026-11-21T19:44:43.023Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:49.921Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 523839,
+  "packageBytes": 523794,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.14458,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Sentier8, Mompantero OSM offline map",
       "url": "map.svg",
-      "bytes": 214411,
-      "sha256": "3f42c8593224b34e8d8ba76ace87e831ec20ee473e8872622f308a47b3998147"
+      "bytes": 214390,
+      "sha256": "d8fc59cd182014a80d82e35a6ec313b52b69986b131206f89e62927a0e216fd3"
     },
     {
       "role": "route",

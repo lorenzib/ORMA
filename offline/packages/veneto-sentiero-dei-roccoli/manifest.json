@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "veneto-sentiero-dei-roccoli",
   "name": "Roccoli Path from the Mucciòn",
-  "version": "2026.11.21-beta.1",
-  "generatedAt": "2026-11-21T19:37:30.109Z",
+  "version": "2026.11.21-beta.2",
+  "generatedAt": "2026-11-21T22:46:49.939Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 449451,
+  "packageBytes": 449406,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.65639,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Roccoli Path from the Mucciòn OSM offline map",
       "url": "map.svg",
-      "bytes": 246731,
-      "sha256": "4099b2539ac61ac240b2a288202a1539b01f622e0537178fcce2e86fd6d85295"
+      "bytes": 246710,
+      "sha256": "3244dea37ae34dee01943fdb1ce83520d3454729e9b495debf9bfcd9da34ccf2"
     },
     {
       "role": "route",

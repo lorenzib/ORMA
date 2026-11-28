@@ -308,8 +308,10 @@ describe('the existing-site verification boundary',()=>{
     // Then 564 and 562 with the first Canavese walks from CANAVESE VILLAGE
     // (Turismo in Canavese): the vineyard loop at Settimo Vittone, Cima
     // Bossola in Valchiusella and the Sentiero del Redìo at Corio.
-    expect(catalogue).toHaveLength(564);
-    expect(currentSiteTrails(catalogue)).toHaveLength(562);
+    // Then 565 and 563 with the first Valle Camonica walk from Turismo
+    // Valle Camonica: the Val Brandet from Sant'Antonio, there and back.
+    expect(catalogue).toHaveLength(565);
+    expect(currentSiteTrails(catalogue)).toHaveLength(563);
   });
 
   test('requires the artwork the public trail page needs',()=>{

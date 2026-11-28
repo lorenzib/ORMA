@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "cortina-sotecordes",
   "name": "Escursione di Sotecordes",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.880Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.710Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 356747,
+  "packageBytes": 356704,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.524,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Escursione di Sotecordes OSM offline map",
       "url": "map.svg",
-      "bytes": 103622,
-      "sha256": "b49c38fa2531ecde86a76a6702734558b287debd1fb1ddc92b9c4f5e859bfcb3"
+      "bytes": 103603,
+      "sha256": "52674fc0e579252ceb4496b3912d8b19991e3eecd9618beb5ae52110e7e4ae47"
     },
     {
       "role": "route",

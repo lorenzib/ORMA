@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-villabassa-lanaweg",
   "name": "Niederdorf – Lanaweg loop",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.670Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.743Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1179073,
+  "packageBytes": 1179030,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.73349,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Niederdorf – Lanaweg loop OSM offline map",
       "url": "map.svg",
-      "bytes": 734369,
-      "sha256": "da4bd38bb9ecd2340193762628e13b2b6e8e03f4651c8873b09787a843318329"
+      "bytes": 734350,
+      "sha256": "7f815f3f13678a2b0acbfc501ca2f6cc3678de573462f70316d19a81ef246282"
     },
     {
       "role": "route",

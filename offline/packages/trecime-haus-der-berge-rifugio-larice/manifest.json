@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "trecime-haus-der-berge-rifugio-larice",
   "name": "Haus der Berge – Lärchenhütte",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.627Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.688Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 474252,
+  "packageBytes": 474209,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.69348,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Haus der Berge – Lärchenhütte OSM offline map",
       "url": "map.svg",
-      "bytes": 216468,
-      "sha256": "92ddcc1993064baf5da034f5104435f9f83b4f555737f405443ab0e37780c4fe"
+      "bytes": 216449,
+      "sha256": "bd13444bfcff8bbbc1c869c8bbb1d0641371c8aa3680ceba2c47fdd3170e8ad3"
     },
     {
       "role": "route",

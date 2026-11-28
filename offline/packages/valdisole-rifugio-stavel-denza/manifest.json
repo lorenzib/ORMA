@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valdisole-rifugio-stavel-denza",
   "name": "Rifugio Stavel – Francesco Denza",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.712Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.801Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 362985,
+  "packageBytes": 362942,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.23979,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Rifugio Stavel – Francesco Denza OSM offline map",
       "url": "map.svg",
-      "bytes": 136912,
-      "sha256": "f84f828e8bf379b776878a8b9cda1fc253ae70e399c65b53fbc84e6d0a5fc0d9"
+      "bytes": 136893,
+      "sha256": "06d8a7b86435b7918ab354438e2381128a2e4c043c72423014d2aa618e35e4c1"
     },
     {
       "role": "route",

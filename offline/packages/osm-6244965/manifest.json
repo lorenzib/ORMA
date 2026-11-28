@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-6244965",
   "name": "Steine erzählen",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.397Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T22:46:49.342Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 1386653,
+  "packageBytes": 1386610,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.8005,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Steine erzählen OSM offline map",
       "url": "map.svg",
-      "bytes": 849885,
-      "sha256": "35c2f84a22332821deea5a048fdbf169c6e963396e82ef6cd27090f18317d729"
+      "bytes": 849866,
+      "sha256": "065b561a87906b0848e726fbbe7de3a216393227aea4cb68cdfdac17a137bffe"
     },
     {
       "role": "route",

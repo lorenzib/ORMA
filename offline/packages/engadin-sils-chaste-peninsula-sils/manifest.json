@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "engadin-sils-chaste-peninsula-sils",
   "name": "Chastè peninsula loop from Sils",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:13.925Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:48.826Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 506096,
+  "packageBytes": 506053,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.42205,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Chastè peninsula loop from Sils OSM offline map",
       "url": "map.svg",
-      "bytes": 228340,
-      "sha256": "903ecd3b87bced19c49c2e80e6604499dd3fe1a58f1d806d26f5b559872e8530"
+      "bytes": 228321,
+      "sha256": "57c77ce6ad4be58e25bb6ea08dafa493afd5e94db6e766c21ad13802177bf772"
     },
     {
       "role": "route",

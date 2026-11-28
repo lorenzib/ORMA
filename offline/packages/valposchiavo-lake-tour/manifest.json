@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "valposchiavo-lake-tour",
   "name": "Lago di Poschiavo loop from Le Prese",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.778Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.883Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 564897,
+  "packageBytes": 564854,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.26931,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Lago di Poschiavo loop from Le Prese OSM offline map",
       "url": "map.svg",
-      "bytes": 267764,
-      "sha256": "7d30779e46ed992be66087f6ac44126ea17d9664113560dbf48fb12afe357f00"
+      "bytes": 267745,
+      "sha256": "b2e4dffd3dd08b5f729a1a06ed082bde255f5647eae4333b7cd75683a1cfa78f"
     },
     {
       "role": "route",

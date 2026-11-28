@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "osm-11270309",
   "name": "Passeggiata delle Sorgenti - Quellenpromenade",
-  "version": "2026.11.12-beta.4",
-  "generatedAt": "2026-11-12T12:31:14.170Z",
+  "version": "2026.11.21-beta.5",
+  "generatedAt": "2026-11-21T22:46:49.113Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 549579,
+  "packageBytes": 549536,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.23386,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Passeggiata delle Sorgenti - Quellenpromenade OSM offline map",
       "url": "map.svg",
-      "bytes": 350922,
-      "sha256": "8a4a1c206e677c967f938833ad1b5c6cfed9a773163ab0e027fb5cca963c0d1d"
+      "bytes": 350903,
+      "sha256": "9d334f8c0d607f480eca36aef34d52511d6dae9b36bb9259fcc0a1bfad3b4f57"
     },
     {
       "role": "route",

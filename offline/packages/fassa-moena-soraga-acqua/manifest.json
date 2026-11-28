@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "fassa-moena-soraga-acqua",
   "name": "Da Moena a Soraga, dove l'acqua ha segnato la storia",
-  "version": "2026.11.12-beta.5",
-  "generatedAt": "2026-11-12T12:31:13.949Z",
+  "version": "2026.11.21-beta.6",
+  "generatedAt": "2026-11-21T22:46:48.860Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 792717,
+  "packageBytes": 792674,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.37313,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Da Moena a Soraga, dove l'acqua ha segnato la storia OSM offline map",
       "url": "map.svg",
-      "bytes": 494960,
-      "sha256": "75d204b037e207dc65baa2e044c42a922487744ddde4d487df92e132f03efc75"
+      "bytes": 494941,
+      "sha256": "1ab575b4f3d47b5cfa40513996cdfe6c9ab3854e1d5754e5acef7b36731e7978"
     },
     {
       "role": "route",

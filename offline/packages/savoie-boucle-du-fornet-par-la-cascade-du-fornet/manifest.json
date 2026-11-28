@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "savoie-boucle-du-fornet-par-la-cascade-du-fornet",
   "name": "Fornet waterfall loop from Le Fornet",
-  "version": "2026.11.12-beta.3",
-  "generatedAt": "2026-11-12T12:31:14.565Z",
+  "version": "2026.11.21-beta.4",
+  "generatedAt": "2026-11-21T22:46:49.598Z",
   "scoringVersion": "1.10.0",
   "verificationStatus": "source-verified",
-  "packageBytes": 277060,
+  "packageBytes": 277017,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 45.44209,
@@ -120,8 +120,8 @@
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 10637,
-      "sha256": "d42aff9bbcdf0d7bd43eff71f577b1f7869efb31ab466ce8099ef5f6c93b52ce"
+      "bytes": 10613,
+      "sha256": "d9404017fdccc0b8d9e69f71622fa70e8d213793bfe1eeccc512d3175b601851"
     },
     {
       "role": "app",
@@ -200,8 +200,8 @@
       "required": true,
       "label": "Fornet waterfall loop from Le Fornet OSM offline map",
       "url": "map.svg",
-      "bytes": 84684,
-      "sha256": "232b92095b13ad33f5bb284e50cf34eb41018a449bbb3f47f2ddc07313d2323b"
+      "bytes": 84665,
+      "sha256": "3aab15a938a5b9288c821d05e42d353ae0f5a072254e53619630652901405c52"
     },
     {
       "role": "route",
