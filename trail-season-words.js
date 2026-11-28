@@ -44,6 +44,11 @@
   // months a road is shut are out of season.
   const roadsOf = season => (season && season.roads) || [];
   const roadShut = (season, month) => roadsOf(season).some(road => (road.shutMonths || []).includes(month));
+  // Park rules that keep dogs off the walk for part of the year
+  // (trail.season.dogRules, from data/road-seasons.json): like a shut road, a
+  // month with no allowed day is out of season.
+  const dogRulesOf = season => (season && season.dogRules) || [];
+  const dogShut = (season, month) => dogRulesOf(season).some(rule => (rule.shutMonths || []).includes(month));
   const PART_WORDS = { early: 'early {month}', mid: 'mid-{month}', late: 'late {month}' };
   const partMonth = point => tx(PART_WORDS[point.part], { month: monthName(point.month) });
   // "The Tre Cime toll road is usually open from late May to late October."
@@ -245,6 +250,13 @@
       });
       if (marked) out.legend.push(['road', tx('Road closed')]);
     }
+    if (dogRulesOf(season).length && out.strip.length) {
+      let marked = false;
+      out.strip.forEach(m => {
+        if (m.state !== 'lift' && m.state !== 'road' && dogShut(season, m.month)) { m.state = 'dogs'; marked = true; }
+      });
+      if (marked) out.legend.push(['dogs', tx('No dogs allowed')]);
+    }
     // A key for a state no month shows any more (snow months the road covers) goes.
     if (out.legend) out.legend = out.legend.filter(([state]) => out.strip.some(m => m.state === state));
     out.lifts = ((season.lifts) || []).map(lift => ({
@@ -277,6 +289,15 @@
         label: road.operator || road.name,
         url: road.url,
         after: tx(', read on {date}.', { date: readOn(road.accessedAt) }),
+      },
+    })));
+    out.lifts = out.lifts.concat(dogRulesOf(season).map(rule => ({
+      line: tx(rule.line),
+      source: {
+        before: tx('Source: '),
+        label: tx(rule.operator) || hostOf(rule.url),
+        url: rule.url,
+        after: tx(', read on {date}.', { date: readOn(rule.accessedAt) }),
       },
     })));
     out.lifts = out.lifts.concat(hutsOf(season).map(hut => ({
@@ -317,7 +338,7 @@
     const notes = [];
     // A board month the walk's lift is shut is not "in season": the lift's
     // sentence below says why, and the two would contradict each other.
-    const liftOut = requiredLifts(season).some(lift => liftShut(lift, month)) || roadShut(season, month);
+    const liftOut = requiredLifts(season).some(lift => liftShut(lift, month)) || roadShut(season, month) || dogShut(season, month);
     if (season.winterWalk && !WINTER_WALK_MONTHS.includes(month)) {
       notes.push(tx('{month} is outside winter, and this is the winter walk.', { month: name }));
     } else if (season.recommended && !(liftOut && season.recommended.months.includes(month))) {
@@ -342,6 +363,10 @@
     }
     for (const road of roadsOf(season)) {
       if ((road.shutMonths || []).includes(month)) notes.push(tx('In {month} the {road} is closed, and the walk starts at the end of it.', { month: name, road: tx(road.name) }));
+    }
+    for (const rule of dogRulesOf(season)) {
+      if ((rule.shutMonths || []).includes(month)) notes.push(tx(rule.shutNote, { month: name }));
+      else if ((rule.partMonths || []).includes(month)) notes.push(tx(rule.partNote, { month: name }));
     }
     const shutHuts = hutsOf(season).filter(hut => hut.goal && hutClosed(hut, month)).map(hut => tx(hut.name));
     if (shutHuts.length === 1) notes.push(tx('In {month} the {hut} is closed: take food and water for you and your dog.', { month: name, hut: shutHuts[0] }));
@@ -378,8 +403,8 @@
     // Less the months a needed lift or road is shut. If that left nothing
     // the data would be wrong for this walk, so it is not applied.
     const needed = requiredLifts(season);
-    if (needed.length || roadsOf(season).length) {
-      const running = months.filter(m => !needed.some(lift => liftShut(lift, m)) && !roadShut(season, m));
+    if (needed.length || roadsOf(season).length || dogRulesOf(season).length) {
+      const running = months.filter(m => !needed.some(lift => liftShut(lift, m)) && !roadShut(season, m) && !dogShut(season, m));
       if (running.length) months = running;
     }
     return months.length ? months.sort((a, b) => a - b) : null;

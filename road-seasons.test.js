@@ -53,13 +53,38 @@ describe('road seasons', () => {
     expect(() => applyRoadSeasons([{ id: 'w', season: board }], { access: {}, trails: { w: { access: ['a'] } } })).toThrow(/unknown access rule/);
   });
 
+  test('a seasonal dog rule makes the months with no allowed day out of season and dates the edge months', () => {
+    const rule = {
+      operator: 'Example park', url: 'https://example.org/park', accessedAt: '2026-11-23',
+      allowed: { from: { day: 15, month: 7 }, to: { day: 15, month: 9 } },
+      line: 'Dogs are allowed only from 15 July to 15 September, on a lead.',
+      shutNote: 'In {month} dogs are not allowed in the park zones on this walk.',
+      partNote: 'In {month} dogs are allowed only from 15 July to 15 September.',
+    };
+    const board = { recommended: { months: [6, 7, 8, 9, 10], source: { label: 'Board', url: 'https://example.org', accessedAt: '2026-11-01' } } };
+    const trail = applyRoadSeasons([{ id: 'w', season: board }], { dogRules: { d: rule }, trails: { w: { dogRules: ['d'] } } })[0];
+    expect(trail.season.dogRules[0]).toEqual(expect.objectContaining({ shutMonths: [1, 2, 3, 4, 5, 6, 10, 11, 12], partMonths: [7, 9] }));
+    expect(words.bestMonths(trail.season)).toEqual([7, 8, 9]);
+    expect(words.outOfSeason(trail.season, 6)).toBe(true);
+    const out = words.describe(trail.season);
+    expect(out.strip[5].state).toBe('dogs');
+    expect(out.strip[7].state).toBe('good');
+    expect(out.legend).toContainEqual(['dogs', 'No dogs allowed']);
+    expect(out.lifts[0]).toEqual(expect.objectContaining({ line: rule.line }));
+    expect(words.nowNote(trail.season, 6)).toBe('In June dogs are not allowed in the park zones on this walk.');
+    expect(words.nowNote(trail.season, 7)).toBe('July is in this walk’s season. In July dogs are allowed only from 15 July to 15 September.');
+    expect(words.nowNote(trail.season, 8)).toBe('August is in this walk’s season.');
+    expect(() => applyRoadSeasons([{ id: 'w', season: board }], { dogRules: { d: { ...rule, allowed: undefined } }, trails: {} })).toThrow(/when dogs are allowed/);
+    expect(() => applyRoadSeasons([{ id: 'w', season: board }], { dogRules: {}, trails: { w: { dogRules: ['d'] } } })).toThrow(/unknown dog rule/);
+  });
+
   test('the curated file holds sourced roads for real walks', () => {
     const artifact = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'road-seasons.json'), 'utf8'));
     const { loadProductionTrails } = require('./scripts/load-production-trails');
     const trails = loadProductionTrails(__dirname);
     for (const id of Object.keys(artifact.trails)) {
       const trail = trails.find(t => t.id === id);
-      expect((trail.season.roads || []).length + (trail.season.access || []).length).toBeGreaterThan(0);
+      expect((trail.season.roads || []).length + (trail.season.access || []).length + (trail.season.dogRules || []).length).toBeGreaterThan(0);
     }
   });
 

@@ -4225,6 +4225,22 @@
       "quote": "Distanza 1,8 km · Durata 1:15 h · Salita 185 m · Discesa 0 m · Punto più alto 1.306 m · Punto più basso 1.130 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-19T12:00:00.000Z"
+    },
+    "camonica-rifugio-bozzi": {
+      "url": "https://www.outdooractive.com/it/r/293430639",
+      "publisher": "Turismo Valle Camonica (Outdooractive)",
+      "name": "Sentiero n. 152 – Rifugio Bozzi",
+      "quote": "Distanza 6,4 km · Durata 2:15 h · Salita 604 m · Discesa 2 m · Punto più alto 2.475 m · Punto più basso 1.756 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-23T12:00:00.000Z"
+    },
+    "camonica-val-malza": {
+      "url": "https://www.outdooractive.com/it/r/293393873",
+      "publisher": "Turismo Valle Camonica (Outdooractive)",
+      "name": "Sentiero n. 158 – S. Apollonia – Rifugio Val Malza",
+      "quote": "Distanza 4,8 km · Durata 2:00 h · Salita 400 m · Discesa 1 m · Punto più alto 1.978 m · Punto più basso 1.584 m",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-23T12:00:00.000Z"
     }
   }
 }

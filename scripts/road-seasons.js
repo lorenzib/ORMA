@@ -18,6 +18,17 @@
 //   { id, line, monthNote, months, operator, url, accessedAt }
 //
 // and the page says it, and in its months the monthly note does.
+//
+// Dog rules are park rules that keep dogs off a walk for part of the year
+// (Stelvio: zones A and B only 15 July to 15 September, on signed paths, on a
+// lead). The walk gets the rule in trail.season.dogRules,
+//
+//   { id, line, shutNote, partNote, allowed, shutMonths, partMonths,
+//     operator, url, accessedAt }
+//
+// Like a shut road, the months with no allowed day are out of season; the
+// months the window starts or ends in stay in season and their monthly note
+// gives the date.
 
 const ALL_MONTHS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 const PARTS = new Set(['early', 'mid', 'late']);
@@ -42,10 +53,36 @@ function validateAccess(id, rule){
   if(!/^\d{4}-\d{2}-\d{2}$/.test(rule.accessedAt || '')) throw new Error(`Access rule ${id} has no read-on date`);
 }
 
+const isDayMonth = point => point && isMonth(point.month) && Number.isInteger(point.day) && point.day >= 1 && point.day <= 31;
+
+function validateDogRule(id, rule){
+  if(!rule || typeof rule.line !== 'string' || !rule.line.trim()) throw new Error(`Dog rule ${id} has no line`);
+  for(const key of ['shutNote', 'partNote']){
+    if(typeof rule[key] !== 'string' || !rule[key].includes('{month}')) throw new Error(`Dog rule ${id} has no ${key}`);
+  }
+  if(!rule.allowed || !isDayMonth(rule.allowed.from) || !isDayMonth(rule.allowed.to)) throw new Error(`Dog rule ${id} does not say when dogs are allowed`);
+  if(!/^https:\/\//.test(rule.url || '')) throw new Error(`Dog rule ${id} has no source url`);
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(rule.accessedAt || '')) throw new Error(`Dog rule ${id} has no read-on date`);
+}
+
+// The months dogs may be on the walk at all, and the two it starts or ends
+// part-way through. A window that runs over New Year wraps.
+function dogRuleMonths(rule){
+  const { from, to } = rule.allowed;
+  const open = [];
+  for(let m = from.month; ; m = m % 12 + 1){ open.push(m); if(m === to.month) break; }
+  const part = [];
+  if(from.day > 1) part.push(from.month);
+  if(to.day < 28 && !part.includes(to.month)) part.push(to.month);
+  return { shutMonths: ALL_MONTHS.filter(m => !open.includes(m)), partMonths: part.sort((a, b) => a - b) };
+}
+
 function applyRoadSeasons(trails, artifact){
   const roads = (artifact && artifact.roads) || {};
   const access = (artifact && artifact.access) || {};
   Object.entries(access).forEach(([id, rule]) => validateAccess(id, rule));
+  const dogRules = (artifact && artifact.dogRules) || {};
+  Object.entries(dogRules).forEach(([id, rule]) => validateDogRule(id, rule));
   const uses = (artifact && artifact.trails) || {};
   Object.entries(roads).forEach(([id, road]) => validateRoad(id, road));
   const known = new Set(trails.map(trail => trail.id));
@@ -53,6 +90,7 @@ function applyRoadSeasons(trails, artifact){
     if(!known.has(trailId)) throw new Error(`Road seasons name an unknown walk: ${trailId}`);
     for(const roadId of use.roads || []) if(!roads[roadId]) throw new Error(`Road seasons for ${trailId} name an unknown road: ${roadId}`);
     for(const ruleId of use.access || []) if(!access[ruleId]) throw new Error(`Road seasons for ${trailId} name an unknown access rule: ${ruleId}`);
+    for(const ruleId of use.dogRules || []) if(!dogRules[ruleId]) throw new Error(`Road seasons for ${trailId} name an unknown dog rule: ${ruleId}`);
   }
   return trails.map(trail => {
     const use = uses[trail.id];
@@ -62,6 +100,12 @@ function applyRoadSeasons(trails, artifact){
       season.access = use.access.map(ruleId => {
         const rule = access[ruleId];
         return { id: ruleId, line: rule.line, monthNote: rule.monthNote, months: rule.months.slice().sort((a, b) => a - b), operator: rule.operator || '', url: rule.url, accessedAt: rule.accessedAt };
+      });
+    }
+    if((use.dogRules || []).length){
+      season.dogRules = use.dogRules.map(ruleId => {
+        const rule = dogRules[ruleId];
+        return { id: ruleId, line: rule.line, shutNote: rule.shutNote, partNote: rule.partNote, allowed: { from: { ...rule.allowed.from }, to: { ...rule.allowed.to } }, ...dogRuleMonths(rule), operator: rule.operator || '', url: rule.url, accessedAt: rule.accessedAt };
       });
     }
     if(!(use.roads || []).length) return { ...trail, season };
@@ -79,4 +123,4 @@ function applyRoadSeasons(trails, artifact){
   });
 }
 
-module.exports = { applyRoadSeasons, validateRoad, validateAccess };
+module.exports = { applyRoadSeasons, validateRoad, validateAccess, validateDogRule, dogRuleMonths };

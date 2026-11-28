@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "camonica-rifugio-bozzi",
+  "generatedAt": "2026-11-23T00:00:00Z",
+  "verificationStatus": "source-verified",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 12.8,
+    "ascentM": 606,
+    "highestPointM": 2385,
+    "expectedDuration": "4 h 45 min",
+    "difficulty": "Hard",
+    "shadePercent": 0
+  },
+  "trailhead": {
+    "lat": 46.298912,
+    "lng": 10.549002,
+    "label": "The car park at the end of the road in Case di Viso, Ponte di Legno, the published start"
+  },
+  "waypoints": [],
+  "cautions": [
+    "The last 0.2 km up to the Rifugio Bozzi is a mountain path (T2), rocky underfoot: keep your dog close and let it pick its footing.",
+    "There is no shade and no water on the way up to 2,475 m: carry water for your dog and rest it in the hut’s basin.",
+    "Storms build fast at this height in summer: check the forecast and turn back if the sky darkens.",
+    "No water point is listed on this walk: carry enough for you and your dog.",
+    "Follow local signs, lead rules and temporary closures."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "ORMA repository route geometry",
+      "reviewedAt": "2026-11-23"
+    },
+    {
+      "name": "OpenStreetMap corridor extract via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-11-23",
+      "licence": "ODbL"
+    }
+  ],
+  "textIt": {
+    "Rifugio Bozzi from Case di Viso": "Rifugio Bozzi da Case di Viso, andata e ritorno",
+    "The car park at the end of the road in Case di Viso, Ponte di Legno, the published start": "Il parcheggio in fondo alla strada a Case di Viso, Ponte di Legno, la partenza indicata",
+    "The last 0.2 km up to the Rifugio Bozzi is a mountain path (T2), rocky underfoot: keep your dog close and let it pick its footing.": "Gli ultimi 0,2 km fino al Rifugio Bozzi sono un sentiero di montagna (T2), sassoso: tenete il cane vicino e lasciate che scelga dove mettere le zampe.",
+    "There is no shade and no water on the way up to 2,475 m: carry water for your dog and rest it in the hut’s basin.": "Salendo fino a 2.475 m non c’è né ombra né acqua: portate acqua per il cane e fatelo riposare nella conca del rifugio.",
+    "Storms build fast at this height in summer: check the forecast and turn back if the sky darkens.": "D’estate, a questa quota, i temporali si formano in fretta: controllate le previsioni e tornate indietro se il cielo si scurisce."
+  }
+}

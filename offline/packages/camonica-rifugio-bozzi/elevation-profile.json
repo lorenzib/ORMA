@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "trailId": "camonica-rifugio-bozzi",
+  "distanceKm": 12.7,
+  "ascentM": 606,
+  "source": "ORMA route profile",
+  "points": [
+    {
+      "km": 0,
+      "elev": 1768
+    },
+    {
+      "km": 1,
+      "elev": 1821
+    },
+    {
+      "km": 2,
+      "elev": 1948
+    },
+    {
+      "km": 2.9,
+      "elev": 2067
+    },
+    {
+      "km": 3.9,
+      "elev": 2096
+    },
+    {
+      "km": 4.8,
+      "elev": 2258
+    },
+    {
+      "km": 5.8,
+      "elev": 2365
+    },
+    {
+      "km": 6.8,
+      "elev": 2385
+    },
+    {
+      "km": 7.7,
+      "elev": 2233
+    },
+    {
+      "km": 8.7,
+      "elev": 2116
+    },
+    {
+      "km": 9.7,
+      "elev": 2071
+    },
+    {
+      "km": 10.6,
+      "elev": 1976
+    },
+    {
+      "km": 11.6,
+      "elev": 1867
+    },
+    {
+      "km": 12.5,
+      "elev": 1780
+    },
+    {
+      "km": 12.7,
+      "elev": 1768
+    }
+  ]
+}

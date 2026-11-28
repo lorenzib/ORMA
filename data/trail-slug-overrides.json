@@ -2198,6 +2198,16 @@
       "name": "Val Brandet from Sant’Antonio",
       "slug": "val-brandet-sant-antonio-corteno-golgi",
       "gloss": "up the forest road beside the Brandet stream from the hamlet of Sant’Antonio into the Val Brandet, and back"
+    },
+    "camonica-rifugio-bozzi": {
+      "name": "Rifugio Bozzi from Case di Viso",
+      "slug": "rifugio-bozzi-case-di-viso-ponte-di-legno",
+      "gloss": "up the First World War military road from Case di Viso to the Rifugio Bozzi in the Stelvio National Park, and back; dogs only from 15 July to 15 September"
+    },
+    "camonica-val-malza": {
+      "name": "Rifugio Val Malza from Sant’Apollonia",
+      "slug": "rifugio-val-malza-sant-apollonia-ponte-di-legno",
+      "gloss": "up the Valle delle Messi from Sant’Apollonia to the Rifugio Val Malza in the Stelvio National Park, and back; dogs only from 15 July to 15 September"
     }
   }
 }

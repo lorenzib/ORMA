@@ -310,8 +310,10 @@ describe('the existing-site verification boundary',()=>{
     // Bossola in Valchiusella and the Sentiero del Redìo at Corio.
     // Then 565 and 563 with the first Valle Camonica walk from Turismo
     // Valle Camonica: the Val Brandet from Sant'Antonio, there and back.
-    expect(catalogue).toHaveLength(565);
-    expect(currentSiteTrails(catalogue)).toHaveLength(563);
+    // Then 567 and 565 with the two Stelvio walks above Ponte di Legno, the
+    // Rifugio Bozzi and the Rifugio Val Malza, dogs only 15 July to 15 September.
+    expect(catalogue).toHaveLength(567);
+    expect(currentSiteTrails(catalogue)).toHaveLength(565);
   });
 
   test('requires the artwork the public trail page needs',()=>{
