@@ -52010,7 +52010,7 @@
       "fields": {
         "name": "Circuit des Sallanches",
         "desc": "A 7.9 km loop near Valloire, imported from the OpenStreetMap hiking network. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record. Direction shown climbs more gradually (computed from elevation data).",
-        "tips": "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.",
+        "tips": "The route, elevation, distance, and the fountains and mountain huts on the map come from OpenStreetMap. ORMA has not verified or walked this trail yet, so exposure, shade, livestock and current conditions are not known. Check conditions locally.",
         "ormaVerified": false,
         "routeNumberGuidance": {
           "mode": "numbered",
@@ -57138,7 +57138,7 @@
       "fields": {
         "name": "Kranterrunde",
         "desc": "A 4.9 km loop near Rodengo / Rodeneck, imported from the OpenStreetMap hiking network. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record. Direction shown climbs more gradually (computed from elevation data).",
-        "tips": "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.",
+        "tips": "The route, elevation, distance, and the fountains and mountain huts on the map come from OpenStreetMap. ORMA has not verified or walked this trail yet, so exposure, shade, livestock and current conditions are not known. Check conditions locally.",
         "imageIcon": "images/trails/osm-11795103-meransen.jpg",
         "imageCredit": "Meransen",
         "heroImage": "images/trails/osm-11795103-meransen.jpg",
@@ -58536,7 +58536,7 @@
       "fields": {
         "name": "Sentier du Four",
         "desc": "A country loop around Arbusigny on the Plateau des Bornes, known locally as the Chemin des Fours: it strings together the commune's hamlets past old communal bread ovens and mission crosses, with wide views over the Saleve, the Voirons, the Bornes and the Faucigny. Part of the route follows the historic Chemin du Sel, the old salt road, on a mix of farm tracks and quiet lanes at around 830 m.",
-        "tips": "Imported route, not yet field-reviewed by ORMA. No published dog-access rule could be found for this circuit, so treat that as unconfirmed: it crosses working farmland and hamlets, and a lead is the safe default, especially near livestock and along the road stretches. Paths turn muddy after rain. The mapped line has a short disconnected piece along the D278 where the source data is broken; on the ground, simply follow the yellow waymarks.",
+        "tips": "ORMA has not verified or walked this trail yet. No published dog-access rule could be found for this circuit, so treat that as unconfirmed: it crosses working farmland and hamlets, and a lead is the safe default, especially near livestock and along the road stretches. Paths turn muddy after rain. The mapped line has a short disconnected piece along the D278 where the source data is broken; on the ground, simply follow the yellow waymarks.",
         "ormaVerified": false,
         "routeNumberGuidance": {
           "mode": "landmarks",
@@ -61122,7 +61122,7 @@
       "fields": {
         "name": "Dorfrundweg St. Sigmund",
         "desc": "A 3.8 km loop near Chienes / Kiens, imported from the OpenStreetMap hiking network. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record. Direction shown climbs more gradually (computed from elevation data).",
-        "tips": "Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.",
+        "tips": "The route, elevation, distance, and the fountains and mountain huts on the map come from OpenStreetMap. ORMA has not verified or walked this trail yet, so exposure, shade, livestock and current conditions are not known. Check conditions locally.",
         "imageIcon": "images/trails/osm-8510456-commons.jpg",
         "imageCredit": "Kiens, de Rienz IMG 1121 2019-08-03 20.37",
         "heroImage": "images/trails/osm-8510456-commons.jpg",

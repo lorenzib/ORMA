@@ -1013,7 +1013,7 @@ async function main() {
       rifugi,
       startPoint: { lat: pts[0][0], lng: pts[0][1], label: startLabel },
       desc: `${articleFor(totalKm)} ${totalKm} km ${isLoop ? 'loop' : 'route'} near ${nearestLocality(pts[0][0], pts[0][1])}, imported from the OpenStreetMap hiking network${p.ref ? ` (trail ${p.ref})` : ''}. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record.${directionNote ? ' ' + directionNote : ''}`,
-      tips: 'Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.',
+      tips: 'The route, elevation, distance, and the fountains and mountain huts on the map come from OpenStreetMap. ORMA has not verified or walked this trail yet, so exposure, shade, livestock and current conditions are not known. Check conditions locally.',
       // The holes a reader would see in this line, which is not the number
       // of pieces the relation arrived in. Chaining leaves out the fragments
       // too far to reach and can take a closed loop whole, so of the twelve
@@ -1087,7 +1087,7 @@ function boardEntry(p, d) {
     rifugi: d.rifugi,
     startPoint: { lat: d.pts[0][0], lng: d.pts[0][1], label: d.startLabel },
     desc: `${articleFor(d.totalKm)} ${d.totalKm} km ${d.isLoop ? 'loop' : 'route'} near ${where}, published by ${p.operator} and drawn on the OpenStreetMap path network along the line it publishes.`,
-    tips: `Route published by ${p.operator}; elevation, distance, mapped fountains and rifugi come from OpenStreetMap data along it. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.`,
+    tips: `Route published by ${p.operator}. Elevation, distance, and the fountains and mountain huts on the map come from OpenStreetMap. ORMA has not verified or walked this trail yet, so exposure, shade, livestock and current conditions are not known. Check conditions locally.`,
   };
 }
 
