@@ -14,9 +14,14 @@ function initializeDogRoutes(map, region) {
   if (map.getSource('dog-routes')) return;
 
   const activeRegion = region || 'dolomites';
-  const routesAsset = window.DoloPawsRegionalData
+  // The Trails page asks for 'all', which has no file of its own in the
+  // regions manifest: poiUrl returns null and fetch(null) asked for /null
+  // (a 404 in the console). Fall back to the shared file most regions use.
+  const regionalAsset = window.DoloPawsRegionalData
     ? window.DoloPawsRegionalData.poiUrl(activeRegion, 'dog-routes')
-    : (activeRegion === 'savoy' ? './dog-friendly-routes-savoy.geojson' : './dog-friendly-routes.geojson');
+    : null;
+  const routesAsset = regionalAsset
+    || (activeRegion === 'savoy' ? './dog-friendly-routes-savoy.geojson' : './dog-friendly-routes.geojson');
   fetch(routesAsset)
     .then(response => {
       if (!response.ok) throw new Error(`HTTP ${response.status}: Failed to load dog routes GeoJSON`);
