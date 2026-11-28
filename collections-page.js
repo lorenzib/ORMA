@@ -308,6 +308,7 @@
       if(generation !== renderGeneration || !document.body.contains(mapEl) || typeof maplibregl === 'undefined') return null;
       const firstStart = collectionTrails.map(startCoordinates).find(Boolean) || [11.9,46.55];
       const map = new maplibregl.Map({
+        locale:window.DoloPawsMapRuntime.mapLocale && window.DoloPawsMapRuntime.mapLocale(),
         container:mapEl,
         style:'https://tiles.openfreemap.org/styles/liberty',
         center:firstStart,

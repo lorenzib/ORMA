@@ -205,7 +205,7 @@
         [tr('recommendation.reasons.title', 'Why it may fit'), view.reasons],
         [tr('recommendation.cautions.title', 'Cautions'), view.cautions],
       ])) +
-      '<div class="recommendation-actions" aria-label="Trail actions">' +
+      `<div class="recommendation-actions" aria-label="${esc(tr('page.index.trailActions', 'Trail actions'))}">` +
         `<button type="button" data-recommendation-save>${esc(tr('recommendation.action.save', 'Save trail'))}</button>` +
         `<button type="button" data-recommendation-compare>${esc(tr('recommendation.action.compare', 'Add to comparison'))}</button>` +
         `<button type="button" data-recommendation-download disabled>${esc(tr('recommendation.action.offlineUnavailable', 'Offline map unavailable'))}</button>` +

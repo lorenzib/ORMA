@@ -10,6 +10,19 @@
 
   const instances = new Set();
 
+  // The select's own label, in the reader's language. i18n.js may not have
+  // translated the select yet when the dropdown is built, so a keyed label is
+  // looked up directly rather than copied.
+  function labelOf(select, fallback){
+    const key = select.dataset.i18nAriaLabel;
+    const i18n = typeof window !== 'undefined' && window.DoloPawsI18n;
+    if(key && i18n && typeof i18n.t === 'function'){
+      const translated = i18n.t(key);
+      if(translated && translated !== key) return translated;
+    }
+    return select.getAttribute('aria-label') || tx(fallback);
+  }
+
   function enhance(select){
     if(!select) return null;
     if(select._ormaAreaDropdown) return select._ormaAreaDropdown;
@@ -24,7 +37,7 @@
     trigger.setAttribute('aria-haspopup', 'listbox');
     trigger.setAttribute('aria-expanded', 'false');
     trigger.setAttribute('aria-controls', menuId);
-    trigger.setAttribute('aria-label', select.getAttribute('aria-label') || tx('Choose an option'));
+    trigger.setAttribute('aria-label', labelOf(select, 'Choose an option'));
     const controlKicker = select.dataset.controlKicker;
     if(controlKicker){
       trigger.classList.add('area-select-trigger--kicker');
@@ -45,7 +58,7 @@
     menu.id = menuId;
     menu.className = 'area-select-menu';
     menu.setAttribute('role', 'listbox');
-    menu.setAttribute('aria-label', select.getAttribute('aria-label') || tx('Options'));
+    menu.setAttribute('aria-label', labelOf(select, 'Options'));
     menu.hidden = true;
 
     select.classList.add('area-native-select');

@@ -28407,7 +28407,7 @@
       // Hand audit 24 October 2026: line rebuilt on OSM ways along the Combloux tourist office's GPX (9.1 km, 3h30, 498 m); the old
       // line started at the Beauregard lift, 1.7 km from the official start, and missed half the route. Dogs: the route page accepts them
       // on a lead and warns herds may be present; no commune arrêté found; no protected area.
-      "area": "Combloux (with Demi-Quartier)",
+      "area": "Combloux / Demi-Quartier",
       "path": [
         [
           45.88864,
