@@ -310,8 +310,12 @@ describe('the existing-site verification boundary',()=>{
     // Bossola in Valchiusella and the Sentiero del Redìo at Corio.
     // Then 565 and 563 with the first Valle Camonica walk from Turismo
     // Valle Camonica: the Val Brandet from Sant'Antonio, there and back.
-    expect(catalogue).toHaveLength(565);
-    expect(currentSiteTrails(catalogue)).toHaveLength(563);
+    // Then 568 and 566 with the first Liguria walks, from the Beigua park:
+    // Vara Inferiore to Monte Argentea, Piampaludo to Monte Rama and Vara
+    // Inferiore to Monte Rama (each one way on the park's page, walked there
+    // and back).
+    expect(catalogue).toHaveLength(568);
+    expect(currentSiteTrails(catalogue)).toHaveLength(566);
   });
 
   test('requires the artwork the public trail page needs',()=>{

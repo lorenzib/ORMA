@@ -957,6 +957,10 @@
 <a href="trail.html?id=forte-enna-loop-torrebelvicino" style="display:block;color:inherit;">Forte Enna Loop above Torrebelvicino</a>
 <a href="trail.html?id=muccion-loop-valdagno" style="display:block;color:inherit;">Mucciòn Loop above Valdagno</a>
 <a href="trail.html?id=roccoli-path-muccion" style="display:block;color:inherit;">Roccoli Path from the Mucciòn</a>
+<p style="font-weight:700;color:var(--ink);break-inside:avoid;">Liguria, Italy</p>
+<a href="trail.html?id=piampaludo-monte-rama" style="display:block;color:inherit;">Piampaludo to Monte Rama</a>
+<a href="trail.html?id=vara-inferiore-monte-argentea" style="display:block;color:inherit;">Vara Inferiore to Monte Argentea</a>
+<a href="trail.html?id=vara-inferiore-monte-rama" style="display:block;color:inherit;">Vara Inferiore to Monte Rama</a>
 <p style="font-weight:700;color:var(--ink);break-inside:avoid;">Tyrol &amp; Carinthia, Austria</p>
 <a href="trail.html?id=alpine-cheese-walk-sonnenalpe-nassfeld" style="display:block;color:inherit;">Alpine cheese walk, Sonnenalpe Nassfeld</a>
 <a href="trail.html?id=auernig-ridge-walk-nassfeld" style="display:block;color:inherit;">Auernig ridge walk, Nassfeld</a>
@@ -1274,7 +1278,7 @@
     // the trail page itself, at the moment it's actually wanted.
     const PER_PAGE = 15;
     const allowedCountries = ['all', 'italy', 'france', 'austria', 'switzerland'];
-    const allowedRegions = ['all', 'dolomites', 'savoy', 'frenchalps', 'lombardy', 'friuli', 'aosta', 'piedmont', 'tyrol', 'switzerland'];
+    const allowedRegions = ['all', 'dolomites', 'savoy', 'frenchalps', 'lombardy', 'friuli', 'aosta', 'piedmont', 'veneto', 'liguria', 'tyrol', 'switzerland'];
     // A trail's country comes from its region's row in regions-config.js.
     const COUNTRY_VALUE = { IT:'italy', FR:'france', AT:'austria', CH:'switzerland' };
     function trailCountry(trail){
@@ -1596,6 +1600,8 @@
       { value: 'friuli', label: bt('browse.geo.friuli', 'Friuli Venezia Giulia'), country:'italy', match: t => t.region === 'friuli' },
       { value: 'aosta', label: bt('browse.geo.aosta', 'Valle d’Aosta'), country:'italy', match: t => t.region === 'aosta' },
       { value: 'piedmont', label: bt('browse.geo.piedmont', 'Piedmont'), country:'italy', match: t => t.region === 'piedmont' },
+      { value: 'veneto', label: bt('browse.geo.veneto', 'Veneto'), country:'italy', match: t => t.region === 'veneto' },
+      { value: 'liguria', label: bt('browse.geo.liguria', 'Liguria'), country:'italy', match: t => t.region === 'liguria' },
       { value: 'tyrol', label: bt('browse.geo.tyrol', 'Tyrol & Carinthia'), country:'austria', match: t => t.region === 'tyrol' },
       { value: 'switzerland', label: bt('browse.geo.swissRegion', 'Switzerland'), country:'switzerland', match: t => t.region === 'switzerland' },
     ];
