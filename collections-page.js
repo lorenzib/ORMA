@@ -129,6 +129,7 @@
     { value:'aosta', label:'Valle d\'Aosta', countryCode:'IT' },
     { value:'piedmont', label:tx('Piedmont'), countryCode:'IT' },
     { value:'veneto', label:tx('Veneto'), countryCode:'IT' },
+    { value:'liguria', label:tx('Liguria'), countryCode:'IT' },
     { value:'frenchalps', label:tx('French Alps'), countryCode:'FR' },
     { value:'tyrol', label:tx('Tyrol & Carinthia'), countryCode:'AT' },
     { value:'switzerland', label:tx('Switzerland'), countryCode:'CH' },

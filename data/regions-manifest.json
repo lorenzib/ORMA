@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-28T19:04:05.729Z",
+  "generatedAt": "2026-11-28T19:27:27.800Z",
   "regions": {
     "dolomites": {
       "trailCount": 381,
@@ -481,7 +481,7 @@
     },
     "lombardy": {
       "trailCount": 24,
-      "trails": "data/regions/lombardy-trails.js?v=7a1711694946",
+      "trails": "data/regions/lombardy-trails.js?v=883f593f2c52",
       "details": {
         "lario-brunate-e-le-sue-chiese": "data/trail-details/lario-brunate-e-le-sue-chiese.js?v=ba72cffa8ee5",
         "lario-pognana-lario-e-le-sculture-simposio": "data/trail-details/lario-pognana-lario-e-le-sculture-simposio.js?v=9b29078774d2",
@@ -600,6 +600,19 @@
       },
       "water": "data/regions/veneto-water.geojson",
       "hutsBars": "data/regions/veneto-huts-bars.geojson",
+      "dogRoutes": "dog-friendly-routes.geojson",
+      "optional": []
+    },
+    "liguria": {
+      "trailCount": 3,
+      "trails": "data/regions/liguria-trails.js?v=89e6b05379ed",
+      "details": {
+        "liguria-beigua-vara-monte-argentea": "data/trail-details/liguria-beigua-vara-monte-argentea.js?v=134b04a7a826",
+        "liguria-beigua-piampaludo-monte-rama": "data/trail-details/liguria-beigua-piampaludo-monte-rama.js?v=1bcc5b08ab4c",
+        "liguria-beigua-vara-monte-rama": "data/trail-details/liguria-beigua-vara-monte-rama.js?v=0a38cba626a4"
+      },
+      "water": "data/regions/liguria-water.geojson",
+      "hutsBars": "data/regions/liguria-huts-bars.geojson",
       "dogRoutes": "dog-friendly-routes.geojson",
       "optional": []
     },
@@ -1190,6 +1203,9 @@
     "veneto-anello-del-muccion": "veneto",
     "veneto-sentiero-forte-enna": "veneto",
     "veneto-sentiero-dei-roccoli": "veneto",
+    "liguria-beigua-vara-monte-argentea": "liguria",
+    "liguria-beigua-piampaludo-monte-rama": "liguria",
+    "liguria-beigua-vara-monte-rama": "liguria",
     "osttirol-rundwanderung-schloss-weissenstein": "tyrol",
     "osttirol-naturkraftweg-umbalfaelle": "tyrol",
     "osttirol-kulturweg-koednitz": "tyrol",
@@ -1800,6 +1816,9 @@
     "valchiusella-cima-bossola": "cima-bossola-valchiusella",
     "corio-sentiero-del-redio": "sentiero-del-redio-corio",
     "camonica-val-brandet": "val-brandet-sant-antonio-corteno-golgi",
+    "liguria-beigua-vara-monte-argentea": "vara-inferiore-monte-argentea",
+    "liguria-beigua-piampaludo-monte-rama": "piampaludo-monte-rama",
+    "liguria-beigua-vara-monte-rama": "vara-inferiore-monte-rama",
     "cinque-torri-assisted": "cinque-torri-three-refuges-assisted-circuit"
   },
   "slugToId": {
@@ -2367,6 +2386,9 @@
     "cima-bossola-valchiusella": "valchiusella-cima-bossola",
     "sentiero-del-redio-corio": "corio-sentiero-del-redio",
     "val-brandet-sant-antonio-corteno-golgi": "camonica-val-brandet",
+    "vara-inferiore-monte-argentea": "liguria-beigua-vara-monte-argentea",
+    "piampaludo-monte-rama": "liguria-beigua-piampaludo-monte-rama",
+    "vara-inferiore-monte-rama": "liguria-beigua-vara-monte-rama",
     "cinque-torri-three-refuges-assisted-circuit": "cinque-torri-assisted",
     "en02-le-terroir-de-serpoliere": "osm-12121798",
     "en04-au-fil-de-l-arvan": "osm-12127424",

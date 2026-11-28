@@ -3283,6 +3283,57 @@
       }
     },
     {
+      "id": "liguria-beigua-piampaludo-monte-rama",
+      "approvedReviewId": "commons-liguria-beigua-piampaludo-monte-rama-on-route",
+      "approvedAt": "2026-11-21T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/liguria-beigua-rama-stone-river.jpg",
+        "heroImage": "images/trails/liguria-beigua-rama-stone-river.jpg",
+        "imageAlt": "A long band of grey boulders runs across a green mountain meadow below a rounded hill with dark pines along its top, under a clear blue sky",
+        "imageCredit": "A river of grey stones across the ridge meadows near Monte Rama, on the walk",
+        "imageCreditText": "A river of grey stones across the ridge meadows near Monte Rama, on the walk by Riccardo Ortelli",
+        "imageCreator": "Riccardo Ortelli",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Parco_Beigua_-_fiume_di_pietre.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "liguria-beigua-vara-monte-argentea",
+      "approvedReviewId": "commons-liguria-beigua-vara-monte-argentea-on-route",
+      "approvedAt": "2026-11-21T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/liguria-beigua-argentea-meadow-path.jpg",
+        "heroImage": "images/trails/liguria-beigua-argentea-meadow-path.jpg",
+        "imageAlt": "A narrow path crosses a green mountain meadow towards a rounded hill with a few dark pines, under a blue sky with big white clouds",
+        "imageCredit": "The path across the open ridge meadows of the Beigua park, on the walk",
+        "imageCreditText": "The path across the open ridge meadows of the Beigua park, on the walk by Superchilum",
+        "imageCreator": "Superchilum",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Gita_Parco_del_Beigua_WLE_2019_69.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "liguria-beigua-vara-monte-rama",
+      "approvedReviewId": "commons-liguria-beigua-vara-monte-rama-on-route",
+      "approvedAt": "2026-11-21T22:00:00.000Z",
+      "fields": {
+        "imageIcon": "images/trails/liguria-beigua-rama-pine-meadow.jpg",
+        "heroImage": "images/trails/liguria-beigua-rama-pine-meadow.jpg",
+        "imageAlt": "Tall pine trees stand in a sunny meadow of long green grass with scattered rocks and white flowers, under a clear blue sky",
+        "imageCredit": "Pines in the long grass of the ridge meadows near Monte Rama, on the walk",
+        "imageCreditText": "Pines in the long grass of the ridge meadows near Monte Rama, on the walk by BelPatty86",
+        "imageCreator": "BelPatty86",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pini_marittimi_parco.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "lombardia-bergamo-colle-maresana",
       "approvedReviewId": "commons-lombardia-bergamo-colle-maresana-on-route",
       "approvedAt": "2026-11-19T12:00:00.000Z",

@@ -4225,6 +4225,30 @@
       "quote": "Distanza 1,8 km · Durata 1:15 h · Salita 185 m · Discesa 0 m · Punto più alto 1.306 m · Punto più basso 1.130 m",
       "foundBy": "orma-hand-audit",
       "verifiedAt": "2026-11-19T12:00:00.000Z"
+    },
+    "liguria-beigua-vara-monte-argentea": {
+      "url": "https://www.parcobeigua.it/iti_dettaglio.php?id_iti=4135",
+      "publisher": "Parco naturale regionale del Beigua (Ente Parco)",
+      "name": "Collegamento Alta Via dei Monti Liguri: Vara Inferiore – Monte Argentea",
+      "quote": "Partenza: Vara Inferiore (Urbe) · Arrivo: Monte Argentea (Arenzano) · Tempo di percorrenza: 2 ore 15 minuti · Difficoltà: E · Lunghezza: 5 km · Dislivello: 399 m · Segnavia: quadrato giallo pieno",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-21T22:00:00.000Z"
+    },
+    "liguria-beigua-piampaludo-monte-rama": {
+      "url": "https://www.parcobeigua.it/iti_dettaglio.php?id_iti=4161",
+      "publisher": "Parco naturale regionale del Beigua (Ente Parco)",
+      "name": "Itinerario Piampaludo – Monte Rama",
+      "quote": "Partenza: Piampaludo (Sassello) · Arrivo: Monte Rama (Cogoleto) · Tempo di percorrenza: 2 ore 45 minuti · Difficoltà: E · Lunghezza: 7.5 km · Dislivello: 289 m · Segnavia: + giallo",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-21T22:00:00.000Z"
+    },
+    "liguria-beigua-vara-monte-rama": {
+      "url": "https://www.parcobeigua.it/iti_dettaglio.php?id_iti=4162",
+      "publisher": "Parco naturale regionale del Beigua (Ente Parco)",
+      "name": "Itinerario Vara Inferiore – Monte Rama",
+      "quote": "Partenza: Vara Inferiore (Urbe) · Arrivo: Monte Rama (Cogoleto) · Tempo di percorrenza: 2 ore 45 minuti · Difficoltà: E · Lunghezza: 6.5 km · Dislivello: 477 m · Segnavia: rombo giallo vuoto",
+      "foundBy": "orma-hand-audit",
+      "verifiedAt": "2026-11-21T22:00:00.000Z"
     }
   }
 }

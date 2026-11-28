@@ -73528,6 +73528,213 @@
       ],
       startPoint: { lat: 46.15172, lng: 10.209757, label: "The hamlet of Sant’Antonio, Corteno Golgi, by its church, the published start" },
       desc: "A short walk into the Val Brandet, one of the two valleys of the Valli di Sant’Antonio nature reserve above Corteno Golgi, up the forest road beside the Brandet stream from the hamlet of Sant’Antonio towards the Rifugio Brandet, and back the same way. Turismo Valle Camonica lists 1.8 km one way; there and back it is 3.6 km with 185 m up and down, about 1 h 30."
+    },
+    'liguria-beigua-vara-monte-argentea': {
+      // Hand audit: 21 November 2026, verified on arrival (Liguria batch 1, Beigua park; one way on the park’s page, walked there and back, owner rule of 12 November 2026).
+      // the Parco naturale regionale del Beigua (Ente Parco del Beigua), on its own website: “Collegamento Alta Via dei Monti Liguri: Vara Inferiore – Monte Argentea”, drawn there and back on 33 OSM ways along its published line (data/board-line-routes.geojson).
+      // One way on the page with no return given: distance is the published one-way figure doubled; the climb and the time are measured by ORMA (EU-DEM 25 m, DIN 33466), as the park gives only the net gain one way.
+      // Communes: Urbe and Arenzano. Park: Parco naturale regionale del Beigua, lead everywhere in the park. Natura 2000 (EEA): the line crosses the special areas of conservation IT1331402 Beigua – Monte Dente – Gargassa – Pavaglione and IT1331578 Beigua – Turchino. Roads: Via Dano, a quiet lane, about a fifth of the walk; 80 m on the SP40 at the start. OSM marks about 3 km of the walk (out and back) T2 (mountain_hiking): caution line.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Vara Inferiore (Urbe)",
+      distance: 10,
+      elevation: 414,
+      hours: '3.6',
+      routeShape: 'out-and-back',
+      routeShapeNote: "The Beigua park publishes this itinerary one way, from Vara Inferiore to Monte Argentea (5 km, 399 m of climb, 2 h 15), and gives no return. ORMA walks it there and back on the same path: 10 km with 414 m up and 418 m down, measured by ORMA from EU-DEM. The time, about 3 h 35, is measured by ORMA (DIN 33466), not the park’s.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start by the church of San Giovanni Gualberto and the Albergo Vara in Vara Inferiore, a hamlet of Urbe, the start the park publishes.",
+        "sequence": "Follow the park’s yellow square waymarks (path 663C) along Via Dano, a quiet lane past the little Lago del Tin, then take the path and the stony Bucastrella track up through the woods past the Rocca del Lupo and the Fonte del Lupo spring. Keep on the waymarked path as it climbs to the open ridge and the Alta Via dei Monti Liguri near the Passo Pian di Lerca, and on to Monte Argentea. Come back the same way.",
+        "switches": "Via Dano lane from the church past Lago del Tin; path and Bucastrella track up through the woods past the Rocca del Lupo and the Fonte del Lupo; waymarked path up to the Alta Via near the Passo Pian di Lerca and on to Monte Argentea; back the same way.",
+        "sources": [
+          {
+            "label": "Parco del Beigua, Collegamento Alta Via dei Monti Liguri: Vara Inferiore – Monte Argentea (itinerary page)",
+            "url": "https://www.parcobeigua.it/iti_dettaglio.php?id_iti=4135",
+            "authority": "Ente Parco del Beigua",
+            "tag": "park authority",
+            "reviewedAt": "2026-11-21"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-21',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "The path across the open ridge meadows of the Beigua park, on the walk (Superchilum on Wikimedia Commons, CC BY-SA 4.0), 16 June 2019, 3 m from the line.",
+        route: "Official one-way walk of 5 km from The church of San Giovanni Gualberto in Vara Inferiore (Urbe), as the Parco naturale regionale del Beigua (Ente Parco del Beigua), on its own website publishes it, with no return given; ORMA walks it there and back on the same path (owner rule of 12 November 2026). The stored line is drawn on 33 OSM ways along the published line out and back, 10.1 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "From the church in Vara Inferiore, follow the park’s yellow square waymarks (path 663C) along Via Dano and up the Bucastrella track and path to the Alta Via dei Monti Liguri near the Passo Pian di Lerca and on to Monte Argentea, then back the same way.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official one way: 5 km, 399 m of climb, 2 h 15 (Parco del Beigua). There and back on the same path: 10 km, 414 m up and 418 m down, between 644 m and 1,042 m on the line; about 3 h 35 measured by ORMA (EU-DEM 25 m, DIN 33466), since the park times the walk one way only."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Parco naturale regionale del Beigua, “Collegamento Alta Via dei Monti Liguri: Vara Inferiore – Monte Argentea” (its itinerary page, with figures and GPX)",
+          "Ente Parco del Beigua, “Perché i cani vanno tenuti al guinzaglio nel Parco del Beigua”: dogs must always be on a lead throughout the regional park (Piano Integrato del Parco, Misure Regolamentari Gestionali art. 27.1.2 f; fines of €1,000–10,000 under LR 28/2009 art. 18 c), and in the linked Natura 2000 sites from 31 March to 31 July",
+          "Natura 2000 (EEA): the line crosses the special areas of conservation IT1331402 Beigua – Monte Dente – Gargassa – Pavaglione and IT1331578 Beigua – Turchino",
+          "Comuni di Urbe and Arenzano: no police or animal regulation with a dog rule was found online, so the park rule and the Italian national rule (a lead of at most 1.5 m in places open to the public and a muzzle carried) apply",
+          "OpenStreetMap ways along the board’s line (33 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-21'
+      },
+      shadeCoverage: 55,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About 3 km of the walk, out and back, is a mountain path (T2) with stony, uneven ground: wear proper shoes and watch your dog’s paws","The top of the walk is on the open ridge of the Alta Via dei Monti Liguri: turn back in thunderstorms, strong wind or mist","The first and last kilometre is on Via Dano, a quiet lane open to cars: keep your dog close"],
+      terrainType: "Quiet lane, stony woodland track and mountain path",
+      shadeDescription: "About half in beech, chestnut and pine woods on the climb; the lane and the ridge at the top are open.",
+      terrainDescription: "A climb from Vara Inferiore, a hamlet of Urbe on the inland side of the Beigua park, through the woods on the old Bucastrella track and a waymarked park path to the open ridge of the Alta Via dei Monti Liguri at Monte Argentea, high above the sea at Arenzano.",
+      waterDescription: "No drinking water is mapped on the line (OSM). The Fonte del Lupo spring is beside the track at about km 3 but is not marked as drinking water. The Albergo Vara at the start serves food and drink when open. Bring water and a bowl for your dog.",
+      dogNotes: "Keep your dog on a lead for the whole walk: the Beigua park requires a lead everywhere in the park, all year. Keep your dog close on the lane at the start and on the open ridge.",
+      tips: "Start at the church in Vara Inferiore, above Urbe: 5 km and 399 m of climb one way to Monte Argentea, 2 h 15 as the park lists, and the same way back, about 3 h 35 in all by ORMA’s estimate. On a clear day the ridge looks out over the sea; the park’s 1:25,000 map shows the yellow square waymarks.",
+      sourceLinks: [
+        { label: "Parco del Beigua, Collegamento Alta Via dei Monti Liguri: Vara Inferiore – Monte Argentea", url: "https://www.parcobeigua.it/iti_dettaglio.php?id_iti=4135" },
+        { label: "Parco del Beigua: why dogs must be on a lead in the park (PDF)", url: "https://www.parcobeigua.it/pdf/Perche.cani.guinzaglio.nel.Beigua.pdf" },
+        { label: "Natura 2000 viewer (EEA)", url: "https://natura2000.eea.europa.eu/" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 44.465917, lng: 8.608384, label: "The church of San Giovanni Gualberto in Vara Inferiore (Urbe), the published start" },
+      desc: "A walk up from the Beigua hamlet of Vara Inferiore through the woods to the open ridge of the Alta Via dei Monti Liguri at Monte Argentea, and back the same way. The park lists 5 km one way; there and back it is 10 km, about 3 h 35."
+    },
+    'liguria-beigua-piampaludo-monte-rama': {
+      // Hand audit: 21 November 2026, verified on arrival (Liguria batch 1, Beigua park; one way on the park’s page, walked there and back, owner rule of 12 November 2026).
+      // the Parco naturale regionale del Beigua (Ente Parco del Beigua), on its own website: “Itinerario Piampaludo – Monte Rama”, drawn there and back on 43 OSM ways along its published line (data/board-line-routes.geojson).
+      // One way on the page with no return given: distance is the published one-way figure doubled; the climb and the time are measured by ORMA (EU-DEM 25 m, DIN 33466), as the park gives only the net gain one way.
+      // Communes: Sassello and Cogoleto. Park: Parco naturale regionale del Beigua, lead everywhere in the park. Natura 2000 (EEA): the line crosses the special areas of conservation IT1331402 Beigua – Monte Dente – Gargassa – Pavaglione and IT1331578 Beigua – Turchino. Roads: lanes out of Piampaludo, about a quarter of the walk; 140 m on the SP Urbe–Piampaludo, crossed. OSM marks about 7 km of the walk (out and back) T2 (mountain_hiking): caution line.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Piampaludo (Sassello)",
+      distance: 15,
+      elevation: 407,
+      hours: '4.7',
+      routeShape: 'out-and-back',
+      routeShapeNote: "The Beigua park publishes this itinerary one way, from Piampaludo to Monte Rama (7.5 km, 289 m of climb, 2 h 45), and gives no return. ORMA walks it there and back on the same path: 15 km with 407 m up and 407 m down, measured by ORMA from EU-DEM. The time, about 4 h 45, is measured by ORMA (DIN 33466), not the park’s.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start in Piampaludo, a village of Sassello on the Beigua plateau, the start the park publishes.",
+        "sequence": "Follow the park’s yellow cross waymarks (path 633) along the village lanes past the Buschiazzi houses and the sports ground, cross the Urbe–Piampaludo road and keep on the quiet lane, then take the path past Moja del Gattun across the plateau. Join the Alta Via dei Monti Liguri at Prato Ferretto and follow the ridge path past Cima Fontanaccia to the summit of Monte Rama. Come back the same way.",
+        "switches": "Village lanes from Piampaludo past Buschiazzi; across the Urbe–Piampaludo road and along the quiet lane; path 633 past Moja del Gattun across the plateau; the Alta Via at Prato Ferretto; ridge path past Cima Fontanaccia to Monte Rama; back the same way.",
+        "sources": [
+          {
+            "label": "Parco del Beigua, Itinerario Piampaludo – Monte Rama (itinerary page)",
+            "url": "https://www.parcobeigua.it/iti_dettaglio.php?id_iti=4161",
+            "authority": "Ente Parco del Beigua",
+            "tag": "park authority",
+            "reviewedAt": "2026-11-21"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-21',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "A river of grey stones across the ridge meadows near Monte Rama, on the walk (Riccardo Ortelli on Wikimedia Commons, CC BY-SA 4.0), 16 June 2019, 1 m from the line.",
+        route: "Official one-way walk of 7.5 km from The village of Piampaludo (Sassello), as the Parco naturale regionale del Beigua (Ente Parco del Beigua), on its own website publishes it, with no return given; ORMA walks it there and back on the same path (owner rule of 12 November 2026). The stored line is drawn on 43 OSM ways along the published line out and back, 14.6 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "From Piampaludo, follow the park’s yellow cross waymarks (path 633) along the lanes and across the plateau to the Alta Via dei Monti Liguri at Prato Ferretto, then along the ridge to the summit of Monte Rama, and back the same way.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official one way: 7.5 km, 289 m of climb, 2 h 45 (Parco del Beigua). There and back on the same path: 15 km, 407 m up and 407 m down, between 841 m and 1,129 m on the line; about 4 h 45 measured by ORMA (EU-DEM 25 m, DIN 33466), since the park times the walk one way only."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Parco naturale regionale del Beigua, “Itinerario Piampaludo – Monte Rama” (its itinerary page, with figures and GPX)",
+          "Ente Parco del Beigua, “Perché i cani vanno tenuti al guinzaglio nel Parco del Beigua”: dogs must always be on a lead throughout the regional park (Piano Integrato del Parco, Misure Regolamentari Gestionali art. 27.1.2 f; fines of €1,000–10,000 under LR 28/2009 art. 18 c), and in the linked Natura 2000 sites from 31 March to 31 July",
+          "Natura 2000 (EEA): the line crosses the special areas of conservation IT1331402 Beigua – Monte Dente – Gargassa – Pavaglione and IT1331578 Beigua – Turchino",
+          "Comuni di Sassello and Cogoleto: no police or animal regulation with a dog rule was found online, so the park rule and the Italian national rule (a lead of at most 1.5 m in places open to the public and a muzzle carried) apply",
+          "OpenStreetMap ways along the board’s line (43 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-21'
+      },
+      shadeCoverage: 51,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About 7 km of the walk, out and back, is a mountain path (T2) with stony, uneven ground: wear proper shoes and watch your dog’s paws","The top of the walk is on the open ridge of the Alta Via dei Monti Liguri: turn back in thunderstorms, strong wind or mist","The walk crosses the Urbe–Piampaludo road near the start and follows lanes open to cars for about 2 km each way: keep your dog close"],
+      terrainType: "Village lanes, plateau paths and ridge path",
+      shadeDescription: "About half in pine and beech woods on the plateau; the lanes and the ridge near Monte Rama are open.",
+      terrainDescription: "A long walk from Piampaludo, a village of Sassello on the high inland plateau of the Beigua park, across the plateau on waymarked paths to the Alta Via dei Monti Liguri and along the ridge, past the stone rivers of the Beigua geopark, to the summit of Monte Rama above Cogoleto and the sea.",
+      waterDescription: "No drinking water is mapped on the line (OSM). Bring all the water you and your dog need.",
+      dogNotes: "Keep your dog on a lead for the whole walk: the Beigua park requires a lead everywhere in the park, all year. Keep your dog close on the lanes at the start and where the walk crosses the road.",
+      tips: "Start in Piampaludo above Sassello: 7.5 km and 289 m of climb one way to Monte Rama, 2 h 45 as the park lists, and the same way back, about 4 h 45 in all by ORMA’s estimate. Go on a clear day for the view to the sea from the summit; the park’s 1:25,000 map shows the yellow cross waymarks.",
+      sourceLinks: [
+        { label: "Parco del Beigua, Itinerario Piampaludo – Monte Rama", url: "https://www.parcobeigua.it/iti_dettaglio.php?id_iti=4161" },
+        { label: "Parco del Beigua: why dogs must be on a lead in the park (PDF)", url: "https://www.parcobeigua.it/pdf/Perche.cani.guinzaglio.nel.Beigua.pdf" },
+        { label: "Natura 2000 viewer (EEA)", url: "https://natura2000.eea.europa.eu/" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 44.467869, lng: 8.579984, label: "The village of Piampaludo (Sassello), the published start" },
+      desc: "A long walk from the Beigua village of Piampaludo across the high plateau and along the ridge of the Alta Via dei Monti Liguri to the summit of Monte Rama, and back the same way. The park lists 7.5 km one way; there and back it is 15 km, about 4 h 45."
+    },
+    'liguria-beigua-vara-monte-rama': {
+      // Hand audit: 21 November 2026, verified on arrival (Liguria batch 1, Beigua park; one way on the park’s page, walked there and back, owner rule of 12 November 2026).
+      // the Parco naturale regionale del Beigua (Ente Parco del Beigua), on its own website: “Itinerario Vara Inferiore – Monte Rama”, drawn there and back on 35 OSM ways along its published line (data/board-line-routes.geojson).
+      // One way on the page with no return given: distance is the published one-way figure doubled; the climb and the time are measured by ORMA (EU-DEM 25 m, DIN 33466), as the park gives only the net gain one way.
+      // Communes: Urbe and Cogoleto. Park: Parco naturale regionale del Beigua, lead everywhere in the park. Natura 2000 (EEA): the line crosses the special areas of conservation IT1331402 Beigua – Monte Dente – Gargassa – Pavaglione and IT1331578 Beigua – Turchino. Roads: Via Dano, a quiet lane, about a third of the walk; 60 m on the SP40 at the start. OSM marks about 9 km of the walk (out and back) T2 (mountain_hiking): caution line. The park notes the path was changed from its printed map, so the line follows the park’s current GPX.
+      // The stored line follows the board’s own line, 100% each way.
+      area: "Vara Inferiore (Urbe)",
+      distance: 13,
+      elevation: 666,
+      hours: '5.3',
+      routeShape: 'out-and-back',
+      routeShapeNote: "The Beigua park publishes this itinerary one way, from Vara Inferiore to Monte Rama (6.5 km, 477 m of climb, 2 h 45), and gives no return. ORMA walks it there and back on the same path: 13 km with 666 m up and 670 m down, measured by ORMA from EU-DEM. The time, about 5 h 15, is measured by ORMA (DIN 33466), not the park’s.",
+      routeNumberGuidance: {
+        "mode": "landmarks",
+        "start": "Start by the church of San Giovanni Gualberto in Vara Inferiore, a hamlet of Urbe, the start the park publishes.",
+        "sequence": "Walk along Via Dano, a quiet lane past the little Lago del Tin, then follow the park’s empty yellow diamond waymarks (path 636) on the path and lane beyond it and up the long woodland path to the Piano del Bric Damè. Join the Alta Via dei Monti Liguri there and follow the ridge path past Cima Fontanaccia to the summit of Monte Rama. Come back the same way.",
+        "switches": "Via Dano lane from the church past Lago del Tin; path 636 and the lane beyond; long woodland path up to the Piano del Bric Damè; the Alta Via along the ridge past Cima Fontanaccia to Monte Rama; back the same way.",
+        "sources": [
+          {
+            "label": "Parco del Beigua, Itinerario Vara Inferiore – Monte Rama (itinerary page)",
+            "url": "https://www.parcobeigua.it/iti_dettaglio.php?id_iti=4162",
+            "authority": "Ente Parco del Beigua",
+            "tag": "park authority",
+            "reviewedAt": "2026-11-21"
+          }
+        ]
+      },
+      curated: true,
+      tier: 'route-audited',
+      reviewedAt: '2026-11-21',
+      reviewedBy: 'ORMA route audit',
+      routeAudit: {
+        photo: "Pines in the long grass of the ridge meadows near Monte Rama, on the walk (BelPatty86 on Wikimedia Commons, CC BY-SA 4.0), 16 June 2019, 1 m from the line.",
+        route: "Official one-way walk of 6.5 km from The church of San Giovanni Gualberto in Vara Inferiore (Urbe), as the Parco naturale regionale del Beigua (Ente Parco del Beigua), on its own website publishes it, with no return given; ORMA walks it there and back on the same path (owner rule of 12 November 2026). The stored line is drawn on 35 OSM ways along the published line out and back, 13.7 km, with 100% of the published line within 25 m of it and 100% of it within 25 m of the published line.",
+        routeNumbers: "From the church in Vara Inferiore, walk along Via Dano, then follow the park’s empty yellow diamond waymarks (path 636) up through the woods to the Alta Via dei Monti Liguri at the Piano del Bric Damè and along the ridge to Monte Rama, then back the same way.",
+        mapPoints: "Start at the board’s start; no drinking water mapped on the line.",
+        elevation: "Official one way: 6.5 km, 477 m of climb, 2 h 45 (Parco del Beigua). There and back on the same path: 13 km, 666 m up and 670 m down, between 644 m and 1,158 m on the line; about 5 h 15 measured by ORMA (EU-DEM 25 m, DIN 33466), since the park times the walk one way only."
+      },
+      graduation: { status: 'verified', required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'], blockers: {} },
+      verified: {
+        categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        sources: [
+          "Parco naturale regionale del Beigua, “Itinerario Vara Inferiore – Monte Rama” (its itinerary page, with figures and GPX)",
+          "Ente Parco del Beigua, “Perché i cani vanno tenuti al guinzaglio nel Parco del Beigua”: dogs must always be on a lead throughout the regional park (Piano Integrato del Parco, Misure Regolamentari Gestionali art. 27.1.2 f; fines of €1,000–10,000 under LR 28/2009 art. 18 c), and in the linked Natura 2000 sites from 31 March to 31 July",
+          "Natura 2000 (EEA): the line crosses the special areas of conservation IT1331402 Beigua – Monte Dente – Gargassa – Pavaglione and IT1331578 Beigua – Turchino",
+          "Comuni di Urbe and Cogoleto: no police or animal regulation with a dog rule was found online, so the park rule and the Italian national rule (a lead of at most 1.5 m in places open to the public and a muzzle carried) apply",
+          "OpenStreetMap ways along the board’s line (35 ways), road, surface, woodland and water data"
+        ],
+        date: '2026-11-21'
+      },
+      shadeCoverage: 50,
+      heatRisk: 'moderate',
+      exposure: false,
+      surfaceHazards: ["About 9 km of the walk, out and back, is a mountain path (T2) with stony, uneven ground: wear proper shoes and watch your dog’s paws","The top of the walk is on the open ridge of the Alta Via dei Monti Liguri: turn back in thunderstorms, strong wind or mist","Via Dano, the lane at the start, is open to cars for about 2 km each way: keep your dog close"],
+      terrainType: "Quiet lane, woodland path and ridge path",
+      shadeDescription: "About half in pine and beech woods on the climb; the lane and the ridge near Monte Rama are open.",
+      terrainDescription: "A steady climb from Vara Inferiore, a hamlet of Urbe on the inland side of the Beigua park, along a quiet lane and up a long woodland path to the Alta Via dei Monti Liguri, then along the open ridge past Cima Fontanaccia to the summit of Monte Rama above Cogoleto and the sea.",
+      waterDescription: "No drinking water is mapped on the line (OSM). Bring all the water you and your dog need.",
+      dogNotes: "Keep your dog on a lead for the whole walk: the Beigua park requires a lead everywhere in the park, all year. Keep your dog close on the lane at the start and on the open ridge.",
+      tips: "Start at the church in Vara Inferiore, above Urbe: 6.5 km and 477 m of climb one way to Monte Rama, 2 h 45 as the park lists, and the same way back, about 5 h 15 in all by ORMA’s estimate. The park changed this path from its printed map, so follow the waymarks and the line rather than an old map.",
+      sourceLinks: [
+        { label: "Parco del Beigua, Itinerario Vara Inferiore – Monte Rama", url: "https://www.parcobeigua.it/iti_dettaglio.php?id_iti=4162" },
+        { label: "Parco del Beigua: why dogs must be on a lead in the park (PDF)", url: "https://www.parcobeigua.it/pdf/Perche.cani.guinzaglio.nel.Beigua.pdf" },
+        { label: "Natura 2000 viewer (EEA)", url: "https://natura2000.eea.europa.eu/" },
+        { label: "OpenStreetMap contributors", url: "https://www.openstreetmap.org/copyright" }
+      ],
+      startPoint: { lat: 44.465955, lng: 8.608505, label: "The church of San Giovanni Gualberto in Vara Inferiore (Urbe), the published start" },
+      desc: "A climb from the Beigua hamlet of Vara Inferiore through the woods to the Alta Via dei Monti Liguri and along the ridge to the summit of Monte Rama, and back the same way. The park lists 6.5 km one way; there and back it is 13 km, about 5 h 15."
     }
   };
 

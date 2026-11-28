@@ -8,7 +8,7 @@
   function trailDisplayName(trail){ var i18n = typeof window !== 'undefined' && window.DoloPawsI18n; return i18n && typeof i18n.trailName === 'function' ? i18n.trailName(trail) : String((trail && trail.name) || ''); }
 
   // Every ORMA region in Italy; "Italy" means all of them, not the Dolomites.
-  const ITALIAN_REGIONS = ['dolomites', 'lombardy', 'friuli', 'aosta', 'piedmont', 'veneto'];
+  const ITALIAN_REGIONS = ['dolomites', 'lombardy', 'friuli', 'aosta', 'piedmont', 'veneto', 'liguria'];
   // Each country's regions and code. Austria made a third country, so the
   // filter can no longer read "not Italy" as France.
   const COUNTRY_REGIONS = {
@@ -249,6 +249,7 @@
         : state.region === 'tyrol' ? tr('filters.chip.tyrol', 'Tyrol & Carinthia region')
         : state.region === 'piedmont' ? tr('filters.chip.piedmont', 'Piedmont region')
         : state.region === 'veneto' ? tr('filters.chip.veneto', 'Veneto region')
+        : state.region === 'liguria' ? tr('filters.chip.liguria', 'Liguria region')
         : state.region === 'frenchalps' ? tr('filters.chip.frenchalps', 'French Alps region')
         : state.region === 'switzerland' ? tr('filters.chip.swissRegion', 'Switzerland region')
         : tr('filters.chip.savoy', 'Savoy region'),
