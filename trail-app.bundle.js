@@ -153,13 +153,38 @@
   // Shared rendering profile for every ORMA map. MapLibre already renders at
   // the device pixel ratio; antialiasing improves diagonal route lines and 3D
   // terrain edges without requesting a second, heavier basemap.
+  // MapLibre's own button and canvas labels (read aloud by screen readers)
+  // are English; Italian readers get these. Units stay as they are.
+  const MAP_LOCALE_IT = {
+    'Map.Title': 'Mappa',
+    'AttributionControl.ToggleAttribution': 'Mostra o nascondi le attribuzioni',
+    'AttributionControl.MapFeedback': 'Segnala un problema della mappa',
+    'FullscreenControl.Enter': 'Schermo intero',
+    'FullscreenControl.Exit': 'Esci da schermo intero',
+    'GeolocateControl.FindMyLocation': 'Trova la mia posizione',
+    'GeolocateControl.LocationNotAvailable': 'Posizione non disponibile',
+    'GlobeControl.Enable': 'Attiva il globo',
+    'GlobeControl.Disable': 'Disattiva il globo',
+    'LogoControl.Title': 'Logo MapLibre',
+    'NavigationControl.ResetBearing': 'Trascina per ruotare la mappa, fai clic per tornare al nord',
+    'NavigationControl.ZoomIn': 'Ingrandisci',
+    'NavigationControl.ZoomOut': 'Riduci',
+    'TerrainControl.Enable': 'Attiva il rilievo',
+    'TerrainControl.Disable': 'Disattiva il rilievo',
+  };
+  function mapLocale(){
+    const i18n = global.DoloPawsI18n;
+    return i18n && i18n.lang === 'it' ? MAP_LOCALE_IT : undefined;
+  }
+
   function mapOptions(options){
+    const locale = mapLocale();
     return Object.assign({
       antialias: true,
       fadeDuration: 120,
       maxZoom: 20,
       maxPitch: 70,
-    }, options || {});
+    }, locale ? { locale } : {}, options || {});
   }
 
   function setPaint(map, layerId, property, value){
@@ -216,7 +241,7 @@
     });
   }
 
-  global.DoloPawsMapRuntime = { load, loadContour, whenVisible, onIdle, mapOptions, enhance, VERSION };
+  global.DoloPawsMapRuntime = { load, loadContour, whenVisible, onIdle, mapOptions, mapLocale, MAP_LOCALE_IT, enhance, VERSION };
 })(window);
 ;
 
@@ -22141,7 +22166,7 @@ if(document.querySelector('.td2')){
         [tr('recommendation.reasons.title', 'Why it may fit'), view.reasons],
         [tr('recommendation.cautions.title', 'Cautions'), view.cautions],
       ])) +
-      '<div class="recommendation-actions" aria-label="Trail actions">' +
+      `<div class="recommendation-actions" aria-label="${esc(tr('page.index.trailActions', 'Trail actions'))}">` +
         `<button type="button" data-recommendation-save>${esc(tr('recommendation.action.save', 'Save trail'))}</button>` +
         `<button type="button" data-recommendation-compare>${esc(tr('recommendation.action.compare', 'Add to comparison'))}</button>` +
         `<button type="button" data-recommendation-download disabled>${esc(tr('recommendation.action.offlineUnavailable', 'Offline map unavailable'))}</button>` +
