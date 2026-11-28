@@ -10,6 +10,14 @@
   'use strict';
 
   const audits = {
+    'osm-11795103': {
+      // Correction, 28 November 2026 (not a verification: no photo taken on the walk exists yet). Every point of the line, and
+      // the province register's 'Kranterrunde' (routes-hikingtrails.11425666), lies in Rodeneck around Bad Bachgart, in the
+      // Eisack valley, not in Vintl as the import guessed (OSM / Nominatim, checked at nine points along the line).
+      area: 'Rodengo / Rodeneck',
+      valley: 'Valle Isarco – Eisacktal',
+      desc: 'A 4.9 km loop near Rodengo / Rodeneck, imported from the OpenStreetMap hiking network. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record. Direction shown climbs more gradually (computed from elevation data).'
+    },
     'osm-14381570': {
       // Route audit: 17 July 2026. Official route 09 record checked against
       // the stored OSM relation; mapped water coordinates checked against the
