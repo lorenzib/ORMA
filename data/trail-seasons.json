@@ -10332,6 +10332,42 @@
           "accessedAt": "2026-11-22"
         }
       }
+    },
+    "liguria-beigua-piampaludo-monte-rama": {
+      "highPoint": 1134,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1134
+      }
+    },
+    "liguria-beigua-vara-monte-argentea": {
+      "highPoint": 1024,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1024
+      }
+    },
+    "liguria-beigua-vara-monte-rama": {
+      "highPoint": 1159,
+      "snow": {
+        "months": [
+          1,
+          2,
+          12
+        ],
+        "likelihood": "possible",
+        "highPoint": 1159
+      }
     }
   }
 }

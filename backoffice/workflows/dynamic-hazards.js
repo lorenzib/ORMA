@@ -169,6 +169,7 @@ function trailWarningArea(trail){
   if(trail.region === 'frenchalps') return FRENCH_ALPS_DEPARTMENT[trail.province] || null;
   if(/friuli|carnia|tarvis/.test(text)) return 'Friuli-Venezia Giulia';
   if(trail.region === 'veneto' || trail.province === 'belluno') return 'Veneto';
+  if(trail.region === 'liguria') return 'Liguria';
   if(['alto-adige', 'trentino'].includes(trail.province)) return 'Trentino-Alto Adige';
   return null;
 }

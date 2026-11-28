@@ -416,6 +416,18 @@
     ['Posina', 45.7900, 11.2610, 'Val Posina – Novegno', 'veneto', 'vicenza'],
     ['Laghi', 45.8240, 11.2720, 'Val Posina – Novegno', 'veneto', 'vicenza'],
     ['Monte Novegno', 45.7700, 11.3150, 'Val Posina – Novegno', 'veneto', 'vicenza'],
+    // Liguria: the Beigua park above the Riviera di Ponente (Varazze to
+    // Arenzano) and the Valle Stura and Orba villages behind it.
+    ['Varazze', 44.3600, 8.5770, 'Beigua – Riviera', 'liguria', 'savona'],
+    ['Cogoleto', 44.3890, 8.6460, 'Beigua – Riviera', 'liguria', 'genova'],
+    ['Arenzano', 44.4030, 8.6820, 'Beigua – Riviera', 'liguria', 'genova'],
+    ['Sassello', 44.4810, 8.4930, 'Beigua – Sassello and Urbe', 'liguria', 'savona'],
+    ['Piampaludo', 44.4680, 8.5800, 'Beigua – Sassello and Urbe', 'liguria', 'savona'],
+    ['Vara Inferiore (Urbe)', 44.4660, 8.6080, 'Beigua – Sassello and Urbe', 'liguria', 'savona'],
+    ['Masone', 44.5020, 8.7160, 'Beigua – Valle Stura and Orba', 'liguria', 'genova'],
+    ['Campo Ligure', 44.5360, 8.7000, 'Beigua – Valle Stura and Orba', 'liguria', 'genova'],
+    ['Rossiglione', 44.5630, 8.6690, 'Beigua – Valle Stura and Orba', 'liguria', 'genova'],
+    ['Tiglieto', 44.5230, 8.6190, 'Beigua – Valle Stura and Orba', 'liguria', 'genova'],
     // The French Alps south of Savoy (#1235): Isère's massifs, the Hautes-Alpes,
     // the Ubaye and the Mercantour valleys. Village centres checked against
     // Nominatim on 4 Nov 2026.
@@ -482,6 +494,7 @@
     aosta: { label: 'Valle d\'Aosta', country: 'Italy', countryCode: 'IT' },
     piedmont: { label: 'Piedmont', country: 'Italy', countryCode: 'IT' },
     veneto: { label: 'Veneto', country: 'Italy', countryCode: 'IT' },
+    liguria: { label: 'Liguria', country: 'Italy', countryCode: 'IT' },
     tyrol: { label: 'Tyrol & Carinthia', country: 'Austria', countryCode: 'AT' },
     switzerland: { label: 'Switzerland', country: 'Switzerland', countryCode: 'CH' }
   };
