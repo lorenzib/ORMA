@@ -5399,7 +5399,7 @@ const trails = [
       "label": "Start here: Arbusigny chef-lieu, route du Col du Parc, by the bus stop (OSM-verified access point)"
     },
     "desc": "A country loop around Arbusigny on the Plateau des Bornes, known locally as the Chemin des Fours: it strings together the commune's hamlets past old communal bread ovens and mission crosses, with wide views over the Saleve, the Voirons, the Bornes and the Faucigny. Part of the route follows the historic Chemin du Sel, the old salt road, on a mix of farm tracks and quiet lanes at around 830 m.",
-    "tips": "Imported route, not yet field-reviewed by ORMA. No published dog-access rule could be found for this circuit, so treat that as unconfirmed: it crosses working farmland and hamlets, and a lead is the safe default, especially near livestock and along the road stretches. Paths turn muddy after rain. The mapped line has a short disconnected piece along the D278 where the source data is broken; on the ground, simply follow the yellow waymarks.",
+    "tips": "ORMA has not verified or walked this trail yet. No published dog-access rule could be found for this circuit, so treat that as unconfirmed: it crosses working farmland and hamlets, and a lead is the safe default, especially near livestock and along the road stretches. Paths turn muddy after rain. The mapped line has a short disconnected piece along the D278 where the source data is broken; on the ground, simply follow the yellow waymarks.",
     "imageIcon": "images/sentier-du-four.webp",
     "imageCredit": {
       "text": "AI-generated illustration of the Chemin des Fours, not a photograph",
